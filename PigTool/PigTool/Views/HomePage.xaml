@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:PigTool.ViewModels" x:DataType="viewmodels:HomePageViewModel"
+             x:Class="PigTool.Views.HomePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid Margin="10" Padding="5" >
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label Text="{Binding NameOfUser}" FontSize="20"/>
+                <Label Text="{Binding VillageOfUser}" Grid.Row="1" FontSize="20" />
+                <Label Text="{Binding UserLastUpdatedTime}" Grid.Row="2" FontSize="20"/>
+            </Grid>
+            <Grid Margin="10" Padding="5" BackgroundColor="Beige">
+                <Grid.Resources>
+                    <Style x:Key="PrimaryHomeButton" TargetType="Button">
+                        <Setter Property="FontSize" Value="20" />
+                        <Setter Property="CornerRadius" Value="6" />
+                        <Setter Property="HeightRequest" Value="100"/>
+                    </Style>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Button Text="Add Data" 
+                        Grid.Row="0"
+                        Style="{StaticResource PrimaryHomeButton}"/>
+                <Button Text="View / Edit / Delete data"
+                        Grid.Row="1"
+                        Style="{StaticResource PrimaryHomeButton}"/>
+                <Button Text="View Reports"
+                        Grid.Row="2"
+                        Style="{StaticResource PrimaryHomeButton}"/>
+            </Grid>
+            <Label Text="{Binding DateTime, StringFormat='{0:T}'}"
+                   FontSize="Large"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

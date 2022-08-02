@@ -7,7 +7,16 @@
     -->
     <Application.Resources>
         <ResourceDictionary>
-            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Primary">#b35137</Color>
+            <Color x:Key="PrimaryText">#000</Color>
+            <Color x:Key="HeaderTextColor">#fff</Color>
+            <x:String x:Key="IconSearch">&#xf002;</x:String>
+            <x:String x:Key="IconUpdate">&#xf044;</x:String>
+            <x:String x:Key="IconRecord">&#xf328;</x:String>
+            <x:String x:Key="IconSettings">&#xf085;</x:String>
+            <x:String x:Key="IconRefresh">&#xf021;</x:String>
+            <x:String x:Key="IconSend">&#xf1d8;</x:String>
+            <x:String x:Key="IconPrivacy">&#xf06e;</x:String>
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
                 <Setter Property="VisualStateManager.VisualStateGroups">

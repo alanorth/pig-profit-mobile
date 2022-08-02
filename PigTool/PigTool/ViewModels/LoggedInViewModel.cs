@@ -1,5 +1,5 @@
-﻿using PigTool.Models;
-using PigTool.Services;
+﻿using PigTool.Services;
+using SQLLiteDbContext;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,10 +8,11 @@ using Xamarin.Forms;
 
 namespace PigTool.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public  class LoggedInViewModel
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
-        //here
+        //public DbSQLLiteContext DataConext  => DependencyService.Get<DbSQLLiteContext>();
+
+        public IDataRepo repo;
 
         bool isBusy = false;
         public bool IsBusy
@@ -20,16 +21,10 @@ namespace PigTool.ViewModels
             set { SetProperty(ref isBusy, value); }
         }
 
-        string title = string.Empty;
-        public string Title
-        {
-            get { return title; }
-            set { SetProperty(ref title, value); }
-        }
 
         protected bool SetProperty<T>(ref T backingStore, T value,
-            [CallerMemberName] string propertyName = "",
-            Action onChanged = null)
+           [CallerMemberName] string propertyName = "",
+           Action onChanged = null)
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
                 return false;
@@ -51,5 +46,6 @@ namespace PigTool.ViewModels
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
     }
 }
