@@ -1,4 +1,5 @@
-﻿using PigTool.Services;
+﻿using PigTool.Models;
+using PigTool.Services;
 using SQLLiteDbContext;
 using System;
 using System.Collections.Generic;
@@ -12,13 +13,25 @@ namespace PigTool.ViewModels
     {
         //public DbSQLLiteContext DataConext  => DependencyService.Get<DbSQLLiteContext>();
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public IDataRepo repo;
+        public UserInfo User;
+        public List<Translation> TranslationStore;
 
         bool isBusy = false;
         public bool IsBusy
         {
             get { return isBusy; }
             set { SetProperty(ref isBusy, value); }
+        }
+
+        public LoggedInViewModel() {
+            repo = DependencyService.Get<IDataRepo>();
+            //users Variables
+            User = repo.GetUserInfoAsync().Result;
+
+            TranslationStore = repo.GetAllTranslations().Result;
         }
 
 
@@ -36,7 +49,7 @@ namespace PigTool.ViewModels
         }
 
         #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
+        // public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             var changed = PropertyChanged;
@@ -46,6 +59,8 @@ namespace PigTool.ViewModels
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
+        
 
     }
 }

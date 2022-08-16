@@ -35,12 +35,12 @@
                 <FontImageSource Glyph="&#xf015;" FontFamily="FA-S" />
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="Add Data" ContentTemplate="{DataTemplate local:AboutPage}" >
+        <ShellContent Title="Add Data"  Route="AddDatePage" x:Name="AddData" ContentTemplate="{DataTemplate local:AddDataPage}" >
             <ShellContent.Icon>
                 <FontImageSource Glyph="&#xf0fe;" FontFamily="FA-S" />
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="Manage Data" ContentTemplate="{DataTemplate local:HomePage}" >
+        <ShellContent Title="Manage Data" Route="ManageDataPage" x:Name="ManageData" ContentTemplate="{DataTemplate local:ManageDataPage}" >
             <ShellContent.Icon>
                 <FontImageSource Glyph="&#xf0ce;" FontFamily="FA-S" />
             </ShellContent.Icon>
@@ -55,6 +55,7 @@
                 <FontImageSource Glyph="&#xf14d;" FontFamily="FA-S" />
             </ShellContent.Icon>
         </ShellContent>
+     
     </TabBar>
 
     <!--

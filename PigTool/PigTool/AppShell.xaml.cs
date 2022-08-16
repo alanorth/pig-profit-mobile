@@ -13,6 +13,8 @@ namespace PigTool
             InitializeComponent();
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            Routing.RegisterRoute(nameof(AddDataPage), typeof(AddDataPage));
+            Routing.RegisterRoute(nameof(ManageDataPage), typeof(ManageDataPage));
         }
 
     }

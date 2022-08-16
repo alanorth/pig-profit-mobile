@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:PigTool.ViewModels" 
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+             x:DataType="viewmodels:FeedItemViewModel"
+             x:Class="PigTool.Views.FeedItemPage"
+             Title="{Binding AddFeedItemTrans}">
+    <ContentPage.Content>
+        
+        <!--
+         AddFeedItemTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AddFeedItemTrans), User.UserLang);
+            DateObtainedTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateObtainedTrans), User.UserLang);
+            FeedTypeTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FeedTypeTrans), User.UserLang);
+            OtherFeedTypeTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherFeedTypeTrans), User.UserLang);
+            AmountPurchasedTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AmountPurchasedTrans), User.UserLang);
+            UnitTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(UnitTrans), User.UserLang);
+            OtherAmountPurchaseTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherAmountPurchaseTrans), User.UserLang);
+            CostTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CostTrans), User.UserLang);
+            TransportCostTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportCostTrans), User.UserLang);
+            PurchasedFrom = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PurchasedFrom), User.UserLang);
+            CommentTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTrans), User.UserLang);
+            Save = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(Save), User.UserLang);
+            Reset = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(Reset), User.UserLang);
+        -->
+        <ScrollView>
+            <StackLayout>
+
+                <StackLayout.Resources>
+                    <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+                        <Setter Property="TextColor" Value="Red" />
+                    </Style>
+                    </StackLayout.Resources>
+
+                        <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3.4*" />
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="1.8*" />
+                        <ColumnDefinition Width="1.8*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3" />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition x:Name ="HiddenOtherFeedGrid" Height="{Binding OtherFeedHeight}" />
+                        <RowDefinition />
+                        <RowDefinition x:Name="HiddenOtherPurchaseGrid" Height="{Binding UnitTypeHeight}"/>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition Height="250"/>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{Binding DateObtainedTrans}" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center"  HorizontalTextAlignment="Center" Grid.Column="0" Grid.Row="1"/>
+                    <DatePicker IsEnabled="{Binding IsEditMode}"  Date="{Binding DateObtained}" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="1"></DatePicker>
+
+                    <Label Text="{Binding FeedTypeTrans}" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center"  HorizontalTextAlignment="Center" Grid.Column="0" Grid.Row="2"/>
+                    <Picker IsEnabled="{Binding IsEditMode}" ItemsSource="{Binding FeedTypeListOfOptions}"  ItemDisplayBinding="{Binding TranslatedValue}"  SelectedItem="{Binding SelectedFeedType}" HorizontalOptions="FillAndExpand" SelectedIndex="-1"  Margin="0,0,0,0"  Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="2"   ></Picker>
+
+                    <Label Text="{Binding OtherFeedTypeTrans}" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center"  HorizontalTextAlignment="Center" Grid.Column="0" Grid.Row="3"/>
+                    <Entry IsEnabled="{Binding IsEditMode}" HorizontalOptions="FillAndExpand" Text="{Binding OtherFeedType}" Margin="0,0,0,0" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="3"></Entry>
+
+                    <Label Text="{Binding AmountPurchasedTrans}" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Column="0" Grid.Row="4" />
+                    <Entry IsEnabled="{Binding IsEditMode}" Text="{Binding AmountPurchased}" HorizontalOptions="FillAndExpand" Margin="0,0,0,0"  Grid.Column="1" Grid.Row="4">
+                        <Entry.Behaviors>
+                            <xct:NumericValidationBehavior 
+                                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                MinimumValue="1.0"
+                                MaximumValue="1000.0" />
+                        </Entry.Behaviors>
+                    </Entry>
+                    <Label Text="{Binding UnitTrans}" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Column="2" Grid.Row="4" />
+                    <Picker IsEnabled="{Binding IsEditMode}" ItemsSource="{Binding UnitTypeListOfOptions}"  ItemDisplayBinding="{Binding TranslatedValue}" SelectedItem="{Binding SelectedPurchaseUnitType}" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" Grid.Column="3" Grid.Row="4"></Picker>
+
+                    <Label Text="{Binding OtherAmountPurchaseTrans}"  FontSize="Medium" HorizontalOptions="FillAndExpand"  VerticalTextAlignment="Center"  HorizontalTextAlignment="Center" Grid.Column="0" Grid.Row="5"/>
+                    <Entry IsEnabled="{Binding IsEditMode}" Text="{Binding OtherAmountPurchaseUnit}" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="5"></Entry>
+
+                    <Label Text="{Binding CostTrans}" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Column="0" Grid.Row="6"/>
+                    <Entry IsEnabled="{Binding IsEditMode}" Text="{Binding Cost}" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="6">
+                        <Entry.Behaviors>
+                            <xct:NumericValidationBehavior 
+                                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                MinimumValue="1.0"
+                                MaximumValue="1000.0" />
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <Label Text="{Binding TransportCostTrans}" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Column="0" Grid.Row="7"/>
+                    <Entry IsEnabled="{Binding IsEditMode}" Text="{Binding TransportationCost}" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="7">
+                        <Entry.Behaviors>
+                            <xct:NumericValidationBehavior 
+                                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                MinimumValue="1.0"
+                                MaximumValue="1000.0" />
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <Label Text="{Binding PurchasedFrom}" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Column="0" Grid.Row="8"/>
+                    <Picker IsEnabled="{Binding IsEditMode}" ItemsSource="{Binding PurchaseTypeListOfOptions}" ItemDisplayBinding="{Binding TranslatedValue}" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="8" SelectedItem="{Binding SelectedPurchasedFrom}"></Picker>
+
+                    <Label Text="{Binding CommentTrans}" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Start" HorizontalTextAlignment="Center" Grid.Column="0" Grid.Row="9"/>
+                    <Entry IsEnabled="{Binding IsEditMode}" Text="{Binding Comment}"  HorizontalOptions="FillAndExpand" Margin="0,0,0,0"  VerticalTextAlignment="Start" BackgroundColor="BlanchedAlmond" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="9"></Entry>
+
+                    <StackLayout Orientation="Horizontal" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2">
+                        <Button IsVisible="{Binding IsCreationMode}" Text="{Binding Reset}" Command="{Binding ResetButtonClicked}" HorizontalOptions="CenterAndExpand"/>
+                        <Button IsEnabled="{Binding EditExistingMode}" IsVisible="{Binding EditExistingMode}"   Command="{Binding DeleteButtonClicked}"  BackgroundColor="OrangeRed" Text="Delete" HorizontalOptions="CenterAndExpand"/>
+                        <Button IsEnabled="{Binding IsEditMode}" Text="{Binding Save}" Command="{Binding SaveButtonClicked}" HorizontalOptions="CenterAndExpand"/>
+                    </StackLayout>
+
+                </Grid>
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

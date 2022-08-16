@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:viewmodels="clr-namespace:PigTool.ViewModels" x:DataType="viewmodels:HomePageViewModel"
-             x:Class="PigTool.Views.HomePage">
+             x:Class="PigTool.Views.HomePage"
+             Title="{Binding Home}">
+             
     <ContentPage.Content>
         <StackLayout>
             <Grid Margin="10" Padding="5" >
@@ -28,13 +30,15 @@
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Button Text="Add Data" 
+                <Button Text="{Binding AddData}"
                         Grid.Row="0"
-                        Style="{StaticResource PrimaryHomeButton}"/>
-                <Button Text="View / Edit / Delete data"
+                        Style="{StaticResource PrimaryHomeButton}"
+                        Command="{Binding AddDataNavigation}"/>
+                <Button Text="{Binding EditData}"
                         Grid.Row="1"
-                        Style="{StaticResource PrimaryHomeButton}"/>
-                <Button Text="View Reports"
+                        Style="{StaticResource PrimaryHomeButton}"
+                        Command="{Binding ManageDataNavigation}"/>
+                <Button Text="{Binding ViewReports}"
                         Grid.Row="2"
                         Style="{StaticResource PrimaryHomeButton}"/>
             </Grid>

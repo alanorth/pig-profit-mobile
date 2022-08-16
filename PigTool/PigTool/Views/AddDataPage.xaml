@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:PigTool.ViewModels" x:DataType="viewmodels:AddDataViewModel"
+             x:Class="PigTool.Views.AddDataPage"
+             Title="Add Data">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="5, 10">
+            <StackLayout.Resources>
+                <Style x:Key="AddNavButton" TargetType="Button">
+                    <Setter Property="VerticalOptions" Value="StartAndExpand" />
+                    <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                      <Setter Property="Margin" Value="20,0" />
+                        <Setter Property="FontSize" Value="15"/>
+                    </Style>
+            </StackLayout.Resources>
+                <Frame OutlineColor="Black" >
+                <Label Text="{Binding Costs}"
+                VerticalOptions="StartAndExpand"
+                HorizontalOptions="CenterAndExpand" FontSize="25"/>
+                </Frame>
+                <Button Text="{Binding Feed}" Style="{StaticResource AddNavButton}" Command="{Binding AddFeedItem}"   BackgroundColor="#d6824d"/>
+                <Button Text="{Binding Healthcare}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
+                <Button Text="{Binding Labour}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
+                <Button Text="{Binding Housing}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
+                <Button Text="{Binding Water}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
+                <Button Text="{Binding Reproduction}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
+                <Button Text="{Binding Membership}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
+                <Button Text="{Binding Other}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
+                <Button Text="{Binding AnimalPurchase}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
+                <Button Text="{Binding LoanRepayment}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
+                <Button Text="{Binding Equipment}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
+                <Frame OutlineColor="Black" Margin="6">
+                    <Label Text="{Binding Income}"
+                VerticalOptions="StartAndExpand"
+                HorizontalOptions="CenterAndExpand" FontSize="25"/>
+                </Frame>
+                <Button Text="{Binding Saleofpigs}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
+                <Button Text="{Binding Saleofbreedingservices}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
+                <Button Text="{Binding Saleofmaure}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
+                <Button Text="{Binding OtherIncome}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
+        </StackLayout>
+            </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

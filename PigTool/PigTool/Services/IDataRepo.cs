@@ -13,5 +13,15 @@ namespace PigTool.Services
         Task<Translation> GetTranslationAsync(string Rowkey);
         Task<UserInfo> GetUserInfoAsync();
         Task<int> getTranslationItemCount();
+        Task<List<ControlData>> GetControlData(string dropDownOption);
+        Task AddSingleControlData(ControlData cd);
+        Task<List<Translation>> GetAllTranslations();
+        Task AddSingleFeedItem(FeedItem itemToAdd);
+        Task<List<FeedItem>> GetFeedItems();
+        Task<FeedItem> GetFeedItem(int Id);
+
+        Task UpdateFeedItem(FeedItem feedItem);
+
+        void DeleteFeedItem(FeedItem feedItem);
     }
 }
