@@ -35,19 +35,17 @@ namespace PigTool.Views
             if (!_ViewModel.PageRendered)
             {
 
-                //MyListView2.ItemsSource = Items;
-                //MyListView.ItemsSource = FeedItems;
-
+                // Fist Attach Feed Items
                 var FeedItemsExpander = createExpanderElement(
-                      ExpanderTitle: "Feed Items Trans",
-                      ColoumnHeader1: "Feed Type",
-                      ColoumnHeader2: "Date Obtained",
-                      ColoumnHeader3: "Cost",
+                      ExpanderTitle: _ViewModel.Feed,
+                      ColoumnHeader1: _ViewModel.FeedTypeTrans,
+                      ColoumnHeader2: _ViewModel.DateObtainedTrans,
+                      ColoumnHeader3: _ViewModel.CostTrans,
                       BindableColumns1: nameof(FeedItem.FeedType),
                       BindableColumns2: nameof(FeedItem.DateObtained),
                       BindableColumns3: nameof(FeedItem.Cost),
-                      NavigationCommand: _ViewModel.AddFeedItem,
-                      _ViewModel.FeedItems
+                      BindingList: nameof(_ViewModel.FeedItems),
+                      NavigationCommand: _ViewModel.AddFeedItem
                       );
 
                 ManageStack.Children.Add(FeedItemsExpander);
@@ -77,8 +75,9 @@ namespace PigTool.Views
             string BindableColumns1,
             string BindableColumns2,
             string BindableColumns3,
-            Command NavigationCommand,
-            ObservableCollection<FeedItem> ObList)
+            string BindingList,
+            Command NavigationCommand
+            )
         {
 
             var frame = new Frame();
@@ -122,7 +121,7 @@ namespace PigTool.Views
 
                 listvw.Header = Headergrid;
                 //listvw.ItemsSource = ObList;
-                listvw.SetBinding(ListView.ItemsSourceProperty , new Binding("FeedItems")) ;
+                listvw.SetBinding(ListView.ItemsSourceProperty , BindingList) ;
 
                 listvw.ItemTemplate = new DataTemplate(() =>
                 {
@@ -134,87 +133,6 @@ namespace PigTool.Views
 
             StackLayout stackHolder = new StackLayout();
 
-            //ListView listvw = new ListView();
-
-            //Grid Headergrid = new Grid
-            //{
-            //    BackgroundColor = Color.Black,
-            //    ColumnDefinitions =
-            //    {
-            //        new ColumnDefinition { Width = GridLength.Star },
-            //        new ColumnDefinition { Width = GridLength.Star },
-            //        new ColumnDefinition { Width = GridLength.Star },
-            //        new ColumnDefinition { Width = GridLength.Star }
-            //    }
-            //};
-
-            //Headergrid.Children.Add(new Label
-            //{
-            //    Text = "Feed",
-            //    HorizontalOptions = LayoutOptions.FillAndExpand,
-            //    HorizontalTextAlignment = TextAlignment.Center,
-            //    BackgroundColor = Color.Red,
-            //}, 0, 0);
-            //Headergrid.Children.Add(new Label
-            //{
-            //    Text = "Feed",
-            //    HorizontalOptions = LayoutOptions.FillAndExpand,
-            //    HorizontalTextAlignment = TextAlignment.Center,
-            //    BackgroundColor = Color.Red,
-            //}, 1, 0); Headergrid.Children.Add(new Label
-            //{
-            //    Text = "Feed",
-            //    HorizontalOptions = LayoutOptions.FillAndExpand,
-            //    HorizontalTextAlignment = TextAlignment.Center,
-            //    BackgroundColor = Color.Red,
-            //}, 2, 0); Headergrid.Children.Add(new Label
-            //{
-            //    Text = "Feed",
-            //    HorizontalOptions = LayoutOptions.FillAndExpand,
-            //    HorizontalTextAlignment = TextAlignment.Center,
-            //    BackgroundColor = Color.Red,
-            //}, 3, 0);
-
-            //listvw.Header = Headergrid;
-
-
-            ////listvw.ItemTemplate = new DataTemplate(() => { var x = new CustomVeggieCell("FeedType", "FeedType", "FeedType");
-            ////    return new ViewCell { View = x }; });
-
-            ////listvw.ItemTemplate = new DataTemplate(() => { return new CustomVeggieCell(nameof(FeedItem.FeedType), nameof(FeedItem.Cost), nameof(FeedItem.DateObtained)); });
-
-            ////listvw.ItemTemplate = new DataTemplate(typeof(CustomVeggieCell));
-
-            //stackHolder.Children.Add(listvw);
-
-            //listvw.ItemsSource = FeedItems;
-
-            // var x =    (DataTemplate)new CustomVeggieCell("", "", "");
-            // new ListView { ItemTemplate = (DataTemplate)Resources["personTemplate"], ItemsSource = people };
-
-            //new ListView { ItemTemplate = new DataTemplate(typeof(PersonCellCS)), ItemsSource = people, Margin = new Thickness(0, 20, 0, 0) }
-
-
-            /*expander.ContentTemplate = new DataTemplate(() =>
-            {
-
-                try
-                {
-                    var x =  new CustomVeggieCell(nameof(FeedItem.FeedType), nameof(FeedItem.Cost), nameof(FeedItem.DateObtained));
-
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    return new CustomVeggieCell(nameof(FeedItem.FeedType), nameof(FeedItem.Cost), nameof(FeedItem.DateObtained));
-                }
-
-                return new CustomVeggieCell(nameof(FeedItem.FeedType), nameof(FeedItem.Cost), nameof(FeedItem.DateObtained));
-
-            }
-            );*/
-
-            // expander.Content = stackHolder;
             return expander;
         }
 
@@ -248,7 +166,7 @@ namespace PigTool.Views
             Label column3Data = FormattedElementsHelper.ManageDataDetailsLableField(var3);
             Button button = new Button() { 
                 BackgroundColor = Color.Gray, 
-                Text = "Edit",
+                Text = "View",
                 HorizontalOptions = LayoutOptions.FillAndExpand
             };
             button.Command = command;

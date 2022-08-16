@@ -17,7 +17,7 @@
             UnitTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(UnitTrans), User.UserLang);
             OtherAmountPurchaseTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherAmountPurchaseTrans), User.UserLang);
             CostTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CostTrans), User.UserLang);
-            TransportCostTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportCostTrans), User.UserLang);
+            TransportCostTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportCostTrans), User.UserLan*****************g);
             PurchasedFrom = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PurchasedFrom), User.UserLang);
             CommentTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTrans), User.UserLang);
             Save = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(Save), User.UserLang);
@@ -105,9 +105,10 @@
                     <Entry IsEnabled="{Binding IsEditMode}" Text="{Binding Comment}"  HorizontalOptions="FillAndExpand" Margin="0,0,0,0"  VerticalTextAlignment="Start" BackgroundColor="BlanchedAlmond" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="9"></Entry>
 
                     <StackLayout Orientation="Horizontal" Grid.Row="10" Grid.Column="1" Grid.ColumnSpan="2">
-                        <Button IsVisible="{Binding IsCreationMode}" Text="{Binding Reset}" Command="{Binding ResetButtonClicked}" HorizontalOptions="CenterAndExpand"/>
-                        <Button IsEnabled="{Binding EditExistingMode}" IsVisible="{Binding EditExistingMode}"   Command="{Binding DeleteButtonClicked}"  BackgroundColor="OrangeRed" Text="Delete" HorizontalOptions="CenterAndExpand"/>
-                        <Button IsEnabled="{Binding IsEditMode}" Text="{Binding Save}" Command="{Binding SaveButtonClicked}" HorizontalOptions="CenterAndExpand"/>
+                        <Button Command="{Binding ResetButtonClicked}" IsVisible="{Binding IsCreationMode}" Text="{Binding Reset}"  HorizontalOptions="CenterAndExpand"/>
+                        <Button Command="{Binding SwitchToEditMode}"  IsVisible="{Binding EditExistingMode}"  IsEnabled="{Binding EditExistingMode}" Text="Edit" HorizontalOptions="CenterAndExpand"/>
+                        <Button Command="{Binding DeleteButtonClicked}"  IsVisible="{Binding EditExistingMode}"   BackgroundColor="OrangeRed" Text="Delete" HorizontalOptions="CenterAndExpand"/>
+                        <Button Command="{Binding SaveButtonClicked}"  Text="{Binding Save}" IsEnabled="{Binding IsEditMode}"  HorizontalOptions="CenterAndExpand"/>
                     </StackLayout>
 
                 </Grid>

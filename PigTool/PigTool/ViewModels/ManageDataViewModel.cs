@@ -15,6 +15,17 @@ namespace PigTool.ViewModels
     public class ManageDataViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
 
+        #region  Translations
+        public string Costs { get; set; }
+        public string Feed { get; set; }
+        public string DateObtainedTrans { get; set; }
+        public string FeedTypeTrans { get; set; }
+        public string CostTrans { get; set; }
+
+        #endregion
+
+
+
         public bool PageRendered { get; set; }
 
         public ObservableCollection<FeedItem> feedItems;
@@ -30,15 +41,20 @@ namespace PigTool.ViewModels
             }
         }
 
-        public Command AddFeedItem 
-        { 
-            get; 
-        }
+        public Command AddFeedItem { get; }
 
         public ManageDataViewModel()
         {
             PageRendered = false;
             AddFeedItem = new Command<FeedItem>(async (o) => await AddFeedItemDataCommand(o));
+
+            Costs = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(Costs), User.UserLang);
+            Feed = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(Feed), User.UserLang);
+            DateObtainedTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateObtainedTrans), User.UserLang);
+            FeedTypeTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FeedTypeTrans), User.UserLang);
+            CostTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CostTrans), User.UserLang);
+
+
         }
 
 
@@ -61,5 +77,7 @@ namespace PigTool.ViewModels
                 Console.WriteLine(ex.Message);
             }
         }
+
+
     }
 }

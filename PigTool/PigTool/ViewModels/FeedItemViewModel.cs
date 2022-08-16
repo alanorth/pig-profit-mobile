@@ -16,6 +16,7 @@ namespace PigTool.ViewModels
         public Command SaveButtonClicked { get; }
         public Command ResetButtonClicked { get; }
         public Command DeleteButtonClicked { get; }
+        public Command SwitchToEditMode { get; }
 
         //height of hidden grid members
         int otherFeedHeight, otherPurchaseHeight, otherUnitTypeHeight;
@@ -225,12 +226,12 @@ namespace PigTool.ViewModels
 
         public FeedItemViewModel()
         {
-            EditExistingMode = false;
             PopulateDefaultValues();
 
             SaveButtonClicked = (new Command(SaveButtonCreateFeedItem));
             ResetButtonClicked = new Command<object>(async (o) => await ResetButtonPressed(o));
             DeleteButtonClicked = new Command(DeleteItem);
+            SwitchToEditMode = new Command(EditItem);
             IsEditMode = true;
             IsCreationMode = !EditExistingMode;
 
@@ -282,9 +283,6 @@ namespace PigTool.ViewModels
             TransportationCost = selectedItem.TransportationCost;
             Comment = selectedItem.Comment;
 
-
-
-
             //if other is selected reveral other options and populate
             OtherPurchaseHeight = 0;
             UnitTypeHeight = 0;
@@ -312,7 +310,6 @@ namespace PigTool.ViewModels
                 SelectedPurchasedFrom = purchaseFrom;
                 SelectedPurchaseUnitType = unitType;
             }
-
         }
 
         private async void SaveButtonCreateFeedItem(object obj)
@@ -379,11 +376,18 @@ namespace PigTool.ViewModels
             }
         }
 
+        private void EditItem()
+        {
+            if (EditExistingMode)
+            {
+                IsEditMode = true;
+            }
+        }
+
 
         private string ValidateSave()
         {
             StringBuilder returnString = new StringBuilder();
-
             returnString.AppendLine(DateObtained == null ? "Date obtained not provided" : "");
             returnString.AppendLine(SelectedFeedType == null ? "Selected Feed Type not Provided" : "");
             returnString.AppendLine(AmountPurchased == null ? " Amount Purchased Not Provided" : "");
