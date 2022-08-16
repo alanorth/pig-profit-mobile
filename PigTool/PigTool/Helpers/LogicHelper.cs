@@ -18,6 +18,7 @@ namespace PigTool.Helpers
                 return TranslationRowKey;
             }
 
+
             return trans.getTranslation(langSetting);
         }
 
