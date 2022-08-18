@@ -79,7 +79,7 @@ namespace PigTool.ViewModels
             {
                 if (value != null && value.CompareTo(selectedFoodType) == 0)
                 {
-                    if (value.TranslationRowKey == "Other")
+                    if (value.TranslationRowKey == SC.OTHER)
                     {
                         OtherFeedHeight = 50;
                     }
@@ -93,7 +93,6 @@ namespace PigTool.ViewModels
             }
 
         }
-
         public PickerToolHelper SelectedPurchaseUnitType
         {
             get { return selectedPurchaseUnitType; }
@@ -114,7 +113,6 @@ namespace PigTool.ViewModels
                 }
             }
         }
-
         public PickerToolHelper SelectedPurchasedFrom
         {
             get
@@ -134,7 +132,6 @@ namespace PigTool.ViewModels
             }
         }
 
-
         public List<PickerToolHelper> FeedTypeListOfOptions
         {
 
@@ -145,8 +142,6 @@ namespace PigTool.ViewModels
                 OnPropertyChanged(nameof(FeedTypeListOfOptions));
             }
         }
-
-
         public List<PickerToolHelper> UnitTypeListOfOptions
         {
 
@@ -157,7 +152,6 @@ namespace PigTool.ViewModels
                 OnPropertyChanged(nameof(UnitTypeListOfOptions));
             }
         }
-
         public List<PickerToolHelper> PurchaseTypeListOfOptions
         {
 

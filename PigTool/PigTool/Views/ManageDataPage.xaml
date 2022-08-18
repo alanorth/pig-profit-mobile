@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
-             x:Class="PigTool.Views.ManageDataPage">
+             x:Class="PigTool.Views.ManageDataPage"
+             Title="Manage Data">
 
     <StackLayout  x:Name="ManageStack">
 
@@ -11,7 +12,7 @@
         <xct:Expander>
             <xct:Expander.Header>
                 <Frame>
-                <Label Text="Test Data"
+                <Label Text="Test Expander"
                FontAttributes="Bold"
                FontSize="Large" />
                 </Frame>

@@ -93,5 +93,35 @@ namespace PigTool.Services
             _context.Remove(feedItem);
             _context.SaveChangesAsync();
         }
+
+        public async Task<List<HealthCareItem>> GetHealthCareItems()
+        {
+            return await _context.HealthCareItems.ToListAsync();
+        }
+
+        public async Task<HealthCareItem> GetHealthCareItem(int Id)
+        {
+            return await _context.HealthCareItems.SingleOrDefaultAsync(Item => Item.Id == Id);
+        }
+
+        public async Task UpdateHealthCareItem(HealthCareItem Item)
+        {
+            _context.Update(Item);
+            await _context.SaveChangesAsync();
+        }
+
+        public void DeleteHealthCaredItem(HealthCareItem Item)
+        {
+            _context.Remove(Item);
+            _context.SaveChangesAsync();
+        }
+
+        public async Task AddSingleHealthCareItem(HealthCareItem itemToAdd)
+        {
+            if (_context.HealthCareItems.Any(fd => fd.Id == itemToAdd.Id)) return;
+
+            await _context.AddAsync(itemToAdd);
+            await _context.SaveChangesAsync();
+        }
     }
 }

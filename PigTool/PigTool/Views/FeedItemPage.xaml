@@ -64,7 +64,7 @@
                     <Entry IsEnabled="{Binding IsEditMode}" HorizontalOptions="FillAndExpand" Text="{Binding OtherFeedType}" Margin="0,0,0,0" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="3"></Entry>
 
                     <Label Text="{Binding AmountPurchasedTrans}" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Column="0" Grid.Row="4" />
-                    <Entry IsEnabled="{Binding IsEditMode}" Text="{Binding AmountPurchased}" HorizontalOptions="FillAndExpand" Margin="0,0,0,0"  Grid.Column="1" Grid.Row="4">
+                    <Entry IsEnabled="{Binding IsEditMode}" Text="{Binding AmountPurchased}" HorizontalOptions="FillAndExpand" Margin="0,0,0,0"  Grid.Column="1" Grid.Row="4" Keyboard="Numeric">
                         <Entry.Behaviors>
                             <xct:NumericValidationBehavior 
                                 InvalidStyle="{StaticResource InvalidEntryStyle}"
@@ -79,7 +79,7 @@
                     <Entry IsEnabled="{Binding IsEditMode}" Text="{Binding OtherAmountPurchaseUnit}" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="5"></Entry>
 
                     <Label Text="{Binding CostTrans}" FontSize="Medium" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Column="0" Grid.Row="6"/>
-                    <Entry IsEnabled="{Binding IsEditMode}" Text="{Binding Cost}" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="6">
+                    <Entry IsEnabled="{Binding IsEditMode}" Text="{Binding Cost}" HorizontalOptions="FillAndExpand" Margin="0,0,0,0" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="6" Keyboard="Numeric" >
                         <Entry.Behaviors>
                             <xct:NumericValidationBehavior 
                                 InvalidStyle="{StaticResource InvalidEntryStyle}"

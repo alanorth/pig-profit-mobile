@@ -19,9 +19,12 @@ namespace PigTool.Services
         Task AddSingleFeedItem(FeedItem itemToAdd);
         Task<List<FeedItem>> GetFeedItems();
         Task<FeedItem> GetFeedItem(int Id);
-
         Task UpdateFeedItem(FeedItem feedItem);
-
         void DeleteFeedItem(FeedItem feedItem);
+        Task<List<HealthCareItem>> GetHealthCareItems();
+        Task<HealthCareItem> GetHealthCareItem(int Id);
+        Task UpdateHealthCareItem(HealthCareItem Item);
+        void DeleteHealthCaredItem(HealthCareItem Item);
+        Task AddSingleHealthCareItem(HealthCareItem itemToAdd);
     }
 }

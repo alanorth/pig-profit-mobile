@@ -16,7 +16,5 @@ namespace PigTool.Models
         public int TransportationCost { get; set; }
         public string PurchasedFrom { get; set; }
         public string Comment { get; set; }
-
-
     }
 }

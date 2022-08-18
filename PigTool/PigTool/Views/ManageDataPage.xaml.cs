@@ -29,8 +29,7 @@ namespace PigTool.Views
 
         protected async override void OnAppearing()
         {
-
-            _ViewModel.FeedItems = new ObservableCollection<FeedItem>(await _ViewModel.PopulateFeedItemList());
+            await _ViewModel.PopulateLists();
 
             if (!_ViewModel.PageRendered)
             {
@@ -48,7 +47,21 @@ namespace PigTool.Views
                       NavigationCommand: _ViewModel.AddFeedItem
                       );
 
+
+                var HealthItemsExpander = createExpanderElement(
+                      ExpanderTitle: "Health Care Items",
+                      ColoumnHeader1: "Health Care Type",
+                      ColoumnHeader2: "Date",
+                      ColoumnHeader3: "Care Cost",
+                      BindableColumns1: nameof(HealthCareItem.HealthCareType),
+                      BindableColumns2: nameof(HealthCareItem.Date),
+                      BindableColumns3: nameof(HealthCareItem.HealthCareCost),
+                      BindingList: nameof(_ViewModel.HealthCareItems),
+                      NavigationCommand: _ViewModel.EditHealthCareItem
+                      );
+
                 ManageStack.Children.Add(FeedItemsExpander);
+                ManageStack.Children.Add(HealthItemsExpander);
 
                 _ViewModel.PageRendered = true;
             }

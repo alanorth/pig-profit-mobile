@@ -28,8 +28,8 @@ namespace PigTool.ViewModels
 
         public bool PageRendered { get; set; }
 
-        public ObservableCollection<FeedItem> feedItems;
-
+        private ObservableCollection<FeedItem> feedItems;
+        private ObservableCollection<HealthCareItem> healthCareItems;
         public ObservableCollection<FeedItem> FeedItems
         {
 
@@ -41,12 +41,25 @@ namespace PigTool.ViewModels
             }
         }
 
+        public ObservableCollection<HealthCareItem> HealthCareItems
+        {
+
+            get { return healthCareItems; }
+            set
+            {
+                healthCareItems = value;
+                OnPropertyChanged(nameof(HealthCareItems));
+            }
+        }
+
         public Command AddFeedItem { get; }
+        public Command EditHealthCareItem { get; }
 
         public ManageDataViewModel()
         {
             PageRendered = false;
             AddFeedItem = new Command<FeedItem>(async (o) => await AddFeedItemDataCommand(o));
+            EditHealthCareItem = new Command<HealthCareItem>(async (o) => await EditHealthCareItemCommand(o));
 
             Costs = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(Costs), User.UserLang);
             Feed = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(Feed), User.UserLang);
@@ -58,19 +71,29 @@ namespace PigTool.ViewModels
         }
 
 
-        public async Task<List <FeedItem>> PopulateFeedItemList()
+        public async Task PopulateLists()
         {
-            var feedItemList = await repo.GetFeedItems();
-
-            return feedItemList;
+            FeedItems = new ObservableCollection <FeedItem>(await repo.GetFeedItems());
+            HealthCareItems =  new ObservableCollection<HealthCareItem>(await repo.GetHealthCareItems());
         }
 
         private async Task AddFeedItemDataCommand(FeedItem feed)
         {
             try
             {
-                Console.WriteLine(feed.GetType()?.ToString());
                 await Application.Current.MainPage.Navigation.PushAsync(new FeedItemPage(feed));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private async Task EditHealthCareItemCommand(HealthCareItem item)
+        {
+            try
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new HealthCarePage(item));
             }
             catch (Exception ex)
             {

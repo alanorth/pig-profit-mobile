@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:PigTool.ViewModels" x:DataType="viewmodels:HealthCareViewModel"
+             x:Class="PigTool.Views.HealthCarePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <TableView Intent="Form" HasUnevenRows="True">
+                <TableRoot>
+                    <TableSection>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10,0">
+                                <Label WidthRequest="130" VerticalOptions="CenterAndExpand" Text="{Binding DateTranslation}"></Label>
+                                <DatePicker HorizontalOptions="FillAndExpand" Date="{Binding Date}" IsEnabled="{Binding IsEditMode}"></DatePicker>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical" Padding="10,0">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label WidthRequest="130" VerticalOptions="CenterAndExpand" Text="{Binding HealthCareTypeTranslation}"></Label>
+                                    <Picker HorizontalOptions="FillAndExpand" ItemsSource="{Binding HealthCareTypeOptions}" ItemDisplayBinding="{Binding TranslatedValue}" 
+                                            SelectedItem="{Binding SelectedHealthCareTypeOption}" SelectedIndexChanged="IndexHasBeenChangedCheckTheValue"  IsEnabled="{Binding IsEditMode}"></Picker>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" x:Name="OtherHealthCare"  IsVisible="{Binding DisplayOtherhealthCareField}">
+                                    <Label WidthRequest="130" VerticalOptions="CenterAndExpand" Text="{Binding OtherHealthCareTypeTranslation}"></Label>
+                                    <Entry HorizontalOptions="FillAndExpand" Text="{Binding OtherHealthCareType}" IsEnabled="{Binding IsEditMode}"></Entry>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10,0">
+                                <Label WidthRequest="130" VerticalOptions="CenterAndExpand" Text="{Binding HealthCareCostTranslation}"></Label>
+                                <Entry Keyboard="Numeric" HorizontalOptions="FillAndExpand" Text="{Binding HealthCareCost}"  IsEnabled="{Binding IsEditMode}"></Entry>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal" Padding="10,0">
+                                    <Label WidthRequest="130" VerticalOptions="CenterAndExpand" Text="{Binding ProviderTranslation}"></Label>
+                                    <Picker HorizontalOptions="FillAndExpand" ItemsSource="{Binding HealthProviderListOfOptions}" ItemDisplayBinding="{Binding TranslatedValue}" 
+                                            SelectedItem="{Binding SelectedHealthProviderListOfOption}" IsEnabled="{Binding IsEditMode}"></Picker>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" Padding="10,0"  IsVisible="{Binding DisplayOtherHeatlhProvidersField}">
+                                    <Label WidthRequest="130" VerticalOptions="CenterAndExpand" Text="{Binding OtherProviderTranslation}"></Label>
+                                    <Entry HorizontalOptions="FillAndExpand"  Text="{Binding OtherProvider}" IsEnabled="{Binding IsEditMode}"></Entry>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10,0">
+                                <Label WidthRequest="130" VerticalOptions="CenterAndExpand" Text="{Binding MedicineCostTranslation}"></Label>
+                                <Entry Keyboard="Numeric" HorizontalOptions="FillAndExpand" Text="{Binding MedicineCost}" IsEnabled="{Binding IsEditMode}"></Entry>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout>
+                            <StackLayout Orientation="Horizontal" Padding="10,0">
+                                <Label WidthRequest="130" VerticalOptions="CenterAndExpand" Text="{Binding MedinceTypeTranslation}"></Label>
+                                    <Picker HorizontalOptions="FillAndExpand" ItemsSource="{Binding MedicineTypeListOfOptions}" ItemDisplayBinding="{Binding TranslatedValue}" 
+                                            SelectedItem="{Binding SelectedMedicineTypeListOfOption}" IsEnabled="{Binding IsEditMode}"></Picker>
+                            </StackLayout>
+                                <StackLayout Orientation="Horizontal" Padding="10,0"  IsVisible="{Binding DisplayOtherMedicineField}">
+                                <Label WidthRequest="130" VerticalOptions="CenterAndExpand" Text="{Binding OtherMedinceTypeTranslation}"></Label>
+                                    <Entry HorizontalOptions="FillAndExpand" Text="{Binding OtherMedinceType}" IsEnabled="{Binding IsEditMode}"></Entry>
+                            </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal" Padding="10,0">
+                                    <Label WidthRequest="130" VerticalOptions="CenterAndExpand" Text="{Binding PurchasedFromTranslation}"></Label>
+                                    <Picker HorizontalOptions="FillAndExpand" ItemsSource="{Binding PurchaseFromListOfOptions}" ItemDisplayBinding="{Binding TranslatedValue}" 
+                                            SelectedItem="{Binding SelectedPurchaseFromListOfOption}" IsEnabled="{Binding IsEditMode}"></Picker>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" Padding="10,0" IsVisible="{Binding DisplayOtherPurchaseFrom}">
+                                    <Label WidthRequest="130" VerticalOptions="CenterAndExpand" Text="{Binding OtherPurchasedFromTranslation}"></Label>
+                                    <Entry HorizontalOptions="FillAndExpand" Text="{Binding OtherPurchasedFrom}" IsEnabled="{Binding IsEditMode}"></Entry>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10,0">
+                                <Label WidthRequest="130" VerticalOptions="CenterAndExpand" Text="{Binding TransportationCostTranslation}"></Label>
+                                <Entry Keyboard="Numeric" HorizontalOptions="FillAndExpand"  Text="{Binding TransportationCost}" IsEnabled="{Binding IsEditMode}"></Entry>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10,0">
+                                <Label WidthRequest="130" VerticalOptions="CenterAndExpand" Text="{Binding CostTranslation}"></Label>
+                                <Entry Keyboard="Numeric" HorizontalOptions="FillAndExpand" Text="{Binding Cost}" IsEnabled="{Binding IsEditMode}"></Entry>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="10,0">
+                                <Label WidthRequest="130" VerticalOptions="CenterAndExpand" Text="{Binding CommentTranslation}"></Label>
+                                <Entry HorizontalOptions="FillAndExpand" Text="{Binding Comment}" IsEnabled="{Binding IsEditMode}"></Entry>
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Button Text="Reset" Command="{Binding ResetButtonClicked}" IsVisible="{Binding IsEditMode}" IsEnabled="{Binding IsEditMode}"></Button>
+                                <Button Text="Edit" Command="{Binding SwitchToEditMode}"></Button>
+                                <Button Text="Delete" Command="{Binding DeleteButtonClicked}"></Button>
+                                <Button Text="Save" Command="{Binding SaveButtonClicked}"  IsVisible="{Binding IsEditMode}" IsEnabled="{Binding IsEditMode}"></Button>
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
