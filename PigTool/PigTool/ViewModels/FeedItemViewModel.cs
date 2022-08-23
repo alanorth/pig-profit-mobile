@@ -213,8 +213,10 @@ namespace PigTool.ViewModels
         public string TransportCostTrans { get; set; }
         public string PurchasedFrom { get; set; }
         public string CommentTrans { get; set; }
-        public string Save { get; set; }
-        public string Reset { get; set; }
+        public string SaveTranslation { get; set; }
+        public string ResetTranslation { get; set; }
+        public string EditTranslation { get; set; }
+        public string DeleteTranslation { get; set; }
         private FeedItem storedFeedItemd { get; set; }
         public bool EditExistingMode { get => editExistingMode; set { editExistingMode = value; OnPropertyChanged(nameof(EditExistingMode)); } }
 
@@ -240,8 +242,10 @@ namespace PigTool.ViewModels
             TransportCostTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportCostTrans), User.UserLang);
             PurchasedFrom = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PurchasedFrom), User.UserLang);
             CommentTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTrans), User.UserLang);
-            Save = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(Save), User.UserLang);
-            Reset = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(Reset), User.UserLang);
+            SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
+            ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
+            EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
+            DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), User.UserLang);
         }
 
         private void PopulateDefaultValues()

@@ -21,6 +21,7 @@ namespace PigTool.ViewModels
         public string DateObtainedTrans { get; set; }
         public string FeedTypeTrans { get; set; }
         public string CostTrans { get; set; }
+        public string LabourCostTrans { get; set; }
 
         #endregion
 
@@ -30,6 +31,7 @@ namespace PigTool.ViewModels
 
         private ObservableCollection<FeedItem> feedItems;
         private ObservableCollection<HealthCareItem> healthCareItems;
+        private ObservableCollection<LabourCostItem> labourCostItems;
         public ObservableCollection<FeedItem> FeedItems
         {
 
@@ -52,20 +54,34 @@ namespace PigTool.ViewModels
             }
         }
 
+        public ObservableCollection<LabourCostItem> LabourCostItems
+        {
+
+            get { return labourCostItems; }
+            set
+            {
+                labourCostItems = value;
+                OnPropertyChanged(nameof(LabourCostItems));
+            }
+        }
+
         public Command AddFeedItem { get; }
         public Command EditHealthCareItem { get; }
+        public Command EditLabourCostItem { get; }
 
         public ManageDataViewModel()
         {
             PageRendered = false;
             AddFeedItem = new Command<FeedItem>(async (o) => await AddFeedItemDataCommand(o));
             EditHealthCareItem = new Command<HealthCareItem>(async (o) => await EditHealthCareItemCommand(o));
+            EditLabourCostItem = new Command<LabourCostItem>(async (o) => await EditLabourCostItemCommand(o));
 
             Costs = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(Costs), User.UserLang);
             Feed = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(Feed), User.UserLang);
             DateObtainedTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateObtainedTrans), User.UserLang);
             FeedTypeTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FeedTypeTrans), User.UserLang);
             CostTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CostTrans), User.UserLang);
+            LabourCostTrans = LogicHelper.GetTranslationFromStore(TranslationStore, "Labour", User.UserLang);
 
 
         }
@@ -75,6 +91,7 @@ namespace PigTool.ViewModels
         {
             FeedItems = new ObservableCollection <FeedItem>(await repo.GetFeedItems());
             HealthCareItems =  new ObservableCollection<HealthCareItem>(await repo.GetHealthCareItems());
+            LabourCostItems = new ObservableCollection<LabourCostItem>(await repo.GetLabourCostItems());
         }
 
         private async Task AddFeedItemDataCommand(FeedItem feed)
@@ -101,6 +118,17 @@ namespace PigTool.ViewModels
             }
         }
 
+        private async Task EditLabourCostItemCommand(LabourCostItem item)
+        {
+            try
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new LabourCostPage(item));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
 
     }
 }

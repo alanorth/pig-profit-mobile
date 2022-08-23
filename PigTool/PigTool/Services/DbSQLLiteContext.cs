@@ -18,6 +18,7 @@ namespace SQLLiteDbContext
         public DbSet<FeedItem> FeedItems { get; set; }
         public DbSet<ControlData> ControlDataOptions { get; set; }
         public DbSet<HealthCareItem> HealthCareItems { get; set; }
+        public DbSet<LabourCostItem> LabourCostItems { get; set; }
 
 
         public DbSQLLiteContext()
@@ -78,6 +79,12 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "OtherIncome", English = "Other Income", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
                         new Translation() { RowKey = "Equipment", English = "Home", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
 
+                        //Core Button Translations
+                        new Translation() { RowKey = "SaveTranslation", English = "Save", Lang1 = "Save Lang1", Lang2 = "Save Lang2" },
+                        new Translation() { RowKey = "ResetTranslation", English = "Reset", Lang1 = "Reset Lang1", Lang2 = "Reset Lang2" },
+                        new Translation() { RowKey = "EditTranslation", English = "Edit", Lang1 = "Edit Lang1", Lang2 = "Edit Lang2" },
+                        new Translation() { RowKey = "DeleteTranslation", English = "Delete", Lang1 = "Delete Lang1", Lang2 = "Delete Lang2" },
+
                         //Add Feed Item Translations
                         new Translation() { RowKey = "AddFeedItemTrans", English = "Add Feed Cost", Lang1 = "Add Feed Cost Lang1", Lang2 = "Add Feed Cost Lang2", },
                         new Translation() { RowKey = "DateObtainedTrans", English = "Date Obtained", Lang1 = "Date Obtained Lang1", Lang2 = "Date Obtained Lang2" },
@@ -90,8 +97,6 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "TransportCostTrans", English = "Transportation Cost", Lang1 = "Transportation Cost Lang1", Lang2 = "Transportation Cost Lang2" },
                         new Translation() { RowKey = "PurchasedFrom", English = "Purchased From", Lang1 = "Purchased From Lang1", Lang2 = "Purchased From Lang2" },
                         new Translation() { RowKey = "CommentTrans", English = "Comment", Lang1 = "Comment Lang1", Lang2 = "Comment Lang2" },
-                        new Translation() { RowKey = "Save", English = "Save", Lang1 = "Save Lang1", Lang2 = "Save Lang2" },
-                        new Translation() { RowKey = "Reset", English = "Reset", Lang1 = "Reset Lang1", Lang2 = "Reset Lang2" },
 
                         //Add HeathCare item Translation
                         new Translation() { RowKey = "DateTranslation", English = "Date", Lang1 = "Date Lang1", Lang2 = "Date Lang 2" },
@@ -109,7 +114,12 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "TransportationCostTranslation", English = "Transport cost:", Lang1 = "Transport cost: Lang1", Lang2 = "Transport cost: Lang2" },
                         new Translation() { RowKey = "CommentTranslation", English = "Comment", Lang1 = "Comment Lang1", Lang2 = "Comment Lang2" },
 
-
+                        //Labour Costs
+                        new Translation() { RowKey = "LabourTitleTranslation", English = "Labour Cost", Lang1 = "Labour Cost Lang1", Lang2 = "Labour Cost Lang2" },
+                        new Translation() { RowKey = "LabourTypeTranslation", English = "Labour Type", Lang1 = "Labour Type Lang1", Lang2 = "Labour Type Lang2" },
+                        new Translation() { RowKey = "OtherLaboutTypeTranslation", English = "Other LabourType", Lang1 = "Other LabourType Lang1", Lang2 = "Other LabourType Lang2" },
+                        new Translation() { RowKey = "AmountPaidTranslation", English = "Amount Paid", Lang1 = "Amount Paid Lang1", Lang2 = "Amount Paid Lang2" },
+                        new Translation() { RowKey = "OtherCostsTranslation", English = "Any Other Cost", Lang1 = "Any Other Cost Lang1", Lang2 = "Any Other Cost Lang2" },
 
                         //Drop Down Options
                         new Translation() { RowKey = "DropDownFeedType1", English = "Feed Type 1", Lang1 = "Feed Type 1 Lang 1", Lang2 = "Feed Type 1 Lang 2" },
@@ -173,9 +183,14 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "PruchaseFromType7", English = "Purchase From Type 7", Lang1 = "Purchase From Type 7 Lang1", Lang2 = "Purchase From Type 7 Lang2" },
                         new Translation() { RowKey = "PruchaseFromType8", English = "Purchase From Type 8", Lang1 = "Purchase From Type 8 Lang1", Lang2 = "Purchase From Type 8 Lang2" },
                         new Translation() { RowKey = "PruchaseFromType9", English = "Purchase From Type 9", Lang1 = "Purchase From Type 9 Lang1", Lang2 = "Purchase From Type 9 Lang2" },
-                        new Translation() { RowKey = "PruchaseFromType10", English = "Purchase From Type 10", Lang1 = "Purchase From Type 10 Lang1", Lang2 = "Purchase From Type 10 Lang2" }
+                        new Translation() { RowKey = "PruchaseFromType10", English = "Purchase From Type 10", Lang1 = "Purchase From Type 10 Lang1", Lang2 = "Purchase From Type 10 Lang2" },
 
-
+                        new Translation() { RowKey = "LabourType1", English = "Labour Type 1", Lang1 = "Labour Type 1 Lang1", Lang2 = "Labour Type 1 Lang2" },
+                        new Translation() { RowKey = "LabourType2", English = "Labour Type 2", Lang1 = "Labour Type 2 Lang1", Lang2 = "Labour Type 2 Lang2" },
+                        new Translation() { RowKey = "LabourType3", English = "Labour Type 3", Lang1 = "Labour Type 3 Lang1", Lang2 = "Labour Type 3 Lang2" },
+                        new Translation() { RowKey = "LabourType4", English = "Labour Type 4", Lang1 = "Labour Type 4 Lang1", Lang2 = "Labour Type 4 Lang2" },
+                        new Translation() { RowKey = "LabourType5", English = "Labour Type 5", Lang1 = "Labour Type 5 Lang1", Lang2 = "Labour Type 5 Lang2" },
+                        new Translation() { RowKey = "LabourType6", English = "Labour Type 6", Lang1 = "Labour Type 6 Lang1", Lang2 = "Labour Type 6 Lang2" }
                     );
                 }
             );
@@ -249,7 +264,15 @@ namespace SQLLiteDbContext
                        new ControlData() { Id = 58, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType8" },
                        new ControlData() { Id = 59, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType9" },
                        new ControlData() { Id = 60, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType10" },
-                       new ControlData() { Id = 61, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.HEALTHPURCHASEFROMTYPE, TranslationRowKey = SC.OTHER }
+                       new ControlData() { Id = 61, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.HEALTHPURCHASEFROMTYPE, TranslationRowKey = SC.OTHER },
+                       
+                       new ControlData() { Id = 62, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.LABOURTYPE, TranslationRowKey = "LabourType1" },
+                       new ControlData() { Id = 63, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.LABOURTYPE, TranslationRowKey = "LabourType2" },
+                       new ControlData() { Id = 64, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.LABOURTYPE, TranslationRowKey = "LabourType3" },
+                       new ControlData() { Id = 65, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.LABOURTYPE, TranslationRowKey = "LabourType4" },
+                       new ControlData() { Id = 66, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.LABOURTYPE, TranslationRowKey = "LabourType5" },
+                       new ControlData() { Id = 67, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.LABOURTYPE, TranslationRowKey = "LabourType6" },
+                       new ControlData() { Id = 68, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.LABOURTYPE, TranslationRowKey = SC.OTHER }
                     );
                 }
             );

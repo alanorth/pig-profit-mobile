@@ -63,6 +63,19 @@ namespace PigTool.Views
                 ManageStack.Children.Add(FeedItemsExpander);
                 ManageStack.Children.Add(HealthItemsExpander);
 
+                var LabourCostItems = createExpanderElement(
+                      ExpanderTitle: "Labour Cost Items",
+                      ColoumnHeader1: "Labour Cost Tyoe",
+                      ColoumnHeader2: "Date",
+                      ColoumnHeader3: "Labour Cost",
+                      BindableColumns1: nameof(LabourCostItem.LabourType),
+                      BindableColumns2: nameof(LabourCostItem.Date),
+                      BindableColumns3: nameof(LabourCostItem.AmountPaid),
+                      BindingList: nameof(_ViewModel.LabourCostItems),
+                      NavigationCommand: _ViewModel.EditLabourCostItem
+                      );
+
+                ManageStack.Children.Add(LabourCostItems);
                 _ViewModel.PageRendered = true;
             }
 

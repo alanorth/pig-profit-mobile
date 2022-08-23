@@ -18,7 +18,8 @@ namespace PigTool.Helpers
         public const string HEALTHMEDICETYPE = "HealthMedicineType";
         public const string HEALTHPURCHASEFROMTYPE = "HealthPurchaseFromType";
 
-
+        //Labour Cost
+        public const string LABOURTYPE = "LabourType";
         #endregion
         public const string OTHER = "Other";
     }

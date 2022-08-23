@@ -273,7 +273,35 @@ namespace PigTool.ViewModels
         {
             var valid = ValidateSave();
 
-            if (string.IsNullOrWhiteSpace(valid))
+            if (!string.IsNullOrWhiteSpace(valid))
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", valid, "OK");
+            }
+
+            if(_itemForEditing != null)
+            {
+                _itemForEditing.Date = Date;
+                _itemForEditing.HealthCareType = SelectedHealthCareTypeOption.TranslationRowKey;
+                _itemForEditing.OtherHealthCareType = OtherHealthCareType;
+                _itemForEditing.HealthCareCost = HealthCareCost;
+                _itemForEditing.Provider = SelectedHealthProviderListOfOption.TranslationRowKey;
+                _itemForEditing.OtherProvider = OtherProvider;
+                _itemForEditing.MedicineCost = MedicineCost;
+                _itemForEditing.MedinceType = SelectedMedicineTypeListOfOption.TranslationRowKey;
+                _itemForEditing.OtherMedinceType = OtherMedinceType;
+                _itemForEditing.PurchasedFrom = SelectedPurchaseFromListOfOption.TranslationRowKey;
+                _itemForEditing.OtherPurchasedFrom = OtherPurchasedFrom;
+                _itemForEditing.Cost = Cost;
+                _itemForEditing.TransportationCost = TransportationCost;
+                _itemForEditing.Comment = Comment;
+                _itemForEditing.LastModified = DateTime.UtcNow;
+
+                await repo.UpdateHealthCareItem(_itemForEditing);
+                await Application.Current.MainPage.DisplayAlert("Created", "Health Care Record Update", "OK");
+                await Shell.Current.Navigation.PopAsync();
+
+            }
+            else
             {
                 var newHealthItem = new HealthCareItem
                 {
@@ -297,13 +325,6 @@ namespace PigTool.ViewModels
                 await repo.AddSingleHealthCareItem(newHealthItem);
                 await Application.Current.MainPage.DisplayAlert("Created", "Health Care Record Save", "OK");
             }
-            else
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", valid, "OK");
-            }
-
-
-
 
         }
 
@@ -315,13 +336,14 @@ namespace PigTool.ViewModels
             PurchaseFromListOfOptions = LogicHelper.CreatePickerToolOption(await repo.GetControlData(SC.HEALTHPURCHASEFROMTYPE), User.UserLang);
 
 
-            if (!IsEditMode) {
+            if (!IsEditMode)
+            {
                 SelectedHealthCareTypeOption = HealthCareTypeOptions.Where(x => x.TranslationRowKey == _itemForEditing.HealthCareType).FirstOrDefault();
                 SelectedHealthProviderListOfOption = HealthProviderListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Provider).FirstOrDefault();
                 SelectedMedicineTypeListOfOption = MedicineTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.MedinceType).FirstOrDefault();
                 SelectedPurchaseFromListOfOption = PurchaseFromListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.PurchasedFrom).FirstOrDefault();
             }
-            
+
         }
 
         private void ClearFormVariables()
