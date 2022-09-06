@@ -6,12 +6,13 @@ namespace PigTool.Models
 {
     public class AnimalHouseItem : BaseItem
     {
-        DateTime Date { get; set; }
-        string HousingExpense { get; set; }
-        string OtherHousingExpense { get; set; }
-        double? TotalCosts { get; set; }
-        double? TransportationCost { get; set; }
-        double? OtherCosts { get; set; }
-        int YearsExpected { get; set; }
+        public DateTime Date { get; set; }
+        public string HousingExpense { get; set; }
+        public string OtherHousingExpense { get; set; }
+        public double? TotalCosts { get; set; }
+        public double? TransportationCost { get; set; }
+        public double? OtherCosts { get; set; }
+        public string? Comment { get; set; }
+        public int YearsExpected { get; set; }
     }
 }

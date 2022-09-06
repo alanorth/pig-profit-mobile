@@ -153,5 +153,35 @@ namespace PigTool.Services
         {
             return await _context.LabourCostItems.ToListAsync();
         }
+
+        public async Task<List<AnimalHouseItem>> GetAnimalHouseItems()
+        {
+            return await _context.AnimalHouseItems.ToListAsync();
+        }
+
+        public async Task<AnimalHouseItem> GetAnimalHouseItem(int Id)
+        {
+            return await _context.AnimalHouseItems.SingleOrDefaultAsync(Item => Item.Id == Id);
+        }
+
+        public async Task UpdateAnimalHouseItem(AnimalHouseItem Item)
+        {
+            _context.Update(Item);
+            await _context.SaveChangesAsync();
+        }
+
+        public void DeleteAnimalHouseItem(AnimalHouseItem Item)
+        {
+            _context.Remove(Item);
+            _context.SaveChangesAsync();
+        }
+
+        public async Task AddSingleAnimalHouseItem(AnimalHouseItem itemToAdd)
+        {
+            if (_context.AnimalHouseItems.Any(fd => fd.Id == itemToAdd.Id)) return;
+
+            await _context.AddAsync(itemToAdd);
+            await _context.SaveChangesAsync();
+        }
     }
 }

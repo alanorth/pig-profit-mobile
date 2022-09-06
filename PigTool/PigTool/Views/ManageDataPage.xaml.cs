@@ -60,9 +60,6 @@ namespace PigTool.Views
                       NavigationCommand: _ViewModel.EditHealthCareItem
                       );
 
-                ManageStack.Children.Add(FeedItemsExpander);
-                ManageStack.Children.Add(HealthItemsExpander);
-
                 var LabourCostItems = createExpanderElement(
                       ExpanderTitle: "Labour Cost Items",
                       ColoumnHeader1: "Labour Cost Tyoe",
@@ -75,7 +72,22 @@ namespace PigTool.Views
                       NavigationCommand: _ViewModel.EditLabourCostItem
                       );
 
+                var AnimalHousingItems = createExpanderElement(
+                      ExpanderTitle: "Housing",
+                      ColoumnHeader1: "Date",
+                      ColoumnHeader2: "Housing Expense",
+                      ColoumnHeader3: "Cost",
+                      BindableColumns1: nameof(AnimalHouseItem.Date),
+                      BindableColumns2: nameof(AnimalHouseItem.HousingExpense),
+                      BindableColumns3: nameof(AnimalHouseItem.TotalCosts),
+                      BindingList: nameof(_ViewModel.AnimalHouseItems),
+                      NavigationCommand: _ViewModel.EditAnimalHouseItem
+                      );
+
+                ManageStack.Children.Add(FeedItemsExpander);
+                ManageStack.Children.Add(HealthItemsExpander);
                 ManageStack.Children.Add(LabourCostItems);
+                ManageStack.Children.Add(AnimalHousingItems);
                 _ViewModel.PageRendered = true;
             }
 
@@ -140,7 +152,7 @@ namespace PigTool.Views
                 }
                 };
 
-                Headergrid.Children.Add(FormattedElementsHelper.ManageDataLabel(ColoumnHeader1), 0, 0); ;
+                Headergrid.Children.Add(FormattedElementsHelper.ManageDataLabel(ColoumnHeader1), 0, 0);
                 Headergrid.Children.Add(FormattedElementsHelper.ManageDataLabel(ColoumnHeader2), 1, 0); 
                 Headergrid.Children.Add(FormattedElementsHelper.ManageDataLabel(ColoumnHeader3), 2, 0); 
                 Headergrid.Children.Add(FormattedElementsHelper.ManageDataLabel(""), 3, 0);

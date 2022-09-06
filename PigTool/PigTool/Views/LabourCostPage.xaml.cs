@@ -93,7 +93,7 @@ namespace PigTool.Views
             var commentCell = new ViewCell();
             var CommentStack = FormattedElementsHelper.TableRowStack();
             CommentStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)));
-            CommentStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode)));
+            CommentStack.Children.Add(FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode)));
             commentCell.View = CommentStack;
             FullTableSection.Add(commentCell);
 

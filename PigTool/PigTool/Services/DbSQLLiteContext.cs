@@ -19,6 +19,7 @@ namespace SQLLiteDbContext
         public DbSet<ControlData> ControlDataOptions { get; set; }
         public DbSet<HealthCareItem> HealthCareItems { get; set; }
         public DbSet<LabourCostItem> LabourCostItems { get; set; }
+        public DbSet<AnimalHouseItem> AnimalHouseItems { get; set; }
 
 
         public DbSQLLiteContext()
@@ -121,6 +122,16 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "AmountPaidTranslation", English = "Amount Paid", Lang1 = "Amount Paid Lang1", Lang2 = "Amount Paid Lang2" },
                         new Translation() { RowKey = "OtherCostsTranslation", English = "Any Other Cost", Lang1 = "Any Other Cost Lang1", Lang2 = "Any Other Cost Lang2" },
 
+                        //Housing Costs
+                        new Translation() { RowKey = "HousingTitleTranslation", English = "Animal Housing", Lang1 = "Animal Housing Lang1", Lang2 = "Animal Housing Lang2" },
+                        new Translation() { RowKey = "HousingExpenseTranslation", English = "Housing Expense", Lang1 = "Housing Expense Lang1", Lang2 = "Housing Expense Lang2" },
+                        new Translation() { RowKey = "OtherHousingExpenseTranslation", English = "Other Housing Expense", Lang1 = "Other Housing Expense Lang1", Lang2 = "Other Housing Expense Lang2" },
+                        new Translation() { RowKey = "TotalCostTranslation", English = "Total Cost", Lang1 = "Total Cost Lang1", Lang2 = "Total Cost Lang2" },
+                        new Translation() { RowKey = "OtherCostTranslation", English = "Any Other Cost", Lang1 = "Any Other Cost Lang1", Lang2 = "Any Other Cost Lang2" },
+                        new Translation() {RowKey ="SliderControlTranslation",English ="If new housing built (rather than maintenance) lifespan in years + expected salvage value at end ? ", Lang1 = "If new housing built(rather than maintenance)lifespan in years + expected salvage value at end ? Lang1", Lang2 = "If new housing built(rather than maintenance)lifespan in years + expected salvage value at end ? Lang2"},
+                        
+
+
                         //Drop Down Options
                         new Translation() { RowKey = "DropDownFeedType1", English = "Feed Type 1", Lang1 = "Feed Type 1 Lang 1", Lang2 = "Feed Type 1 Lang 2" },
                         new Translation() { RowKey = "DropDownFeedType2", English = "Feed Type 2", Lang1 = "Feed Type 2 Lang 1", Lang2 = "Feed Type 2 Lang 2" },
@@ -190,7 +201,14 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "LabourType3", English = "Labour Type 3", Lang1 = "Labour Type 3 Lang1", Lang2 = "Labour Type 3 Lang2" },
                         new Translation() { RowKey = "LabourType4", English = "Labour Type 4", Lang1 = "Labour Type 4 Lang1", Lang2 = "Labour Type 4 Lang2" },
                         new Translation() { RowKey = "LabourType5", English = "Labour Type 5", Lang1 = "Labour Type 5 Lang1", Lang2 = "Labour Type 5 Lang2" },
-                        new Translation() { RowKey = "LabourType6", English = "Labour Type 6", Lang1 = "Labour Type 6 Lang1", Lang2 = "Labour Type 6 Lang2" }
+                        new Translation() { RowKey = "LabourType6", English = "Labour Type 6", Lang1 = "Labour Type 6 Lang1", Lang2 = "Labour Type 6 Lang2" },
+
+                        new Translation() { RowKey = "HousingExpenseType1", English = "Housing Expense Type 1", Lang1 = "Housing Expense Type 1 Lang1", Lang2 = "Housing Expense Type 1 Lang2" },
+                        new Translation() { RowKey = "HousingExpenseType2", English = "Housing Expense Type 2", Lang1 = "Housing Expense Type 2 Lang1", Lang2 = "Housing Expense Type 2 Lang2" },
+                        new Translation() { RowKey = "HousingExpenseType3", English = "Housing Expense Type 3", Lang1 = "Housing Expense Type 3 Lang1", Lang2 = "Housing Expense Type 3 Lang2" },
+                        new Translation() { RowKey = "HousingExpenseType4", English = "Housing Expense Type 4", Lang1 = "Housing Expense Type 4 Lang1", Lang2 = "Housing Expense Type 4 Lang2" },
+                        new Translation() { RowKey = "HousingExpenseType5", English = "Housing Expense Type 5", Lang1 = "Housing Expense Type 5 Lang1", Lang2 = "Housing Expense Type 5 Lang2" }
+
                     );
                 }
             );
@@ -272,7 +290,14 @@ namespace SQLLiteDbContext
                        new ControlData() { Id = 65, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.LABOURTYPE, TranslationRowKey = "LabourType4" },
                        new ControlData() { Id = 66, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.LABOURTYPE, TranslationRowKey = "LabourType5" },
                        new ControlData() { Id = 67, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.LABOURTYPE, TranslationRowKey = "LabourType6" },
-                       new ControlData() { Id = 68, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.LABOURTYPE, TranslationRowKey = SC.OTHER }
+                       new ControlData() { Id = 68, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.LABOURTYPE, TranslationRowKey = SC.OTHER },
+
+                       new ControlData() { Id = 69, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.HOUSINGTYPE, TranslationRowKey = "HousingExpenseType1" },
+                       new ControlData() { Id = 70, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.HOUSINGTYPE, TranslationRowKey = "HousingExpenseType2" },
+                       new ControlData() { Id = 71, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.HOUSINGTYPE, TranslationRowKey = "HousingExpenseType3" },
+                       new ControlData() { Id = 72, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.HOUSINGTYPE, TranslationRowKey = "HousingExpenseType4" },
+                       new ControlData() { Id = 73, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.HOUSINGTYPE, TranslationRowKey = "HousingExpenseType5" },
+                       new ControlData() { Id = 74, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.HOUSINGTYPE, TranslationRowKey = SC.OTHER }
                     );
                 }
             );

@@ -95,11 +95,13 @@ namespace PigTool.Helpers
         }
 
 
-        public static Entry FormTextEntry(string TextBindingProperty, string IsEnableBinding,string ViewHideBinding = null , bool IsVisibile = true )
+        public static Entry FormTextEntry(string TextBindingProperty, string IsEnableBinding,string ViewHideBinding = null , bool IsVisibile = true, int heightRequest = -1 )
         {
             var Entry = new Entry()
             {
-                HorizontalOptions = LayoutOptions.FillAndExpand
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                HeightRequest = heightRequest,
+                
             };
 
             Entry.SetBinding(Entry.TextProperty, new Binding(TextBindingProperty));
@@ -114,7 +116,28 @@ namespace PigTool.Helpers
             return Entry;
         }
 
-        public static Picker  FormPickerEntry (string ItemSourceBinding, string ItemDisplayBinding, string SelectedItemBinding, string IsEnabledBinding)
+        public static Editor FormEditorEntry(string TextBindingProperty, string IsEnableBinding, string ViewHideBinding = null, bool IsVisibile = true, int heightRequest = -1)
+        {
+            var Edds = new Editor()
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                HeightRequest = heightRequest,
+
+            };
+
+            Edds.SetBinding(Editor.TextProperty, new Binding(TextBindingProperty));
+            Edds.SetBinding(Editor.IsEnabledProperty, new Binding(IsEnableBinding));
+
+            if (!IsVisibile && !string.IsNullOrWhiteSpace(ViewHideBinding))
+            {
+                //inmplment a catch if ViewHideBinding is not provided
+
+                Edds.SetBinding(Editor.IsVisibleProperty, new Binding(ViewHideBinding));
+            }
+            return Edds;
+        }
+
+        public static Picker  FormPickerEntry (string ItemSourceBinding, string ItemDisplayBinding, string SelectedItemBinding, string IsEnabledBinding,  PickerToolHelper  selectedItem = null)
         {
             Picker picker = new Picker()
             {
@@ -123,7 +146,16 @@ namespace PigTool.Helpers
 
             picker.SetBinding(Picker.SelectedItemProperty, new Binding(SelectedItemBinding));
             picker.SetBinding(Picker.ItemsSourceProperty, new Binding(ItemSourceBinding));
+            picker.SetBinding(Picker.IsEnabledProperty, new Binding(IsEnabledBinding));
             picker.ItemDisplayBinding = new Binding(ItemDisplayBinding);
+
+            picker.SelectedIndexChanged += (sender, e) =>
+            {
+                if(picker.SelectedItem == null)
+                {
+                    picker.SelectedIndex = -1;
+                }
+            };
 
             return picker;
         }

@@ -32,6 +32,8 @@ namespace PigTool.ViewModels
         private ObservableCollection<FeedItem> feedItems;
         private ObservableCollection<HealthCareItem> healthCareItems;
         private ObservableCollection<LabourCostItem> labourCostItems;
+        private ObservableCollection<AnimalHouseItem> animalHouseItems;
+
         public ObservableCollection<FeedItem> FeedItems
         {
 
@@ -64,10 +66,21 @@ namespace PigTool.ViewModels
                 OnPropertyChanged(nameof(LabourCostItems));
             }
         }
+        public ObservableCollection<AnimalHouseItem> AnimalHouseItems
+        {
+
+            get { return animalHouseItems; }
+            set
+            {
+                animalHouseItems = value;
+                OnPropertyChanged(nameof(AnimalHouseItems));
+            }
+        }
 
         public Command AddFeedItem { get; }
         public Command EditHealthCareItem { get; }
         public Command EditLabourCostItem { get; }
+        public Command EditAnimalHouseItem { get; }
 
         public ManageDataViewModel()
         {
@@ -75,6 +88,7 @@ namespace PigTool.ViewModels
             AddFeedItem = new Command<FeedItem>(async (o) => await AddFeedItemDataCommand(o));
             EditHealthCareItem = new Command<HealthCareItem>(async (o) => await EditHealthCareItemCommand(o));
             EditLabourCostItem = new Command<LabourCostItem>(async (o) => await EditLabourCostItemCommand(o));
+            EditAnimalHouseItem = new Command<AnimalHouseItem>(async (o) => await EditAnimalHouseItemCommand(o));
 
             Costs = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(Costs), User.UserLang);
             Feed = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(Feed), User.UserLang);
@@ -82,7 +96,7 @@ namespace PigTool.ViewModels
             FeedTypeTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FeedTypeTrans), User.UserLang);
             CostTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CostTrans), User.UserLang);
             LabourCostTrans = LogicHelper.GetTranslationFromStore(TranslationStore, "Labour", User.UserLang);
-
+            //AnimalHouseTrans = LogicHelper.GetTranslationFromStore(TranslationStore, "Housing", User.UserLang);
 
         }
 
@@ -92,6 +106,7 @@ namespace PigTool.ViewModels
             FeedItems = new ObservableCollection <FeedItem>(await repo.GetFeedItems());
             HealthCareItems =  new ObservableCollection<HealthCareItem>(await repo.GetHealthCareItems());
             LabourCostItems = new ObservableCollection<LabourCostItem>(await repo.GetLabourCostItems());
+            AnimalHouseItems = new ObservableCollection<AnimalHouseItem>(await repo.GetAnimalHouseItems());
         }
 
         private async Task AddFeedItemDataCommand(FeedItem feed)
@@ -123,6 +138,18 @@ namespace PigTool.ViewModels
             try
             {
                 await Application.Current.MainPage.Navigation.PushAsync(new LabourCostPage(item));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private async Task EditAnimalHouseItemCommand(AnimalHouseItem item)
+        {
+            try
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new AnimalHousingPage(item));
             }
             catch (Exception ex)
             {

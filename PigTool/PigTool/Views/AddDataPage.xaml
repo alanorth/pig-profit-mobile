@@ -23,7 +23,7 @@
                 <Button Text="{Binding Feed}" Style="{StaticResource AddNavButton}" Command="{Binding AddFeedItem}"   BackgroundColor="#d6824d"/>
                 <Button Text="{Binding Healthcare}" Style="{StaticResource AddNavButton}" Command="{Binding AddHealthCareItem}"  BackgroundColor="#d6824d"/>
                 <Button Text="{Binding Labour}" Style="{StaticResource AddNavButton}" Command="{Binding AddLabourCostItem}" BackgroundColor="#d6824d"/>
-                <Button Text="{Binding Housing}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
+                <Button Text="{Binding Housing}" Style="{StaticResource AddNavButton}" Command="{Binding AddHousingItem}" BackgroundColor="#d6824d"/>
                 <Button Text="{Binding Water}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
                 <Button Text="{Binding Reproduction}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
                 <Button Text="{Binding Membership}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>

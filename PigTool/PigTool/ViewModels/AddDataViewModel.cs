@@ -33,7 +33,7 @@ namespace PigTool.ViewModels
         public Command AddFeedItem { get; }
         public Command AddHealthCareItem { get; }
         public Command AddLabourCostItem { get; }
-
+        public Command AddHousingItem { get; }
 
 
 
@@ -43,6 +43,7 @@ namespace PigTool.ViewModels
             AddFeedItem = (new Command(AddFeedItemDataCommand));
             AddHealthCareItem = (new Command(AddHealthCareItemDataCommand));
             AddLabourCostItem = (new Command(AddLabourCostItemCommand));
+            AddHousingItem = (new Command(AddHousingItemCommand));
 
             Costs = LogicHelper.getTranslation(repo, nameof(Costs), User.UserLang).Result;
             Feed = LogicHelper.getTranslation(repo, nameof(Feed), User.UserLang).Result;
@@ -80,6 +81,18 @@ namespace PigTool.ViewModels
             try
             {
                 await Application.Current.MainPage.Navigation.PushAsync(new LabourCostPage());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private async void AddHousingItemCommand(object obj)
+        {
+            try
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new AnimalHousingPage());
             }
             catch (Exception ex)
             {

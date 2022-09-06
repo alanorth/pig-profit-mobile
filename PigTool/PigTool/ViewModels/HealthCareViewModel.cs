@@ -255,7 +255,7 @@ namespace PigTool.ViewModels
         {
             if (EditExistingMode)
             {
-                var confirmDelete = await Application.Current.MainPage.DisplayAlert("Deletion Confimration", "Are you sure you want to Delete this item", "OK", "Cancel");
+                var confirmDelete = await Application.Current.MainPage.DisplayAlert("Deletion Confirmation", "Are you sure you want to Delete this item", "OK", "Cancel");
                 if (confirmDelete)
                 {
                     repo.DeleteHealthCaredItem(_itemForEditing);
