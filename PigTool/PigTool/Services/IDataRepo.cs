@@ -32,10 +32,17 @@ namespace PigTool.Services
         Task UpdateLabourCostItem(LabourCostItem Item);
         void DeleteLabourCostItem(LabourCostItem Item);
         Task AddSingleLabourCostItem(LabourCostItem itemToAdd);
+        //Animal Housing
         Task<List<AnimalHouseItem>> GetAnimalHouseItems();
         Task<AnimalHouseItem> GetAnimalHouseItem(int Id);
         Task UpdateAnimalHouseItem(AnimalHouseItem Item);
         void DeleteAnimalHouseItem(AnimalHouseItem Item);
         Task AddSingleAnimalHouseItem(AnimalHouseItem itemToAdd);
+        //Water Cost
+        Task<List<WaterCostItem>> GetWaterCostItems();
+        Task<WaterCostItem> GetWaterCostItem(int Id);
+        Task UpdateWaterCostItem(WaterCostItem Item);
+        void DeleteWaterCostItem(WaterCostItem Item);
+        Task AddSingleWaterCostItem(WaterCostItem itemToAdd);
     }
 }

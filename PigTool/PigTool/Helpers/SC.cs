@@ -9,7 +9,6 @@ namespace PigTool.Helpers
         #region DropDown Key Controls
         //Feed Item DropDowns
         public const string FEEDTYPE = "FeedType";
-        public const string HOUSINGTYPE = "HousingType";
         public const string UNITTYPE = "UnitType";
         public const string PURCHASETYPE = "PurchaseType";
 
@@ -21,7 +20,16 @@ namespace PigTool.Helpers
 
         //Labour Cost
         public const string LABOURTYPE = "LabourType";
+
+        //Housing 
+        public const string HOUSINGTYPE = "HousingType";
+
+        //Water Cost
+        public const string WATERPURCHASEDUNITTYPE = "WaterPurchasedUnit";
+        public const string PURCHASEDWATERFROMTYPE = "PurchasedWaterFrom";
         #endregion
         public const string OTHER = "Other";
+
+        
     }
 }

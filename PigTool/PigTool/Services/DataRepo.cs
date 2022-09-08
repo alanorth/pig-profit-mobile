@@ -183,5 +183,35 @@ namespace PigTool.Services
             await _context.AddAsync(itemToAdd);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<WaterCostItem>> GetWaterCostItems()
+        {
+            return await _context.WaterCostItems.ToListAsync();
+        }
+
+        public async Task<WaterCostItem> GetWaterCostItem(int Id)
+        {
+            return await _context.WaterCostItems.SingleOrDefaultAsync(Item => Item.Id == Id);
+        }
+
+        public async Task UpdateWaterCostItem(WaterCostItem Item)
+        {
+            _context.Update(Item);
+            await _context.SaveChangesAsync();
+        }
+
+        public void DeleteWaterCostItem(WaterCostItem Item)
+        {
+            _context.Remove(Item);
+            _context.SaveChangesAsync();
+        }
+
+        public async Task AddSingleWaterCostItem(WaterCostItem itemToAdd)
+        {
+            if (_context.WaterCostItems.Any(fd => fd.Id == itemToAdd.Id)) return;
+
+            await _context.AddAsync(itemToAdd);
+            await _context.SaveChangesAsync();
+        }
     }
 }

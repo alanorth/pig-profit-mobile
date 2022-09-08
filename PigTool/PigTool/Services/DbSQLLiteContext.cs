@@ -20,6 +20,7 @@ namespace SQLLiteDbContext
         public DbSet<HealthCareItem> HealthCareItems { get; set; }
         public DbSet<LabourCostItem> LabourCostItems { get; set; }
         public DbSet<AnimalHouseItem> AnimalHouseItems { get; set; }
+        public DbSet<WaterCostItem> WaterCostItems { get; set; }
 
 
         public DbSQLLiteContext()
@@ -130,7 +131,14 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "OtherCostTranslation", English = "Any Other Cost", Lang1 = "Any Other Cost Lang1", Lang2 = "Any Other Cost Lang2" },
                         new Translation() { RowKey = "YearsExpectedTranslation", English = "Expected houing lifespan in years", Lang1 = "Expected houing lifespan in years1", Lang2 = "Expected houing lifespan in years2" },
                         new Translation() {RowKey ="SliderControlTranslation",English ="If new housing built (rather than maintenance) lifespan in years + expected salvage value at end ? ", Lang1 = "If new housing built(rather than maintenance)lifespan in years + expected salvage value at end ? Lang1", Lang2 = "If new housing built(rather than maintenance)lifespan in years + expected salvage value at end ? Lang2"},
-                        
+
+                        //Water Costs
+                        new Translation() { RowKey = "WaterCostTitleTranslation", English = "Water Cost", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "WaterPurchasedTranslation", English = "Amount water purchased", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "OtherWaterPurchasedTranslation", English = "Other unit", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "PurchasedWaterFromTranslation", English = "Who purchased from", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "OtherPurchasedWaterFromTranslation", English = "Purchased from", Lang1 = "", Lang2 = "" },
+
 
 
                         //Drop Down Options
@@ -208,9 +216,25 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "HousingExpenseType2", English = "Housing Expense Type 2", Lang1 = "Housing Expense Type 2 Lang1", Lang2 = "Housing Expense Type 2 Lang2" },
                         new Translation() { RowKey = "HousingExpenseType3", English = "Housing Expense Type 3", Lang1 = "Housing Expense Type 3 Lang1", Lang2 = "Housing Expense Type 3 Lang2" },
                         new Translation() { RowKey = "HousingExpenseType4", English = "Housing Expense Type 4", Lang1 = "Housing Expense Type 4 Lang1", Lang2 = "Housing Expense Type 4 Lang2" },
-                        new Translation() { RowKey = "HousingExpenseType5", English = "Housing Expense Type 5", Lang1 = "Housing Expense Type 5 Lang1", Lang2 = "Housing Expense Type 5 Lang2" }
+                        new Translation() { RowKey = "HousingExpenseType5", English = "Housing Expense Type 5", Lang1 = "Housing Expense Type 5 Lang1", Lang2 = "Housing Expense Type 5 Lang2" },
 
-                    );
+                        new Translation() { RowKey = "WaterPurchasedUnitType1", English = "Unit 1", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "WaterPurchasedUnitType2", English = "Unit 2", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "WaterPurchasedUnitType3", English = "Unit 3", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "WaterPurchasedUnitType4", English = "Unit 4", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "WaterPurchasedUnitType5", English = "Unit 5", Lang1 = "", Lang2 = "" },
+
+                        new Translation() { RowKey = "PurchasedWaterFromType1", English = "Purchased From 1", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "PurchasedWaterFromType2", English = "Purchased From 2", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "PurchasedWaterFromType3", English = "Purchased From 3", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "PurchasedWaterFromType4", English = "Purchased From 4", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "PurchasedWaterFromType5", English = "Purchased From 5", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "PurchasedWaterFromType6", English = "Purchased From 6", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "PurchasedWaterFromType7", English = "Purchased From 7", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "PurchasedWaterFromType8", English = "Purchased From 8", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "PurchasedWaterFromType9", English = "Purchased From 9", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "PurchasedWaterFromType10", English = "Purchased From 10", Lang1 = "", Lang2 = "" }
+                        );
                 }
             );
 
@@ -298,7 +322,26 @@ namespace SQLLiteDbContext
                        new ControlData() { Id = 71, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.HOUSINGTYPE, TranslationRowKey = "HousingExpenseType3" },
                        new ControlData() { Id = 72, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.HOUSINGTYPE, TranslationRowKey = "HousingExpenseType4" },
                        new ControlData() { Id = 73, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.HOUSINGTYPE, TranslationRowKey = "HousingExpenseType5" },
-                       new ControlData() { Id = 74, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.HOUSINGTYPE, TranslationRowKey = SC.OTHER }
+                       new ControlData() { Id = 74, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.HOUSINGTYPE, TranslationRowKey = SC.OTHER },
+
+                       new ControlData() { Id = 75, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.WATERPURCHASEDUNITTYPE, TranslationRowKey = "WaterPurchasedUnitType1" },
+                       new ControlData() { Id = 76, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.WATERPURCHASEDUNITTYPE, TranslationRowKey = "WaterPurchasedUnitType2" },
+                       new ControlData() { Id = 77, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.WATERPURCHASEDUNITTYPE, TranslationRowKey = "WaterPurchasedUnitType3" },
+                       new ControlData() { Id = 78, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.WATERPURCHASEDUNITTYPE, TranslationRowKey = "WaterPurchasedUnitType4" },
+                       new ControlData() { Id = 79, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.WATERPURCHASEDUNITTYPE, TranslationRowKey = "WaterPurchasedUnitType5" },
+                       new ControlData() { Id = 80, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.WATERPURCHASEDUNITTYPE, TranslationRowKey = SC.OTHER },
+
+                       new ControlData() { Id = 81, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType1" },
+                       new ControlData() { Id = 82, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType2" },
+                       new ControlData() { Id = 83, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType3" },
+                       new ControlData() { Id = 84, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType4" },
+                       new ControlData() { Id = 85, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType5" },
+                       new ControlData() { Id = 86, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType6" },
+                       new ControlData() { Id = 87, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType7" },
+                       new ControlData() { Id = 88, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType8" },
+                       new ControlData() { Id = 89, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType9" },
+                       new ControlData() { Id = 90, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType10" },
+                       new ControlData() { Id = 91, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASEDWATERFROMTYPE, TranslationRowKey = SC.OTHER }
                     );
                 }
             );

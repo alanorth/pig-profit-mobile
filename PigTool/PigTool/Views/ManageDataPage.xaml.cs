@@ -84,10 +84,23 @@ namespace PigTool.Views
                       NavigationCommand: _ViewModel.EditAnimalHouseItem
                       );
 
+                var WaterCostItems = createExpanderElement(
+                      ExpanderTitle: "Water Cost",
+                      ColoumnHeader1: "Date",
+                      ColoumnHeader2: "Water",
+                      ColoumnHeader3: "Cost",
+                      BindableColumns1: nameof(WaterCostItem.Date),
+                      BindableColumns2: nameof(WaterCostItem.WaterPurchased),// + " " + nameof(WaterCostItem.WaterPurchasedUnit),
+                      BindableColumns3: nameof(WaterCostItem.TotalCosts),
+                      BindingList: nameof(_ViewModel.WaterCostItems),
+                      NavigationCommand: _ViewModel.EditWaterCostItem
+                      );
+
                 ManageStack.Children.Add(FeedItemsExpander);
                 ManageStack.Children.Add(HealthItemsExpander);
                 ManageStack.Children.Add(LabourCostItems);
                 ManageStack.Children.Add(AnimalHousingItems);
+                ManageStack.Children.Add(WaterCostItems);
                 _ViewModel.PageRendered = true;
             }
 
