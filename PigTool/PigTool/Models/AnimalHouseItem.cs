@@ -12,7 +12,7 @@ namespace PigTool.Models
         public double? TotalCosts { get; set; }
         public double? TransportationCost { get; set; }
         public double? OtherCosts { get; set; }
-        public string? Comment { get; set; }
         public int YearsExpected { get; set; }
+        public string? Comment { get; set; }
     }
 }

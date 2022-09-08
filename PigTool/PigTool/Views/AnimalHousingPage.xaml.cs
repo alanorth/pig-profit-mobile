@@ -101,6 +101,14 @@ namespace PigTool.Views
             OtherCostCell.View = OtherCostsStack;
             FullTableSection.Add(OtherCostCell);
 
+            // Housing Lifespan
+            var HousingLifespanCell = new ViewCell();
+            var HousingLifespanStack = FormattedElementsHelper.TableRowStack();
+            HousingLifespanStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.YearsExpectedTranslation)));
+            HousingLifespanStack.Children.Add(FormattedElementsHelper.FormSliderInput(nameof(_viewModel.YearsExpected), nameof(_viewModel.IsEditMode), null, true, upperValue: 10));
+            HousingLifespanCell.View = HousingLifespanStack;
+            FullTableSection.Add(HousingLifespanCell);
+
             //Comment
             var commentCell = new ViewCell();
             var CommentStack = FormattedElementsHelper.TableRowStack();

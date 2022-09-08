@@ -101,7 +101,6 @@ namespace PigTool.Helpers
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 HeightRequest = heightRequest,
-                
             };
 
             Entry.SetBinding(Entry.TextProperty, new Binding(TextBindingProperty));
@@ -219,20 +218,34 @@ namespace PigTool.Helpers
             return stack;
         }
 
-        public static Slider FormSliderInput()
+        // Custom slider input using the community range selector. Lower values have been hidden with the intention of only binding the upper value
+        public static Xamarin.CommunityToolkit.UI.Views.RangeSlider FormSliderInput(string TextBindingProperty, string IsEnableBinding, string ViewHideBinding = null, bool IsVisibile = true, int upperValue = 10)
         {
 
-
-            Slider slider = new Slider
+            Xamarin.CommunityToolkit.UI.Views.RangeSlider slider = new Xamarin.CommunityToolkit.UI.Views.RangeSlider()
             {
-                Maximum = 360
+                MinimumValue = 1,
+                MaximumValue = upperValue,
+                LowerValue = 1,
+                UpperValue = upperValue,
+                StepValue = 1,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                HeightRequest = 70,
+                LowerThumbSize = 0,
+                LowerValueLabelStyle = (Style)Application.Current.Resources["SliderLowerValueLabelStyle"]
             };
 
-            return slider;
+            slider.SetBinding(Xamarin.CommunityToolkit.UI.Views.RangeSlider.UpperValueProperty, new Binding(TextBindingProperty));
+            slider.SetBinding(VisualElement.IsEnabledProperty, new Binding(IsEnableBinding));
 
+            if (!IsVisibile && !string.IsNullOrWhiteSpace(ViewHideBinding))
+            {
+                //inmplment a catch if ViewHideBinding is not provided
+
+                slider.SetBinding(VisualElement.IsVisibleProperty, new Binding(ViewHideBinding));
+            }
+            return slider;
            
         }
-
-
     }
 }

@@ -128,6 +128,7 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "OtherHousingExpenseTranslation", English = "Other Housing Expense", Lang1 = "Other Housing Expense Lang1", Lang2 = "Other Housing Expense Lang2" },
                         new Translation() { RowKey = "TotalCostTranslation", English = "Total Cost", Lang1 = "Total Cost Lang1", Lang2 = "Total Cost Lang2" },
                         new Translation() { RowKey = "OtherCostTranslation", English = "Any Other Cost", Lang1 = "Any Other Cost Lang1", Lang2 = "Any Other Cost Lang2" },
+                        new Translation() { RowKey = "YearsExpectedTranslation", English = "Expected houing lifespan in years", Lang1 = "Expected houing lifespan in years1", Lang2 = "Expected houing lifespan in years2" },
                         new Translation() {RowKey ="SliderControlTranslation",English ="If new housing built (rather than maintenance) lifespan in years + expected salvage value at end ? ", Lang1 = "If new housing built(rather than maintenance)lifespan in years + expected salvage value at end ? Lang1", Lang2 = "If new housing built(rather than maintenance)lifespan in years + expected salvage value at end ? Lang2"},
                         
 

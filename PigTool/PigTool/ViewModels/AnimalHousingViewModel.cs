@@ -40,7 +40,7 @@ namespace PigTool.ViewModels
         public string TotalCostTranslation { get; set; }
         public string TransportationCostTranslation { get; set; }
         public string OtherCostTranslation { get; set; }
-        public string SliderControlTranslation { get; set; }
+        public string YearsExpectedTranslation { get; set; }
         public string CommentTranslation { get; set; }
         public string HousingTitleTranslation { get; set; }
         public string SaveTranslation { get; set; }
@@ -270,7 +270,7 @@ namespace PigTool.ViewModels
             TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang);
             TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang);
             OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang);
-            SliderControlTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SliderControlTranslation), User.UserLang);
+            YearsExpectedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(YearsExpectedTranslation), User.UserLang);
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
@@ -292,7 +292,8 @@ namespace PigTool.ViewModels
             OtherHousingExpense = item.OtherHousingExpense;
             TotalCosts = item.TotalCosts;
             TransportationCost = item.TransportationCost;
-            OtherCosts = item.OtherCosts;
+            OtherCosts = item.OtherCosts; 
+            yearsExpected = item.YearsExpected;
             Comment = item.Comment;
         }
 
@@ -324,6 +325,7 @@ namespace PigTool.ViewModels
                 _itemForEditing.TotalCosts = TotalCosts;
                 _itemForEditing.TransportationCost = TransportationCost;
                 _itemForEditing.OtherCosts = OtherCosts;
+                _itemForEditing.YearsExpected = YearsExpected;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
@@ -341,6 +343,7 @@ namespace PigTool.ViewModels
                     TotalCosts = TotalCosts,
                     TransportationCost = TransportationCost,
                     OtherCosts = OtherCosts,
+                    YearsExpected = YearsExpected,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
@@ -382,6 +385,7 @@ namespace PigTool.ViewModels
             TotalCosts = null;
             TransportationCost = null;
             OtherCosts = null;
+            YearsExpected = 1;
             Comment = null;
 
         }
