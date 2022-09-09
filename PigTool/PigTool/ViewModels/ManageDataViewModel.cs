@@ -34,6 +34,7 @@ namespace PigTool.ViewModels
         private ObservableCollection<LabourCostItem> labourCostItems;
         private ObservableCollection<AnimalHouseItem> animalHouseItems;
         private ObservableCollection<WaterCostItem> waterCostItems;
+        private ObservableCollection<MembershipItem> membershipItems;
 
         public ObservableCollection<FeedItem> FeedItems
         {
@@ -89,11 +90,23 @@ namespace PigTool.ViewModels
             }
         }
 
+        public ObservableCollection<MembershipItem> MembershipItems
+        {
+
+            get { return membershipItems; }
+            set
+            {
+                membershipItems = value;
+                OnPropertyChanged(nameof(MembershipItems));
+            }
+        }
+
         public Command AddFeedItem { get; }
         public Command EditHealthCareItem { get; }
         public Command EditLabourCostItem { get; }
         public Command EditAnimalHouseItem { get; }
         public Command EditWaterCostItem { get; }
+        public Command EditMembershipItem { get; }
 
         public ManageDataViewModel()
         {
@@ -103,6 +116,8 @@ namespace PigTool.ViewModels
             EditLabourCostItem = new Command<LabourCostItem>(async (o) => await EditLabourCostItemCommand(o));
             EditAnimalHouseItem = new Command<AnimalHouseItem>(async (o) => await EditAnimalHouseItemCommand(o));
             EditWaterCostItem = new Command<WaterCostItem>(async (o) => await EditWaterCostItemCommand(o));
+            EditMembershipItem = new Command<MembershipItem>(async (o) => await EditMembershipItemCommand(o));
+
 
             Costs = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(Costs), User.UserLang);
             Feed = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(Feed), User.UserLang);
@@ -122,6 +137,7 @@ namespace PigTool.ViewModels
             LabourCostItems = new ObservableCollection<LabourCostItem>(await repo.GetLabourCostItems());
             AnimalHouseItems = new ObservableCollection<AnimalHouseItem>(await repo.GetAnimalHouseItems());
             WaterCostItems = new ObservableCollection<WaterCostItem>(await repo.GetWaterCostItems());
+            MembershipItems = new ObservableCollection<MembershipItem>(await repo.GetMembershipItems());
         }
 
         private async Task AddFeedItemDataCommand(FeedItem feed)
@@ -177,6 +193,18 @@ namespace PigTool.ViewModels
             try
             {
                 await Application.Current.MainPage.Navigation.PushAsync(new WaterCostPage(item));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private async Task EditMembershipItemCommand(MembershipItem item)
+        {
+            try
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new MembershipPage(item));
             }
             catch (Exception ex)
             {

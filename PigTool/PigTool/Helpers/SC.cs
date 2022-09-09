@@ -27,6 +27,12 @@ namespace PigTool.Helpers
         //Water Cost
         public const string WATERPURCHASEDUNITTYPE = "WaterPurchasedUnit";
         public const string PURCHASEDWATERFROMTYPE = "PurchasedWaterFrom";
+
+        //Reproduction
+
+        //Membership
+        public const string MEMBERSHIPTYPE = "MembershipType";
+        public const string TIMEPERIODUNITTYPE = "TimePeriodUnitType";
         #endregion
         public const string OTHER = "Other";
 

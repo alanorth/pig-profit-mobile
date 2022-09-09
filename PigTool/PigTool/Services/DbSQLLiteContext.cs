@@ -21,6 +21,7 @@ namespace SQLLiteDbContext
         public DbSet<LabourCostItem> LabourCostItems { get; set; }
         public DbSet<AnimalHouseItem> AnimalHouseItems { get; set; }
         public DbSet<WaterCostItem> WaterCostItems { get; set; }
+        public DbSet<MembershipItem> MembershipItems { get; set; }
 
 
         public DbSQLLiteContext()
@@ -81,6 +82,11 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "OtherIncome", English = "Other Income", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
                         new Translation() { RowKey = "Equipment", English = "Home", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
 
+                        new Translation() { RowKey = "DateTranslation", English = "Date", Lang1 = "Date Lang1", Lang2 = "Date Lang 2" },
+                        new Translation() { RowKey = "TotalCostTranslation", English = "Total Cost", Lang1 = "Total Cost Lang1", Lang2 = "Total Cost Lang2" },
+                        new Translation() { RowKey = "OtherCostTranslation", English = "Any Other Cost", Lang1 = "Any Other Cost Lang1", Lang2 = "Any Other Cost Lang2" },
+                        new Translation() { RowKey = "CommentTranslation", English = "Comment", Lang1 = "Comment Lang1", Lang2 = "Comment Lang2" },
+
                         //Core Button Translations
                         new Translation() { RowKey = "SaveTranslation", English = "Save", Lang1 = "Save Lang1", Lang2 = "Save Lang2" },
                         new Translation() { RowKey = "ResetTranslation", English = "Reset", Lang1 = "Reset Lang1", Lang2 = "Reset Lang2" },
@@ -101,7 +107,6 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "CommentTrans", English = "Comment", Lang1 = "Comment Lang1", Lang2 = "Comment Lang2" },
 
                         //Add HeathCare item Translation
-                        new Translation() { RowKey = "DateTranslation", English = "Date", Lang1 = "Date Lang1", Lang2 = "Date Lang 2" },
                         new Translation() { RowKey = "HealthCareTypeTranslation", English = "Health Care Type", Lang1 = "Health Care Type Lang1", Lang2 = "Health Care Type Lang2" },
                         new Translation() { RowKey = "OtherHealthCareTypeTranslation", English = "Other Health Care Type", Lang1 = "Other Health Care Type Lang 1", Lang2 = "Other Health Care Type Lang2" },
                         new Translation() { RowKey = "HealthCareCostTranslation", English = "Care Cost", Lang1 = "Care Cost", Lang2 = "" },
@@ -114,7 +119,6 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "OtherPurchasedFromTranslation", English = "Other Purchased from:", Lang1 = "Other Purchased from: Lang1", Lang2 = "Other Purchased from: Lang2" },
                         new Translation() { RowKey = "CostTranslation", English = "Any other cost:", Lang1 = "Any other cost: Lang1", Lang2 = "Any other cost: Lang2" },
                         new Translation() { RowKey = "TransportationCostTranslation", English = "Transport cost:", Lang1 = "Transport cost: Lang1", Lang2 = "Transport cost: Lang2" },
-                        new Translation() { RowKey = "CommentTranslation", English = "Comment", Lang1 = "Comment Lang1", Lang2 = "Comment Lang2" },
 
                         //Labour Costs
                         new Translation() { RowKey = "LabourTitleTranslation", English = "Labour Cost", Lang1 = "Labour Cost Lang1", Lang2 = "Labour Cost Lang2" },
@@ -127,17 +131,22 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "HousingTitleTranslation", English = "Animal Housing", Lang1 = "Animal Housing Lang1", Lang2 = "Animal Housing Lang2" },
                         new Translation() { RowKey = "HousingExpenseTranslation", English = "Housing Expense", Lang1 = "Housing Expense Lang1", Lang2 = "Housing Expense Lang2" },
                         new Translation() { RowKey = "OtherHousingExpenseTranslation", English = "Other Housing Expense", Lang1 = "Other Housing Expense Lang1", Lang2 = "Other Housing Expense Lang2" },
-                        new Translation() { RowKey = "TotalCostTranslation", English = "Total Cost", Lang1 = "Total Cost Lang1", Lang2 = "Total Cost Lang2" },
-                        new Translation() { RowKey = "OtherCostTranslation", English = "Any Other Cost", Lang1 = "Any Other Cost Lang1", Lang2 = "Any Other Cost Lang2" },
                         new Translation() { RowKey = "YearsExpectedTranslation", English = "Expected houing lifespan in years", Lang1 = "Expected houing lifespan in years1", Lang2 = "Expected houing lifespan in years2" },
                         new Translation() {RowKey ="SliderControlTranslation",English ="If new housing built (rather than maintenance) lifespan in years + expected salvage value at end ? ", Lang1 = "If new housing built(rather than maintenance)lifespan in years + expected salvage value at end ? Lang1", Lang2 = "If new housing built(rather than maintenance)lifespan in years + expected salvage value at end ? Lang2"},
 
                         //Water Costs
-                        new Translation() { RowKey = "WaterCostTitleTranslation", English = "Water Cost", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "WaterCostTitleTranslation", English = "Water cost", Lang1 = "", Lang2 = "" },
                         new Translation() { RowKey = "WaterPurchasedTranslation", English = "Water purchased", Lang1 = "", Lang2 = "" },
                         new Translation() { RowKey = "OtherWaterPurchasedTranslation", English = "Other unit", Lang1 = "", Lang2 = "" },
                         new Translation() { RowKey = "PurchasedWaterFromTranslation", English = "Who purchased from", Lang1 = "", Lang2 = "" },
                         new Translation() { RowKey = "OtherPurchasedWaterFromTranslation", English = "Purchased from", Lang1 = "", Lang2 = "" },
+
+                        //Membership
+                        new Translation() { RowKey = "MembershiptTitleTranslation", English = "Co-Operative / Group membership", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "MembershipTypeTranslation", English = "Membership type", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "OtherMembershipTypeTranslation", English = "Other type", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "TimePeriodTranslation", English = "Time-period covered", Lang1 = "", Lang2 = "" },
+
 
 
 
@@ -233,7 +242,20 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "PurchasedWaterFromType7", English = "Purchased From 7", Lang1 = "", Lang2 = "" },
                         new Translation() { RowKey = "PurchasedWaterFromType8", English = "Purchased From 8", Lang1 = "", Lang2 = "" },
                         new Translation() { RowKey = "PurchasedWaterFromType9", English = "Purchased From 9", Lang1 = "", Lang2 = "" },
-                        new Translation() { RowKey = "PurchasedWaterFromType10", English = "Purchased From 10", Lang1 = "", Lang2 = "" }
+                        new Translation() { RowKey = "PurchasedWaterFromType10", English = "Purchased From 10", Lang1 = "", Lang2 = "" },
+
+                        new Translation() { RowKey = "MembershipType1", English = "Type 1", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "MembershipType2", English = "Type 2", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "MembershipType3", English = "Type 3", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "MembershipType4", English = "Type 4", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "MembershipType5", English = "Type 5", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "MembershipType6", English = "Type 6", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "MembershipType7", English = "Type 7", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "MembershipType8", English = "Type 8", Lang1 = "", Lang2 = "" },
+
+                        new Translation() { RowKey = "TimePeriodUnitType1", English = "Weeks", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "TimePeriodUnitType2", English = "Months", Lang1 = "", Lang2 = "" }
+                        
                         );
                 }
             );
@@ -341,7 +363,20 @@ namespace SQLLiteDbContext
                        new ControlData() { Id = 88, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType8" },
                        new ControlData() { Id = 89, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType9" },
                        new ControlData() { Id = 90, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType10" },
-                       new ControlData() { Id = 91, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASEDWATERFROMTYPE, TranslationRowKey = SC.OTHER }
+                       new ControlData() { Id = 91, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASEDWATERFROMTYPE, TranslationRowKey = SC.OTHER },
+
+                       new ControlData() { Id = 92, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType1" },
+                       new ControlData() { Id = 93, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType2" },
+                       new ControlData() { Id = 94, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType3" },
+                       new ControlData() { Id = 95, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType4" },
+                       new ControlData() { Id = 96, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType5" },
+                       new ControlData() { Id = 97, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType6" },
+                       new ControlData() { Id = 98, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType7" },
+                       new ControlData() { Id = 99, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType8" },
+                       new ControlData() { Id = 100, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.MEMBERSHIPTYPE, TranslationRowKey = SC.OTHER },
+
+                       new ControlData() { Id = 101, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.TIMEPERIODUNITTYPE, TranslationRowKey = "TimePeriodUnitType1" },
+                       new ControlData() { Id = 102, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.TIMEPERIODUNITTYPE, TranslationRowKey = "TimePeriodUnitType2" }
                     );
                 }
             );

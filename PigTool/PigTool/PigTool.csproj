@@ -26,6 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\MembershipPage.xaml.cs">
+      <DependentUpon>MembershipPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\WaterCostPage.xaml.cs">
       <DependentUpon>WaterCostPage.xaml</DependentUpon>
     </Compile>
