@@ -142,7 +142,7 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "OtherPurchasedWaterFromTranslation", English = "Purchased from", Lang1 = "", Lang2 = "" },
 
                         //Membership
-                        new Translation() { RowKey = "MembershiptTitleTranslation", English = "Co-Operative / Group membership", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "MembershipTitleTranslation", English = "Co-Operative / Group membership", Lang1 = "", Lang2 = "" },
                         new Translation() { RowKey = "MembershipTypeTranslation", English = "Membership type", Lang1 = "", Lang2 = "" },
                         new Translation() { RowKey = "OtherMembershipTypeTranslation", English = "Other type", Lang1 = "", Lang2 = "" },
                         new Translation() { RowKey = "TimePeriodTranslation", English = "Time-period covered", Lang1 = "", Lang2 = "" },
