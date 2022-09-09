@@ -134,7 +134,7 @@ namespace SQLLiteDbContext
 
                         //Water Costs
                         new Translation() { RowKey = "WaterCostTitleTranslation", English = "Water Cost", Lang1 = "", Lang2 = "" },
-                        new Translation() { RowKey = "WaterPurchasedTranslation", English = "Amount water purchased", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "WaterPurchasedTranslation", English = "Water purchased", Lang1 = "", Lang2 = "" },
                         new Translation() { RowKey = "OtherWaterPurchasedTranslation", English = "Other unit", Lang1 = "", Lang2 = "" },
                         new Translation() { RowKey = "PurchasedWaterFromTranslation", English = "Who purchased from", Lang1 = "", Lang2 = "" },
                         new Translation() { RowKey = "OtherPurchasedWaterFromTranslation", English = "Purchased from", Lang1 = "", Lang2 = "" },

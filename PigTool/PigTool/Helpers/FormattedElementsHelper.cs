@@ -164,7 +164,8 @@ namespace PigTool.Helpers
             var stack = new StackLayout()
             {
                 Orientation = stackOrientation,
-                Padding = 10
+                Padding = 10,
+                HorizontalOptions = LayoutOptions.FillAndExpand
             };
 
             if (hiddenField)

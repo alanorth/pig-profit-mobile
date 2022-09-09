@@ -53,21 +53,21 @@ namespace PigTool.Views
             DateCell.View = stack;
             FullTableSection.Add(DateCell);
 
-            //Water Purchased
-            var WaterPurchasedCell = new ViewCell();
-            var WaterPurchasedStack = FormattedElementsHelper.TableRowStack();
-            WaterPurchasedStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.WaterPurchasedTranslation)));
-            WaterPurchasedStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.WaterPurchased), nameof(_viewModel.IsEditMode), null));
-            WaterPurchasedCell.View = WaterPurchasedStack;
-            FullTableSection.Add(WaterPurchasedCell);
 
-            //Water Purchased Unit
+            //Water Purchased
+
             var WaterPurchasedUnitCell = new ViewCell();
+
             var UnitVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             UnitVerticalStack.Padding = 0;
+
             var waterPurchasedUnitTypeStack = FormattedElementsHelper.TableRowStack();
             waterPurchasedUnitTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.WaterPurchasedTranslation)));
-            waterPurchasedUnitTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
+
+            var InputContainer = FormattedElementsHelper.TableRowStack();
+            InputContainer.Padding = 0;
+            InputContainer.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.WaterPurchased), nameof(_viewModel.IsEditMode), null));
+            InputContainer.Children.Add(FormattedElementsHelper.FormPickerEntry(
                 nameof(_viewModel.WaterPurchasedUnitListOfOptions),
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedWaterPurchasedUnit),
@@ -75,6 +75,9 @@ namespace PigTool.Views
                 _viewModel.SelectedWaterPurchasedUnit
                 )
                 );
+            
+            waterPurchasedUnitTypeStack.Children.Add(InputContainer);
+
             var OtherWaterUnitType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherWaterUnit), true);
             OtherWaterUnitType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherWaterPurchasedTranslation)));
             OtherWaterUnitType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherWaterPurchasedUnit), nameof(_viewModel.IsEditMode)));
@@ -82,7 +85,6 @@ namespace PigTool.Views
             UnitVerticalStack.Children.Add(OtherWaterUnitType);
             WaterPurchasedUnitCell.View = UnitVerticalStack;
             FullTableSection.Add(WaterPurchasedUnitCell);
-
 
             //Total Cost
             var TotalCostCell = new ViewCell();
