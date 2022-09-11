@@ -108,12 +108,25 @@ namespace PigTool.Views
                       NavigationCommand: _ViewModel.EditMembershipItem
                       );
 
+                var OtherCostItems = createExpanderElement(
+                      ExpanderTitle: "Other Costs",
+                      ColoumnHeader1: "Date",
+                      ColoumnHeader2: "What for",
+                      ColoumnHeader3: "Cost",
+                      BindableColumns1: nameof(OtherCostItem.Date),
+                      BindableColumns2: nameof(OtherCostItem.OtherWhatFor),
+                      BindableColumns3: nameof(OtherCostItem.TotalCosts),
+                      BindingList: nameof(_ViewModel.OtherCostItems),
+                      NavigationCommand: _ViewModel.EditOtherCostItem
+                      );
+
                 ManageStack.Children.Add(FeedItemsExpander);
                 ManageStack.Children.Add(HealthItemsExpander);
                 ManageStack.Children.Add(LabourCostItems);
                 ManageStack.Children.Add(AnimalHousingItems);
                 ManageStack.Children.Add(WaterCostItems);
                 ManageStack.Children.Add(MembershipItems);
+                ManageStack.Children.Add(OtherCostItems);
                 _ViewModel.PageRendered = true;
             }
 

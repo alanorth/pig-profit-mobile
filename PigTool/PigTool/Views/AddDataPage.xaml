@@ -26,9 +26,8 @@
                 <Button Text="{Binding Housing}" Style="{StaticResource AddNavButton}" Command="{Binding AddHousingItem}" BackgroundColor="#d6824d"/>
                 <Button Text="{Binding Water}" Style="{StaticResource AddNavButton}" Command="{Binding AddWaterCostItem}" BackgroundColor="#d6824d"/>
                 <Button Text="{Binding Membership}" Style="{StaticResource AddNavButton}" Command="{Binding AddMembershipItem}" BackgroundColor="#d6824d"/>
+                <Button Text="{Binding Other}" Style="{StaticResource AddNavButton}" Command="{Binding AddOtherCostItem}" BackgroundColor="#d6824d"/>
                 <Button Text="{Binding Reproduction}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
-                <Button Text="{Binding Membership}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
-                <Button Text="{Binding Other}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
                 <Button Text="{Binding AnimalPurchase}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
                 <Button Text="{Binding LoanRepayment}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
                 <Button Text="{Binding Equipment}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>

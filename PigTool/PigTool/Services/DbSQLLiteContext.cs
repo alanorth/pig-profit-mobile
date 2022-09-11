@@ -22,6 +22,7 @@ namespace SQLLiteDbContext
         public DbSet<AnimalHouseItem> AnimalHouseItems { get; set; }
         public DbSet<WaterCostItem> WaterCostItems { get; set; }
         public DbSet<MembershipItem> MembershipItems { get; set; }
+        public DbSet<OtherCostItem> OtherCostItems { get; set; }
 
 
         public DbSQLLiteContext()
@@ -147,7 +148,9 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "OtherMembershipTypeTranslation", English = "Other type", Lang1 = "", Lang2 = "" },
                         new Translation() { RowKey = "TimePeriodTranslation", English = "Time-period covered", Lang1 = "", Lang2 = "" },
 
-
+                        //Other Cost
+                        new Translation() { RowKey = "OtherCostTitleTranslation", English = "Other Cost", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "OtherWhatForTranslation", English = "What for", Lang1 = "", Lang2 = "" },
 
 
                         //Drop Down Options

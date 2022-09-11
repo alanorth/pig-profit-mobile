@@ -50,5 +50,11 @@ namespace PigTool.Services
         Task UpdateMembershipItem(MembershipItem Item);
         void DeleteMembershipItem(MembershipItem Item);
         Task AddSingleMembershipItem(MembershipItem itemToAdd);
+        //OtherCost
+        Task<List<OtherCostItem>> GetOtherCostItems();
+        Task<OtherCostItem> GetOtherCostItem(int Id);
+        Task UpdateOtherCostItem(OtherCostItem Item);
+        void DeleteOtherCostItem(OtherCostItem Item);
+        Task AddSingleOtherCostItem(OtherCostItem itemToAdd);
     }
 }

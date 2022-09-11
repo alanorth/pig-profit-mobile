@@ -243,5 +243,35 @@ namespace PigTool.Services
             await _context.AddAsync(itemToAdd);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<OtherCostItem>> GetOtherCostItems()
+        {
+            return await _context.OtherCostItems.ToListAsync();
+        }
+
+        public async Task<OtherCostItem> GetOtherCostItem(int Id)
+        {
+            return await _context.OtherCostItems.SingleOrDefaultAsync(Item => Item.Id == Id);
+        }
+
+        public async Task UpdateOtherCostItem(OtherCostItem Item)
+        {
+            _context.Update(Item);
+            await _context.SaveChangesAsync();
+        }
+
+        public void DeleteOtherCostItem(OtherCostItem Item)
+        {
+            _context.Remove(Item);
+            _context.SaveChangesAsync();
+        }
+
+        public async Task AddSingleOtherCostItem(OtherCostItem itemToAdd)
+        {
+            if (_context.OtherCostItems.Any(fd => fd.Id == itemToAdd.Id)) return;
+
+            await _context.AddAsync(itemToAdd);
+            await _context.SaveChangesAsync();
+        }
     }
 }
