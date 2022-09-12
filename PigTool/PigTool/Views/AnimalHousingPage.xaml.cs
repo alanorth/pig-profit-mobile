@@ -16,10 +16,10 @@ namespace PigTool.Views
     public partial class AnimalHousingPage : ContentPage
     {
         private AnimalHousingViewModel _viewModel;
+        private bool IsRendered = false;
 
         public AnimalHousingPage()
         {
-
             BindingContext = _viewModel = new AnimalHousingViewModel();
             InitializeComponent();
         }
@@ -33,13 +33,18 @@ namespace PigTool.Views
 
         protected async override void OnAppearing()
         {
-            await _viewModel.PopulateDataDowns();
+            if (!IsRendered)
+            {
+                await _viewModel.PopulateDataDowns();
 
-            PopulateTheTable();
+                PopulateTheTable();
 
-            _viewModel.SetPickers();
+                _viewModel.SetPickers();
 
-            base.OnAppearing();
+                base.OnAppearing();
+
+                IsRendered = true;
+            }
         }
 
         private void PopulateTheTable()

@@ -16,6 +16,7 @@ namespace PigTool.Views
     {
 
         private LabourCostViewModel _viewModel;
+        private bool IsRendered = false;
 
         public LabourCostPage()
         {
@@ -32,11 +33,16 @@ namespace PigTool.Views
 
         protected async override void OnAppearing()
         {
-            await _viewModel.PopulateDataDowns();
+            if (!IsRendered)
+            {
+                await _viewModel.PopulateDataDowns();
 
-            PopulateTheTable();
+                PopulateTheTable();
 
-            base.OnAppearing();
+                base.OnAppearing();
+
+                IsRendered = true;
+            }
         }
 
 

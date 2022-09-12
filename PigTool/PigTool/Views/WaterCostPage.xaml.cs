@@ -16,6 +16,7 @@ namespace PigTool.Views
     public partial class WaterCostPage : ContentPage
     {
         private WaterCostViewModel _viewModel;
+        private bool IsRendered = false;
 
         public WaterCostPage()
         {
@@ -32,13 +33,18 @@ namespace PigTool.Views
 
         protected async override void OnAppearing()
         {
-            await _viewModel.PopulateDataDowns();
+            if (!IsRendered)
+            {
+                await _viewModel.PopulateDataDowns();
 
-            PopulateTheTable();
+                PopulateTheTable();
 
-            _viewModel.SetPickers();
+                _viewModel.SetPickers();
 
-            base.OnAppearing();
+                base.OnAppearing();
+
+                IsRendered = true;
+            }
         }
 
         private void PopulateTheTable()
