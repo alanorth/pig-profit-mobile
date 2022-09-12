@@ -70,16 +70,29 @@ namespace PigTool.Helpers
             return DPicker;
         }
 
+        public static void Entry_TextChanged(object sender, TextChangedEventArgs e) 
+        { 
+            var oldText = e.OldTextValue; 
+            var newText = e.NewTextValue; 
+
+            if (string.IsNullOrWhiteSpace(newText))
+            {
+                var entry = (Entry)sender;
+                entry.Text = null;
+            }
+        }
+
         public static Entry FormNumericEntry(string TextBindingProperty, string IsEnableBinding, string InvladiStyleBinding,int min = 0, int max = 2000)
         {
             var Entry = new Entry()
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                Keyboard = Keyboard.Numeric
+                Keyboard = Keyboard.Numeric,
             };
 
             Entry.SetBinding(Entry.TextProperty, new Binding(TextBindingProperty));
             Entry.SetBinding(Entry.IsEnabledProperty, new Binding(IsEnableBinding));
+            Entry.TextChanged += Entry_TextChanged;
 
             var NVB = new NumericValidationBehavior()
             {
