@@ -183,12 +183,12 @@ namespace PigTool.Views
                 {
                     BackgroundColor = Color.Black,
                     ColumnDefinitions =
-                {
-                    new ColumnDefinition { Width = GridLength.Star },
-                    new ColumnDefinition { Width = GridLength.Star },
-                    new ColumnDefinition { Width = GridLength.Star },
-                    new ColumnDefinition { Width = GridLength.Star }
-                }
+                    {
+                        new ColumnDefinition { Width = GridLength.Star },
+                        new ColumnDefinition { Width = GridLength.Star },
+                        new ColumnDefinition { Width = GridLength.Star },
+                        new ColumnDefinition { Width = GridLength.Star }
+                    }
                 };
 
                 Headergrid.Children.Add(FormattedElementsHelper.ManageDataLabel(ColoumnHeader1), 0, 0);
@@ -199,11 +199,12 @@ namespace PigTool.Views
                 listvw.Header = Headergrid;
                 //listvw.ItemsSource = ObList;
                 listvw.SetBinding(ListView.ItemsSourceProperty , BindingList) ;
-
+                
                 listvw.ItemTemplate = new DataTemplate(() =>
                 {
                     return new CustomVeggieCell(BindableColumns1, BindableColumns2, BindableColumns3, NavigationCommand);
                 });
+                
                 stackHolder.Children.Add(listvw);
                 return stackHolder;
             });
