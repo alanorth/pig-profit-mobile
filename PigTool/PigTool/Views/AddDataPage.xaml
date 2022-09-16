@@ -20,26 +20,26 @@
                 VerticalOptions="StartAndExpand"
                 HorizontalOptions="CenterAndExpand" FontSize="25"/>
                 </Frame>
-                <Button Text="{Binding Feed}" Style="{StaticResource AddNavButton}" Command="{Binding AddFeedItem}"   BackgroundColor="#d6824d"/>
-                <Button Text="{Binding Healthcare}" Style="{StaticResource AddNavButton}" Command="{Binding AddHealthCareItem}"  BackgroundColor="#d6824d"/>
-                <Button Text="{Binding Labour}" Style="{StaticResource AddNavButton}" Command="{Binding AddLabourCostItem}" BackgroundColor="#d6824d"/>
-                <Button Text="{Binding Housing}" Style="{StaticResource AddNavButton}" Command="{Binding AddHousingItem}" BackgroundColor="#d6824d"/>
-                <Button Text="{Binding Water}" Style="{StaticResource AddNavButton}" Command="{Binding AddWaterCostItem}" BackgroundColor="#d6824d"/>
-                <Button Text="{Binding Membership}" Style="{StaticResource AddNavButton}" Command="{Binding AddMembershipItem}" BackgroundColor="#d6824d"/>
-                <Button Text="{Binding Other}" Style="{StaticResource AddNavButton}" Command="{Binding AddOtherCostItem}" BackgroundColor="#d6824d"/>
-                <Button Text="{Binding Reproduction}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
-                <Button Text="{Binding AnimalPurchase}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
-                <Button Text="{Binding LoanRepayment}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
-                <Button Text="{Binding Equipment}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
+                <Button Text="{Binding Feed}" Style="{StaticResource AddNavButton}" Command="{Binding AddFeedItem}"   BackgroundColor="#404e65"/>
+                <Button Text="{Binding Healthcare}" Style="{StaticResource AddNavButton}" Command="{Binding AddHealthCareItem}"  BackgroundColor="#404e65"/>
+                <Button Text="{Binding Labour}" Style="{StaticResource AddNavButton}" Command="{Binding AddLabourCostItem}" BackgroundColor="#404e65"/>
+                <Button Text="{Binding Housing}" Style="{StaticResource AddNavButton}" Command="{Binding AddHousingItem}" BackgroundColor="#404e65"/>
+                <Button Text="{Binding Water}" Style="{StaticResource AddNavButton}" Command="{Binding AddWaterCostItem}" BackgroundColor="#404e65"/>
+                <Button Text="{Binding Membership}" Style="{StaticResource AddNavButton}" Command="{Binding AddMembershipItem}" BackgroundColor="#404e65"/>
+                <Button Text="{Binding Other}" Style="{StaticResource AddNavButton}" Command="{Binding AddOtherCostItem}" BackgroundColor="#404e65"/>
+                <Button Text="{Binding Reproduction}" Style="{StaticResource AddNavButton}" BackgroundColor="#DADFE7"/>
+                <Button Text="{Binding AnimalPurchase}" Style="{StaticResource AddNavButton}" BackgroundColor="#DADFE7"/>
+                <Button Text="{Binding LoanRepayment}" Style="{StaticResource AddNavButton}" BackgroundColor="#DADFE7"/>
+                <Button Text="{Binding Equipment}" Style="{StaticResource AddNavButton}" BackgroundColor="#DADFE7"/>
                 <Frame OutlineColor="Black" Margin="6">
                     <Label Text="{Binding Income}"
                 VerticalOptions="StartAndExpand"
                 HorizontalOptions="CenterAndExpand" FontSize="25"/>
                 </Frame>
-                <Button Text="{Binding Saleofpigs}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
-                <Button Text="{Binding Saleofbreedingservices}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
-                <Button Text="{Binding Saleofmaure}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
-                <Button Text="{Binding OtherIncome}" Style="{StaticResource AddNavButton}" BackgroundColor="#d6824d"/>
+                <Button Text="{Binding Saleofpigs}" Style="{StaticResource AddNavButton}" BackgroundColor="#DADFE7"/>
+                <Button Text="{Binding Saleofbreedingservices}" Style="{StaticResource AddNavButton}" BackgroundColor="#DADFE7"/>
+                <Button Text="{Binding Saleofmaure}" Style="{StaticResource AddNavButton}" BackgroundColor="#DADFE7"/>
+                <Button Text="{Binding OtherIncome}" Style="{StaticResource AddNavButton}" BackgroundColor="#DADFE7"/>
         </StackLayout>
             </ScrollView>
     </ContentPage.Content>
