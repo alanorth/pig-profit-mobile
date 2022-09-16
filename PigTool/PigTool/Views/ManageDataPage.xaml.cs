@@ -181,7 +181,7 @@ namespace PigTool.Views
 
                 Grid Headergrid = new Grid
                 {
-                    BackgroundColor = Color.Black,
+                    BackgroundColor = Color.FromHex("#404E65"),
                     ColumnDefinitions =
                     {
                         new ColumnDefinition { Width = GridLength.Star },
@@ -222,15 +222,13 @@ namespace PigTool.Views
         {
             var x = this;
 
-            
-
             var horizontalLayout = new StackLayout() { BackgroundColor = Color.White };
             horizontalLayout.Orientation = StackOrientation.Horizontal;
             horizontalLayout.HorizontalOptions = LayoutOptions.Fill;
 
             Grid TemplateContents = new Grid
             {
-                BackgroundColor = Color.Black,
+                ColumnSpacing = 0,
                 ColumnDefinitions = {
                     new ColumnDefinition { Width = GridLength.Star },
                     new ColumnDefinition { Width = GridLength.Star },
@@ -243,9 +241,12 @@ namespace PigTool.Views
             Label column2Data = FormattedElementsHelper.ManageDataDetailsLableField(var2);
             Label column3Data = FormattedElementsHelper.ManageDataDetailsLableField(var3);
             Button button = new Button() { 
-                BackgroundColor = Color.Gray, 
+                TextColor = Color.FromHex("#404e65"),
+                BackgroundColor = Color.White,
+                TextTransform = TextTransform.None,
                 Text = "View",
-                HorizontalOptions = LayoutOptions.FillAndExpand
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                VerticalOptions = LayoutOptions.FillAndExpand,
             };
             button.Command = command;
             //button.CommandParameter = "{Binding .}";
@@ -253,8 +254,9 @@ namespace PigTool.Views
 
             TemplateContents.Children.Add(column1Data, 0, 0);
             TemplateContents.Children.Add(column2Data, 1, 0);
-            TemplateContents.Children.Add(button, 3, 0);
             TemplateContents.Children.Add(column3Data, 2, 0);
+            TemplateContents.Children.Add(button, 3, 0);
+            
 
             horizontalLayout.Children.Add(TemplateContents);
 

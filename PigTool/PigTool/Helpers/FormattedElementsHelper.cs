@@ -16,11 +16,11 @@ namespace PigTool.Helpers
                 Text = text,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 HorizontalTextAlignment = TextAlignment.Center,
-                FontSize = 18,
-                BackgroundColor = Color.FromHex("#b35137"),
+                FontSize = 16,
+                TextColor = Color.White,
+                BackgroundColor = Color.FromHex("#404E65"),
                 LineBreakMode = LineBreakMode.WordWrap,
-                FontAttributes = FontAttributes.Bold,
-
+                Padding = new Thickness(8),
             };
 
             return label;
@@ -32,10 +32,11 @@ namespace PigTool.Helpers
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 HorizontalTextAlignment = TextAlignment.Center,
+                VerticalTextAlignment = TextAlignment.Center,
                 FontSize = 15,
                 BackgroundColor = Color.White,
-                LineBreakMode = LineBreakMode.WordWrap
-
+                LineBreakMode = LineBreakMode.WordWrap,
+                
             };
 
             label.SetBinding(Label.TextProperty, new Binding(labelBindingField));
