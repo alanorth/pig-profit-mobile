@@ -85,6 +85,7 @@ namespace SQLLiteDbContext
 
                         new Translation() { RowKey = "DateTranslation", English = "Date", Lang1 = "Date Lang1", Lang2 = "Date Lang 2" },
                         new Translation() { RowKey = "TotalCostTranslation", English = "Total Cost", Lang1 = "Total Cost Lang1", Lang2 = "Total Cost Lang2" },
+                        new Translation() { RowKey = "TransportationCostTranslation", English = "Transport Cost", Lang1 = "Transport Cost Lang1", Lang2 = "Transport Cost Lang2" },
                         new Translation() { RowKey = "OtherCostTranslation", English = "Any Other Cost", Lang1 = "Any Other Cost Lang1", Lang2 = "Any Other Cost Lang2" },
                         new Translation() { RowKey = "CommentTranslation", English = "Comment", Lang1 = "Comment Lang1", Lang2 = "Comment Lang2" },
 
@@ -119,7 +120,7 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "PurchasedFromTranslation", English = "Purchased from:", Lang1 = "Purchased from: Lang1", Lang2 = "Purchased from: Lang2" },
                         new Translation() { RowKey = "OtherPurchasedFromTranslation", English = "Other Purchased from:", Lang1 = "Other Purchased from: Lang1", Lang2 = "Other Purchased from: Lang2" },
                         new Translation() { RowKey = "CostTranslation", English = "Any other cost:", Lang1 = "Any other cost: Lang1", Lang2 = "Any other cost: Lang2" },
-                        new Translation() { RowKey = "TransportationCostTranslation", English = "Transport cost:", Lang1 = "Transport cost: Lang1", Lang2 = "Transport cost: Lang2" },
+                        
 
                         //Labour Costs
                         new Translation() { RowKey = "LabourTitleTranslation", English = "Labour Cost", Lang1 = "Labour Cost Lang1", Lang2 = "Labour Cost Lang2" },
@@ -132,7 +133,7 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "HousingTitleTranslation", English = "Animal Housing", Lang1 = "Animal Housing Lang1", Lang2 = "Animal Housing Lang2" },
                         new Translation() { RowKey = "HousingExpenseTranslation", English = "Housing Expense", Lang1 = "Housing Expense Lang1", Lang2 = "Housing Expense Lang2" },
                         new Translation() { RowKey = "OtherHousingExpenseTranslation", English = "Other Housing Expense", Lang1 = "Other Housing Expense Lang1", Lang2 = "Other Housing Expense Lang2" },
-                        new Translation() { RowKey = "YearsExpectedTranslation", English = "Expected houing lifespan in years", Lang1 = "Expected houing lifespan in years1", Lang2 = "Expected houing lifespan in years2" },
+                        new Translation() { RowKey = "YearsExpectedTranslation", English = "Expected Houing Lifespan (Years)", Lang1 = "Expected Houing Lifespan (Years)1", Lang2 = "Expected Houing Lifespan (Years)2" },
                         new Translation() {RowKey ="SliderControlTranslation",English ="If new housing built (rather than maintenance) lifespan in years + expected salvage value at end ? ", Lang1 = "If new housing built(rather than maintenance)lifespan in years + expected salvage value at end ? Lang1", Lang2 = "If new housing built(rather than maintenance)lifespan in years + expected salvage value at end ? Lang2"},
 
                         //Water Costs

@@ -15,13 +15,13 @@ namespace PigTool.ViewModels
     {
         bool isEditMode, isCreationMode;
         private bool editExistingMode;
-        private string housingExpense;
-        private string otherHousingExpense;
+        private string? housingExpense;
+        private string? otherHousingExpense;
         private string? comment;
         private double? totalCosts;
         private double? transportationCost;
         private double? otherCosts;
-        private int yearsExpected;
+        private int? yearsExpected;
         private DateTime date;
         List<PickerToolHelper> housingTypeListOfOptions;
         AnimalHouseItem _itemForEditing;
@@ -63,7 +63,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string HousingExpense
+        public string? HousingExpense
         {
             get => housingExpense;
             set
@@ -75,7 +75,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string OtherHousingExpense
+        public string? OtherHousingExpense
         {
             get => otherHousingExpense;
             set
@@ -135,7 +135,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public int YearsExpected
+        public int? YearsExpected
         {
             get => yearsExpected;
             set
@@ -249,9 +249,6 @@ namespace PigTool.ViewModels
                 private DateTime date;
             */
             Date = DateTime.Now;
-            HousingExpense = null;
-            OtherHousingExpense = null;
-            OtherCosts = null;
 
             IsEditMode = true;
             CreationMode = true;
@@ -264,12 +261,12 @@ namespace PigTool.ViewModels
             IsCreationMode = !EditExistingMode;
 
             TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang);
-            DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang);
+            DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
             HousingExpenseTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(HousingExpenseTranslation), User.UserLang);
             OtherHousingExpenseTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherHousingExpenseTranslation), User.UserLang);
-            TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang);
-            TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang);
-            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang);
+            TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang) + " *";
+            TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
+            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
             YearsExpectedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(YearsExpectedTranslation), User.UserLang);
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
@@ -320,11 +317,11 @@ namespace PigTool.ViewModels
             {
 
                 _itemForEditing.Date = Date;
-                _itemForEditing.HousingExpense = SelectedHousingType.TranslationRowKey;
+                _itemForEditing.HousingExpense = SelectedHousingType != null ? SelectedHousingType.TranslationRowKey : null;
                 _itemForEditing.OtherHousingExpense = OtherHousingExpense;
-                _itemForEditing.TotalCosts = TotalCosts;
-                _itemForEditing.TransportationCost = TransportationCost;
-                _itemForEditing.OtherCosts = OtherCosts;
+                _itemForEditing.TotalCosts = (double)TotalCosts;
+                _itemForEditing.TransportationCost = (double)TransportationCost;
+                _itemForEditing.OtherCosts = (double)OtherCosts;
                 _itemForEditing.YearsExpected = YearsExpected;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
@@ -338,11 +335,11 @@ namespace PigTool.ViewModels
                 var newHousingCost = new AnimalHouseItem
                 {
                     Date = Date,
-                    HousingExpense = SelectedHousingType.TranslationRowKey,
+                    HousingExpense = SelectedHousingType != null ? SelectedHousingType.TranslationRowKey : null,
                     OtherHousingExpense = OtherHousingExpense,
-                    TotalCosts = TotalCosts,
-                    TransportationCost = TransportationCost,
-                    OtherCosts = OtherCosts,
+                    TotalCosts = (double)TotalCosts,
+                    TransportationCost = (double)TransportationCost,
+                    OtherCosts = (double)OtherCosts,
                     YearsExpected = YearsExpected,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
@@ -412,13 +409,18 @@ namespace PigTool.ViewModels
                 returnString.AppendLine(TransportationCost == null ? "Transportation Cost Not Provided" : "");
                 returnString.AppendLine(OtherCosts == null ? "Other Cost Not Provided" : "");
 
-                if (returnString.Length > 0) return returnString.ToString();
-
-                if (SelectedHousingType.TranslationRowKey == SC.OTHER)
+                if (SelectedHousingType != null)
                 {
-                    returnString.Append(string.IsNullOrWhiteSpace(OtherHousingExpense) ? "Other Housing Expense Not Provided" : "");
+                    if (SelectedHousingType.TranslationRowKey == SC.OTHER)
+                    {
+                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherHousingExpense) ? "Other Housing Expense Not Provided" : "");
+                    }
+                    else
+                    {
+                        OtherHousingExpense = null;
+                    }
                 }
-
+                
                 return returnString.ToString();
             }
             catch (Exception ex)
