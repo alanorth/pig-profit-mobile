@@ -162,7 +162,7 @@ namespace PigTool.Views
             {
                 Text = ExpanderTitle,
                 FontAttributes = FontAttributes.Bold,
-                FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label))
+                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label))
             };
 
             frame.Content = headerLabel;
@@ -178,7 +178,7 @@ namespace PigTool.Views
                 StackLayout stackHolder = new StackLayout();
 
                 ListView listvw = new ListView();
-
+                
                 Grid Headergrid = new Grid
                 {
                     BackgroundColor = Color.FromHex("#404E65"),
@@ -195,7 +195,7 @@ namespace PigTool.Views
                 Headergrid.Children.Add(FormattedElementsHelper.ManageDataLabel(ColoumnHeader2), 1, 0); 
                 Headergrid.Children.Add(FormattedElementsHelper.ManageDataLabel(ColoumnHeader3), 2, 0); 
                 Headergrid.Children.Add(FormattedElementsHelper.ManageDataLabel(""), 3, 0);
-
+                
                 listvw.Header = Headergrid;
                 //listvw.ItemsSource = ObList;
                 listvw.SetBinding(ListView.ItemsSourceProperty , BindingList) ;

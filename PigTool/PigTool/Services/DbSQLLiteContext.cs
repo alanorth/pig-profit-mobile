@@ -133,7 +133,7 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "HousingTitleTranslation", English = "Animal Housing", Lang1 = "Animal Housing Lang1", Lang2 = "Animal Housing Lang2" },
                         new Translation() { RowKey = "HousingExpenseTranslation", English = "Housing Expense", Lang1 = "Housing Expense Lang1", Lang2 = "Housing Expense Lang2" },
                         new Translation() { RowKey = "OtherHousingExpenseTranslation", English = "Other Housing Expense", Lang1 = "Other Housing Expense Lang1", Lang2 = "Other Housing Expense Lang2" },
-                        new Translation() { RowKey = "YearsExpectedTranslation", English = "Expected Houing Lifespan (Years)", Lang1 = "Expected Houing Lifespan (Years)1", Lang2 = "Expected Houing Lifespan (Years)2" },
+                        new Translation() { RowKey = "YearsExpectedTranslation", English = "Expected Housing Lifespan (Years)", Lang1 = "Expected Housing Lifespan (Years)1", Lang2 = "Expected Housing Lifespan (Years)2" },
                         new Translation() {RowKey ="SliderControlTranslation",English ="If new housing built (rather than maintenance) lifespan in years + expected salvage value at end ? ", Lang1 = "If new housing built(rather than maintenance)lifespan in years + expected salvage value at end ? Lang1", Lang2 = "If new housing built(rather than maintenance)lifespan in years + expected salvage value at end ? Lang2"},
 
                         //Water Costs
