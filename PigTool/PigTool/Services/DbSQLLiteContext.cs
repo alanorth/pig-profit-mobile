@@ -137,11 +137,11 @@ namespace SQLLiteDbContext
                         new Translation() {RowKey ="SliderControlTranslation",English ="If new housing built (rather than maintenance) lifespan in years + expected salvage value at end ? ", Lang1 = "If new housing built(rather than maintenance)lifespan in years + expected salvage value at end ? Lang1", Lang2 = "If new housing built(rather than maintenance)lifespan in years + expected salvage value at end ? Lang2"},
 
                         //Water Costs
-                        new Translation() { RowKey = "WaterCostTitleTranslation", English = "Water cost", Lang1 = "", Lang2 = "" },
-                        new Translation() { RowKey = "WaterPurchasedTranslation", English = "Water purchased", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "WaterCostTitleTranslation", English = "Water Cost", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "WaterPurchasedTranslation", English = "Water Purchased", Lang1 = "", Lang2 = "" },
                         new Translation() { RowKey = "OtherWaterPurchasedTranslation", English = "Other unit", Lang1 = "", Lang2 = "" },
-                        new Translation() { RowKey = "PurchasedWaterFromTranslation", English = "Who purchased from", Lang1 = "", Lang2 = "" },
-                        new Translation() { RowKey = "OtherPurchasedWaterFromTranslation", English = "Purchased from", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "PurchasedWaterFromTranslation", English = "Who Purchased From", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "OtherPurchasedWaterFromTranslation", English = "Purchased From", Lang1 = "", Lang2 = "" },
 
                         //Membership
                         new Translation() { RowKey = "MembershipTitleTranslation", English = "Co-Operative / Group membership", Lang1 = "", Lang2 = "" },

@@ -17,7 +17,7 @@ namespace PigTool.ViewModels
         private bool editExistingMode;
         private DateTime date;
         private double? totalCosts;
-        private string otherWhatFor;
+        private string? otherWhatFor;
         private double? transportationCosts;
         private double? otherCosts;
         private string? comment;
@@ -57,7 +57,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string OtherWhatFor
+        public string? OtherWhatFor
         {
             get => otherWhatFor;
             set
@@ -181,7 +181,7 @@ namespace PigTool.ViewModels
             IsEditMode = true;
             CreationMode = true;
 
-            SaveButtonClicked = (new Command(SaveButtonCreateHousingItem));
+            SaveButtonClicked = (new Command(SaveButtonCreateOtherCostItem));
             ResetButtonClicked = new Command(ResetButtonPressed);
             DeleteButtonClicked = new Command(DeleteItem);
             EditButtonClicked = new Command(EditItem);
@@ -189,13 +189,13 @@ namespace PigTool.ViewModels
             IsCreationMode = !EditExistingMode;
 
             OtherCostTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTitleTranslation), User.UserLang);
-            DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang);
+            DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
             
             OtherWhatForTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherWhatForTranslation), User.UserLang);
 
-            TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang);
+            TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang) + " *";
             TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang);
-            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang);
+            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
             
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
@@ -228,7 +228,7 @@ namespace PigTool.ViewModels
             }
         }
 
-        private async void SaveButtonCreateHousingItem(object obj)
+        private async void SaveButtonCreateOtherCostItem(object obj)
         {
             var valid = ValidateSave();
 
@@ -243,9 +243,9 @@ namespace PigTool.ViewModels
 
                 _itemForEditing.Date = Date;
                 _itemForEditing.OtherWhatFor = OtherWhatFor;
-                _itemForEditing.TransportationCosts = TransportationCosts;
-                _itemForEditing.TotalCosts = TotalCosts;
-                _itemForEditing.OtherCosts = OtherCosts;
+                _itemForEditing.TransportationCosts = (double)TransportationCosts;
+                _itemForEditing.TotalCosts = (double)TotalCosts;
+                _itemForEditing.OtherCosts = (double)OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
@@ -260,8 +260,8 @@ namespace PigTool.ViewModels
                     Date = Date,
                     OtherWhatFor = OtherWhatFor,
                     TransportationCosts = TransportationCosts,
-                    TotalCosts = TotalCosts,
-                    OtherCosts = OtherCosts,
+                    TotalCosts = (double)TotalCosts,
+                    OtherCosts = (double)OtherCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
@@ -316,10 +316,7 @@ namespace PigTool.ViewModels
                 StringBuilder returnString = new StringBuilder();
                 returnString.AppendLine(Date == null ? "Date obtained not provided" : "");
                 returnString.AppendLine(TotalCosts == null ? "Total cost not provided" : "");
-                returnString.AppendLine(OtherWhatFor == null ? "What for not provided" : "");
-
-                if (returnString.Length > 0) return returnString.ToString();
-
+                returnString.AppendLine(OtherCosts == null ? "Other cost not provided" : "");
 
                 return returnString.ToString();
             }

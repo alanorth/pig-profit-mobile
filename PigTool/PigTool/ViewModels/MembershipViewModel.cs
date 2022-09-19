@@ -17,10 +17,10 @@ namespace PigTool.ViewModels
         private bool editExistingMode;
         private DateTime date;
         private double? totalCosts;
-        private string membershipType;
-        private string otherMembershipType;
-        private int timePeriod;
-        private string timePerdiodUnit;
+        private string? membershipType;
+        private string? otherMembershipType;
+        private int? timePeriod;
+        private string? timePerdiodUnit;
         private double? otherCosts;
         private string? comment;
         List<PickerToolHelper> membershipTypeListOfOptions;
@@ -86,7 +86,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public int TimePeriod
+        public int? TimePeriod
         {
             get => timePeriod;
             set
@@ -266,14 +266,14 @@ namespace PigTool.ViewModels
             IsCreationMode = !EditExistingMode;
 
             MembershipTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(MembershipTitleTranslation), User.UserLang);
-            DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang);
+            DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
             
             MembershipTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(MembershipTypeTranslation), User.UserLang);
             OtherMembershipTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherMembershipTypeTranslation), User.UserLang);
-            TimePeriodTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TimePeriodTranslation), User.UserLang);
+            TimePeriodTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TimePeriodTranslation), User.UserLang) + " *";
 
-            TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang);
-            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang);
+            TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang) + " *";
+            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
             
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
@@ -323,12 +323,12 @@ namespace PigTool.ViewModels
             {
 
                 _itemForEditing.Date = Date;
-                _itemForEditing.MembershipType = SelectedMembershipType.TranslationRowKey;
+                _itemForEditing.MembershipType = SelectedMembershipType != null ? SelectedMembershipType.TranslationRowKey : null;
                 _itemForEditing.OtherMembershipType = OtherMembershipType;
-                _itemForEditing.TimePeriod = TimePeriod;
+                _itemForEditing.TimePeriod = (int)TimePeriod;
                 _itemForEditing.TimePeriodUnit = SelectedTimePeriodUnit.TranslationRowKey;
-                _itemForEditing.TotalCosts = TotalCosts;
-                _itemForEditing.OtherCosts = OtherCosts;
+                _itemForEditing.TotalCosts = (double)TotalCosts;
+                _itemForEditing.OtherCosts = (double)OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
@@ -341,12 +341,12 @@ namespace PigTool.ViewModels
                 var newMembership = new MembershipItem
                 {
                     Date = Date,
-                    MembershipType = SelectedMembershipType.TranslationRowKey,
+                    MembershipType = SelectedMembershipType != null ? SelectedMembershipType.TranslationRowKey : null,
                     OtherMembershipType = OtherMembershipType,
-                    TimePeriod = TimePeriod,
+                    TimePeriod = (int)TimePeriod,
                     TimePeriodUnit = SelectedTimePeriodUnit.TranslationRowKey,
-                    TotalCosts = TotalCosts,
-                    OtherCosts = OtherCosts,
+                    TotalCosts = (double)TotalCosts,
+                    OtherCosts = (double)OtherCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
@@ -411,15 +411,18 @@ namespace PigTool.ViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                returnString.AppendLine(Date == null ? "Date obtained not provided" : "");
+                if (Date == null) returnString.AppendLine("Date obtained not provided");
                 returnString.AppendLine(TotalCosts == null ? "Total Cost Not Provided" : "");
+                returnString.AppendLine(TimePeriod == null ? "Time Period Not Provided" : "");
+                returnString.AppendLine(SelectedTimePeriodUnit == null ? "Time Period Unit Not Provided" : "");
                 returnString.AppendLine(OtherCosts == null ? "Other Cost Not Provided" : "");
 
-                if (returnString.Length > 0) return returnString.ToString();
-
-                if (selectedMembershipType.TranslationRowKey == SC.OTHER)
+                if (selectedMembershipType != null)
                 {
-                    returnString.Append(string.IsNullOrWhiteSpace(OtherMembershipType) ? "Other Membership Type Not Provided" : "");
+                    if (selectedMembershipType.TranslationRowKey == SC.OTHER)
+                    {
+                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherMembershipType) ? "Other Membership Type Not Provided" : "");
+                    }
                 }
 
                 return returnString.ToString();

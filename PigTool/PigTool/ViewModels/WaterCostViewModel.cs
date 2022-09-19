@@ -16,12 +16,12 @@ namespace PigTool.ViewModels
         bool isEditMode, isCreationMode;
         private bool editExistingMode;
         private DateTime date;
-        private double waterPurchased;
-        private string waterPurchasedUnit;
-        private string otherWaterPurchasedUnit;
+        private double? waterPurchased;
+        private string? waterPurchasedUnit;
+        private string? otherWaterPurchasedUnit;
         private double? totalCosts;
-        private string purchasedWaterFrom;
-        private string otherPurchasedWaterFrom;
+        private string? purchasedWaterFrom;
+        private string? otherPurchasedWaterFrom;
         private double? transportationCost;
         private double? otherCosts;
         private string? comment;
@@ -68,7 +68,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public double WaterPurchased
+        public double? WaterPurchased
         {
             get => waterPurchased;
             set
@@ -80,7 +80,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string WaterPurchasedUnit
+        public string? WaterPurchasedUnit
         {
             get => waterPurchasedUnit;
             set
@@ -92,7 +92,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string OtherWaterPurchasedUnit
+        public string? OtherWaterPurchasedUnit
         {
             get => otherWaterPurchasedUnit;
             set
@@ -104,7 +104,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string PurchasedWaterFrom
+        public string? PurchasedWaterFrom
         {
             get => purchasedWaterFrom;
             set
@@ -116,7 +116,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string OtherPurchasedWaterFrom
+        public string? OtherPurchasedWaterFrom
         {
             get => otherPurchasedWaterFrom;
             set
@@ -310,16 +310,16 @@ namespace PigTool.ViewModels
             IsCreationMode = !EditExistingMode;
 
             WaterCostTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(WaterCostTitleTranslation), User.UserLang);
-            DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang);
+            DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
             
             WaterPurchasedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(WaterPurchasedTranslation), User.UserLang);
             OtherWaterPurchasedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherWaterPurchasedTranslation), User.UserLang);
             PurchasedWaterFromTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PurchasedWaterFromTranslation), User.UserLang);
             OtherPurchasedWaterFromTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherPurchasedWaterFromTranslation), User.UserLang);
 
-            TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang);
-            TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang);
-            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang);
+            TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang) + " *";
+            TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
+            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
             
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
@@ -372,13 +372,13 @@ namespace PigTool.ViewModels
 
                 _itemForEditing.Date = Date;
                 _itemForEditing.WaterPurchased = WaterPurchased;
-                _itemForEditing.WaterPurchasedUnit = SelectedWaterPurchasedUnit.TranslationRowKey;
+                _itemForEditing.WaterPurchasedUnit = SelectedWaterPurchasedUnit != null ? SelectedWaterPurchasedUnit.TranslationRowKey : null;
                 _itemForEditing.OtherWaterPurchasedUnit = OtherWaterPurchasedUnit;
-                _itemForEditing.PurchasedWaterFrom = SelectedPurchasedWaterFrom.TranslationRowKey;
+                _itemForEditing.PurchasedWaterFrom = SelectedPurchasedWaterFrom != null ? SelectedPurchasedWaterFrom.TranslationRowKey : null;
                 _itemForEditing.OtherPurchasedWaterFrom = OtherPurchasedWaterFrom;
-                _itemForEditing.TotalCosts = TotalCosts;
-                _itemForEditing.TransportationCost = TransportationCost;
-                _itemForEditing.OtherCosts = OtherCosts;
+                _itemForEditing.TotalCosts = (double)TotalCosts;
+                _itemForEditing.TransportationCost = (double)TransportationCost;
+                _itemForEditing.OtherCosts = (double)OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
@@ -392,13 +392,13 @@ namespace PigTool.ViewModels
                 {
                     Date = Date,
                     WaterPurchased = WaterPurchased,
-                    WaterPurchasedUnit = SelectedWaterPurchasedUnit.TranslationRowKey,
+                    WaterPurchasedUnit = SelectedWaterPurchasedUnit != null ? SelectedWaterPurchasedUnit.TranslationRowKey : null,
                     OtherWaterPurchasedUnit = OtherWaterPurchasedUnit,
-                    PurchasedWaterFrom = SelectedPurchasedWaterFrom.TranslationRowKey,
+                    PurchasedWaterFrom = SelectedPurchasedWaterFrom != null ? SelectedPurchasedWaterFrom.TranslationRowKey : null,
                     OtherPurchasedWaterFrom = OtherPurchasedWaterFrom,
-                    TotalCosts = TotalCosts,
-                    TransportationCost = TransportationCost,
-                    OtherCosts = OtherCosts,
+                    TotalCosts = (double)TotalCosts,
+                    TransportationCost = (double)TransportationCost,
+                    OtherCosts = (double)OtherCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
@@ -471,17 +471,24 @@ namespace PigTool.ViewModels
                 returnString.AppendLine(TransportationCost == null ? "Transportation Cost Not Provided" : "");
                 returnString.AppendLine(OtherCosts == null ? "Other Cost Not Provided" : "");
 
+                
+                if (SelectedWaterPurchasedUnit != null)
+                {
+                    if (SelectedWaterPurchasedUnit.TranslationRowKey == SC.OTHER)
+                    {
+                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherWaterPurchasedUnit) ? "Other Unit Not Provided" : "");
+                    }
+                }
+
+                if (SelectedPurchasedWaterFrom != null)
+                {
+                    if (SelectedPurchasedWaterFrom.TranslationRowKey == SC.OTHER)
+                    {
+                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherPurchasedWaterFrom) ? "Other Person Purchased From Not Provided" : "");
+                    }
+                }
                 if (returnString.Length > 0) return returnString.ToString();
 
-                if (SelectedWaterPurchasedUnit.TranslationRowKey == SC.OTHER)
-                {
-                    returnString.Append(string.IsNullOrWhiteSpace(OtherWaterPurchasedUnit) ? "Other Unit Not Provided" : "");
-                }
-
-                if (SelectedPurchasedWaterFrom.TranslationRowKey == SC.OTHER)
-                {
-                    returnString.Append(string.IsNullOrWhiteSpace(OtherPurchasedWaterFrom) ? "Other Person Purchased From Not Provided" : "");
-                }
 
                 return returnString.ToString();
             }
