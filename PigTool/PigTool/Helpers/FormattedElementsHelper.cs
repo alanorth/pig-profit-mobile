@@ -62,7 +62,7 @@ namespace PigTool.Helpers
         {
             var DPicker = new DatePicker()
             {
-                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
             };
 
             DPicker.SetBinding(DatePicker.DateProperty, new Binding(DateBindingProperty));
