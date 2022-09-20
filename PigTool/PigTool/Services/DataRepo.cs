@@ -110,7 +110,7 @@ namespace PigTool.Services
             await _context.SaveChangesAsync();
         }
 
-        public void DeleteHealthCaredItem(HealthCareItem Item)
+        public void DeleteHealthCareItem(HealthCareItem Item)
         {
             _context.Remove(Item);
             _context.SaveChangesAsync();

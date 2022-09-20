@@ -28,7 +28,7 @@ namespace PigTool.Services
         Task<List<HealthCareItem>> GetHealthCareItems();
         Task<HealthCareItem> GetHealthCareItem(int Id);
         Task UpdateHealthCareItem(HealthCareItem Item);
-        void DeleteHealthCaredItem(HealthCareItem Item);
+        void DeleteHealthCareItem(HealthCareItem Item);
         Task AddSingleHealthCareItem(HealthCareItem itemToAdd);
 
         //Labour Costs

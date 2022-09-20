@@ -116,15 +116,17 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "TransportCostTrans", English = "Transportation Cost", Lang1 = "Transportation Cost Lang1", Lang2 = "Transportation Cost Lang2" },
                         new Translation() { RowKey = "PurchasedFrom", English = "Purchased From", Lang1 = "Purchased From Lang1", Lang2 = "Purchased From Lang2" },
                         new Translation() { RowKey = "CommentTrans", English = "Comment", Lang1 = "Comment Lang1", Lang2 = "Comment Lang2" },
+                        
                         //Add HeathCare item Translation
+                        new Translation() { RowKey = "HealthCareTitleTranslation", English = "Health Care", Lang1 = "", Lang2 = "" },
                         new Translation() { RowKey = "HealthCareTypeTranslation", English = "Health Care Type", Lang1 = "Health Care Type Lang1", Lang2 = "Health Care Type Lang2" },
                         new Translation() { RowKey = "OtherHealthCareTypeTranslation", English = "Other Health Care Type", Lang1 = "Other Health Care Type Lang 1", Lang2 = "Other Health Care Type Lang2" },
                         new Translation() { RowKey = "HealthCareCostTranslation", English = "Care Cost", Lang1 = "Care Cost", Lang2 = "" },
-                        new Translation() { RowKey = "ProviderTranslation", English = "Who provided service:", Lang1 = "Who provided service: Lang1", Lang2 = "Who provided service: Lang2" },
-                        new Translation() { RowKey = "OtherProviderTranslation", English = "Other provided service:", Lang1 = "Other provided service: Lang1", Lang2 = "Other provided service: Lang2" },
-                        new Translation() { RowKey = "MedicineCostTranslation", English = "Medicine Cost:", Lang1 = "Medicine Cost: Lang1", Lang2 = "Medicine Cost: Lang2" },
-                        new Translation() { RowKey = "MedinceTypeTranslation", English = "Medicine Type:", Lang1 = "Medicine Type: Lang1", Lang2 = "Medicine Type: Lang2" },
-                        new Translation() { RowKey = "OtherMedinceTypeTranslation", English = "Other Medicine Type:", Lang1 = "Other Medicine Type: Lang1", Lang2 = "Other Medicine Type: Lang2" },
+                        new Translation() { RowKey = "ProviderTranslation", English = "Who provided service", Lang1 = "Who provided service: Lang1", Lang2 = "Who provided service: Lang2" },
+                        new Translation() { RowKey = "OtherProviderTranslation", English = "Other provided service", Lang1 = "Other provided service: Lang1", Lang2 = "Other provided service: Lang2" },
+                        new Translation() { RowKey = "MedicineCostTranslation", English = "Medicine Cost", Lang1 = "Medicine Cost: Lang1", Lang2 = "Medicine Cost: Lang2" },
+                        new Translation() { RowKey = "MedicineTypeTranslation", English = "Medicine Type", Lang1 = "Medicine Type: Lang1", Lang2 = "Medicine Type: Lang2" },
+                        new Translation() { RowKey = "OtherMedicineTypeTranslation", English = "Other Medicine Type", Lang1 = "Other Medicine Type: Lang1", Lang2 = "Other Medicine Type: Lang2" },
                        
                         new Translation() { RowKey = "CostTranslation", English = "Any other cost:", Lang1 = "Any other cost: Lang1", Lang2 = "Any other cost: Lang2" },
 

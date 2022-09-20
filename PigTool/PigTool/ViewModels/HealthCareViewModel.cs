@@ -6,171 +6,264 @@ using System.Text;
 using System.Threading.Tasks;
 using PigTool.Helpers;
 using PigTool.Models;
+using PigTool.Views;
 using Xamarin.Forms;
 
 namespace PigTool.ViewModels
 {
-
-
     public class HealthCareViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
-        private HealthCareItem _itemForEditing;
+        bool isEditMode, isCreationMode;
+        private bool editExistingMode;
+        private DateTime date;
+        private string? healthCareType;
+        private string? otherHealthCareType;
+        private double? healthCareCost;
+        private string? provider;
+        private string? otherProvider;
+        private double? medicineCost;
+        private string? medicineType;
+        private string? otherMedicineType;
+        private string? purchasedFrom;
+        private string? otherPurchasedFrom;
+        private double? transportationCost;
+        private double? otherCosts;
+        private string? comment;
+        List<PickerToolHelper> healthCareTypeListOfOptions;
+        List<PickerToolHelper> providerListOfOptions;
+        List<PickerToolHelper> medicineTypeListOfOptions;
+        List<PickerToolHelper> purchasedFromListOfOptions;
+        HealthCareItem _itemForEditing;
 
-        private bool isEditMode;
-        public bool IsEditMode
-        {
-            get => isEditMode;
-            set
-            {
-                if (value != isEditMode)
-                {
-                    isEditMode = value;
-                    OnPropertyChanged(nameof(IsEditMode));
-                }
+        //Button Clicks
+        public Command SaveButtonClicked { get; }
+        public Command ResetButtonClicked { get; }
+        public Command DeleteButtonClicked { get; }
+        public Command EditButtonClicked { get; }
 
-            }
-        }
-
-        #region Control Display and Hiding
-
-        private bool displayOtherhealthCareField, displayOtherHeatlhProvidersField, displayOtherMedicineField, displayOtherPurchaseFrom;
-
-        public bool DisplayOtherhealthCareField { get => displayOtherhealthCareField; set { if (displayOtherhealthCareField != value) { displayOtherhealthCareField = value; OnPropertyChanged(nameof(DisplayOtherhealthCareField)); } } }
-        public bool DisplayOtherHeatlhProvidersField { get => displayOtherHeatlhProvidersField; set { if (displayOtherHeatlhProvidersField != value) { displayOtherHeatlhProvidersField = value; OnPropertyChanged(nameof(DisplayOtherHeatlhProvidersField)); } } }
-        public bool DisplayOtherMedicineField { get => displayOtherMedicineField; set { if (displayOtherMedicineField != value) { displayOtherMedicineField = value; OnPropertyChanged(nameof(DisplayOtherMedicineField)); } } }
-        public bool DisplayOtherPurchaseFrom { get => displayOtherPurchaseFrom; set { if (displayOtherPurchaseFrom != value) { displayOtherPurchaseFrom = value; OnPropertyChanged(nameof(DisplayOtherPurchaseFrom)); } } }
-
-        #endregion
-
-        #region Translations
+        #region translations
+        public string HealthCareTitleTranslation { get; set; }
         public string DateTranslation { get; set; }
+
         public string HealthCareTypeTranslation { get; set; }
         public string OtherHealthCareTypeTranslation { get; set; }
-        public string HealthCareCostTranslation { get; set; }
         public string ProviderTranslation { get; set; }
         public string OtherProviderTranslation { get; set; }
-        public string MedicineCostTranslation { get; set; }
-        public string MedinceTypeTranslation { get; set; }
-        public string OtherMedinceTypeTranslation { get; set; }
+        public string MedicineTypeTranslation { get; set; }
+        public string OtherMedicineTypeTranslation { get; set; }
         public string PurchasedFromTranslation { get; set; }
         public string OtherPurchasedFromTranslation { get; set; }
-        public string CostTranslation { get; set; }
+
+        public string HealthCareCostTranslation { get; set; }
+        public string MedicineCostTranslation { get; set; }
+
+        public string TotalCostTranslation { get; set; }
         public string TransportationCostTranslation { get; set; }
+        public string OtherCostTranslation { get; set; }
         public string CommentTranslation { get; set; }
+
+        public string SaveTranslation { get; set; }
+        public string ResetTranslation { get; set; }
+        public string EditTranslation { get; set; }
+        public string DeleteTranslation { get; set; }
         #endregion
 
-        #region FormVariables
-        private PickerToolHelper selectedHealthCareTypeOption, selectedHealthProviderListOfOption,
-            selectedPurchaseFromListOfOption, selectedMedicineTypeListOfOption;
-        private string healthCareType, otherHealthCareType, provider, medinceType,
-            purchasedFrom, otherPurchasedFrom, comment, otherProvider, otherMedinceType;
-        private double? healthCareCost, medicineCost, cost, transportationCost;
-        private DateTime date;
+        #region Health care item fields
+        public DateTime Date
+        {
+            get => date;
+            set
+            {
+                if (date != value)
+                {
+                    date = value;
+                    OnPropertyChanged(nameof(Date));
+                }
+            }
+        }
+        public string? HealthCareType
+        {
+            get => healthCareType;
+            set
+            {
+                if (value != healthCareType)
+                {
+                    healthCareType = value;
+                    OnPropertyChanged(nameof(HealthCareType));
+                }
+            }
+        }
+        public string? OtherHealthCareType
+        {
+            get => otherHealthCareType;
+            set
+            {
+                if (value != otherHealthCareType)
+                {
+                    otherHealthCareType = value;
+                    OnPropertyChanged(nameof(OtherHealthCareType));
+                }
+            }
+        }
+        public double? HealthCareCost
+        {
+            get => healthCareCost;
+            set
+            {
+                if (value != healthCareCost)
+                {
+                    healthCareCost = value;
+                    OnPropertyChanged(nameof(HealthCareCost));
+                }
+            }
+        }
+        public string? Provider
+        {
+            get => provider;
+            set
+            {
+                if (value != provider)
+                {
+                    provider = value;
+                    OnPropertyChanged(nameof(Provider));
+                }
+            }
+        }
+        public string? OtherProvider
+        {
+            get => otherProvider;
+            set
+            {
+                if (value != otherProvider)
+                {
+                    otherProvider = value;
+                    OnPropertyChanged(nameof(OtherProvider));
+                }
+            }
+        }
+        public double? MedicineCost
+        {
+            get => medicineCost;
+            set
+            {
+                if (value != medicineCost)
+                {
+                    medicineCost = value;
+                    OnPropertyChanged(nameof(MedicineCost));
+                }
+            }
+        }
+        public string? MedicineType
+        {
+            get => medicineType;
+            set
+            {
+                if (value != medicineType)
+                {
+                    medicineType = value;
+                    OnPropertyChanged(nameof(MedicineType));
+                }
+            }
+        }
+        public string? OtherMedicineType
+        {
+            get => otherMedicineType;
+            set
+            {
+                if (value != otherMedicineType)
+                {
+                    otherMedicineType = value;
+                    OnPropertyChanged(nameof(OtherMedicineType));
+                }
+            }
+        }
+        public string? PurchasedFrom
+        {
+            get => purchasedFrom;
+            set
+            {
+                if (value != purchasedFrom)
+                {
+                    purchasedFrom = value;
+                    OnPropertyChanged(nameof(PurchasedFrom));
+                }
+            }
+        }
+        public string? OtherPurchasedFrom
+        {
+            get => otherPurchasedFrom;
+            set
+            {
+                if (value != otherPurchasedFrom)
+                {
+                    otherPurchasedFrom = value;
+                    OnPropertyChanged(nameof(OtherPurchasedFrom));
+                }
+            }
+        }
+       
+        public double? TransportationCost
+        {
+            get => transportationCost;
+            set
+            {
+                if (value != transportationCost)
+                {
+                    transportationCost = value;
+                    OnPropertyChanged(nameof(TransportationCost));
+                }
+            }
+        }
+        public double? OtherCosts
+        {
+            get => otherCosts;
+            set
+            {
+                if (value != otherCosts)
+                {
+                    otherCosts = value;
+                    OnPropertyChanged(nameof(OtherCosts));
+                }
+            }
+        }
+        public string? Comment
+        {
+            get => comment;
+            set
+            {
+                if (value != comment)
+                {
+                    comment = value;
+                    OnPropertyChanged(nameof(Comment));
+                }
+            }
+        }
 
-        public DateTime Date { get => date; set { if (date != value) { date = value; OnPropertyChanged(nameof(Date)); } } }
-        public string HealthCareType { get => healthCareType; set { if (healthCareType != value) { healthCareType = value; OnPropertyChanged(nameof(HealthCareType)); } } }
-        public string OtherHealthCareType { get => otherHealthCareType; set { if (otherHealthCareType != value) { otherHealthCareType = value; OnPropertyChanged(nameof(OtherHealthCareType)); } } }
-        public double? HealthCareCost { get => healthCareCost; set { if (healthCareCost != value) { healthCareCost = value; OnPropertyChanged(nameof(HealthCareCost)); } } }
-        public string Provider { get => provider; set { if (provider != value) { provider = value; OnPropertyChanged(nameof(Provider)); } } }
-        public string OtherProvider { get => otherProvider; set { if (otherProvider != value) { otherProvider = value; OnPropertyChanged(nameof(OtherProvider)); } } }
-        public double? MedicineCost { get => medicineCost; set { if (medicineCost != value) { medicineCost = value; OnPropertyChanged(nameof(MedicineCost)); } } }
-        public string MedinceType { get => medinceType; set { if (medinceType != value) { medinceType = value; OnPropertyChanged(nameof(MedinceType)); } } }
-        public string OtherMedinceType { get => otherMedinceType; set { if (otherMedinceType != value) { otherMedinceType = value; OnPropertyChanged(nameof(OtherMedinceType)); } } }
-        public string PurchasedFrom { get => purchasedFrom; set { if (purchasedFrom != value) { purchasedFrom = value; OnPropertyChanged(nameof(PurchasedFrom)); } } }
-        public string OtherPurchasedFrom { get => otherPurchasedFrom; set { if (otherPurchasedFrom != value) { otherPurchasedFrom = value; OnPropertyChanged(nameof(OtherPurchasedFrom)); } } }
-        public double? Cost { get => cost; set { if (cost != value) { cost = value; OnPropertyChanged(nameof(Cost)); } } }
-        public double? TransportationCost { get => transportationCost; set { if (transportationCost != value) { transportationCost = value; OnPropertyChanged(nameof(TransportationCost)); } } }
-        public string Comment { get => comment; set { if (comment != value) { comment = value; OnPropertyChanged(nameof(Comment)); } } }
         #endregion
 
-        #region DropDownControls
-        private List<PickerToolHelper> healthCareTypeOptions, healthProviderListOfOptions,
-            purchaseFromListOfOptions, medicineTypeListOfOptions;
-
-
-        public PickerToolHelper SelectedHealthCareTypeOption
+        #region Dropdown Lists
+        public List<PickerToolHelper> HealthCareTypeListOfOptions
         {
-            get => selectedHealthCareTypeOption;
+            get { return healthCareTypeListOfOptions; }
             set
             {
-                if (selectedHealthCareTypeOption != value)
-                {
-                    DisplayOtherhealthCareField = value?.TranslationRowKey == SC.OTHER;
-                    selectedHealthCareTypeOption = value;
-                    OnPropertyChanged(nameof(SelectedHealthCareTypeOption));
-                }
-            }
-        }
-        public PickerToolHelper SelectedHealthProviderListOfOption
-        {
-            get => selectedHealthProviderListOfOption;
-            set
-            {
-                if (selectedHealthProviderListOfOption != value)
-                {
-                    DisplayOtherHeatlhProvidersField = value?.TranslationRowKey == SC.OTHER;
-                    selectedHealthProviderListOfOption = value; OnPropertyChanged(nameof(SelectedHealthProviderListOfOption));
-                }
-            }
-        }
-        public PickerToolHelper SelectedPurchaseFromListOfOption
-        {
-            get => selectedPurchaseFromListOfOption;
-            set
-            {
-                if (selectedPurchaseFromListOfOption != value)
-                {
-                    DisplayOtherPurchaseFrom = value?.TranslationRowKey == SC.OTHER;
-                    selectedPurchaseFromListOfOption = value; OnPropertyChanged(nameof(SelectedPurchaseFromListOfOption));
-                }
-            }
-        }
-        public PickerToolHelper SelectedMedicineTypeListOfOption
-        {
-            get => selectedMedicineTypeListOfOption;
-            set
-            {
-                if (selectedMedicineTypeListOfOption != value)
-                {
-                    DisplayOtherMedicineField = value?.TranslationRowKey == SC.OTHER;
-                    selectedMedicineTypeListOfOption = value; OnPropertyChanged(nameof(SelectedMedicineTypeListOfOption));
-                }
+                healthCareTypeListOfOptions = value;
+                OnPropertyChanged(nameof(HealthCareTypeListOfOptions));
             }
         }
 
-        public List<PickerToolHelper> HealthCareTypeOptions
+        public List<PickerToolHelper> ProviderListOfOptions
         {
-
-            get { return healthCareTypeOptions; }
+            get { return providerListOfOptions; }
             set
             {
-                healthCareTypeOptions = value;
-                OnPropertyChanged(nameof(HealthCareTypeOptions));
+                providerListOfOptions = value;
+                OnPropertyChanged(nameof(ProviderListOfOptions));
             }
         }
-        public List<PickerToolHelper> HealthProviderListOfOptions
-        {
 
-            get { return healthProviderListOfOptions; }
-            set
-            {
-                healthProviderListOfOptions = value;
-                OnPropertyChanged(nameof(HealthProviderListOfOptions));
-            }
-        }
-        public List<PickerToolHelper> PurchaseFromListOfOptions
-        {
-
-            get { return purchaseFromListOfOptions; }
-            set
-            {
-                purchaseFromListOfOptions = value;
-                OnPropertyChanged(nameof(PurchaseFromListOfOptions));
-            }
-        }
         public List<PickerToolHelper> MedicineTypeListOfOptions
         {
-
             get { return medicineTypeListOfOptions; }
             set
             {
@@ -178,48 +271,207 @@ namespace PigTool.ViewModels
                 OnPropertyChanged(nameof(MedicineTypeListOfOptions));
             }
         }
+
+        public List<PickerToolHelper> PurchasedFromListOfOptions
+        {
+            get { return purchasedFromListOfOptions; }
+            set
+            {
+                purchasedFromListOfOptions = value;
+                OnPropertyChanged(nameof(PurchasedFromListOfOptions));
+            }
+        }
+
+        private PickerToolHelper selectedHealthCareType;
+
+        public PickerToolHelper SelectedHealthCareType
+        {
+            get { return selectedHealthCareType; }
+            set
+            {
+                if (selectedHealthCareType != value)
+                {
+                    DisplayOtherHealthCareType = value?.TranslationRowKey == SC.OTHER;
+                    selectedHealthCareType = value;
+                    OnPropertyChanged(nameof(SelectedHealthCareType));
+                }
+            }
+        }
+
+        private PickerToolHelper selectedProvider;
+
+        public PickerToolHelper SelectedProvider
+        {
+            get { return selectedProvider; }
+            set
+            {
+                if (selectedProvider != value)
+                {
+                    DisplayOtherProvider = value?.TranslationRowKey == SC.OTHER;
+                    selectedProvider = value;
+                    OnPropertyChanged(nameof(SelectedProvider));
+                }
+            }
+        }
+
+        private PickerToolHelper selectedMedicineType;
+
+        public PickerToolHelper SelectedMedicineType
+        {
+            get { return selectedMedicineType; }
+            set
+            {
+                if (selectedMedicineType != value)
+                {
+                    DisplayOtherMedicineType = value?.TranslationRowKey == SC.OTHER;
+                    selectedMedicineType = value;
+                    OnPropertyChanged(nameof(SelectedMedicineType));
+                }
+            }
+        }
+
+        private PickerToolHelper selectedPurchasedFrom;
+
+        public PickerToolHelper SelectedPurchasedFrom
+        {
+            get { return selectedPurchasedFrom; }
+            set
+            {
+                if (selectedPurchasedFrom != value)
+                {
+                    DisplayOtherPurchasedFrom = value?.TranslationRowKey == SC.OTHER;
+                    selectedPurchasedFrom = value;
+                    OnPropertyChanged(nameof(SelectedPurchasedFrom));
+                }
+            }
+        }
         #endregion
 
-        #region ButtonControls
-        public Command SaveButtonClicked { get; }
-        public Command ResetButtonClicked { get; }
-        public Command DeleteButtonClicked { get; }
-        public Command SwitchToEditMode { get; }
-        public bool EditExistingMode { get; private set; }
-        public bool CreationMode { get; private set; }
+        #region Hidden Fields
+        private bool displayOtherHealthCareType;
+        private bool displayOtherProvider;
+        private bool displayOtherMedicineType;
+        private bool displayOtherPurchasedFrom;
+
+        public bool DisplayOtherHealthCareType
+        {
+            get => displayOtherHealthCareType;
+            set
+            {
+                if (displayOtherHealthCareType != value)
+                {
+                    displayOtherHealthCareType = value;
+                    OnPropertyChanged(nameof(DisplayOtherHealthCareType));
+                }
+            }
+        }
+        public bool DisplayOtherProvider
+        {
+            get => displayOtherProvider;
+            set
+            {
+                if (displayOtherProvider != value)
+                {
+                    displayOtherProvider = value;
+                    OnPropertyChanged(nameof(DisplayOtherProvider));
+                }
+            }
+        }
+        public bool DisplayOtherMedicineType
+        {
+            get => displayOtherMedicineType;
+            set
+            {
+                if (displayOtherMedicineType != value)
+                {
+                    displayOtherMedicineType = value;
+                    OnPropertyChanged(nameof(DisplayOtherMedicineType));
+                }
+            }
+        }
+        public bool DisplayOtherPurchasedFrom
+        {
+            get => displayOtherPurchasedFrom;
+            set
+            {
+                if (displayOtherPurchasedFrom != value)
+                {
+                    displayOtherPurchasedFrom = value;
+                    OnPropertyChanged(nameof(DisplayOtherPurchasedFrom));
+                }
+            }
+        }
         #endregion
+
+        public bool IsEditMode
+        {
+
+            get { return isEditMode; }
+            set
+            {
+                if (value != isEditMode)
+                {
+                    isEditMode = value;
+                    IsCreationMode = !value;
+                    OnPropertyChanged(nameof(IsEditMode));
+                }
+
+            }
+        }
+        public bool IsCreationMode
+        {
+
+            get { return isCreationMode; }
+            set
+            {
+                if (value != isCreationMode)
+                {
+                    isCreationMode = value;
+                    OnPropertyChanged(nameof(IsCreationMode));
+                }
+
+            }
+        }
+        public bool EditExistingMode { get => editExistingMode; set { if (editExistingMode != value) { editExistingMode = value; OnPropertyChanged(nameof(EditExistingMode)); } } }
+        public bool CreationMode { get; private set; }
 
         public HealthCareViewModel()
         {
-            SaveButtonClicked = (new Command(SaveButtonCreateFeedItemAsync));
+            Date = DateTime.Now;
+
+            IsEditMode = true;
+            CreationMode = true;
+
+            SaveButtonClicked = (new Command(SaveButtonCreateHousingItem));
             ResetButtonClicked = new Command(ResetButtonPressed);
             DeleteButtonClicked = new Command(DeleteItem);
-            SwitchToEditMode = new Command(EditItemAsync);
-            CreationMode = true;
-            EditExistingMode = !CreationMode;
-
-            Date = DateTime.Now;
+            EditButtonClicked = new Command(EditItem);
             IsEditMode = true;
-            DisplayOtherhealthCareField = false;
-            DisplayOtherHeatlhProvidersField = false;
-            DisplayOtherMedicineField = false;
-            DisplayOtherPurchaseFrom = false;
-            DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang);
+            IsCreationMode = !EditExistingMode;
+
+            HealthCareTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(HealthCareTitleTranslation), User.UserLang);
+            DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
+
             HealthCareTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(HealthCareTypeTranslation), User.UserLang);
             OtherHealthCareTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherHealthCareTypeTranslation), User.UserLang);
-            HealthCareCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(HealthCareCostTranslation), User.UserLang);
             ProviderTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ProviderTranslation), User.UserLang);
             OtherProviderTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherProviderTranslation), User.UserLang);
-            MedicineCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(MedicineCostTranslation), User.UserLang);
-            MedinceTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(MedinceTypeTranslation), User.UserLang);
-            OtherMedinceTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherMedinceTypeTranslation), User.UserLang);
+            MedicineTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(MedicineTypeTranslation), User.UserLang);
+            OtherMedicineTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherMedicineTypeTranslation), User.UserLang);
             PurchasedFromTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PurchasedFromTranslation), User.UserLang);
             OtherPurchasedFromTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherPurchasedFromTranslation), User.UserLang);
-            CostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CostTranslation), User.UserLang);
-            TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang);
+
+            HealthCareCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(HealthCareCostTranslation), User.UserLang) + " *";
+            MedicineCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(MedicineCostTranslation), User.UserLang) + " *";
+
+            TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
+            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
 
-            ClearFormVariables();
+            SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
+            ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
+            EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
+            DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), User.UserLang);
         }
 
         public void populatewithData(HealthCareItem item)
@@ -230,177 +482,217 @@ namespace PigTool.ViewModels
 
             _itemForEditing = item;
 
+            Date = item.Date;
             HealthCareType = item.HealthCareType;
             OtherHealthCareType = item.OtherHealthCareType;
+            HealthCareCost = item.HealthCareCost;
             Provider = item.Provider;
             OtherProvider = item.OtherProvider;
-            MedinceType = item.MedinceType;
-            OtherMedinceType = item.OtherMedinceType;
+            MedicineCost = item.MedicineCost;
+            MedicineType = item.MedicineType;
+            OtherMedicineType = item.OtherMedicineType;
             PurchasedFrom = item.PurchasedFrom;
             OtherPurchasedFrom = item.OtherPurchasedFrom;
-            Comment = item.Comment;
-            HealthCareCost = item.HealthCareCost;
-            MedicineCost = item.MedicineCost;
-            Cost = item.Cost;
             TransportationCost = item.TransportationCost;
-
+            OtherCosts = item.OtherCosts;
+            Comment = item.Comment;
         }
 
-        private void EditItemAsync()
-        {
-            IsEditMode = !IsEditMode;
-        }
-
-        private async void DeleteItem(object obj)
+        public void SetPickers()
         {
             if (EditExistingMode)
             {
-                var confirmDelete = await Application.Current.MainPage.DisplayAlert("Deletion Confirmation", "Are you sure you want to Delete this item", "OK", "Cancel");
-                if (confirmDelete)
-                {
-                    repo.DeleteHealthCaredItem(_itemForEditing);
-                    await Shell.Current.Navigation.PopAsync();
-                }
+                SelectedHealthCareType = HealthCareTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.HealthCareType).FirstOrDefault();
+                SelectedProvider = ProviderListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Provider).FirstOrDefault();
+                SelectedMedicineType = MedicineTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.MedicineType).FirstOrDefault();
+                SelectedPurchasedFrom = PurchasedFromListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.PurchasedFrom).FirstOrDefault();
             }
         }
 
-        private void ResetButtonPressed(object obj)
-        {
-            ClearFormVariables();
-        }
-
-        private async void SaveButtonCreateFeedItemAsync(object obj)
+        private async void SaveButtonCreateHousingItem(object obj)
         {
             var valid = ValidateSave();
 
             if (!string.IsNullOrWhiteSpace(valid))
             {
                 await Application.Current.MainPage.DisplayAlert("Error", valid, "OK");
+                return;
             }
 
-            if(_itemForEditing != null)
+            if (_itemForEditing != null)
             {
+
                 _itemForEditing.Date = Date;
-                _itemForEditing.HealthCareType = SelectedHealthCareTypeOption.TranslationRowKey;
+
+                _itemForEditing.HealthCareType = SelectedHealthCareType != null ? SelectedHealthCareType.TranslationRowKey : null;
                 _itemForEditing.OtherHealthCareType = OtherHealthCareType;
-                _itemForEditing.HealthCareCost = HealthCareCost;
-                _itemForEditing.Provider = SelectedHealthProviderListOfOption.TranslationRowKey;
+                _itemForEditing.HealthCareCost = (double)HealthCareCost;
+                _itemForEditing.Provider = SelectedProvider != null ? SelectedProvider.TranslationRowKey : null;
                 _itemForEditing.OtherProvider = OtherProvider;
-                _itemForEditing.MedicineCost = MedicineCost;
-                _itemForEditing.MedinceType = SelectedMedicineTypeListOfOption.TranslationRowKey;
-                _itemForEditing.OtherMedinceType = OtherMedinceType;
-                _itemForEditing.PurchasedFrom = SelectedPurchaseFromListOfOption.TranslationRowKey;
+                _itemForEditing.MedicineCost = (double)MedicineCost;
+                _itemForEditing.MedicineType = SelectedMedicineType != null ? SelectedMedicineType.TranslationRowKey : null;
+                _itemForEditing.OtherMedicineType = OtherMedicineType;
+                _itemForEditing.PurchasedFrom = SelectedPurchasedFrom != null ? SelectedPurchasedFrom.TranslationRowKey : null;
                 _itemForEditing.OtherPurchasedFrom = OtherPurchasedFrom;
-                _itemForEditing.Cost = Cost;
-                _itemForEditing.TransportationCost = TransportationCost;
+
+                _itemForEditing.TransportationCost = (double)TransportationCost;
+                _itemForEditing.OtherCosts = (double)OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
                 await repo.UpdateHealthCareItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert("Created", "Health Care Record Update", "OK");
+                await Application.Current.MainPage.DisplayAlert("Updated", "Health care record has been updated", "OK");
                 await Shell.Current.Navigation.PopAsync();
-
             }
             else
             {
-                var newHealthItem = new HealthCareItem
+
+                var newHealthCare = new HealthCareItem();
+                try
                 {
-                    CreatedBy = User.UserName,
-                    Date = Date,
-                    HealthCareType = SelectedHealthCareTypeOption.TranslationRowKey,
-                    OtherHealthCareType = OtherHealthCareType,
-                    HealthCareCost = HealthCareCost,
-                    Provider = SelectedHealthProviderListOfOption.TranslationRowKey,
-                    OtherProvider = OtherProvider,
-                    MedicineCost = MedicineCost,
-                    MedinceType = SelectedMedicineTypeListOfOption.TranslationRowKey,
-                    OtherMedinceType = OtherMedinceType,
-                    PurchasedFrom = SelectedPurchaseFromListOfOption.TranslationRowKey,
-                    OtherPurchasedFrom = OtherPurchasedFrom,
-                    Cost = Cost,
-                    TransportationCost = TransportationCost,
-                    Comment = Comment
-                };
+                    newHealthCare = new HealthCareItem
+                    {
+                        Date = Date,
+                        HealthCareType = SelectedHealthCareType != null ? SelectedHealthCareType.TranslationRowKey : null,
+                        OtherHealthCareType = OtherHealthCareType,
+                        HealthCareCost = (double)HealthCareCost,
+                        Provider = SelectedProvider != null ? SelectedProvider.TranslationRowKey : null,
+                        OtherProvider = OtherProvider,
+                        MedicineCost = (double)MedicineCost,
+                        MedicineType = SelectedMedicineType != null ? SelectedMedicineType.TranslationRowKey : null,
+                        OtherMedicineType = OtherMedicineType,
+                        PurchasedFrom = SelectedPurchasedFrom != null ? SelectedPurchasedFrom.TranslationRowKey : null,
+                        OtherPurchasedFrom = OtherPurchasedFrom,
+                        TransportationCost = (double)TransportationCost,
+                        OtherCosts = (double)OtherCosts,
+                        Comment = Comment,
+                        LastModified = DateTime.UtcNow,
+                        CreatedBy = User.UserName,
+                    };
+                } catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+                
 
-                await repo.AddSingleHealthCareItem(newHealthItem);
-                await Application.Current.MainPage.DisplayAlert("Created", "Health Care Record Save", "OK");
+                await repo.AddSingleHealthCareItem(newHealthCare);
+                await Application.Current.MainPage.DisplayAlert("Created", "Health care record has been saved", "OK");
             }
-
         }
 
-        public async Task PopulateDataDowns()
+        private async void DeleteItem(object obj)
         {
-            HealthCareTypeOptions = LogicHelper.CreatePickerToolOption(await repo.GetControlData(SC.HEALTHCARETYPE), User.UserLang);
-            HealthProviderListOfOptions = LogicHelper.CreatePickerToolOption(await repo.GetControlData(SC.HEALTHSERVICEPROVIDER), User.UserLang);
-            MedicineTypeListOfOptions = LogicHelper.CreatePickerToolOption(await repo.GetControlData(SC.HEALTHMEDICETYPE), User.UserLang);
-            PurchaseFromListOfOptions = LogicHelper.CreatePickerToolOption(await repo.GetControlData(SC.HEALTHPURCHASEFROMTYPE), User.UserLang);
-
-
-            if (!IsEditMode)
+            if (EditExistingMode)
             {
-                SelectedHealthCareTypeOption = HealthCareTypeOptions.Where(x => x.TranslationRowKey == _itemForEditing.HealthCareType).FirstOrDefault();
-                SelectedHealthProviderListOfOption = HealthProviderListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Provider).FirstOrDefault();
-                SelectedMedicineTypeListOfOption = MedicineTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.MedinceType).FirstOrDefault();
-                SelectedPurchaseFromListOfOption = PurchaseFromListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.PurchasedFrom).FirstOrDefault();
+                var confirmDelete = await Application.Current.MainPage.DisplayAlert("Deletion Confirmation", "Are you sure you want to delete this item", "OK", "Cancel");
+                if (confirmDelete)
+                {
+                    repo.DeleteHealthCareItem(_itemForEditing);
+                    await Shell.Current.Navigation.PopAsync();
+                }
             }
+        }
 
+        private async void EditItem(object obj)
+        {
+            IsEditMode = !IsEditMode;
+        }
+
+        private async void ResetButtonPressed(object obj)
+        {
+            ClearFormVariables();
         }
 
         private void ClearFormVariables()
         {
-            SelectedHealthCareTypeOption = null;
-            SelectedHealthProviderListOfOption = null;
-            SelectedMedicineTypeListOfOption = null;
-            SelectedPurchaseFromListOfOption = null;
-            HealthCareType = null;
+            SelectedHealthCareType = null;
             OtherHealthCareType = null;
-            Provider = null;
-            OtherProvider = null;
-            MedinceType = null;
-            OtherMedinceType = null;
-            PurchasedFrom = null;
-            OtherPurchasedFrom = null;
-            Comment = null;
             HealthCareCost = null;
+            SelectedProvider = null;
+            OtherProvider = null;
             MedicineCost = null;
-            Cost = null;
+            SelectedMedicineType = null;
+            OtherMedicineType = null;
+            SelectedPurchasedFrom = null;
+            OtherPurchasedFrom = null;
             TransportationCost = null;
+            OtherCosts = null;
+            Comment = null;
+        }
+
+        public async Task PopulateDataDowns()
+        {
+            var HealthCareTypeControlData = await repo.GetControlData(SC.HEALTHCARETYPE);
+            var ProviderControlData = await repo.GetControlData(SC.HEALTHSERVICEPROVIDER);
+            var MedicineTypeControlData = await repo.GetControlData(SC.HEALTHMEDICETYPE);
+            var PurchasedFromControlData = await repo.GetControlData(SC.HEALTHPURCHASEFROMTYPE);
+
+            HealthCareTypeListOfOptions = LogicHelper.CreatePickerToolOption(HealthCareTypeControlData, User.UserLang);
+            ProviderListOfOptions = LogicHelper.CreatePickerToolOption(ProviderControlData, User.UserLang);
+            MedicineTypeListOfOptions = LogicHelper.CreatePickerToolOption(MedicineTypeControlData, User.UserLang);
+            PurchasedFromListOfOptions = LogicHelper.CreatePickerToolOption(PurchasedFromControlData, User.UserLang);
+
+            if (!IsEditMode)
+            {
+                SelectedHealthCareType = HealthCareTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.HealthCareType).FirstOrDefault();
+                SelectedProvider = ProviderListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Provider).FirstOrDefault();
+                SelectedMedicineType = MedicineTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.MedicineType).FirstOrDefault();
+                SelectedPurchasedFrom = PurchasedFromListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.PurchasedFrom).FirstOrDefault();
+            }
         }
 
         private string ValidateSave()
         {
-            StringBuilder returnString = new StringBuilder();
-            returnString.AppendLine(Date == null ? "Date obtained not provided" : "");
-            returnString.AppendLine(HealthCareCost == null ? "Cost Not Provided" : "");
-            returnString.AppendLine(MedicineCost == null ? "Medicine Cost Not Provided" : "");
-            returnString.AppendLine(TransportationCost == null ? "TransportationCost From Not Provided" : "");
-            returnString.AppendLine(Cost == null ? "Other Costs Not Provided" : "");
-
-            if (returnString.Length > 0) return returnString.ToString();
-
-
-            if (selectedHealthCareTypeOption.TranslationRowKey == SC.OTHER)
+            try
             {
-                returnString.Append(string.IsNullOrWhiteSpace(OtherHealthCareType) ? "Other Health Care Type Not Provided" : "");
-            }
+                StringBuilder returnString = new StringBuilder();
+                returnString.AppendLine(Date == null ? "Date not provided" : "");
+                returnString.AppendLine(HealthCareCost == null ? "Health Care Cost Not Provided" : "");
+                returnString.AppendLine(MedicineCost == null ? "Medicine Cost Not Provided" : "");
+                
+                returnString.AppendLine(TransportationCost == null ? "Transportation Cost Not Provided" : "");
+                returnString.AppendLine(OtherCosts == null ? "Other Cost Not Provided" : "");
 
-            if (selectedHealthProviderListOfOption.TranslationRowKey == SC.OTHER)
+
+                if (SelectedHealthCareType != null)
+                {
+                    if (SelectedHealthCareType.TranslationRowKey == SC.OTHER)
+                    {
+                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherHealthCareType) ? "Other Health Care Type Not Provided" : "");
+                    }
+                }
+
+                if (SelectedProvider != null)
+                {
+                    if (SelectedProvider.TranslationRowKey == SC.OTHER)
+                    {
+                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherProvider) ? "Other Provider Not Provided" : "");
+                    }
+                }
+
+                if (SelectedMedicineType != null)
+                {
+                    if (SelectedMedicineType.TranslationRowKey == SC.OTHER)
+                    {
+                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherMedicineType) ? "Other Medicine Type Not Provided" : "");
+                    }
+                }
+
+                if (SelectedPurchasedFrom != null)
+                {
+                    if (SelectedPurchasedFrom.TranslationRowKey == SC.OTHER)
+                    {
+                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherPurchasedFrom) ? "Other Purchased From Not Provided" : "");
+                    }
+                }
+
+
+                return returnString.ToString();
+            }
+            catch (Exception ex)
             {
-                returnString.Append(string.IsNullOrWhiteSpace(OtherProvider) ? "Other Provider Not Provided" : "");
+                return "";
             }
-
-            if (selectedPurchaseFromListOfOption.TranslationRowKey == SC.OTHER)
-            {
-                returnString.Append(string.IsNullOrWhiteSpace(OtherPurchasedFrom) ? "Other Purchase From Not Provided" : "");
-            }
-
-            if (selectedMedicineTypeListOfOption.TranslationRowKey == SC.OTHER)
-            {
-                returnString.Append(string.IsNullOrWhiteSpace(OtherMedinceType) ? "Other Medicince Type Not Provided" : "");
-            }
-
-            return returnString.ToString();
         }
-
     }
 }
