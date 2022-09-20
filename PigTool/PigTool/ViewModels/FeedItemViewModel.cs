@@ -12,129 +12,189 @@ namespace PigTool.ViewModels
 {
     public class FeedItemViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
+        bool isEditMode, isCreationMode;
+        private bool editExistingMode;
+        private DateTime date;
+        private string? feedType;
+        private string? otherFeedType;
+        private double? amountPurchased;
+        private string? amountPurchasedUnit;
+        private string? otherAmountPurchasedUnit;
+        private double? totalCosts;
+        private double? transportationCost;
+        private string? purchasedFrom;
+        private string? otherPurchasedFrom;
+        private string comment;
+        List<PickerToolHelper> feedTypeListOfOptions, amountPurchasedUnitListOfOptions, purchasedFromListOfOptions;
+        FeedItem _itemForEditing;
+
         //Button Clicks
         public Command SaveButtonClicked { get; }
         public Command ResetButtonClicked { get; }
         public Command DeleteButtonClicked { get; }
-        public Command SwitchToEditMode { get; }
+        public Command EditButtonClicked { get; }
 
-        //height of hidden grid members
-        int otherFeedHeight, otherPurchaseHeight, otherUnitTypeHeight;
-        //internal dropdown selections
-        PickerToolHelper selectedPurchaseUnitType, selectedPurchaseFrom, selectedFoodType;
-        //Internal Lists for pickers
-        List<PickerToolHelper> feedTypeListOfOptions, unitTypeListOfOptions, purchaseTypeListOfOptions;
+        #region Translations
+        public string FeedItemTitleTranslation { get; set; }
+        public string DateTranslation { get; set; }
 
-        bool isEditMode, isCreationMode;
-        private bool editExistingMode;
-        private int? amountPurchased;
-        private string otherAmountPurchaseUnit;
-        private int? cost;
-        private int? transportationCost;
-        private string comment;
+        public string FeedTypeTranslation { get; set; }
+        public string OtherFeedTypeTranslation { get; set; }
+        public string AmountPurchasedUnitTranslation { get; set; }
+        public string OtherAmountPurchasedUnitTranslation { get; set; }
+        public string PurchasedFromTranslation { get; set; }
+        public string OtherPurchasedFromTranslation { get; set; }
 
-        public int OtherFeedHeight
+        public string AmountPurchasedTranslation { get; set; }
+        public string TotalCostTranslation { get; set; }
+        public string TransportationCostTranslation { get; set; }
+        public string CommentTranslation { get; set; }
+
+        public string SaveTranslation { get; set; }
+        public string ResetTranslation { get; set; }
+        public string EditTranslation { get; set; }
+        public string DeleteTranslation { get; set; }
+        #endregion
+
+        #region Feed item fields
+        public DateTime Date
         {
-            get { return otherFeedHeight; }
+            get => date;
             set
             {
-                if (otherFeedHeight != value)
+                if (date != value)
                 {
-                    otherFeedHeight = value;
-                    OnPropertyChanged(nameof(OtherFeedHeight));
+                    date = value;
+                    OnPropertyChanged(nameof(Date));
+                }
+            }
+        }
+        public string? FeedType
+        {
+            get => feedType;
+            set
+            {
+                if (value != feedType)
+                {
+                    feedType = value;
+                    OnPropertyChanged(nameof(FeedType));
+                }
+            }
+        }
+        public string? OtherFeedType
+        {
+            get => otherFeedType;
+            set
+            {
+                if (value != otherFeedType)
+                {
+                    otherFeedType = value;
+                    OnPropertyChanged(nameof(OtherFeedType));
+                }
+            }
+        }
+        public double? AmountPurchased
+        {
+            get => amountPurchased;
+            set
+            {
+                if (value != amountPurchased)
+                {
+                    amountPurchased = value;
+                    OnPropertyChanged(nameof(AmountPurchased));
+                }
+            }
+        }
+        public string? AmountPurchasedUnit
+        {
+            get => amountPurchasedUnit;
+            set
+            {
+                if (value != amountPurchasedUnit)
+                {
+                    amountPurchasedUnit = value;
+                    OnPropertyChanged(nameof(AmountPurchasedUnit));
+                }
+            }
+        }
+        public string? OtherAmountPurchasedUnit
+        {
+            get => otherAmountPurchasedUnit;
+            set
+            {
+                if (value != otherAmountPurchasedUnit)
+                {
+                    otherAmountPurchasedUnit = value;
+                    OnPropertyChanged(nameof(OtherAmountPurchasedUnit));
+                }
+            }
+        }
+        public string? PurchasedFrom
+        {
+            get => purchasedFrom;
+            set
+            {
+                if (value != purchasedFrom)
+                {
+                    purchasedFrom = value;
+                    OnPropertyChanged(nameof(PurchasedFrom));
+                }
+            }
+        }
+        public string? OtherPurchasedFrom
+        {
+            get => otherPurchasedFrom;
+            set
+            {
+                if (value != otherPurchasedFrom)
+                {
+                    otherPurchasedFrom = value;
+                    OnPropertyChanged(nameof(OtherPurchasedFrom));
+                }
+            }
+        }
+        public double? TotalCosts
+        {
+            get => totalCosts;
+            set
+            {
+                if (value != totalCosts)
+                {
+                    totalCosts = value;
+                    OnPropertyChanged(nameof(TotalCosts));
+                }
+            }
+        }
+        public double? TransportationCost
+        {
+            get => transportationCost;
+            set
+            {
+                if (value != transportationCost)
+                {
+                    transportationCost = value;
+                    OnPropertyChanged(nameof(TransportationCost));
+                }
+            }
+        }
+        public string? Comment
+        {
+            get => comment;
+            set
+            {
+                if (value != comment)
+                {
+                    comment = value;
+                    OnPropertyChanged(nameof(Comment));
                 }
             }
         }
 
-        public int UnitTypeHeight
-        {
-            get { return otherUnitTypeHeight; }
-            set
-            {
-                if (otherUnitTypeHeight != value)
-                {
-                    otherUnitTypeHeight = value;
-                    OnPropertyChanged(nameof(UnitTypeHeight));
-                }
-            }
-        }
+        #endregion
 
-        public int OtherPurchaseHeight
-        {
-            get { return otherPurchaseHeight; }
-            set
-            {
-                if (otherPurchaseHeight != value)
-                {
-                    otherPurchaseHeight = value;
-                    OnPropertyChanged(nameof(OtherPurchaseHeight));
-                }
-            }
-        }
-
-        public PickerToolHelper SelectedFeedType
-        {
-            get { return selectedFoodType; }
-            set
-            {
-                if (value != null && value.CompareTo(selectedFoodType) == 0)
-                {
-                    if (value.TranslationRowKey == SC.OTHER)
-                    {
-                        OtherFeedHeight = 50;
-                    }
-                    selectedFoodType = value;
-                    OnPropertyChanged(nameof(SelectedFeedType));
-                }
-                else if (value == null)
-                {
-                    selectedFoodType = value;
-                }
-            }
-
-        }
-        public PickerToolHelper SelectedPurchaseUnitType
-        {
-            get { return selectedPurchaseUnitType; }
-            set
-            {
-                if (value != null && value.CompareTo(selectedPurchaseUnitType) == 0)
-                {
-                    if (value.TranslationRowKey == "Other")
-                    {
-                        UnitTypeHeight = 50;
-                    }
-                    selectedPurchaseUnitType = value;
-                    OnPropertyChanged(nameof(SelectedPurchaseUnitType));
-                }
-                else if (value == null)
-                {
-                    selectedPurchaseUnitType = value;
-                }
-            }
-        }
-        public PickerToolHelper SelectedPurchasedFrom
-        {
-            get
-            {
-                return selectedPurchaseFrom;
-            }
-            set
-            {
-                if (selectedPurchaseFrom != value)
-                {
-                    if (value != selectedPurchaseFrom)
-                    {
-                        selectedPurchaseFrom = value;
-                        OnPropertyChanged(nameof(SelectedPurchasedFrom));
-                    }
-                }
-            }
-        }
-
+        #region Dropdowns
         public List<PickerToolHelper> FeedTypeListOfOptions
         {
-
             get { return feedTypeListOfOptions; }
             set
             {
@@ -142,26 +202,115 @@ namespace PigTool.ViewModels
                 OnPropertyChanged(nameof(FeedTypeListOfOptions));
             }
         }
-        public List<PickerToolHelper> UnitTypeListOfOptions
+        public List<PickerToolHelper> AmountPurchasedUnitListOfOptions
         {
-
-            get { return unitTypeListOfOptions; }
+            get { return amountPurchasedUnitListOfOptions; }
             set
             {
-                unitTypeListOfOptions = value;
-                OnPropertyChanged(nameof(UnitTypeListOfOptions));
+                amountPurchasedUnitListOfOptions = value;
+                OnPropertyChanged(nameof(AmountPurchasedUnitListOfOptions));
             }
         }
-        public List<PickerToolHelper> PurchaseTypeListOfOptions
+        public List<PickerToolHelper> PurchasedFromListOfOptions
         {
-
-            get { return purchaseTypeListOfOptions; }
+            get { return purchasedFromListOfOptions; }
             set
             {
-                purchaseTypeListOfOptions = value;
-                OnPropertyChanged(nameof(PurchaseTypeListOfOptions));
+                purchasedFromListOfOptions = value;
+                OnPropertyChanged(nameof(PurchasedFromListOfOptions));
             }
         }
+
+        private PickerToolHelper selectedFeedType;
+
+        public PickerToolHelper SelectedFeedType
+        {
+            get { return selectedFeedType; }
+            set
+            {
+                if (selectedFeedType != value)
+                {
+                    DisplayOtherFeedType = value?.TranslationRowKey == SC.OTHER;
+                    selectedFeedType = value;
+                    OnPropertyChanged(nameof(SelectedFeedType));
+                }
+            }
+        }
+
+        private PickerToolHelper selectedAmountPurchasedUnit;
+
+        public PickerToolHelper SelectedAmountPurchasedUnit
+        {
+            get { return selectedAmountPurchasedUnit; }
+            set
+            {
+                if (selectedAmountPurchasedUnit != value)
+                {
+                    DisplayOtherAmountPurchasedUnit = value?.TranslationRowKey == SC.OTHER;
+                    selectedAmountPurchasedUnit = value;
+                    OnPropertyChanged(nameof(SelectedAmountPurchasedUnit));
+                }
+            }
+        }
+        private PickerToolHelper selectedPurchasedFrom;
+
+        public PickerToolHelper SelectedPurchasedFrom
+        {
+            get { return selectedPurchasedFrom; }
+            set
+            {
+                if (selectedPurchasedFrom != value)
+                {
+                    DisplayOtherPurchasedFrom = value?.TranslationRowKey == SC.OTHER;
+                    selectedPurchasedFrom = value;
+                    OnPropertyChanged(nameof(SelectedPurchasedFrom));
+                }
+            }
+        }
+        #endregion
+
+        #region Hidden Fields
+        private bool displayOtherFeedType;
+        private bool displayOtherAmountPurchasedUnit;
+        private bool displayOtherPurchasedFrom;
+
+        public bool DisplayOtherFeedType
+        {
+            get => displayOtherFeedType;
+            set
+            {
+                if (displayOtherFeedType != value)
+                {
+                    displayOtherFeedType = value;
+                    OnPropertyChanged(nameof(DisplayOtherFeedType));
+                }
+            }
+        }
+        public bool DisplayOtherAmountPurchasedUnit
+        {
+            get => displayOtherAmountPurchasedUnit;
+            set
+            {
+                if (displayOtherAmountPurchasedUnit != value)
+                {
+                    displayOtherAmountPurchasedUnit = value;
+                    OnPropertyChanged(nameof(DisplayOtherAmountPurchasedUnit));
+                }
+            }
+        }
+        public bool DisplayOtherPurchasedFrom
+        {
+            get => displayOtherPurchasedFrom;
+            set
+            {
+                if (displayOtherPurchasedFrom != value)
+                {
+                    displayOtherPurchasedFrom = value;
+                    OnPropertyChanged(nameof(DisplayOtherPurchasedFrom));
+                }
+            }
+        }
+        #endregion
 
         public bool IsEditMode
         {
@@ -192,231 +341,227 @@ namespace PigTool.ViewModels
 
             }
         }
-        FeedItem SelectedFeedItem { get; set; }
-        public DateTime DateObtained { get; set; }
-        public string OtherFeedType { get; set; }
-        public int? AmountPurchased { get => amountPurchased; set { amountPurchased = value; OnPropertyChanged(nameof(AmountPurchased)); } }
-        public string OtherAmountPurchaseUnit { get => otherAmountPurchaseUnit; set { otherAmountPurchaseUnit = value; OnPropertyChanged(nameof(OtherAmountPurchaseUnit)); } }
-        public int? Cost { get => cost; set { cost = value; OnPropertyChanged(nameof(Cost)); } }
-        public int? TransportationCost { get => transportationCost; set { transportationCost = value; OnPropertyChanged(nameof(TransportationCost)); } }
-        public string Comment { get => comment; set { comment = value; OnPropertyChanged(nameof(Comment)); } }
-
-        //Translated Title Values
-        public string AddFeedItemTrans { get; set; }
-        public string DateObtainedTrans { get; set; }
-        public string FeedTypeTrans { get; set; }
-        public string OtherFeedTypeTrans { get; set; }
-        public string AmountPurchasedTrans { get; set; }
-        public string UnitTrans { get; set; }
-        public string OtherAmountPurchaseTrans { get; set; }
-        public string CostTrans { get; set; }
-        public string TransportCostTrans { get; set; }
-        public string PurchasedFrom { get; set; }
-        public string CommentTrans { get; set; }
-        public string SaveTranslation { get; set; }
-        public string ResetTranslation { get; set; }
-        public string EditTranslation { get; set; }
-        public string DeleteTranslation { get; set; }
-        private FeedItem storedFeedItemd { get; set; }
-        public bool EditExistingMode { get => editExistingMode; set { editExistingMode = value; OnPropertyChanged(nameof(EditExistingMode)); } }
+        public bool EditExistingMode { get => editExistingMode; set { if (editExistingMode != value) { editExistingMode = value; OnPropertyChanged(nameof(EditExistingMode)); } } }
+        public bool CreationMode { get; private set; }
 
         public FeedItemViewModel()
         {
-            PopulateDefaultValues();
+            Date = DateTime.Now;
+
+            IsEditMode = true;
+            CreationMode = true;
 
             SaveButtonClicked = (new Command(SaveButtonCreateFeedItem));
-            ResetButtonClicked = new Command<object>(async (o) => await ResetButtonPressed(o));
+            ResetButtonClicked = new Command(ResetButtonPressed);
             DeleteButtonClicked = new Command(DeleteItem);
-            SwitchToEditMode = new Command(EditItem);
+            EditButtonClicked = new Command(EditItem);
             IsEditMode = true;
             IsCreationMode = !EditExistingMode;
 
-            AddFeedItemTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AddFeedItemTrans), User.UserLang);
-            DateObtainedTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateObtainedTrans), User.UserLang);
-            FeedTypeTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FeedTypeTrans), User.UserLang);
-            OtherFeedTypeTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherFeedTypeTrans), User.UserLang);
-            AmountPurchasedTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AmountPurchasedTrans), User.UserLang);
-            UnitTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(UnitTrans), User.UserLang);
-            OtherAmountPurchaseTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherAmountPurchaseTrans), User.UserLang);
-            CostTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CostTrans), User.UserLang);
-            TransportCostTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportCostTrans), User.UserLang);
-            PurchasedFrom = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PurchasedFrom), User.UserLang);
-            CommentTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTrans), User.UserLang);
+            FeedItemTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FeedItemTitleTranslation), User.UserLang);
+            DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
+
+            FeedTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FeedTypeTranslation), User.UserLang);
+            AmountPurchasedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AmountPurchasedTranslation), User.UserLang);
+            OtherFeedTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherFeedTypeTranslation), User.UserLang);
+            AmountPurchasedUnitTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AmountPurchasedUnitTranslation), User.UserLang);
+            OtherAmountPurchasedUnitTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherAmountPurchasedUnitTranslation), User.UserLang);
+            PurchasedFromTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PurchasedFromTranslation), User.UserLang);
+            OtherPurchasedFromTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherPurchasedFromTranslation), User.UserLang);
+
+            TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang) + " *";
+            TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
+            CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
+
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
             DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), User.UserLang);
         }
 
-        private void PopulateDefaultValues()
+        public void populatewithData(FeedItem item)
         {
-            OtherPurchaseHeight = 0;
-            UnitTypeHeight = 0;
-            DateObtained = DateTime.Now;
-            SelectedFeedType = null;
-            OtherFeedType = null;
-            AmountPurchased = null;
-            SelectedPurchaseUnitType = null;
-            OtherAmountPurchaseUnit = null;
-            Cost = null;
-            TransportationCost = null;
-            SelectedPurchasedFrom = null;
-            Comment = null;
+            isEditMode = false;
+            CreationMode = false;
+            EditExistingMode = !CreationMode;
+
+            _itemForEditing = item;
+
+            Date = item.Date;
+            FeedType = item.FeedType;
+            OtherFeedType = item.OtherFeedType;
+            AmountPurchased = item.AmountPurchased;
+            AmountPurchasedUnit = item.AmountPurchasedUnit;
+            OtherAmountPurchasedUnit = item.OtherAmountPurchaseUnit;
+            PurchasedFrom = item.PurchasedFrom;
+            OtherPurchasedFrom = item.OtherPurchasedFrom;
+            TotalCosts = item.TotalCosts;
+            TransportationCost = item.TransportationCost;
+            Comment = item.Comment;
         }
 
-        public void PopulateSelectedFeedItem(FeedItem feed)
+        public void SetPickers()
         {
-            EditExistingMode = true;
-            IsEditMode = false;
-            IsCreationMode = !EditExistingMode;
-            var selectedItem = feed;
-            storedFeedItemd = feed;
-
-            // populate string feilds
-            DateObtained = selectedItem.DateObtained;
-            AmountPurchased = selectedItem.AmountPurchased;
-            OtherFeedType = selectedItem.OtherFeedType;
-            OtherAmountPurchaseUnit = selectedItem.OtherAmountPurchaseUnit;
-            Cost = selectedItem.Cost;
-            TransportationCost = selectedItem.TransportationCost;
-            Comment = selectedItem.Comment;
-
-            //if other is selected reveral other options and populate
-            OtherPurchaseHeight = 0;
-            UnitTypeHeight = 0;
-
-        }
-
-        public async Task PopulateListOfOptions()
-        {
-            var FeedTypeControlData = await repo.GetControlData(SC.FEEDTYPE);
-            var UnitTypeControlData = await repo.GetControlData(SC.UNITTYPE);
-            var PurchaseTypeControlData = await repo.GetControlData(SC.PURCHASETYPE);
-
-            FeedTypeListOfOptions = LogicHelper.CreatePickerToolOption(FeedTypeControlData, User.UserLang);
-            UnitTypeListOfOptions = LogicHelper.CreatePickerToolOption(UnitTypeControlData, User.UserLang);
-            PurchaseTypeListOfOptions = LogicHelper.CreatePickerToolOption(PurchaseTypeControlData, User.UserLang);
-
             if (EditExistingMode)
             {
-                //Populate the drop downs
-                var feedType = FeedTypeListOfOptions.Where(x => x.TranslationRowKey == storedFeedItemd.FeedType).FirstOrDefault();
-                var purchaseFrom = PurchaseTypeListOfOptions.Where(x => x.TranslationRowKey == storedFeedItemd.PurchasedFrom).FirstOrDefault();
-                var unitType = UnitTypeListOfOptions.Where(x => x.TranslationRowKey == storedFeedItemd.AmountPurchasedUnit).FirstOrDefault();
-
-                SelectedFeedType = feedType;
-                SelectedPurchasedFrom = purchaseFrom;
-                SelectedPurchaseUnitType = unitType;
+                SelectedFeedType = FeedTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.FeedType).FirstOrDefault();
+                SelectedAmountPurchasedUnit = AmountPurchasedUnitListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.AmountPurchasedUnit).FirstOrDefault();
+                SelectedPurchasedFrom = PurchasedFromListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.PurchasedFrom).FirstOrDefault();
             }
         }
 
         private async void SaveButtonCreateFeedItem(object obj)
         {
-            var LogicText = ValidateSave();
+            var valid = ValidateSave();
 
-            if (!string.IsNullOrWhiteSpace(LogicText))
+            if (!string.IsNullOrWhiteSpace(valid))
             {
+                await Application.Current.MainPage.DisplayAlert("Error", valid, "OK");
                 return;
             }
-            if (!EditExistingMode)
-            {
-                var feedItem = new FeedItem
-                {
-                    DateObtained = DateObtained,
-                    FeedType = SelectedFeedType.TranslationRowKey,
-                    OtherFeedType = OtherFeedType,
-                    AmountPurchased = AmountPurchased ?? (int)AmountPurchased,
-                    AmountPurchasedUnit = SelectedPurchaseUnitType.TranslationRowKey,
-                    OtherAmountPurchaseUnit = OtherAmountPurchaseUnit,
-                    Cost = Cost ?? (int)Cost,
-                    TransportationCost = TransportationCost ?? (int)TransportationCost,
-                    PurchasedFrom = SelectedPurchasedFrom.TranslationRowKey,
-                    Comment = Comment,
-                    CreatedBy = User.UserName
 
-                };
-                await repo.AddSingleFeedItem(feedItem);
-                await Application.Current.MainPage.DisplayAlert("Save Feed Item", "Feed Item Save", "OK");
-                PopulateDefaultValues();
+            if (_itemForEditing != null)
+            {
+
+                _itemForEditing.Date = Date;
+                _itemForEditing.FeedType = SelectedFeedType != null ? SelectedFeedType.TranslationRowKey : null;
+                _itemForEditing.OtherFeedType = OtherFeedType;
+                _itemForEditing.AmountPurchased = AmountPurchased;
+                _itemForEditing.AmountPurchasedUnit = SelectedAmountPurchasedUnit != null ? SelectedAmountPurchasedUnit.TranslationRowKey : null;
+                _itemForEditing.OtherAmountPurchaseUnit = OtherAmountPurchasedUnitTranslation;
+                _itemForEditing.PurchasedFrom = SelectedPurchasedFrom != null ? SelectedPurchasedFrom.TranslationRowKey : null;
+                _itemForEditing.OtherPurchasedFrom = OtherPurchasedFrom;
+                _itemForEditing.TotalCosts = (double)TotalCosts;
+                _itemForEditing.TransportationCost = (double)TransportationCost;
+                _itemForEditing.Comment = Comment;
+                _itemForEditing.LastModified = DateTime.UtcNow;
+
+                await repo.UpdateFeedItem(_itemForEditing);
+                await Application.Current.MainPage.DisplayAlert("Updated", "Feed record has been updated", "OK");
+                await Shell.Current.Navigation.PopAsync();
             }
             else
             {
-                storedFeedItemd.DateObtained = DateObtained;
-                storedFeedItemd.FeedType = SelectedFeedType.TranslationRowKey;
-                storedFeedItemd.OtherFeedType = OtherFeedType;
-                storedFeedItemd.AmountPurchased = AmountPurchased ?? (int)AmountPurchased;
-                storedFeedItemd.AmountPurchasedUnit = SelectedPurchaseUnitType.TranslationRowKey;
-                storedFeedItemd.OtherAmountPurchaseUnit = OtherAmountPurchaseUnit;
-                storedFeedItemd.Cost = Cost ?? (int)Cost;
-                storedFeedItemd.TransportationCost = TransportationCost ?? (int)TransportationCost;
-                storedFeedItemd.PurchasedFrom = SelectedPurchasedFrom.TranslationRowKey;
-                storedFeedItemd.Comment = Comment;
-                storedFeedItemd.CreatedBy = User.UserName;
+                var newFeedItem = new FeedItem
+                {
+                    Date = Date,
+                    FeedType = SelectedFeedType != null ? SelectedFeedType.TranslationRowKey : null,
+                    OtherFeedType = OtherFeedType,
+                    AmountPurchased = AmountPurchased,
+                    AmountPurchasedUnit = SelectedAmountPurchasedUnit != null ? SelectedAmountPurchasedUnit.TranslationRowKey : null,
+                    OtherAmountPurchaseUnit = OtherAmountPurchasedUnitTranslation,
+                    PurchasedFrom = SelectedPurchasedFrom != null ? SelectedPurchasedFrom.TranslationRowKey : null,
+                    OtherPurchasedFrom = OtherPurchasedFrom,
+                    TotalCosts = (double)TotalCosts,
+                    TransportationCost = (double)TransportationCost,
+                    Comment = Comment,
+                    LastModified = DateTime.UtcNow,
+                    CreatedBy = User.UserName,
+                };
 
-                await repo.UpdateFeedItem(storedFeedItemd);
-                await Application.Current.MainPage.DisplayAlert("Updated Feed Item", "Feed Item Updated", "OK");
-                await Shell.Current.Navigation.PopAsync();
+                await repo.AddSingleFeedItem(newFeedItem);
+                await Application.Current.MainPage.DisplayAlert("Created", "Feed item has been saved", "OK");
             }
-
-
         }
 
-        private async void DeleteItem()
+        private async void DeleteItem(object obj)
         {
             if (EditExistingMode)
             {
-                var confirmDelete = await Application.Current.MainPage.DisplayAlert("Deletion Confirmation", "Are you sure you want to Delete this item", "OK", "Cancel");
+                var confirmDelete = await Application.Current.MainPage.DisplayAlert("Deletion Confirmation", "Are you sure you want to delete this item", "OK", "Cancel");
                 if (confirmDelete)
                 {
-                    repo.DeleteFeedItem(storedFeedItemd);
+                    repo.DeleteFeedItem(_itemForEditing);
                     await Shell.Current.Navigation.PopAsync();
                 }
             }
         }
 
-        private void EditItem()
+        private async void EditItem(object obj)
         {
-            if (EditExistingMode)
-            {
-                IsEditMode = true;
-            }
+            IsEditMode = !IsEditMode;
         }
 
+        private async void ResetButtonPressed(object obj)
+        {
+            ClearFormVariables();
+        }
+
+        private void ClearFormVariables()
+        {
+            FeedType = null;
+            OtherFeedType = null;
+            AmountPurchased = null;
+            AmountPurchasedUnit = null;
+            OtherAmountPurchasedUnit = null;
+            PurchasedFrom = null;
+            OtherPurchasedFrom = null;
+            TotalCosts = null;
+            TransportationCost = null;
+            Comment = null;
+        }
+
+        public async Task PopulateDataDowns()
+        {
+            var FeedTypeControlData = await repo.GetControlData(SC.FEEDTYPE);
+            var PurchasedFromControlData = await repo.GetControlData(SC.FEEDPURCHASEDFROMTYPE);
+            var FeedAmountPurchasedUnitControlData = await repo.GetControlData(SC.FEEDAMOUNTPURCHASEDUNITTYPE);
+
+            FeedTypeListOfOptions = LogicHelper.CreatePickerToolOption(FeedTypeControlData, User.UserLang);
+            PurchasedFromListOfOptions = LogicHelper.CreatePickerToolOption(PurchasedFromControlData, User.UserLang);
+            AmountPurchasedUnitListOfOptions = LogicHelper.CreatePickerToolOption(FeedAmountPurchasedUnitControlData, User.UserLang);
+
+            if (!IsEditMode)
+            {
+                SelectedFeedType = FeedTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.FeedType).FirstOrDefault();
+                SelectedPurchasedFrom = PurchasedFromListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.PurchasedFrom).FirstOrDefault();
+                selectedAmountPurchasedUnit = AmountPurchasedUnitListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.AmountPurchasedUnit).FirstOrDefault();
+            }
+        }
 
         private string ValidateSave()
         {
-            StringBuilder returnString = new StringBuilder();
-            returnString.AppendLine(DateObtained == null ? "Date obtained not provided" : "");
-            returnString.AppendLine(SelectedFeedType == null ? "Selected Feed Type not Provided" : "");
-            returnString.AppendLine(AmountPurchased == null ? " Amount Purchased Not Provided" : "");
-            returnString.AppendLine(Cost == null ? "Cost Not Provided" : "");
-            returnString.AppendLine(TransportationCost == null ? "Transport Cost Not Provided" : "");
-            returnString.AppendLine(PurchasedFrom == null ? "Purchase From Not Provided" : "");
-
-            if (returnString.Length > 0) return returnString.ToString();
-
-
-            if (SelectedFeedType.TranslationRowKey == SC.OTHER)
+            try
             {
-                returnString.Append(string.IsNullOrWhiteSpace(OtherFeedType) ? "Other Feed Type Not Provided" : "");
-            }
+                StringBuilder returnString = new StringBuilder();
+                returnString.AppendLine(Date == null ? "Date obtained not provided" : "");
+                returnString.AppendLine(TotalCosts == null ? "Total Cost Not Provided" : "");
+                returnString.AppendLine(TransportationCost == null ? "Transportation Cost Not Provided" : "");
 
-            if (SelectedPurchaseUnitType.TranslationRowKey == SC.OTHER)
+
+                if (SelectedFeedType != null)
+                {
+                    if (SelectedFeedType.TranslationRowKey == SC.OTHER)
+                    {
+                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherFeedType) ? "Other Feed Type Not Provided" : "");
+                    }
+                }
+
+                if (SelectedAmountPurchasedUnit != null)
+                {
+                    if (SelectedAmountPurchasedUnit.TranslationRowKey == SC.OTHER)
+                    {
+                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherAmountPurchasedUnit) ? "Other Amount Purchased Unit Not Provided" : "");
+                    }
+                }
+
+                if (SelectedPurchasedFrom != null)
+                {
+                    if (SelectedPurchasedFrom.TranslationRowKey == SC.OTHER)
+                    {
+                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherPurchasedFrom) ? "Other Purchased From Not Provided" : "");
+                    }
+                }
+
+                if (returnString.Length > 0) return returnString.ToString();
+
+
+                return returnString.ToString();
+            }
+            catch (Exception ex)
             {
-                returnString.Append(string.IsNullOrWhiteSpace(OtherAmountPurchaseUnit) ? "Other Unit Type Not Provided" : "");
+                return "";
             }
-
-            return returnString.ToString();
-        }
-
-        public FeedItemViewModel(string Item, bool editMode)
-        {
-
-        }
-
-        private async Task ResetButtonPressed(object obj)
-        {
-            PopulateDefaultValues();
         }
 
     }

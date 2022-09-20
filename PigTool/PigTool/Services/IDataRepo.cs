@@ -16,40 +16,49 @@ namespace PigTool.Services
         Task<List<ControlData>> GetControlData(string dropDownOption);
         Task AddSingleControlData(ControlData cd);
         Task<List<Translation>> GetAllTranslations();
+
+        // Feed Items
         Task AddSingleFeedItem(FeedItem itemToAdd);
         Task<List<FeedItem>> GetFeedItems();
         Task<FeedItem> GetFeedItem(int Id);
         Task UpdateFeedItem(FeedItem feedItem);
         void DeleteFeedItem(FeedItem feedItem);
+
+        // Health Care
         Task<List<HealthCareItem>> GetHealthCareItems();
         Task<HealthCareItem> GetHealthCareItem(int Id);
         Task UpdateHealthCareItem(HealthCareItem Item);
         void DeleteHealthCaredItem(HealthCareItem Item);
         Task AddSingleHealthCareItem(HealthCareItem itemToAdd);
+
         //Labour Costs
         Task<List<LabourCostItem>> GetLabourCostItems();
         Task<LabourCostItem> GetLabourCostItem(int Id);
         Task UpdateLabourCostItem(LabourCostItem Item);
         void DeleteLabourCostItem(LabourCostItem Item);
         Task AddSingleLabourCostItem(LabourCostItem itemToAdd);
+
         //Animal Housing
         Task<List<AnimalHouseItem>> GetAnimalHouseItems();
         Task<AnimalHouseItem> GetAnimalHouseItem(int Id);
         Task UpdateAnimalHouseItem(AnimalHouseItem Item);
         void DeleteAnimalHouseItem(AnimalHouseItem Item);
         Task AddSingleAnimalHouseItem(AnimalHouseItem itemToAdd);
+
         //Water Cost
         Task<List<WaterCostItem>> GetWaterCostItems();
         Task<WaterCostItem> GetWaterCostItem(int Id);
         Task UpdateWaterCostItem(WaterCostItem Item);
         void DeleteWaterCostItem(WaterCostItem Item);
         Task AddSingleWaterCostItem(WaterCostItem itemToAdd);
+
         //Membership
         Task<List<MembershipItem>> GetMembershipItems();
         Task<MembershipItem> GetMembershipItem(int Id);
         Task UpdateMembershipItem(MembershipItem Item);
         void DeleteMembershipItem(MembershipItem Item);
         Task AddSingleMembershipItem(MembershipItem itemToAdd);
+
         //OtherCost
         Task<List<OtherCostItem>> GetOtherCostItems();
         Task<OtherCostItem> GetOtherCostItem(int Id);

@@ -9,8 +9,8 @@ namespace PigTool.Helpers
         #region DropDown Key Controls
         //Feed Item DropDowns
         public const string FEEDTYPE = "FeedType";
-        public const string UNITTYPE = "UnitType";
-        public const string PURCHASETYPE = "PurchaseType";
+        public const string FEEDAMOUNTPURCHASEDUNITTYPE = "FeedAmountPurchasedUnitType";
+        public const string FEEDPURCHASEDFROMTYPE = "FeedPurchasedType";
 
         //HealthCare DropDwons
         public const string HEALTHCARETYPE = "HealthCareType";

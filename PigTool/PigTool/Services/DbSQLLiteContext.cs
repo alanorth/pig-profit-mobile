@@ -96,6 +96,15 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "DeleteTranslation", English = "Delete", Lang1 = "Delete Lang1", Lang2 = "Delete Lang2" },
 
                         //Add Feed Item Translations
+                        new Translation() { RowKey = "FeedItemTitleTranslation", English = "Feed Cost", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "FeedTypeTranslation", English = "Feed Type", Lang1 = "Feed Type Lang1", Lang2 = "Feed Type Lang2" },
+                        new Translation() { RowKey = "OtherFeedTypeTranslation", English = "Other Feed Type", Lang1 = "Other Feed Type Lang1", Lang2 = "Other Feed Type Lang2" },
+                        new Translation() { RowKey = "AmountPurchasedTranslation", English = "Amount Purchased", Lang1 = "Amount Purchased Lang1", Lang2 = "Amount Purchased Lang2" },
+                        new Translation() { RowKey = "AmountPurchasedUnitTranslation", English = "Amount Purchased", Lang1 = "Amount Purchased Lang1", Lang2 = "Amount Purchased Lang2" },
+                        new Translation() { RowKey = "OtherAmountPurchasedUnitTranslation", English = "Other Amount Purchased", Lang1 = "Other Amount Purchased Lang1", Lang2 = "Other Amount Purchased Lang2" },
+                        new Translation() { RowKey = "PurchasedFromTranslation", English = "Purchased From", Lang1 = "Purchased From Lang1", Lang2 = "Purchased From Lang2" },
+                        new Translation() { RowKey = "OtherPurchasedFromTranslation", English = "Purchased From", Lang1 = "Purchased From Lang1", Lang2 = "Purchased From Lang2" },
+
                         new Translation() { RowKey = "AddFeedItemTrans", English = "Add Feed Cost", Lang1 = "Add Feed Cost Lang1", Lang2 = "Add Feed Cost Lang2", },
                         new Translation() { RowKey = "DateObtainedTrans", English = "Date Obtained", Lang1 = "Date Obtained Lang1", Lang2 = "Date Obtained Lang2" },
                         new Translation() { RowKey = "FeedTypeTrans", English = "Feed Type", Lang1 = "Feed Type Lang1", Lang2 = "Feed Type Lang2" },
@@ -107,7 +116,6 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "TransportCostTrans", English = "Transportation Cost", Lang1 = "Transportation Cost Lang1", Lang2 = "Transportation Cost Lang2" },
                         new Translation() { RowKey = "PurchasedFrom", English = "Purchased From", Lang1 = "Purchased From Lang1", Lang2 = "Purchased From Lang2" },
                         new Translation() { RowKey = "CommentTrans", English = "Comment", Lang1 = "Comment Lang1", Lang2 = "Comment Lang2" },
-
                         //Add HeathCare item Translation
                         new Translation() { RowKey = "HealthCareTypeTranslation", English = "Health Care Type", Lang1 = "Health Care Type Lang1", Lang2 = "Health Care Type Lang2" },
                         new Translation() { RowKey = "OtherHealthCareTypeTranslation", English = "Other Health Care Type", Lang1 = "Other Health Care Type Lang 1", Lang2 = "Other Health Care Type Lang2" },
@@ -117,10 +125,8 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "MedicineCostTranslation", English = "Medicine Cost:", Lang1 = "Medicine Cost: Lang1", Lang2 = "Medicine Cost: Lang2" },
                         new Translation() { RowKey = "MedinceTypeTranslation", English = "Medicine Type:", Lang1 = "Medicine Type: Lang1", Lang2 = "Medicine Type: Lang2" },
                         new Translation() { RowKey = "OtherMedinceTypeTranslation", English = "Other Medicine Type:", Lang1 = "Other Medicine Type: Lang1", Lang2 = "Other Medicine Type: Lang2" },
-                        new Translation() { RowKey = "PurchasedFromTranslation", English = "Purchased from:", Lang1 = "Purchased from: Lang1", Lang2 = "Purchased from: Lang2" },
-                        new Translation() { RowKey = "OtherPurchasedFromTranslation", English = "Other Purchased from:", Lang1 = "Other Purchased from: Lang1", Lang2 = "Other Purchased from: Lang2" },
+                       
                         new Translation() { RowKey = "CostTranslation", English = "Any other cost:", Lang1 = "Any other cost: Lang1", Lang2 = "Any other cost: Lang2" },
-                        
 
                         //Labour Costs
                         new Translation() { RowKey = "LabourTitleTranslation", English = "Labour Cost", Lang1 = "Labour Cost Lang1", Lang2 = "Labour Cost Lang2" },
@@ -274,18 +280,18 @@ namespace SQLLiteDbContext
                        new ControlData() { Id = 5, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.FEEDTYPE, TranslationRowKey = "DropDownFeedType5" },
                        new ControlData() { Id = 6, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.FEEDTYPE, TranslationRowKey = SC.OTHER },
 
-                       new ControlData() { Id = 7, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.UNITTYPE, TranslationRowKey = "DropDownUnitType1" },
-                       new ControlData() { Id = 8, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.UNITTYPE, TranslationRowKey = "DropDownUnitType2" },
-                       new ControlData() { Id = 9, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.UNITTYPE, TranslationRowKey = "DropDownUnitType3" },
-                       new ControlData() { Id = 10, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.UNITTYPE, TranslationRowKey = "DropDownUnitType4" },
-                       new ControlData() { Id = 11, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.UNITTYPE, TranslationRowKey = "DropDownUnitType5" },
-                       new ControlData() { Id = 12, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.UNITTYPE, TranslationRowKey = SC.OTHER },
+                       new ControlData() { Id = 7, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType1" },
+                       new ControlData() { Id = 8, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType2" },
+                       new ControlData() { Id = 9, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType3" },
+                       new ControlData() { Id = 10, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType4" },
+                       new ControlData() { Id = 11, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType5" },
+                       new ControlData() { Id = 12, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = SC.OTHER },
 
-                       new ControlData() { Id = 13, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASETYPE, TranslationRowKey = "DropDownPurchaseFrom1" },
-                       new ControlData() { Id = 14, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASETYPE, TranslationRowKey = "DropDownPurchaseFrom2" },
-                       new ControlData() { Id = 15, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASETYPE, TranslationRowKey = "DropDownPurchaseFrom3" },
-                       new ControlData() { Id = 16, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASETYPE, TranslationRowKey = "DropDownPurchaseFrom4" },
-                       new ControlData() { Id = 17, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.PURCHASETYPE, TranslationRowKey = "DropDownPurchaseFrom5" },
+                       new ControlData() { Id = 13, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.FEEDPURCHASEDFROMTYPE, TranslationRowKey = "DropDownPurchaseFrom1" },
+                       new ControlData() { Id = 14, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.FEEDPURCHASEDFROMTYPE, TranslationRowKey = "DropDownPurchaseFrom2" },
+                       new ControlData() { Id = 15, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.FEEDPURCHASEDFROMTYPE, TranslationRowKey = "DropDownPurchaseFrom3" },
+                       new ControlData() { Id = 16, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.FEEDPURCHASEDFROMTYPE, TranslationRowKey = "DropDownPurchaseFrom4" },
+                       new ControlData() { Id = 17, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.FEEDPURCHASEDFROMTYPE, TranslationRowKey = "DropDownPurchaseFrom5" },
 
                        new ControlData() { Id = 18, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.HEALTHCARETYPE, TranslationRowKey = "HeathCareType1" },
                        new ControlData() { Id = 19, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.HEALTHCARETYPE, TranslationRowKey = "HeathCareType2" },

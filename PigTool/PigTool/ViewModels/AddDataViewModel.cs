@@ -68,6 +68,18 @@ namespace PigTool.ViewModels
             Equipment = LogicHelper.getTranslation(repo, nameof(Equipment), User.UserLang).Result;
         }
 
+        private async void AddFeedItemDataCommand(object obj)
+        {
+            try
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new FeedItemPage());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
         private async void AddHealthCareItemDataCommand(object obj)
         {
             try
@@ -140,17 +152,5 @@ namespace PigTool.ViewModels
             }
         }
 
-
-        private async void AddFeedItemDataCommand(object obj)
-        {
-            try
-            {
-                await Application.Current.MainPage.Navigation.PushAsync(new FeedItemPage());
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
     }
 }

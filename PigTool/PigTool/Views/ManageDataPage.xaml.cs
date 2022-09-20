@@ -36,15 +36,15 @@ namespace PigTool.Views
 
                 // Fist Attach Feed Items
                 var FeedItemsExpander = createExpanderElement(
-                      ExpanderTitle: _ViewModel.Feed,
-                      ColoumnHeader1: _ViewModel.FeedTypeTrans,
-                      ColoumnHeader2: _ViewModel.DateObtainedTrans,
-                      ColoumnHeader3: _ViewModel.CostTrans,
+                      ExpanderTitle: "Feed",
+                      ColoumnHeader1: "Feed Type",
+                      ColoumnHeader2: "Date",
+                      ColoumnHeader3: "Total Cost",
                       BindableColumns1: nameof(FeedItem.FeedType),
-                      BindableColumns2: nameof(FeedItem.DateObtained),
-                      BindableColumns3: nameof(FeedItem.Cost),
+                      BindableColumns2: nameof(FeedItem.Date),
+                      BindableColumns3: nameof(FeedItem.TotalCosts),
                       BindingList: nameof(_ViewModel.FeedItems),
-                      NavigationCommand: _ViewModel.AddFeedItem
+                      NavigationCommand: _ViewModel.EditFeedItem
                       );
 
 
