@@ -6,40 +6,43 @@
              Title="Add Data">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Margin="5, 10">
+            <StackLayout Margin="0, 10">
             <StackLayout.Resources>
-                <Style x:Key="AddNavButton" TargetType="Button">
-                    <Setter Property="VerticalOptions" Value="StartAndExpand" />
-                    <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                      <Setter Property="Margin" Value="20,0" />
+                    <Style x:Key="AddNavButton" TargetType="Button">
+                        <Setter Property="VerticalOptions" Value="StartAndExpand" />
+                        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                        <Setter Property="Margin" Value="0,0" />
                         <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="CornerRadius" Value="6"/>
                     </Style>
-            </StackLayout.Resources>
-                <Frame OutlineColor="Black" >
-                <Label Text="{Binding Costs}"
-                VerticalOptions="StartAndExpand"
-                HorizontalOptions="CenterAndExpand" FontSize="25"/>
+                </StackLayout.Resources>
+                <Frame Margin="0, 10" CornerRadius="6">
+                    <Label Text="{Binding Costs}"
+                       FontAttributes="Bold"
+                    VerticalOptions="StartAndExpand"
+                    HorizontalOptions="CenterAndExpand" FontSize="25"/>
                 </Frame>
-                <Button Text="{Binding Feed}" Style="{StaticResource AddNavButton}" Command="{Binding AddFeedItem}"   BackgroundColor="#404e65"/>
-                <Button Text="{Binding Healthcare}" Style="{StaticResource AddNavButton}" Command="{Binding AddHealthCareItem}"  BackgroundColor="#404e65"/>
-                <Button Text="{Binding Labour}" Style="{StaticResource AddNavButton}" Command="{Binding AddLabourCostItem}" BackgroundColor="#404e65"/>
-                <Button Text="{Binding Housing}" Style="{StaticResource AddNavButton}" Command="{Binding AddHousingItem}" BackgroundColor="#404e65"/>
-                <Button Text="{Binding Water}" Style="{StaticResource AddNavButton}" Command="{Binding AddWaterCostItem}" BackgroundColor="#404e65"/>
-                <Button Text="{Binding Membership}" Style="{StaticResource AddNavButton}" Command="{Binding AddMembershipItem}" BackgroundColor="#404e65"/>
-                <Button Text="{Binding Other}" Style="{StaticResource AddNavButton}" Command="{Binding AddOtherCostItem}" BackgroundColor="#404e65"/>
-                <Button Text="{Binding Reproduction}" Style="{StaticResource AddNavButton}" BackgroundColor="#DADFE7"/>
-                <Button Text="{Binding AnimalPurchase}" Style="{StaticResource AddNavButton}" BackgroundColor="#DADFE7"/>
-                <Button Text="{Binding LoanRepayment}" Style="{StaticResource AddNavButton}" BackgroundColor="#DADFE7"/>
-                <Button Text="{Binding Equipment}" Style="{StaticResource AddNavButton}" BackgroundColor="#DADFE7"/>
-                <Frame OutlineColor="Black" Margin="6">
+                <Button Text="{Binding Feed}" Style="{StaticResource AddNavButton}" Command="{Binding AddFeedItem}"   BackgroundColor="{StaticResource Primary}"/>
+                <Button Text="{Binding Healthcare}" Style="{StaticResource AddNavButton}" Command="{Binding AddHealthCareItem}"  BackgroundColor="{StaticResource Primary}"/>
+                <Button Text="{Binding Labour}" Style="{StaticResource AddNavButton}" Command="{Binding AddLabourCostItem}" BackgroundColor="{StaticResource Primary}"/>
+                <Button Text="{Binding Housing}" Style="{StaticResource AddNavButton}" Command="{Binding AddHousingItem}" BackgroundColor="{StaticResource Primary}"/>
+                <Button Text="{Binding Water}" Style="{StaticResource AddNavButton}" Command="{Binding AddWaterCostItem}" BackgroundColor="{StaticResource Primary}"/>
+                <Button Text="{Binding Membership}" Style="{StaticResource AddNavButton}" Command="{Binding AddMembershipItem}" BackgroundColor="{StaticResource Primary}"/>
+                <Button Text="{Binding Other}" Style="{StaticResource AddNavButton}" Command="{Binding AddOtherCostItem}" BackgroundColor="{StaticResource Primary}"/>
+                <Button Text="{Binding Reproduction}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>
+                <Button Text="{Binding AnimalPurchase}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>
+                <Button Text="{Binding LoanRepayment}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>
+                <Button Text="{Binding Equipment}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>
+                <Frame Margin="0, 10">
                     <Label Text="{Binding Income}"
+                           FontAttributes="Bold"
                 VerticalOptions="StartAndExpand"
                 HorizontalOptions="CenterAndExpand" FontSize="25"/>
                 </Frame>
-                <Button Text="{Binding Saleofpigs}" Style="{StaticResource AddNavButton}" BackgroundColor="#DADFE7"/>
-                <Button Text="{Binding Saleofbreedingservices}" Style="{StaticResource AddNavButton}" BackgroundColor="#DADFE7"/>
-                <Button Text="{Binding Saleofmaure}" Style="{StaticResource AddNavButton}" BackgroundColor="#DADFE7"/>
-                <Button Text="{Binding OtherIncome}" Style="{StaticResource AddNavButton}" BackgroundColor="#DADFE7"/>
+                <Button Text="{Binding Saleofpigs}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>
+                <Button Text="{Binding Saleofbreedingservices}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>
+                <Button Text="{Binding Saleofmaure}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>
+                <Button Text="{Binding OtherIncome}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>
         </StackLayout>
             </ScrollView>
     </ContentPage.Content>

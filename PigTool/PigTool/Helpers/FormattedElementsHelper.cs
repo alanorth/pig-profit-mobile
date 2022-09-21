@@ -16,9 +16,9 @@ namespace PigTool.Helpers
                 Text = text,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 HorizontalTextAlignment = TextAlignment.Center,
-                FontSize = 16,
+                FontSize = 15,
                 TextColor = Color.White,
-                BackgroundColor = Color.FromHex("#404E65"),
+                BackgroundColor = Color.FromHex("#682622"),
                 LineBreakMode = LineBreakMode.WordWrap,
                 Padding = new Thickness(8),
             };
@@ -33,7 +33,7 @@ namespace PigTool.Helpers
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 HorizontalTextAlignment = TextAlignment.Center,
                 VerticalTextAlignment = TextAlignment.Center,
-                FontSize = 15,
+                FontSize = 13,
                 BackgroundColor = Color.White,
                 LineBreakMode = LineBreakMode.WordWrap,
                 
@@ -115,6 +115,7 @@ namespace PigTool.Helpers
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 HeightRequest = heightRequest,
+                
             };
 
             Entry.SetBinding(Entry.TextProperty, new Binding(TextBindingProperty));

@@ -171,8 +171,6 @@ namespace PigTool.ViewModels
         public async Task GetTranslationCountAsync()
         {
             numberOfTranslations = await repo.getTranslationItemCount();
-            NameOfUser = "Luca Barsi";
-            VillageOfUser = "Enforcer";
         }
 
 

@@ -29,6 +29,7 @@ namespace PigTool.Views
 
         protected async override void OnAppearing()
         {
+            
             await _ViewModel.PopulateLists();
 
             if (!_ViewModel.PageRendered)
@@ -163,13 +164,16 @@ namespace PigTool.Views
                 Text = ExpanderTitle,
                 FontAttributes = FontAttributes.Bold,
                 FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label))
+                
             };
 
             frame.Content = headerLabel;
 
             Expander expander = new Expander
             {
-                Header = frame
+                Header = frame,
+                BackgroundColor = Color.White,
+                Margin = 0
             };
 
 
@@ -178,10 +182,11 @@ namespace PigTool.Views
                 StackLayout stackHolder = new StackLayout();
 
                 ListView listvw = new ListView();
+                listvw.HeightRequest = 300;
                 
                 Grid Headergrid = new Grid
                 {
-                    BackgroundColor = Color.FromHex("#404E65"),
+                    BackgroundColor = Color.FromHex("#682622"),
                     ColumnDefinitions =
                     {
                         new ColumnDefinition { Width = GridLength.Star },
@@ -241,7 +246,7 @@ namespace PigTool.Views
             Label column2Data = FormattedElementsHelper.ManageDataDetailsLableField(var2);
             Label column3Data = FormattedElementsHelper.ManageDataDetailsLableField(var3);
             Button button = new Button() { 
-                TextColor = Color.FromHex("#404e65"),
+                TextColor = Color.FromHex("#682622"),
                 BackgroundColor = Color.White,
                 TextTransform = TextTransform.None,
                 Text = "View",

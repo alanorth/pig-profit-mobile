@@ -9,6 +9,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="Primary">#682622</Color>
+            <Color x:Key="Secondary1">#404E65</Color>
+            <Color x:Key="Secondary2">#EFCA58</Color>
             <Color x:Key="PrimaryText">#000</Color>
             <Color x:Key="HeaderTextColor">#fff</Color>
             <x:String x:Key="IconSearch">&#xf002;</x:String>
@@ -37,6 +39,11 @@
                         </VisualStateGroup>
                     </VisualStateGroupList>
                 </Setter>
+            </Style>
+
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor" Value="#eae4d9"/>
+                <Setter Property="Padding" Value="10, 0"/>
             </Style>
 
             <Style x:Key="SliderLowerValueLabelStyle" TargetType="xct:RangeSlider">
