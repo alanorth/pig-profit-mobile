@@ -94,13 +94,13 @@ namespace PigTool.ViewModels
         }
         public string Comment { get => comment; set { if (comment != value) { comment = value; OnPropertyChanged(nameof(Comment)); } } }
 
-        private string labourType;
+        private string? labourType;
         private PickerToolHelper selectedLabourType;
         private bool displayOtherLabourType;
-        private string otherLaboutType;
+        private string? otherLaboutType;
         private double? amountPaid;
         private double? otherCosts;
-        private string comment;
+        private string? comment;
 
         public PickerToolHelper SelectedLabourType
         {
@@ -173,11 +173,11 @@ namespace PigTool.ViewModels
             EditExistingMode = !CreationMode;
 
             LabourTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LabourTitleTranslation), User.UserLang);
-            DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang);
+            DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
             LabourTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LabourTypeTranslation), User.UserLang);
             OtherLaboutTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherLaboutTypeTranslation), User.UserLang);
-            AmountPaidTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AmountPaidTranslation), User.UserLang);
-            OtherCostsTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostsTranslation), User.UserLang);
+            AmountPaidTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AmountPaidTranslation), User.UserLang) + " *";
+            OtherCostsTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostsTranslation), User.UserLang) + " *";
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
@@ -254,8 +254,8 @@ namespace PigTool.ViewModels
                 _itemForEditing.Date = Date;
                 _itemForEditing.LabourType = LabourType;
                 _itemForEditing.OtherLabourType = OtherLaboutType;
-                _itemForEditing.AmountPaid = AmountPaid;
-                _itemForEditing.OtherCost = OtherCosts;
+                _itemForEditing.AmountPaid = (double)AmountPaid;
+                _itemForEditing.OtherCost = (double)OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
@@ -271,15 +271,15 @@ namespace PigTool.ViewModels
                     Date = Date,
                     LabourType = LabourType,
                     OtherLabourType = OtherLaboutType,
-                    AmountPaid = AmountPaid,
-                    OtherCost = OtherCosts,
+                    AmountPaid = (double)AmountPaid,
+                    OtherCost = (double)OtherCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
                 };
 
                 await repo.AddSingleLabourCostItem(newLabourCost);
-                await Application.Current.MainPage.DisplayAlert("Created", "Labour Cost Record Save", "OK");
+                await Application.Current.MainPage.DisplayAlert("Created", "Labour Cost Record Saved", "OK");
             }
 
         }
@@ -288,15 +288,17 @@ namespace PigTool.ViewModels
         {
             StringBuilder returnString = new StringBuilder();
             returnString.AppendLine(Date == null ? "Date obtained not provided" : "");
-            returnString.AppendLine(AmountPaid == null ? "Amount Paid Provided" : "");
-            returnString.AppendLine(OtherCosts == null ? "Other Cost Not Provided" : "");
 
-            if (returnString.Length > 0) return returnString.ToString();
-
-            if (selectedLabourType.TranslationRowKey == SC.OTHER)
+            if (selectedLabourType != null)
             {
-                returnString.Append(string.IsNullOrWhiteSpace(OtherLaboutType) ? "Other Health Care Type Not Provided" : "");
+                if (selectedLabourType.TranslationRowKey == SC.OTHER)
+                {
+                    returnString.AppendLine(string.IsNullOrWhiteSpace(OtherLaboutType) ? "Other Labour Type Not Provided" : "");
+                }
             }
+
+            returnString.AppendLine(AmountPaid == null ? "Amount Paid Not Provided" : "");
+            returnString.AppendLine(OtherCosts == null ? "Other Cost Not Provided" : "");
 
             return returnString.ToString();
         }

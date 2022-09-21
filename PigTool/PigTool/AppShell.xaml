@@ -40,7 +40,7 @@
                 <FontImageSource Glyph="&#xf0fe;" FontFamily="FA-S" />
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="Manage Data" Route="ManageDataPage" x:Name="ManageData" ContentTemplate="{DataTemplate local:ManageDataPage}" >
+        <ShellContent Title="Manage" Route="ManageDataPage" x:Name="ManageData" ContentTemplate="{DataTemplate local:ManageDataPage}" >
             <ShellContent.Icon>
                 <FontImageSource Glyph="&#xf0ce;" FontFamily="FA-S" />
             </ShellContent.Icon>

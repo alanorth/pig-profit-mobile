@@ -17,5 +17,7 @@ namespace PigTool.Models
         public string? PurchasedFrom { get; set; }
         public string? OtherPurchasedFrom { get; set; }
         public string? Comment { get; set; }
+
+
     }
 }

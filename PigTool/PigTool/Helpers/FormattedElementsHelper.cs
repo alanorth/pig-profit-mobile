@@ -26,7 +26,7 @@ namespace PigTool.Helpers
             return label;
         }
 
-        public static Label ManageDataDetailsLableField(string labelBindingField)
+        public static Label ManageDataDetailsLabelField(string labelBindingField)
         {
             var label = new Label
             {

@@ -225,7 +225,6 @@ namespace PigTool.Views
     {
         public CustomVeggieCell(string var1, string var2, string var3, Command command)
         {
-            var x = this;
 
             var horizontalLayout = new StackLayout() { BackgroundColor = Color.White };
             horizontalLayout.Orientation = StackOrientation.Horizontal;
@@ -242,9 +241,9 @@ namespace PigTool.Views
                     }
             };
 
-            Label column1Data = FormattedElementsHelper.ManageDataDetailsLableField(var1);
-            Label column2Data = FormattedElementsHelper.ManageDataDetailsLableField(var2);
-            Label column3Data = FormattedElementsHelper.ManageDataDetailsLableField(var3);
+            Label column1Data = FormattedElementsHelper.ManageDataDetailsLabelField(var1);
+            Label column2Data = FormattedElementsHelper.ManageDataDetailsLabelField(var2);
+            Label column3Data = FormattedElementsHelper.ManageDataDetailsLabelField(var3);
             Button button = new Button() { 
                 TextColor = Color.FromHex("#682622"),
                 BackgroundColor = Color.White,
@@ -254,7 +253,6 @@ namespace PigTool.Views
                 VerticalOptions = LayoutOptions.FillAndExpand,
             };
             button.Command = command;
-            //button.CommandParameter = "{Binding .}";
             button.SetBinding(Button.CommandParameterProperty, new Binding("."));
 
             TemplateContents.Children.Add(column1Data, 0, 0);
