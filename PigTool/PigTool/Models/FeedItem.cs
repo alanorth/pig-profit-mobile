@@ -17,7 +17,7 @@ namespace PigTool.Models
         public string? PurchasedFrom { get; set; }
         public string? OtherPurchasedFrom { get; set; }
         public string? Comment { get; set; }
-
-
+        public virtual Translation FeedTypeTranslation { get; set; }
+        public virtual string FeedTypeTranslationString { get; set; }
     }
 }

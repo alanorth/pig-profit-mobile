@@ -41,7 +41,7 @@ namespace PigTool.Views
                       ColoumnHeader1: "Feed Type",
                       ColoumnHeader2: "Date",
                       ColoumnHeader3: "Total Cost",
-                      BindableColumns1: nameof(FeedItem.FeedType),
+                      BindableColumns1: nameof(FeedItem.FeedTypeTranslationString),
                       BindableColumns2: nameof(FeedItem.Date),
                       BindableColumns3: nameof(FeedItem.TotalCosts),
                       BindingList: nameof(_ViewModel.FeedItems),

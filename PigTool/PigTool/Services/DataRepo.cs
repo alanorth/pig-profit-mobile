@@ -77,6 +77,18 @@ namespace PigTool.Services
             return await _context.FeedItems.ToListAsync();
         }
 
+        public async Task<List<FeedItem>> GetFeedItemsAndAttachedTranslation(UserLangSettings userLanguage)
+        {
+            var feedItems =  await _context.FeedItems.Include("FeedTypeTranslation").ToListAsync();
+
+            foreach (var feedItem in feedItems)
+            {
+                feedItem.FeedTypeTranslationString = feedItem.FeedTypeTranslation.getTranslation(userLanguage);
+            }
+
+            return feedItems;
+        }
+
         public async Task<FeedItem> GetFeedItem(int Id)
         {
            return await _context.FeedItems.SingleOrDefaultAsync(feedItem => feedItem.Id == Id);

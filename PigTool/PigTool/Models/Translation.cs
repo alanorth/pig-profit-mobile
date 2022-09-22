@@ -13,6 +13,8 @@ namespace PigTool.Models
         public string Lang2 { get; set; }
         public List<ControlData> ControlDatas { get; set; }
 
+        public virtual ICollection<FeedItem> FeedItems { get; set; }
+
         public Translation()
         {
             PartitionKey = "Translation";
