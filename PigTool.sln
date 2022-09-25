@@ -5,7 +5,11 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PigTool.Android", "PigTool\PigTool.Android\PigTool.Android.csproj", "{89549C3E-C392-4643-AD9D-2D8D0801D66E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PigTool", "PigTool\PigTool\PigTool.csproj", "{62B60E8B-00C4-4D1C-9B3C-C8A0E49CD686}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PigTool", "PigTool\PigTool\PigTool.csproj", "{62B60E8B-00C4-4D1C-9B3C-C8A0E49CD686}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PigTool.API", "PigTool.API\PigTool.API.csproj", "{F2673E51-1723-46F3-827E-4A8D1B09CA4B}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "PigTool.Shared", "PigTool.Shared\PigTool.Shared.shproj", "{46B302F3-8757-4E1D-8F8A-A937971E1362}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,11 +29,19 @@ Global
 		{62B60E8B-00C4-4D1C-9B3C-C8A0E49CD686}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62B60E8B-00C4-4D1C-9B3C-C8A0E49CD686}.Release|Any CPU.Build.0 = Release|Any CPU
 		{62B60E8B-00C4-4D1C-9B3C-C8A0E49CD686}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F2673E51-1723-46F3-827E-4A8D1B09CA4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2673E51-1723-46F3-827E-4A8D1B09CA4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2673E51-1723-46F3-827E-4A8D1B09CA4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2673E51-1723-46F3-827E-4A8D1B09CA4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {77445515-07C9-46D0-8ED5-B8F592B72C22}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		PigTool.Shared\PigTool.Shared.projitems*{46b302f3-8757-4e1d-8f8a-a937971e1362}*SharedItemsImports = 13
+		PigTool.Shared\PigTool.Shared.projitems*{f2673e51-1723-46f3-827e-4a8d1b09ca4b}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal
