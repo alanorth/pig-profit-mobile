@@ -412,17 +412,14 @@ namespace PigTool.ViewModels
             {
                 StringBuilder returnString = new StringBuilder();
                 if (Date == null) returnString.AppendLine("Date obtained not provided");
-                returnString.AppendLine(TotalCosts == null ? "Total Cost Not Provided" : "");
-                returnString.AppendLine(TimePeriod == null ? "Time Period Not Provided" : "");
-                returnString.AppendLine(SelectedTimePeriodUnit == null ? "Time Period Unit Not Provided" : "");
-                returnString.AppendLine(OtherCosts == null ? "Other Cost Not Provided" : "");
+                if (TotalCosts == null) returnString.AppendLine("Total Cost Not Provided");
+                if (TimePeriod == null) returnString.AppendLine("Time Period Not Provided");
+                if (SelectedTimePeriodUnit == null) returnString.AppendLine("Time Period Unit Not Provided");
+                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
-                if (selectedMembershipType != null)
+                if (selectedMembershipType != null && selectedMembershipType.TranslationRowKey == SC.OTHER)
                 {
-                    if (selectedMembershipType.TranslationRowKey == SC.OTHER)
-                    {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherMembershipType) ? "Other Membership Type Not Provided" : "");
-                    }
+                    if (string.IsNullOrWhiteSpace(OtherMembershipType)) returnString.AppendLine("Other Membership Type Not Provided");
                 }
 
                 return returnString.ToString();

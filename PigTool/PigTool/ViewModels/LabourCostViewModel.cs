@@ -287,18 +287,14 @@ namespace PigTool.ViewModels
         private string ValidateSave()
         {
             StringBuilder returnString = new StringBuilder();
-            returnString.AppendLine(Date == null ? "Date obtained not provided" : "");
+            if (Date == null) returnString.AppendLine("Date obtained not provided");
+            if (AmountPaid == null) returnString.AppendLine("Amount Paid Not Provided");
+            if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
-            if (selectedLabourType != null)
+            if (selectedLabourType != null && selectedLabourType.TranslationRowKey == SC.OTHER)
             {
-                if (selectedLabourType.TranslationRowKey == SC.OTHER)
-                {
-                    returnString.AppendLine(string.IsNullOrWhiteSpace(OtherLaboutType) ? "Other Labour Type Not Provided" : "");
-                }
+                if (string.IsNullOrWhiteSpace(OtherLaboutType)) returnString.AppendLine("Other Labour Type Not Provided");
             }
-
-            returnString.AppendLine(AmountPaid == null ? "Amount Paid Not Provided" : "");
-            returnString.AppendLine(OtherCosts == null ? "Other Cost Not Provided" : "");
 
             return returnString.ToString();
         }

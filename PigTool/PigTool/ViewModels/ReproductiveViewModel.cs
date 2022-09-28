@@ -403,7 +403,7 @@ namespace PigTool.ViewModels
 
         private void ClearFormVariables()
         {
-            SowsServiced = 0;
+            SowsServiced = null;
             SelectedServiceType = null;
             OtherServiceType = null;
             SelectedWhoProvidedService = null;
@@ -432,28 +432,20 @@ namespace PigTool.ViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                returnString.AppendLine(Date == null ? "Date obtained not provided" : "");
-                returnString.AppendLine(SowsServiced == null ? "Sows Serviced Not Provided" : "");
-                returnString.AppendLine(OtherCosts == null ? "Other Cost Not Provided" : "");
+                if (Date == null) returnString.AppendLine("Date obtained not provided");
+                if (SowsServiced == null) returnString.AppendLine("Sows Serviced Not Provided");
+                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
                 
-                if (SelectedServiceType != null)
+                if (SelectedServiceType != null && SelectedServiceType.TranslationRowKey == SC.OTHER)
                 {
-                    if (SelectedServiceType.TranslationRowKey == SC.OTHER)
-                    {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherServiceType) ? "Other Service Type Not Provided" : "");
-                    }
+                    if (string.IsNullOrWhiteSpace(OtherServiceType)) returnString.AppendLine("Other Service Type Not Provided");
                 }
 
-                if (SelectedWhoProvidedService != null)
+                if (SelectedWhoProvidedService != null && SelectedWhoProvidedService.TranslationRowKey == SC.OTHER)
                 {
-                    if (SelectedWhoProvidedService.TranslationRowKey == SC.OTHER)
-                    {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherWhoProvidedService) ? "Other Who Provided Service Not Provided" : "");
-                    }
+                    if (string.IsNullOrWhiteSpace(OtherWhoProvidedService)) returnString.AppendLine("Other Who Provided Service Not Provided");
                 }
-                if (returnString.Length > 0) return returnString.ToString();
-
 
                 return returnString.ToString();
             }

@@ -524,24 +524,21 @@ namespace PigTool.ViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                returnString.AppendLine(Date == null ? "Date obtained not provided" : "");
-                returnString.AppendLine(TotalCosts == null ? "Total Cost Not Provided" : "");
-                returnString.AppendLine(TransportationCost == null ? "Transportation Cost Not Provided" : "");
+                if (Date == null) returnString.AppendLine("Date obtained not provided");
+                if (TotalCosts == null) returnString.AppendLine("Total Cost Not Provided");
+                if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
 
 
-                if (SelectedFeedType != null)
+                if (SelectedFeedType != null && SelectedFeedType.TranslationRowKey == SC.OTHER)
                 {
-                    if (SelectedFeedType.TranslationRowKey == SC.OTHER)
-                    {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherFeedType) ? "Other Feed Type Not Provided" : "");
-                    }
+                    if (string.IsNullOrWhiteSpace(OtherFeedType)) returnString.AppendLine("Other Feed Type Not Provided");
                 }
 
                 if (SelectedAmountPurchasedUnit != null)
                 {
                     if (SelectedAmountPurchasedUnit.TranslationRowKey == SC.OTHER)
                     {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherAmountPurchasedUnit) ? "Other Amount Purchased Unit Not Provided" : "");
+                        if (string.IsNullOrWhiteSpace(OtherAmountPurchasedUnit)) returnString.AppendLine("Other Amount Purchased Unit Not Provided");
                     }
                 }
 
@@ -549,7 +546,7 @@ namespace PigTool.ViewModels
                 {
                     if (SelectedPurchasedFrom.TranslationRowKey == SC.OTHER)
                     {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherPurchasedFrom) ? "Other Purchased From Not Provided" : "");
+                        if (string.IsNullOrWhiteSpace(OtherPurchasedFrom)) returnString.AppendLine("Other Purchased From Not Provided");
                     }
                 }
 

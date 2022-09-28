@@ -434,7 +434,7 @@ namespace PigTool.ViewModels
 
         private void ClearFormVariables()
         {
-            WaterPurchased = 0;
+            WaterPurchased = null;
             WaterPurchasedUnit = null;
             SelectedWaterPurchasedUnit = null;
             OtherWaterPurchasedUnit = null;
@@ -466,29 +466,21 @@ namespace PigTool.ViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                returnString.AppendLine(Date == null ? "Date obtained not provided" : "");
-                returnString.AppendLine(TotalCosts == null ? "Total Cost Not Provided" : "");
-                returnString.AppendLine(TransportationCost == null ? "Transportation Cost Not Provided" : "");
-                returnString.AppendLine(OtherCosts == null ? "Other Cost Not Provided" : "");
+                if (Date == null) returnString.AppendLine("Date obtained not provided");
+                if (TotalCosts == null) returnString.AppendLine("Total Cost Not Provided");
+                if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
+                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
                 
-                if (SelectedWaterPurchasedUnit != null)
+                if (SelectedWaterPurchasedUnit != null && SelectedWaterPurchasedUnit.TranslationRowKey == SC.OTHER)
                 {
-                    if (SelectedWaterPurchasedUnit.TranslationRowKey == SC.OTHER)
-                    {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherWaterPurchasedUnit) ? "Other Unit Not Provided" : "");
-                    }
+                    if (string.IsNullOrWhiteSpace(OtherWaterPurchasedUnit)) returnString.AppendLine("Other Unit Not Provided");
                 }
 
-                if (SelectedPurchasedWaterFrom != null)
+                if (SelectedPurchasedWaterFrom != null && SelectedPurchasedWaterFrom.TranslationRowKey == SC.OTHER)
                 {
-                    if (SelectedPurchasedWaterFrom.TranslationRowKey == SC.OTHER)
-                    {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherPurchasedWaterFrom) ? "Other Person Purchased From Not Provided" : "");
-                    }
+                    if (string.IsNullOrWhiteSpace(OtherPurchasedWaterFrom)) returnString.AppendLine("Other Person Purchased From Not Provided");
                 }
-                if (returnString.Length > 0) return returnString.ToString();
-
 
                 return returnString.ToString();
             }

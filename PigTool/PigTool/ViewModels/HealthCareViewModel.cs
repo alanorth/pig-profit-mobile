@@ -646,46 +646,32 @@ namespace PigTool.ViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                returnString.AppendLine(Date == null ? "Date not provided" : "");
-                returnString.AppendLine(HealthCareCost == null ? "Health Care Cost Not Provided" : "");
-                returnString.AppendLine(MedicineCost == null ? "Medicine Cost Not Provided" : "");
-                
-                returnString.AppendLine(TransportationCost == null ? "Transportation Cost Not Provided" : "");
-                returnString.AppendLine(OtherCosts == null ? "Other Cost Not Provided" : "");
+                if (Date == null) returnString.AppendLine("Date not provided");
+                if (HealthCareCost == null) returnString.AppendLine("Health Care Cost Not Provided");
+                if (MedicineCost == null) returnString.AppendLine("Medicine Cost Not Provided");
+                if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
+                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
 
-                if (SelectedHealthCareType != null)
+                if (SelectedHealthCareType != null && SelectedHealthCareType.TranslationRowKey == SC.OTHER)
                 {
-                    if (SelectedHealthCareType.TranslationRowKey == SC.OTHER)
-                    {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherHealthCareType) ? "Other Health Care Type Not Provided" : "");
-                    }
+                    if (string.IsNullOrWhiteSpace(OtherHealthCareType)) returnString.AppendLine("Other Health Care Type Not Provided");
                 }
 
-                if (SelectedProvider != null)
+                if (SelectedProvider != null && SelectedProvider.TranslationRowKey == SC.OTHER)
                 {
-                    if (SelectedProvider.TranslationRowKey == SC.OTHER)
-                    {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherProvider) ? "Other Provider Not Provided" : "");
-                    }
+                    if (string.IsNullOrWhiteSpace(OtherProvider)) returnString.AppendLine("Other Provider Not Provided");
                 }
 
-                if (SelectedMedicineType != null)
+                if (SelectedMedicineType != null && SelectedMedicineType.TranslationRowKey == SC.OTHER)
                 {
-                    if (SelectedMedicineType.TranslationRowKey == SC.OTHER)
-                    {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherMedicineType) ? "Other Medicine Type Not Provided" : "");
-                    }
+                    if (string.IsNullOrWhiteSpace(OtherMedicineType)) returnString.AppendLine("Other Medicine Type Not Provided");
                 }
 
-                if (SelectedPurchasedFrom != null)
+                if (SelectedPurchasedFrom != null && SelectedPurchasedFrom.TranslationRowKey == SC.OTHER)
                 {
-                    if (SelectedPurchasedFrom.TranslationRowKey == SC.OTHER)
-                    {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherPurchasedFrom) ? "Other Purchased From Not Provided" : "");
-                    }
+                    if (string.IsNullOrWhiteSpace(OtherPurchasedFrom)) returnString.AppendLine("Other Purchased From Not Provided");
                 }
-
 
                 return returnString.ToString();
             }
