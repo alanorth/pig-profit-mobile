@@ -23,7 +23,7 @@ namespace SQLLiteDbContext
         public DbSet<WaterCostItem> WaterCostItems { get; set; }
         public DbSet<MembershipItem> MembershipItems { get; set; }
         public DbSet<OtherCostItem> OtherCostItems { get; set; }
-
+        public DbSet<ReproductiveItem> ReproductiveItems { get; set; }
 
         public DbSQLLiteContext()
         {
@@ -163,6 +163,14 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "OtherCostTitleTranslation", English = "Other Cost", Lang1 = "", Lang2 = "" },
                         new Translation() { RowKey = "OtherWhatForTranslation", English = "What for", Lang1 = "", Lang2 = "" },
 
+                        //Reproductive
+                        new Translation() { RowKey = "ReproductiveTitleTranslation", English = "Reproduction", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "ServiceTypeTranslation", English = "Service type", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "OtherServiceTypeTranslation", English = "Other service type", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "SowsServicedTranslation", English = "Sows Serviced", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "WhoProvidedServiceTranslation", English = "Who Provided Service", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "OtherWhoProvidedServiceTranslation", English = "Who Provided Service", Lang1 = "", Lang2 = "" },
+
 
                         //Drop Down Options
                         new Translation() { RowKey = "DropDownFeedType1", English = "Feed Type 1", Lang1 = "Feed Type 1 Lang 1", Lang2 = "Feed Type 1 Lang 2" },
@@ -268,8 +276,27 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "MembershipType8", English = "Type 8", Lang1 = "", Lang2 = "" },
 
                         new Translation() { RowKey = "TimePeriodUnitType1", English = "Weeks", Lang1 = "", Lang2 = "" },
-                        new Translation() { RowKey = "TimePeriodUnitType2", English = "Months", Lang1 = "", Lang2 = "" }
-                        
+                        new Translation() { RowKey = "TimePeriodUnitType2", English = "Months", Lang1 = "", Lang2 = "" },
+
+                        new Translation() { RowKey = "ServiceType1", English = "Type 1", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "ServiceType2", English = "Type 2", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "ServiceType3", English = "Type 3", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "ServiceType4", English = "Type 4", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "ServiceType5", English = "Type 5", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "ServiceType6", English = "Type 6", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "ServiceType7", English = "Type 7", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "ServiceType8", English = "Type 8", Lang1 = "", Lang2 = "" },
+
+                        new Translation() { RowKey = "WhoProvidedServiceType1", English = "Type 1", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "WhoProvidedServiceType2", English = "Type 2", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "WhoProvidedServiceType3", English = "Type 3", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "WhoProvidedServiceType4", English = "Type 4", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "WhoProvidedServiceType5", English = "Type 5", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "WhoProvidedServiceType6", English = "Type 6", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "WhoProvidedServiceType7", English = "Type 7", Lang1 = "", Lang2 = "" },
+                        new Translation() { RowKey = "WhoProvidedServiceType8", English = "Type 8", Lang1 = "", Lang2 = "" }
+
+
                         );
                 }
             );
@@ -390,7 +417,27 @@ namespace SQLLiteDbContext
                        new ControlData() { Id = 100, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.MEMBERSHIPTYPE, TranslationRowKey = SC.OTHER },
 
                        new ControlData() { Id = 101, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.TIMEPERIODUNITTYPE, TranslationRowKey = "TimePeriodUnitType1" },
-                       new ControlData() { Id = 102, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.TIMEPERIODUNITTYPE, TranslationRowKey = "TimePeriodUnitType2" }
+                       new ControlData() { Id = 102, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.TIMEPERIODUNITTYPE, TranslationRowKey = "TimePeriodUnitType2" },
+
+                       new ControlData() { Id = 103, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.SERVICETYPE, TranslationRowKey = "ServiceType1" },
+                       new ControlData() { Id = 104, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.SERVICETYPE, TranslationRowKey = "ServiceType2" },
+                       new ControlData() { Id = 105, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.SERVICETYPE, TranslationRowKey = "ServiceType3" },
+                       new ControlData() { Id = 106, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.SERVICETYPE, TranslationRowKey = "ServiceType4" },
+                       new ControlData() { Id = 107, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.SERVICETYPE, TranslationRowKey = "ServiceType5" },
+                       new ControlData() { Id = 108, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.SERVICETYPE, TranslationRowKey = "ServiceType6" },
+                       new ControlData() { Id = 109, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.SERVICETYPE, TranslationRowKey = "ServiceType7" },
+                       new ControlData() { Id = 110, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.SERVICETYPE, TranslationRowKey = "ServiceType8" },
+                       new ControlData() { Id = 111, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.SERVICETYPE, TranslationRowKey = SC.OTHER },
+
+                       new ControlData() { Id = 112, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType1" },
+                       new ControlData() { Id = 113, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType2" },
+                       new ControlData() { Id = 114, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType3" },
+                       new ControlData() { Id = 115, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType4" },
+                       new ControlData() { Id = 116, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType5" },
+                       new ControlData() { Id = 117, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType6" },
+                       new ControlData() { Id = 118, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType7" },
+                       new ControlData() { Id = 119, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType8" },
+                       new ControlData() { Id = 120, CreatedTimeStamp = new DateTime(), DropDownControlOption = SC.WHOPROVIDEDSERVICETYPE, TranslationRowKey = SC.OTHER }
                     );
                 }
             );
