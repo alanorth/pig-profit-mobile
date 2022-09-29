@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PigTool.Helpers;
-using Shared;
+using PigTool.Models;
 using PigTool.Views;
 using Xamarin.Forms;
 
@@ -179,7 +179,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedMembershipType != value)
                 {
-                    DisplayOtherMembershipType = value?.TranslationRowKey == Constants.OTHER;
+                    DisplayOtherMembershipType = value?.TranslationRowKey == SC.OTHER;
                     selectedMembershipType = value;
                     OnPropertyChanged(nameof(SelectedMembershipType));
                 }
@@ -393,8 +393,8 @@ namespace PigTool.ViewModels
 
         public async Task PopulateDataDowns()
         {
-            var MembershipTypeControlData = await repo.GetControlData(Constants.MEMBERSHIPTYPE);
-            var TimeperdiodUnitControlData = await repo.GetControlData(Constants.TIMEPERIODUNITTYPE);
+            var MembershipTypeControlData = await repo.GetControlData(SC.MEMBERSHIPTYPE);
+            var TimeperdiodUnitControlData = await repo.GetControlData(SC.TIMEPERIODUNITTYPE);
 
             MembershipTypeListOfOptions = LogicHelper.CreatePickerToolOption(MembershipTypeControlData, User.UserLang);
             TimePeriodUnitListOfOptions = LogicHelper.CreatePickerToolOption(TimeperdiodUnitControlData, User.UserLang);
@@ -412,17 +412,14 @@ namespace PigTool.ViewModels
             {
                 StringBuilder returnString = new StringBuilder();
                 if (Date == null) returnString.AppendLine("Date obtained not provided");
-                returnString.AppendLine(TotalCosts == null ? "Total Cost Not Provided" : "");
-                returnString.AppendLine(TimePeriod == null ? "Time Period Not Provided" : "");
-                returnString.AppendLine(SelectedTimePeriodUnit == null ? "Time Period Unit Not Provided" : "");
-                returnString.AppendLine(OtherCosts == null ? "Other Cost Not Provided" : "");
+                if (TotalCosts == null) returnString.AppendLine("Total Cost Not Provided");
+                if (TimePeriod == null) returnString.AppendLine("Time Period Not Provided");
+                if (SelectedTimePeriodUnit == null) returnString.AppendLine("Time Period Unit Not Provided");
+                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
-                if (selectedMembershipType != null)
+                if (selectedMembershipType != null && selectedMembershipType.TranslationRowKey == SC.OTHER)
                 {
-                    if (selectedMembershipType.TranslationRowKey == Constants.OTHER)
-                    {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherMembershipType) ? "Other Membership Type Not Provided" : "");
-                    }
+                    if (string.IsNullOrWhiteSpace(OtherMembershipType)) returnString.AppendLine("Other Membership Type Not Provided");
                 }
 
                 return returnString.ToString();

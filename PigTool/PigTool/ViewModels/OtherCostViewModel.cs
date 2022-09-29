@@ -314,9 +314,9 @@ namespace PigTool.ViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                returnString.AppendLine(Date == null ? "Date obtained not provided" : "");
-                returnString.AppendLine(TotalCosts == null ? "Total cost not provided" : "");
-                returnString.AppendLine(OtherCosts == null ? "Other cost not provided" : "");
+                if (Date == null) returnString.AppendLine("Date obtained not provided");
+                if (TotalCosts == null) returnString.AppendLine("Total cost not provided");
+                if (OtherCosts == null) returnString.AppendLine("Other cost not provided");
 
                 return returnString.ToString();
             }

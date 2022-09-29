@@ -66,5 +66,12 @@ namespace PigTool.Services
         Task UpdateOtherCostItem(OtherCostItem Item);
         void DeleteOtherCostItem(OtherCostItem Item);
         Task AddSingleOtherCostItem(OtherCostItem itemToAdd);
+
+        //OtherCost
+        Task<List<ReproductiveItem>> GetReproductiveItems();
+        Task<ReproductiveItem> GetReproductiveItem(int Id);
+        Task UpdateReproductiveItem(ReproductiveItem Item);
+        void DeleteReproductiveItem(ReproductiveItem Item);
+        Task AddSingleReproductiveItem(ReproductiveItem itemToAdd);
     }
 }

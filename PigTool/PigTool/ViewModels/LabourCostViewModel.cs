@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PigTool.Helpers;
-using Shared;
+using PigTool.Models;
 using Xamarin.Forms;
 
 namespace PigTool.ViewModels
@@ -109,7 +109,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedLabourType != value)
                 {
-                    DisplayOtherLabourType = value?.TranslationRowKey == Constants.OTHER;
+                    DisplayOtherLabourType = value?.TranslationRowKey == SC.OTHER;
                     selectedLabourType = value;
                     LabourType = value.TranslationRowKey;
                     OnPropertyChanged(nameof(SelectedLabourType));
@@ -205,7 +205,7 @@ namespace PigTool.ViewModels
 
         public async Task PopulateDataDowns()
         {
-            LabourTypeOptions = LogicHelper.CreatePickerToolOption(await repo.GetControlData(Constants.LABOURTYPE), User.UserLang);
+            LabourTypeOptions = LogicHelper.CreatePickerToolOption(await repo.GetControlData(SC.LABOURTYPE), User.UserLang);
 
 
             if (!IsEditMode)
@@ -287,18 +287,14 @@ namespace PigTool.ViewModels
         private string ValidateSave()
         {
             StringBuilder returnString = new StringBuilder();
-            returnString.AppendLine(Date == null ? "Date obtained not provided" : "");
+            if (Date == null) returnString.AppendLine("Date obtained not provided");
+            if (AmountPaid == null) returnString.AppendLine("Amount Paid Not Provided");
+            if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
-            if (selectedLabourType != null)
+            if (selectedLabourType != null && selectedLabourType.TranslationRowKey == SC.OTHER)
             {
-                if (selectedLabourType.TranslationRowKey == Constants.OTHER)
-                {
-                    returnString.AppendLine(string.IsNullOrWhiteSpace(OtherLaboutType) ? "Other Labour Type Not Provided" : "");
-                }
+                if (string.IsNullOrWhiteSpace(OtherLaboutType)) returnString.AppendLine("Other Labour Type Not Provided");
             }
-
-            returnString.AppendLine(AmountPaid == null ? "Amount Paid Not Provided" : "");
-            returnString.AppendLine(OtherCosts == null ? "Other Cost Not Provided" : "");
 
             return returnString.ToString();
         }

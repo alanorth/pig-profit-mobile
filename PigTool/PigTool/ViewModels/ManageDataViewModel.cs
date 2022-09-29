@@ -36,6 +36,7 @@ namespace PigTool.ViewModels
         private ObservableCollection<WaterCostItem> waterCostItems;
         private ObservableCollection<MembershipItem> membershipItems;
         private ObservableCollection<OtherCostItem> otherCostItems;
+        private ObservableCollection<ReproductiveItem> reproductiveItems;
 
         public ObservableCollection<FeedItem> FeedItems
         {
@@ -113,6 +114,17 @@ namespace PigTool.ViewModels
             }
         }
 
+        public ObservableCollection<ReproductiveItem> ReproductiveItems
+        {
+
+            get { return reproductiveItems; }
+            set
+            {
+                reproductiveItems = value;
+                OnPropertyChanged(nameof(ReproductiveItems));
+            }
+        }
+
         public Command EditFeedItem { get; }
         public Command EditHealthCareItem { get; }
         public Command EditLabourCostItem { get; }
@@ -120,6 +132,7 @@ namespace PigTool.ViewModels
         public Command EditWaterCostItem { get; }
         public Command EditMembershipItem { get; }
         public Command EditOtherCostItem { get; }
+        public Command EditReproductiveItem { get; }
 
         public ManageDataViewModel()
         {
@@ -131,6 +144,7 @@ namespace PigTool.ViewModels
             EditWaterCostItem = new Command<WaterCostItem>(async (o) => await EditWaterCostItemCommand(o));
             EditMembershipItem = new Command<MembershipItem>(async (o) => await EditMembershipItemCommand(o));
             EditOtherCostItem = new Command<OtherCostItem>(async (o) => await EditOtherCostItemCommand(o));
+            EditReproductiveItem = new Command<ReproductiveItem>(async (o) => await EditReproductiveItemCommand(o));
 
 
             Costs = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(Costs), User.UserLang);
@@ -150,6 +164,7 @@ namespace PigTool.ViewModels
             WaterCostItems = new ObservableCollection<WaterCostItem>(await repo.GetWaterCostItems());
             MembershipItems = new ObservableCollection<MembershipItem>(await repo.GetMembershipItems());
             OtherCostItems = new ObservableCollection<OtherCostItem>(await repo.GetOtherCostItems());
+            ReproductiveItems = new ObservableCollection<ReproductiveItem>(await repo.GetReproductiveItems());
         }
 
         private async Task EditFeedItemDataCommand(FeedItem feed)
@@ -229,6 +244,18 @@ namespace PigTool.ViewModels
             try
             {
                 await Application.Current.MainPage.Navigation.PushAsync(new OtherCostPage(item));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private async Task EditReproductiveItemCommand(ReproductiveItem item)
+        {
+            try
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new ReproductivePage(item));
             }
             catch (Exception ex)
             {

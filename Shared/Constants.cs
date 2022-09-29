@@ -43,6 +43,8 @@ namespace Shared
         public const string PURCHASEDWATERFROMTYPE = "PurchasedWaterFrom";
 
         //Reproduction
+        public const string SERVICETYPE = "ServiceUnit";
+        public const string WHOPROVIDEDSERVICETYPE = "WhoProvidedServiceUnit";
 
         //Membership
         public const string MEMBERSHIPTYPE = "MembershipType";

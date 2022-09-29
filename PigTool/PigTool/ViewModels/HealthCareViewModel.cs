@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PigTool.Helpers;
-using Shared;
+using PigTool.Models;
 using PigTool.Views;
 using Xamarin.Forms;
 
@@ -291,7 +291,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedHealthCareType != value)
                 {
-                    DisplayOtherHealthCareType = value?.TranslationRowKey == Constants.OTHER;
+                    DisplayOtherHealthCareType = value?.TranslationRowKey == SC.OTHER;
                     selectedHealthCareType = value;
                     OnPropertyChanged(nameof(SelectedHealthCareType));
                 }
@@ -307,7 +307,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedProvider != value)
                 {
-                    DisplayOtherProvider = value?.TranslationRowKey == Constants.OTHER;
+                    DisplayOtherProvider = value?.TranslationRowKey == SC.OTHER;
                     selectedProvider = value;
                     OnPropertyChanged(nameof(SelectedProvider));
                 }
@@ -323,7 +323,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedMedicineType != value)
                 {
-                    DisplayOtherMedicineType = value?.TranslationRowKey == Constants.OTHER;
+                    DisplayOtherMedicineType = value?.TranslationRowKey == SC.OTHER;
                     selectedMedicineType = value;
                     OnPropertyChanged(nameof(SelectedMedicineType));
                 }
@@ -339,7 +339,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedPurchasedFrom != value)
                 {
-                    DisplayOtherPurchasedFrom = value?.TranslationRowKey == Constants.OTHER;
+                    DisplayOtherPurchasedFrom = value?.TranslationRowKey == SC.OTHER;
                     selectedPurchasedFrom = value;
                     OnPropertyChanged(nameof(SelectedPurchasedFrom));
                 }
@@ -622,10 +622,10 @@ namespace PigTool.ViewModels
 
         public async Task PopulateDataDowns()
         {
-            var HealthCareTypeControlData = await repo.GetControlData(Constants.HEALTHCARETYPE);
-            var ProviderControlData = await repo.GetControlData(Constants.HEALTHSERVICEPROVIDER);
-            var MedicineTypeControlData = await repo.GetControlData(Constants.HEALTHMEDICETYPE);
-            var PurchasedFromControlData = await repo.GetControlData(Constants.HEALTHPURCHASEFROMTYPE);
+            var HealthCareTypeControlData = await repo.GetControlData(SC.HEALTHCARETYPE);
+            var ProviderControlData = await repo.GetControlData(SC.HEALTHSERVICEPROVIDER);
+            var MedicineTypeControlData = await repo.GetControlData(SC.HEALTHMEDICETYPE);
+            var PurchasedFromControlData = await repo.GetControlData(SC.HEALTHPURCHASEFROMTYPE);
 
             HealthCareTypeListOfOptions = LogicHelper.CreatePickerToolOption(HealthCareTypeControlData, User.UserLang);
             ProviderListOfOptions = LogicHelper.CreatePickerToolOption(ProviderControlData, User.UserLang);
@@ -646,46 +646,32 @@ namespace PigTool.ViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                returnString.AppendLine(Date == null ? "Date not provided" : "");
-                returnString.AppendLine(HealthCareCost == null ? "Health Care Cost Not Provided" : "");
-                returnString.AppendLine(MedicineCost == null ? "Medicine Cost Not Provided" : "");
-                
-                returnString.AppendLine(TransportationCost == null ? "Transportation Cost Not Provided" : "");
-                returnString.AppendLine(OtherCosts == null ? "Other Cost Not Provided" : "");
+                if (Date == null) returnString.AppendLine("Date not provided");
+                if (HealthCareCost == null) returnString.AppendLine("Health Care Cost Not Provided");
+                if (MedicineCost == null) returnString.AppendLine("Medicine Cost Not Provided");
+                if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
+                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
 
-                if (SelectedHealthCareType != null)
+                if (SelectedHealthCareType != null && SelectedHealthCareType.TranslationRowKey == SC.OTHER)
                 {
-                    if (SelectedHealthCareType.TranslationRowKey == Constants.OTHER)
-                    {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherHealthCareType) ? "Other Health Care Type Not Provided" : "");
-                    }
+                    if (string.IsNullOrWhiteSpace(OtherHealthCareType)) returnString.AppendLine("Other Health Care Type Not Provided");
                 }
 
-                if (SelectedProvider != null)
+                if (SelectedProvider != null && SelectedProvider.TranslationRowKey == SC.OTHER)
                 {
-                    if (SelectedProvider.TranslationRowKey == Constants.OTHER)
-                    {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherProvider) ? "Other Provider Not Provided" : "");
-                    }
+                    if (string.IsNullOrWhiteSpace(OtherProvider)) returnString.AppendLine("Other Provider Not Provided");
                 }
 
-                if (SelectedMedicineType != null)
+                if (SelectedMedicineType != null && SelectedMedicineType.TranslationRowKey == SC.OTHER)
                 {
-                    if (SelectedMedicineType.TranslationRowKey == Constants.OTHER)
-                    {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherMedicineType) ? "Other Medicine Type Not Provided" : "");
-                    }
+                    if (string.IsNullOrWhiteSpace(OtherMedicineType)) returnString.AppendLine("Other Medicine Type Not Provided");
                 }
 
-                if (SelectedPurchasedFrom != null)
+                if (SelectedPurchasedFrom != null && SelectedPurchasedFrom.TranslationRowKey == SC.OTHER)
                 {
-                    if (SelectedPurchasedFrom.TranslationRowKey == Constants.OTHER)
-                    {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherPurchasedFrom) ? "Other Purchased From Not Provided" : "");
-                    }
+                    if (string.IsNullOrWhiteSpace(OtherPurchasedFrom)) returnString.AppendLine("Other Purchased From Not Provided");
                 }
-
 
                 return returnString.ToString();
             }

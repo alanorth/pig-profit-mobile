@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PigTool.Helpers;
-using Shared;
+using PigTool.Models;
 using PigTool.Views;
 using Xamarin.Forms;
 
@@ -209,7 +209,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedWaterPurchasedUnit != value)
                 {
-                    DisplayOtherWaterUnit = value?.TranslationRowKey == Constants.OTHER;
+                    DisplayOtherWaterUnit = value?.TranslationRowKey == SC.OTHER;
                     selectedWaterPurchasedUnit = value;
                     OnPropertyChanged(nameof(SelectedWaterPurchasedUnit));
                 }
@@ -225,7 +225,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedPurchasedWaterFrom != value)
                 {
-                    DisplayOtherPurchasedFrom = value?.TranslationRowKey == Constants.OTHER;
+                    DisplayOtherPurchasedFrom = value?.TranslationRowKey == SC.OTHER;
                     selectedPurchasedWaterFrom = value;
                     OnPropertyChanged(nameof(SelectedPurchasedWaterFrom));
                 }
@@ -434,7 +434,7 @@ namespace PigTool.ViewModels
 
         private void ClearFormVariables()
         {
-            WaterPurchased = 0;
+            WaterPurchased = null;
             WaterPurchasedUnit = null;
             SelectedWaterPurchasedUnit = null;
             OtherWaterPurchasedUnit = null;
@@ -448,8 +448,8 @@ namespace PigTool.ViewModels
 
         public async Task PopulateDataDowns()
         {
-            var WaterPurchasedUnitControlData = await repo.GetControlData(Constants.WATERPURCHASEDUNITTYPE);
-            var PurchasedWaterFromControlData = await repo.GetControlData(Constants.PURCHASEDWATERFROMTYPE);
+            var WaterPurchasedUnitControlData = await repo.GetControlData(SC.WATERPURCHASEDUNITTYPE);
+            var PurchasedWaterFromControlData = await repo.GetControlData(SC.PURCHASEDWATERFROMTYPE);
 
             WaterPurchasedUnitListOfOptions = LogicHelper.CreatePickerToolOption(WaterPurchasedUnitControlData, User.UserLang);
             PurchasedWaterFromListOfOptions = LogicHelper.CreatePickerToolOption(PurchasedWaterFromControlData, User.UserLang);
@@ -466,29 +466,21 @@ namespace PigTool.ViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                returnString.AppendLine(Date == null ? "Date obtained not provided" : "");
-                returnString.AppendLine(TotalCosts == null ? "Total Cost Not Provided" : "");
-                returnString.AppendLine(TransportationCost == null ? "Transportation Cost Not Provided" : "");
-                returnString.AppendLine(OtherCosts == null ? "Other Cost Not Provided" : "");
+                if (Date == null) returnString.AppendLine("Date obtained not provided");
+                if (TotalCosts == null) returnString.AppendLine("Total Cost Not Provided");
+                if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
+                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
                 
-                if (SelectedWaterPurchasedUnit != null)
+                if (SelectedWaterPurchasedUnit != null && SelectedWaterPurchasedUnit.TranslationRowKey == SC.OTHER)
                 {
-                    if (SelectedWaterPurchasedUnit.TranslationRowKey == Constants.OTHER)
-                    {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherWaterPurchasedUnit) ? "Other Unit Not Provided" : "");
-                    }
+                    if (string.IsNullOrWhiteSpace(OtherWaterPurchasedUnit)) returnString.AppendLine("Other Unit Not Provided");
                 }
 
-                if (SelectedPurchasedWaterFrom != null)
+                if (SelectedPurchasedWaterFrom != null && SelectedPurchasedWaterFrom.TranslationRowKey == SC.OTHER)
                 {
-                    if (SelectedPurchasedWaterFrom.TranslationRowKey == Constants.OTHER)
-                    {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherPurchasedWaterFrom) ? "Other Person Purchased From Not Provided" : "");
-                    }
+                    if (string.IsNullOrWhiteSpace(OtherPurchasedWaterFrom)) returnString.AppendLine("Other Person Purchased From Not Provided");
                 }
-                if (returnString.Length > 0) return returnString.ToString();
-
 
                 return returnString.ToString();
             }

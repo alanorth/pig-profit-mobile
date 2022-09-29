@@ -97,6 +97,18 @@ namespace PigTool.Views
                       NavigationCommand: _ViewModel.EditWaterCostItem
                       );
 
+                var ReproductiveItems = createExpanderElement(
+                      ExpanderTitle: "Reproduction",
+                      ColoumnHeader1: "Date",
+                      ColoumnHeader2: "Type",
+                      ColoumnHeader3: "Sows Serviced",
+                      BindableColumns1: nameof(ReproductiveItem.Date),
+                      BindableColumns2: nameof(ReproductiveItem.ServiceType),
+                      BindableColumns3: nameof(ReproductiveItem.SowsServiced),
+                      BindingList: nameof(_ViewModel.ReproductiveItems),
+                      NavigationCommand: _ViewModel.EditReproductiveItem
+                      );
+
                 var MembershipItems = createExpanderElement(
                       ExpanderTitle: "Memberships",
                       ColoumnHeader1: "Date",
@@ -126,6 +138,7 @@ namespace PigTool.Views
                 ManageStack.Children.Add(LabourCostItems);
                 ManageStack.Children.Add(AnimalHousingItems);
                 ManageStack.Children.Add(WaterCostItems);
+                ManageStack.Children.Add(ReproductiveItems);
                 ManageStack.Children.Add(MembershipItems);
                 ManageStack.Children.Add(OtherCostItems);
                 _ViewModel.PageRendered = true;

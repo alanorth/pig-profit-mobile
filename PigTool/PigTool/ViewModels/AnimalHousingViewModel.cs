@@ -404,16 +404,16 @@ namespace PigTool.ViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                returnString.AppendLine(Date == null ? "Date obtained not provided" : "");
-                returnString.AppendLine(TotalCosts == null ? "Total Cost Not Provided" : "");
-                returnString.AppendLine(TransportationCost == null ? "Transportation Cost Not Provided" : "");
-                returnString.AppendLine(OtherCosts == null ? "Other Cost Not Provided" : "");
+                if (Date == null ) returnString.AppendLine("Date obtained not provided");
+                if (TotalCosts == null ) returnString.AppendLine("Total Cost Not Provided");
+                if (TransportationCost == null ) returnString.AppendLine("Transportation Cost Not Provided");
+                if (OtherCosts == null ) returnString.AppendLine("Other Cost Not Provided");
 
                 if (SelectedHousingType != null)
                 {
                     if (SelectedHousingType.TranslationRowKey == Constants.OTHER)
                     {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherHousingExpense) ? "Other Housing Expense Not Provided" : "");
+                        if (string.IsNullOrWhiteSpace(OtherHousingExpense)) returnString.AppendLine("Other Housing Expense Not Provided");
                     }
                     else
                     {

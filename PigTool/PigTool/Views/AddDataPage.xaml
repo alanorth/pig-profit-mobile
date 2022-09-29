@@ -27,9 +27,10 @@
                 <Button Text="{Binding Labour}" Style="{StaticResource AddNavButton}" Command="{Binding AddLabourCostItem}" BackgroundColor="{StaticResource Primary}"/>
                 <Button Text="{Binding Housing}" Style="{StaticResource AddNavButton}" Command="{Binding AddHousingItem}" BackgroundColor="{StaticResource Primary}"/>
                 <Button Text="{Binding Water}" Style="{StaticResource AddNavButton}" Command="{Binding AddWaterCostItem}" BackgroundColor="{StaticResource Primary}"/>
+                <Button Text="{Binding Reproduction}" Style="{StaticResource AddNavButton}" Command="{Binding AddReproductiveItem}" BackgroundColor="{StaticResource Primary}"/>
                 <Button Text="{Binding Membership}" Style="{StaticResource AddNavButton}" Command="{Binding AddMembershipItem}" BackgroundColor="{StaticResource Primary}"/>
                 <Button Text="{Binding Other}" Style="{StaticResource AddNavButton}" Command="{Binding AddOtherCostItem}" BackgroundColor="{StaticResource Primary}"/>
-                <Button Text="{Binding Reproduction}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>
+
                 <Button Text="{Binding AnimalPurchase}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>
                 <Button Text="{Binding LoanRepayment}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>
                 <Button Text="{Binding Equipment}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>
