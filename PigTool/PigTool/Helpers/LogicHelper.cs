@@ -1,16 +1,18 @@
-﻿using PigTool.Models;
-using PigTool.Services;
+﻿using PigTool.Services;
+using Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
 namespace PigTool.Helpers
 {
     public static class LogicHelper
     {
-        public static async Task<string> getTranslation(IDataRepo repo, string TranslationRowKey, UserLangSettings langSetting)
+        public static async Task<string> getTranslation(IDataRepo repo, string TranslationRowKey,  UserLangSettings langSetting)
         {
             var trans = await repo.GetTranslationAsync(TranslationRowKey);
             if(trans == null)

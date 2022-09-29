@@ -1,4 +1,4 @@
-﻿using PigTool.Models;
+﻿using Shared;
 using PigTool.Services;
 using SQLLiteDbContext;
 using System;

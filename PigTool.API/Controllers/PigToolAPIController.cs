@@ -1,27 +1,22 @@
 using Microsoft.AspNetCore.Mvc;
-using PigTool.Shared;
+using Shared;
 
 namespace PigTool.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PigToolController : PigToolBaseController
+    public class PigToolAPIController : PigToolBaseController
     {
-        public PigToolController(
+        public PigToolAPIController(
 
-          IConfiguration config) : base(
-          
-              config
-             )
+        IConfiguration config) : base(config)
         {
 
         }
 
-        [HttpGet, Route(Constants.ROUTE_AUTH_VERSION)]
+        [HttpGet, Route(Constants.ROUTE_API_VERSION)]
         public ActionResult GetAuthApiVersion()
         {
-            
-
             return new ContentResult()
             {
                 Content = $"auth-api-ver: v2.0 at {DateTime.Now.ToString()}",
@@ -30,7 +25,7 @@ namespace PigTool.API.Controllers
         }
 
 
-        [HttpGet, Route(Constants.ROUTE_AUTH_STORAGE)]
+        [HttpGet, Route(Constants.ROUTE_API_STORAGE)]
         public string Get()
         {
             

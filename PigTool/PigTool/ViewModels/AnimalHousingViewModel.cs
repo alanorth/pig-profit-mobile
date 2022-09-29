@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PigTool.Helpers;
-using PigTool.Models;
+using Shared;
 using PigTool.Views;
 using Xamarin.Forms;
 
@@ -227,7 +227,7 @@ namespace PigTool.ViewModels
                 }*/
                 if (selectedHousingType != value)
                 {
-                    DisplayOtherHouseType = value?.TranslationRowKey == SC.OTHER;
+                    DisplayOtherHouseType = value?.TranslationRowKey == Constants.OTHER;
                     selectedHousingType = value;
                     OnPropertyChanged(nameof(SelectedHousingType));
                 }
@@ -389,7 +389,7 @@ namespace PigTool.ViewModels
 
         public async Task PopulateDataDowns()
         {
-            var HousingTypeControlData = await repo.GetControlData(SC.HOUSINGTYPE);
+            var HousingTypeControlData = await repo.GetControlData(Constants.HOUSINGTYPE);
 
             HousingTypeListOfOptions = LogicHelper.CreatePickerToolOption(HousingTypeControlData, User.UserLang);
 
@@ -411,7 +411,7 @@ namespace PigTool.ViewModels
 
                 if (SelectedHousingType != null)
                 {
-                    if (SelectedHousingType.TranslationRowKey == SC.OTHER)
+                    if (SelectedHousingType.TranslationRowKey == Constants.OTHER)
                     {
                         returnString.AppendLine(string.IsNullOrWhiteSpace(OtherHousingExpense) ? "Other Housing Expense Not Provided" : "");
                     }

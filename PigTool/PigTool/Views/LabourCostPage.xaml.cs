@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PigTool.Helpers;
-using PigTool.Models;
+using Shared;
 using PigTool.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

@@ -1,5 +1,5 @@
 ﻿using PigTool.Helpers;
-using PigTool.Models;
+using Shared;
 using PigTool.ViewModels;
 using System;
 using System.Collections.ObjectModel;

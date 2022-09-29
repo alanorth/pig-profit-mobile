@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Shared;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PigTool.Models
+namespace Shared
 {
     /// <summary>
     /// This class is used for the drop downs

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PigTool.Helpers;
-using PigTool.Models;
+using Shared;
 using PigTool.Views;
 using Xamarin.Forms;
 
@@ -291,7 +291,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedHealthCareType != value)
                 {
-                    DisplayOtherHealthCareType = value?.TranslationRowKey == SC.OTHER;
+                    DisplayOtherHealthCareType = value?.TranslationRowKey == Constants.OTHER;
                     selectedHealthCareType = value;
                     OnPropertyChanged(nameof(SelectedHealthCareType));
                 }
@@ -307,7 +307,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedProvider != value)
                 {
-                    DisplayOtherProvider = value?.TranslationRowKey == SC.OTHER;
+                    DisplayOtherProvider = value?.TranslationRowKey == Constants.OTHER;
                     selectedProvider = value;
                     OnPropertyChanged(nameof(SelectedProvider));
                 }
@@ -323,7 +323,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedMedicineType != value)
                 {
-                    DisplayOtherMedicineType = value?.TranslationRowKey == SC.OTHER;
+                    DisplayOtherMedicineType = value?.TranslationRowKey == Constants.OTHER;
                     selectedMedicineType = value;
                     OnPropertyChanged(nameof(SelectedMedicineType));
                 }
@@ -339,7 +339,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedPurchasedFrom != value)
                 {
-                    DisplayOtherPurchasedFrom = value?.TranslationRowKey == SC.OTHER;
+                    DisplayOtherPurchasedFrom = value?.TranslationRowKey == Constants.OTHER;
                     selectedPurchasedFrom = value;
                     OnPropertyChanged(nameof(SelectedPurchasedFrom));
                 }
@@ -622,10 +622,10 @@ namespace PigTool.ViewModels
 
         public async Task PopulateDataDowns()
         {
-            var HealthCareTypeControlData = await repo.GetControlData(SC.HEALTHCARETYPE);
-            var ProviderControlData = await repo.GetControlData(SC.HEALTHSERVICEPROVIDER);
-            var MedicineTypeControlData = await repo.GetControlData(SC.HEALTHMEDICETYPE);
-            var PurchasedFromControlData = await repo.GetControlData(SC.HEALTHPURCHASEFROMTYPE);
+            var HealthCareTypeControlData = await repo.GetControlData(Constants.HEALTHCARETYPE);
+            var ProviderControlData = await repo.GetControlData(Constants.HEALTHSERVICEPROVIDER);
+            var MedicineTypeControlData = await repo.GetControlData(Constants.HEALTHMEDICETYPE);
+            var PurchasedFromControlData = await repo.GetControlData(Constants.HEALTHPURCHASEFROMTYPE);
 
             HealthCareTypeListOfOptions = LogicHelper.CreatePickerToolOption(HealthCareTypeControlData, User.UserLang);
             ProviderListOfOptions = LogicHelper.CreatePickerToolOption(ProviderControlData, User.UserLang);
@@ -656,7 +656,7 @@ namespace PigTool.ViewModels
 
                 if (SelectedHealthCareType != null)
                 {
-                    if (SelectedHealthCareType.TranslationRowKey == SC.OTHER)
+                    if (SelectedHealthCareType.TranslationRowKey == Constants.OTHER)
                     {
                         returnString.AppendLine(string.IsNullOrWhiteSpace(OtherHealthCareType) ? "Other Health Care Type Not Provided" : "");
                     }
@@ -664,7 +664,7 @@ namespace PigTool.ViewModels
 
                 if (SelectedProvider != null)
                 {
-                    if (SelectedProvider.TranslationRowKey == SC.OTHER)
+                    if (SelectedProvider.TranslationRowKey == Constants.OTHER)
                     {
                         returnString.AppendLine(string.IsNullOrWhiteSpace(OtherProvider) ? "Other Provider Not Provided" : "");
                     }
@@ -672,7 +672,7 @@ namespace PigTool.ViewModels
 
                 if (SelectedMedicineType != null)
                 {
-                    if (SelectedMedicineType.TranslationRowKey == SC.OTHER)
+                    if (SelectedMedicineType.TranslationRowKey == Constants.OTHER)
                     {
                         returnString.AppendLine(string.IsNullOrWhiteSpace(OtherMedicineType) ? "Other Medicine Type Not Provided" : "");
                     }
@@ -680,7 +680,7 @@ namespace PigTool.ViewModels
 
                 if (SelectedPurchasedFrom != null)
                 {
-                    if (SelectedPurchasedFrom.TranslationRowKey == SC.OTHER)
+                    if (SelectedPurchasedFrom.TranslationRowKey == Constants.OTHER)
                     {
                         returnString.AppendLine(string.IsNullOrWhiteSpace(OtherPurchasedFrom) ? "Other Purchased From Not Provided" : "");
                     }

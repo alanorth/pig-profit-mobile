@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PigTool.Models
-{
+namespace Shared
+{ 
     public class LabourCostItem : BaseItem
     {
 

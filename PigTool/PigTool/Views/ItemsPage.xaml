@@ -4,7 +4,7 @@
              x:Class="PigTool.Views.ItemsPage"
              Title="{Binding Title}"
              xmlns:local="clr-namespace:PigTool.ViewModels"  
-             xmlns:model="clr-namespace:PigTool.Models"  
+             xmlns:model="clr-namespace:Shared;assembly=Shared"  
              x:Name="BrowseItemsPage">
 
     <ContentPage.ToolbarItems>

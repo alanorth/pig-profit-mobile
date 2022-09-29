@@ -1,4 +1,4 @@
-﻿using PigTool.Models;
+﻿using Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -230,7 +230,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedFeedType != value)
                 {
-                    DisplayOtherFeedType = value?.TranslationRowKey == SC.OTHER;
+                    DisplayOtherFeedType = value?.TranslationRowKey == Constants.OTHER;
                     selectedFeedType = value;
                     OnPropertyChanged(nameof(SelectedFeedType));
                 }
@@ -246,7 +246,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedAmountPurchasedUnit != value)
                 {
-                    DisplayOtherAmountPurchasedUnit = value?.TranslationRowKey == SC.OTHER;
+                    DisplayOtherAmountPurchasedUnit = value?.TranslationRowKey == Constants.OTHER;
                     selectedAmountPurchasedUnit = value;
                     OnPropertyChanged(nameof(SelectedAmountPurchasedUnit));
                 }
@@ -261,7 +261,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedPurchasedFrom != value)
                 {
-                    DisplayOtherPurchasedFrom = value?.TranslationRowKey == SC.OTHER;
+                    DisplayOtherPurchasedFrom = value?.TranslationRowKey == Constants.OTHER;
                     selectedPurchasedFrom = value;
                     OnPropertyChanged(nameof(SelectedPurchasedFrom));
                 }
@@ -503,9 +503,9 @@ namespace PigTool.ViewModels
 
         public async Task PopulateDataDowns()
         {
-            var FeedTypeControlData = await repo.GetControlData(SC.FEEDTYPE);
-            var PurchasedFromControlData = await repo.GetControlData(SC.FEEDPURCHASEDFROMTYPE);
-            var FeedAmountPurchasedUnitControlData = await repo.GetControlData(SC.FEEDAMOUNTPURCHASEDUNITTYPE);
+            var FeedTypeControlData = await repo.GetControlData(Constants.FEEDTYPE);
+            var PurchasedFromControlData = await repo.GetControlData(Constants.FEEDPURCHASEDFROMTYPE);
+            var FeedAmountPurchasedUnitControlData = await repo.GetControlData(Constants.FEEDAMOUNTPURCHASEDUNITTYPE);
 
             FeedTypeListOfOptions = LogicHelper.CreatePickerToolOption(FeedTypeControlData, User.UserLang);
             PurchasedFromListOfOptions = LogicHelper.CreatePickerToolOption(PurchasedFromControlData, User.UserLang);
@@ -531,7 +531,7 @@ namespace PigTool.ViewModels
 
                 if (SelectedFeedType != null)
                 {
-                    if (SelectedFeedType.TranslationRowKey == SC.OTHER)
+                    if (SelectedFeedType.TranslationRowKey == Constants.OTHER)
                     {
                         returnString.AppendLine(string.IsNullOrWhiteSpace(OtherFeedType) ? "Other Feed Type Not Provided" : "");
                     }
@@ -539,7 +539,7 @@ namespace PigTool.ViewModels
 
                 if (SelectedAmountPurchasedUnit != null)
                 {
-                    if (SelectedAmountPurchasedUnit.TranslationRowKey == SC.OTHER)
+                    if (SelectedAmountPurchasedUnit.TranslationRowKey == Constants.OTHER)
                     {
                         returnString.AppendLine(string.IsNullOrWhiteSpace(OtherAmountPurchasedUnit) ? "Other Amount Purchased Unit Not Provided" : "");
                     }
@@ -547,7 +547,7 @@ namespace PigTool.ViewModels
 
                 if (SelectedPurchasedFrom != null)
                 {
-                    if (SelectedPurchasedFrom.TranslationRowKey == SC.OTHER)
+                    if (SelectedPurchasedFrom.TranslationRowKey == Constants.OTHER)
                     {
                         returnString.AppendLine(string.IsNullOrWhiteSpace(OtherPurchasedFrom) ? "Other Purchased From Not Provided" : "");
                     }

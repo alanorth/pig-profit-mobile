@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Shared;
 
-namespace PigTool.Models
+namespace Shared
 {
     public class Translation
     {

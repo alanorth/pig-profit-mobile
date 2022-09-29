@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.WindowsAzure.Storage.Table;
+using System;
 
-namespace PigTool.Models
+namespace Shared
 {
-    public class BaseItem
+    public class BaseItem : TableEntity
     {
-        public string PartitionKey { get; set; }
+        //public string PartitionKey { get; set; }
         public int Id { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsModified { get; set; }

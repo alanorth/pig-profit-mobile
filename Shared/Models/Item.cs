@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PigTool.Models
+namespace Shared
 {
     public class Item
     {

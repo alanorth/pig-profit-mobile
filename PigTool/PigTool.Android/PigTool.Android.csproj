@@ -96,6 +96,10 @@
     <AndroidResource Include="Resources\drawable\icon_feed.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Shared.csproj">
+      <Project>{e518dcb6-8f09-48fd-97d4-b9e7bf433037}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PigTool\PigTool.csproj">
       <Project>{A5EBAEF8-C546-4DBB-946E-00BAFA213241}</Project>
       <Name>PigTool</Name>

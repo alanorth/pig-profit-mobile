@@ -1,4 +1,4 @@
-﻿using PigTool.Models;
+﻿using Shared;
 using PigTool.ViewModels;
 using PigTool.Views;
 using System;

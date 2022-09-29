@@ -2,10 +2,24 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PigTool.Helpers
+namespace Shared
 {
-    public static class SC
+    public static class Constants
     {
+        public const string MasterStorageConnectionString = "StorageConnectionString";
+        public const string OTHER = "Other";
+
+        #region API URLS
+
+        public const string ROUTE_API_BASE = "/api";
+        public const string ROUTE_API_VERSION = ROUTE_API_BASE + "/version";
+        public const string ROUTE_API_STORAGE = ROUTE_API_BASE + "/storage";
+
+
+        public const string ROUTE_AUTH_BASE = "/auth";
+        public const string ROUTE_AUTH_REGISTERUSER = ROUTE_AUTH_BASE + "/RegisterUser";
+        #endregion
+
         #region DropDown Key Controls
         //Feed Item DropDowns
         public const string FEEDTYPE = "FeedType";
@@ -34,8 +48,12 @@ namespace PigTool.Helpers
         public const string MEMBERSHIPTYPE = "MembershipType";
         public const string TIMEPERIODUNITTYPE = "TimePeriodUnitType";
         #endregion
-        public const string OTHER = "Other";
 
-        
+
+        #region StorageTables
+        public const string TABLEUSERS = "Users";
+
+        #endregion
+
     }
 }

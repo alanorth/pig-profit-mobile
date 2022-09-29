@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PigTool.Helpers;
-using PigTool.Models;
+using Shared;
 using PigTool.Views;
 using Xamarin.Forms;
 
@@ -209,7 +209,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedWaterPurchasedUnit != value)
                 {
-                    DisplayOtherWaterUnit = value?.TranslationRowKey == SC.OTHER;
+                    DisplayOtherWaterUnit = value?.TranslationRowKey == Constants.OTHER;
                     selectedWaterPurchasedUnit = value;
                     OnPropertyChanged(nameof(SelectedWaterPurchasedUnit));
                 }
@@ -225,7 +225,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedPurchasedWaterFrom != value)
                 {
-                    DisplayOtherPurchasedFrom = value?.TranslationRowKey == SC.OTHER;
+                    DisplayOtherPurchasedFrom = value?.TranslationRowKey == Constants.OTHER;
                     selectedPurchasedWaterFrom = value;
                     OnPropertyChanged(nameof(SelectedPurchasedWaterFrom));
                 }
@@ -448,8 +448,8 @@ namespace PigTool.ViewModels
 
         public async Task PopulateDataDowns()
         {
-            var WaterPurchasedUnitControlData = await repo.GetControlData(SC.WATERPURCHASEDUNITTYPE);
-            var PurchasedWaterFromControlData = await repo.GetControlData(SC.PURCHASEDWATERFROMTYPE);
+            var WaterPurchasedUnitControlData = await repo.GetControlData(Constants.WATERPURCHASEDUNITTYPE);
+            var PurchasedWaterFromControlData = await repo.GetControlData(Constants.PURCHASEDWATERFROMTYPE);
 
             WaterPurchasedUnitListOfOptions = LogicHelper.CreatePickerToolOption(WaterPurchasedUnitControlData, User.UserLang);
             PurchasedWaterFromListOfOptions = LogicHelper.CreatePickerToolOption(PurchasedWaterFromControlData, User.UserLang);
@@ -474,7 +474,7 @@ namespace PigTool.ViewModels
                 
                 if (SelectedWaterPurchasedUnit != null)
                 {
-                    if (SelectedWaterPurchasedUnit.TranslationRowKey == SC.OTHER)
+                    if (SelectedWaterPurchasedUnit.TranslationRowKey == Constants.OTHER)
                     {
                         returnString.AppendLine(string.IsNullOrWhiteSpace(OtherWaterPurchasedUnit) ? "Other Unit Not Provided" : "");
                     }
@@ -482,7 +482,7 @@ namespace PigTool.ViewModels
 
                 if (SelectedPurchasedWaterFrom != null)
                 {
-                    if (SelectedPurchasedWaterFrom.TranslationRowKey == SC.OTHER)
+                    if (SelectedPurchasedWaterFrom.TranslationRowKey == Constants.OTHER)
                     {
                         returnString.AppendLine(string.IsNullOrWhiteSpace(OtherPurchasedWaterFrom) ? "Other Person Purchased From Not Provided" : "");
                     }
