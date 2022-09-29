@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PigTool.Helpers;
-using PigTool.Models;
+using Shared;
 using PigTool.Views;
 using Xamarin.Forms;
 
@@ -179,7 +179,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedMembershipType != value)
                 {
-                    DisplayOtherMembershipType = value?.TranslationRowKey == SC.OTHER;
+                    DisplayOtherMembershipType = value?.TranslationRowKey == Constants.OTHER;
                     selectedMembershipType = value;
                     OnPropertyChanged(nameof(SelectedMembershipType));
                 }
@@ -393,8 +393,8 @@ namespace PigTool.ViewModels
 
         public async Task PopulateDataDowns()
         {
-            var MembershipTypeControlData = await repo.GetControlData(SC.MEMBERSHIPTYPE);
-            var TimeperdiodUnitControlData = await repo.GetControlData(SC.TIMEPERIODUNITTYPE);
+            var MembershipTypeControlData = await repo.GetControlData(Constants.MEMBERSHIPTYPE);
+            var TimeperdiodUnitControlData = await repo.GetControlData(Constants.TIMEPERIODUNITTYPE);
 
             MembershipTypeListOfOptions = LogicHelper.CreatePickerToolOption(MembershipTypeControlData, User.UserLang);
             TimePeriodUnitListOfOptions = LogicHelper.CreatePickerToolOption(TimeperdiodUnitControlData, User.UserLang);
@@ -417,7 +417,7 @@ namespace PigTool.ViewModels
                 if (SelectedTimePeriodUnit == null) returnString.AppendLine("Time Period Unit Not Provided");
                 if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
-                if (selectedMembershipType != null && selectedMembershipType.TranslationRowKey == SC.OTHER)
+                if (selectedMembershipType != null && selectedMembershipType.TranslationRowKey == Constants.OTHER)
                 {
                     if (string.IsNullOrWhiteSpace(OtherMembershipType)) returnString.AppendLine("Other Membership Type Not Provided");
                 }

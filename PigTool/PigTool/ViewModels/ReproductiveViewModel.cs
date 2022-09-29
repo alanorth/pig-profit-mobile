@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PigTool.Helpers;
-using PigTool.Models;
+using Shared;
 using PigTool.Views;
 using Xamarin.Forms;
 
@@ -185,7 +185,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedServiceType != value)
                 {
-                    DisplayOtherServiceType = value?.TranslationRowKey == SC.OTHER;
+                    DisplayOtherServiceType = value?.TranslationRowKey == Constants.OTHER;
                     selectedServiceType = value;
                     OnPropertyChanged(nameof(SelectedServiceType));
                 }
@@ -201,7 +201,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedWhoProvidedService != value)
                 {
-                    DisplayOtherWhoProvidedService = value?.TranslationRowKey == SC.OTHER;
+                    DisplayOtherWhoProvidedService = value?.TranslationRowKey == Constants.OTHER;
                     selectedWhoProvidedService = value;
                     OnPropertyChanged(nameof(SelectedWhoProvidedService));
                 }
@@ -414,8 +414,8 @@ namespace PigTool.ViewModels
 
         public async Task PopulateDataDowns()
         {
-            var ServiceTypeControlData = await repo.GetControlData(SC.SERVICETYPE);
-            var WhoProvidedServiceControlData = await repo.GetControlData(SC.WHOPROVIDEDSERVICETYPE);
+            var ServiceTypeControlData = await repo.GetControlData(Constants.SERVICETYPE);
+            var WhoProvidedServiceControlData = await repo.GetControlData(Constants.WHOPROVIDEDSERVICETYPE);
 
             ServiceTypeListOfOptions = LogicHelper.CreatePickerToolOption(ServiceTypeControlData, User.UserLang);
             WhoProvidedServiceListOfOptions = LogicHelper.CreatePickerToolOption(WhoProvidedServiceControlData, User.UserLang);
@@ -437,12 +437,12 @@ namespace PigTool.ViewModels
                 if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
                 
-                if (SelectedServiceType != null && SelectedServiceType.TranslationRowKey == SC.OTHER)
+                if (SelectedServiceType != null && SelectedServiceType.TranslationRowKey == Constants.OTHER)
                 {
                     if (string.IsNullOrWhiteSpace(OtherServiceType)) returnString.AppendLine("Other Service Type Not Provided");
                 }
 
-                if (SelectedWhoProvidedService != null && SelectedWhoProvidedService.TranslationRowKey == SC.OTHER)
+                if (SelectedWhoProvidedService != null && SelectedWhoProvidedService.TranslationRowKey == Constants.OTHER)
                 {
                     if (string.IsNullOrWhiteSpace(OtherWhoProvidedService)) returnString.AppendLine("Other Who Provided Service Not Provided");
                 }

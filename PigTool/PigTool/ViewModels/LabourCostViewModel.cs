@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PigTool.Helpers;
-using PigTool.Models;
+using Shared;
 using Xamarin.Forms;
 
 namespace PigTool.ViewModels
@@ -109,7 +109,7 @@ namespace PigTool.ViewModels
             {
                 if (selectedLabourType != value)
                 {
-                    DisplayOtherLabourType = value?.TranslationRowKey == SC.OTHER;
+                    DisplayOtherLabourType = value?.TranslationRowKey == Constants.OTHER;
                     selectedLabourType = value;
                     LabourType = value.TranslationRowKey;
                     OnPropertyChanged(nameof(SelectedLabourType));
@@ -205,7 +205,7 @@ namespace PigTool.ViewModels
 
         public async Task PopulateDataDowns()
         {
-            LabourTypeOptions = LogicHelper.CreatePickerToolOption(await repo.GetControlData(SC.LABOURTYPE), User.UserLang);
+            LabourTypeOptions = LogicHelper.CreatePickerToolOption(await repo.GetControlData(Constants.LABOURTYPE), User.UserLang);
 
 
             if (!IsEditMode)
@@ -291,7 +291,7 @@ namespace PigTool.ViewModels
             if (AmountPaid == null) returnString.AppendLine("Amount Paid Not Provided");
             if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
-            if (selectedLabourType != null && selectedLabourType.TranslationRowKey == SC.OTHER)
+            if (selectedLabourType != null && selectedLabourType.TranslationRowKey == Constants.OTHER)
             {
                 if (string.IsNullOrWhiteSpace(OtherLaboutType)) returnString.AppendLine("Other Labour Type Not Provided");
             }
