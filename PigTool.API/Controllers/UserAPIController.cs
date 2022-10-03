@@ -4,9 +4,14 @@ using PigTool.API.Services;
 using Microsoft.Extensions.Configuration;
 using Shared;
 using Microsoft.WindowsAzure.Storage.Table;
+using Newtonsoft.Json;
+using System.Text.Json;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace PigTool.API.Controllers
 {
+    [Tags("User Services")]
+    [ApiController]
     public class UserAPIController : PigToolBaseController
     {
         public UserAPIController(
@@ -16,42 +21,29 @@ namespace PigTool.API.Controllers
 
         }
 
+        
         [HttpPost, Route(Constants.ROUTE_AUTH_REGISTERUSER)]
-        public ActionResult RegisterUser()
+        public async Task<ActionResult> RegisterUser()
         {
 
             try
             {
+             
+                var requestJson = await Parse(Request);
+                var unparsedRequest = requestJson.Body;
+                var user = new UserInfo();
+                var requeststring = Convert.ToString(unparsedRequest);
+
+                //Get the user from the request
+                user = JsonConvert.DeserializeObject<UserInfo>(requeststring);
 
 
-                //var requestJson = await Parse(Request);
-                //var unparsedRequest = requestJson.Body;
+                //TODO need to check if user exists before creating....
 
                 var Connection = GetStorageConnectionString();
                 // var tableOperations = new TableOperations();
                 var opertions = new TableOperations();
-                var user = new UserInfo
-                {
-                    PartitionKey = "User",
-                    RowKey = Guid.NewGuid().ToString(),
-                    County = "New Zealand",
-                    SubCounty = "Otago",
-                    District = "Southern Lakes",
-                    Email = "mark@abacusbio.com",
-                    LastUploadDate = DateTime.Now,
-                    CreatedTimeStamp = DateTime.Now,
-                    LastModified = DateTime.Now,
-                    Timestamp = DateTime.Now,
-                    Id = Guid.NewGuid().ToString(),
-                    IsDeleted = false,
-                    IsEnable = false,
-                    IsModified = false,
-                    CreatedBy = "API",
-                    Gender = "Male",
-                    Name = "Mark",
-                    
-
-                };
+               
                 var userlist = new List<UserInfo>();
 
                 userlist.Add(user);
@@ -59,12 +51,12 @@ namespace PigTool.API.Controllers
                 var result = opertions.InsertTableEntities(userlist, Constants.TABLEUSERS, Connection);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 return new ContentResult()
                 {
-                    Content = $"Error creating user",
+                    Content = $"Error creating user" + ex.Message,
                     ContentType = "text/plain"
                 };
             }
@@ -76,5 +68,6 @@ namespace PigTool.API.Controllers
             };
 
         }
+
         }
 }

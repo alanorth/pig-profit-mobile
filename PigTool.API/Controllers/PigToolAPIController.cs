@@ -4,7 +4,7 @@ using Shared;
 namespace PigTool.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Tags("API Information")]
     public class PigToolAPIController : PigToolBaseController
     {
         public PigToolAPIController(

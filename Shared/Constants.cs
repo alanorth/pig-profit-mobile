@@ -8,16 +8,23 @@ namespace Shared
     {
         public const string MasterStorageConnectionString = "StorageConnectionString";
         public const string OTHER = "Other";
+        public const string DATE_FORMAT_DMY = "dd/MMM/yyyy";
 
-        #region API URLS
+        #region API 
 
         public const string ROUTE_API_BASE = "/api";
         public const string ROUTE_API_VERSION = ROUTE_API_BASE + "/version";
         public const string ROUTE_API_STORAGE = ROUTE_API_BASE + "/storage";
 
-
         public const string ROUTE_AUTH_BASE = "/auth";
         public const string ROUTE_AUTH_REGISTERUSER = ROUTE_AUTH_BASE + "/RegisterUser";
+        
+
+        public const string ROUTE_API_DATA = ROUTE_API_BASE + "/data";
+        public const string ROUTE_API_SUBMITDATA = ROUTE_API_DATA + "/SubmitData";
+
+        public const string APICALLID = " API Service ID = ";
+
         #endregion
 
         #region DropDown Key Controls
@@ -51,9 +58,16 @@ namespace Shared
         public const string TIMEPERIODUNITTYPE = "TimePeriodUnitType";
         #endregion
 
-
         #region StorageTables
         public const string TABLEUSERS = "Users";
+        public const string TABLEDATA = "Data";
+
+        #endregion
+
+        #region PartitionKeys
+        public const string PartitionKeyAnimalHouse = "AnimalHouse";
+        public const string PartitionKeyFeed = "Feed";
+
 
         #endregion
 
