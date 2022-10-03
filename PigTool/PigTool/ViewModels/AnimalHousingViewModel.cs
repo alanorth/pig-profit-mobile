@@ -289,7 +289,7 @@ namespace PigTool.ViewModels
             OtherHousingExpense = item.OtherHousingExpense;
             TotalCosts = item.TotalCosts;
             TransportationCost = item.TransportationCost;
-            OtherCosts = item.OtherCosts; 
+            OtherCosts = item.OtherCosts;
             yearsExpected = item.YearsExpected;
             Comment = item.Comment;
         }

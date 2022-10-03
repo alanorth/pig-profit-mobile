@@ -18,7 +18,7 @@ namespace Shared
 
         public const string ROUTE_AUTH_BASE = "/auth";
         public const string ROUTE_AUTH_REGISTERUSER = ROUTE_AUTH_BASE + "/RegisterUser";
-        
+
 
         public const string ROUTE_API_DATA = ROUTE_API_BASE + "/data";
         public const string ROUTE_API_SUBMITDATA = ROUTE_API_DATA + "/SubmitData";
@@ -67,6 +67,13 @@ namespace Shared
         #region PartitionKeys
         public const string PartitionKeyAnimalHouse = "AnimalHouse";
         public const string PartitionKeyFeed = "Feed";
+        public const string PartitionKeyControlData = "ControlData";
+        public const string PartitionKeyHealthCareItem = "HealthCare";
+        public const string PartitionKeyLabourCostItem = "Labour";
+        public const string PartitionKeyMembershipItem = "MemberShip";
+        public const string PartitionKeyOtherCostItem = "OtherCost";
+        public const string PartitionKeyReporductiveItem = "Reproductive";
+        public const string PartitionKeyWaterCostItem = "Water";
 
 
         #endregion
