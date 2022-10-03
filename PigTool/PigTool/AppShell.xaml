@@ -50,7 +50,7 @@
                 <FontImageSource Glyph="&#xf1fe;" FontFamily="FA-S" />
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="Share" ContentTemplate="{DataTemplate local:ItemsPage}">
+        <ShellContent Title="Share" ContentTemplate="{DataTemplate local:SendDataPage}">
             <ShellContent.Icon>
                 <FontImageSource Glyph="&#xf14d;" FontFamily="FA-S" />
             </ShellContent.Icon>

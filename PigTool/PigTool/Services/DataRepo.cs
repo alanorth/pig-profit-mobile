@@ -315,5 +315,11 @@ namespace PigTool.Services
             await _context.AddAsync(itemToAdd);
             await _context.SaveChangesAsync();
         }
+
+        public async Task UpdateUserInfo(UserInfo userInfo)
+        {
+            _context.Update(userInfo);
+            await _context.SaveChangesAsync();
+        }
     }
 }

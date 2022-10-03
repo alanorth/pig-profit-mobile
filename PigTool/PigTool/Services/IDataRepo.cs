@@ -12,6 +12,7 @@ namespace PigTool.Services
         Task AddSingleItemAsync(Item itemToAdd);
         Task<Translation> GetTranslationAsync(string Rowkey);
         Task<UserInfo> GetUserInfoAsync();
+        Task UpdateUserInfo(UserInfo userInfo);
         Task<int> getTranslationItemCount();
         Task<List<ControlData>> GetControlData(string dropDownOption);
         Task AddSingleControlData(ControlData cd);
