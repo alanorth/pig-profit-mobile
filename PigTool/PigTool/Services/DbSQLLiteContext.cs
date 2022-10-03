@@ -37,12 +37,16 @@ namespace SQLLiteDbContext
 
             optionsBuilder.UseSqlite($"Filename={dbPath}");
 
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Translation>().HasKey(x => x.RowKey);
+
+            modelBuilder.Entity<BaseItem>().HasKey(x => x.RowKey);
+            modelBuilder.Entity<UserInfo>().HasKey(x => x.RowKey);
+            modelBuilder.Entity<BaseItem>().Property(bi => bi.RowKey).HasDefaultValue(Guid.NewGuid().ToString());
+            modelBuilder.Entity<FeedItem>().Property(bi => bi.PartitionKey).HasDefaultValue(nameof(FeedItem));
 
             modelBuilder.Entity<ControlData>()
             .HasOne(cd => cd.Translation).WithMany(t => t.ControlDatas).HasForeignKey(cd => cd.TranslationRowKey);
@@ -55,8 +59,8 @@ namespace SQLLiteDbContext
             modelBuilder.Entity<BaseItem>().Property(bi => bi.IsModified).HasDefaultValue(true);
             modelBuilder.Entity<BaseItem>().Property(bi => bi.LastModified).HasDefaultValue(DateTime.UtcNow);
 
-#if DEBUG
-            modelBuilder.Entity<Translation>(x =>
+#if DEBUG  
+           modelBuilder.Entity<Translation>(x =>
                 {
                     x.HasData(
                         new Translation() { RowKey = "LoginButton", English = "Login", Lang1 = "SignUP", Lang2 = "OverHere" },
@@ -304,140 +308,140 @@ namespace SQLLiteDbContext
             modelBuilder.Entity<ControlData>(async x =>
                 {
                     x.HasData(
-                       new ControlData() { Id = 1, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDTYPE, TranslationRowKey = "DropDownFeedType1" },
-                       new ControlData() { Id = 2, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDTYPE, TranslationRowKey = "DropDownFeedType2" },
-                       new ControlData() { Id = 3, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDTYPE, TranslationRowKey = "DropDownFeedType3" },
-                       new ControlData() { Id = 4, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDTYPE, TranslationRowKey = "DropDownFeedType4" },
-                       new ControlData() { Id = 5, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDTYPE, TranslationRowKey = "DropDownFeedType5" },
-                       new ControlData() { Id = 6, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDTYPE, TranslationRowKey = Constants.OTHER },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 1, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDTYPE, TranslationRowKey = "DropDownFeedType1" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 2, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDTYPE, TranslationRowKey = "DropDownFeedType2" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 3, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDTYPE, TranslationRowKey = "DropDownFeedType3" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 4, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDTYPE, TranslationRowKey = "DropDownFeedType4" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 5, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDTYPE, TranslationRowKey = "DropDownFeedType5" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 6, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDTYPE, TranslationRowKey = Constants.OTHER },
 
-                       new ControlData() { Id = 7, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType1" },
-                       new ControlData() { Id = 8, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType2" },
-                       new ControlData() { Id = 9, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType3" },
-                       new ControlData() { Id = 10, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType4" },
-                       new ControlData() { Id = 11, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType5" },
-                       new ControlData() { Id = 12, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = Constants.OTHER },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 7, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType1" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 8, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType2" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 9, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType3" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 10, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType4" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 11, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType5" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 12, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = Constants.OTHER },
 
-                       new ControlData() { Id = 13, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDPURCHASEDFROMTYPE, TranslationRowKey = "DropDownPurchaseFrom1" },
-                       new ControlData() { Id = 14, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDPURCHASEDFROMTYPE, TranslationRowKey = "DropDownPurchaseFrom2" },
-                       new ControlData() { Id = 15, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDPURCHASEDFROMTYPE, TranslationRowKey = "DropDownPurchaseFrom3" },
-                       new ControlData() { Id = 16, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDPURCHASEDFROMTYPE, TranslationRowKey = "DropDownPurchaseFrom4" },
-                       new ControlData() { Id = 17, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDPURCHASEDFROMTYPE, TranslationRowKey = "DropDownPurchaseFrom5" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 13, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDPURCHASEDFROMTYPE, TranslationRowKey = "DropDownPurchaseFrom1" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 14, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDPURCHASEDFROMTYPE, TranslationRowKey = "DropDownPurchaseFrom2" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 15, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDPURCHASEDFROMTYPE, TranslationRowKey = "DropDownPurchaseFrom3" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 16, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDPURCHASEDFROMTYPE, TranslationRowKey = "DropDownPurchaseFrom4" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 17, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDPURCHASEDFROMTYPE, TranslationRowKey = "DropDownPurchaseFrom5" },
 
-                       new ControlData() { Id = 18, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType1" },
-                       new ControlData() { Id = 19, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType2" },
-                       new ControlData() { Id = 20, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType3" },
-                       new ControlData() { Id = 21, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType4" },
-                       new ControlData() { Id = 22, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType5" },
-                       new ControlData() { Id = 23, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType6" },
-                       new ControlData() { Id = 24, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType7" },
-                       new ControlData() { Id = 25, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType8" },
-                       new ControlData() { Id = 26, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType9" },
-                       new ControlData() { Id = 27, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType10" },
-                       new ControlData() { Id = 28, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = Constants.OTHER },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 18, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType1" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 19, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType2" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 20, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType3" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 21, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType4" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 22, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType5" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 23, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType6" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 24, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType7" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 25, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType8" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 26, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType9" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 27, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = "HeathCareType10" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 28, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHCARETYPE, TranslationRowKey = Constants.OTHER },
 
-                       new ControlData() { Id = 29, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType1" },
-                       new ControlData() { Id = 30, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType2" },
-                       new ControlData() { Id = 31, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType3" },
-                       new ControlData() { Id = 32, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType4" },
-                       new ControlData() { Id = 33, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType5" },
-                       new ControlData() { Id = 34, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType6" },
-                       new ControlData() { Id = 35, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType7" },
-                       new ControlData() { Id = 36, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType8" },
-                       new ControlData() { Id = 37, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType9" },
-                       new ControlData() { Id = 38, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType10" },
-                       new ControlData() { Id = 39, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = Constants.OTHER },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 29, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType1" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 30, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType2" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 31, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType3" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 32, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType4" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 33, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType5" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 34, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType6" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 35, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType7" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 36, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType8" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 37, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType9" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 38, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType10" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 39, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = Constants.OTHER },
 
-                       new ControlData() { Id = 40, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType1" },
-                       new ControlData() { Id = 41, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType2" },
-                       new ControlData() { Id = 42, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType3" },
-                       new ControlData() { Id = 43, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType4" },
-                       new ControlData() { Id = 44, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType5" },
-                       new ControlData() { Id = 45, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType6" },
-                       new ControlData() { Id = 46, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType7" },
-                       new ControlData() { Id = 47, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType8" },
-                       new ControlData() { Id = 48, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType9" },
-                       new ControlData() { Id = 49, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType10" },
-                       new ControlData() { Id = 50, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = Constants.OTHER },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 40, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType1" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 41, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType2" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 42, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType3" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 43, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType4" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 44, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType5" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 45, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType6" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 46, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType7" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 47, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType8" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 48, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType9" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 49, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType10" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 50, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = Constants.OTHER },
 
-                       new ControlData() { Id = 51, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType1" },
-                       new ControlData() { Id = 52, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType2" },
-                       new ControlData() { Id = 53, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType3" },
-                       new ControlData() { Id = 54, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType4" },
-                       new ControlData() { Id = 55, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType5" },
-                       new ControlData() { Id = 56, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType6" },
-                       new ControlData() { Id = 57, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType7" },
-                       new ControlData() { Id = 58, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType8" },
-                       new ControlData() { Id = 59, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType9" },
-                       new ControlData() { Id = 60, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType10" },
-                       new ControlData() { Id = 61, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = Constants.OTHER },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 51, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType1" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 52, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType2" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 53, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType3" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 54, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType4" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 55, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType5" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 56, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType6" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 57, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType7" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 58, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType8" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 59, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType9" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 60, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType10" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 61, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = Constants.OTHER },
                        
-                       new ControlData() { Id = 62, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LABOURTYPE, TranslationRowKey = "LabourType1" },
-                       new ControlData() { Id = 63, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LABOURTYPE, TranslationRowKey = "LabourType2" },
-                       new ControlData() { Id = 64, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LABOURTYPE, TranslationRowKey = "LabourType3" },
-                       new ControlData() { Id = 65, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LABOURTYPE, TranslationRowKey = "LabourType4" },
-                       new ControlData() { Id = 66, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LABOURTYPE, TranslationRowKey = "LabourType5" },
-                       new ControlData() { Id = 67, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LABOURTYPE, TranslationRowKey = "LabourType6" },
-                       new ControlData() { Id = 68, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LABOURTYPE, TranslationRowKey = Constants.OTHER },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 62, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LABOURTYPE, TranslationRowKey = "LabourType1" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 63, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LABOURTYPE, TranslationRowKey = "LabourType2" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 64, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LABOURTYPE, TranslationRowKey = "LabourType3" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 65, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LABOURTYPE, TranslationRowKey = "LabourType4" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 66, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LABOURTYPE, TranslationRowKey = "LabourType5" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 67, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LABOURTYPE, TranslationRowKey = "LabourType6" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 68, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LABOURTYPE, TranslationRowKey = Constants.OTHER },
 
-                       new ControlData() { Id = 69, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HOUSINGTYPE, TranslationRowKey = "HousingExpenseType1" },
-                       new ControlData() { Id = 70, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HOUSINGTYPE, TranslationRowKey = "HousingExpenseType2" },
-                       new ControlData() { Id = 71, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HOUSINGTYPE, TranslationRowKey = "HousingExpenseType3" },
-                       new ControlData() { Id = 72, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HOUSINGTYPE, TranslationRowKey = "HousingExpenseType4" },
-                       new ControlData() { Id = 73, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HOUSINGTYPE, TranslationRowKey = "HousingExpenseType5" },
-                       new ControlData() { Id = 74, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HOUSINGTYPE, TranslationRowKey = Constants.OTHER },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 69, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HOUSINGTYPE, TranslationRowKey = "HousingExpenseType1" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 70, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HOUSINGTYPE, TranslationRowKey = "HousingExpenseType2" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 71, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HOUSINGTYPE, TranslationRowKey = "HousingExpenseType3" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 72, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HOUSINGTYPE, TranslationRowKey = "HousingExpenseType4" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 73, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HOUSINGTYPE, TranslationRowKey = "HousingExpenseType5" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 74, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.HOUSINGTYPE, TranslationRowKey = Constants.OTHER },
 
-                       new ControlData() { Id = 75, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WATERPURCHASEDUNITTYPE, TranslationRowKey = "WaterPurchasedUnitType1" },
-                       new ControlData() { Id = 76, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WATERPURCHASEDUNITTYPE, TranslationRowKey = "WaterPurchasedUnitType2" },
-                       new ControlData() { Id = 77, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WATERPURCHASEDUNITTYPE, TranslationRowKey = "WaterPurchasedUnitType3" },
-                       new ControlData() { Id = 78, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WATERPURCHASEDUNITTYPE, TranslationRowKey = "WaterPurchasedUnitType4" },
-                       new ControlData() { Id = 79, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WATERPURCHASEDUNITTYPE, TranslationRowKey = "WaterPurchasedUnitType5" },
-                       new ControlData() { Id = 80, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WATERPURCHASEDUNITTYPE, TranslationRowKey = Constants.OTHER },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 75, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WATERPURCHASEDUNITTYPE, TranslationRowKey = "WaterPurchasedUnitType1" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 76, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WATERPURCHASEDUNITTYPE, TranslationRowKey = "WaterPurchasedUnitType2" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 77, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WATERPURCHASEDUNITTYPE, TranslationRowKey = "WaterPurchasedUnitType3" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 78, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WATERPURCHASEDUNITTYPE, TranslationRowKey = "WaterPurchasedUnitType4" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 79, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WATERPURCHASEDUNITTYPE, TranslationRowKey = "WaterPurchasedUnitType5" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 80, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WATERPURCHASEDUNITTYPE, TranslationRowKey = Constants.OTHER },
 
-                       new ControlData() { Id = 81, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType1" },
-                       new ControlData() { Id = 82, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType2" },
-                       new ControlData() { Id = 83, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType3" },
-                       new ControlData() { Id = 84, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType4" },
-                       new ControlData() { Id = 85, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType5" },
-                       new ControlData() { Id = 86, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType6" },
-                       new ControlData() { Id = 87, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType7" },
-                       new ControlData() { Id = 88, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType8" },
-                       new ControlData() { Id = 89, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType9" },
-                       new ControlData() { Id = 90, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType10" },
-                       new ControlData() { Id = 91, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = Constants.OTHER },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 81, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType1" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 82, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType2" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 83, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType3" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 84, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType4" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 85, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType5" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 86, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType6" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 87, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType7" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 88, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType8" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 89, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType9" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 90, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = "PurchasedWaterFromType10" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 91, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.PURCHASEDWATERFROMTYPE, TranslationRowKey = Constants.OTHER },
 
-                       new ControlData() { Id = 92, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType1" },
-                       new ControlData() { Id = 93, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType2" },
-                       new ControlData() { Id = 94, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType3" },
-                       new ControlData() { Id = 95, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType4" },
-                       new ControlData() { Id = 96, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType5" },
-                       new ControlData() { Id = 97, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType6" },
-                       new ControlData() { Id = 98, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType7" },
-                       new ControlData() { Id = 99, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType8" },
-                       new ControlData() { Id = 100, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.MEMBERSHIPTYPE, TranslationRowKey = Constants.OTHER },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 92, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType1" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 93, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType2" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 94, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType3" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 95, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType4" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 96, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType5" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 97, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType6" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 98, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType7" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 99, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.MEMBERSHIPTYPE, TranslationRowKey = "MembershipType8" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 100, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.MEMBERSHIPTYPE, TranslationRowKey = Constants.OTHER },
 
-                       new ControlData() { Id = 101, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.TIMEPERIODUNITTYPE, TranslationRowKey = "TimePeriodUnitType1" },
-                       new ControlData() { Id = 102, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.TIMEPERIODUNITTYPE, TranslationRowKey = "TimePeriodUnitType2" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 101, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.TIMEPERIODUNITTYPE, TranslationRowKey = "TimePeriodUnitType1" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 102, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.TIMEPERIODUNITTYPE, TranslationRowKey = "TimePeriodUnitType2" },
 
-                       new ControlData() { Id = 103, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SERVICETYPE, TranslationRowKey = "ServiceType1" },
-                       new ControlData() { Id = 104, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SERVICETYPE, TranslationRowKey = "ServiceType2" },
-                       new ControlData() { Id = 105, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SERVICETYPE, TranslationRowKey = "ServiceType3" },
-                       new ControlData() { Id = 106, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SERVICETYPE, TranslationRowKey = "ServiceType4" },
-                       new ControlData() { Id = 107, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SERVICETYPE, TranslationRowKey = "ServiceType5" },
-                       new ControlData() { Id = 108, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SERVICETYPE, TranslationRowKey = "ServiceType6" },
-                       new ControlData() { Id = 109, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SERVICETYPE, TranslationRowKey = "ServiceType7" },
-                       new ControlData() { Id = 110, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SERVICETYPE, TranslationRowKey = "ServiceType8" },
-                       new ControlData() { Id = 111, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SERVICETYPE, TranslationRowKey = Constants.OTHER },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 103, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SERVICETYPE, TranslationRowKey = "ServiceType1" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 104, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SERVICETYPE, TranslationRowKey = "ServiceType2" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 105, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SERVICETYPE, TranslationRowKey = "ServiceType3" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 106, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SERVICETYPE, TranslationRowKey = "ServiceType4" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 107, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SERVICETYPE, TranslationRowKey = "ServiceType5" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 108, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SERVICETYPE, TranslationRowKey = "ServiceType6" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 109, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SERVICETYPE, TranslationRowKey = "ServiceType7" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 110, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SERVICETYPE, TranslationRowKey = "ServiceType8" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 111, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SERVICETYPE, TranslationRowKey = Constants.OTHER },
 
-                       new ControlData() { Id = 112, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType1" },
-                       new ControlData() { Id = 113, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType2" },
-                       new ControlData() { Id = 114, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType3" },
-                       new ControlData() { Id = 115, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType4" },
-                       new ControlData() { Id = 116, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType5" },
-                       new ControlData() { Id = 117, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType6" },
-                       new ControlData() { Id = 118, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType7" },
-                       new ControlData() { Id = 119, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType8" },
-                       new ControlData() { Id = 120, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = Constants.OTHER }
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 112, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType1" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 113, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType2" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 114, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType3" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 115, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType4" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 116, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType5" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 117, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType6" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 118, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType7" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 119, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType8" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), PartitionKey = "ControlData", CreatedBy = "InitialUpload", Id = 120, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = Constants.OTHER }
                     );
                 }
             );
@@ -450,10 +454,12 @@ namespace SQLLiteDbContext
                 );
 
 
+
             modelBuilder.Entity<UserInfo>(x =>
             {
                 x.HasData(
-                    new UserInfo() { Id = "1", LastUploadDate = DateTime.Now, UserName = "Marty", Village = "Dunedin", UserLang = UserLangSettings.Eng }
+                    new UserInfo() { LastUploadDate = DateTime.Now, UserName = "Marty", Village = "Dunedin", Name="Marty Haigh",
+                        County= "New Zealand", District= "Otago", Email= "Email@email.com",  UserLang = UserLangSettings.Eng, RowKey = Guid.NewGuid().ToString(), PartitionKey = "User", Timestamp = DateTime.UtcNow}
                 );
             }
            );

@@ -27,11 +27,16 @@ namespace PigTool.ViewModels
         }
 
         public LoggedInViewModel() {
+            try { 
             repo = DependencyService.Get<IDataRepo>();
             //users Variables
             User = repo.GetUserInfoAsync().Result;
 
             TranslationStore = repo.GetAllTranslations().Result;
+            }catch(Exception ex)
+            {
+
+            }
         }
 
 
