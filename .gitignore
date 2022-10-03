@@ -361,3 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/PigTool.API/Properties/ServiceDependencies/pigprofittool - Web Deploy/profile.arm.json

@@ -25,6 +25,8 @@ namespace PigTool.API.Controllers
         [HttpPost, Route(Constants.ROUTE_AUTH_REGISTERUSER)]
         public async Task<ActionResult> RegisterUser()
         {
+            var callGUID = Guid.NewGuid().ToString();
+            var Connection = GetStorageConnectionString();
 
             try
             {
@@ -34,13 +36,17 @@ namespace PigTool.API.Controllers
                 var user = new UserInfo();
                 var requeststring = Convert.ToString(unparsedRequest);
 
+                //Log request
+                await LoggingOperations.LogRequestToBlob("REGISTERUSER", "POST", requeststring, callGUID, Connection);
+
+
                 //Get the user from the request
                 user = JsonConvert.DeserializeObject<UserInfo>(requeststring);
 
 
                 //TODO need to check if user exists before creating....
 
-                var Connection = GetStorageConnectionString();
+               
                 // var tableOperations = new TableOperations();
                 var opertions = new TableOperations();
                
@@ -54,19 +60,26 @@ namespace PigTool.API.Controllers
             catch (Exception ex)
             {
 
-                return new ContentResult()
+                var result = new ContentResult()
                 {
-                    Content = $"Error creating user" + ex.Message,
+                    Content = $"Error creating user" + Constants.APICALLID + callGUID,
                     ContentType = "text/plain"
                 };
+
+                await LoggingOperations.LogRequestToBlob("REGISTERUSER", "RESPONSE", result.Content, callGUID, Connection);
+
+                return result;
             }
 
-            return new ContentResult()
+            var contentresult = new ContentResult()
             {
                 Content = $"User Created",
                 ContentType = "text/plain"
             };
 
+            await LoggingOperations.LogRequestToBlob("REGISTERUSER", "RESPONSE", contentresult.Content, callGUID, Connection);
+
+            return contentresult;
         }
 
         }
