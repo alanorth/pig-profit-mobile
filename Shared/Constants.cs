@@ -56,6 +56,10 @@ namespace Shared
         //Membership
         public const string MEMBERSHIPTYPE = "MembershipType";
         public const string TIMEPERIODUNITTYPE = "TimePeriodUnitType";
+
+        // Animal Purchase
+        public const string ANIMALTYPE = "AnimalType";
+        public const string ANIMALPURCHASEDFROMTYPE = "AnimalPurchasedFrom";
         #endregion
 
         #region StorageTables
@@ -74,7 +78,7 @@ namespace Shared
         public const string PartitionKeyOtherCostItem = "OtherCost";
         public const string PartitionKeyReporductiveItem = "Reproductive";
         public const string PartitionKeyWaterCostItem = "Water";
-
+        public const string PartitionKeyAnimalPurchaseItem = "AnimalPurchase";
 
         #endregion
 

@@ -133,6 +133,18 @@ namespace PigTool.Views
                       NavigationCommand: _ViewModel.EditOtherCostItem
                       );
 
+                var AnimalPurchaseOptions = createExpanderElement(
+                      ExpanderTitle: "Animal Purchase",
+                      ColoumnHeader1: "Date",
+                      ColoumnHeader2: "Animal Type",
+                      ColoumnHeader3: "Cost",
+                      BindableColumns1: nameof(AnimalPurchaseItem.Date),
+                      BindableColumns2: nameof(AnimalPurchaseItem.AnimalType),
+                      BindableColumns3: nameof(AnimalPurchaseItem.TotalCosts),
+                      BindingList: nameof(_ViewModel.AnimalPurchaseItems),
+                      NavigationCommand: _ViewModel.EditAnimalPurchaseItem
+                      );
+
                 ManageStack.Children.Add(FeedItemsExpander);
                 ManageStack.Children.Add(HealthItemsExpander);
                 ManageStack.Children.Add(LabourCostItems);
@@ -141,6 +153,7 @@ namespace PigTool.Views
                 ManageStack.Children.Add(ReproductiveItems);
                 ManageStack.Children.Add(MembershipItems);
                 ManageStack.Children.Add(OtherCostItems);
+                ManageStack.Children.Add(AnimalPurchaseOptions);
                 _ViewModel.PageRendered = true;
             }
 

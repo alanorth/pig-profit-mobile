@@ -24,6 +24,7 @@ namespace SQLLiteDbContext
         public DbSet<MembershipItem> MembershipItems { get; set; }
         public DbSet<OtherCostItem> OtherCostItems { get; set; }
         public DbSet<ReproductiveItem> ReproductiveItems { get; set; }
+        public DbSet<AnimalPurchaseItem> AnimalPurchaseItems { get; set; }
 
         public DbSQLLiteContext()
         {
@@ -175,6 +176,15 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "WhoProvidedServiceTranslation", English = "Who Provided Service", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "OtherWhoProvidedServiceTranslation", English = "Who Provided Service", Lang1 = "", Lang2 = "" },
 
+                         //Animal Purchase
+                         new Translation() { RowKey = "AnimalPurchaseTitleTranslation", English = "Animal Purchase", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "AnimalTypeTranslation", English = "Animal type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "OtherAnimalTypeTranslation", English = "Animal type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "NumberPurchasedTranslation", English = "Number purchased", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "AnimalPurchasedFromTranslation", English = "Purchased from", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "OtherAnimalPurchasedTranslation", English = "Purchased from", Lang1 = "", Lang2 = "" },
+
+
 
                          //Drop Down Options
                          new Translation() { RowKey = "DropDownFeedType1", English = "Feed Type 1", Lang1 = "Feed Type 1 Lang 1", Lang2 = "Feed Type 1 Lang 2" },
@@ -298,7 +308,25 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "WhoProvidedServiceType5", English = "Type 5", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "WhoProvidedServiceType6", English = "Type 6", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "WhoProvidedServiceType7", English = "Type 7", Lang1 = "", Lang2 = "" },
-                         new Translation() { RowKey = "WhoProvidedServiceType8", English = "Type 8", Lang1 = "", Lang2 = "" }
+                         new Translation() { RowKey = "WhoProvidedServiceType8", English = "Type 8", Lang1 = "", Lang2 = "" },
+
+                         new Translation() { RowKey = "AnimalType1", English = "Type 1", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "AnimalType2", English = "Type 2", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "AnimalType3", English = "Type 3", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "AnimalType4", English = "Type 4", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "AnimalType5", English = "Type 5", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "AnimalType6", English = "Type 6", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "AnimalType7", English = "Type 7", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "AnimalType8", English = "Type 8", Lang1 = "", Lang2 = "" },
+
+                         new Translation() { RowKey = "AnimalPurchasedFromType1", English = "Type 1", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "AnimalPurchasedFromType2", English = "Type 2", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "AnimalPurchasedFromType3", English = "Type 3", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "AnimalPurchasedFromType4", English = "Type 4", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "AnimalPurchasedFromType5", English = "Type 5", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "AnimalPurchasedFromType6", English = "Type 6", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "AnimalPurchasedFromType7", English = "Type 7", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "AnimalPurchasedFromType8", English = "Type 8", Lang1 = "", Lang2 = "" }
 
 
                          );
@@ -442,6 +470,35 @@ namespace SQLLiteDbContext
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType7" },
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType8" },
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = Constants.OTHER }
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 112, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType1" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 113, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType2" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 114, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType3" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 115, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType4" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 116, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType5" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 117, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType6" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 118, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType7" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 119, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = "WhoProvidedServiceType8" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 120, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.WHOPROVIDEDSERVICETYPE, TranslationRowKey = Constants.OTHER },
+
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 121, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALTYPE, TranslationRowKey = "AnimalType1" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 122, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALTYPE, TranslationRowKey = "AnimalType2" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 123, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALTYPE, TranslationRowKey = "AnimalType3" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 124, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALTYPE, TranslationRowKey = "AnimalType4" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 125, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALTYPE, TranslationRowKey = "AnimalType5" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 126, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALTYPE, TranslationRowKey = "AnimalType6" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 127, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALTYPE, TranslationRowKey = "AnimalType7" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 128, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALTYPE, TranslationRowKey = "AnimalType8" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 129, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALTYPE, TranslationRowKey = Constants.OTHER },
+
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 130, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALPURCHASEDFROMTYPE, TranslationRowKey = "AnimalPurchasedFromType1" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 131, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALPURCHASEDFROMTYPE, TranslationRowKey = "AnimalPurchasedFromType2" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 132, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALPURCHASEDFROMTYPE, TranslationRowKey = "AnimalPurchasedFromType3" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 133, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALPURCHASEDFROMTYPE, TranslationRowKey = "AnimalPurchasedFromType4" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 134, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALPURCHASEDFROMTYPE, TranslationRowKey = "AnimalPurchasedFromType5" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 135, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALPURCHASEDFROMTYPE, TranslationRowKey = "AnimalPurchasedFromType6" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 136, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALPURCHASEDFROMTYPE, TranslationRowKey = "AnimalPurchasedFromType7" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 137, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALPURCHASEDFROMTYPE, TranslationRowKey = "AnimalPurchasedFromType8" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 138, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALPURCHASEDFROMTYPE, TranslationRowKey = Constants.OTHER }
                     );
                 }
             );
