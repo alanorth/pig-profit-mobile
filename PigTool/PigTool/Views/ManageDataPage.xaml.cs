@@ -233,7 +233,7 @@ namespace PigTool.Views
                 
                 listvw.ItemTemplate = new DataTemplate(() =>
                 {
-                    return new CustomVeggieCell(BindableColumns1, BindableColumns2, BindableColumns3, NavigationCommand);
+                    return new CustomManageDataCell(BindableColumns1, BindableColumns2, BindableColumns3, NavigationCommand);
                 });
                 
                 stackHolder.Children.Add(listvw);
@@ -247,9 +247,9 @@ namespace PigTool.Views
 
     }
 
-    public class CustomVeggieCell : ViewCell
+    public class CustomManageDataCell : ViewCell
     {
-        public CustomVeggieCell(string var1, string var2, string var3, Command command)
+        public CustomManageDataCell(string var1, string var2, string var3, Command command)
         {
 
             var horizontalLayout = new StackLayout() { BackgroundColor = Color.White };
