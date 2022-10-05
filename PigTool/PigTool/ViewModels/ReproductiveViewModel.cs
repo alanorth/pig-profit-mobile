@@ -371,6 +371,7 @@ namespace PigTool.ViewModels
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
+                    PartitionKey = Constants.PartitionKeyReporductiveItem,
                 };
 
                 await repo.AddSingleReproductiveItem(newReproductiveItem);

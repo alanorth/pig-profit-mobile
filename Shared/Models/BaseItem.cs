@@ -6,7 +6,7 @@ namespace Shared
     public class BaseItem : TableEntity
     {
         //public string PartitionKey { get; set; }
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public bool IsDeleted { get; set; }
         public bool IsModified { get; set; }
         public bool IsEnable { get; set; }

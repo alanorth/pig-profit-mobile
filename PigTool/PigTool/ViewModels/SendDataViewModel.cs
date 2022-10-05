@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -146,27 +147,47 @@ namespace PigTool.ViewModels
 
         public async void PostDataToAPI()
         {
-            var apiTransfer = new APITransferItem()
+            try
             {
-                FeedItems = FeedItems.ToList(),
-                HealthCareItems = HealthCareItems.ToList(),
-                LabourCostItems = LabourCostItems.ToList(),
-                AnimalHouseItems = AnimalHouseItems.ToList(),
-                OtherCostItems = OtherCostItems.ToList(),
-                ReproductiveItems = ReproductiveItems.ToList(),
-                WaterCostItems = WaterCostItems.ToList(),
-                MembershipItems = MembershipItems.ToList(),
-                
-            };
+                var apiTransfer = new APITransferItem()
+                {
+                    FeedItems = FeedItems.ToList(),
+                    HealthCareItems = HealthCareItems.ToList(),
+                    LabourCostItems = LabourCostItems.ToList(),
+                    AnimalHouseItems = AnimalHouseItems.ToList(),
+                    OtherCostItems = OtherCostItems.ToList(),
+                    ReproductiveItems = ReproductiveItems.ToList(),
+                    WaterCostItems = WaterCostItems.ToList(),
+                    MembershipItems = MembershipItems.ToList(),
 
-            User.LastUploadDate = DateTime.Now;
-            LastTimeDataUploaded = User.LastUploadDate;
+                };
 
-            //await repo.UpdateUserInfo(User);
+                User.LastUploadDate = DateTime.Now;
+                LastTimeDataUploaded = User.LastUploadDate;
 
-            var jObject = JsonConvert.SerializeObject(apiTransfer);
+                //await repo.UpdateUserInfo(User);
+                var httpClient = new HttpClient();
 
-            var stop = "stop";
+                httpClient.DefaultRequestHeaders.Add("XApiKey", "ENTER YOUR API KEY HERE");
+
+                var jObject = JsonConvert.SerializeObject(apiTransfer);
+
+                var data = new StringContent(jObject, Encoding.UTF8, "application/json");
+                //var url = "https://wsuatapim.azure-api.net/snpit/samples/get";
+                var url = "https://localhost:7218/api/data/SubmitData";
+
+                var response = await httpClient.PostAsync(url, data);
+                var responseString = await response.Content.ReadAsStringAsync();
+
+                httpClient.Dispose();
+
+
+            }
+            catch(Exception ex)
+            {
+
+            }
+           
         }
     }
 }

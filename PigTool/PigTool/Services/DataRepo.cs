@@ -66,7 +66,7 @@ namespace PigTool.Services
 
         public async Task AddSingleFeedItem(FeedItem itemToAdd)
         {
-            if (_context.FeedItems.Any(fd => fd.Id == itemToAdd.Id)) return;
+            if (_context.FeedItems.Any(fd => fd.RowKey == itemToAdd.RowKey)) return;
 
             await _context.AddAsync(itemToAdd);
             await _context.SaveChangesAsync();
@@ -89,9 +89,9 @@ namespace PigTool.Services
             return feedItems;
         }
 
-        public async Task<FeedItem> GetFeedItem(int Id)
+        public async Task<FeedItem> GetFeedItem(string RowKey)
         {
-           return await _context.FeedItems.SingleOrDefaultAsync(feedItem => feedItem.Id == Id);
+           return await _context.FeedItems.SingleOrDefaultAsync(feedItem => feedItem.RowKey == RowKey);
         }
 
         public async Task UpdateFeedItem(FeedItem feedItem)
@@ -111,9 +111,9 @@ namespace PigTool.Services
             return await _context.HealthCareItems.ToListAsync();
         }
 
-        public async Task<HealthCareItem> GetHealthCareItem(int Id)
+        public async Task<HealthCareItem> GetHealthCareItem(string RowKey)
         {
-            return await _context.HealthCareItems.SingleOrDefaultAsync(Item => Item.Id == Id);
+            return await _context.HealthCareItems.SingleOrDefaultAsync(Item => Item.RowKey == RowKey);
         }
 
         public async Task UpdateHealthCareItem(HealthCareItem Item)
@@ -130,15 +130,15 @@ namespace PigTool.Services
 
         public async Task AddSingleHealthCareItem(HealthCareItem itemToAdd)
         {
-            if (_context.HealthCareItems.Any(fd => fd.Id == itemToAdd.Id)) return;
+            if (_context.HealthCareItems.Any(fd => fd.RowKey == itemToAdd.RowKey)) return;
 
             await _context.AddAsync(itemToAdd);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<LabourCostItem> GetLabourCostItem(int Id)
+        public async Task<LabourCostItem> GetLabourCostItem(string RowKey)
         {
-            return await _context.LabourCostItems.SingleOrDefaultAsync(Item => Item.Id == Id);
+            return await _context.LabourCostItems.SingleOrDefaultAsync(Item => Item.RowKey == RowKey);
         }
 
         public async Task UpdateLabourCostItem(LabourCostItem Item)
@@ -155,7 +155,7 @@ namespace PigTool.Services
 
         public async Task AddSingleLabourCostItem(LabourCostItem itemToAdd)
         {
-            if (_context.LabourCostItems.Any(fd => fd.Id == itemToAdd.Id)) return;
+            if (_context.LabourCostItems.Any(fd => fd.RowKey == itemToAdd.RowKey)) return;
 
             await _context.AddAsync(itemToAdd);
             await _context.SaveChangesAsync();
@@ -171,9 +171,9 @@ namespace PigTool.Services
             return await _context.AnimalHouseItems.ToListAsync();
         }
 
-        public async Task<AnimalHouseItem> GetAnimalHouseItem(int Id)
+        public async Task<AnimalHouseItem> GetAnimalHouseItem(string RowKey)
         {
-            return await _context.AnimalHouseItems.SingleOrDefaultAsync(Item => Item.Id == Id);
+            return await _context.AnimalHouseItems.SingleOrDefaultAsync(Item => Item.RowKey == RowKey);
         }
 
         public async Task UpdateAnimalHouseItem(AnimalHouseItem Item)
@@ -190,7 +190,7 @@ namespace PigTool.Services
 
         public async Task AddSingleAnimalHouseItem(AnimalHouseItem itemToAdd)
         {
-            if (_context.AnimalHouseItems.Any(fd => fd.Id == itemToAdd.Id)) return;
+            if (_context.AnimalHouseItems.Any(fd => fd.RowKey == itemToAdd.RowKey)) return;
 
             await _context.AddAsync(itemToAdd);
             await _context.SaveChangesAsync();
@@ -201,9 +201,9 @@ namespace PigTool.Services
             return await _context.WaterCostItems.ToListAsync();
         }
 
-        public async Task<WaterCostItem> GetWaterCostItem(int Id)
+        public async Task<WaterCostItem> GetWaterCostItem(string RowKey)
         {
-            return await _context.WaterCostItems.SingleOrDefaultAsync(Item => Item.Id == Id);
+            return await _context.WaterCostItems.SingleOrDefaultAsync(Item => Item.RowKey == RowKey);
         }
 
         public async Task UpdateWaterCostItem(WaterCostItem Item)
@@ -220,7 +220,7 @@ namespace PigTool.Services
 
         public async Task AddSingleWaterCostItem(WaterCostItem itemToAdd)
         {
-            if (_context.WaterCostItems.Any(fd => fd.Id == itemToAdd.Id)) return;
+            if (_context.WaterCostItems.Any(fd => fd.RowKey == itemToAdd.RowKey)) return;
 
             await _context.AddAsync(itemToAdd);
             await _context.SaveChangesAsync();
@@ -231,9 +231,9 @@ namespace PigTool.Services
             return await _context.MembershipItems.ToListAsync();
         }
 
-        public async Task<MembershipItem> GetMembershipItem(int Id)
+        public async Task<MembershipItem> GetMembershipItem(string RowKey)
         {
-            return await _context.MembershipItems.SingleOrDefaultAsync(Item => Item.Id == Id);
+            return await _context.MembershipItems.SingleOrDefaultAsync(Item => Item.RowKey == RowKey);
         }
 
         public async Task UpdateMembershipItem(MembershipItem Item)
@@ -250,7 +250,7 @@ namespace PigTool.Services
 
         public async Task AddSingleMembershipItem(MembershipItem itemToAdd)
         {
-            if (_context.MembershipItems.Any(fd => fd.Id == itemToAdd.Id)) return;
+            if (_context.MembershipItems.Any(fd => fd.RowKey == itemToAdd.RowKey)) return;
 
             await _context.AddAsync(itemToAdd);
             await _context.SaveChangesAsync();
@@ -261,9 +261,9 @@ namespace PigTool.Services
             return await _context.OtherCostItems.ToListAsync();
         }
 
-        public async Task<OtherCostItem> GetOtherCostItem(int Id)
+        public async Task<OtherCostItem> GetOtherCostItem(string RowKey)
         {
-            return await _context.OtherCostItems.SingleOrDefaultAsync(Item => Item.Id == Id);
+            return await _context.OtherCostItems.SingleOrDefaultAsync(Item => Item.RowKey == RowKey);
         }
 
         public async Task UpdateOtherCostItem(OtherCostItem Item)
@@ -280,7 +280,7 @@ namespace PigTool.Services
 
         public async Task AddSingleOtherCostItem(OtherCostItem itemToAdd)
         {
-            if (_context.OtherCostItems.Any(fd => fd.Id == itemToAdd.Id)) return;
+            if (_context.OtherCostItems.Any(fd => fd.RowKey == itemToAdd.RowKey)) return;
 
             await _context.AddAsync(itemToAdd);
             await _context.SaveChangesAsync();
@@ -291,9 +291,9 @@ namespace PigTool.Services
             return await _context.ReproductiveItems.ToListAsync();
         }
 
-        public async Task<ReproductiveItem> GetReproductiveItem(int Id)
+        public async Task<ReproductiveItem> GetReproductiveItem(string RowKey)
         {
-            return await _context.ReproductiveItems.SingleOrDefaultAsync(Item => Item.Id == Id);
+            return await _context.ReproductiveItems.SingleOrDefaultAsync(Item => Item.RowKey == RowKey);
         }
 
         public async Task UpdateReproductiveItem(ReproductiveItem Item)
@@ -310,7 +310,7 @@ namespace PigTool.Services
 
         public async Task AddSingleReproductiveItem(ReproductiveItem itemToAdd)
         {
-            if (_context.ReproductiveItems.Any(fd => fd.Id == itemToAdd.Id)) return;
+            if (_context.ReproductiveItems.Any(fd => fd.RowKey == itemToAdd.RowKey)) return;
 
             await _context.AddAsync(itemToAdd);
             await _context.SaveChangesAsync();

@@ -38,7 +38,11 @@ namespace PigTool.API.Controllers
                 var requeststring = Convert.ToString(unparsedRequest);
 
 #if DEBUG
-                requeststring = Mocks.ConstructAPIItem();
+                if (requeststring == null)
+                {
+                    requeststring = Mocks.ConstructAPIItem();
+                }
+                
 #endif
                 //Log response
                 await LoggingOperations.LogRequestToBlob("SUBMITDATA", "POST", requeststring, callGUID, Connection);
