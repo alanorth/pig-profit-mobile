@@ -166,6 +166,8 @@ namespace PigTool.ViewModels
                 MembershipItems = new ObservableCollection<MembershipItem>(await repo.GetMembershipItems());
                 OtherCostItems = new ObservableCollection<OtherCostItem>(await repo.GetOtherCostItems());
                 ReproductiveItems = new ObservableCollection<ReproductiveItem>(await repo.GetReproductiveItems());
+                AnimalPurchaseItems = new ObservableCollection<AnimalPurchaseItem>(await repo.GetAnimalPurchaseItems());
+                LoanRepaymentItems = new ObservableCollection<LoanRepaymentItem>(await repo.GetLoanRepaymentItems());
             }
 
         }
@@ -185,7 +187,8 @@ namespace PigTool.ViewModels
                     ReproductiveItems = ReproductiveItems.ToList(),
                     WaterCostItems = WaterCostItems.ToList(),
                     MembershipItems = MembershipItems.ToList(),
-
+                    AnimalPurchaseItems = AnimalPurchaseItems.ToList(),
+                    LoanRepaymentItems = LoanRepaymentItems.ToList(),
                 };
 
                 User.LastUploadDate = DateTime.Now;

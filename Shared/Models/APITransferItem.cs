@@ -10,13 +10,11 @@ namespace Shared
         public List<FeedItem>? FeedItems { get; set; }  
         public List<HealthCareItem>? HealthCareItems { get; set; }  
         public List<LabourCostItem>? LabourCostItems { get; set; }
-
         public List<MembershipItem>? MembershipItems { get; set; }  
-
         public List<OtherCostItem>? OtherCostItems { get; set; }
-
         public List<ReproductiveItem>? ReproductiveItems { get; set; }
-
         public List<WaterCostItem>? WaterCostItems { get; set; }
+        public List<AnimalPurchaseItem>? AnimalPurchaseItems { get; set; }
+        public List<LoanRepaymentItem>? LoanRepaymentItems { get; set; }
     }
 }
