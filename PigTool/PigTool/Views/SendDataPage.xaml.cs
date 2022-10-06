@@ -46,6 +46,7 @@ namespace PigTool.Views
                 new RowDefinition (),
                 new RowDefinition (),
                 new RowDefinition (),
+                new RowDefinition (),
                 new RowDefinition ()
             };
 
@@ -58,6 +59,7 @@ namespace PigTool.Views
             createTableRowandDataLabel(SendDataGrid, nameof(_ViewModel.OtherCostItems), _ViewModel.OtherCostItems.Count(), 0, 6);
             createTableRowandDataLabel(SendDataGrid, nameof(_ViewModel.AnimalPurchaseItems), _ViewModel.AnimalPurchaseItems.Count(), 0, 7);
             createTableRowandDataLabel(SendDataGrid, nameof(_ViewModel.LoanRepaymentItems), _ViewModel.LoanRepaymentItems.Count(), 0, 8);
+            createTableRowandDataLabel(SendDataGrid, nameof(_ViewModel.EquipmentItems), _ViewModel.EquipmentItems.Count(), 0, 9);
         }
 
         private void createTableRowandDataLabel(Grid grid, string LabelText, int NumberOfRecords, int colNum, int rowNum)

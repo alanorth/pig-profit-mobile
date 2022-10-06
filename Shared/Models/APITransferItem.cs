@@ -16,5 +16,6 @@ namespace Shared
         public List<WaterCostItem>? WaterCostItems { get; set; }
         public List<AnimalPurchaseItem>? AnimalPurchaseItems { get; set; }
         public List<LoanRepaymentItem>? LoanRepaymentItems { get; set; }
+        public List<EquipmentItem>? EquipmentItems { get; set; }
     }
 }

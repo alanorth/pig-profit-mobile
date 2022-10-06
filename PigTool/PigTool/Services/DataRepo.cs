@@ -376,6 +376,36 @@ namespace PigTool.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task<List<EquipmentItem>> GetEquipmentItems()
+        {
+            return await _context.EquipmentItems.ToListAsync();
+        }
+
+        public async Task<EquipmentItem> GetEquipmentItem(string RowKey)
+        {
+            return await _context.EquipmentItems.SingleOrDefaultAsync(Item => Item.RowKey == RowKey);
+        }
+
+        public async Task UpdateEquipmentItem(EquipmentItem Item)
+        {
+            _context.Update(Item);
+            await _context.SaveChangesAsync();
+        }
+
+        public void DeleteEquipmentItem(EquipmentItem Item)
+        {
+            _context.Remove(Item);
+            _context.SaveChangesAsync();
+        }
+
+        public async Task AddSingleEquipmentItem(EquipmentItem itemToAdd)
+        {
+            if (_context.EquipmentItems.Any(fd => fd.RowKey == itemToAdd.RowKey)) return;
+
+            await _context.AddAsync(itemToAdd);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task UpdateUserInfo(UserInfo userInfo)
         {
             _context.Update(userInfo);

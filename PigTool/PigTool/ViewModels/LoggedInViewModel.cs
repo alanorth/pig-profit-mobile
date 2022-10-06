@@ -35,7 +35,7 @@ namespace PigTool.ViewModels
             TranslationStore = repo.GetAllTranslations().Result;
             }catch(Exception ex)
             {
-
+                Console.WriteLine(ex.Message);
             }
         }
 

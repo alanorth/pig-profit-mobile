@@ -42,6 +42,9 @@
     <Compile Update="Views\LoanRepaymentPage.xaml.cs">
       <DependentUpon>LoanRepaymentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\EquipmentPage.xaml.cs">
+      <DependentUpon>EquipmentPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\WaterCostPage.xaml.cs">
       <DependentUpon>WaterCostPage.xaml</DependentUpon>
     </Compile>

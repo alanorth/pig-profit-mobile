@@ -18,9 +18,9 @@
                 </StackLayout.Resources>
                 <Frame Margin="0, 10" CornerRadius="6">
                     <Label Text="{Binding Costs}"
-                       FontAttributes="Bold"
-                    VerticalOptions="StartAndExpand"
-                    HorizontalOptions="CenterAndExpand" FontSize="25"/>
+                        FontAttributes="Bold"
+                        VerticalOptions="StartAndExpand"
+                        HorizontalOptions="CenterAndExpand" FontSize="25"/>
                 </Frame>
                 <Button Text="{Binding Feed}" Style="{StaticResource AddNavButton}" Command="{Binding AddFeedItem}"   BackgroundColor="{StaticResource Primary}"/>
                 <Button Text="{Binding Healthcare}" Style="{StaticResource AddNavButton}" Command="{Binding AddHealthCareItem}"  BackgroundColor="{StaticResource Primary}"/>
@@ -32,12 +32,12 @@
                 <Button Text="{Binding Other}" Style="{StaticResource AddNavButton}" Command="{Binding AddOtherCostItem}" BackgroundColor="{StaticResource Primary}"/>
                 <Button Text="{Binding AnimalPurchase}" Style="{StaticResource AddNavButton}" Command="{Binding AddAnimalPurchaseItem}" BackgroundColor="{StaticResource Primary}"/>
                 <Button Text="{Binding LoanRepayment}" Style="{StaticResource AddNavButton}"  Command="{Binding AddLoanRepaymentItem}" BackgroundColor="{StaticResource Primary}"/>
-                <Button Text="{Binding Equipment}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>
+                <Button Text="{Binding Equipment}" Style="{StaticResource AddNavButton}" Command="{Binding AddEquipmentItem}" BackgroundColor="{StaticResource Primary}"/>
                 <Frame Margin="0, 10">
                     <Label Text="{Binding Income}"
-                           FontAttributes="Bold"
-                VerticalOptions="StartAndExpand"
-                HorizontalOptions="CenterAndExpand" FontSize="25"/>
+                        FontAttributes="Bold"
+                        VerticalOptions="StartAndExpand"
+                        HorizontalOptions="CenterAndExpand" FontSize="25"/>
                 </Frame>
                 <Button Text="{Binding Saleofpigs}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>
                 <Button Text="{Binding Saleofbreedingservices}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>

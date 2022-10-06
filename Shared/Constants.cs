@@ -63,6 +63,9 @@ namespace Shared
 
         // Loan Repayment
         public const string LOANPROVIDERTYPE = "LoanProvider";
+
+        // Equipment
+        public const string EQUIPMENTTYPE = "EquipmentType";
         #endregion
 
         #region StorageTables
@@ -83,6 +86,7 @@ namespace Shared
         public const string PartitionKeyWaterCostItem = "Water";
         public const string PartitionKeyAnimalPurchaseItem = "AnimalPurchase";
         public const string PartitionKeyLoanRepaymentItem = "LoanRepayment";
+        public const string PartitionKeyEquipmentItem = "Equipment";
 
         #endregion
 

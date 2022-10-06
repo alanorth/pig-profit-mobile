@@ -157,6 +157,18 @@ namespace PigTool.Views
                       NavigationCommand: _ViewModel.EditLoanRepaymentItem
                       );
 
+                var EquipmentItems = createExpanderElement(
+                      ExpanderTitle: "Equipment",
+                      ColoumnHeader1: "Date",
+                      ColoumnHeader2: "Equipment Type",
+                      ColoumnHeader3: "Total Cost",
+                      BindableColumns1: nameof(EquipmentItem.Date),
+                      BindableColumns2: nameof(EquipmentItem.EquipmentType),
+                      BindableColumns3: nameof(EquipmentItem.TotalCosts),
+                      BindingList: nameof(_ViewModel.EquipmentItems),
+                      NavigationCommand: _ViewModel.EditEquipmentItem
+                      );
+
                 ManageStack.Children.Add(FeedItemsExpander);
                 ManageStack.Children.Add(HealthItemsExpander);
                 ManageStack.Children.Add(LabourCostItems);
@@ -167,6 +179,7 @@ namespace PigTool.Views
                 ManageStack.Children.Add(OtherCostItems);
                 ManageStack.Children.Add(AnimalPurchaseItems);
                 ManageStack.Children.Add(LoanRepaymentItems);
+                ManageStack.Children.Add(EquipmentItems);
                 _ViewModel.PageRendered = true;
             }
 

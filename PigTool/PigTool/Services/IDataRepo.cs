@@ -82,11 +82,18 @@ namespace PigTool.Services
         void DeleteAnimalPurchaseItem(AnimalPurchaseItem Item);
         Task AddSingleAnimalPurchaseItem(AnimalPurchaseItem itemToAdd);
 
-        //Animal Purchase
+        //Loan Repayment
         Task<List<LoanRepaymentItem>> GetLoanRepaymentItems();
         Task<LoanRepaymentItem> GetLoanRepaymentItem(string RowKey);
         Task UpdateLoanRepaymentItem(LoanRepaymentItem Item);
         void DeleteLoanRepaymentItem(LoanRepaymentItem Item);
         Task AddSingleLoanRepaymentItem(LoanRepaymentItem itemToAdd);
+
+        //Equipment
+        Task<List<EquipmentItem>> GetEquipmentItems();
+        Task<EquipmentItem> GetEquipmentItem(string RowKey);
+        Task UpdateEquipmentItem(EquipmentItem Item);
+        void DeleteEquipmentItem(EquipmentItem Item);
+        Task AddSingleEquipmentItem(EquipmentItem itemToAdd);
     }
 }
