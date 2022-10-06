@@ -402,6 +402,7 @@ namespace PigTool.ViewModels
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
+                    PartitionKey = Constants.PartitionKeyWaterCostItem,
                 };
 
                 await repo.AddSingleWaterCostItem(newWaterCost);

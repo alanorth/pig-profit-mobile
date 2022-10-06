@@ -406,6 +406,7 @@ namespace PigTool.ViewModels
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
+                    PartitionKey = Constants.PartitionKeyAnimalPurchaseItem
                 };
 
                 await repo.AddSingleAnimalPurchaseItem(newAnimalPurchase);

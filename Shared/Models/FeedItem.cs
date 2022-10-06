@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -17,6 +18,7 @@ namespace Shared
         public string? PurchasedFrom { get; set; }
         public string? OtherPurchasedFrom { get; set; }
         public string? Comment { get; set; }
+        [JsonIgnore]
         public virtual Translation FeedTypeTranslation { get; set; }
         public virtual string FeedTypeTranslationString { get; set; }
     }

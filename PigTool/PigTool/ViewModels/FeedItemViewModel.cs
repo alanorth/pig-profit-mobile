@@ -457,6 +457,7 @@ namespace PigTool.ViewModels
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
+                    PartitionKey = Constants.PartitionKeyFeed,
                 };
 
                 await repo.AddSingleFeedItem(newFeedItem);
