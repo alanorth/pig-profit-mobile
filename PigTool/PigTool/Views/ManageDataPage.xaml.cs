@@ -133,7 +133,7 @@ namespace PigTool.Views
                       NavigationCommand: _ViewModel.EditOtherCostItem
                       );
 
-                var AnimalPurchaseOptions = createExpanderElement(
+                var AnimalPurchaseItems = createExpanderElement(
                       ExpanderTitle: "Animal Purchase",
                       ColoumnHeader1: "Date",
                       ColoumnHeader2: "Animal Type",
@@ -145,6 +145,18 @@ namespace PigTool.Views
                       NavigationCommand: _ViewModel.EditAnimalPurchaseItem
                       );
 
+                var LoanRepaymentItems = createExpanderElement(
+                      ExpanderTitle: "Loan Repayment",
+                      ColoumnHeader1: "Date",
+                      ColoumnHeader2: "Repaid",
+                      ColoumnHeader3: "Provider",
+                      BindableColumns1: nameof(LoanRepaymentItem.Date),
+                      BindableColumns2: nameof(LoanRepaymentItem.TotalAmountRepaid),
+                      BindableColumns3: nameof(LoanRepaymentItem.LoanProvider),
+                      BindingList: nameof(_ViewModel.LoanRepaymentItems),
+                      NavigationCommand: _ViewModel.EditLoanRepaymentItem
+                      );
+
                 ManageStack.Children.Add(FeedItemsExpander);
                 ManageStack.Children.Add(HealthItemsExpander);
                 ManageStack.Children.Add(LabourCostItems);
@@ -153,7 +165,8 @@ namespace PigTool.Views
                 ManageStack.Children.Add(ReproductiveItems);
                 ManageStack.Children.Add(MembershipItems);
                 ManageStack.Children.Add(OtherCostItems);
-                ManageStack.Children.Add(AnimalPurchaseOptions);
+                ManageStack.Children.Add(AnimalPurchaseItems);
+                ManageStack.Children.Add(LoanRepaymentItems);
                 _ViewModel.PageRendered = true;
             }
 

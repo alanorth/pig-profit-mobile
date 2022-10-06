@@ -60,6 +60,9 @@ namespace Shared
         // Animal Purchase
         public const string ANIMALTYPE = "AnimalType";
         public const string ANIMALPURCHASEDFROMTYPE = "AnimalPurchasedFrom";
+
+        // Loan Repayment
+        public const string LOANPROVIDERTYPE = "LoanProvider";
         #endregion
 
         #region StorageTables
@@ -79,6 +82,7 @@ namespace Shared
         public const string PartitionKeyReporductiveItem = "Reproductive";
         public const string PartitionKeyWaterCostItem = "Water";
         public const string PartitionKeyAnimalPurchaseItem = "AnimalPurchase";
+        public const string PartitionKeyLoanRepaymentItem = "LoanRepayment";
 
         #endregion
 

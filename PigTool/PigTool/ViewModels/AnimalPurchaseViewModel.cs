@@ -452,8 +452,8 @@ namespace PigTool.ViewModels
 
         public async Task PopulateDataDowns()
         {
-            var AnimalTypeControlData = await repo.GetControlData(Constants.WATERPURCHASEDUNITTYPE);
-            var AnimalPurchasedromControlData = await repo.GetControlData(Constants.PURCHASEDWATERFROMTYPE);
+            var AnimalTypeControlData = await repo.GetControlData(Constants.ANIMALTYPE);
+            var AnimalPurchasedromControlData = await repo.GetControlData(Constants.ANIMALPURCHASEDFROMTYPE);
 
             AnimalTypeListOfOptions = LogicHelper.CreatePickerToolOption(AnimalTypeControlData, User.UserLang);
             AnimalPurchasedFromListOfOptions = LogicHelper.CreatePickerToolOption(AnimalPurchasedromControlData, User.UserLang);

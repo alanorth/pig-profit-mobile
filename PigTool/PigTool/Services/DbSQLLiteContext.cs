@@ -25,6 +25,7 @@ namespace SQLLiteDbContext
         public DbSet<OtherCostItem> OtherCostItems { get; set; }
         public DbSet<ReproductiveItem> ReproductiveItems { get; set; }
         public DbSet<AnimalPurchaseItem> AnimalPurchaseItems { get; set; }
+        public DbSet<LoanRepaymentItem> LoanRepaymentItems { get; set; }
 
         public DbSQLLiteContext()
         {
@@ -57,6 +58,7 @@ namespace SQLLiteDbContext
             modelBuilder.Entity<MembershipItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyMembershipItem);
             modelBuilder.Entity<OtherCostItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyOtherCostItem);
             modelBuilder.Entity<ReproductiveItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyReporductiveItem);
+            modelBuilder.Entity<LoanRepaymentItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyLoanRepaymentItem);
 
             modelBuilder.Entity<ControlData>()
             .HasOne(cd => cd.Translation).WithMany(t => t.ControlDatas).HasForeignKey(cd => cd.TranslationRowKey);
@@ -192,6 +194,13 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "NumberPurchasedTranslation", English = "Number purchased", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "AnimalPurchasedFromTranslation", English = "Purchased from", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "OtherAnimalPurchasedTranslation", English = "Purchased from", Lang1 = "", Lang2 = "" },
+
+                         //Loan Repayment
+                         new Translation() { RowKey = "LoanRepaymentTitleTranslation", English = "Loan Repayment", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "LoanProviderTranslation", English = "Loan Provider", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "OtherLoanProviderTranslation", English = "Other Loan Provider", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "TotalAmountRepaidTranslation", English = "Total Amount Paid", Lang1 = "", Lang2 = "" },
+                         
 
 
 
@@ -335,7 +344,16 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "AnimalPurchasedFromType5", English = "Type 5", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "AnimalPurchasedFromType6", English = "Type 6", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "AnimalPurchasedFromType7", English = "Type 7", Lang1 = "", Lang2 = "" },
-                         new Translation() { RowKey = "AnimalPurchasedFromType8", English = "Type 8", Lang1 = "", Lang2 = "" }
+                         new Translation() { RowKey = "AnimalPurchasedFromType8", English = "Type 8", Lang1 = "", Lang2 = "" },
+
+                         new Translation() { RowKey = "LoanProviderType1", English = "Provider 1", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "LoanProviderType2", English = "Provider 2", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "LoanProviderType3", English = "Provider 3", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "LoanProviderType4", English = "Provider 4", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "LoanProviderType5", English = "Provider 5", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "LoanProviderType6", English = "Provider 6", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "LoanProviderType7", English = "Provider 7", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "LoanProviderType8", English = "Provider 8", Lang1 = "", Lang2 = "" }
 
 
                          );
@@ -498,7 +516,17 @@ namespace SQLLiteDbContext
                        new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 135, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALPURCHASEDFROMTYPE, TranslationRowKey = "AnimalPurchasedFromType6" },
                        new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 136, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALPURCHASEDFROMTYPE, TranslationRowKey = "AnimalPurchasedFromType7" },
                        new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 137, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALPURCHASEDFROMTYPE, TranslationRowKey = "AnimalPurchasedFromType8" },
-                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 138, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALPURCHASEDFROMTYPE, TranslationRowKey = Constants.OTHER }
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 138, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.ANIMALPURCHASEDFROMTYPE, TranslationRowKey = Constants.OTHER },
+
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 130, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LOANPROVIDERTYPE, TranslationRowKey = "LoanProviderType1" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 131, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LOANPROVIDERTYPE, TranslationRowKey = "LoanProviderType2" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 132, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LOANPROVIDERTYPE, TranslationRowKey = "LoanProviderType3" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 133, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LOANPROVIDERTYPE, TranslationRowKey = "LoanProviderType4" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 134, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LOANPROVIDERTYPE, TranslationRowKey = "LoanProviderType5" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 135, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LOANPROVIDERTYPE, TranslationRowKey = "LoanProviderType6" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 136, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LOANPROVIDERTYPE, TranslationRowKey = "LoanProviderType7" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 137, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LOANPROVIDERTYPE, TranslationRowKey = "LoanProviderType8" },
+                       new ControlData() { RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", Id = 138, CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.LOANPROVIDERTYPE, TranslationRowKey = Constants.OTHER }
                     );
                 }
             );
