@@ -72,7 +72,8 @@ namespace PigTool.ViewModels
         }
         public double? AmountPaid
         {
-            get => amountPaid; set
+            get => amountPaid; 
+            set
             {
                 if (amountPaid != value)
                 {
