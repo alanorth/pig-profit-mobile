@@ -29,6 +29,9 @@ namespace PigTool.ViewModels
         private ObservableCollection<AnimalPurchaseItem> animalPurchaseItems;
         private ObservableCollection<LoanRepaymentItem> loanRepaymentItems;
         private ObservableCollection<EquipmentItem> equipmentItems;
+
+        private ObservableCollection<PigSaleItem> pigSaleItems;
+
         private DateTime lastTimeDataUploaded;
 
         public ObservableCollection<FeedItem> FeedItems
@@ -155,6 +158,16 @@ namespace PigTool.ViewModels
             }
         }
 
+        public ObservableCollection<PigSaleItem> PigSaleItems
+        {
+            get { return pigSaleItems; }
+            set
+            {
+                pigSaleItems = new ObservableCollection<PigSaleItem>(value.Where(x => x.LastModified > LastTimeDataUploaded).ToList());
+                OnPropertyChanged(nameof(PigSaleItems));
+            }
+        }
+
 
         public Command SendDataToApi { get; }
 
@@ -180,6 +193,8 @@ namespace PigTool.ViewModels
                 AnimalPurchaseItems = new ObservableCollection<AnimalPurchaseItem>(await repo.GetAnimalPurchaseItems());
                 LoanRepaymentItems = new ObservableCollection<LoanRepaymentItem>(await repo.GetLoanRepaymentItems());
                 EquipmentItems = new ObservableCollection<EquipmentItem>(await repo.GetEquipmentItems());
+
+                PigSaleItems = new ObservableCollection<PigSaleItem>(await repo.GetPigSaleItems());
             }
 
         }
@@ -202,6 +217,8 @@ namespace PigTool.ViewModels
                     AnimalPurchaseItems = AnimalPurchaseItems.ToList(),
                     LoanRepaymentItems = LoanRepaymentItems.ToList(),
                     EquipmentItems = EquipmentItems.ToList(),
+
+                    PigSaleItems = PigSaleItems.ToList(),
                 };
 
                 User.LastUploadDate = DateTime.Now;

@@ -45,6 +45,9 @@
     <Compile Update="Views\EquipmentPage.xaml.cs">
       <DependentUpon>EquipmentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\PigSalePage.xaml.cs">
+      <DependentUpon>PigSalePage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\WaterCostPage.xaml.cs">
       <DependentUpon>WaterCostPage.xaml</DependentUpon>
     </Compile>

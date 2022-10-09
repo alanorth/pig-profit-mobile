@@ -95,5 +95,12 @@ namespace PigTool.Services
         Task UpdateEquipmentItem(EquipmentItem Item);
         void DeleteEquipmentItem(EquipmentItem Item);
         Task AddSingleEquipmentItem(EquipmentItem itemToAdd);
+
+        //PigSale
+        Task<List<PigSaleItem>> GetPigSaleItems();
+        Task<PigSaleItem> GetPigSaleItem(string RowKey);
+        Task UpdatePigSaleItem(PigSaleItem Item);
+        void DeletePigSaleItem(PigSaleItem Item);
+        Task AddSinglePigSaleItem(PigSaleItem itemToAdd);
     }
 }

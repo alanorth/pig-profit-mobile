@@ -24,7 +24,8 @@ namespace PigTool.ViewModels
         public string LoanRepayment { get; set; }
         public string Equipment { get; set; }
         public string Income { get; set; }
-        public string Saleofpigs { get; set; }
+
+        public string PigSale { get; set; }
         public string Saleofbreedingservices { get; set; }
         public string Saleofmaure { get; set; }
         public string OtherIncome { get; set; }
@@ -42,6 +43,8 @@ namespace PigTool.ViewModels
         public Command AddLoanRepaymentItem { get; }
         public Command AddEquipmentItem { get; }
 
+        public Command AddPigSaleItem { get; }
+
         public AddDataViewModel()
         {
 
@@ -57,6 +60,8 @@ namespace PigTool.ViewModels
             AddLoanRepaymentItem = (new Command(AddLoanRepaymentItemCommand));
             AddEquipmentItem = (new Command(AddEquipmentItemCommand));
 
+            AddPigSaleItem = (new Command(AddPigSaleItemCommand));
+
             Costs = LogicHelper.getTranslation(repo, nameof(Costs), User.UserLang).Result;
             Feed = LogicHelper.getTranslation(repo, nameof(Feed), User.UserLang).Result;
             Healthcare = LogicHelper.getTranslation(repo, nameof(Healthcare), User.UserLang).Result;
@@ -68,12 +73,13 @@ namespace PigTool.ViewModels
             Other = LogicHelper.getTranslation(repo, nameof(Other), User.UserLang).Result;
             AnimalPurchase = LogicHelper.getTranslation(repo, nameof(AnimalPurchase), User.UserLang).Result;
             LoanRepayment = LogicHelper.getTranslation(repo, nameof(LoanRepayment), User.UserLang).Result;
+            Equipment = LogicHelper.getTranslation(repo, nameof(Equipment), User.UserLang).Result;
             Income = LogicHelper.getTranslation(repo, nameof(Income), User.UserLang).Result;
-            Saleofpigs = LogicHelper.getTranslation(repo, nameof(Saleofpigs), User.UserLang).Result;
+            PigSale = LogicHelper.getTranslation(repo, nameof(PigSale), User.UserLang).Result;
             Saleofbreedingservices = LogicHelper.getTranslation(repo, nameof(Saleofbreedingservices), User.UserLang).Result;
             Saleofmaure = LogicHelper.getTranslation(repo, nameof(Saleofmaure), User.UserLang).Result;
             OtherIncome = LogicHelper.getTranslation(repo, nameof(OtherIncome), User.UserLang).Result;
-            Equipment = LogicHelper.getTranslation(repo, nameof(Equipment), User.UserLang).Result;
+
         }
 
         private async void AddFeedItemDataCommand(object obj)
@@ -208,5 +214,17 @@ namespace PigTool.ViewModels
             }
         }
 
+
+        private async void AddPigSaleItemCommand(object obj)
+        {
+            try
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new PigSalePage());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 }

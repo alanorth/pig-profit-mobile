@@ -39,7 +39,7 @@
                         VerticalOptions="StartAndExpand"
                         HorizontalOptions="CenterAndExpand" FontSize="25"/>
                 </Frame>
-                <Button Text="{Binding Saleofpigs}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>
+                <Button Text="{Binding PigSale}" Style="{StaticResource AddNavButton}"  Command="{Binding AddPigSaleItem}" BackgroundColor="{StaticResource Primary}"/>
                 <Button Text="{Binding Saleofbreedingservices}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>
                 <Button Text="{Binding Saleofmaure}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>
                 <Button Text="{Binding OtherIncome}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>

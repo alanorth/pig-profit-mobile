@@ -66,6 +66,10 @@ namespace Shared
 
         // Equipment
         public const string EQUIPMENTTYPE = "EquipmentType";
+
+        // PigSale
+        public const string PIGTYPE = "PigSaleType";
+        public const string SOLDTOTYPE = "SoldToType";
         #endregion
 
         #region StorageTables
@@ -87,6 +91,7 @@ namespace Shared
         public const string PartitionKeyAnimalPurchaseItem = "AnimalPurchase";
         public const string PartitionKeyLoanRepaymentItem = "LoanRepayment";
         public const string PartitionKeyEquipmentItem = "Equipment";
+        public const string PartitionKeyPigSaleItem = "PigSale";
 
         #endregion
 
