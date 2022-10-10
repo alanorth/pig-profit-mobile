@@ -42,6 +42,7 @@ namespace PigTool.ViewModels
         private ObservableCollection<EquipmentItem> equipmentItems;
 
         private ObservableCollection<PigSaleItem> pigSaleItems;
+        private ObservableCollection<BreedingServiceSaleItem> breedingServiceSaleItems;
 
         public ObservableCollection<FeedItem> FeedItems
         {
@@ -174,6 +175,17 @@ namespace PigTool.ViewModels
             }
         }
 
+        public ObservableCollection<BreedingServiceSaleItem> BreedingServiceSaleItems
+        {
+
+            get { return breedingServiceSaleItems; }
+            set
+            {
+                breedingServiceSaleItems = value;
+                OnPropertyChanged(nameof(BreedingServiceSaleItems));
+            }
+        }
+
         public Command EditFeedItem { get; }
         public Command EditHealthCareItem { get; }
         public Command EditLabourCostItem { get; }
@@ -187,6 +199,7 @@ namespace PigTool.ViewModels
         public Command EditEquipmentItem { get; }
 
         public Command EditPigSaleItem { get; }
+        public Command EditBreedingServiceSaleItem { get; }
 
         public ManageDataViewModel()
         {
@@ -204,6 +217,7 @@ namespace PigTool.ViewModels
             EditEquipmentItem = new Command<EquipmentItem>(async (o) => await EditEquipmentItemCommand(o));
 
             EditPigSaleItem = new Command<PigSaleItem>(async (o) => await EditPigSaleItemCommand(o));
+            EditBreedingServiceSaleItem = new Command<BreedingServiceSaleItem>(async (o) => await EditBreedingServiceSaleItemCommand(o));
 
             Costs = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(Costs), User.UserLang);
             DateObtainedTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateObtainedTrans), User.UserLang);
@@ -228,6 +242,7 @@ namespace PigTool.ViewModels
             EquipmentItems = new ObservableCollection<EquipmentItem>(await repo.GetEquipmentItems());
 
             PigSaleItems = new ObservableCollection<PigSaleItem>(await repo.GetPigSaleItems());
+            BreedingServiceSaleItems = new ObservableCollection<BreedingServiceSaleItem>(await repo.GetBreedingServiceSaleItems());
         }
 
         private async Task EditFeedItemDataCommand(FeedItem feed)
@@ -367,6 +382,18 @@ namespace PigTool.ViewModels
             try
             {
                 await Application.Current.MainPage.Navigation.PushAsync(new PigSalePage(item));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private async Task EditBreedingServiceSaleItemCommand(BreedingServiceSaleItem item)
+        {
+            try
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new BreedingServiceSalePage(item));
             }
             catch (Exception ex)
             {

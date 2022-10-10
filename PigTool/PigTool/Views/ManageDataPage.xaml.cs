@@ -181,6 +181,18 @@ namespace PigTool.Views
                       NavigationCommand: _ViewModel.EditPigSaleItem
                       );
 
+                var BreedingServiceSaleItems = createExpanderElement(
+                      ExpanderTitle: "Breeding Service Sales",
+                      ColoumnHeader1: "Date",
+                      ColoumnHeader2: "Service Type",
+                      ColoumnHeader3: "Amount Recieved",
+                      BindableColumns1: nameof(BreedingServiceSaleItem.Date),
+                      BindableColumns2: nameof(BreedingServiceSaleItem.ServiceType),
+                      BindableColumns3: nameof(BreedingServiceSaleItem.AmountRecieved),
+                      BindingList: nameof(_ViewModel.BreedingServiceSaleItems),
+                      NavigationCommand: _ViewModel.EditBreedingServiceSaleItem
+                      );
+
                 ManageStack.Children.Add(FeedItemsExpander);
                 ManageStack.Children.Add(HealthItemsExpander);
                 ManageStack.Children.Add(LabourCostItems);
@@ -193,6 +205,7 @@ namespace PigTool.Views
                 ManageStack.Children.Add(LoanRepaymentItems);
                 ManageStack.Children.Add(EquipmentItems);
                 ManageStack.Children.Add(PigSaleItems);
+                ManageStack.Children.Add(BreedingServiceSaleItems);
                 _ViewModel.PageRendered = true;
             }
 

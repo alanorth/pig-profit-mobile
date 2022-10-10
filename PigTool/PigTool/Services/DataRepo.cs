@@ -435,6 +435,35 @@ namespace PigTool.Services
             await _context.AddAsync(itemToAdd);
             await _context.SaveChangesAsync();
         }
+        public async Task<List<BreedingServiceSaleItem>> GetBreedingServiceSaleItems()
+        {
+            return await _context.BreedingServiceSaleItems.ToListAsync();
+        }
+
+        public async Task<BreedingServiceSaleItem> GetBreedingServiceSaleItem(string RowKey)
+        {
+            return await _context.BreedingServiceSaleItems.SingleOrDefaultAsync(Item => Item.RowKey == RowKey);
+        }
+
+        public async Task UpdateBreedingServiceSaleItem(BreedingServiceSaleItem Item)
+        {
+            _context.Update(Item);
+            await _context.SaveChangesAsync();
+        }
+
+        public void DeleteBreedingServiceSaleItem(BreedingServiceSaleItem Item)
+        {
+            _context.Remove(Item);
+            _context.SaveChangesAsync();
+        }
+
+        public async Task AddSingleBreedingServiceSaleItem(BreedingServiceSaleItem itemToAdd)
+        {
+            if (_context.BreedingServiceSaleItems.Any(fd => fd.RowKey == itemToAdd.RowKey)) return;
+
+            await _context.AddAsync(itemToAdd);
+            await _context.SaveChangesAsync();
+        }
 
         public async Task UpdateUserInfo(UserInfo userInfo)
         {

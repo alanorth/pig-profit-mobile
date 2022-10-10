@@ -44,6 +44,18 @@ namespace PigTool.Helpers
             return label;
         }
 
+        public static Label DataLabel(string textBindingField)
+        {
+            var Label = new Label()
+            {
+                VerticalOptions = LayoutOptions.CenterAndExpand,
+            };
+
+            Label.SetBinding(Label.TextProperty, new Binding(textBindingField));
+
+            return Label;
+        }
+
         public static Label FormDataLabel(string textBindingField)
         {
             var Label = new Label()
