@@ -9,8 +9,8 @@ namespace Samples.ViewModel
 {
     public class WebAuthenticatorViewModel : BaseViewModel
     {
-        const string authenticationUrl = "https://xamarin-essentials-auth-sample.azurewebsites.net/mobileauth/";
-
+        //const string authenticationUrl = "https://xamarin-essentials-auth-sample.azurewebsites.net/mobileauth/";
+        const string authenticationUrl = "https://pigprofittool.azurewebsites.net/mobileauth/";
         public WebAuthenticatorViewModel()
         {
             MicrosoftCommand = new Command(async () => await OnAuthenticate("Microsoft"));
