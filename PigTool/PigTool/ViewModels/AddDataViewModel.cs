@@ -26,7 +26,7 @@ namespace PigTool.ViewModels
         public string Income { get; set; }
 
         public string PigSale { get; set; }
-        public string Saleofbreedingservices { get; set; }
+        public string BreedingServiceSale { get; set; }
         public string Saleofmaure { get; set; }
         public string OtherIncome { get; set; }
         #endregion
@@ -44,6 +44,7 @@ namespace PigTool.ViewModels
         public Command AddEquipmentItem { get; }
 
         public Command AddPigSaleItem { get; }
+        public Command AddBreedingServiceSaleItem { get; }
 
         public AddDataViewModel()
         {
@@ -61,6 +62,7 @@ namespace PigTool.ViewModels
             AddEquipmentItem = (new Command(AddEquipmentItemCommand));
 
             AddPigSaleItem = (new Command(AddPigSaleItemCommand));
+            AddBreedingServiceSaleItem = (new Command(AddBreedingServiceSaleItemCommand));
 
             Costs = LogicHelper.getTranslation(repo, nameof(Costs), User.UserLang).Result;
             Feed = LogicHelper.getTranslation(repo, nameof(Feed), User.UserLang).Result;
@@ -76,7 +78,7 @@ namespace PigTool.ViewModels
             Equipment = LogicHelper.getTranslation(repo, nameof(Equipment), User.UserLang).Result;
             Income = LogicHelper.getTranslation(repo, nameof(Income), User.UserLang).Result;
             PigSale = LogicHelper.getTranslation(repo, nameof(PigSale), User.UserLang).Result;
-            Saleofbreedingservices = LogicHelper.getTranslation(repo, nameof(Saleofbreedingservices), User.UserLang).Result;
+            BreedingServiceSale = LogicHelper.getTranslation(repo, nameof(BreedingServiceSale), User.UserLang).Result;
             Saleofmaure = LogicHelper.getTranslation(repo, nameof(Saleofmaure), User.UserLang).Result;
             OtherIncome = LogicHelper.getTranslation(repo, nameof(OtherIncome), User.UserLang).Result;
 
@@ -220,6 +222,18 @@ namespace PigTool.ViewModels
             try
             {
                 await Application.Current.MainPage.Navigation.PushAsync(new PigSalePage());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private async void AddBreedingServiceSaleItemCommand(object obj)
+        {
+            try
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new BreedingServiceSalePage());
             }
             catch (Exception ex)
             {

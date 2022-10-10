@@ -70,6 +70,11 @@ namespace Shared
         // PigSale
         public const string PIGTYPE = "PigSaleType";
         public const string SOLDTOTYPE = "SoldToType";
+
+        // BreedingServiceSale
+        public const string BREEDINGSERVICETYPE = "BreedingServiceType";
+        public const string OTHERPAYMENTTYPE = "OtherPaymentType";
+        public const string CLIENTTYPE = "Client";
         #endregion
 
         #region StorageTables
@@ -92,6 +97,7 @@ namespace Shared
         public const string PartitionKeyLoanRepaymentItem = "LoanRepayment";
         public const string PartitionKeyEquipmentItem = "Equipment";
         public const string PartitionKeyPigSaleItem = "PigSale";
+        public const string PartitionKeyBreedingServiceSaleItem = "PigSale";
 
         #endregion
 
