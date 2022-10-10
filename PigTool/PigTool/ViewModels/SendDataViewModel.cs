@@ -32,6 +32,7 @@ namespace PigTool.ViewModels
 
         private ObservableCollection<PigSaleItem> pigSaleItems;
         private ObservableCollection<BreedingServiceSaleItem> breedingServiceSaleItems;
+        private ObservableCollection<OtherIncomeItem> otherIncomeItems;
 
         private DateTime lastTimeDataUploaded;
 
@@ -169,6 +170,16 @@ namespace PigTool.ViewModels
             }
         }
 
+        public ObservableCollection<OtherIncomeItem> OtherIncomeItems
+        {
+            get { return otherIncomeItems; }
+            set
+            {
+                otherIncomeItems = new ObservableCollection<OtherIncomeItem>(value.Where(x => x.LastModified > LastTimeDataUploaded).ToList());
+                OnPropertyChanged(nameof(OtherIncomeItems));
+            }
+        }
+
         public int CountOf_FeedItems { 
             get { return countOf_FeedItems; }
             set { 
@@ -286,6 +297,16 @@ namespace PigTool.ViewModels
             }
         }
 
+        public int Countof_OtherIncomeItems
+        {
+            get { return countof_otherincomeitems; }
+            set
+            {
+                countof_otherincomeitems = value;
+                OnPropertyChanged(nameof(Countof_OtherIncomeItems));
+            }
+        }
+
 
 
         private int countOf_FeedItems { get; set; }
@@ -302,6 +323,7 @@ namespace PigTool.ViewModels
 
         private int countof_pigsaleitems { get; set; }
         private int countof_breedingservicesaleitems { get; set; }
+        private int countof_otherincomeitems { get; set; }
 
         public Command SendDataToApi { get; }
 
@@ -327,6 +349,7 @@ namespace PigTool.ViewModels
             EquipmentItems = new ObservableCollection<EquipmentItem>(await repo.GetEquipmentItems());
             PigSaleItems = new ObservableCollection<PigSaleItem>(await repo.GetPigSaleItems());
             BreedingServiceSaleItems = new ObservableCollection<BreedingServiceSaleItem>(await repo.GetBreedingServiceSaleItems());
+            OtherIncomeItems = new ObservableCollection<OtherIncomeItem>(await repo.GetOtherIncomeItems());
             CountOf_FeedItems = FeedItems.Count();
             CountOf_HealthCareItems = HealthCareItems.Count();
             Countof_LabourCostItems = LabourCostItems.Count();
@@ -340,6 +363,7 @@ namespace PigTool.ViewModels
             Countof_EquipmentItems = EquipmentItems.Count();
             Countof_PigSaleItems = PigSaleItems.Count();
             Countof_BreedingServiceSaleItems = BreedingServiceSaleItems.Count();
+            Countof_OtherIncomeItems = OtherIncomeItems.Count();
         }
 
 
@@ -363,6 +387,7 @@ namespace PigTool.ViewModels
 
                     PigSaleItems = PigSaleItems.ToList(),
                     BreedingServiceSaleItems = BreedingServiceSaleItems.ToList(),
+                    OtherIncomeItems = OtherIncomeItems.ToList(),
                 };
 
                 User.LastUploadDate = DateTime.Now;

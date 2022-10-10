@@ -29,6 +29,7 @@ namespace SQLLiteDbContext
         public DbSet<EquipmentItem> EquipmentItems { get; set; }
         public DbSet<PigSaleItem> PigSaleItems { get; set; }
         public DbSet<BreedingServiceSaleItem> BreedingServiceSaleItems { get; set; }
+        public DbSet<OtherIncomeItem> OtherIncomeItems { get; set; }
 
         public DbSQLLiteContext()
         {
@@ -67,6 +68,7 @@ namespace SQLLiteDbContext
             modelBuilder.Entity<EquipmentItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyEquipmentItem);
             modelBuilder.Entity<PigSaleItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyPigSaleItem);
             modelBuilder.Entity<BreedingServiceSaleItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyBreedingServiceSaleItem);
+            modelBuilder.Entity<OtherIncomeItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyOtherIncomeItem);
 
             modelBuilder.Entity<ControlData>()
             .HasOne(cd => cd.Translation).WithMany(t => t.ControlDatas).HasForeignKey(cd => cd.TranslationRowKey);
@@ -233,6 +235,11 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "PaymentValueTranslation", English = "Value", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "ClientTranslation", English = "Client", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "OtherClientTranslation", English = "Other Client", Lang1 = "", Lang2 = "" },
+
+                         // Other Income
+                         new Translation() { RowKey = "OtherIncomeTitleTranslation", English = "Other Income", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "TotalIncomeTranslation", English = "Total Income", Lang1 = "", Lang2 = "" },
+
 
 
 

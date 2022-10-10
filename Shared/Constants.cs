@@ -97,7 +97,8 @@ namespace Shared
         public const string PartitionKeyLoanRepaymentItem = "LoanRepayment";
         public const string PartitionKeyEquipmentItem = "Equipment";
         public const string PartitionKeyPigSaleItem = "PigSale";
-        public const string PartitionKeyBreedingServiceSaleItem = "PigSale";
+        public const string PartitionKeyBreedingServiceSaleItem = "BreedingServiceSale";
+        public const string PartitionKeyOtherIncomeItem = "OtherIncome";
 
         #endregion
 

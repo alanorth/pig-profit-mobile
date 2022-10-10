@@ -33,6 +33,9 @@
     <Compile Update="Views\MembershipPage.xaml.cs">
       <DependentUpon>MembershipPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\OtherIncomePage.xaml.cs">
+      <DependentUpon>OtherIncomePage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\OtherCostPage.xaml.cs">
       <DependentUpon>OtherCostPage.xaml</DependentUpon>
     </Compile>

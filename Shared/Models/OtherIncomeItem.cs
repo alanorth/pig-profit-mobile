@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Shared
+{
+    public class OtherIncomeItem : BaseItem
+    {
+        public DateTime Date { get; set; }
+        public double TotalIncome { get; set; }
+        public string? OtherWhatFor { get; set; }
+        public double TransportationCosts { get; set; }
+        public double OtherCosts { get; set; }
+        public string? Comment { get; set; }
+    }
+}
