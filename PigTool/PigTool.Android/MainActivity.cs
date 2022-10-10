@@ -4,6 +4,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using Android.Content;
 
 namespace PigTool.Droid
 {
@@ -25,5 +26,24 @@ namespace PigTool.Droid
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
         }
+
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            Xamarin.Essentials.Platform.OnResume();
+        }
+
+        const string CALLBACK_SCHEME = "myapp";
     }
+
+    [Activity(NoHistory = true, LaunchMode = LaunchMode.SingleTop, Exported = true)]
+    [IntentFilter(new[] { Android.Content.Intent.ActionView },
+            Categories = new[] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable },
+            DataScheme = "PigTool")]
+    public class WebAuthenticationCallbackActivity : Xamarin.Essentials.WebAuthenticatorCallbackActivity
+    {
+    }
+
+
 }

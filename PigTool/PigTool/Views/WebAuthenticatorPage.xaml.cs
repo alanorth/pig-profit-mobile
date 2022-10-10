@@ -1,0 +1,22 @@
+﻿using Samples.ViewModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace PigTool.Views
+{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class WebAuthenticatorPage : ContentPage
+    {
+        public WebAuthenticatorPage()
+        {
+            BindingContext = new WebAuthenticatorViewModel();
+            InitializeComponent();
+        }
+    }
+}

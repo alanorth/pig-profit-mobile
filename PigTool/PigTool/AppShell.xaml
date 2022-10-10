@@ -45,7 +45,7 @@
                 <FontImageSource Glyph="&#xf0ce;" FontFamily="FA-S" />
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="Reports" ContentTemplate="{DataTemplate local:ItemsPage}">
+        <ShellContent Title="Reports" ContentTemplate="{DataTemplate local:WebAuthenticatorPage}">
             <ShellContent.Icon>
                 <FontImageSource Glyph="&#xf1fe;" FontFamily="FA-S" />
             </ShellContent.Icon>
