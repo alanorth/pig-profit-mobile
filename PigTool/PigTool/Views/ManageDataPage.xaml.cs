@@ -34,6 +34,23 @@ namespace PigTool.Views
 
             if (!_ViewModel.PageRendered)
             {
+                var YearPickerVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
+                YearPickerVerticalStack.Padding = 0;
+                var YearPickerTypeStack = FormattedElementsHelper.TableRowStack();
+                YearPickerTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_ViewModel.FilterTranslation)));
+
+                int baseYear = 2015;
+                var yearPicker = new Picker()
+                {
+                    HorizontalOptions = LayoutOptions.FillAndExpand,
+                    ItemsSource = Enumerable.Range(baseYear, DateTime.Now.Year - baseYear + 3).ToList()
+                    //ItemsSource = new List<int>() { 2017, 2018, 2019, 2020, 2021, 2022, 2023 }
+                };
+
+                yearPicker.SetBinding(Picker.SelectedItemProperty, new Binding(nameof(_ViewModel.SelectedYear)));
+                YearPickerTypeStack.Children.Add(yearPicker);
+                YearPickerVerticalStack.Children.Add(YearPickerTypeStack);
+                
 
                 // Fist Attach Feed Items
                 var FeedItemsExpander = createExpanderElement(
@@ -217,6 +234,7 @@ namespace PigTool.Views
                       NavigationCommand: _ViewModel.EditOtherIncomeItem
                       );
 
+                ManageStack.Children.Add(YearPickerVerticalStack);
                 ManageStack.Children.Add(FeedItemsExpander);
                 ManageStack.Children.Add(HealthItemsExpander);
                 ManageStack.Children.Add(LabourCostItems);
