@@ -27,7 +27,7 @@ namespace PigTool.ViewModels
 
         public string PigSale { get; set; }
         public string BreedingServiceSale { get; set; }
-        public string Saleofmaure { get; set; }
+        public string ManureSale { get; set; }
         public string OtherIncome { get; set; }
         #endregion
 
@@ -45,6 +45,7 @@ namespace PigTool.ViewModels
 
         public Command AddPigSaleItem { get; }
         public Command AddBreedingServiceSaleItem { get; }
+        public Command AddManureSaleItem { get; }
         public Command AddOtherIncomeItem { get; }
 
         public AddDataViewModel()
@@ -64,6 +65,7 @@ namespace PigTool.ViewModels
 
             AddPigSaleItem = (new Command(AddPigSaleItemCommand));
             AddBreedingServiceSaleItem = (new Command(AddBreedingServiceSaleItemCommand));
+            AddManureSaleItem = (new Command(AddManureSaleItemCommand));
             AddOtherIncomeItem = (new Command(AddOtherIncomeItemCommand));
 
             Costs = LogicHelper.getTranslation(repo, nameof(Costs), User.UserLang).Result;
@@ -81,7 +83,7 @@ namespace PigTool.ViewModels
             Income = LogicHelper.getTranslation(repo, nameof(Income), User.UserLang).Result;
             PigSale = LogicHelper.getTranslation(repo, nameof(PigSale), User.UserLang).Result;
             BreedingServiceSale = LogicHelper.getTranslation(repo, nameof(BreedingServiceSale), User.UserLang).Result;
-            Saleofmaure = LogicHelper.getTranslation(repo, nameof(Saleofmaure), User.UserLang).Result;
+            ManureSale = LogicHelper.getTranslation(repo, nameof(ManureSale), User.UserLang).Result;
             OtherIncome = LogicHelper.getTranslation(repo, nameof(OtherIncome), User.UserLang).Result;
 
         }
@@ -236,6 +238,18 @@ namespace PigTool.ViewModels
             try
             {
                 await Application.Current.MainPage.Navigation.PushAsync(new BreedingServiceSalePage());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private async void AddManureSaleItemCommand(object obj)
+        {
+            try
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new ManureSalePage());
             }
             catch (Exception ex)
             {

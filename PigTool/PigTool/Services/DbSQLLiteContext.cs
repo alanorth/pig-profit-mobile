@@ -29,6 +29,7 @@ namespace SQLLiteDbContext
         public DbSet<EquipmentItem> EquipmentItems { get; set; }
         public DbSet<PigSaleItem> PigSaleItems { get; set; }
         public DbSet<BreedingServiceSaleItem> BreedingServiceSaleItems { get; set; }
+        public DbSet<ManureSaleItem> ManureSaleItems { get; set; }
         public DbSet<OtherIncomeItem> OtherIncomeItems { get; set; }
 
         public DbSQLLiteContext()
@@ -68,6 +69,7 @@ namespace SQLLiteDbContext
             modelBuilder.Entity<EquipmentItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyEquipmentItem);
             modelBuilder.Entity<PigSaleItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyPigSaleItem);
             modelBuilder.Entity<BreedingServiceSaleItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyBreedingServiceSaleItem);
+            modelBuilder.Entity<ManureSaleItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyManureSaleItem);
             modelBuilder.Entity<OtherIncomeItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyOtherIncomeItem);
 
             modelBuilder.Entity<ControlData>()
@@ -108,6 +110,7 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "Income", English = "Income", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
                          new Translation() { RowKey = "PigSale", English = "Sale of Pigs", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
                          new Translation() { RowKey = "BreedingServiceSale", English = "Sale of breeding services", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
+                         new Translation() { RowKey = "ManureSale", English = "Sale of manure", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
                          new Translation() { RowKey = "OtherIncome", English = "Other Income", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
                          new Translation() { RowKey = "Equipment", English = "Equipment", Lang1 = "Equipment Lang1", Lang2 = "Equipment Lang2" },
 
@@ -235,6 +238,10 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "PaymentValueTranslation", English = "Value", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "ClientTranslation", English = "Client", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "OtherClientTranslation", English = "Other Client", Lang1 = "", Lang2 = "" },
+
+                         //Manure Sale
+                         new Translation() { RowKey = "ManureSaleTitleTranslation", English = "Sale of Manure", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "VolumeSoldTranslation", English = "Volume Sold", Lang1 = "", Lang2 = "" },
 
                          // Other Income
                          new Translation() { RowKey = "OtherIncomeTitleTranslation", English = "Other Income", Lang1 = "", Lang2 = "" },
@@ -446,7 +453,16 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "ClientType5", English = "ClientType 5", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "ClientType6", English = "ClientType 6", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "ClientType7", English = "ClientType 7", Lang1 = "", Lang2 = "" },
-                         new Translation() { RowKey = "ClientType8", English = "ClientType 8", Lang1 = "", Lang2 = "" }
+                         new Translation() { RowKey = "ClientType8", English = "ClientType 8", Lang1 = "", Lang2 = "" },
+
+                         new Translation() { RowKey = "VolumeUnitType1", English = "VolumeUnitType 1", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "VolumeUnitType2", English = "VolumeUnitType 2", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "VolumeUnitType3", English = "VolumeUnitType 3", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "VolumeUnitType4", English = "VolumeUnitType 4", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "VolumeUnitType5", English = "VolumeUnitType 5", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "VolumeUnitType6", English = "VolumeUnitType 6", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "VolumeUnitType7", English = "VolumeUnitType 7", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "VolumeUnitType8", English = "VolumeUnitType 8", Lang1 = "", Lang2 = "" }
 
 
                          );
@@ -678,7 +694,17 @@ namespace SQLLiteDbContext
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.CLIENTTYPE, TranslationRowKey = "ClientType6" },
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.CLIENTTYPE, TranslationRowKey = "ClientType7" },
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.CLIENTTYPE, TranslationRowKey = "ClientType8" },
-                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.CLIENTTYPE, TranslationRowKey = Constants.OTHER }
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.CLIENTTYPE, TranslationRowKey = Constants.OTHER },
+
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType1" },
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType2" },
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType3" },
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType4" },
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType5" },
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType6" },
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType7" },
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType8" },
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = Constants.OTHER }
 
                        );
                 }

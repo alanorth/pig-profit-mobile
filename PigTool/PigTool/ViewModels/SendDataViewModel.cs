@@ -32,6 +32,7 @@ namespace PigTool.ViewModels
 
         private ObservableCollection<PigSaleItem> pigSaleItems;
         private ObservableCollection<BreedingServiceSaleItem> breedingServiceSaleItems;
+        private ObservableCollection<ManureSaleItem> manureSaleItems;
         private ObservableCollection<OtherIncomeItem> otherIncomeItems;
 
         private DateTime lastTimeDataUploaded;
@@ -170,6 +171,16 @@ namespace PigTool.ViewModels
             }
         }
 
+        public ObservableCollection<ManureSaleItem> ManureSaleItems
+        {
+            get { return manureSaleItems; }
+            set
+            {
+                manureSaleItems = new ObservableCollection<ManureSaleItem>(value.Where(x => x.LastModified > LastTimeDataUploaded).ToList());
+                OnPropertyChanged(nameof(ManureSaleItems));
+            }
+        }
+
         public ObservableCollection<OtherIncomeItem> OtherIncomeItems
         {
             get { return otherIncomeItems; }
@@ -297,6 +308,16 @@ namespace PigTool.ViewModels
             }
         }
 
+        public int Countof_ManureSaleItems
+        {
+            get { return countof_manuresaleitems; }
+            set
+            {
+                countof_manuresaleitems = value;
+                OnPropertyChanged(nameof(Countof_ManureSaleItems));
+            }
+        }
+
         public int Countof_OtherIncomeItems
         {
             get { return countof_otherincomeitems; }
@@ -323,6 +344,7 @@ namespace PigTool.ViewModels
 
         private int countof_pigsaleitems { get; set; }
         private int countof_breedingservicesaleitems { get; set; }
+        private int countof_manuresaleitems { get; set; }
         private int countof_otherincomeitems { get; set; }
 
         public Command SendDataToApi { get; }
@@ -349,6 +371,7 @@ namespace PigTool.ViewModels
             EquipmentItems = new ObservableCollection<EquipmentItem>(await repo.GetEquipmentItems());
             PigSaleItems = new ObservableCollection<PigSaleItem>(await repo.GetPigSaleItems());
             BreedingServiceSaleItems = new ObservableCollection<BreedingServiceSaleItem>(await repo.GetBreedingServiceSaleItems());
+            ManureSaleItems = new ObservableCollection<ManureSaleItem>(await repo.GetManureSaleItems());
             OtherIncomeItems = new ObservableCollection<OtherIncomeItem>(await repo.GetOtherIncomeItems());
             CountOf_FeedItems = FeedItems.Count();
             CountOf_HealthCareItems = HealthCareItems.Count();
@@ -363,6 +386,7 @@ namespace PigTool.ViewModels
             Countof_EquipmentItems = EquipmentItems.Count();
             Countof_PigSaleItems = PigSaleItems.Count();
             Countof_BreedingServiceSaleItems = BreedingServiceSaleItems.Count();
+            Countof_ManureSaleItems = ManureSaleItems.Count();
             Countof_OtherIncomeItems = OtherIncomeItems.Count();
         }
 
@@ -387,6 +411,7 @@ namespace PigTool.ViewModels
 
                     PigSaleItems = PigSaleItems.ToList(),
                     BreedingServiceSaleItems = BreedingServiceSaleItems.ToList(),
+                    ManureSaleItems = ManureSaleItems.ToList(),
                     OtherIncomeItems = OtherIncomeItems.ToList(),
                 };
 

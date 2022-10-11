@@ -109,7 +109,14 @@ namespace PigTool.Services
         Task UpdateBreedingServiceSaleItem(BreedingServiceSaleItem Item);
         void DeleteBreedingServiceSaleItem(BreedingServiceSaleItem Item);
         Task AddSingleBreedingServiceSaleItem(BreedingServiceSaleItem itemToAdd);
-        
+
+        //ManureSale
+        Task<List<ManureSaleItem>> GetManureSaleItems();
+        Task<ManureSaleItem> GetManureSaleItem(string RowKey);
+        Task UpdateManureSaleItem(ManureSaleItem Item);
+        void DeleteManureSaleItem(ManureSaleItem Item);
+        Task AddSingleManureSaleItem(ManureSaleItem itemToAdd);
+
         //OtherIncome
         Task<List<OtherIncomeItem>> GetOtherIncomeItems();
         Task<OtherIncomeItem> GetOtherIncomeItem(string RowKey);

@@ -41,7 +41,7 @@
                 </Frame>
                 <Button Text="{Binding PigSale}" Style="{StaticResource AddNavButton}"  Command="{Binding AddPigSaleItem}" BackgroundColor="{StaticResource Primary}"/>
                 <Button Text="{Binding BreedingServiceSale}" Style="{StaticResource AddNavButton}" Command="{Binding AddBreedingServiceSaleItem}" BackgroundColor="{StaticResource Primary}"/>
-                <Button Text="{Binding Saleofmaure}" Style="{StaticResource AddNavButton}" BackgroundColor="#DBD8D8"/>
+                <Button Text="{Binding ManureSale}" Style="{StaticResource AddNavButton}" Command="{Binding AddManureSaleItem}" BackgroundColor="{StaticResource Primary}"/>
                 <Button Text="{Binding OtherIncome}" Style="{StaticResource AddNavButton}" Command="{Binding AddOtherIncomeItem}" BackgroundColor="{StaticResource Primary}"/>
         </StackLayout>
             </ScrollView>

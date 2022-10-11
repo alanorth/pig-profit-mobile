@@ -19,6 +19,7 @@ namespace Shared
         public List<EquipmentItem>? EquipmentItems { get; set; }
         public List<PigSaleItem>? PigSaleItems { get; set; }
         public List<BreedingServiceSaleItem>? BreedingServiceSaleItems { get; set; }
+        public List<ManureSaleItem>? ManureSaleItems { get; set; }
         public List<OtherIncomeItem>? OtherIncomeItems { get; set; }
     }
 }

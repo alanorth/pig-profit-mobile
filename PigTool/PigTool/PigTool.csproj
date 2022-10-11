@@ -30,6 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\ManureSalePage.xaml.cs">
+      <DependentUpon>ManureSalePage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\MembershipPage.xaml.cs">
       <DependentUpon>MembershipPage.xaml</DependentUpon>
     </Compile>

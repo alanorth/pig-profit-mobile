@@ -52,6 +52,8 @@ namespace PigTool.Views
                 new RowDefinition (),
                 new RowDefinition (),
                 new RowDefinition (),
+                new RowDefinition (),
+                new RowDefinition (),
                 new RowDefinition ()
                 };
 
@@ -79,6 +81,10 @@ namespace PigTool.Views
                     nameof(_ViewModel.Countof_PigSaleItems), 0, 10);
                 createTableRowandDataLabel(SendDataGrid, nameof(_ViewModel.BreedingServiceSaleItems),
                     nameof(_ViewModel.Countof_BreedingServiceSaleItems), 0, 11);
+                createTableRowandDataLabel(SendDataGrid, nameof(_ViewModel.ManureSaleItems),
+                    nameof(_ViewModel.Countof_ManureSaleItems), 0, 12);
+                createTableRowandDataLabel(SendDataGrid, nameof(_ViewModel.OtherIncomeItems),
+                    nameof(_ViewModel.Countof_OtherIncomeItems), 0, 13);
 
                 _ViewModel.PageRendered = true;
             }
