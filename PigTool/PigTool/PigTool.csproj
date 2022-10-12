@@ -30,34 +30,34 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\ManureSalePage.xaml.cs">
+    <Compile Update="Views\AddDataPages\ManureSalePage.xaml.cs">
       <DependentUpon>ManureSalePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\MembershipPage.xaml.cs">
+    <Compile Update="Views\AddDataPages\MembershipPage.xaml.cs">
       <DependentUpon>MembershipPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\OtherIncomePage.xaml.cs">
+    <Compile Update="Views\AddDataPages\OtherIncomePage.xaml.cs">
       <DependentUpon>OtherIncomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\OtherCostPage.xaml.cs">
+    <Compile Update="Views\AddDataPages\OtherCostPage.xaml.cs">
       <DependentUpon>OtherCostPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\AnimalPurchasePage.xaml.cs">
+    <Compile Update="Views\AddDataPages\AnimalPurchasePage.xaml.cs">
       <DependentUpon>AnimalPurchasePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\LoanRepaymentPage.xaml.cs">
+    <Compile Update="Views\AddDataPages\LoanRepaymentPage.xaml.cs">
       <DependentUpon>LoanRepaymentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\EquipmentPage.xaml.cs">
+    <Compile Update="Views\AddDataPages\EquipmentPage.xaml.cs">
       <DependentUpon>EquipmentPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\BreedingServiceSalePage.xaml.cs">
+    <Compile Update="Views\AddDataPages\BreedingServiceSalePage.xaml.cs">
       <DependentUpon>BreedingServiceSalePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\PigSalePage.xaml.cs">
+    <Compile Update="Views\AddDataPages\PigSalePage.xaml.cs">
       <DependentUpon>PigSalePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\WaterCostPage.xaml.cs">
+    <Compile Update="Views\AddDataPages\WaterCostPage.xaml.cs">
       <DependentUpon>WaterCostPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\LegalDisclaimer.xaml.cs">
@@ -69,19 +69,19 @@
     <EmbeddedResource Update="Views\AddDataPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\AnimalHousingPage.xaml">
+    <EmbeddedResource Update="Views\AddDataPages\AnimalHousingPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\FeedItemPage.xaml">
+    <EmbeddedResource Update="Views\AddDataPages\FeedItemPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\HealthCarePage.xaml">
+    <EmbeddedResource Update="Views\AddDataPages\HealthCarePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\HomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\LabourCostPage.xaml">
+    <EmbeddedResource Update="Views\AddDataPages\LabourCostPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LegalDisclaimer.xaml">
