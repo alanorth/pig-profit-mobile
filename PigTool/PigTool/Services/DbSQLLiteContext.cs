@@ -248,6 +248,23 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "OtherIncomeTitleTranslation", English = "Other Income", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "TotalIncomeTranslation", English = "Total Income", Lang1 = "", Lang2 = "" },
 
+                         // PickerTitles
+                         new Translation() { RowKey = "PickerUnitTranslation", English = "Unit", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerFeedTypeTranslation", English = "Select a Feed Type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerPurchasedFromTranslation", English = "Select a Provider", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerHealthCareTypeTranslation", English = "Select a Care Type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerProviderTranslation", English = "Select a Provider", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerMedicineTypeTranslation", English = "Select a Medicine Type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerLabourTypeTranslation", English = "Select a Labour Type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerHousingExpenseTranslation", English = "Select an Expense", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerServiceTypeTranslation", English = "Select a Service Type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerMembershipTypeTranslation", English = "Select a Membership", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerAnimalTypeTranslation", English = "Select a Animal Type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerEquipmentTypeTranslation", English = "Select an Equipment Type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerPigTypeTranslation", English = "Select a Pig Type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerSoldToTranslation", English = "Select a Buyer", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerPaymentTypeTranslation", English = "Select a Payment Type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerClientTranslation", English = "Select a Client", Lang1 = "", Lang2 = "" },
 
 
 

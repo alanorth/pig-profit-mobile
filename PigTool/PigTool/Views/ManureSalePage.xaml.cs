@@ -77,7 +77,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedVolumeUnitType),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedVolumeUnitType
+                _viewModel.SelectedVolumeUnitType,
+                _viewModel.PickerUnitTranslation
                 )
                 );
 
@@ -110,7 +111,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedPaymentType),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedPaymentType
+                _viewModel.SelectedPaymentType,
+                _viewModel.PickerPaymentTypeTranslation
                 )
                 );
 
@@ -139,7 +141,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedSoldTo),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedSoldTo
+                _viewModel.SelectedSoldTo,
+                _viewModel.PickerSoldToTranslation
                 )
                 );
             var OtherSoldTo = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherSoldTo), true);

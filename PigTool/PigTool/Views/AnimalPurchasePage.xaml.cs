@@ -70,7 +70,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedAnimalType),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedAnimalType
+                _viewModel.SelectedAnimalType,
+                _viewModel.PickerAnimalTypeTranslation
                 )
                 );
             var OtherAnimalType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherAnimalType), true);
@@ -108,7 +109,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedAnimalPurchasedFrom),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedAnimalPurchasedFrom
+                _viewModel.SelectedAnimalPurchasedFrom,
+                _viewModel.PickerPurchasedFromTranslation
                 )
                 );
             var OtherAnimalPurchasedFrom = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherAnimalPurchasedFrom), true);

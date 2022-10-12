@@ -58,6 +58,10 @@ namespace PigTool.ViewModels
         public string ResetTranslation { get; set; }
         public string EditTranslation { get; set; }
         public string DeleteTranslation { get; set; }
+
+        public string PickerUnitTranslation { get; set; }
+        public string PickerPaymentTypeTranslation { get; set; }
+        public string PickerSoldToTranslation { get; set; }
         #endregion
 
         #region Manure item fields
@@ -359,6 +363,10 @@ namespace PigTool.ViewModels
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
             DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), User.UserLang);
+
+            PickerUnitTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerUnitTranslation), User.UserLang);
+            PickerPaymentTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerPaymentTypeTranslation), User.UserLang);
+            PickerSoldToTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerSoldToTranslation), User.UserLang);
         }
 
         public void populatewithData(ManureSaleItem item)

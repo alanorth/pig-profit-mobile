@@ -80,7 +80,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedLoanProvider),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedLoanProvider
+                _viewModel.SelectedLoanProvider,
+                _viewModel.PickerProviderTranslation
                 )
                 );
             var OtherLoanProviderType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherLoanProvider), true);

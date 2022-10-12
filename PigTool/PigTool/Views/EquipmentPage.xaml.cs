@@ -79,7 +79,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedEquipmentType),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedEquipmentType
+                _viewModel.SelectedEquipmentType,
+                _viewModel.PickerEquipmentTypeTranslation
                 )
                 );
             var OtherEquipmentType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherEquipmentType), true);

@@ -54,6 +54,10 @@ namespace PigTool.ViewModels
         public string ResetTranslation { get; set; }
         public string EditTranslation { get; set; }
         public string DeleteTranslation { get; set; }
+
+        public string PickerUnitTranslation { get; set; }
+        public string PickerFeedTypeTranslation { get; set; }
+        public string PickerPurchasedFromTranslation { get; set; }
         #endregion
 
         #region Feed item fields
@@ -377,6 +381,11 @@ namespace PigTool.ViewModels
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
             DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), User.UserLang);
+
+            PickerUnitTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerUnitTranslation), User.UserLang);
+            PickerPurchasedFromTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerPurchasedFromTranslation), User.UserLang);
+            PickerFeedTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerFeedTypeTranslation), User.UserLang);
+
         }
 
         public void populatewithData(FeedItem item)

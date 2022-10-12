@@ -66,6 +66,11 @@ namespace PigTool.ViewModels
         public string ResetTranslation { get; set; }
         public string EditTranslation { get; set; }
         public string DeleteTranslation { get; set; }
+
+        public string PickerMedicineTypeTranslation { get; set; }
+        public string PickerHealthCareTypeTranslation { get; set; }
+        public string PickerProviderTranslation { get; set; }
+        public string PickerPurchasedFromTranslation { get; set; }
         #endregion
 
         #region Health care item fields
@@ -472,6 +477,11 @@ namespace PigTool.ViewModels
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
             DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), User.UserLang);
+            
+            PickerHealthCareTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerHealthCareTypeTranslation), User.UserLang);
+            PickerPurchasedFromTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerPurchasedFromTranslation), User.UserLang);
+            PickerProviderTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerProviderTranslation), User.UserLang);
+            PickerMedicineTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerMedicineTypeTranslation), User.UserLang);
         }
 
         public void populatewithData(HealthCareItem item)

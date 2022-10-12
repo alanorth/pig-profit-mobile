@@ -47,6 +47,7 @@ namespace PigTool.ViewModels
         public string ResetTranslation { get; set; }
         public string EditTranslation { get; set; }
         public string DeleteTranslation { get; set; }
+        public string PickerHousingExpenseTranslation { get; set; }
         #endregion
 
 
@@ -274,6 +275,8 @@ namespace PigTool.ViewModels
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
             DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), User.UserLang);
             HousingTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(HousingTitleTranslation), User.UserLang);
+            PickerHousingExpenseTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerHousingExpenseTranslation), User.UserLang);
+
         }
 
         public void populatewithData(AnimalHouseItem item)

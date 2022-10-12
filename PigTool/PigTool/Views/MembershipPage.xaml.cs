@@ -78,7 +78,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedMembershipType),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedMembershipType
+                _viewModel.SelectedMembershipType,
+                _viewModel.PickerMembershipTypeTranslation
                 )
                 );
             var OtherMembershipType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherMembershipType), true);
@@ -107,7 +108,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedTimePeriodUnit),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedTimePeriodUnit
+                _viewModel.SelectedTimePeriodUnit,
+                _viewModel.PickerUnitTranslation
                 )
                 );
 

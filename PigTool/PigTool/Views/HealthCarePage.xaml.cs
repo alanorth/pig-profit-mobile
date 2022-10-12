@@ -71,7 +71,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedHealthCareType),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedHealthCareType
+                _viewModel.SelectedHealthCareType,
+                _viewModel.PickerHealthCareTypeTranslation
                 )
                 );
             var OtherHealthCareType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherHealthCareType), true);
@@ -101,7 +102,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedProvider),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedProvider
+                _viewModel.SelectedProvider,
+                _viewModel.PickerProviderTranslation
                 )
                 );
             var OtherProviderType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherProvider), true);
@@ -131,7 +133,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedMedicineType),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedMedicineType
+                _viewModel.SelectedMedicineType,
+                _viewModel.PickerMedicineTypeTranslation
                 )
                 );
             var OtherMedicineType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherMedicineType), true);
@@ -153,7 +156,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedPurchasedFrom),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedPurchasedFrom
+                _viewModel.SelectedPurchasedFrom,
+                _viewModel.PickerPurchasedFromTranslation
                 )
                 );
             var OtherPurchasedFromType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherPurchasedFrom), true);
