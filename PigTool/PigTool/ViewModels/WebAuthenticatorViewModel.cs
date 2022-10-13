@@ -57,7 +57,8 @@ namespace Samples.ViewModel
                 else
                 {
                     var authUrl = new Uri(authenticationUrl + scheme);
-                    var callbackUrl = new Uri("PigTool://");
+                    var callbackUrl = new Uri("pigprofittool://");
+                    //var callbackUrl = new Uri("xamarinessentials://");
 
                     r = await WebAuthenticator.AuthenticateAsync(authUrl, callbackUrl);
                 }

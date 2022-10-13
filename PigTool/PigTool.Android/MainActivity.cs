@@ -35,15 +35,25 @@ namespace PigTool.Droid
         }
 
         const string CALLBACK_SCHEME = "myapp";
+
+        protected override void OnNewIntent(Intent intent)
+        {
+            base.OnNewIntent(intent);
+
+            Xamarin.Essentials.Platform.OnNewIntent(intent);
+        }
     }
 
+   /* [Activity(NoHistory = true, LaunchMode = LaunchMode.SingleTop, Exported = false)]
+    [IntentFilter(new[] { Intent.ActionView }, Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable }, DataScheme = "pigprofittool")]
+    public class WebAuthenticationCallbackActivity : Xamarin.Essentials.WebAuthenticatorCallbackActivity
+    {
+    }*/
+
     [Activity(NoHistory = true, LaunchMode = LaunchMode.SingleTop, Exported = true)]
-    [IntentFilter(new[] { Android.Content.Intent.ActionView },
-            Categories = new[] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable },
-            DataScheme = "PigTool")]
+    [IntentFilter(new[] { Intent.ActionView }, Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable }, DataScheme = "pigprofittool")]
     public class WebAuthenticationCallbackActivity : Xamarin.Essentials.WebAuthenticatorCallbackActivity
     {
     }
-
 
 }
