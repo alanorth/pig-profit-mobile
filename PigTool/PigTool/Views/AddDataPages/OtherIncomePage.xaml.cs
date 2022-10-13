@@ -13,21 +13,21 @@ using Xamarin.Forms.Xaml;
 namespace PigTool.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoanRepaymentPage : ContentPage
+    public partial class OtherIncomePage : ContentPage
     {
-        private LoanRepaymentViewModel _viewModel;
+        private OtherIncomeViewModel _viewModel;
         private bool IsRendered = false;
 
-        public LoanRepaymentPage()
+        public OtherIncomePage()
         {
-            BindingContext = _viewModel = new LoanRepaymentViewModel();
+            BindingContext = _viewModel = new OtherIncomeViewModel();
             InitializeComponent();
         }
 
-        public LoanRepaymentPage(LoanRepaymentItem WCI)
+        public OtherIncomePage(OtherIncomeItem OCI)
         {
-            BindingContext = _viewModel = new LoanRepaymentViewModel();
-            _viewModel.populatewithData(WCI);
+            BindingContext = _viewModel = new OtherIncomeViewModel();
+            _viewModel.populatewithData(OCI);
             InitializeComponent();
         }
 
@@ -60,41 +60,35 @@ namespace PigTool.Views
             FullTableSection.Add(DateCell);
 
 
+            //Total Cost
+            var TotalIncomeCell = new ViewCell();
+            var TotalIncomeStack = FormattedElementsHelper.TableRowStack();
+            TotalIncomeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.TotalIncomeTranslation)));
+            TotalIncomeStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.TotalIncome), nameof(_viewModel.IsEditMode), null));
+            TotalIncomeCell.View = TotalIncomeStack;
+            FullTableSection.Add(TotalIncomeCell);
 
-            //Total Amount Paid
-            var TotalAmountRepaidCell = new ViewCell();
-            var TotalAmountRepaidStack = FormattedElementsHelper.TableRowStack();
-            TotalAmountRepaidStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.TotalAmountRepaidTranslation)));
-            TotalAmountRepaidStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.TotalAmountRepaid), nameof(_viewModel.IsEditMode), null));
-            TotalAmountRepaidCell.View = TotalAmountRepaidStack;
-            FullTableSection.Add(TotalAmountRepaidCell);
+            //Comment
+            var whatForCell = new ViewCell();
+            var WhatForStack = FormattedElementsHelper.TableRowStack();
+            WhatForStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherWhatForTranslation)));
+            WhatForStack.Children.Add(FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.OtherWhatFor), nameof(_viewModel.IsEditMode), heightRequest: 100));
+            whatForCell.View = WhatForStack;
+            FullTableSection.Add(whatForCell);
 
-            //Water Purchased From
-            var LoanProviderFromCell = new ViewCell();
-            var LoanProviderVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
-            LoanProviderVerticalStack.Padding = 0;
-            var LoanProviderTypeStack = FormattedElementsHelper.TableRowStack();
-            LoanProviderTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.LoanProviderTranslation)));
-            LoanProviderTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
-                nameof(_viewModel.LoanProviderListOfOptions),
-                nameof(PickerToolHelper.TranslatedValue),
-                nameof(_viewModel.SelectedLoanProvider),
-                nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedLoanProvider
-                )
-                );
-            var OtherLoanProviderType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherLoanProvider), true);
-            OtherLoanProviderType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherLoanProviderTranslation)));
-            OtherLoanProviderType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherLoanProvider), nameof(_viewModel.IsEditMode)));
-            LoanProviderVerticalStack.Children.Add(LoanProviderTypeStack);
-            LoanProviderVerticalStack.Children.Add(OtherLoanProviderType);
-            LoanProviderFromCell.View = LoanProviderVerticalStack;
-            FullTableSection.Add(LoanProviderFromCell);
+
+            //Transport Cost
+            var TransportCostCell = new ViewCell();
+            var TransportCostsStack = FormattedElementsHelper.TableRowStack();
+            TransportCostsStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.TransportationCostTranslation)));
+            TransportCostsStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.TransportationCosts), nameof(_viewModel.IsEditMode), null));
+            TransportCostCell.View = TransportCostsStack;
+            FullTableSection.Add(TransportCostCell);
 
             //Any Other Cost
             var OtherCostCell = new ViewCell();
             var OtherCostsStack = FormattedElementsHelper.TableRowStack();
-            OtherCostsStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherCostTranslation)));
+            OtherCostsStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherCostsTranslation)));
             OtherCostsStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.OtherCosts), nameof(_viewModel.IsEditMode), null));
             OtherCostCell.View = OtherCostsStack;
             FullTableSection.Add(OtherCostCell);
@@ -126,7 +120,7 @@ namespace PigTool.Views
             FullTableSection.Add(buttonCell);
 
 
-            LoanRepaymentTableView.Root.Add(FullTableSection);
+            OtherIncomeTableView.Root.Add(FullTableSection);
         }
     }
 }

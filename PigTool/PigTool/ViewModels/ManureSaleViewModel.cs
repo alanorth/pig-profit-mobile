@@ -11,24 +11,25 @@ using Xamarin.Forms;
 
 namespace PigTool.ViewModels
 {
-    public class PigSaleViewModel : LoggedInViewModel, INotifyPropertyChanged
+    public class ManureSaleViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
         bool isEditMode, isCreationMode;
         private bool editExistingMode;
         private DateTime date;
-        private double? numberSold;
-        private string? pigType;
-        private string? otherPigType;
-        private double? salePrice;
+        private double? volumeSold;
+        private string? volumeUnitType;
+        private double? amountRecieved;
         private string? soldTo;
         private string? otherSoldTo;
-        private double? brokerage;
+        private string? paymentType;
+        private double? paymentValue;
         private double? transportationCost;
         private double? otherCosts;
         private string? comment;
-        List<PickerToolHelper> pigTypeListOfOptions;
+        List<PickerToolHelper> volumeUnitTypeListOfOptions;
         List<PickerToolHelper> soldToListOfOptions;
-        PigSaleItem _itemForEditing;
+        List<PickerToolHelper> paymentTypeListOfOptions;
+        ManureSaleItem _itemForEditing;
 
         //Button Clicks
         public Command SaveButtonClicked { get; }
@@ -37,18 +38,18 @@ namespace PigTool.ViewModels
         public Command EditButtonClicked { get; }
 
         #region translations
-        public string PigSaleTitleTranslation { get; set; }
+        public string ManureSaleTitleTranslation { get; set; }
         public string DateTranslation { get; set; }
 
-        public string NumberSoldTranslation { get; set; }
+        public string VolumeSoldTranslation { get; set; }
 
-        public string PigTypeTranslation { get; set; }
-        public string OtherPigTypeTranslation { get; set; }
         public string SoldToTranslation { get; set; }
         public string OtherSoldToTranslation { get; set; }
 
-        public string SalePriceTranslation { get; set; }
-        public string BrokerageTranslation { get; set; }
+        public string AmountRecievedTranslation { get; set; }
+        public string AnyOtherPaymentTranslation { get; set; }
+        public string PaymentTypeTranslation { get; set; }
+        public string PaymentValueTranslation { get; set; }
         public string TransportationCostTranslation { get; set; }
         public string OtherCostTranslation { get; set; }
         public string CommentTranslation { get; set; }
@@ -58,11 +59,12 @@ namespace PigTool.ViewModels
         public string EditTranslation { get; set; }
         public string DeleteTranslation { get; set; }
 
-        public string PickerPigTypeTranslation { get; set; }
+        public string PickerUnitTranslation { get; set; }
+        public string PickerPaymentTypeTranslation { get; set; }
         public string PickerSoldToTranslation { get; set; }
         #endregion
 
-        #region Pig Sale item fields
+        #region Manure item fields
         public DateTime Date
         {
             get => date;
@@ -75,42 +77,31 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public double? NumberSold
+        public double? VolumeSold
         {
-            get => numberSold;
+            get => volumeSold;
             set
             {
-                if (value != numberSold)
+                if (value != volumeSold)
                 {
-                    numberSold = value;
-                    OnPropertyChanged(nameof(NumberSold));
+                    volumeSold = value;
+                    OnPropertyChanged(nameof(VolumeSold));
                 }
             }
         }
-        public string? PigType
+        public string? VolumeUnitType
         {
-            get => pigType;
+            get => volumeUnitType;
             set
             {
-                if (value != pigType)
+                if (value != volumeUnitType)
                 {
-                    pigType = value;
-                    OnPropertyChanged(nameof(PigType));
+                    volumeUnitType = value;
+                    OnPropertyChanged(nameof(VolumeUnitType));
                 }
             }
         }
-        public string? OtherPigType
-        {
-            get => otherPigType;
-            set
-            {
-                if (value != otherPigType)
-                {
-                    otherPigType = value;
-                    OnPropertyChanged(nameof(OtherPigType));
-                }
-            }
-        }
+       
         public string? SoldTo
         {
             get => soldTo;
@@ -135,27 +126,39 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public double? SalePrice
+        public double? AmountRecieved
         {
-            get => salePrice;
+            get => amountRecieved;
             set
             {
-                if (value != salePrice)
+                if (value != amountRecieved)
                 {
-                    salePrice = value;
-                    OnPropertyChanged(nameof(SalePrice));
+                    amountRecieved = value;
+                    OnPropertyChanged(nameof(AmountRecieved));
                 }
             }
         }
-        public double? Brokerage
+        public string? PaymentType
         {
-            get => brokerage;
+            get => paymentType;
             set
             {
-                if (value != brokerage)
+                if (value != paymentType)
                 {
-                    brokerage = value;
-                    OnPropertyChanged(nameof(Brokerage));
+                    paymentType = value;
+                    OnPropertyChanged(nameof(PaymentType));
+                }
+            }
+        }
+        public double? PaymentValue
+        {
+            get => paymentValue;
+            set
+            {
+                if (value != paymentValue)
+                {
+                    paymentValue = value;
+                    OnPropertyChanged(nameof(PaymentValue));
                 }
             }
         }
@@ -200,13 +203,13 @@ namespace PigTool.ViewModels
         #endregion
 
         #region Dropdown Lists
-        public List<PickerToolHelper> PigTypeListOfOptions
+        public List<PickerToolHelper> VolumeUnitTypeListOfOptions
         {
-            get { return pigTypeListOfOptions; }
+            get { return volumeUnitTypeListOfOptions; }
             set
             {
-                pigTypeListOfOptions = value;
-                OnPropertyChanged(nameof(PigTypeListOfOptions));
+                volumeUnitTypeListOfOptions = value;
+                OnPropertyChanged(nameof(VolumeUnitTypeListOfOptions));
             }
         }
 
@@ -220,18 +223,27 @@ namespace PigTool.ViewModels
             }
         }
 
-        private PickerToolHelper selectedPigType;
-
-        public PickerToolHelper SelectedPigType
+        public List<PickerToolHelper> PaymentTypeListOfOptions
         {
-            get { return selectedPigType; }
+            get { return paymentTypeListOfOptions; }
             set
             {
-                if (selectedPigType != value)
+                paymentTypeListOfOptions = value;
+                OnPropertyChanged(nameof(PaymentTypeListOfOptions));
+            }
+        }
+
+        private PickerToolHelper selectedVolumeUnitType;
+
+        public PickerToolHelper SelectedVolumeUnitType
+        {
+            get { return selectedVolumeUnitType; }
+            set
+            {
+                if (selectedVolumeUnitType != value)
                 {
-                    DisplayOtherPigType = value?.TranslationRowKey == Constants.OTHER;
-                    selectedPigType = value;
-                    OnPropertyChanged(nameof(SelectedPigType));
+                    selectedVolumeUnitType = value;
+                    OnPropertyChanged(nameof(SelectedVolumeUnitType));
                 }
             }
         }
@@ -251,24 +263,26 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        #endregion
 
-        #region Hidden Fields
-        private bool displayOtherPigType;
-        private bool displayOtherSoldTo;
+        private PickerToolHelper selectedPaymentType;
 
-        public bool DisplayOtherPigType
+        public PickerToolHelper SelectedPaymentType
         {
-            get => displayOtherPigType;
+            get { return selectedPaymentType; }
             set
             {
-                if (displayOtherPigType != value)
+                if (selectedPaymentType != value)
                 {
-                    displayOtherPigType = value;
-                    OnPropertyChanged(nameof(DisplayOtherPigType));
+                    selectedPaymentType = value;
+                    OnPropertyChanged(nameof(SelectedPaymentType));
                 }
             }
         }
+        #endregion
+
+        #region Hidden Fields
+        private bool displayOtherSoldTo;
+
         public bool DisplayOtherSoldTo
         {
             get => displayOtherSoldTo;
@@ -281,6 +295,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
+        
         #endregion
 
         public bool IsEditMode
@@ -315,7 +330,7 @@ namespace PigTool.ViewModels
         public bool EditExistingMode { get => editExistingMode; set { if (editExistingMode != value) { editExistingMode = value; OnPropertyChanged(nameof(EditExistingMode)); } } }
         public bool CreationMode { get; private set; }
 
-        public PigSaleViewModel()
+        public ManureSaleViewModel()
         {
             Date = DateTime.Now;
 
@@ -329,18 +344,17 @@ namespace PigTool.ViewModels
             IsEditMode = true;
             IsCreationMode = !EditExistingMode;
 
-            PigSaleTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PigSaleTitleTranslation), User.UserLang);
+            ManureSaleTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ManureSaleTitleTranslation), User.UserLang);
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
             
-            NumberSoldTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(NumberSoldTranslation), User.UserLang);
-
-            PigTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PigTypeTranslation), User.UserLang);
-            OtherPigTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherPigTypeTranslation), User.UserLang);
+            VolumeSoldTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(VolumeSoldTranslation), User.UserLang);
             SoldToTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SoldToTranslation), User.UserLang);
             OtherSoldToTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherSoldToTranslation), User.UserLang);
 
-            SalePriceTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SalePriceTranslation), User.UserLang) + " *";
-            BrokerageTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(BrokerageTranslation), User.UserLang) + " *";
+            AmountRecievedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AmountRecievedTranslation), User.UserLang) + " *";
+            AnyOtherPaymentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AnyOtherPaymentTranslation), User.UserLang);
+            PaymentTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PaymentTypeTranslation), User.UserLang);
+            PaymentValueTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PaymentValueTranslation), User.UserLang) + " *";
             TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
             OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
@@ -350,11 +364,12 @@ namespace PigTool.ViewModels
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
             DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), User.UserLang);
 
-            PickerPigTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerPigTypeTranslation), User.UserLang);
+            PickerUnitTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerUnitTranslation), User.UserLang);
+            PickerPaymentTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerPaymentTypeTranslation), User.UserLang);
             PickerSoldToTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerSoldToTranslation), User.UserLang);
         }
 
-        public void populatewithData(PigSaleItem item)
+        public void populatewithData(ManureSaleItem item)
         {
             isEditMode = false;
             CreationMode = false;
@@ -363,13 +378,13 @@ namespace PigTool.ViewModels
             _itemForEditing = item;
 
             Date = item.Date;
-            NumberSold = item.NumberSold;
-            PigType = item.PigType;
-            OtherPigType = item.OtherPigType;
+            VolumeSold = item.VolumeSold;
+            VolumeUnitType = item.VolumeUnitType;
             SoldTo = item.SoldTo;
             OtherSoldTo = item.OtherSoldTo;
-            SalePrice = item.SalePrice;
-            Brokerage = item.Brokerage;
+            AmountRecieved = item.AmountRecieved;
+            PaymentType = item.PaymentType;
+            PaymentValue = item.PaymentValue;
             TransportationCost = item.TransportationCost;
             OtherCosts = item.OtherCosts; 
             Comment = item.Comment;
@@ -379,8 +394,9 @@ namespace PigTool.ViewModels
         {
             if (EditExistingMode)
             {
-                SelectedPigType = PigTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.PigType).FirstOrDefault();
+                SelectedVolumeUnitType = VolumeUnitTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.VolumeUnitType).FirstOrDefault();
                 SelectedSoldTo = SoldToListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.SoldTo).FirstOrDefault();
+                SelectedPaymentType = PaymentTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.PaymentType).FirstOrDefault();
             }
         }
 
@@ -398,44 +414,44 @@ namespace PigTool.ViewModels
             {
 
                 _itemForEditing.Date = Date;
-                _itemForEditing.NumberSold = (int)NumberSold;
-                _itemForEditing.PigType = SelectedPigType != null ? SelectedPigType.TranslationRowKey : null;
-                _itemForEditing.OtherPigType = OtherPigType;
+                _itemForEditing.VolumeSold = VolumeSold;
+                _itemForEditing.VolumeUnitType = SelectedVolumeUnitType != null ? SelectedVolumeUnitType.TranslationRowKey : null;
                 _itemForEditing.SoldTo = SelectedSoldTo != null ? SelectedSoldTo.TranslationRowKey : null;
                 _itemForEditing.OtherSoldTo = OtherSoldTo;
-                _itemForEditing.SalePrice = (double)SalePrice;
-                _itemForEditing.Brokerage = (double)Brokerage;
+                _itemForEditing.AmountRecieved = (double)AmountRecieved;
+                _itemForEditing.PaymentType = SelectedPaymentType != null ? SelectedPaymentType.TranslationRowKey : null;
+                _itemForEditing.PaymentValue = (double)PaymentValue;
                 _itemForEditing.TransportationCost = (double)TransportationCost;
                 _itemForEditing.OtherCosts = (double)OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
-                await repo.UpdatePigSaleItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert("Updated", "Pig sale record has been updated", "OK");
+                await repo.UpdateManureSaleItem(_itemForEditing);
+                await Application.Current.MainPage.DisplayAlert("Updated", "Manure sale record has been updated", "OK");
                 await Shell.Current.Navigation.PopAsync();
             }
             else
             {
-                var newPigSale = new PigSaleItem
+                var newManureSale = new ManureSaleItem
                 {
                     Date = Date,
-                    NumberSold = (int)NumberSold,
-                    PigType = SelectedPigType != null ? SelectedPigType.TranslationRowKey : null,
-                    OtherPigType = OtherPigType,
+                    VolumeSold = VolumeSold,
+                    VolumeUnitType = SelectedVolumeUnitType != null ? SelectedVolumeUnitType.TranslationRowKey : null,
                     SoldTo = SelectedSoldTo != null ? SelectedSoldTo.TranslationRowKey : null,
                     OtherSoldTo = OtherSoldTo,
-                    SalePrice = (double)SalePrice,
-                    Brokerage = (double)Brokerage,
+                    AmountRecieved = (double)AmountRecieved,
+                    PaymentType = SelectedPaymentType != null ? SelectedPaymentType.TranslationRowKey : null,
+                    PaymentValue = (double)PaymentValue,
                     TransportationCost = (double)TransportationCost,
                     OtherCosts = (double)OtherCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
-                    PartitionKey = Constants.PartitionKeyPigSaleItem,
+                    PartitionKey = Constants.PartitionKeyManureSaleItem,
                 };
 
-                await repo.AddSinglePigSaleItem(newPigSale);
-                await Application.Current.MainPage.DisplayAlert("Created", "Pig sale has been saved", "OK");
+                await repo.AddSingleManureSaleItem(newManureSale);
+                await Application.Current.MainPage.DisplayAlert("Created", "Manure sale has been saved", "OK");
             }
         }
 
@@ -446,7 +462,7 @@ namespace PigTool.ViewModels
                 var confirmDelete = await Application.Current.MainPage.DisplayAlert("Deletion Confirmation", "Are you sure you want to delete this item", "OK", "Cancel");
                 if (confirmDelete)
                 {
-                    repo.DeletePigSaleItem(_itemForEditing);
+                    repo.DeleteManureSaleItem(_itemForEditing);
                     await Shell.Current.Navigation.PopAsync();
                 }
             }
@@ -464,14 +480,14 @@ namespace PigTool.ViewModels
 
         private void ClearFormVariables()
         {
-            NumberSold = null;
-            PigType = null;
-            SelectedPigType = null;
-            OtherPigType = null;
+            VolumeSold = null;
+            VolumeUnitType = null;
+            SelectedVolumeUnitType = null;
             SelectedSoldTo = null;
             OtherSoldTo = null;
-            SalePrice = null;
-            Brokerage = null;
+            AmountRecieved = null;
+            PaymentValue = null;
+            SelectedPaymentType = null;
             TransportationCost = null;
             OtherCosts = null;
             Comment = null;
@@ -479,16 +495,19 @@ namespace PigTool.ViewModels
 
         public async Task PopulateDataDowns()
         {
-            var PigTypeControlData = await repo.GetControlData(Constants.PIGTYPE);
+            var VolumeUnitTypeControlData = await repo.GetControlData(Constants.VOLUMEUNITTYPE);
             var SoldToControlData = await repo.GetControlData(Constants.SOLDTOTYPE);
+            var PaymentTypeControlData = await repo.GetControlData(Constants.OTHERPAYMENTTYPE);
 
-            PigTypeListOfOptions = LogicHelper.CreatePickerToolOption(PigTypeControlData, User.UserLang);
+            VolumeUnitTypeListOfOptions = LogicHelper.CreatePickerToolOption(VolumeUnitTypeControlData, User.UserLang);
             SoldToListOfOptions = LogicHelper.CreatePickerToolOption(SoldToControlData, User.UserLang);
+            PaymentTypeListOfOptions = LogicHelper.CreatePickerToolOption(PaymentTypeControlData, User.UserLang);
 
             if (!IsEditMode)
             {
-                SelectedPigType = PigTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.PigType).FirstOrDefault();
-                selectedSoldTo = PigTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.SoldTo).FirstOrDefault();
+                selectedVolumeUnitType = VolumeUnitTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.VolumeUnitType).FirstOrDefault();
+                selectedSoldTo = SoldToListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.SoldTo).FirstOrDefault();
+                selectedPaymentType = PaymentTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.PaymentType).FirstOrDefault();
             }
         }
 
@@ -498,17 +517,12 @@ namespace PigTool.ViewModels
             {
                 StringBuilder returnString = new StringBuilder();
                 if (Date == null) returnString.AppendLine("Date obtained not provided");
-                if (SalePrice == null) returnString.AppendLine("Sale Price Not Provided");
-                if (Brokerage == null) returnString.AppendLine("Brokerage Not Provided");
+                if (AmountRecieved == null) returnString.AppendLine("Amount Recieved Not Provided");
+                if (PaymentValue == null) returnString.AppendLine("Payment Value Not Provided");
                 if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
                 if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
                 
-                if (SelectedPigType != null && SelectedPigType.TranslationRowKey == Constants.OTHER)
-                {
-                    if (string.IsNullOrWhiteSpace(OtherPigType)) returnString.AppendLine("Other Pig Type Not Provided");
-                }
-
                 if (SelectedSoldTo != null && SelectedSoldTo.TranslationRowKey == Constants.OTHER)
                 {
                     if (string.IsNullOrWhiteSpace(OtherSoldTo)) returnString.AppendLine("Other Sold To Not Provided");

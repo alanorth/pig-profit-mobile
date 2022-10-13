@@ -29,6 +29,8 @@ namespace SQLLiteDbContext
         public DbSet<EquipmentItem> EquipmentItems { get; set; }
         public DbSet<PigSaleItem> PigSaleItems { get; set; }
         public DbSet<BreedingServiceSaleItem> BreedingServiceSaleItems { get; set; }
+        public DbSet<ManureSaleItem> ManureSaleItems { get; set; }
+        public DbSet<OtherIncomeItem> OtherIncomeItems { get; set; }
 
         public DbSQLLiteContext()
         {
@@ -67,6 +69,8 @@ namespace SQLLiteDbContext
             modelBuilder.Entity<EquipmentItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyEquipmentItem);
             modelBuilder.Entity<PigSaleItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyPigSaleItem);
             modelBuilder.Entity<BreedingServiceSaleItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyBreedingServiceSaleItem);
+            modelBuilder.Entity<ManureSaleItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyManureSaleItem);
+            modelBuilder.Entity<OtherIncomeItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyOtherIncomeItem);
 
             modelBuilder.Entity<ControlData>()
             .HasOne(cd => cd.Translation).WithMany(t => t.ControlDatas).HasForeignKey(cd => cd.TranslationRowKey);
@@ -91,6 +95,7 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "EditData", English = "View / Edit / Delete data", Lang1 = "View / Edit / Delete data lang1", Lang2 = "View / Edit / Delete data lang2" },
                          new Translation() { RowKey = "ViewReports", English = "Reports", Lang1 = "Reports Lang1", Lang2 = "Reports Lang2" },
                          new Translation() { RowKey = "Home", English = "Home", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
+                         new Translation() { RowKey = "FilterTranslation", English = "Filter by:", Lang1 = "", Lang2 = "" },
 
                          new Translation() { RowKey = "Costs", English = "Costs", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
                          new Translation() { RowKey = "Feed", English = "Feed", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
@@ -106,6 +111,7 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "Income", English = "Income", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
                          new Translation() { RowKey = "PigSale", English = "Sale of Pigs", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
                          new Translation() { RowKey = "BreedingServiceSale", English = "Sale of breeding services", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
+                         new Translation() { RowKey = "ManureSale", English = "Sale of manure", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
                          new Translation() { RowKey = "OtherIncome", English = "Other Income", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
                          new Translation() { RowKey = "Equipment", English = "Equipment", Lang1 = "Equipment Lang1", Lang2 = "Equipment Lang2" },
 
@@ -233,6 +239,32 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "PaymentValueTranslation", English = "Value", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "ClientTranslation", English = "Client", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "OtherClientTranslation", English = "Other Client", Lang1 = "", Lang2 = "" },
+
+                         //Manure Sale
+                         new Translation() { RowKey = "ManureSaleTitleTranslation", English = "Sale of Manure", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "VolumeSoldTranslation", English = "Volume Sold", Lang1 = "", Lang2 = "" },
+
+                         // Other Income
+                         new Translation() { RowKey = "OtherIncomeTitleTranslation", English = "Other Income", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "TotalIncomeTranslation", English = "Total Income", Lang1 = "", Lang2 = "" },
+
+                         // PickerTitles
+                         new Translation() { RowKey = "PickerUnitTranslation", English = "Unit", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerFeedTypeTranslation", English = "Select a Feed Type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerPurchasedFromTranslation", English = "Select a Provider", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerHealthCareTypeTranslation", English = "Select a Care Type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerProviderTranslation", English = "Select a Provider", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerMedicineTypeTranslation", English = "Select a Medicine Type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerLabourTypeTranslation", English = "Select a Labour Type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerHousingExpenseTranslation", English = "Select an Expense", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerServiceTypeTranslation", English = "Select a Service Type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerMembershipTypeTranslation", English = "Select a Membership", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerAnimalTypeTranslation", English = "Select a Animal Type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerEquipmentTypeTranslation", English = "Select an Equipment Type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerPigTypeTranslation", English = "Select a Pig Type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerSoldToTranslation", English = "Select a Buyer", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerPaymentTypeTranslation", English = "Select a Payment Type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "PickerClientTranslation", English = "Select a Client", Lang1 = "", Lang2 = "" },
 
 
 
@@ -439,7 +471,16 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "ClientType5", English = "ClientType 5", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "ClientType6", English = "ClientType 6", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "ClientType7", English = "ClientType 7", Lang1 = "", Lang2 = "" },
-                         new Translation() { RowKey = "ClientType8", English = "ClientType 8", Lang1 = "", Lang2 = "" }
+                         new Translation() { RowKey = "ClientType8", English = "ClientType 8", Lang1 = "", Lang2 = "" },
+
+                         new Translation() { RowKey = "VolumeUnitType1", English = "VolumeUnitType 1", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "VolumeUnitType2", English = "VolumeUnitType 2", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "VolumeUnitType3", English = "VolumeUnitType 3", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "VolumeUnitType4", English = "VolumeUnitType 4", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "VolumeUnitType5", English = "VolumeUnitType 5", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "VolumeUnitType6", English = "VolumeUnitType 6", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "VolumeUnitType7", English = "VolumeUnitType 7", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "VolumeUnitType8", English = "VolumeUnitType 8", Lang1 = "", Lang2 = "" }
 
 
                          );
@@ -671,7 +712,17 @@ namespace SQLLiteDbContext
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.CLIENTTYPE, TranslationRowKey = "ClientType6" },
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.CLIENTTYPE, TranslationRowKey = "ClientType7" },
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.CLIENTTYPE, TranslationRowKey = "ClientType8" },
-                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.CLIENTTYPE, TranslationRowKey = Constants.OTHER }
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.CLIENTTYPE, TranslationRowKey = Constants.OTHER },
+
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType1" },
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType2" },
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType3" },
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType4" },
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType5" },
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType6" },
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType7" },
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType8" },
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = Constants.OTHER }
 
                        );
                 }

@@ -61,6 +61,10 @@ namespace PigTool.ViewModels
         public string ResetTranslation { get; set; }
         public string EditTranslation { get; set; }
         public string DeleteTranslation { get; set; }
+
+        public string PickerServiceTypeTranslation { get; set; }
+        public string PickerPaymentTypeTranslation { get; set; }
+        public string PickerClientTranslation { get; set; }
         #endregion
 
         #region Pig Sale item fields
@@ -390,6 +394,10 @@ namespace PigTool.ViewModels
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
             DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), User.UserLang);
+
+            PickerServiceTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerServiceTypeTranslation), User.UserLang);
+            PickerPaymentTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerPaymentTypeTranslation), User.UserLang);
+            PickerClientTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerClientTranslation), User.UserLang);
         }
 
         public void populatewithData(BreedingServiceSaleItem item)

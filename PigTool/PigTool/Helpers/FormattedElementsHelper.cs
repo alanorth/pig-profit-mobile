@@ -101,6 +101,8 @@ namespace PigTool.Helpers
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Keyboard = Keyboard.Numeric,
+                Placeholder = "",
+                BackgroundColor = Color.White,
             };
 
             Entry.SetBinding(Entry.TextProperty, new Binding(TextBindingProperty));
@@ -127,7 +129,7 @@ namespace PigTool.Helpers
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 HeightRequest = heightRequest,
-                
+                Placeholder = ""
             };
 
             Entry.SetBinding(Entry.TextProperty, new Binding(TextBindingProperty));
@@ -148,7 +150,7 @@ namespace PigTool.Helpers
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 HeightRequest = heightRequest,
-
+                Placeholder = ""
             };
 
             Edds.SetBinding(Editor.TextProperty, new Binding(TextBindingProperty));
@@ -163,11 +165,12 @@ namespace PigTool.Helpers
             return Edds;
         }
 
-        public static Picker  FormPickerEntry (string ItemSourceBinding, string ItemDisplayBinding, string SelectedItemBinding, string IsEnabledBinding,  PickerToolHelper  selectedItem = null)
+        public static Picker  FormPickerEntry (string ItemSourceBinding, string ItemDisplayBinding, string SelectedItemBinding, string IsEnabledBinding, PickerToolHelper  selectedItem = null, string hintText = "")
         {
             Picker picker = new Picker()
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
+                Title = hintText
             };
 
             picker.SetBinding(Picker.SelectedItemProperty, new Binding(SelectedItemBinding));

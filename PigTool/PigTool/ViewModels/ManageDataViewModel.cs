@@ -23,6 +23,7 @@ namespace PigTool.ViewModels
         public string CostTrans { get; set; }
         public string LabourCostTrans { get; set; }
 
+        public string FilterTranslation { get; set; }
         #endregion
 
 
@@ -43,6 +44,10 @@ namespace PigTool.ViewModels
 
         private ObservableCollection<PigSaleItem> pigSaleItems;
         private ObservableCollection<BreedingServiceSaleItem> breedingServiceSaleItems;
+        private ObservableCollection<ManureSaleItem> manureSaleItems;
+        private ObservableCollection<OtherIncomeItem> otherIncomeItems;
+
+        private int selectedYear = DateTime.Now.Year;
 
         public ObservableCollection<FeedItem> FeedItems
         {
@@ -186,6 +191,39 @@ namespace PigTool.ViewModels
             }
         }
 
+        public ObservableCollection<ManureSaleItem> ManureSaleItems
+        {
+
+            get { return manureSaleItems; }
+            set
+            {
+                manureSaleItems = value;
+                OnPropertyChanged(nameof(ManureSaleItems));
+            }
+        }
+
+        public ObservableCollection<OtherIncomeItem> OtherIncomeItems
+        {
+
+            get { return otherIncomeItems; }
+            set
+            {
+                otherIncomeItems = value;
+                OnPropertyChanged(nameof(OtherIncomeItems));
+            }
+        }
+
+        public int SelectedYear
+        {
+            get { return selectedYear; }
+            set
+            {
+                selectedYear = value;
+                OnPropertyChanged(nameof(SelectedYear));
+                PopulateLists();
+            }
+        }
+
         public Command EditFeedItem { get; }
         public Command EditHealthCareItem { get; }
         public Command EditLabourCostItem { get; }
@@ -200,6 +238,8 @@ namespace PigTool.ViewModels
 
         public Command EditPigSaleItem { get; }
         public Command EditBreedingServiceSaleItem { get; }
+        public Command EditManureSaleItem { get; }
+        public Command EditOtherIncomeItem { get; }
 
         public ManageDataViewModel()
         {
@@ -218,33 +258,38 @@ namespace PigTool.ViewModels
 
             EditPigSaleItem = new Command<PigSaleItem>(async (o) => await EditPigSaleItemCommand(o));
             EditBreedingServiceSaleItem = new Command<BreedingServiceSaleItem>(async (o) => await EditBreedingServiceSaleItemCommand(o));
+            EditManureSaleItem = new Command<ManureSaleItem>(async (o) => await EditManureSaleItemCommand(o));
+            EditOtherIncomeItem = new Command<OtherIncomeItem>(async (o) => await EditOtherIncomeItemCommand(o));
 
             Costs = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(Costs), User.UserLang);
             DateObtainedTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateObtainedTrans), User.UserLang);
             CostTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CostTrans), User.UserLang);
             LabourCostTrans = LogicHelper.GetTranslationFromStore(TranslationStore, "Labour", User.UserLang);
+
+            FilterTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FilterTranslation), User.UserLang);
         }
 
 
         public async Task PopulateLists()
         {
             //FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItems());
-            FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItemsAndAttachedTranslation(User.UserLang));
-            HealthCareItems = new ObservableCollection<HealthCareItem>(await repo.GetHealthCareItems());
-            LabourCostItems = new ObservableCollection<LabourCostItem>(await repo.GetLabourCostItems());
-            AnimalHouseItems = new ObservableCollection<AnimalHouseItem>(await repo.GetAnimalHouseItems());
-            WaterCostItems = new ObservableCollection<WaterCostItem>(await repo.GetWaterCostItems());
-            MembershipItems = new ObservableCollection<MembershipItem>(await repo.GetMembershipItems());
-            OtherCostItems = new ObservableCollection<OtherCostItem>(await repo.GetOtherCostItems());
-            ReproductiveItems = new ObservableCollection<ReproductiveItem>(await repo.GetReproductiveItems());
-            AnimalPurchaseItems = new ObservableCollection<AnimalPurchaseItem>(await repo.GetAnimalPurchaseItems());
-            LoanRepaymentItems = new ObservableCollection<LoanRepaymentItem>(await repo.GetLoanRepaymentItems());
-            EquipmentItems = new ObservableCollection<EquipmentItem>(await repo.GetEquipmentItems());
+            FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItems(selectedYear));//GetFeedItemsAndAttachedTranslation(User.UserLang) to fix dropdown translation
+            HealthCareItems = new ObservableCollection<HealthCareItem>(await repo.GetHealthCareItems(selectedYear));
+            LabourCostItems = new ObservableCollection<LabourCostItem>(await repo.GetLabourCostItems(selectedYear));
+            AnimalHouseItems = new ObservableCollection<AnimalHouseItem>(await repo.GetAnimalHouseItems(selectedYear));
+            WaterCostItems = new ObservableCollection<WaterCostItem>(await repo.GetWaterCostItems(selectedYear));
+            MembershipItems = new ObservableCollection<MembershipItem>(await repo.GetMembershipItems(selectedYear));
+            OtherCostItems = new ObservableCollection<OtherCostItem>(await repo.GetOtherCostItems(selectedYear));
+            ReproductiveItems = new ObservableCollection<ReproductiveItem>(await repo.GetReproductiveItems(selectedYear));
+            AnimalPurchaseItems = new ObservableCollection<AnimalPurchaseItem>(await repo.GetAnimalPurchaseItems(selectedYear));
+            LoanRepaymentItems = new ObservableCollection<LoanRepaymentItem>(await repo.GetLoanRepaymentItems(selectedYear));
+            EquipmentItems = new ObservableCollection<EquipmentItem>(await repo.GetEquipmentItems(selectedYear));
 
-            PigSaleItems = new ObservableCollection<PigSaleItem>(await repo.GetPigSaleItems());
-            BreedingServiceSaleItems = new ObservableCollection<BreedingServiceSaleItem>(await repo.GetBreedingServiceSaleItems());
+            PigSaleItems = new ObservableCollection<PigSaleItem>(await repo.GetPigSaleItems(selectedYear));
+            BreedingServiceSaleItems = new ObservableCollection<BreedingServiceSaleItem>(await repo.GetBreedingServiceSaleItems(selectedYear));
+            ManureSaleItems = new ObservableCollection<ManureSaleItem>(await repo.GetManureSaleItems(selectedYear));
+            OtherIncomeItems = new ObservableCollection<OtherIncomeItem>(await repo.GetOtherIncomeItems(selectedYear));
         }
-
         private async Task EditFeedItemDataCommand(FeedItem feed)
         {
             try
@@ -394,6 +439,30 @@ namespace PigTool.ViewModels
             try
             {
                 await Application.Current.MainPage.Navigation.PushAsync(new BreedingServiceSalePage(item));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private async Task EditManureSaleItemCommand(ManureSaleItem item)
+        {
+            try
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new ManureSalePage(item));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private async Task EditOtherIncomeItemCommand(OtherIncomeItem item)
+        {
+            try
+            {
+                await Application.Current.MainPage.Navigation.PushAsync(new OtherIncomePage(item));
             }
             catch (Exception ex)
             {

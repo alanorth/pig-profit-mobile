@@ -78,7 +78,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedWaterPurchasedUnit),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedWaterPurchasedUnit
+                _viewModel.SelectedWaterPurchasedUnit,
+                _viewModel.PickerUnitTranslation
                 )
                 );
             
@@ -111,7 +112,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedPurchasedWaterFrom),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedPurchasedWaterFrom
+                _viewModel.SelectedPurchasedWaterFrom,
+                _viewModel.PickerPurchasedFromTranslation
                 )
                 );
             var OtherWaterFromType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherPurchasedFrom), true);

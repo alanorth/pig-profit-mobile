@@ -77,6 +77,11 @@ namespace PigTool.Services
             return await _context.FeedItems.ToListAsync();
         }
 
+        public async Task<List<FeedItem>> GetFeedItems(int selectedYear)
+        {
+            return await _context.FeedItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+        }
+
         public async Task<List<FeedItem>> GetFeedItemsAndAttachedTranslation(UserLangSettings userLanguage)
         {
             var feedItems =  await _context.FeedItems.Include("FeedTypeTranslation").ToListAsync();
@@ -109,6 +114,10 @@ namespace PigTool.Services
         public async Task<List<HealthCareItem>> GetHealthCareItems()
         {
             return await _context.HealthCareItems.ToListAsync();
+        }
+        public async Task<List<HealthCareItem>> GetHealthCareItems(int selectedYear)
+        {
+            return await _context.HealthCareItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
         }
 
         public async Task<HealthCareItem> GetHealthCareItem(string RowKey)
@@ -165,10 +174,18 @@ namespace PigTool.Services
         {
             return await _context.LabourCostItems.ToListAsync();
         }
+        public async Task<List<LabourCostItem>> GetLabourCostItems(int selectedYear)
+        {
+            return await _context.LabourCostItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+        }
 
         public async Task<List<AnimalHouseItem>> GetAnimalHouseItems()
         {
             return await _context.AnimalHouseItems.ToListAsync();
+        }
+        public async Task<List<AnimalHouseItem>> GetAnimalHouseItems(int selectedYear)
+        {
+            return await _context.AnimalHouseItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
         }
 
         public async Task<AnimalHouseItem> GetAnimalHouseItem(string RowKey)
@@ -200,6 +217,10 @@ namespace PigTool.Services
         {
             return await _context.WaterCostItems.ToListAsync();
         }
+        public async Task<List<WaterCostItem>> GetWaterCostItems(int selectedYear)
+        {
+            return await _context.WaterCostItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+        }
 
         public async Task<WaterCostItem> GetWaterCostItem(string RowKey)
         {
@@ -229,6 +250,10 @@ namespace PigTool.Services
         public async Task<List<MembershipItem>> GetMembershipItems()
         {
             return await _context.MembershipItems.ToListAsync();
+        }
+        public async Task<List<MembershipItem>> GetMembershipItems(int selectedYear)
+        {
+            return await _context.MembershipItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
         }
 
         public async Task<MembershipItem> GetMembershipItem(string RowKey)
@@ -260,6 +285,10 @@ namespace PigTool.Services
         {
             return await _context.OtherCostItems.ToListAsync();
         }
+        public async Task<List<OtherCostItem>> GetOtherCostItems(int selectedYear)
+        {
+            return await _context.OtherCostItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+        }
 
         public async Task<OtherCostItem> GetOtherCostItem(string RowKey)
         {
@@ -289,6 +318,10 @@ namespace PigTool.Services
         public async Task<List<ReproductiveItem>> GetReproductiveItems()
         {
             return await _context.ReproductiveItems.ToListAsync();
+        }
+        public async Task<List<ReproductiveItem>> GetReproductiveItems(int selectedYear)
+        {
+            return await _context.ReproductiveItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
         }
 
         public async Task<ReproductiveItem> GetReproductiveItem(string RowKey)
@@ -320,6 +353,10 @@ namespace PigTool.Services
         {
             return await _context.AnimalPurchaseItems.ToListAsync();
         }
+        public async Task<List<AnimalPurchaseItem>> GetAnimalPurchaseItems(int selectedYear)
+        {
+            return await _context.AnimalPurchaseItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+        }
 
         public async Task<AnimalPurchaseItem> GetAnimalPurchaseItem(string RowKey)
         {
@@ -349,6 +386,10 @@ namespace PigTool.Services
         public async Task<List<LoanRepaymentItem>> GetLoanRepaymentItems()
         {
             return await _context.LoanRepaymentItems.ToListAsync();
+        }
+        public async Task<List<LoanRepaymentItem>> GetLoanRepaymentItems(int selectedYear)
+        {
+            return await _context.LoanRepaymentItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
         }
 
         public async Task<LoanRepaymentItem> GetLoanRepaymentItem(string RowKey)
@@ -381,6 +422,11 @@ namespace PigTool.Services
             return await _context.EquipmentItems.ToListAsync();
         }
 
+        public async Task<List<EquipmentItem>> GetEquipmentItems(int selectedYear)
+        {
+            return await _context.EquipmentItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+        }
+
         public async Task<EquipmentItem> GetEquipmentItem(string RowKey)
         {
             return await _context.EquipmentItems.SingleOrDefaultAsync(Item => Item.RowKey == RowKey);
@@ -409,6 +455,11 @@ namespace PigTool.Services
         public async Task<List<PigSaleItem>> GetPigSaleItems()
         {
             return await _context.PigSaleItems.ToListAsync();
+        }
+
+        public async Task<List<PigSaleItem>> GetPigSaleItems(int selectedYear)
+        {
+            return await _context.PigSaleItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
         }
 
         public async Task<PigSaleItem> GetPigSaleItem(string RowKey)
@@ -440,6 +491,11 @@ namespace PigTool.Services
             return await _context.BreedingServiceSaleItems.ToListAsync();
         }
 
+        public async Task<List<BreedingServiceSaleItem>> GetBreedingServiceSaleItems(int selectedYear)
+        {
+            return await _context.BreedingServiceSaleItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+        }
+
         public async Task<BreedingServiceSaleItem> GetBreedingServiceSaleItem(string RowKey)
         {
             return await _context.BreedingServiceSaleItems.SingleOrDefaultAsync(Item => Item.RowKey == RowKey);
@@ -460,6 +516,76 @@ namespace PigTool.Services
         public async Task AddSingleBreedingServiceSaleItem(BreedingServiceSaleItem itemToAdd)
         {
             if (_context.BreedingServiceSaleItems.Any(fd => fd.RowKey == itemToAdd.RowKey)) return;
+
+            await _context.AddAsync(itemToAdd);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<ManureSaleItem>> GetManureSaleItems()
+        {
+            return await _context.ManureSaleItems.ToListAsync();
+        }
+
+        public async Task<List<ManureSaleItem>> GetManureSaleItems(int selectedYear)
+        {
+            return await _context.ManureSaleItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+        }
+
+        public async Task<ManureSaleItem> GetManureSaleItem(string RowKey)
+        {
+            return await _context.ManureSaleItems.SingleOrDefaultAsync(Item => Item.RowKey == RowKey);
+        }
+
+        public async Task UpdateManureSaleItem(ManureSaleItem Item)
+        {
+            _context.Update(Item);
+            await _context.SaveChangesAsync();
+        }
+
+        public void DeleteManureSaleItem(ManureSaleItem Item)
+        {
+            _context.Remove(Item);
+            _context.SaveChangesAsync();
+        }
+
+        public async Task AddSingleManureSaleItem(ManureSaleItem itemToAdd)
+        {
+            if (_context.ManureSaleItems.Any(fd => fd.RowKey == itemToAdd.RowKey)) return;
+
+            await _context.AddAsync(itemToAdd);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<OtherIncomeItem>> GetOtherIncomeItems()
+        {
+            return await _context.OtherIncomeItems.ToListAsync();
+        }
+
+        public async Task<List<OtherIncomeItem>> GetOtherIncomeItems(int selectedYear)
+        {
+            return await _context.OtherIncomeItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+        }
+
+        public async Task<OtherIncomeItem> GetOtherIncomeItem(string RowKey)
+        {
+            return await _context.OtherIncomeItems.SingleOrDefaultAsync(Item => Item.RowKey == RowKey);
+        }
+
+        public async Task UpdateOtherIncomeItem(OtherIncomeItem Item)
+        {
+            _context.Update(Item);
+            await _context.SaveChangesAsync();
+        }
+
+        public void DeleteOtherIncomeItem(OtherIncomeItem Item)
+        {
+            _context.Remove(Item);
+            _context.SaveChangesAsync();
+        }
+
+        public async Task AddSingleOtherIncomeItem(OtherIncomeItem itemToAdd)
+        {
+            if (_context.OtherIncomeItems.Any(fd => fd.RowKey == itemToAdd.RowKey)) return;
 
             await _context.AddAsync(itemToAdd);
             await _context.SaveChangesAsync();

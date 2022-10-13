@@ -11,18 +11,17 @@ using Xamarin.Forms;
 
 namespace PigTool.ViewModels
 {
-    public class LoanRepaymentViewModel : LoggedInViewModel, INotifyPropertyChanged
+    public class OtherIncomeViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
         bool isEditMode, isCreationMode;
         private bool editExistingMode;
         private DateTime date;
-        private double? totalAmountRepaid;
-        private string? loanProvider;
-        private string? otherLoanProvider;
+        private double? totalIncome;
+        private string? otherWhatFor;
+        private double? transportationCosts;
         private double? otherCosts;
         private string? comment;
-        List<PickerToolHelper> loanProviderListOfOptions;
-        LoanRepaymentItem _itemForEditing;
+        OtherIncomeItem _itemForEditing;
 
         //Button Clicks
         public Command SaveButtonClicked { get; }
@@ -31,25 +30,21 @@ namespace PigTool.ViewModels
         public Command EditButtonClicked { get; }
 
         #region translations
-        public string LoanRepaymentTitleTranslation { get; set; }
+        public string OtherIncomeTitleTranslation { get; set; }
         public string DateTranslation { get; set; }
-
-        public string LoanProviderTranslation { get; set; }
-        public string OtherLoanProviderTranslation { get; set; }
-
-        public string TotalAmountRepaidTranslation { get; set; }
-        public string OtherCostTranslation { get; set; }
+        public string TotalIncomeTranslation { get; set; }
+        public string OtherWhatForTranslation { get; set; }
+        public string TransportationCostTranslation { get; set; }
+        public string OtherCostsTranslation { get; set; }
         public string CommentTranslation { get; set; }
 
         public string SaveTranslation { get; set; }
         public string ResetTranslation { get; set; }
         public string EditTranslation { get; set; }
         public string DeleteTranslation { get; set; }
-
-        public string PickerProviderTranslation { get; set; }
         #endregion
 
-        #region Water cost item fields
+        #region Other cost item fields
         public DateTime Date
         {
             get => date;
@@ -62,43 +57,43 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public double? TotalAmountRepaid
+        public string? OtherWhatFor
         {
-            get => totalAmountRepaid;
+            get => otherWhatFor;
             set
             {
-                if (value != totalAmountRepaid)
+                if (value != otherWhatFor)
                 {
-                    totalAmountRepaid = value;
-                    OnPropertyChanged(nameof(TotalAmountRepaid));
+                    otherWhatFor = value;
+                    OnPropertyChanged(nameof(OtherWhatFor));
                 }
             }
         }
-        public string? LoanProvider
+        public double? TransportationCosts
         {
-            get => loanProvider;
+            get => transportationCosts;
             set
             {
-                if (value != loanProvider)
+                if (value != transportationCosts)
                 {
-                    loanProvider = value;
-                    OnPropertyChanged(nameof(LoanProvider));
-                }
-            }
-        }
-        public string? OtherLoanProvider
-        {
-            get => otherLoanProvider;
-            set
-            {
-                if (value != otherLoanProvider)
-                {
-                    otherLoanProvider = value;
-                    OnPropertyChanged(nameof(OtherLoanProvider));
+                    transportationCosts = value;
+                    OnPropertyChanged(nameof(TransportationCosts));
                 }
             }
         }
         
+        public double? TotalIncome
+        {
+            get => totalIncome;
+            set
+            {
+                if (value != totalIncome)
+                {
+                    totalIncome = value;
+                    OnPropertyChanged(nameof(TotalIncome));
+                }
+            }
+        }
         public double? OtherCosts
         {
             get => otherCosts;
@@ -127,45 +122,21 @@ namespace PigTool.ViewModels
         #endregion
 
         #region Dropdown Lists
-        public List<PickerToolHelper> LoanProviderListOfOptions
-        {
-            get { return loanProviderListOfOptions; }
-            set
-            {
-                loanProviderListOfOptions = value;
-                OnPropertyChanged(nameof(LoanProviderListOfOptions));
-            }
-        }
-
-        private PickerToolHelper selectedLoanProvider;
-
-        public PickerToolHelper SelectedLoanProvider
-        {
-            get { return selectedLoanProvider; }
-            set
-            {
-                if (selectedLoanProvider != value)
-                {
-                    DisplayOtherLoanProvider = value?.TranslationRowKey == Constants.OTHER;
-                    selectedLoanProvider = value;
-                    OnPropertyChanged(nameof(SelectedLoanProvider));
-                }
-            }
-        }
+        
         #endregion
 
         #region Hidden Fields
-        private bool displayOtherLoanProvider;
+        private bool displayOtherMembershipType;
 
-        public bool DisplayOtherLoanProvider
+        public bool DisplayOtherMembershipType
         {
-            get => displayOtherLoanProvider;
+            get => displayOtherMembershipType;
             set
             {
-                if (displayOtherLoanProvider != value)
+                if (displayOtherMembershipType != value)
                 {
-                    displayOtherLoanProvider = value;
-                    OnPropertyChanged(nameof(DisplayOtherLoanProvider));
+                    displayOtherMembershipType = value;
+                    OnPropertyChanged(nameof(DisplayOtherMembershipType));
                 }
             }
         }
@@ -203,39 +174,37 @@ namespace PigTool.ViewModels
         public bool EditExistingMode { get => editExistingMode; set { if (editExistingMode != value) { editExistingMode = value; OnPropertyChanged(nameof(EditExistingMode)); } } }
         public bool CreationMode { get; private set; }
 
-        public LoanRepaymentViewModel()
+        public OtherIncomeViewModel()
         {
             Date = DateTime.Now;
 
             IsEditMode = true;
             CreationMode = true;
 
-            SaveButtonClicked = (new Command(SaveButtonCreateHousingItem));
+            SaveButtonClicked = (new Command(SaveButtonCreateOtherCostsItem));
             ResetButtonClicked = new Command(ResetButtonPressed);
             DeleteButtonClicked = new Command(DeleteItem);
             EditButtonClicked = new Command(EditItem);
             IsEditMode = true;
             IsCreationMode = !EditExistingMode;
 
-            LoanRepaymentTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LoanRepaymentTitleTranslation), User.UserLang);
+            OtherIncomeTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherIncomeTitleTranslation), User.UserLang);
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
             
-            TotalAmountRepaidTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalAmountRepaidTranslation), User.UserLang) + " *";
-            LoanProviderTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LoanProviderTranslation), User.UserLang);
-            OtherLoanProviderTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherLoanProviderTranslation), User.UserLang);
+            OtherWhatForTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherWhatForTranslation), User.UserLang);
 
-            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
+            TotalIncomeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalIncomeTranslation), User.UserLang) + " *";
+            TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
+            OtherCostsTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostsTranslation), User.UserLang) + " *";
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
             
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
             DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), User.UserLang);
-
-            PickerProviderTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerProviderTranslation), User.UserLang);
         }
 
-        public void populatewithData(LoanRepaymentItem item)
+        public void populatewithData(OtherIncomeItem item)
         {
             isEditMode = false;
             CreationMode = false;
@@ -244,9 +213,9 @@ namespace PigTool.ViewModels
             _itemForEditing = item;
 
             Date = item.Date;
-            TotalAmountRepaid = item.TotalAmountRepaid;
-            LoanProvider = item.LoanProvider;
-            OtherLoanProvider = item.OtherLoanProvider;
+            OtherWhatFor = item.OtherWhatFor;
+            TransportationCosts = item.TransportationCosts;
+            TotalIncome = item.TotalIncome;
             OtherCosts = item.OtherCosts; 
             Comment = item.Comment;
         }
@@ -255,11 +224,11 @@ namespace PigTool.ViewModels
         {
             if (EditExistingMode)
             {
-                SelectedLoanProvider = LoanProviderListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.LoanProvider).FirstOrDefault();
+                
             }
         }
 
-        private async void SaveButtonCreateHousingItem(object obj)
+        private async void SaveButtonCreateOtherCostsItem(object obj)
         {
             var valid = ValidateSave();
 
@@ -273,34 +242,34 @@ namespace PigTool.ViewModels
             {
 
                 _itemForEditing.Date = Date;
-                _itemForEditing.TotalAmountRepaid = (double)TotalAmountRepaid;
-                _itemForEditing.LoanProvider = SelectedLoanProvider != null ? SelectedLoanProvider.TranslationRowKey : null;
-                _itemForEditing.OtherLoanProvider = OtherLoanProvider;
+                _itemForEditing.OtherWhatFor = OtherWhatFor;
+                _itemForEditing.TransportationCosts = (double)TransportationCosts;
+                _itemForEditing.TotalIncome = (double)TotalIncome;
                 _itemForEditing.OtherCosts = (double)OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
-                await repo.UpdateLoanRepaymentItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert("Updated", "Loan repayment record has been updated", "OK");
+                await repo.UpdateOtherIncomeItem(_itemForEditing);
+                await Application.Current.MainPage.DisplayAlert("Updated", "Other income record has been updated", "OK");
                 await Shell.Current.Navigation.PopAsync();
             }
             else
             {
-                var newLoanRepayment = new LoanRepaymentItem
+                var newOtherCosts = new OtherIncomeItem
                 {
                     Date = Date,
-                    TotalAmountRepaid = (double)TotalAmountRepaid,
-                    LoanProvider = SelectedLoanProvider != null ? SelectedLoanProvider.TranslationRowKey : null,
-                    OtherLoanProvider = OtherLoanProvider,
+                    OtherWhatFor = OtherWhatFor,
+                    TransportationCosts = (double)TransportationCosts,
+                    TotalIncome = (double)TotalIncome,
                     OtherCosts = (double)OtherCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
-                    PartitionKey = Constants.PartitionKeyLoanRepaymentItem
+                    PartitionKey = Constants.PartitionKeyOtherIncomeItem,
                 };
 
-                await repo.AddSingleLoanRepaymentItem(newLoanRepayment);
-                await Application.Current.MainPage.DisplayAlert("Created", "Loan repayment has been saved", "OK");
+                await repo.AddSingleOtherIncomeItem(newOtherCosts);
+                await Application.Current.MainPage.DisplayAlert("Created", "Other income has been saved", "OK");
             }
         }
 
@@ -311,7 +280,7 @@ namespace PigTool.ViewModels
                 var confirmDelete = await Application.Current.MainPage.DisplayAlert("Deletion Confirmation", "Are you sure you want to delete this item", "OK", "Cancel");
                 if (confirmDelete)
                 {
-                    repo.DeleteLoanRepaymentItem(_itemForEditing);
+                    repo.DeleteOtherIncomeItem(_itemForEditing);
                     await Shell.Current.Navigation.PopAsync();
                 }
             }
@@ -329,24 +298,16 @@ namespace PigTool.ViewModels
 
         private void ClearFormVariables()
         {
-            TotalAmountRepaid = null;
-            LoanProvider = null;
-            SelectedLoanProvider = null;
-            OtherLoanProvider = null;
+            OtherWhatFor = null;
+            TransportationCosts = null;
+            TotalIncome = null;
             OtherCosts = null;
             Comment = null;
         }
 
         public async Task PopulateDataDowns()
         {
-            var LoanProviderControlData = await repo.GetControlData(Constants.LOANPROVIDERTYPE);
 
-            LoanProviderListOfOptions = LogicHelper.CreatePickerToolOption(LoanProviderControlData, User.UserLang);
-
-            if (!IsEditMode)
-            {
-                SelectedLoanProvider = LoanProviderListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.LoanProvider).FirstOrDefault();
-            }
         }
 
         private string ValidateSave()
@@ -355,14 +316,9 @@ namespace PigTool.ViewModels
             {
                 StringBuilder returnString = new StringBuilder();
                 if (Date == null) returnString.AppendLine("Date obtained not provided");
-                if (TotalAmountRepaid == null) returnString.AppendLine("Total Amount Repaid Not Provided");
-                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
-
-                
-                if (SelectedLoanProvider != null && SelectedLoanProvider.TranslationRowKey == Constants.OTHER)
-                {
-                    if (string.IsNullOrWhiteSpace(OtherLoanProvider)) returnString.AppendLine("Other Unit Not Provided");
-                }
+                if (TotalIncome == null) returnString.AppendLine("Total cost not provided");
+                if (TransportationCosts == null) returnString.AppendLine("Transportation cost not provided");
+                if (OtherCosts == null) returnString.AppendLine("Other cost not provided");
 
                 return returnString.ToString();
             }

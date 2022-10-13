@@ -13,20 +13,20 @@ using Xamarin.Forms.Xaml;
 namespace PigTool.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PigSalePage : ContentPage
+    public partial class ManureSalePage : ContentPage
     {
-        private PigSaleViewModel _viewModel;
+        private ManureSaleViewModel _viewModel;
         private bool IsRendered = false;
 
-        public PigSalePage()
+        public ManureSalePage()
         {
-            BindingContext = _viewModel = new PigSaleViewModel();
+            BindingContext = _viewModel = new ManureSaleViewModel();
             InitializeComponent();
         }
 
-        public PigSalePage(PigSaleItem WCI)
+        public ManureSalePage(ManureSaleItem WCI)
         {
-            BindingContext = _viewModel = new PigSaleViewModel();
+            BindingContext = _viewModel = new ManureSaleViewModel();
             _viewModel.populatewithData(WCI);
             InitializeComponent();
         }
@@ -59,44 +59,76 @@ namespace PigTool.Views
             DateCell.View = stack;
             FullTableSection.Add(DateCell);
 
+            //Water Purchased
 
-            // Pig Type
-            var PigTypeCell = new ViewCell();
-            var PigTypeVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
-            PigTypeVerticalStack.Padding = 0;
-            var PigTypeTypeStack = FormattedElementsHelper.TableRowStack();
-            PigTypeTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.PigTypeTranslation)));
-            PigTypeTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
-                nameof(_viewModel.PigTypeListOfOptions),
+            var VolumeSoldUnitCell = new ViewCell();
+
+            var UnitVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
+            UnitVerticalStack.Padding = 0;
+
+            var VolumeSoldUnitTypeStack = FormattedElementsHelper.TableRowStack();
+            VolumeSoldUnitTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.VolumeSoldTranslation)));
+
+            var InputContainer = FormattedElementsHelper.TableRowStack();
+            InputContainer.Padding = 0;
+            InputContainer.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.VolumeSold), nameof(_viewModel.IsEditMode), null));
+            InputContainer.Children.Add(FormattedElementsHelper.FormPickerEntry(
+                nameof(_viewModel.VolumeUnitTypeListOfOptions),
                 nameof(PickerToolHelper.TranslatedValue),
-                nameof(_viewModel.SelectedPigType),
+                nameof(_viewModel.SelectedVolumeUnitType),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedPigType
+                _viewModel.SelectedVolumeUnitType,
+                _viewModel.PickerUnitTranslation
                 )
                 );
-            var OtherPigType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherPigType), true);
-            OtherPigType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherPigTypeTranslation)));
-            OtherPigType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherPigType), nameof(_viewModel.IsEditMode)));
-            PigTypeVerticalStack.Children.Add(PigTypeTypeStack);
-            PigTypeVerticalStack.Children.Add(OtherPigType);
-            PigTypeCell.View = PigTypeVerticalStack;
-            FullTableSection.Add(PigTypeCell);
 
-            //NumberSold
-            var NumberSoldCell = new ViewCell();
-            var NumberSoldStack = FormattedElementsHelper.TableRowStack();
-            NumberSoldStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.NumberSoldTranslation)));
-            NumberSoldStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.NumberSold), nameof(_viewModel.IsEditMode), null));
-            NumberSoldCell.View = NumberSoldStack;
-            FullTableSection.Add(NumberSoldCell);
+            VolumeSoldUnitTypeStack.Children.Add(InputContainer);
 
-            //SalePrice
-            var SalePriceCell = new ViewCell();
-            var SalePriceStack = FormattedElementsHelper.TableRowStack();
-            SalePriceStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.SalePriceTranslation)));
-            SalePriceStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.SalePrice), nameof(_viewModel.IsEditMode), null));
-            SalePriceCell.View = SalePriceStack;
-            FullTableSection.Add(SalePriceCell);
+            UnitVerticalStack.Children.Add(VolumeSoldUnitTypeStack);
+            VolumeSoldUnitCell.View = UnitVerticalStack;
+            FullTableSection.Add(VolumeSoldUnitCell);
+
+
+            //AmountRecieved
+            var AmountRecievedCell = new ViewCell();
+            var AmountRecievedStack = FormattedElementsHelper.TableRowStack();
+            AmountRecievedStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.AmountRecievedTranslation)));
+            AmountRecievedStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.AmountRecieved), nameof(_viewModel.IsEditMode), null));
+            AmountRecievedCell.View = AmountRecievedStack;
+            FullTableSection.Add(AmountRecievedCell);
+
+            // PaymentType
+            var PaymentTypeCell = new ViewCell();
+            var PaymentTypeVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
+
+            var OtherPaymentLabel = FormattedElementsHelper.DataLabel(nameof(_viewModel.AnyOtherPaymentTranslation));
+            PaymentTypeVerticalStack.Children.Add(OtherPaymentLabel);
+
+            var PaymentTypeTypeStack = FormattedElementsHelper.TableRowStack();
+            PaymentTypeTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.PaymentTypeTranslation)));
+            PaymentTypeTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
+                nameof(_viewModel.PaymentTypeListOfOptions),
+                nameof(PickerToolHelper.TranslatedValue),
+                nameof(_viewModel.SelectedPaymentType),
+                nameof(_viewModel.IsEditMode),
+                _viewModel.SelectedPaymentType,
+                _viewModel.PickerPaymentTypeTranslation
+                )
+                );
+
+            //PaymentValue
+            var PaymentValueCell = new ViewCell();
+            var PaymentValueStack = FormattedElementsHelper.TableRowStack();
+            PaymentValueStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.PaymentValueTranslation)));
+            PaymentValueStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.PaymentValue), nameof(_viewModel.IsEditMode), null));
+            PaymentValueCell.View = PaymentValueStack;
+
+            PaymentTypeVerticalStack.Children.Add(PaymentTypeTypeStack);
+            PaymentTypeVerticalStack.Children.Add(PaymentValueStack);
+            PaymentTypeCell.View = PaymentTypeVerticalStack;
+            FullTableSection.Add(PaymentTypeCell);
+
+           
 
             // SoldTo
             var SoldToCell = new ViewCell();
@@ -109,7 +141,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedSoldTo),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedSoldTo
+                _viewModel.SelectedSoldTo,
+                _viewModel.PickerSoldToTranslation
                 )
                 );
             var OtherSoldTo = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherSoldTo), true);
@@ -119,14 +152,6 @@ namespace PigTool.Views
             SoldToVerticalStack.Children.Add(OtherSoldTo);
             SoldToCell.View = SoldToVerticalStack;
             FullTableSection.Add(SoldToCell);
-
-            //Transport Cost
-            var BrokerageCell = new ViewCell();
-            var BrokeragesStack = FormattedElementsHelper.TableRowStack();
-            BrokeragesStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.BrokerageTranslation)));
-            BrokeragesStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.Brokerage), nameof(_viewModel.IsEditMode), null));
-            BrokerageCell.View = BrokeragesStack;
-            FullTableSection.Add(BrokerageCell);
 
             //Transport Cost
             var TransportCostCell = new ViewCell();
@@ -171,7 +196,7 @@ namespace PigTool.Views
             FullTableSection.Add(buttonCell);
 
 
-            PigSaleTableView.Root.Add(FullTableSection);
+            ManureSaleTableView.Root.Add(FullTableSection);
         }
     }
 }

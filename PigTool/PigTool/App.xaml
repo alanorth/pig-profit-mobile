@@ -42,7 +42,8 @@
             </Style>
 
             <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
-                <Setter Property="BackgroundColor" Value="#eae4d9"/>
+                <Setter Property="Visual" Value="Default"></Setter>
+                <!--<Setter Property="BackgroundColor" Value="#eae4d9"/>-->
                 <Setter Property="Padding" Value="10, 0"/>
             </Style>
 

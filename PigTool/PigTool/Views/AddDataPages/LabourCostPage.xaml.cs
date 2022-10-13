@@ -69,7 +69,10 @@ namespace PigTool.Views
                 nameof(_viewModel.LabourTypeOptions), 
                 nameof(PickerToolHelper.TranslatedValue), 
                 nameof(_viewModel.SelectedLabourType),
-                nameof(_viewModel.IsEditMode)));
+                nameof(_viewModel.IsEditMode),
+                _viewModel.SelectedLabourType,
+                _viewModel.PickerLabourTypeTranslation
+                ));
             var OtherLabourType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherLabourType), true);
             OtherLabourType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherLaboutTypeTranslation)));
             OtherLabourType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherLaboutType), nameof(_viewModel.IsEditMode)));

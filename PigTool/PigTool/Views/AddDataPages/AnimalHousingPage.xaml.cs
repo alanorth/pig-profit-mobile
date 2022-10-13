@@ -70,7 +70,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedHousingType),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedHousingType
+                _viewModel.SelectedHousingType,
+                _viewModel.PickerHousingExpenseTranslation
                 )
                 );
             var OtherHousingType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherHouseType), true);

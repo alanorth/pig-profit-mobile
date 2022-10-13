@@ -55,6 +55,9 @@ namespace PigTool.ViewModels
         public string ResetTranslation { get; set; }
         public string EditTranslation { get; set; }
         public string DeleteTranslation { get; set; }
+
+        public string PickerAnimalTypeTranslation { get; set; }
+        public string PickerPurchasedFromTranslation { get; set; }
         #endregion
 
         #region Animal purchase item fields
@@ -330,6 +333,9 @@ namespace PigTool.ViewModels
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
             DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), User.UserLang);
+
+            PickerAnimalTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerAnimalTypeTranslation), User.UserLang);
+            PickerPurchasedFromTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerPurchasedFromTranslation), User.UserLang);
         }
 
         public void populatewithData(AnimalPurchaseItem item)

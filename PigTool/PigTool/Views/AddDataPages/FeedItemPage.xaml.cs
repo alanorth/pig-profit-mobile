@@ -71,7 +71,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedFeedType),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedFeedType
+                _viewModel.SelectedFeedType,
+                _viewModel.PickerFeedTypeTranslation
                 )
                 );
             var OtherFeedType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherFeedType), true);
@@ -101,7 +102,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedAmountPurchasedUnit),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedAmountPurchasedUnit
+                _viewModel.SelectedAmountPurchasedUnit,
+                _viewModel.PickerUnitTranslation
                 )
             );
 
@@ -142,7 +144,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedPurchasedFrom),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedPurchasedFrom
+                _viewModel.SelectedPurchasedFrom,
+                _viewModel.PickerPurchasedFromTranslation
                 )
                 );
             var OtherWaterFromType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherPurchasedFrom), true);

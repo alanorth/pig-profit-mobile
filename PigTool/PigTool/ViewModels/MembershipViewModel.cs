@@ -47,6 +47,9 @@ namespace PigTool.ViewModels
         public string ResetTranslation { get; set; }
         public string EditTranslation { get; set; }
         public string DeleteTranslation { get; set; }
+
+        public string PickerUnitTranslation { get; set; }
+        public string PickerMembershipTypeTranslation { get; set; }
         #endregion
 
         #region Membership item fields
@@ -280,6 +283,9 @@ namespace PigTool.ViewModels
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
             DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), User.UserLang);
+
+            PickerUnitTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerUnitTranslation), User.UserLang);
+            PickerMembershipTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerMembershipTypeTranslation), User.UserLang);
         }
 
         public void populatewithData(MembershipItem item)

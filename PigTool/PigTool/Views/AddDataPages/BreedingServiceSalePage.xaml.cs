@@ -71,7 +71,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedServiceType),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedServiceType
+                _viewModel.SelectedServiceType,
+                _viewModel.PickerServiceTypeTranslation
                 )
                 );
             var OtherServiceType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherServiceType), true);
@@ -112,7 +113,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedPaymentType),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedPaymentType
+                _viewModel.SelectedPaymentType,
+                _viewModel.PickerPaymentTypeTranslation
                 )
                 );
 
@@ -141,7 +143,8 @@ namespace PigTool.Views
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedClient),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedClient
+                _viewModel.SelectedClient,
+                _viewModel.PickerClientTranslation
                 )
                 );
             var OtherClient = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherClient), true);

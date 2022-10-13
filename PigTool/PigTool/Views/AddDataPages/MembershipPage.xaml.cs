@@ -13,21 +13,21 @@ using Xamarin.Forms.Xaml;
 namespace PigTool.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EquipmentPage : ContentPage
+    public partial class MembershipPage : ContentPage
     {
-        private EquipmentViewModel _viewModel;
+        private MembershipViewModel _viewModel;
         private bool IsRendered = false;
 
-        public EquipmentPage()
+        public MembershipPage()
         {
-            BindingContext = _viewModel = new EquipmentViewModel();
+            BindingContext = _viewModel = new MembershipViewModel();
             InitializeComponent();
         }
 
-        public EquipmentPage(EquipmentItem WCI)
+        public MembershipPage(MembershipItem MI)
         {
-            BindingContext = _viewModel = new EquipmentViewModel();
-            _viewModel.populatewithData(WCI);
+            BindingContext = _viewModel = new MembershipViewModel();
+            _viewModel.populatewithData(MI);
             InitializeComponent();
         }
 
@@ -59,7 +59,6 @@ namespace PigTool.Views
             DateCell.View = stack;
             FullTableSection.Add(DateCell);
 
-
             //Total Cost
             var TotalCostCell = new ViewCell();
             var TotalCostStack = FormattedElementsHelper.TableRowStack();
@@ -68,35 +67,57 @@ namespace PigTool.Views
             TotalCostCell.View = TotalCostStack;
             FullTableSection.Add(TotalCostCell);
 
-            //Equipment Type
-            var EquipmentTypeCell = new ViewCell();
-            var EquipmentTypeVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
-            EquipmentTypeVerticalStack.Padding = 0;
-            var EquipmentTypeStack = FormattedElementsHelper.TableRowStack();
-            EquipmentTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.EquipmentTypeTranslation)));
-            EquipmentTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
-                nameof(_viewModel.EquipmentTypeListOfOptions),
+            //Membership
+            var MembershipCell = new ViewCell();
+            var MembershipVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
+            MembershipVerticalStack.Padding = 0;
+            var MembershipTypeStack = FormattedElementsHelper.TableRowStack();
+            MembershipTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.MembershipTypeTranslation)));
+            MembershipTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
+                nameof(_viewModel.MembershipTypeListOfOptions),
                 nameof(PickerToolHelper.TranslatedValue),
-                nameof(_viewModel.SelectedEquipmentType),
+                nameof(_viewModel.SelectedMembershipType),
                 nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedEquipmentType
+                _viewModel.SelectedMembershipType,
+                _viewModel.PickerMembershipTypeTranslation
                 )
                 );
-            var OtherEquipmentType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherEquipmentType), true);
-            OtherEquipmentType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherEquipmentTypeTranslation)));
-            OtherEquipmentType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherEquipmentType), nameof(_viewModel.IsEditMode)));
-            EquipmentTypeVerticalStack.Children.Add(EquipmentTypeStack);
-            EquipmentTypeVerticalStack.Children.Add(OtherEquipmentType);
-            EquipmentTypeCell.View = EquipmentTypeVerticalStack;
-            FullTableSection.Add(EquipmentTypeCell);
+            var OtherMembershipType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherMembershipType), true);
+            OtherMembershipType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherMembershipTypeTranslation)));
+            OtherMembershipType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherMembershipType), nameof(_viewModel.IsEditMode)));
+            MembershipVerticalStack.Children.Add(MembershipTypeStack);
+            MembershipVerticalStack.Children.Add(OtherMembershipType);
+            MembershipCell.View = MembershipVerticalStack;
+            FullTableSection.Add(MembershipCell);
 
-            //Transport Cost
-            var TransportCostCell = new ViewCell();
-            var TransportCostsStack = FormattedElementsHelper.TableRowStack();
-            TransportCostsStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.TransportationCostTranslation)));
-            TransportCostsStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.TransportationCost), nameof(_viewModel.IsEditMode), null));
-            TransportCostCell.View = TransportCostsStack;
-            FullTableSection.Add(TransportCostCell);
+            //Time Period
+
+            var TimePeriodCell = new ViewCell();
+
+            var UnitVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
+            UnitVerticalStack.Padding = 0;
+
+            var TimePeriodUnitTypeStack = FormattedElementsHelper.TableRowStack();
+            TimePeriodUnitTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.TimePeriodTranslation)));
+
+            var InputContainer = FormattedElementsHelper.TableRowStack();
+            InputContainer.Padding = 0;
+            InputContainer.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.TimePeriod), nameof(_viewModel.IsEditMode), null));
+            InputContainer.Children.Add(FormattedElementsHelper.FormPickerEntry(
+                nameof(_viewModel.TimePeriodUnitListOfOptions),
+                nameof(PickerToolHelper.TranslatedValue),
+                nameof(_viewModel.SelectedTimePeriodUnit),
+                nameof(_viewModel.IsEditMode),
+                _viewModel.SelectedTimePeriodUnit,
+                _viewModel.PickerUnitTranslation
+                )
+                );
+
+            TimePeriodUnitTypeStack.Children.Add(InputContainer);
+            
+            UnitVerticalStack.Children.Add(TimePeriodUnitTypeStack);
+            TimePeriodCell.View = UnitVerticalStack;
+            FullTableSection.Add(TimePeriodCell);
 
             //Any Other Cost
             var OtherCostCell = new ViewCell();
@@ -133,7 +154,8 @@ namespace PigTool.Views
             FullTableSection.Add(buttonCell);
 
 
-            EquipmentTableView.Root.Add(FullTableSection);
+            MembershipTableView.Root.Add(FullTableSection);
+            
         }
     }
 }

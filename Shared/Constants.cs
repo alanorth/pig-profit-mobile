@@ -74,7 +74,12 @@ namespace Shared
         // BreedingServiceSale
         public const string BREEDINGSERVICETYPE = "BreedingServiceType";
         public const string OTHERPAYMENTTYPE = "OtherPaymentType";
-        public const string CLIENTTYPE = "Client";
+        public const string CLIENTTYPE = "ClientType";
+
+        // ManureSale
+        public const string VOLUMEUNITTYPE = "VolumeUnitType";
+        //other payment from above
+        public const string MANURESOLDTOTYPE = "ManureSoldToType";
         #endregion
 
         #region StorageTables
@@ -97,7 +102,9 @@ namespace Shared
         public const string PartitionKeyLoanRepaymentItem = "LoanRepayment";
         public const string PartitionKeyEquipmentItem = "Equipment";
         public const string PartitionKeyPigSaleItem = "PigSale";
-        public const string PartitionKeyBreedingServiceSaleItem = "PigSale";
+        public const string PartitionKeyBreedingServiceSaleItem = "BreedingServiceSale";
+        public const string PartitionKeyManureSaleItem = "ManureSale";
+        public const string PartitionKeyOtherIncomeItem = "OtherIncome";
 
         #endregion
 

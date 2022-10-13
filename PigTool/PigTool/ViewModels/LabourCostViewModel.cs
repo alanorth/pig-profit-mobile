@@ -41,6 +41,7 @@ namespace PigTool.ViewModels
         public string EditTranslation { get; set; }
         public string DeleteTranslation { get; set; }
         public string ResetTranslation { get; set; }
+        public string PickerLabourTypeTranslation { get; set; }
         #endregion
 
 
@@ -184,6 +185,8 @@ namespace PigTool.ViewModels
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
             DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), User.UserLang);
+
+            PickerLabourTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerLabourTypeTranslation), User.UserLang);
 
         }
 
