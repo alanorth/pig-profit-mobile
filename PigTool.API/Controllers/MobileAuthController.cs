@@ -8,13 +8,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Sample.Server.WebAuthenticator
+namespace PigTool.API.WebAuthenticator
 {
     [Route("mobileauth")]
     [ApiController]
     public class AuthController : ControllerBase
     {
-        const string callbackScheme = "PigTool";
+        const string callbackScheme = "pigprofittool";
+        //const string callbackScheme = "xamarinessentials";
 
         [HttpGet("{scheme}")]
         public async Task Get([FromRoute] string scheme)
@@ -56,3 +57,4 @@ namespace Sample.Server.WebAuthenticator
         }
     }
 }
+
