@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace PigTool.ViewModels
 {
-    public class HomePageViewModel : LoggedInViewModel , INotifyPropertyChanged
+    public class HomePageViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
         DateTime dateTime;
 
@@ -98,14 +98,15 @@ namespace PigTool.ViewModels
 
         private async void AddDataCommand(object obj)
         {
-            try {
+            try
+            {
                 await Shell.Current.GoToAsync("//AddDatePage");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            
+
         }
 
 
@@ -114,6 +115,7 @@ namespace PigTool.ViewModels
             NameOfUser = User.UserName;
             VillageOfUser = User.Village;
             UserLastUpdatedTime = User.LastUploadDate.ToString();
+            
             NumberOfTranslations = 60;
             //String translation
             AddData = repo.GetTranslationAsync(nameof(AddData)).Result.getTranslation(User.UserLang);
@@ -121,14 +123,14 @@ namespace PigTool.ViewModels
             ViewReports = repo.GetTranslationAsync(nameof(ViewReports)).Result.getTranslation(User.UserLang);
             Home = repo.GetTranslationAsync(nameof(Home)).Result.getTranslation(User.UserLang);
             //Button Commands
-            AddDataNavigation = (new Command(AddDataCommand));
+            AddDataNavigation = new Command(AddDataCommand);
             ManageDataNavigation = new Command(ManageDataCommand);
 
-            this.DateTime = DateTime.Now;
+            DateTime = DateTime.Now;
 
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {
-                this.DateTime = DateTime.Now;
+                DateTime = DateTime.Now;
                 return true;
             });
         }

@@ -8,7 +8,7 @@ using PigTool.Helpers;
 using Shared;
 using Xamarin.Forms;
 
-namespace PigTool.ViewModels
+namespace PigTool.ViewModels.DataViewModels
 {
     public class LabourCostViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
@@ -73,7 +73,7 @@ namespace PigTool.ViewModels
         }
         public double? AmountPaid
         {
-            get => amountPaid; 
+            get => amountPaid;
             set
             {
                 if (amountPaid != value)
@@ -96,13 +96,13 @@ namespace PigTool.ViewModels
         }
         public string Comment { get => comment; set { if (comment != value) { comment = value; OnPropertyChanged(nameof(Comment)); } } }
 
-        private string? labourType;
+        private string labourType;
         private PickerToolHelper selectedLabourType;
         private bool displayOtherLabourType;
-        private string? otherLaboutType;
+        private string otherLaboutType;
         private double? amountPaid;
         private double? otherCosts;
-        private string? comment;
+        private string comment;
 
         public PickerToolHelper SelectedLabourType
         {
@@ -168,7 +168,7 @@ namespace PigTool.ViewModels
             IsEditMode = true;
             CreationMode = true;
 
-            SaveButtonClicked = (new Command(SaveButtonCreateLabourCostItemAsync));
+            SaveButtonClicked = new Command(SaveButtonCreateLabourCostItemAsync);
             ResetButtonClicked = new Command(ResetButtonPressed);
             DeleteButtonClicked = new Command(DeleteItem);
             EditButtonClicked = new Command(EditItemAsync);

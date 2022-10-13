@@ -9,7 +9,7 @@ using Shared;
 using PigTool.Views;
 using Xamarin.Forms;
 
-namespace PigTool.ViewModels
+namespace PigTool.ViewModels.DataViewModels
 {
     public class LoanRepaymentViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
@@ -17,10 +17,10 @@ namespace PigTool.ViewModels
         private bool editExistingMode;
         private DateTime date;
         private double? totalAmountRepaid;
-        private string? loanProvider;
-        private string? otherLoanProvider;
+        private string loanProvider;
+        private string otherLoanProvider;
         private double? otherCosts;
-        private string? comment;
+        private string comment;
         List<PickerToolHelper> loanProviderListOfOptions;
         LoanRepaymentItem _itemForEditing;
 
@@ -74,7 +74,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? LoanProvider
+        public string LoanProvider
         {
             get => loanProvider;
             set
@@ -86,7 +86,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? OtherLoanProvider
+        public string OtherLoanProvider
         {
             get => otherLoanProvider;
             set
@@ -98,7 +98,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        
+
         public double? OtherCosts
         {
             get => otherCosts;
@@ -111,7 +111,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? Comment
+        public string Comment
         {
             get => comment;
             set
@@ -210,7 +210,7 @@ namespace PigTool.ViewModels
             IsEditMode = true;
             CreationMode = true;
 
-            SaveButtonClicked = (new Command(SaveButtonCreateHousingItem));
+            SaveButtonClicked = new Command(SaveButtonCreateHousingItem);
             ResetButtonClicked = new Command(ResetButtonPressed);
             DeleteButtonClicked = new Command(DeleteItem);
             EditButtonClicked = new Command(EditItem);
@@ -219,14 +219,14 @@ namespace PigTool.ViewModels
 
             LoanRepaymentTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LoanRepaymentTitleTranslation), User.UserLang);
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
-            
+
             TotalAmountRepaidTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalAmountRepaidTranslation), User.UserLang) + " *";
             LoanProviderTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LoanProviderTranslation), User.UserLang);
             OtherLoanProviderTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherLoanProviderTranslation), User.UserLang);
 
             OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
-            
+
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
@@ -247,7 +247,7 @@ namespace PigTool.ViewModels
             TotalAmountRepaid = item.TotalAmountRepaid;
             LoanProvider = item.LoanProvider;
             OtherLoanProvider = item.OtherLoanProvider;
-            OtherCosts = item.OtherCosts; 
+            OtherCosts = item.OtherCosts;
             Comment = item.Comment;
         }
 
@@ -358,7 +358,7 @@ namespace PigTool.ViewModels
                 if (TotalAmountRepaid == null) returnString.AppendLine("Total Amount Repaid Not Provided");
                 if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
-                
+
                 if (SelectedLoanProvider != null && SelectedLoanProvider.TranslationRowKey == Constants.OTHER)
                 {
                     if (string.IsNullOrWhiteSpace(OtherLoanProvider)) returnString.AppendLine("Other Unit Not Provided");

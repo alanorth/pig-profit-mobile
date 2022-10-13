@@ -9,21 +9,23 @@ using Shared;
 using PigTool.Views;
 using Xamarin.Forms;
 
-namespace PigTool.ViewModels
+namespace PigTool.ViewModels.DataViewModels
 {
-    public class EquipmentViewModel : LoggedInViewModel, INotifyPropertyChanged
+    public class MembershipViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
         bool isEditMode, isCreationMode;
         private bool editExistingMode;
         private DateTime date;
         private double? totalCosts;
-        private string? equipmentType;
-        private string? otherEquipmentType;
-        private double? transportationCost;
+        private string membershipType;
+        private string otherMembershipType;
+        private int? timePeriod;
+        private string timePerdiodUnit;
         private double? otherCosts;
-        private string? comment;
-        List<PickerToolHelper> equipmentTypeListOfOptions;
-        EquipmentItem _itemForEditing;
+        private string comment;
+        List<PickerToolHelper> membershipTypeListOfOptions;
+        List<PickerToolHelper> timePeriodUnitListOfOptions;
+        MembershipItem _itemForEditing;
 
         //Button Clicks
         public Command SaveButtonClicked { get; }
@@ -32,15 +34,12 @@ namespace PigTool.ViewModels
         public Command EditButtonClicked { get; }
 
         #region translations
-        public string EquipmentTitleTranslation { get; set; }
+        public string MembershipTitleTranslation { get; set; }
         public string DateTranslation { get; set; }
-
-        public string EquipmentTypeTranslation { get; set; }
-        public string OtherEquipmentTypeTranslation { get; set; }
-
-
         public string TotalCostTranslation { get; set; }
-        public string TransportationCostTranslation { get; set; }
+        public string MembershipTypeTranslation { get; set; }
+        public string OtherMembershipTypeTranslation { get; set; }
+        public string TimePeriodTranslation { get; set; }
         public string OtherCostTranslation { get; set; }
         public string CommentTranslation { get; set; }
 
@@ -49,10 +48,11 @@ namespace PigTool.ViewModels
         public string EditTranslation { get; set; }
         public string DeleteTranslation { get; set; }
 
-        public string PickerEquipmentTypeTranslation { get; set; }
+        public string PickerUnitTranslation { get; set; }
+        public string PickerMembershipTypeTranslation { get; set; }
         #endregion
 
-        #region Water cost item fields
+        #region Membership item fields
         public DateTime Date
         {
             get => date;
@@ -65,31 +65,54 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? EquipmentType
+        public string MemberhipType
         {
-            get => equipmentType;
+            get => membershipType;
             set
             {
-                if (value != equipmentType)
+                if (value != membershipType)
                 {
-                    equipmentType = value;
-                    OnPropertyChanged(nameof(EquipmentType));
+                    membershipType = value;
+                    OnPropertyChanged(nameof(MemberhipType));
                 }
             }
         }
-        public string? OtherEquipmentType
+        public string OtherMembershipType
         {
-            get => otherEquipmentType;
+            get => otherMembershipType;
             set
             {
-                if (value != otherEquipmentType)
+                if (value != otherMembershipType)
                 {
-                    otherEquipmentType = value;
-                    OnPropertyChanged(nameof(OtherEquipmentType));
+                    otherMembershipType = value;
+                    OnPropertyChanged(nameof(OtherMembershipType));
                 }
             }
         }
-       
+        public int? TimePeriod
+        {
+            get => timePeriod;
+            set
+            {
+                if (value != timePeriod)
+                {
+                    timePeriod = value;
+                    OnPropertyChanged(nameof(TimePeriod));
+                }
+            }
+        }
+        public string TimePerdiodUnit
+        {
+            get => timePerdiodUnit;
+            set
+            {
+                if (value != timePerdiodUnit)
+                {
+                    timePerdiodUnit = value;
+                    OnPropertyChanged(nameof(TimePerdiodUnit));
+                }
+            }
+        }
         public double? TotalCosts
         {
             get => totalCosts;
@@ -99,18 +122,6 @@ namespace PigTool.ViewModels
                 {
                     totalCosts = value;
                     OnPropertyChanged(nameof(TotalCosts));
-                }
-            }
-        }
-        public double? TransportationCost
-        {
-            get => transportationCost;
-            set
-            {
-                if (value != transportationCost)
-                {
-                    transportationCost = value;
-                    OnPropertyChanged(nameof(TransportationCost));
                 }
             }
         }
@@ -126,7 +137,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? Comment
+        public string Comment
         {
             get => comment;
             set
@@ -142,50 +153,73 @@ namespace PigTool.ViewModels
         #endregion
 
         #region Dropdown Lists
-        public List<PickerToolHelper> EquipmentTypeListOfOptions
+        public List<PickerToolHelper> MembershipTypeListOfOptions
         {
-            get { return equipmentTypeListOfOptions; }
+            get { return membershipTypeListOfOptions; }
             set
             {
-                equipmentTypeListOfOptions = value;
-                OnPropertyChanged(nameof(EquipmentTypeListOfOptions));
+                membershipTypeListOfOptions = value;
+                OnPropertyChanged(nameof(MembershipTypeListOfOptions));
             }
         }
 
-        private PickerToolHelper selectedEquipmentType;
-
-        public PickerToolHelper SelectedEquipmentType
+        public List<PickerToolHelper> TimePeriodUnitListOfOptions
         {
-            get { return selectedEquipmentType; }
+            get { return timePeriodUnitListOfOptions; }
             set
             {
-                if (selectedEquipmentType != value)
+                timePeriodUnitListOfOptions = value;
+                OnPropertyChanged(nameof(TimePeriodUnitListOfOptions));
+            }
+        }
+
+        private PickerToolHelper selectedMembershipType;
+
+        public PickerToolHelper SelectedMembershipType
+        {
+            get { return selectedMembershipType; }
+            set
+            {
+                if (selectedMembershipType != value)
                 {
-                    DisplayOtherEquipmentType = value?.TranslationRowKey == Constants.OTHER;
-                    selectedEquipmentType = value;
-                    OnPropertyChanged(nameof(SelectedEquipmentType));
+                    DisplayOtherMembershipType = value?.TranslationRowKey == Constants.OTHER;
+                    selectedMembershipType = value;
+                    OnPropertyChanged(nameof(SelectedMembershipType));
                 }
             }
         }
 
+        private PickerToolHelper selectedTimePeriodUnit;
+
+        public PickerToolHelper SelectedTimePeriodUnit
+        {
+            get { return selectedTimePeriodUnit; }
+            set
+            {
+                if (selectedTimePeriodUnit != value)
+                {
+                    selectedTimePeriodUnit = value;
+                    OnPropertyChanged(nameof(SelectedTimePeriodUnit));
+                }
+            }
+        }
         #endregion
 
         #region Hidden Fields
-        private bool displayEquipmentType;
+        private bool displayOtherMembershipType;
 
-        public bool DisplayOtherEquipmentType
+        public bool DisplayOtherMembershipType
         {
-            get => displayEquipmentType;
+            get => displayOtherMembershipType;
             set
             {
-                if (displayEquipmentType != value)
+                if (displayOtherMembershipType != value)
                 {
-                    displayEquipmentType = value;
-                    OnPropertyChanged(nameof(DisplayOtherEquipmentType));
+                    displayOtherMembershipType = value;
+                    OnPropertyChanged(nameof(DisplayOtherMembershipType));
                 }
             }
         }
-        
         #endregion
 
         public bool IsEditMode
@@ -220,41 +254,41 @@ namespace PigTool.ViewModels
         public bool EditExistingMode { get => editExistingMode; set { if (editExistingMode != value) { editExistingMode = value; OnPropertyChanged(nameof(EditExistingMode)); } } }
         public bool CreationMode { get; private set; }
 
-        public EquipmentViewModel()
+        public MembershipViewModel()
         {
             Date = DateTime.Now;
 
             IsEditMode = true;
             CreationMode = true;
 
-            SaveButtonClicked = (new Command(SaveButtonCreateHousingItem));
+            SaveButtonClicked = new Command(SaveButtonCreateHousingItem);
             ResetButtonClicked = new Command(ResetButtonPressed);
             DeleteButtonClicked = new Command(DeleteItem);
             EditButtonClicked = new Command(EditItem);
             IsEditMode = true;
             IsCreationMode = !EditExistingMode;
 
-            EquipmentTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EquipmentTitleTranslation), User.UserLang);
+            MembershipTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(MembershipTitleTranslation), User.UserLang);
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
-            
-            EquipmentTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EquipmentTypeTranslation), User.UserLang);
-            OtherEquipmentTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherEquipmentTypeTranslation), User.UserLang);
-            
+
+            MembershipTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(MembershipTypeTranslation), User.UserLang);
+            OtherMembershipTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherMembershipTypeTranslation), User.UserLang);
+            TimePeriodTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TimePeriodTranslation), User.UserLang) + " *";
 
             TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang) + " *";
-            TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
             OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
-            
+
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
             DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), User.UserLang);
 
-            PickerEquipmentTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerEquipmentTypeTranslation), User.UserLang);
+            PickerUnitTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerUnitTranslation), User.UserLang);
+            PickerMembershipTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerMembershipTypeTranslation), User.UserLang);
         }
 
-        public void populatewithData(EquipmentItem item)
+        public void populatewithData(MembershipItem item)
         {
             isEditMode = false;
             CreationMode = false;
@@ -263,11 +297,12 @@ namespace PigTool.ViewModels
             _itemForEditing = item;
 
             Date = item.Date;
-            EquipmentType = item.EquipmentType;
-            OtherEquipmentType = item.OtherEquipmentType;
+            MemberhipType = item.MembershipType;
+            OtherMembershipType = item.OtherMembershipType;
+            TimePeriod = item.TimePeriod;
+            TimePerdiodUnit = item.TimePeriodUnit;
             TotalCosts = item.TotalCosts;
-            TransportationCost = item.TransportationCost;
-            OtherCosts = item.OtherCosts; 
+            OtherCosts = item.OtherCosts;
             Comment = item.Comment;
         }
 
@@ -275,7 +310,8 @@ namespace PigTool.ViewModels
         {
             if (EditExistingMode)
             {
-                SelectedEquipmentType = EquipmentTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.EquipmentType).FirstOrDefault();
+                SelectedMembershipType = MembershipTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.MembershipType).FirstOrDefault();
+                SelectedTimePeriodUnit = TimePeriodUnitListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.TimePeriodUnit).FirstOrDefault();
             }
         }
 
@@ -293,37 +329,38 @@ namespace PigTool.ViewModels
             {
 
                 _itemForEditing.Date = Date;
-                _itemForEditing.EquipmentType = EquipmentType;
-                _itemForEditing.EquipmentType = SelectedEquipmentType != null ? SelectedEquipmentType.TranslationRowKey : null;
-                _itemForEditing.OtherEquipmentType = OtherEquipmentType;
+                _itemForEditing.MembershipType = SelectedMembershipType != null ? SelectedMembershipType.TranslationRowKey : null;
+                _itemForEditing.OtherMembershipType = OtherMembershipType;
+                _itemForEditing.TimePeriod = (int)TimePeriod;
+                _itemForEditing.TimePeriodUnit = SelectedTimePeriodUnit.TranslationRowKey;
                 _itemForEditing.TotalCosts = (double)TotalCosts;
-                _itemForEditing.TransportationCost = (double)TransportationCost;
                 _itemForEditing.OtherCosts = (double)OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
-                await repo.UpdateEquipmentItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert("Updated", "Equipment record has been updated", "OK");
+                await repo.UpdateMembershipItem(_itemForEditing);
+                await Application.Current.MainPage.DisplayAlert("Updated", "Water cost record has been updated", "OK");
                 await Shell.Current.Navigation.PopAsync();
             }
             else
             {
-                var newEquipment = new EquipmentItem
+                var newMembership = new MembershipItem
                 {
                     Date = Date,
-                    EquipmentType = SelectedEquipmentType != null ? SelectedEquipmentType.TranslationRowKey : null,
-                    OtherEquipmentType = OtherEquipmentType,
+                    MembershipType = SelectedMembershipType != null ? SelectedMembershipType.TranslationRowKey : null,
+                    OtherMembershipType = OtherMembershipType,
+                    TimePeriod = (int)TimePeriod,
+                    TimePeriodUnit = SelectedTimePeriodUnit.TranslationRowKey,
                     TotalCosts = (double)TotalCosts,
-                    TransportationCost = (double)TransportationCost,
                     OtherCosts = (double)OtherCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
-                    PartitionKey = Constants.PartitionKeyEquipmentItem,
+                    PartitionKey = Constants.PartitionKeyMembershipItem,
                 };
 
-                await repo.AddSingleEquipmentItem(newEquipment);
-                await Application.Current.MainPage.DisplayAlert("Created", "Equipment record has been saved", "OK");
+                await repo.AddSingleMembershipItem(newMembership);
+                await Application.Current.MainPage.DisplayAlert("Created", "Membership has been saved", "OK");
             }
         }
 
@@ -334,7 +371,7 @@ namespace PigTool.ViewModels
                 var confirmDelete = await Application.Current.MainPage.DisplayAlert("Deletion Confirmation", "Are you sure you want to delete this item", "OK", "Cancel");
                 if (confirmDelete)
                 {
-                    repo.DeleteEquipmentItem(_itemForEditing);
+                    repo.DeleteMembershipItem(_itemForEditing);
                     await Shell.Current.Navigation.PopAsync();
                 }
             }
@@ -352,25 +389,27 @@ namespace PigTool.ViewModels
 
         private void ClearFormVariables()
         {
-            EquipmentType = null;
-            EquipmentType = null;
-            SelectedEquipmentType = null;
-            OtherEquipmentType = null;
+            SelectedMembershipType = null;
+            OtherMembershipType = null;
+            TimePeriod = 0;
+            SelectedTimePeriodUnit = null;
             TotalCosts = null;
-            TransportationCost = null;
             OtherCosts = null;
             Comment = null;
         }
 
         public async Task PopulateDataDowns()
         {
-            var EquipmentTypeControlData = await repo.GetControlData(Constants.EQUIPMENTTYPE);
+            var MembershipTypeControlData = await repo.GetControlData(Constants.MEMBERSHIPTYPE);
+            var TimeperdiodUnitControlData = await repo.GetControlData(Constants.TIMEPERIODUNITTYPE);
 
-            EquipmentTypeListOfOptions = LogicHelper.CreatePickerToolOption(EquipmentTypeControlData, User.UserLang);
+            MembershipTypeListOfOptions = LogicHelper.CreatePickerToolOption(MembershipTypeControlData, User.UserLang);
+            TimePeriodUnitListOfOptions = LogicHelper.CreatePickerToolOption(TimeperdiodUnitControlData, User.UserLang);
 
             if (!IsEditMode)
             {
-                SelectedEquipmentType = EquipmentTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.EquipmentType).FirstOrDefault();
+                selectedMembershipType = MembershipTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.MembershipType).FirstOrDefault();
+                selectedTimePeriodUnit = TimePeriodUnitListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.TimePeriodUnit).FirstOrDefault();
             }
         }
 
@@ -381,13 +420,13 @@ namespace PigTool.ViewModels
                 StringBuilder returnString = new StringBuilder();
                 if (Date == null) returnString.AppendLine("Date obtained not provided");
                 if (TotalCosts == null) returnString.AppendLine("Total Cost Not Provided");
-                if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
+                if (TimePeriod == null) returnString.AppendLine("Time Period Not Provided");
+                if (SelectedTimePeriodUnit == null) returnString.AppendLine("Time Period Unit Not Provided");
                 if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
-                
-                if (SelectedEquipmentType != null && SelectedEquipmentType.TranslationRowKey == Constants.OTHER)
+                if (selectedMembershipType != null && selectedMembershipType.TranslationRowKey == Constants.OTHER)
                 {
-                    if (string.IsNullOrWhiteSpace(OtherEquipmentType)) returnString.AppendLine("Other Equipment Type Not Provided");
+                    if (string.IsNullOrWhiteSpace(OtherMembershipType)) returnString.AppendLine("Other Membership Type Not Provided");
                 }
 
                 return returnString.ToString();

@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using PigTool.Helpers;
 using Shared;
-using PigTool.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using PigTool.ViewModels.DataViewModels;
 
 namespace PigTool.Views
 {

@@ -9,7 +9,7 @@ using Shared;
 using PigTool.Views;
 using Xamarin.Forms;
 
-namespace PigTool.ViewModels
+namespace PigTool.ViewModels.DataViewModels
 {
     public class WaterCostViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
@@ -17,14 +17,14 @@ namespace PigTool.ViewModels
         private bool editExistingMode;
         private DateTime date;
         private double? waterPurchased;
-        private string? waterPurchasedUnit;
-        private string? otherWaterPurchasedUnit;
+        private string waterPurchasedUnit;
+        private string otherWaterPurchasedUnit;
         private double? totalCosts;
-        private string? purchasedWaterFrom;
-        private string? otherPurchasedWaterFrom;
+        private string purchasedWaterFrom;
+        private string otherPurchasedWaterFrom;
         private double? transportationCost;
         private double? otherCosts;
-        private string? comment;
+        private string comment;
         List<PickerToolHelper> waterPurchasedUnitListOfOptions;
         List<PickerToolHelper> purchasedWaterFromListOfOptions;
         WaterCostItem _itemForEditing;
@@ -83,7 +83,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? WaterPurchasedUnit
+        public string WaterPurchasedUnit
         {
             get => waterPurchasedUnit;
             set
@@ -95,7 +95,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? OtherWaterPurchasedUnit
+        public string OtherWaterPurchasedUnit
         {
             get => otherWaterPurchasedUnit;
             set
@@ -107,7 +107,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? PurchasedWaterFrom
+        public string PurchasedWaterFrom
         {
             get => purchasedWaterFrom;
             set
@@ -119,7 +119,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? OtherPurchasedWaterFrom
+        public string OtherPurchasedWaterFrom
         {
             get => otherPurchasedWaterFrom;
             set
@@ -167,7 +167,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? Comment
+        public string Comment
         {
             get => comment;
             set
@@ -305,7 +305,7 @@ namespace PigTool.ViewModels
             IsEditMode = true;
             CreationMode = true;
 
-            SaveButtonClicked = (new Command(SaveButtonCreateHousingItem));
+            SaveButtonClicked = new Command(SaveButtonCreateHousingItem);
             ResetButtonClicked = new Command(ResetButtonPressed);
             DeleteButtonClicked = new Command(DeleteItem);
             EditButtonClicked = new Command(EditItem);
@@ -314,7 +314,7 @@ namespace PigTool.ViewModels
 
             WaterCostTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(WaterCostTitleTranslation), User.UserLang);
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
-            
+
             WaterPurchasedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(WaterPurchasedTranslation), User.UserLang);
             OtherWaterPurchasedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherWaterPurchasedTranslation), User.UserLang);
             PurchasedWaterFromTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PurchasedWaterFromTranslation), User.UserLang);
@@ -324,7 +324,7 @@ namespace PigTool.ViewModels
             TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
             OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
-            
+
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
@@ -351,7 +351,7 @@ namespace PigTool.ViewModels
             OtherPurchasedWaterFrom = item.OtherPurchasedWaterFrom;
             TotalCosts = item.TotalCosts;
             TransportationCost = item.TransportationCost;
-            OtherCosts = item.OtherCosts; 
+            OtherCosts = item.OtherCosts;
             Comment = item.Comment;
         }
 
@@ -479,7 +479,7 @@ namespace PigTool.ViewModels
                 if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
                 if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
-                
+
                 if (SelectedWaterPurchasedUnit != null && SelectedWaterPurchasedUnit.TranslationRowKey == Constants.OTHER)
                 {
                     if (string.IsNullOrWhiteSpace(OtherWaterPurchasedUnit)) returnString.AppendLine("Other Unit Not Provided");

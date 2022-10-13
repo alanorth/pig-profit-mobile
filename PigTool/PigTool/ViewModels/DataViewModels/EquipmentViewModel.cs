@@ -9,19 +9,21 @@ using Shared;
 using PigTool.Views;
 using Xamarin.Forms;
 
-namespace PigTool.ViewModels
+namespace PigTool.ViewModels.DataViewModels
 {
-    public class OtherCostViewModel : LoggedInViewModel, INotifyPropertyChanged
+    public class EquipmentViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
         bool isEditMode, isCreationMode;
         private bool editExistingMode;
         private DateTime date;
         private double? totalCosts;
-        private string? otherWhatFor;
-        private double? transportationCosts;
+        private string equipmentType;
+        private string otherEquipmentType;
+        private double? transportationCost;
         private double? otherCosts;
-        private string? comment;
-        OtherCostItem _itemForEditing;
+        private string comment;
+        List<PickerToolHelper> equipmentTypeListOfOptions;
+        EquipmentItem _itemForEditing;
 
         //Button Clicks
         public Command SaveButtonClicked { get; }
@@ -30,10 +32,14 @@ namespace PigTool.ViewModels
         public Command EditButtonClicked { get; }
 
         #region translations
-        public string OtherCostTitleTranslation { get; set; }
+        public string EquipmentTitleTranslation { get; set; }
         public string DateTranslation { get; set; }
+
+        public string EquipmentTypeTranslation { get; set; }
+        public string OtherEquipmentTypeTranslation { get; set; }
+
+
         public string TotalCostTranslation { get; set; }
-        public string OtherWhatForTranslation { get; set; }
         public string TransportationCostTranslation { get; set; }
         public string OtherCostTranslation { get; set; }
         public string CommentTranslation { get; set; }
@@ -42,9 +48,11 @@ namespace PigTool.ViewModels
         public string ResetTranslation { get; set; }
         public string EditTranslation { get; set; }
         public string DeleteTranslation { get; set; }
+
+        public string PickerEquipmentTypeTranslation { get; set; }
         #endregion
 
-        #region Other cost item fields
+        #region Water cost item fields
         public DateTime Date
         {
             get => date;
@@ -57,31 +65,31 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? OtherWhatFor
+        public string EquipmentType
         {
-            get => otherWhatFor;
+            get => equipmentType;
             set
             {
-                if (value != otherWhatFor)
+                if (value != equipmentType)
                 {
-                    otherWhatFor = value;
-                    OnPropertyChanged(nameof(OtherWhatFor));
+                    equipmentType = value;
+                    OnPropertyChanged(nameof(EquipmentType));
                 }
             }
         }
-        public double? TransportationCosts
+        public string OtherEquipmentType
         {
-            get => transportationCosts;
+            get => otherEquipmentType;
             set
             {
-                if (value != transportationCosts)
+                if (value != otherEquipmentType)
                 {
-                    transportationCosts = value;
-                    OnPropertyChanged(nameof(TransportationCosts));
+                    otherEquipmentType = value;
+                    OnPropertyChanged(nameof(OtherEquipmentType));
                 }
             }
         }
-        
+
         public double? TotalCosts
         {
             get => totalCosts;
@@ -91,6 +99,18 @@ namespace PigTool.ViewModels
                 {
                     totalCosts = value;
                     OnPropertyChanged(nameof(TotalCosts));
+                }
+            }
+        }
+        public double? TransportationCost
+        {
+            get => transportationCost;
+            set
+            {
+                if (value != transportationCost)
+                {
+                    transportationCost = value;
+                    OnPropertyChanged(nameof(TransportationCost));
                 }
             }
         }
@@ -106,7 +126,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? Comment
+        public string Comment
         {
             get => comment;
             set
@@ -122,24 +142,50 @@ namespace PigTool.ViewModels
         #endregion
 
         #region Dropdown Lists
-        
-        #endregion
-
-        #region Hidden Fields
-        private bool displayOtherMembershipType;
-
-        public bool DisplayOtherMembershipType
+        public List<PickerToolHelper> EquipmentTypeListOfOptions
         {
-            get => displayOtherMembershipType;
+            get { return equipmentTypeListOfOptions; }
             set
             {
-                if (displayOtherMembershipType != value)
+                equipmentTypeListOfOptions = value;
+                OnPropertyChanged(nameof(EquipmentTypeListOfOptions));
+            }
+        }
+
+        private PickerToolHelper selectedEquipmentType;
+
+        public PickerToolHelper SelectedEquipmentType
+        {
+            get { return selectedEquipmentType; }
+            set
+            {
+                if (selectedEquipmentType != value)
                 {
-                    displayOtherMembershipType = value;
-                    OnPropertyChanged(nameof(DisplayOtherMembershipType));
+                    DisplayOtherEquipmentType = value?.TranslationRowKey == Constants.OTHER;
+                    selectedEquipmentType = value;
+                    OnPropertyChanged(nameof(SelectedEquipmentType));
                 }
             }
         }
+
+        #endregion
+
+        #region Hidden Fields
+        private bool displayEquipmentType;
+
+        public bool DisplayOtherEquipmentType
+        {
+            get => displayEquipmentType;
+            set
+            {
+                if (displayEquipmentType != value)
+                {
+                    displayEquipmentType = value;
+                    OnPropertyChanged(nameof(DisplayOtherEquipmentType));
+                }
+            }
+        }
+
         #endregion
 
         public bool IsEditMode
@@ -174,37 +220,41 @@ namespace PigTool.ViewModels
         public bool EditExistingMode { get => editExistingMode; set { if (editExistingMode != value) { editExistingMode = value; OnPropertyChanged(nameof(EditExistingMode)); } } }
         public bool CreationMode { get; private set; }
 
-        public OtherCostViewModel()
+        public EquipmentViewModel()
         {
             Date = DateTime.Now;
 
             IsEditMode = true;
             CreationMode = true;
 
-            SaveButtonClicked = (new Command(SaveButtonCreateOtherCostItem));
+            SaveButtonClicked = new Command(SaveButtonCreateHousingItem);
             ResetButtonClicked = new Command(ResetButtonPressed);
             DeleteButtonClicked = new Command(DeleteItem);
             EditButtonClicked = new Command(EditItem);
             IsEditMode = true;
             IsCreationMode = !EditExistingMode;
 
-            OtherCostTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTitleTranslation), User.UserLang);
+            EquipmentTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EquipmentTitleTranslation), User.UserLang);
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
-            
-            OtherWhatForTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherWhatForTranslation), User.UserLang);
+
+            EquipmentTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EquipmentTypeTranslation), User.UserLang);
+            OtherEquipmentTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherEquipmentTypeTranslation), User.UserLang);
+
 
             TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang) + " *";
-            TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang);
+            TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
             OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
-            
+
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
             DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), User.UserLang);
+
+            PickerEquipmentTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerEquipmentTypeTranslation), User.UserLang);
         }
 
-        public void populatewithData(OtherCostItem item)
+        public void populatewithData(EquipmentItem item)
         {
             isEditMode = false;
             CreationMode = false;
@@ -213,10 +263,11 @@ namespace PigTool.ViewModels
             _itemForEditing = item;
 
             Date = item.Date;
-            OtherWhatFor = item.OtherWhatFor;
-            TransportationCosts = item.TransportationCosts;
+            EquipmentType = item.EquipmentType;
+            OtherEquipmentType = item.OtherEquipmentType;
             TotalCosts = item.TotalCosts;
-            OtherCosts = item.OtherCosts; 
+            TransportationCost = item.TransportationCost;
+            OtherCosts = item.OtherCosts;
             Comment = item.Comment;
         }
 
@@ -224,11 +275,11 @@ namespace PigTool.ViewModels
         {
             if (EditExistingMode)
             {
-                
+                SelectedEquipmentType = EquipmentTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.EquipmentType).FirstOrDefault();
             }
         }
 
-        private async void SaveButtonCreateOtherCostItem(object obj)
+        private async void SaveButtonCreateHousingItem(object obj)
         {
             var valid = ValidateSave();
 
@@ -242,34 +293,37 @@ namespace PigTool.ViewModels
             {
 
                 _itemForEditing.Date = Date;
-                _itemForEditing.OtherWhatFor = OtherWhatFor;
-                _itemForEditing.TransportationCosts = (double)TransportationCosts;
+                _itemForEditing.EquipmentType = EquipmentType;
+                _itemForEditing.EquipmentType = SelectedEquipmentType != null ? SelectedEquipmentType.TranslationRowKey : null;
+                _itemForEditing.OtherEquipmentType = OtherEquipmentType;
                 _itemForEditing.TotalCosts = (double)TotalCosts;
+                _itemForEditing.TransportationCost = (double)TransportationCost;
                 _itemForEditing.OtherCosts = (double)OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
-                await repo.UpdateOtherCostItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert("Updated", "Other cost record has been updated", "OK");
+                await repo.UpdateEquipmentItem(_itemForEditing);
+                await Application.Current.MainPage.DisplayAlert("Updated", "Equipment record has been updated", "OK");
                 await Shell.Current.Navigation.PopAsync();
             }
             else
             {
-                var newOtherCost = new OtherCostItem
+                var newEquipment = new EquipmentItem
                 {
                     Date = Date,
-                    OtherWhatFor = OtherWhatFor,
-                    TransportationCosts = TransportationCosts,
+                    EquipmentType = SelectedEquipmentType != null ? SelectedEquipmentType.TranslationRowKey : null,
+                    OtherEquipmentType = OtherEquipmentType,
                     TotalCosts = (double)TotalCosts,
+                    TransportationCost = (double)TransportationCost,
                     OtherCosts = (double)OtherCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
-                    PartitionKey = Constants.PartitionKeyOtherCostItem,
+                    PartitionKey = Constants.PartitionKeyEquipmentItem,
                 };
 
-                await repo.AddSingleOtherCostItem(newOtherCost);
-                await Application.Current.MainPage.DisplayAlert("Created", "Other Cost has been saved", "OK");
+                await repo.AddSingleEquipmentItem(newEquipment);
+                await Application.Current.MainPage.DisplayAlert("Created", "Equipment record has been saved", "OK");
             }
         }
 
@@ -280,7 +334,7 @@ namespace PigTool.ViewModels
                 var confirmDelete = await Application.Current.MainPage.DisplayAlert("Deletion Confirmation", "Are you sure you want to delete this item", "OK", "Cancel");
                 if (confirmDelete)
                 {
-                    repo.DeleteOtherCostItem(_itemForEditing);
+                    repo.DeleteEquipmentItem(_itemForEditing);
                     await Shell.Current.Navigation.PopAsync();
                 }
             }
@@ -298,16 +352,26 @@ namespace PigTool.ViewModels
 
         private void ClearFormVariables()
         {
-            OtherWhatFor = null;
-            TransportationCosts = null;
+            EquipmentType = null;
+            EquipmentType = null;
+            SelectedEquipmentType = null;
+            OtherEquipmentType = null;
             TotalCosts = null;
+            TransportationCost = null;
             OtherCosts = null;
             Comment = null;
         }
 
         public async Task PopulateDataDowns()
         {
+            var EquipmentTypeControlData = await repo.GetControlData(Constants.EQUIPMENTTYPE);
 
+            EquipmentTypeListOfOptions = LogicHelper.CreatePickerToolOption(EquipmentTypeControlData, User.UserLang);
+
+            if (!IsEditMode)
+            {
+                SelectedEquipmentType = EquipmentTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.EquipmentType).FirstOrDefault();
+            }
         }
 
         private string ValidateSave()
@@ -316,8 +380,15 @@ namespace PigTool.ViewModels
             {
                 StringBuilder returnString = new StringBuilder();
                 if (Date == null) returnString.AppendLine("Date obtained not provided");
-                if (TotalCosts == null) returnString.AppendLine("Total cost not provided");
-                if (OtherCosts == null) returnString.AppendLine("Other cost not provided");
+                if (TotalCosts == null) returnString.AppendLine("Total Cost Not Provided");
+                if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
+                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
+
+
+                if (SelectedEquipmentType != null && SelectedEquipmentType.TranslationRowKey == Constants.OTHER)
+                {
+                    if (string.IsNullOrWhiteSpace(OtherEquipmentType)) returnString.AppendLine("Other Equipment Type Not Provided");
+                }
 
                 return returnString.ToString();
             }

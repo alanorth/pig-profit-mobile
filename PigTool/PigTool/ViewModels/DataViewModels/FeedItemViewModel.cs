@@ -8,22 +8,22 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using PigTool.Helpers;
 
-namespace PigTool.ViewModels
+namespace PigTool.ViewModels.DataViewModels
 {
     public class FeedItemViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
         bool isEditMode, isCreationMode;
         private bool editExistingMode;
         private DateTime date;
-        private string? feedType;
-        private string? otherFeedType;
+        private string feedType;
+        private string otherFeedType;
         private double? amountPurchased;
-        private string? amountPurchasedUnit;
-        private string? otherAmountPurchasedUnit;
+        private string amountPurchasedUnit;
+        private string otherAmountPurchasedUnit;
         private double? totalCosts;
         private double? transportationCost;
-        private string? purchasedFrom;
-        private string? otherPurchasedFrom;
+        private string purchasedFrom;
+        private string otherPurchasedFrom;
         private string comment;
         List<PickerToolHelper> feedTypeListOfOptions, amountPurchasedUnitListOfOptions, purchasedFromListOfOptions;
         FeedItem _itemForEditing;
@@ -73,7 +73,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? FeedType
+        public string FeedType
         {
             get => feedType;
             set
@@ -85,7 +85,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? OtherFeedType
+        public string OtherFeedType
         {
             get => otherFeedType;
             set
@@ -109,7 +109,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? AmountPurchasedUnit
+        public string AmountPurchasedUnit
         {
             get => amountPurchasedUnit;
             set
@@ -121,7 +121,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? OtherAmountPurchasedUnit
+        public string OtherAmountPurchasedUnit
         {
             get => otherAmountPurchasedUnit;
             set
@@ -133,7 +133,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? PurchasedFrom
+        public string PurchasedFrom
         {
             get => purchasedFrom;
             set
@@ -145,7 +145,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? OtherPurchasedFrom
+        public string OtherPurchasedFrom
         {
             get => otherPurchasedFrom;
             set
@@ -181,7 +181,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? Comment
+        public string Comment
         {
             get => comment;
             set
@@ -355,7 +355,7 @@ namespace PigTool.ViewModels
             IsEditMode = true;
             CreationMode = true;
 
-            SaveButtonClicked = (new Command(SaveButtonCreateFeedItem));
+            SaveButtonClicked = new Command(SaveButtonCreateFeedItem);
             ResetButtonClicked = new Command(ResetButtonPressed);
             DeleteButtonClicked = new Command(DeleteItem);
             EditButtonClicked = new Command(EditItem);

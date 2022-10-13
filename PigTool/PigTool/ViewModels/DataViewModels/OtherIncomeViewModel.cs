@@ -9,7 +9,7 @@ using Shared;
 using PigTool.Views;
 using Xamarin.Forms;
 
-namespace PigTool.ViewModels
+namespace PigTool.ViewModels.DataViewModels
 {
     public class OtherIncomeViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
@@ -17,10 +17,10 @@ namespace PigTool.ViewModels
         private bool editExistingMode;
         private DateTime date;
         private double? totalIncome;
-        private string? otherWhatFor;
+        private string otherWhatFor;
         private double? transportationCosts;
         private double? otherCosts;
-        private string? comment;
+        private string comment;
         OtherIncomeItem _itemForEditing;
 
         //Button Clicks
@@ -57,7 +57,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? OtherWhatFor
+        public string OtherWhatFor
         {
             get => otherWhatFor;
             set
@@ -81,7 +81,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        
+
         public double? TotalIncome
         {
             get => totalIncome;
@@ -106,7 +106,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? Comment
+        public string Comment
         {
             get => comment;
             set
@@ -122,7 +122,7 @@ namespace PigTool.ViewModels
         #endregion
 
         #region Dropdown Lists
-        
+
         #endregion
 
         #region Hidden Fields
@@ -181,7 +181,7 @@ namespace PigTool.ViewModels
             IsEditMode = true;
             CreationMode = true;
 
-            SaveButtonClicked = (new Command(SaveButtonCreateOtherCostsItem));
+            SaveButtonClicked = new Command(SaveButtonCreateOtherCostsItem);
             ResetButtonClicked = new Command(ResetButtonPressed);
             DeleteButtonClicked = new Command(DeleteItem);
             EditButtonClicked = new Command(EditItem);
@@ -190,14 +190,14 @@ namespace PigTool.ViewModels
 
             OtherIncomeTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherIncomeTitleTranslation), User.UserLang);
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
-            
+
             OtherWhatForTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherWhatForTranslation), User.UserLang);
 
             TotalIncomeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalIncomeTranslation), User.UserLang) + " *";
             TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
             OtherCostsTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostsTranslation), User.UserLang) + " *";
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
-            
+
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
@@ -216,7 +216,7 @@ namespace PigTool.ViewModels
             OtherWhatFor = item.OtherWhatFor;
             TransportationCosts = item.TransportationCosts;
             TotalIncome = item.TotalIncome;
-            OtherCosts = item.OtherCosts; 
+            OtherCosts = item.OtherCosts;
             Comment = item.Comment;
         }
 
@@ -224,7 +224,7 @@ namespace PigTool.ViewModels
         {
             if (EditExistingMode)
             {
-                
+
             }
         }
 

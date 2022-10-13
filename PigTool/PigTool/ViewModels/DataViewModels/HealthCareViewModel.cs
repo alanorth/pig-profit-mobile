@@ -9,26 +9,26 @@ using Shared;
 using PigTool.Views;
 using Xamarin.Forms;
 
-namespace PigTool.ViewModels
+namespace PigTool.ViewModels.DataViewModels
 {
     public class HealthCareViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
         bool isEditMode, isCreationMode;
         private bool editExistingMode;
         private DateTime date;
-        private string? healthCareType;
-        private string? otherHealthCareType;
+        private string healthCareType;
+        private string otherHealthCareType;
         private double? healthCareCost;
-        private string? provider;
-        private string? otherProvider;
+        private string provider;
+        private string otherProvider;
         private double? medicineCost;
-        private string? medicineType;
-        private string? otherMedicineType;
-        private string? purchasedFrom;
-        private string? otherPurchasedFrom;
+        private string medicineType;
+        private string otherMedicineType;
+        private string purchasedFrom;
+        private string otherPurchasedFrom;
         private double? transportationCost;
         private double? otherCosts;
-        private string? comment;
+        private string comment;
         List<PickerToolHelper> healthCareTypeListOfOptions;
         List<PickerToolHelper> providerListOfOptions;
         List<PickerToolHelper> medicineTypeListOfOptions;
@@ -86,7 +86,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? HealthCareType
+        public string HealthCareType
         {
             get => healthCareType;
             set
@@ -98,7 +98,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? OtherHealthCareType
+        public string OtherHealthCareType
         {
             get => otherHealthCareType;
             set
@@ -122,7 +122,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? Provider
+        public string Provider
         {
             get => provider;
             set
@@ -134,7 +134,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? OtherProvider
+        public string OtherProvider
         {
             get => otherProvider;
             set
@@ -158,7 +158,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? MedicineType
+        public string MedicineType
         {
             get => medicineType;
             set
@@ -170,7 +170,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? OtherMedicineType
+        public string OtherMedicineType
         {
             get => otherMedicineType;
             set
@@ -182,7 +182,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? PurchasedFrom
+        public string PurchasedFrom
         {
             get => purchasedFrom;
             set
@@ -194,7 +194,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? OtherPurchasedFrom
+        public string OtherPurchasedFrom
         {
             get => otherPurchasedFrom;
             set
@@ -206,7 +206,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-       
+
         public double? TransportationCost
         {
             get => transportationCost;
@@ -231,7 +231,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? Comment
+        public string Comment
         {
             get => comment;
             set
@@ -447,7 +447,7 @@ namespace PigTool.ViewModels
             IsEditMode = true;
             CreationMode = true;
 
-            SaveButtonClicked = (new Command(SaveButtonCreateHousingItem));
+            SaveButtonClicked = new Command(SaveButtonCreateHousingItem);
             ResetButtonClicked = new Command(ResetButtonPressed);
             DeleteButtonClicked = new Command(DeleteItem);
             EditButtonClicked = new Command(EditItem);
@@ -477,7 +477,7 @@ namespace PigTool.ViewModels
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
             DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), User.UserLang);
-            
+
             PickerHealthCareTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerHealthCareTypeTranslation), User.UserLang);
             PickerPurchasedFromTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerPurchasedFromTranslation), User.UserLang);
             PickerProviderTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerProviderTranslation), User.UserLang);
@@ -580,11 +580,12 @@ namespace PigTool.ViewModels
                         CreatedBy = User.UserName,
                         PartitionKey = Constants.PartitionKeyHealthCareItem,
                     };
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     Console.WriteLine(ex.ToString());
                 }
-                
+
 
                 await repo.AddSingleHealthCareItem(newHealthCare);
                 await Application.Current.MainPage.DisplayAlert("Created", "Health care record has been saved", "OK");

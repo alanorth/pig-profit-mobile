@@ -9,7 +9,7 @@ using Shared;
 using PigTool.Views;
 using Xamarin.Forms;
 
-namespace PigTool.ViewModels
+namespace PigTool.ViewModels.DataViewModels
 {
     public class PigSaleViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
@@ -17,15 +17,15 @@ namespace PigTool.ViewModels
         private bool editExistingMode;
         private DateTime date;
         private double? numberSold;
-        private string? pigType;
-        private string? otherPigType;
+        private string pigType;
+        private string otherPigType;
         private double? salePrice;
-        private string? soldTo;
-        private string? otherSoldTo;
+        private string soldTo;
+        private string otherSoldTo;
         private double? brokerage;
         private double? transportationCost;
         private double? otherCosts;
-        private string? comment;
+        private string comment;
         List<PickerToolHelper> pigTypeListOfOptions;
         List<PickerToolHelper> soldToListOfOptions;
         PigSaleItem _itemForEditing;
@@ -87,7 +87,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? PigType
+        public string PigType
         {
             get => pigType;
             set
@@ -99,7 +99,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? OtherPigType
+        public string OtherPigType
         {
             get => otherPigType;
             set
@@ -111,7 +111,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? SoldTo
+        public string SoldTo
         {
             get => soldTo;
             set
@@ -123,7 +123,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? OtherSoldTo
+        public string OtherSoldTo
         {
             get => otherSoldTo;
             set
@@ -184,7 +184,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? Comment
+        public string Comment
         {
             get => comment;
             set
@@ -322,7 +322,7 @@ namespace PigTool.ViewModels
             IsEditMode = true;
             CreationMode = true;
 
-            SaveButtonClicked = (new Command(SaveButtonCreateHousingItem));
+            SaveButtonClicked = new Command(SaveButtonCreateHousingItem);
             ResetButtonClicked = new Command(ResetButtonPressed);
             DeleteButtonClicked = new Command(DeleteItem);
             EditButtonClicked = new Command(EditItem);
@@ -331,7 +331,7 @@ namespace PigTool.ViewModels
 
             PigSaleTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PigSaleTitleTranslation), User.UserLang);
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
-            
+
             NumberSoldTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(NumberSoldTranslation), User.UserLang);
 
             PigTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PigTypeTranslation), User.UserLang);
@@ -344,7 +344,7 @@ namespace PigTool.ViewModels
             TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
             OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
-            
+
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
@@ -371,7 +371,7 @@ namespace PigTool.ViewModels
             SalePrice = item.SalePrice;
             Brokerage = item.Brokerage;
             TransportationCost = item.TransportationCost;
-            OtherCosts = item.OtherCosts; 
+            OtherCosts = item.OtherCosts;
             Comment = item.Comment;
         }
 
@@ -503,7 +503,7 @@ namespace PigTool.ViewModels
                 if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
                 if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
-                
+
                 if (SelectedPigType != null && SelectedPigType.TranslationRowKey == Constants.OTHER)
                 {
                     if (string.IsNullOrWhiteSpace(OtherPigType)) returnString.AppendLine("Other Pig Type Not Provided");
