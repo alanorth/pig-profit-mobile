@@ -80,6 +80,14 @@ namespace Shared
         public const string VOLUMEUNITTYPE = "VolumeUnitType";
         //other payment from above
         public const string MANURESOLDTOTYPE = "ManureSoldToType";
+
+        // BreedingServiceSale
+        public const string GENDERTYPE = "GenderType";
+        public const string DISTRICTTYPE = "DistrictType";
+        public const string COUNTYTYPE = "CountryType";
+        public const string COUNTRYTYPE = "CountryType";
+        public const string SUBCOUNTYTYPE = "SubCountyType";
+        public const string CURRENCYTYPE = "CurrencyType";
         #endregion
 
         #region StorageTables
@@ -89,6 +97,7 @@ namespace Shared
         #endregion
 
         #region PartitionKeys
+        public const string PartitionKeyUserInfo = "UserInfo";
         public const string PartitionKeyAnimalHouse = "AnimalHouse";
         public const string PartitionKeyFeed = "Feed";
         public const string PartitionKeyControlData = "ControlData";

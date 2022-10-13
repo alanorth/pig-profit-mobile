@@ -47,6 +47,18 @@ namespace PigTool.Services
             return _context.UserInfos.FirstAsync();
         }
 
+        public async Task AddSingleUserInfo(UserInfo itemToAdd)
+        {
+            await _context.AddAsync(itemToAdd);
+            await _context.SaveChangesAsync();
+        }
+
+        public void DeleteUserInfo(UserInfo userItem)
+        {
+            _context.Remove(userItem);
+            _context.SaveChangesAsync();
+        }
+
         public async Task<List<ControlData>> GetControlData(string dropDownOption)
         {
            return await _context.ControlDataOptions.Where(x => x.DropDownControlOption == dropDownOption).Include(cd => cd.Translation).ToListAsync();

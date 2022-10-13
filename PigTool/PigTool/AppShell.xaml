@@ -55,7 +55,13 @@
                 <FontImageSource Glyph="&#xf14d;" FontFamily="FA-S" />
             </ShellContent.Icon>
         </ShellContent>
-     
+
+        <ShellContent Title="Test" ContentTemplate="{DataTemplate local:SendDataPage}">
+            <ShellContent.Icon>
+                <FontImageSource Glyph="&#xf14d;" FontFamily="FA-S" />
+            </ShellContent.Icon>
+        </ShellContent>
+
     </TabBar>
 
     <!--
@@ -65,6 +71,5 @@
     <TabBar>
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
     </TabBar>
-
 
 </Shell>
