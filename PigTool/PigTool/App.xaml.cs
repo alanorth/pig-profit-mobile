@@ -5,6 +5,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SQLLiteDbContext;
 using System.Threading.Tasks;
+using Shared;
+using Microsoft.EntityFrameworkCore;
 
 //fontawesome
 [assembly: ExportFont("fa-regular-400.ttf", Alias = "FA-R")]
@@ -14,7 +16,6 @@ namespace PigTool
 {
     public partial class App : Application
     {
-
         public App()
         {
             InitializeComponent();

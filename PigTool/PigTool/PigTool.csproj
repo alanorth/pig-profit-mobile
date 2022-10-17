@@ -63,6 +63,9 @@
     <Compile Update="Views\LegalDisclaimer.xaml.cs">
       <DependentUpon>LegalDisclaimer.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\RegistrationSuccessfulPage.xaml.cs">
+      <DependentUpon>RegistrationSuccessfulPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>

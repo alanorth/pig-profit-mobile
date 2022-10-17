@@ -44,6 +44,11 @@ namespace PigTool.Views
                 base.OnAppearing();
 
                 IsRendered = true;
+
+                _viewModel.ShowSuccess = (async (obj) =>
+                {
+                    await Shell.Current.GoToAsync("//RegistrationSuccessful");
+                });
             }
         }
 
@@ -55,7 +60,7 @@ namespace PigTool.Views
             var UserNameCell = new ViewCell();
             var UserNameStack = FormattedElementsHelper.TableRowStack();
             UserNameStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.UserNameTranslation)));
-            UserNameStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.UserName), nameof(_viewModel.IsEditMode), null));
+            UserNameStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.UserName), nameof(_viewModel.IsEditMode), null));
             UserNameCell.View = UserNameStack;
             FullTableSection.Add(UserNameCell);
 
@@ -63,7 +68,7 @@ namespace PigTool.Views
             var NameCell = new ViewCell();
             var NameStack = FormattedElementsHelper.TableRowStack();
             NameStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.NameTranslation)));
-            NameStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.Name), nameof(_viewModel.IsEditMode), null));
+            NameStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Name), nameof(_viewModel.IsEditMode), null));
             NameCell.View = NameStack;
             FullTableSection.Add(NameCell);
 
@@ -91,7 +96,7 @@ namespace PigTool.Views
             var EmailCell = new ViewCell();
             var EmailStack = FormattedElementsHelper.TableRowStack();
             EmailStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.EmailTranslation)));
-            EmailStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.Email), nameof(_viewModel.IsEditMode), null));
+            EmailStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Email), nameof(_viewModel.IsEditMode), null));
             EmailCell.View = EmailStack;
             FullTableSection.Add(EmailCell);
 
@@ -99,7 +104,7 @@ namespace PigTool.Views
             var PhoneNumberCell = new ViewCell();
             var PhoneNumberStack = FormattedElementsHelper.TableRowStack();
             PhoneNumberStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.PhoneNumberTranslation)));
-            PhoneNumberStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.PhoneNumber), nameof(_viewModel.IsEditMode), null));
+            PhoneNumberStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.PhoneNumber), nameof(_viewModel.IsEditMode), null));
             PhoneNumberCell.View = PhoneNumberStack;
             FullTableSection.Add(PhoneNumberCell);
 
@@ -184,7 +189,7 @@ namespace PigTool.Views
             var ParishCell = new ViewCell();
             var ParishStack = FormattedElementsHelper.TableRowStack();
             ParishStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.ParishTranslation)));
-            ParishStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.Parish), nameof(_viewModel.IsEditMode), null));
+            ParishStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Parish), nameof(_viewModel.IsEditMode), null));
             ParishCell.View = ParishStack;
             FullTableSection.Add(ParishCell);
 
@@ -192,7 +197,7 @@ namespace PigTool.Views
             var VillageCell = new ViewCell();
             var VillageStack = FormattedElementsHelper.TableRowStack();
             VillageStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.VillageTranslation)));
-            VillageStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.Village), nameof(_viewModel.IsEditMode), null));
+            VillageStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Village), nameof(_viewModel.IsEditMode), null));
             VillageCell.View = VillageStack;
             FullTableSection.Add(VillageCell);
 

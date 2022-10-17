@@ -72,10 +72,10 @@ namespace Samples.ViewModel
             }
             catch (OperationCanceledException)
             {
-                Console.WriteLine("Login canceled.");
+                Console.WriteLine("Login cancelled.");
 
                 AuthToken = string.Empty;
-                await Application.Current.MainPage.DisplayAlert("Error", "Login canceled.", "OK");
+                await Application.Current.MainPage.DisplayAlert("Error", "Login cancelled.", "OK");
             }
             catch (Exception ex)
             {

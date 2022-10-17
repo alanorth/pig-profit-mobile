@@ -84,7 +84,7 @@ namespace Shared
         // BreedingServiceSale
         public const string GENDERTYPE = "GenderType";
         public const string DISTRICTTYPE = "DistrictType";
-        public const string COUNTYTYPE = "CountryType";
+        public const string COUNTYTYPE = "CountyType";
         public const string COUNTRYTYPE = "CountryType";
         public const string SUBCOUNTYTYPE = "SubCountyType";
         public const string CURRENCYTYPE = "CurrencyType";

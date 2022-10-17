@@ -263,7 +263,8 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "VillageTranslation", English = "Village", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "CountryTranslation", English = "Country", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "CurrencyTranslation", English = "Currency", Lang1 = "", Lang2 = "" },
-                         
+                         new Translation() { RowKey = "GenderTranslation", English = "Gender", Lang1 = "", Lang2 = "" },
+
 
                          // PickerTitles
                          new Translation() { RowKey = "PickerUnitTranslation", English = "Unit", Lang1 = "", Lang2 = "" },
@@ -282,14 +283,14 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "PickerSoldToTranslation", English = "Select a Buyer", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "PickerPaymentTypeTranslation", English = "Select a Payment Type", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "PickerClientTranslation", English = "Select a Client", Lang1 = "", Lang2 = "" },
-                         
+
                          new Translation() { RowKey = "PickerGenderTranslation", English = "Select a Gender", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "PickerDistrictTranslation", English = "Select a District", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "PickerCountyTranslation", English = "Select a County", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "PickerSubCountyTranslation", English = "Select a Sub County", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "PickerCountryTranslation", English = "Select a Country", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "PickerCurrencyTranslation", English = "Select a Currency", Lang1 = "", Lang2 = "" },
-                         
+
 
 
                          //Drop Down Options
@@ -506,7 +507,7 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "VolumeUnitType7", English = "VolumeUnitType 7", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "VolumeUnitType8", English = "VolumeUnitType 8", Lang1 = "", Lang2 = "" },
 
-                         
+
                          new Translation() { RowKey = "GenderType1", English = "Male", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "GenderType2", English = "Female", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "GenderType3", English = "Other", Lang1 = "", Lang2 = "" },
@@ -555,7 +556,7 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "CurrencyType6", English = "CurrencyType 6", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "CurrencyType7", English = "CurrencyType 7", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "CurrencyType8", English = "CurrencyType 8", Lang1 = "", Lang2 = "" }
-                         
+
                          );
                  }
              );
@@ -798,7 +799,7 @@ namespace SQLLiteDbContext
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType7" },
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType8" },
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = Constants.OTHER },
-                       
+
                                               new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.GENDERTYPE, TranslationRowKey = "GenderType1" },
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.GENDERTYPE, TranslationRowKey = "GenderType2" },
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.GENDERTYPE, TranslationRowKey = "GenderType3" },
@@ -847,7 +848,7 @@ namespace SQLLiteDbContext
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.CURRENCYTYPE, TranslationRowKey = "CurrencyType6" },
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.CURRENCYTYPE, TranslationRowKey = "CurrencyType7" },
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.CURRENCYTYPE, TranslationRowKey = "CurrencyType8" }
-                       
+
                        );
                 }
             );
@@ -861,7 +862,7 @@ namespace SQLLiteDbContext
                 );
 
 
-            
+            /*
             modelBuilder.Entity<UserInfo>(x =>
             {
                 x.HasData(
@@ -889,10 +890,11 @@ namespace SQLLiteDbContext
                 ) ;
             }
             
+            
            );
             
-
+*/
         }
 
     }
-}
+    }

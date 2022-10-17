@@ -15,7 +15,7 @@ namespace Shared
         public string PhoneNumber { get; set; }
         public string Country { get; set; }
         public string? District { get; set; }
-        public string County { get; set; }
+        public string? County { get; set; }
         public string? SubCounty { get; set; }
         public string? Parish { get; set; }
         public string? Village { get; set; }

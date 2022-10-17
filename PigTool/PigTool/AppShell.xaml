@@ -2,6 +2,8 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:PigTool.Views"
+       xmlns:vm="clr-namespace:PigTool.ViewModels"
+       FlyoutBehavior="Disabled"
        Title="PigTool"
        x:Class="PigTool.AppShell">
 
@@ -25,11 +27,21 @@
                 <Setter Property="Shell.TabBarTitleColor" Value="White"/>
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
-            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
         </ResourceDictionary>
     </Shell.Resources>
 
-    <TabBar>
+    <Shell.BindingContext>
+        <vm:AppViewModel/>
+    </Shell.BindingContext>
+    
+    <ShellItem Route="Registration" IsVisible="{Binding ShowRegister}">
+        <ShellContent ContentTemplate="{DataTemplate local:RegistrationPage}"/>
+    </ShellItem>
+    <ShellItem Route="RegistrationSuccessful" IsVisible="{Binding ShowRegister}">
+        <ShellContent ContentTemplate="{DataTemplate local:RegistrationSuccessfulPage}"/>
+    </ShellItem>
+    
+    <TabBar Route="main">
         <ShellContent Title="Home"  Route="HomePage" ContentTemplate="{DataTemplate local:HomePage}" >
             <ShellContent.Icon>
                 <FontImageSource Glyph="&#xf015;" FontFamily="FA-S" />

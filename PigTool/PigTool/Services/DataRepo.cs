@@ -47,6 +47,11 @@ namespace PigTool.Services
             return _context.UserInfos.FirstAsync();
         }
 
+        public Task<int> GetUserInfoCount()
+        {
+            return _context.UserInfos.CountAsync();
+        }
+
         public async Task AddSingleUserInfo(UserInfo itemToAdd)
         {
             await _context.AddAsync(itemToAdd);
