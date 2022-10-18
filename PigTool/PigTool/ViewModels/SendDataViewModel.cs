@@ -6,8 +6,10 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace PigTool.ViewModels
@@ -16,7 +18,15 @@ namespace PigTool.ViewModels
     {
         public bool PageRendered { get; set; }
 
-        public DateTime LastTimeDataUploaded { get => lastTimeDataUploaded; set => lastTimeDataUploaded = value; }
+        public DateTime LastTimeDataUploaded
+        {
+            get => lastTimeDataUploaded;
+            set
+            {
+                lastTimeDataUploaded = value;
+                OnPropertyChanged(nameof(LastTimeDataUploaded));
+            }
+        }
 
         private ObservableCollection<FeedItem> feedItems;
         private ObservableCollection<HealthCareItem> healthCareItems;
@@ -191,11 +201,13 @@ namespace PigTool.ViewModels
             }
         }
 
-        public int CountOf_FeedItems { 
+        public int CountOf_FeedItems
+        {
             get { return countOf_FeedItems; }
-            set { 
+            set
+            {
                 countOf_FeedItems = value;
-                OnPropertyChanged(nameof(CountOf_FeedItems)); 
+                OnPropertyChanged(nameof(CountOf_FeedItems));
             }
         }
         public int CountOf_HealthCareItems
@@ -414,28 +426,49 @@ namespace PigTool.ViewModels
                     ManureSaleItems = ManureSaleItems.ToList(),
                     OtherIncomeItems = OtherIncomeItems.ToList(),
                 };
-
-                User.LastUploadDate = DateTime.Now;
-                LastTimeDataUploaded = User.LastUploadDate;
-
+                /*
                 //await repo.UpdateUserInfo(User);
                 var httpClient = new HttpClient();
 
-                httpClient.DefaultRequestHeaders.Add("XApiKey", "ENTER YOUR API KEY HERE");
+                //httpClient.DefaultRequestHeaders.Add("XApiKey", "ENTER YOUR API KEY HERE");
+                httpClient.DefaultRequestHeaders.Authorization =
+                  new AuthenticationHeaderValue("Google", User.AuthorisedToken);
 
-                var jObject = JsonConvert.SerializeObject(apiTransfer);
+                //var jObject = JsonConvert.SerializeObject(apiTransfer);
 
-                var data = new StringContent(jObject, Encoding.UTF8, "application/json");
-                //var url = "https://wsuatapim.azure-api.net/snpit/samples/get";
-                var url = "https://localhost:7218/api/data/SubmitData";
+                //var data = new StringContent(jObject, Encoding.UTF8, "application/json");
+                var url = "https://pigprofittool.azurewebsites.net/api/data/SubmitData";
+                //var url = "https://pigprofittool.azurewebsites.net/api/data/SubmitData";
+                //var url = "https://localhost:7218/api/data/SubmitData";
 
-                var response = await httpClient.PostAsync(url, data);
+                //var response = await httpClient.PostAsync(url, data);
+                var response = await httpClient.GetAsync(url);
                 var responseString = await response.Content.ReadAsStringAsync();
+
+                await Application.Current.MainPage.DisplayAlert("Error", response.StatusCode.ToString(), "OK");
 
                 httpClient.Dispose();
 
+                if (response.IsSuccessStatusCode)
+                {
+                    User.LastUploadDate = DateTime.Now;
+                    LastTimeDataUploaded = User.LastUploadDate;
+                    await repo.UpdateUserInfo(User);
+                    await PopulateCollections();
+                }*/
 
                 PageRendered = false;
+
+
+                var baseAddr = new Uri("https://pigprofittool.azurewebsites.net");
+                var client = new HttpClient { BaseAddress = baseAddr };
+
+                var reviewUri = new Uri(baseAddr, "api/data/SubmitData");
+                var request = new HttpRequestMessage(HttpMethod.Get, reviewUri);
+                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", User.AuthorisedToken);
+
+                var response = await client.SendAsync(request);
+                response.EnsureSuccessStatusCode();
 
             }
             catch (Exception ex)

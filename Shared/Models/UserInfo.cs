@@ -20,7 +20,9 @@ namespace Shared
         public string? Village { get; set; }
         public DateTime LastUploadDate { get; set; }
         public UserLangSettings UserLang { get; set; }
-
+        public string AuthorisedToken {get; set;}
+        public string AuthorisedEmail { get; set; }
+        public string SubmittedPassowrd { get; set; }
     }
     public enum UserLangSettings
     {

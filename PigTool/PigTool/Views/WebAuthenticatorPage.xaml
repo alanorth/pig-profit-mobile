@@ -4,7 +4,7 @@
              x:Class="PigTool.Views.WebAuthenticatorPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Quickly and easily authenticate and wait for callbacks on external urls." FontAttributes="Bold" Margin="12" />
+            <Label Text="The Pig Tool Authenitcates with Eaither Google or Facebook.  We use these services to securely authenticate users and keep your data safe." FontAttributes="Bold" Margin="12" />
 
             <ScrollView>
                 <StackLayout Padding="12,0,12,12" Spacing="6">

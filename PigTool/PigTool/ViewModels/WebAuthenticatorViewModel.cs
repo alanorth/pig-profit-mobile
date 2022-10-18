@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace Samples.ViewModel
 {
-    public class WebAuthenticatorViewModel : BaseViewModel
+    public class WebAuthenticatorViewModel : LoggedInViewModel
     {
         //const string authenticationUrl = "https://xamarin-essentials-auth-sample.azurewebsites.net/mobileauth/";
         const string authenticationUrl = "https://pigprofittool.azurewebsites.net/mobileauth/";
@@ -69,6 +69,12 @@ namespace Samples.ViewModel
                 if (r.Properties.TryGetValue("email", out var email) && !string.IsNullOrEmpty(email))
                     AuthToken += $"Email: {email}{Environment.NewLine}";
                 AuthToken += r?.AccessToken ?? r?.IdToken;
+
+                User.AuthorisedToken = r?.AccessToken;
+                User.AuthorisedEmail = email;
+
+                await repo.UpdateUserInfo(User);
+
             }
             catch (OperationCanceledException)
             {

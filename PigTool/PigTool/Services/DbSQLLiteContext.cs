@@ -752,7 +752,9 @@ namespace SQLLiteDbContext
                         UserLang = UserLangSettings.Eng,
                         RowKey = Guid.NewGuid().ToString(),
                         PartitionKey = "User",
-                        Timestamp = DateTime.UtcNow
+                        Timestamp = DateTime.UtcNow,
+                        AuthorisedToken = "",
+                        AuthorisedEmail = ""
                     }
                 );
             }

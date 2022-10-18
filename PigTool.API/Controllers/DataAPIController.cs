@@ -7,11 +7,16 @@ using Microsoft.WindowsAzure.Storage.Table;
 using Newtonsoft.Json;
 using PigTool.API.Tests;
 using System.Collections.Concurrent;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.Extensions.Options;
 
 namespace PigTool.API.Controllers
 {
     [Tags("Data Services")]
     [ApiController]
+    //[Authorize(AuthenticationSchemes = AuthSchemes)]
     public class DataAPIController : PigToolBaseController
     {
         public DataAPIController(
@@ -21,15 +26,31 @@ namespace PigTool.API.Controllers
 
         }
 
-        
-
-        [HttpPost, Route(Constants.ROUTE_API_SUBMITDATA)]
+        [HttpGet, Route(Constants.ROUTE_API_SUBMITDATA)]
+        //[Authorize]
+        [Authorize(AuthenticationSchemes = "Google")]
         public async Task<ActionResult> SubmitData()
         {
+
+           var  requeststring = Mocks.ConstructAPIItem();
+
             var callGUID = Guid.NewGuid().ToString();
             var Connection = GetStorageConnectionString();
 
+            var transferitems = JsonConvert.DeserializeObject<APITransferItem>(requeststring);
+            var opertions = new TableOperations();
+            var result = await opertions.InsertTableEntities(transferitems.AnimalHouseItems, Constants.TABLEDATA, Connection);
 
+            var contentresult = new ContentResult()
+            {
+                Content = $"Data Created" + Constants.APICALLID + callGUID,
+                ContentType = "text/plain"
+            };
+
+            await LoggingOperations.LogRequestToBlob("SUBMITDATA", "RESPONSE", contentresult.Content, callGUID, Connection);
+            return contentresult;
+
+            /*
             try
             {
                 var requestJson = await Parse(Request);
@@ -93,6 +114,7 @@ namespace PigTool.API.Controllers
 
             await LoggingOperations.LogRequestToBlob("SUBMITDATA", "RESPONSE", contentresult.Content, callGUID, Connection);
             return contentresult;
+            */
         }
 
 
