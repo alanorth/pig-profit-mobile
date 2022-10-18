@@ -9,28 +9,24 @@ using Shared;
 using PigTool.Views;
 using Xamarin.Forms;
 
-namespace PigTool.ViewModels
+namespace PigTool.ViewModels.DataViewModels
 {
-    public class BreedingServiceSaleViewModel : LoggedInViewModel, INotifyPropertyChanged
+    public class ReproductiveViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
         bool isEditMode, isCreationMode;
         private bool editExistingMode;
         private DateTime date;
-        private int? numberServices;
-        private string? serviceType;
-        private string? otherServiceType;
-        private double? amountRecieved;
-        private string? client;
-        private string? otherClient;
-        private string? paymentType;
-        private double? paymentValue;
-        private double? transportationCost;
+
+        private string serviceType;
+        private string otherServiceType;
+        private int? sowsServiced;
+        private string whoProvidedService;
+        private string otherWhoProvidedService;
         private double? otherCosts;
-        private string? comment;
+        private string comment;
         List<PickerToolHelper> serviceTypeListOfOptions;
-        List<PickerToolHelper> clientListOfOptions;
-        List<PickerToolHelper> paymentTypeListOfOptions;
-        BreedingServiceSaleItem _itemForEditing;
+        List<PickerToolHelper> whoProvidedServiceListOfOptions;
+        ReproductiveItem _itemForEditing;
 
         //Button Clicks
         public Command SaveButtonClicked { get; }
@@ -39,21 +35,15 @@ namespace PigTool.ViewModels
         public Command EditButtonClicked { get; }
 
         #region translations
-        public string BreedingServiceSaleTitleTranslation { get; set; }
+        public string ReproductiveTitleTranslation { get; set; }
         public string DateTranslation { get; set; }
-
-        public string NumberServicesTranslation { get; set; }
 
         public string ServiceTypeTranslation { get; set; }
         public string OtherServiceTypeTranslation { get; set; }
-        public string ClientTranslation { get; set; }
-        public string OtherClientTranslation { get; set; }
+        public string WhoProvidedServiceTranslation { get; set; }
+        public string OtherWhoProvidedServiceTranslation { get; set; }
 
-        public string AmountRecievedTranslation { get; set; }
-        public string AnyOtherPaymentTranslation { get; set; }
-        public string PaymentTypeTranslation { get; set; }
-        public string PaymentValueTranslation { get; set; }
-        public string TransportationCostTranslation { get; set; }
+        public string SowsServicedTranslation { get; set; }
         public string OtherCostTranslation { get; set; }
         public string CommentTranslation { get; set; }
 
@@ -63,11 +53,10 @@ namespace PigTool.ViewModels
         public string DeleteTranslation { get; set; }
 
         public string PickerServiceTypeTranslation { get; set; }
-        public string PickerPaymentTypeTranslation { get; set; }
-        public string PickerClientTranslation { get; set; }
+        public string PickerProviderTranslation { get; set; }
         #endregion
 
-        #region Pig Sale item fields
+        #region Reproductive item fields
         public DateTime Date
         {
             get => date;
@@ -80,19 +69,8 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public int? NumberServices
-        {
-            get => numberServices;
-            set
-            {
-                if (value != numberServices)
-                {
-                    numberServices = value;
-                    OnPropertyChanged(nameof(NumberServices));
-                }
-            }
-        }
-        public string? ServiceType
+
+        public string ServiceType
         {
             get => serviceType;
             set
@@ -104,7 +82,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? OtherServiceType
+        public string OtherServiceType
         {
             get => otherServiceType;
             set
@@ -116,79 +94,43 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? Client
+        public int? SowsServiced
         {
-            get => client;
+            get => sowsServiced;
             set
             {
-                if (value != client)
+                if (value != sowsServiced)
                 {
-                    client = value;
-                    OnPropertyChanged(nameof(Client));
+                    sowsServiced = value;
+                    OnPropertyChanged(nameof(SowsServiced));
                 }
             }
         }
-        public string? OtherClient
+        public string WhoProvidedService
         {
-            get => otherClient;
+            get => whoProvidedService;
             set
             {
-                if (value != otherClient)
+                if (value != whoProvidedService)
                 {
-                    otherClient = value;
-                    OnPropertyChanged(nameof(OtherClient));
+                    whoProvidedService = value;
+                    OnPropertyChanged(nameof(WhoProvidedService));
                 }
             }
         }
-        public double? AmountRecieved
+        public string OtherWhoProvidedService
         {
-            get => amountRecieved;
+            get => otherWhoProvidedService;
             set
             {
-                if (value != amountRecieved)
+                if (value != otherWhoProvidedService)
                 {
-                    amountRecieved = value;
-                    OnPropertyChanged(nameof(AmountRecieved));
-                }
-            }
-        }
-        public string? PaymentType
-        {
-            get => paymentType;
-            set
-            {
-                if (value != paymentType)
-                {
-                    paymentType = value;
-                    OnPropertyChanged(nameof(PaymentType));
-                }
-            }
-        }
-        public double? PaymentValue
-        {
-            get => paymentValue;
-            set
-            {
-                if (value != paymentValue)
-                {
-                    paymentValue = value;
-                    OnPropertyChanged(nameof(PaymentValue));
+                    otherWhoProvidedService = value;
+                    OnPropertyChanged(nameof(OtherWhoProvidedService));
                 }
             }
         }
 
-        public double? TransportationCost
-        {
-            get => transportationCost;
-            set
-            {
-                if (value != transportationCost)
-                {
-                    transportationCost = value;
-                    OnPropertyChanged(nameof(TransportationCost));
-                }
-            }
-        }
         public double? OtherCosts
         {
             get => otherCosts;
@@ -201,7 +143,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? Comment
+        public string Comment
         {
             get => comment;
             set
@@ -227,23 +169,13 @@ namespace PigTool.ViewModels
             }
         }
 
-        public List<PickerToolHelper> ClientListOfOptions
+        public List<PickerToolHelper> WhoProvidedServiceListOfOptions
         {
-            get { return clientListOfOptions; }
+            get { return whoProvidedServiceListOfOptions; }
             set
             {
-                clientListOfOptions = value;
-                OnPropertyChanged(nameof(ClientListOfOptions));
-            }
-        }
-
-        public List<PickerToolHelper> PaymentTypeListOfOptions
-        {
-            get { return paymentTypeListOfOptions; }
-            set
-            {
-                paymentTypeListOfOptions = value;
-                OnPropertyChanged(nameof(PaymentTypeListOfOptions));
+                whoProvidedServiceListOfOptions = value;
+                OnPropertyChanged(nameof(WhoProvidedServiceListOfOptions));
             }
         }
 
@@ -263,33 +195,18 @@ namespace PigTool.ViewModels
             }
         }
 
-        private PickerToolHelper selectedClient;
+        private PickerToolHelper selectedWhoProvidedService;
 
-        public PickerToolHelper SelectedClient
+        public PickerToolHelper SelectedWhoProvidedService
         {
-            get { return selectedClient; }
+            get { return selectedWhoProvidedService; }
             set
             {
-                if (selectedClient != value)
+                if (selectedWhoProvidedService != value)
                 {
-                    DisplayOtherClient = value?.TranslationRowKey == Constants.OTHER;
-                    selectedClient = value;
-                    OnPropertyChanged(nameof(SelectedClient));
-                }
-            }
-        }
-
-        private PickerToolHelper selectedPaymentType;
-
-        public PickerToolHelper SelectedPaymentType
-        {
-            get { return selectedPaymentType; }
-            set
-            {
-                if (selectedPaymentType != value)
-                {
-                    selectedPaymentType = value;
-                    OnPropertyChanged(nameof(SelectedPaymentType));
+                    DisplayOtherWhoProvidedService = value?.TranslationRowKey == Constants.OTHER;
+                    selectedWhoProvidedService = value;
+                    OnPropertyChanged(nameof(SelectedWhoProvidedService));
                 }
             }
         }
@@ -297,7 +214,7 @@ namespace PigTool.ViewModels
 
         #region Hidden Fields
         private bool displayOtherServiceType;
-        private bool displayOtherClient;
+        private bool displayOtherWhoProvidedService;
 
         public bool DisplayOtherServiceType
         {
@@ -311,19 +228,18 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public bool DisplayOtherClient
+        public bool DisplayOtherWhoProvidedService
         {
-            get => displayOtherClient;
+            get => displayOtherWhoProvidedService;
             set
             {
-                if (displayOtherClient != value)
+                if (displayOtherWhoProvidedService != value)
                 {
-                    displayOtherClient = value;
-                    OnPropertyChanged(nameof(DisplayOtherClient));
+                    displayOtherWhoProvidedService = value;
+                    OnPropertyChanged(nameof(DisplayOtherWhoProvidedService));
                 }
             }
         }
-        
         #endregion
 
         public bool IsEditMode
@@ -358,49 +274,42 @@ namespace PigTool.ViewModels
         public bool EditExistingMode { get => editExistingMode; set { if (editExistingMode != value) { editExistingMode = value; OnPropertyChanged(nameof(EditExistingMode)); } } }
         public bool CreationMode { get; private set; }
 
-        public BreedingServiceSaleViewModel()
+        public ReproductiveViewModel()
         {
             Date = DateTime.Now;
 
             IsEditMode = true;
             CreationMode = true;
 
-            SaveButtonClicked = (new Command(SaveButtonCreateHousingItem));
+            SaveButtonClicked = new Command(SaveButtonCreateHousingItem);
             ResetButtonClicked = new Command(ResetButtonPressed);
             DeleteButtonClicked = new Command(DeleteItem);
             EditButtonClicked = new Command(EditItem);
             IsEditMode = true;
             IsCreationMode = !EditExistingMode;
 
-            BreedingServiceSaleTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(BreedingServiceSaleTitleTranslation), User.UserLang);
+            ReproductiveTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ReproductiveTitleTranslation), User.UserLang);
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
-            
-            NumberServicesTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(NumberServicesTranslation), User.UserLang);
 
             ServiceTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ServiceTypeTranslation), User.UserLang);
             OtherServiceTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherServiceTypeTranslation), User.UserLang);
-            ClientTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ClientTranslation), User.UserLang);
-            OtherClientTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherClientTranslation), User.UserLang);
+            WhoProvidedServiceTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(WhoProvidedServiceTranslation), User.UserLang);
+            OtherWhoProvidedServiceTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherWhoProvidedServiceTranslation), User.UserLang);
 
-            AmountRecievedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AmountRecievedTranslation), User.UserLang) + " *";
-            AnyOtherPaymentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AnyOtherPaymentTranslation), User.UserLang);
-            PaymentTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PaymentTypeTranslation), User.UserLang);
-            PaymentValueTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PaymentValueTranslation), User.UserLang) + " *";
-            TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
+            SowsServicedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SowsServicedTranslation), User.UserLang) + " *";
             OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
-            
+
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
             DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), User.UserLang);
 
+            PickerProviderTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerProviderTranslation), User.UserLang);
             PickerServiceTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerServiceTypeTranslation), User.UserLang);
-            PickerPaymentTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerPaymentTypeTranslation), User.UserLang);
-            PickerClientTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerClientTranslation), User.UserLang);
         }
 
-        public void populatewithData(BreedingServiceSaleItem item)
+        public void populatewithData(ReproductiveItem item)
         {
             isEditMode = false;
             CreationMode = false;
@@ -409,16 +318,12 @@ namespace PigTool.ViewModels
             _itemForEditing = item;
 
             Date = item.Date;
-            NumberServices = item.NumberServices;
             ServiceType = item.ServiceType;
             OtherServiceType = item.OtherServiceType;
-            Client = item.Client;
-            OtherClient = item.OtherClient;
-            AmountRecieved = item.AmountRecieved;
-            PaymentType = item.PaymentType;
-            PaymentValue = item.PaymentValue;
-            TransportationCost = item.TransportationCost;
-            OtherCosts = item.OtherCosts; 
+            SowsServiced = item.SowsServiced;
+            WhoProvidedService = item.WhoProvidedService;
+            OtherWhoProvidedService = item.OtherWhoProvidedService;
+            OtherCosts = item.OtherCosts;
             Comment = item.Comment;
         }
 
@@ -427,8 +332,7 @@ namespace PigTool.ViewModels
             if (EditExistingMode)
             {
                 SelectedServiceType = ServiceTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.ServiceType).FirstOrDefault();
-                SelectedClient = ClientListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Client).FirstOrDefault();
-                SelectedPaymentType = PaymentTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.PaymentType).FirstOrDefault();
+                SelectedWhoProvidedService = WhoProvidedServiceListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.WhoProvidedService).FirstOrDefault();
             }
         }
 
@@ -446,46 +350,38 @@ namespace PigTool.ViewModels
             {
 
                 _itemForEditing.Date = Date;
-                _itemForEditing.NumberServices = NumberServices;
+                _itemForEditing.SowsServiced = (int)SowsServiced;
                 _itemForEditing.ServiceType = SelectedServiceType != null ? SelectedServiceType.TranslationRowKey : null;
                 _itemForEditing.OtherServiceType = OtherServiceType;
-                _itemForEditing.Client = SelectedClient != null ? SelectedClient.TranslationRowKey : null;
-                _itemForEditing.OtherClient = OtherClient;
-                _itemForEditing.AmountRecieved = (double)AmountRecieved;
-                _itemForEditing.PaymentType = SelectedPaymentType != null ? SelectedPaymentType.TranslationRowKey : null;
-                _itemForEditing.PaymentValue = (double)PaymentValue;
-                _itemForEditing.TransportationCost = (double)TransportationCost;
+                _itemForEditing.WhoProvidedService = SelectedWhoProvidedService != null ? SelectedWhoProvidedService.TranslationRowKey : null;
+                _itemForEditing.OtherWhoProvidedService = OtherWhoProvidedService;
                 _itemForEditing.OtherCosts = (double)OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
-                await repo.UpdateBreedingServiceSaleItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert("Updated", "Breeding service sale record has been updated", "OK");
+                await repo.UpdateReproductiveItem(_itemForEditing);
+                await Application.Current.MainPage.DisplayAlert("Updated", "Reproduction record has been updated", "OK");
                 await Shell.Current.Navigation.PopAsync();
             }
             else
             {
-                var newBreedingServiceSale = new BreedingServiceSaleItem
+                var newReproductiveItem = new ReproductiveItem
                 {
                     Date = Date,
-                    NumberServices = NumberServices,
+                    SowsServiced = (int)SowsServiced,
                     ServiceType = SelectedServiceType != null ? SelectedServiceType.TranslationRowKey : null,
                     OtherServiceType = OtherServiceType,
-                    Client = SelectedClient != null ? SelectedClient.TranslationRowKey : null,
-                    OtherClient = OtherClient,
-                    AmountRecieved = (double)AmountRecieved,
-                    PaymentType = SelectedPaymentType != null ? SelectedPaymentType.TranslationRowKey : null,
-                    PaymentValue = (double)PaymentValue,
-                    TransportationCost = (double)TransportationCost,
+                    WhoProvidedService = SelectedWhoProvidedService != null ? SelectedWhoProvidedService.TranslationRowKey : null,
+                    OtherWhoProvidedService = OtherWhoProvidedService,
                     OtherCosts = (double)OtherCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
-                    PartitionKey = Constants.PartitionKeyBreedingServiceSaleItem,
+                    PartitionKey = Constants.PartitionKeyReporductiveItem,
                 };
 
-                await repo.AddSingleBreedingServiceSaleItem(newBreedingServiceSale);
-                await Application.Current.MainPage.DisplayAlert("Created", "Breeding service sale has been saved", "OK");
+                await repo.AddSingleReproductiveItem(newReproductiveItem);
+                await Application.Current.MainPage.DisplayAlert("Created", "Reproduction record has been saved", "OK");
             }
         }
 
@@ -496,7 +392,7 @@ namespace PigTool.ViewModels
                 var confirmDelete = await Application.Current.MainPage.DisplayAlert("Deletion Confirmation", "Are you sure you want to delete this item", "OK", "Cancel");
                 if (confirmDelete)
                 {
-                    repo.DeleteBreedingServiceSaleItem(_itemForEditing);
+                    repo.DeleteReproductiveItem(_itemForEditing);
                     await Shell.Current.Navigation.PopAsync();
                 }
             }
@@ -514,35 +410,27 @@ namespace PigTool.ViewModels
 
         private void ClearFormVariables()
         {
-            NumberServices = null;
-            ServiceType = null;
+            SowsServiced = null;
             SelectedServiceType = null;
             OtherServiceType = null;
-            SelectedClient = null;
-            OtherClient = null;
-            AmountRecieved = null;
-            PaymentValue = null;
-            SelectedPaymentType = null;
-            TransportationCost = null;
+            SelectedWhoProvidedService = null;
+            OtherWhoProvidedService = null;
             OtherCosts = null;
             Comment = null;
         }
 
         public async Task PopulateDataDowns()
         {
-            var ServiceTypeControlData = await repo.GetControlData(Constants.BREEDINGSERVICETYPE);
-            var ClientControlData = await repo.GetControlData(Constants.CLIENTTYPE);
-            var PaymentTypeControlData = await repo.GetControlData(Constants.OTHERPAYMENTTYPE);
+            var ServiceTypeControlData = await repo.GetControlData(Constants.SERVICETYPE);
+            var WhoProvidedServiceControlData = await repo.GetControlData(Constants.WHOPROVIDEDSERVICETYPE);
 
             ServiceTypeListOfOptions = LogicHelper.CreatePickerToolOption(ServiceTypeControlData, User.UserLang);
-            ClientListOfOptions = LogicHelper.CreatePickerToolOption(ClientControlData, User.UserLang);
-            PaymentTypeListOfOptions = LogicHelper.CreatePickerToolOption(PaymentTypeControlData, User.UserLang);
+            WhoProvidedServiceListOfOptions = LogicHelper.CreatePickerToolOption(WhoProvidedServiceControlData, User.UserLang);
 
             if (!IsEditMode)
             {
-                selectedServiceType = ServiceTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.ServiceType).FirstOrDefault();
-                selectedClient = ServiceTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Client).FirstOrDefault();
-                selectedPaymentType = PaymentTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.PaymentType).FirstOrDefault();
+                SelectedServiceType = ServiceTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.ServiceType).FirstOrDefault();
+                SelectedWhoProvidedService = WhoProvidedServiceListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.WhoProvidedService).FirstOrDefault();
             }
         }
 
@@ -552,20 +440,18 @@ namespace PigTool.ViewModels
             {
                 StringBuilder returnString = new StringBuilder();
                 if (Date == null) returnString.AppendLine("Date obtained not provided");
-                if (AmountRecieved == null) returnString.AppendLine("Amount Recieved Not Provided");
-                if (PaymentValue == null) returnString.AppendLine("Payment Value Not Provided");
-                if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
+                if (SowsServiced == null) returnString.AppendLine("Sows Serviced Not Provided");
                 if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
-                
+
                 if (SelectedServiceType != null && SelectedServiceType.TranslationRowKey == Constants.OTHER)
                 {
                     if (string.IsNullOrWhiteSpace(OtherServiceType)) returnString.AppendLine("Other Service Type Not Provided");
                 }
 
-                if (SelectedClient != null && SelectedClient.TranslationRowKey == Constants.OTHER)
+                if (SelectedWhoProvidedService != null && SelectedWhoProvidedService.TranslationRowKey == Constants.OTHER)
                 {
-                    if (string.IsNullOrWhiteSpace(OtherClient)) returnString.AppendLine("Other Client Not Provided");
+                    if (string.IsNullOrWhiteSpace(OtherWhoProvidedService)) returnString.AppendLine("Other Who Provided Service Not Provided");
                 }
 
                 return returnString.ToString();

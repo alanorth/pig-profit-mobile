@@ -9,22 +9,22 @@ using Shared;
 using PigTool.Views;
 using Xamarin.Forms;
 
-namespace PigTool.ViewModels
+namespace PigTool.ViewModels.DataViewModels
 {
     public class AnimalPurchaseViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
         bool isEditMode, isCreationMode;
         private bool editExistingMode;
         private DateTime date;
-        private string? animalType { get; set; }
-        private string? otherAnimalType { get; set; }
+        private string animalType { get; set; }
+        private string otherAnimalType { get; set; }
         private int? numberPurchased { get; set; }
         private double? totalCosts { get; set; }
-        private string? animalPurchasedFrom { get; set; }
-        private string? otherAnimalPurchasedFrom { get; set; }
+        private string animalPurchasedFrom { get; set; }
+        private string otherAnimalPurchasedFrom { get; set; }
         private double? transportationCost { get; set; }
         private double? otherCosts { get; set; }
-        private string? comment { get; set; }
+        private string comment { get; set; }
         List<PickerToolHelper> animalTypeListOfOptions;
         List<PickerToolHelper> animalPurchasedFromListOfOptions;
         AnimalPurchaseItem _itemForEditing;
@@ -73,7 +73,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? AnimalType
+        public string AnimalType
         {
             get => animalType;
             set
@@ -85,7 +85,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? OtherAnimalType
+        public string OtherAnimalType
         {
             get => otherAnimalType;
             set
@@ -109,7 +109,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? AnimalPurchasedFrom
+        public string AnimalPurchasedFrom
         {
             get => animalPurchasedFrom;
             set
@@ -121,7 +121,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? OtherAnimalPurchasedFrom
+        public string OtherAnimalPurchasedFrom
         {
             get => otherAnimalPurchasedFrom;
             set
@@ -169,7 +169,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? Comment
+        public string Comment
         {
             get => comment;
             set
@@ -307,7 +307,7 @@ namespace PigTool.ViewModels
             IsEditMode = true;
             CreationMode = true;
 
-            SaveButtonClicked = (new Command(SaveButtonCreateHousingItem));
+            SaveButtonClicked = new Command(SaveButtonCreateHousingItem);
             ResetButtonClicked = new Command(ResetButtonPressed);
             DeleteButtonClicked = new Command(DeleteItem);
             EditButtonClicked = new Command(EditItem);
@@ -316,7 +316,7 @@ namespace PigTool.ViewModels
 
             AnimalPurchaseTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AnimalPurchaseTitleTranslation), User.UserLang);
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
-            
+
             AnimalTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AnimalTypeTranslation), User.UserLang);
             OtherAnimalTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherAnimalTypeTranslation), User.UserLang);
             AnimalPurchasedFromTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AnimalPurchasedFromTranslation), User.UserLang);
@@ -328,7 +328,7 @@ namespace PigTool.ViewModels
             TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
             OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
-            
+
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
@@ -354,7 +354,7 @@ namespace PigTool.ViewModels
             OtherAnimalPurchasedFrom = item.OtherAnimalPurchasedFrom;
             TotalCosts = item.TotalCosts;
             TransportationCost = item.TransportationCost;
-            OtherCosts = item.OtherCosts; 
+            OtherCosts = item.OtherCosts;
             Comment = item.Comment;
         }
 
@@ -404,7 +404,7 @@ namespace PigTool.ViewModels
                     AnimalType = SelectedAnimalType != null ? SelectedAnimalType.TranslationRowKey : null,
                     OtherAnimalType = AnimalType,
                     NumberPurchased = NumberPurchased,
-                    AnimalPurchasedFrom= SelectedAnimalPurchasedFrom != null ? SelectedAnimalPurchasedFrom.TranslationRowKey : null,
+                    AnimalPurchasedFrom = SelectedAnimalPurchasedFrom != null ? SelectedAnimalPurchasedFrom.TranslationRowKey : null,
                     OtherAnimalPurchasedFrom = OtherAnimalPurchasedFrom,
                     TotalCosts = (double)TotalCosts,
                     TransportationCost = (double)TransportationCost,
@@ -482,7 +482,7 @@ namespace PigTool.ViewModels
                 if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
                 if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
-                
+
                 if (SelectedAnimalType != null && SelectedAnimalType.TranslationRowKey == Constants.OTHER)
                 {
                     if (string.IsNullOrWhiteSpace(OtherAnimalType)) returnString.AppendLine("Other Animal Type Not Provided");

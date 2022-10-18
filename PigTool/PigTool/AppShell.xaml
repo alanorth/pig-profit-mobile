@@ -2,6 +2,8 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:PigTool.Views"
+       xmlns:vm="clr-namespace:PigTool.ViewModels"
+       FlyoutBehavior="Disabled"
        Title="PigTool"
        x:Class="PigTool.AppShell">
 
@@ -15,7 +17,7 @@
         <ResourceDictionary>
             <Style x:Key="BaseStyle" TargetType="Element">
                 <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Shell.ForegroundColor" Value="Pink" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
                 <Setter Property="Shell.TitleColor" Value="White" />
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
@@ -25,11 +27,25 @@
                 <Setter Property="Shell.TabBarTitleColor" Value="White"/>
             </Style>
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
-            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
         </ResourceDictionary>
     </Shell.Resources>
 
-    <TabBar>
+    <Shell.BindingContext>
+        <vm:AppViewModel/>
+    </Shell.BindingContext>
+    
+    <ShellItem Route="Legal" IsVisible="{Binding ShowRegister}">
+        <ShellContent ContentTemplate="{DataTemplate local:LegalDisclaimer}"/>
+    </ShellItem>
+    <ShellItem Route="Registration" IsVisible="{Binding ShowRegister}">
+        <ShellContent ContentTemplate="{DataTemplate local:RegistrationPage}"/>
+    </ShellItem>
+    <ShellItem Route="RegistrationSuccessful" IsVisible="{Binding ShowRegister}">
+        <ShellContent ContentTemplate="{DataTemplate local:RegistrationSuccessfulPage}"/>
+    </ShellItem>
+
+
+    <TabBar Route="main">
         <ShellContent Title="Home"  Route="HomePage" ContentTemplate="{DataTemplate local:HomePage}" >
             <ShellContent.Icon>
                 <FontImageSource Glyph="&#xf015;" FontFamily="FA-S" />
@@ -55,7 +71,8 @@
                 <FontImageSource Glyph="&#xf14d;" FontFamily="FA-S" />
             </ShellContent.Icon>
         </ShellContent>
-     
+
+
     </TabBar>
 
     <!--
@@ -65,6 +82,5 @@
     <TabBar>
         <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
     </TabBar>
-
 
 </Shell>

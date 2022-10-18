@@ -9,15 +9,15 @@ using Shared;
 using PigTool.Views;
 using Xamarin.Forms;
 
-namespace PigTool.ViewModels
+namespace PigTool.ViewModels.DataViewModels
 {
     public class AnimalHousingViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
         bool isEditMode, isCreationMode;
         private bool editExistingMode;
-        private string? housingExpense;
-        private string? otherHousingExpense;
-        private string? comment;
+        private string housingExpense;
+        private string otherHousingExpense;
+        private string comment;
         private double? totalCosts;
         private double? transportationCost;
         private double? otherCosts;
@@ -64,7 +64,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? HousingExpense
+        public string HousingExpense
         {
             get => housingExpense;
             set
@@ -76,7 +76,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? OtherHousingExpense
+        public string OtherHousingExpense
         {
             get => otherHousingExpense;
             set
@@ -124,7 +124,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        public string? Comment
+        public string Comment
         {
             get => comment;
             set
@@ -254,7 +254,7 @@ namespace PigTool.ViewModels
             IsEditMode = true;
             CreationMode = true;
 
-            SaveButtonClicked = (new Command(SaveButtonCreateHousingItem));
+            SaveButtonClicked = new Command(SaveButtonCreateHousingItem);
             ResetButtonClicked = new Command(ResetButtonPressed);
             DeleteButtonClicked = new Command(DeleteItem);
             EditButtonClicked = new Command(EditItem);
@@ -408,10 +408,10 @@ namespace PigTool.ViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                if (Date == null ) returnString.AppendLine("Date obtained not provided");
-                if (TotalCosts == null ) returnString.AppendLine("Total Cost Not Provided");
-                if (TransportationCost == null ) returnString.AppendLine("Transportation Cost Not Provided");
-                if (OtherCosts == null ) returnString.AppendLine("Other Cost Not Provided");
+                if (Date == null) returnString.AppendLine("Date obtained not provided");
+                if (TotalCosts == null) returnString.AppendLine("Total Cost Not Provided");
+                if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
+                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
                 if (SelectedHousingType != null)
                 {
@@ -424,7 +424,7 @@ namespace PigTool.ViewModels
                         OtherHousingExpense = null;
                     }
                 }
-                
+
                 return returnString.ToString();
             }
             catch (Exception ex)

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PigTool.Views.RegistrationSuccessfulPage"
+             Shell.NavBarIsVisible="False"
+             Title="{Binding RegistrationTitleTranslation}">
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <Label Text="Your Account Has Been Created"
+                   StyleClass="Title"
+                   Margin="20,0,20,0"
+                   VerticalTextAlignment="Center"
+                   VerticalOptions="EndAndExpand"></Label>
+            <Label VerticalOptions="StartAndExpand" 
+                   Text="You can now begin collecting and storing your data" 
+                   FontSize="18"
+                   HorizontalTextAlignment="Center"
+                   Margin="20,10,20,0"
+                   TextColor="{StaticResource PrimaryText}"/>
+            <Button Clicked="Continue" 
+                    Text="Continue"
+                    StyleClass="ContinueButton"
+                    VerticalOptions="EndAndExpand"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

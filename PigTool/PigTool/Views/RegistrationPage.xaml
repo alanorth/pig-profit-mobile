@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PigTool.Views.RegistrationPage"
+             Shell.NavBarIsVisible="False"
+             Title="{Binding RegistrationTitleTranslation}">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Registration"
+                       StyleClass="Title">
+                
+            </Label>
+            <TableView Intent="Form" HasUnevenRows="True"  x:Name="RegistrationTableView">
+            </TableView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

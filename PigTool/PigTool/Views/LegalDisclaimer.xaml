@@ -1,26 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PigTool.Views.LegalDisclaimer">
+             x:Class="PigTool.Views.LegalDisclaimer"
+             Shell.NavBarIsVisible="False"
+             Title="Legal / Disclaimer">
     <ContentPage.Content>
+        
         <StackLayout>
             <Label Text="Legal / Disclaimer"
-                   VerticalOptions="StartAndExpand"
-                   HorizontalOptions="FillAndExpand"
-                   BackgroundColor="{StaticResource Primary}"
-                   TextColor="{StaticResource HeaderTextColor}"
-                   FontSize="40"
-                   Padding="10"/>
+                   StyleClass="Title"></Label>
             <Label 
-                VerticalOptions="CenterAndExpand"
+                VerticalOptions="StartAndExpand"
                 HorizontalOptions="CenterAndExpand"
                 TextColor="{StaticResource PrimaryText}" 
                 LineBreakMode="WordWrap"
                 Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
-            <Label Text="Italic:"
-               VerticalOptions="Center" />
-            <CheckBox VerticalOptions="Center" />
-            <Button Text="Proceed" IsEnabled="false"  Command="{Binding ProceedClicked}"/>
+            
+            <StackLayout Orientation="Horizontal" 
+                         Margin="0, 20, 0, 10">
+                <CheckBox x:Name="checkBox" VerticalOptions="Center" />
+                <Label Text="By checking this box you agree to the terms listed above"></Label>
+            </StackLayout>
+            
+            <Button Text="Proceed" 
+                    IsEnabled="True"  
+                    Clicked="Continue"
+                    StyleClass="ContinueButton">
+                <Button.Triggers>
+                    <DataTrigger TargetType="Button"
+                                 Binding="{Binding Source={x:Reference checkBox}, Path=IsChecked}"
+                                 Value="false">
+                        <Setter Property="IsEnabled"
+                                Value="False"/>
+                        <Setter Property="BackgroundColor"
+                                Value="#d9d9d9"/>
+                    </DataTrigger>
+                </Button.Triggers>
+            </Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
