@@ -34,13 +34,17 @@
         <vm:AppViewModel/>
     </Shell.BindingContext>
     
+    <ShellItem Route="Legal" IsVisible="{Binding ShowRegister}">
+        <ShellContent ContentTemplate="{DataTemplate local:LegalDisclaimer}"/>
+    </ShellItem>
     <ShellItem Route="Registration" IsVisible="{Binding ShowRegister}">
         <ShellContent ContentTemplate="{DataTemplate local:RegistrationPage}"/>
     </ShellItem>
     <ShellItem Route="RegistrationSuccessful" IsVisible="{Binding ShowRegister}">
         <ShellContent ContentTemplate="{DataTemplate local:RegistrationSuccessfulPage}"/>
     </ShellItem>
-    
+
+
     <TabBar Route="main">
         <ShellContent Title="Home"  Route="HomePage" ContentTemplate="{DataTemplate local:HomePage}" >
             <ShellContent.Icon>
@@ -68,11 +72,6 @@
             </ShellContent.Icon>
         </ShellContent>
 
-        <ShellContent Title="Test" ContentTemplate="{DataTemplate local:SendDataPage}">
-            <ShellContent.Icon>
-                <FontImageSource Glyph="&#xf14d;" FontFamily="FA-S" />
-            </ShellContent.Icon>
-        </ShellContent>
 
     </TabBar>
 

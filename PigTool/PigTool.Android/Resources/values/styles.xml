@@ -24,7 +24,12 @@
     <item name="colorAccent">#682622</item>
 	  <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
 	  <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+	  <item name="android:actionBarStyle">@style/MyTheme.ActionBarStyle</item>
+	  
   </style>
+	<style name="MyTheme.ActionBarStyle" parent="@android:style/Widget.DeviceDefault.Light.ActionBar">
+		<item name="android:background">#682622</item>
+	</style>
   <style name="MyTheme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">
     <item name="android:windowBackground">@drawable/splash_screen</item>
     <item name="android:windowNoTitle">true</item>

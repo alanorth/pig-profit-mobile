@@ -5,15 +5,23 @@
              Shell.NavBarIsVisible="False"
              Title="{Binding RegistrationTitleTranslation}">
     <ContentPage.Content>
-        <StackLayout
-                   HorizontalOptions = "Center"
-                   VerticalOptions = "CenterAndExpand">
-            <Label Text="Registration Successful"
-                   FontAttributes = "Bold"
-                   FontSize = "24"
-                   TextColor = "Black"></Label> 
+        <StackLayout>
+            
+            <Label Text="Your Account Has Been Created"
+                   StyleClass="Title"
+                   Margin="20,0,20,0"
+                   VerticalTextAlignment="Center"
+                   VerticalOptions="EndAndExpand"></Label>
+            <Label VerticalOptions="StartAndExpand" 
+                   Text="You can now begin collecting and storing your data" 
+                   FontSize="18"
+                   HorizontalTextAlignment="Center"
+                   Margin="20,10,20,0"
+                   TextColor="{StaticResource PrimaryText}"/>
             <Button Clicked="Continue" 
-                    Text="Continue"></Button>
+                    Text="Continue"
+                    StyleClass="ContinueButton"
+                    VerticalOptions="EndAndExpand"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

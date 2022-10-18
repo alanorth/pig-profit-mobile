@@ -220,6 +220,8 @@ namespace PigTool.Helpers
             )
         {
             var stack = TableRowStack();
+            stack.Margin = new Thickness( 0, 20, 0, 20);
+            stack.Padding = 0;
 
             var resertButton = new Button();
             resertButton.Text = ResetText;
@@ -240,6 +242,7 @@ namespace PigTool.Helpers
             saveButton.SetBinding(Button.CommandProperty, new Binding(SaveCommandBinding));
             saveButton.SetBinding(Button.IsVisibleProperty, new Binding(EditModeBinding));
             saveButton.SetBinding(Button.IsEnabledProperty, new Binding(EditModeBinding));
+            saveButton.HorizontalOptions = LayoutOptions.FillAndExpand;
 
             stack.Children.Add(resertButton);
             stack.Children.Add(editButton);

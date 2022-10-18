@@ -14,9 +14,14 @@ namespace PigTool.Views
     public partial class LegalDisclaimer : ContentPage
     {
         public LegalDisclaimer()
-        {
+        {            
             InitializeComponent();
             BindingContext = new LegalDisclaimerViewModel(Navigation);
+        }
+
+        async void Continue(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//Registration");
         }
     }
 }

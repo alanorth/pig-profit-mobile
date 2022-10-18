@@ -5,7 +5,13 @@
              Shell.NavBarIsVisible="False"
              Title="{Binding RegistrationTitleTranslation}">
     <ContentPage.Content>
-        <TableView Intent="Form" HasUnevenRows="True"  x:Name="RegistrationTableView">
-        </TableView>
+        <StackLayout>
+            <Label Text="Registration"
+                       StyleClass="Title">
+                
+            </Label>
+            <TableView Intent="Form" HasUnevenRows="True"  x:Name="RegistrationTableView">
+            </TableView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
