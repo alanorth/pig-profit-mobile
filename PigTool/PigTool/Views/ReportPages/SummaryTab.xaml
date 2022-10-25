@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PigTool.Views.SummaryTab"
+             xmlns:vm="clr-namespace:PigTool.ViewModels"
+             Title="Summary">
+    <ScrollView>
+
+        <StackLayout>
+
+            <!-- Date Dropdowns -->
+            <StackLayout Orientation="Horizontal"
+                         Margin="0,10,0,0">
+                <Picker x:Name="StartMonth" Title="Month" HorizontalOptions="FillAndExpand"/>
+                <Picker x:Name="StartYear" Title="Year" HorizontalOptions="FillAndExpand"/>
+                <Label Text="-"
+                        VerticalOptions="CenterAndExpand"
+                        FontSize="24"
+                       FontAttributes="Bold"
+                       Margin="10,0,10,0"/>
+                <Picker x:Name="EndMonth" Title="Month" HorizontalOptions="FillAndExpand"/>
+                <Picker x:Name="EndYear" Title="Year" HorizontalOptions="FillAndExpand"/>
+            </StackLayout>
+
+
+            <!-- Summary Graph -->
+            <Label 
+                Text="Total Period Income / Loss"
+                StyleClass="ReportHeader"/>
+
+            <BoxView StyleClass="Seperator"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <BoxView
+                        Background="LightGrey"
+                        Grid.Column="0"
+                        HeightRequest="150"
+                        />
+                <StackLayout
+                        Grid.Column="1">
+                    <Label Text="Income: $200 Ush"/>
+                    <Label Text="Costs: $100 Ush"/>
+                    <Label Text="Profit/Loss: $100 Ush"/>
+                </StackLayout>
+            </Grid>
+            
+            <!-- Table -->
+            <Label 
+                Text="Income / Loss by Month"
+                StyleClass="ReportHeader"/>
+
+            <BoxView StyleClass="Seperator"/>
+            <StackLayout x:Name="SummaryTable">
+                
+            </StackLayout>
+
+
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

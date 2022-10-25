@@ -60,6 +60,18 @@
     <Compile Update="Views\AddDataPages\WaterCostPage.xaml.cs">
       <DependentUpon>WaterCostPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\ReportPages\BenchmarkingTab.xaml.cs">
+      <DependentUpon>BenchmarkingTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ReportPages\AdvancedTab.xaml.cs">
+      <DependentUpon>AdvancedTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ReportPages\SummaryTab.xaml.cs">
+      <DependentUpon>SummaryTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ReportsPage.xaml.cs">
+      <DependentUpon>ReportsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\LegalDisclaimer.xaml.cs">
       <DependentUpon>LegalDisclaimer.xaml</DependentUpon>
     </Compile>

@@ -44,6 +44,41 @@ namespace PigTool.Helpers
             return label;
         }
 
+        public static Label ReportTableLabelField(string labelBindingField)
+        {
+            var label = new Label
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                HorizontalTextAlignment = TextAlignment.Start,
+                VerticalTextAlignment = TextAlignment.Center,
+                FontSize = 16,
+                BackgroundColor = Color.White,
+                LineBreakMode = LineBreakMode.WordWrap,
+
+            };
+
+            label.SetBinding(Label.TextProperty, new Binding(labelBindingField));
+
+            return label;
+        }
+
+        public static Label ReportTableHeaderLabelField(string labelBindingField)
+        {
+
+            var label = new Label
+            {
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                HorizontalTextAlignment = TextAlignment.Start,
+                VerticalTextAlignment = TextAlignment.Center,
+                FontSize = 16,
+                LineBreakMode = LineBreakMode.WordWrap,
+                Text = labelBindingField,
+                StyleClass = new List<string> { "ReportTableHeader" }
+            };
+
+            return label;
+        }
+
         public static Label DataLabel(string textBindingField)
         {
             var Label = new Label()

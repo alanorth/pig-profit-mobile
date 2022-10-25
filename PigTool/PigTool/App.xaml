@@ -60,8 +60,28 @@
                 <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
 
+            <Style TargetType="Label" Class="ReportHeader">
+                <Setter Property="TextColor" Value="{StaticResource Primary}"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Margin" Value="0,20,0,0"/>
+            </Style>
+
+            <Style TargetType="BoxView" Class="Seperator">
+                <Setter Property="HeightRequest" Value="2"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+                <Setter Property="Margin" Value="0,0,0,10"/>
+            </Style>
+                   
+
             <Style TargetType="Button" Class="ContinueButton">
                 <Setter Property="Margin" Value="0, 10, 0, 20"/>
+            </Style>
+
+            <Style TargetType="Label" Class="ReportTableHeader">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Margin" Value="0,10,0,10"/>
             </Style>
 
             <Style x:Key="SliderLowerValueLabelStyle" TargetType="xct:RangeSlider">
