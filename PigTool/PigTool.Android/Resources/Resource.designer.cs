@@ -22239,7 +22239,7 @@ namespace PigTool.Droid
 			public const int splash_logo = 2131165327;
 			
 			// aapt resource value: 0x7F070090
-			public const int splash_logo_Iiri = 2131165328;
+			public const int splash_logo_Ilri = 2131165328;
 			
 			// aapt resource value: 0x7F070091
 			public const int splash_screen = 2131165329;
