@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PigTool.Views.AdvancedTab"
+             xmlns:vm="clr-namespace:PigTool.ViewModels"
+             Title="Advanced">
+
+    <ScrollView>
+        <StackLayout>
+
+
+            <!-- Date Range -->
+            <StackLayout 
+                    x:Name="DatePickers"
+                    Orientation="Horizontal"
+                    Margin="0,10,0,20"
+                    Grid.Column="0">
+                <DatePicker 
+                        HorizontalOptions="CenterAndExpand"/>
+                <Label 
+                        Text="-"
+                        VerticalOptions="CenterAndExpand"
+                        FontSize="24"/>
+                <DatePicker 
+                        HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+
+            <!-- Grouping Dropdown -->
+            <StackLayout
+                x:Name="GroupingControls"
+                Orientation="Horizontal">
+            </StackLayout>
+
+            <!-- Summary Graph -->
+            <Label 
+                Text="Summary"
+                StyleClass="ReportHeader"/>
+            <BoxView StyleClass="Seperator"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <BoxView
+                        Background="LightGrey"
+                        Grid.Column="0"
+                        HeightRequest="150"
+                        />
+                <StackLayout
+                        Grid.Column="1">
+                    <Label Text="Profit / Loss Summary"/>
+                    <Label Text="Income: 200 Ush"/>
+                    <Label Text="Costs: $100 Ush"/>
+                    <Label Text="Total: $100 Ush"/>
+                </StackLayout>
+            </Grid>
+
+            <!-- Full Graph -->
+            <StackLayout>
+                <Label 
+                Text="Breakdown"
+                StyleClass="ReportHeader"/>
+                <BoxView StyleClass="Seperator"/>
+                <BoxView
+                    Background="LightGrey"
+
+                    HeightRequest="250"
+                    />
+            </StackLayout>
+
+
+        </StackLayout>
+    </ScrollView>
+
+
+</ContentPage>
