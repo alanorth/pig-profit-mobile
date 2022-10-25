@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.WindowsAzure.Storage.Table;
+using Azure;
+using Azure.Data.Tables;
 
 namespace Shared
 {
-    public class UserInfo : TableEntity
+    public class UserInfo : ITableEntity
     {
         public string UserName { get; set; }
         public string Name { get; set; }
@@ -25,8 +26,13 @@ namespace Shared
         public UserLangSettings UserLang { get; set; }
         public string AuthorisedToken {get; set;}
         public string AuthorisedEmail { get; set; }
-        public string SubmittedPassowrd { get; set; }
         public DateTime LastModified { get; set; }
+
+        public virtual string PartitionKey { get; set; }
+        public virtual string RowKey { get; set; }
+        public DateTimeOffset? Timestamp { get; set; }
+        public ETag ETag { get; set; }
+
 
     }
     public enum UserLangSettings

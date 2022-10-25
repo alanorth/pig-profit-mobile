@@ -18,10 +18,13 @@ namespace PigTool.Views
         private RegistrationViewModel _viewModel;
         private bool IsRendered = false;
 
-        public RegistrationPage()
+        public RegistrationPage(string AccessToken,  string email )
         {
-            BindingContext = _viewModel = new RegistrationViewModel();
             InitializeComponent();
+            BindingContext = _viewModel = new RegistrationViewModel();
+            _viewModel.accessToken = AccessToken;
+            _viewModel.registeredEmail = email;
+
         }
 
         public RegistrationPage(UserInfo UI)
@@ -222,7 +225,7 @@ namespace PigTool.Views
 
             //Button Commands
             var buttonCell = new ViewCell();
-            var buttonStack = FormattedElementsHelper.ButtonCommandStack(
+           var buttonStack = FormattedElementsHelper.ButtonCommandStack(
                 ResetCommandBinding: nameof(_viewModel.ResetButtonClicked),
                 EditCommandBinding: nameof(_viewModel.EditButtonClicked),
                 DeleteCommandBinding: nameof(_viewModel.DeleteButtonClicked),

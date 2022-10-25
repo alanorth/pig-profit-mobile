@@ -15,7 +15,7 @@ namespace PigTool.Views
     {
         public WebAuthenticatorPage()
         {
-            BindingContext = new WebAuthenticatorViewModel();
+            BindingContext = new WebAuthenticatorViewModel(Navigation);
             InitializeComponent();
         }
     }

@@ -28,7 +28,10 @@ namespace PigTool.ViewModels
 
         private void ProceedClickAsync()
         {
-            _Nav.PushModalAsync(new AppShell());
+            if (ButtonEnable)
+            {
+                _Nav.PushAsync(new WebAuthenticatorPage());   
+            }
         }
     }
 }

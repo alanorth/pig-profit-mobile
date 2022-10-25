@@ -25,7 +25,8 @@ namespace PigTool.Views
         {
             try
             {
-                await Shell.Current.GoToAsync("//main");
+               // await Shell.Current.GoToAsync("//main");
+                Application.Current.MainPage = new AppShell();
                
             } catch (Exception ex)
             {

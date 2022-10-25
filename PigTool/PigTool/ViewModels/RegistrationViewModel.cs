@@ -10,6 +10,10 @@ using PigTool.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using PigTool.Services;
+using Newtonsoft.Json;
+using System.Net.Http;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Net;
 
 namespace PigTool.ViewModels.DataViewModels
 {
@@ -29,6 +33,8 @@ namespace PigTool.ViewModels.DataViewModels
         private string? village;
         private string? country;
         private string? currency;
+        public string? accessToken;
+        public string? registeredEmail;
         List<PickerToolHelper> genderListOfOptions;
         List<PickerToolHelper> districtListOfOptions;
         List<PickerToolHelper> countyListOfOptions;
@@ -494,6 +500,7 @@ namespace PigTool.ViewModels.DataViewModels
 
         private async void SaveButtonCreateHousingItem(object obj)
         {
+
             var valid = ValidateSave();
 
             if (!string.IsNullOrWhiteSpace(valid))
@@ -545,15 +552,83 @@ namespace PigTool.ViewModels.DataViewModels
                     PartitionKey = Constants.PartitionKeyUserInfo,
                     UserLang = UserLangSettings.Eng,
                     Timestamp = DateTime.UtcNow,
-                    RowKey = Guid.NewGuid().ToString(),
+                    RowKey = registeredEmail,
+                    AuthorisedEmail = registeredEmail,
+                    AuthorisedToken = accessToken,
                 };
 
-                await repo.AddSingleUserInfo(newUserInfo);
+                //go and save the user in the database;
+
+
+               
                 //await Shell.Current.GoToAsync(nameof(RegistrationSuccessfulPage));
                 try
                 {
-                    //await Application.Current.MainPage.Navigation.PushAsync(new RegistrationSuccessfulPage());
-                    ShowSuccess?.Invoke(true);
+                    await repo.AddSingleUserInfo(newUserInfo);
+                    await Application.Current.MainPage.Navigation.PushAsync(new RegistrationSuccessfulPage());
+                    //ShowSuccess?.Invoke(true);
+
+                    /*using (var client = new HttpClient())
+                    {
+                        client.BaseAddress = new Uri("https://pigprofittool.azurewebsites.net/");
+                        client.DefaultRequestHeaders.Accept.Clear();
+
+                        var jObject2 = JsonConvert.SerializeObject(newUserInfo);
+
+                        var data1 = new StringContent(jObject2, Encoding.UTF8, "application/json");
+
+                        // New code:
+                        HttpResponseMessage response2 = await client.PostAsync("api/data/AddUser", data1);
+                        if ((int)response2.StatusCode == 202)
+                        {
+                            var responseString3 = await response2.Content.ReadAsStringAsync();
+                            UserInfo use = JsonConvert.DeserializeObject<UserInfo>(responseString3);
+                            await Application.Current.MainPage.Navigation.PushAsync(new AppShell());
+
+                        }
+                        else
+                        {
+                            //something went wrong
+                            await Application.Current.MainPage.DisplayAlert("Error", response2.StatusCode.ToString(), "OK");
+                        }
+
+                    }*/
+
+
+
+                    //await repo.UpdateUserInfo(User);
+                    //var httpClient = new HttpClient();
+
+                    //httpClient.DefaultRequestHeaders.Add("XApiKey", "ENTER YOUR API KEY HERE");
+                    //httpClient.DefaultRequestHeaders.Authorization =
+                    //new AuthenticationHeaderValue("Google", User.AuthorisedToken);
+
+                    //var response1 = await httpClient.GetAsync("https://pigprofittool.azurewebsites.net/api/storage");
+
+                    //var jObject = JsonConvert.SerializeObject(newUserInfo);
+
+                    //var data = new StringContent(jObject, Encoding.UTF8, "application/json");
+                    //var url = "https://pigprofittool.azurewebsites.net/api/data/AddUser";
+
+                    //var response = await httpClient.PostAsync(url, data);
+                    //var response = await httpClient.GetAsync(url);
+                    //var responseString = await response.Content.ReadAsStringAsync();
+
+                    //httpClient.Dispose();
+                    /*
+                    if (response1.IsSuccessStatusCode)
+                    {
+                        newUserInfo.LastUploadDate = DateTime.Now;
+                        await repo.UpdateUserInfo(newUserInfo);
+                        await Shell.Current.GoToAsync(nameof(RegistrationSuccessfulPage));
+                    }
+                    else
+                    {
+                        //something failed;
+                        await Application.Current.MainPage.DisplayAlert("Error", response1.StatusCode.ToString(), "OK");
+                    }*/
+                    
+
                 }
                 catch (Exception ex)
                 {

@@ -123,7 +123,7 @@ namespace PigTool.Helpers
         }
 
 
-        public static Entry FormTextEntry(string TextBindingProperty, string IsEnableBinding,string ViewHideBinding = null , bool IsVisibile = true, int heightRequest = -1 )
+        public static Entry FormTextEntry(string TextBindingProperty, string IsEnableBinding,string ViewHideBinding = null,  bool IsVisibile = true, int heightRequest = -1, string startingvalue = null )
         {
             var Entry = new Entry()
             {
@@ -140,6 +140,11 @@ namespace PigTool.Helpers
                 //inmplment a catch if ViewHideBinding is not provided
 
                 Entry.SetBinding(Entry.IsVisibleProperty, new Binding(ViewHideBinding));
+            }
+
+            if (!string.IsNullOrEmpty(startingvalue))
+            {
+                Entry.Text = startingvalue;
             }
             return Entry;
         }

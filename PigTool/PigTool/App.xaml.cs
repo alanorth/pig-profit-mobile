@@ -40,7 +40,7 @@ namespace PigTool
         public static async Task<bool> IsAppInitialized()
         {
 #if DEBUG
-            return true;
+            //return true;
 #endif
 
             var repo = DependencyService.Get<IDataRepo>();
@@ -76,7 +76,7 @@ namespace PigTool
 
         public void DisplayLoginPage()
         {
-            MainPage = new LegalDisclaimer();
+            MainPage = new NavigationPage(new LegalDisclaimer());
         }
     }
 }

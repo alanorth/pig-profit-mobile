@@ -1,24 +1,25 @@
 ﻿
 using Microsoft.VisualBasic;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Table;
+//using Microsoft.WindowsAzure.Storage;
+//using Microsoft.WindowsAzure.Storage.Table;
+using Azure.Data.Tables;
 using System;
 using System.Collections.Concurrent;
 using Shared;
+using Azure;
+//using Microsoft.WindowsAzure.Storage.Table;
 
 namespace PigTool.API.Services
 {
     public class TableOperations
     {
-        public CloudTable GetStorageTable(string masterStorageConnectionString, string tableName)
+        public async Task<TableClient> GetStorageTable(string masterStorageConnectionString, string tableName)
         {
-                var storageAccount = CloudStorageAccount.Parse(masterStorageConnectionString);
-                CloudTable table;
-                var tableClient = storageAccount.CreateCloudTableClient();
+            var tableClient = new TableClient(masterStorageConnectionString, tableName);
 
-                table = tableClient.GetTableReference(tableName);
-                table.CreateIfNotExistsAsync();
-                return table;
+            await tableClient.CreateIfNotExistsAsync();
+
+            return tableClient;
         }
 
         public async Task<string> InsertTableEntities(
@@ -28,7 +29,7 @@ namespace PigTool.API.Services
         {
             try
             {
-                var table = GetStorageTable(masterStorageConnectionString, tableName);
+
 
                 // nothing to do just bail out now
                 if ((entities == null)
@@ -38,16 +39,19 @@ namespace PigTool.API.Services
                 }
 
                 // Check to see if table name is provided
-                if (string.IsNullOrWhiteSpace(tableName)
-                    && table == null)
+                if (string.IsNullOrWhiteSpace(tableName))
                 {
                     return "no table name";
                 }
 
-                // Make sure table exists in db
-                // Construct the query operation
-                // Create the batch operation.
-                var batchOperation = new TableBatchOperation();
+                var tableClient = await GetStorageTable(masterStorageConnectionString, tableName);
+
+                // Check to see if table name is provided
+                if (tableClient == null)
+                {
+                    return "Table Client Failed to construct";
+                }
+
 
                 // because items in TableBatchOperation can't have different PartitionKeys,
                 // we need to group them into entityGroups by PartitionKey
@@ -56,45 +60,26 @@ namespace PigTool.API.Services
 
                 foreach (var entityGroup in entitiesPartitionKeyGroup)
                 {
-                    foreach (var entity in entityGroup)
-                    {
-                        // TableBatchOperation not full yet
-                        if (batchOperation.Count < 100)
-                        {
-                            var hasDuplicate = batchOperation
-                                .Any(ba => ba.Entity.PartitionKey == entity.PartitionKey && ba.Entity.RowKey == entity.RowKey);
+                    // Create the batch.
+                    List<TableTransactionAction> addEntitiesBatch = new List<TableTransactionAction>();
 
-                            if (!hasDuplicate)
-                            {
-                                //batchOperation.Add(TableOperation.InsertOrReplace(entity));
-                                batchOperation.InsertOrReplace(entity);
-                            }
-                        }
-                        else
-                        {
-                            // Execute the batch operation and reset TableBatchOperation
-                            await table.ExecuteBatchAsync(batchOperation);
+                    addEntitiesBatch.AddRange(entityGroup.Select(e => new TableTransactionAction(TableTransactionActionType.Add, e)));
 
-                            batchOperation = new TableBatchOperation();
-                            //batchOperation.Add(TableOperation.InsertOrReplace(entity));
-                            batchOperation.InsertOrReplace(entity);
-                        }
-                    }
-                    // Execute the batch operation
-                    if (batchOperation.Any())
+
+
+                    // Submit the batch.
+                    Response<IReadOnlyList<Response>> response = await tableClient.SubmitTransactionAsync(addEntitiesBatch).ConfigureAwait(false);
+
+
+
+                    for (int i = 0; i < entityGroup.Count(); i++)
                     {
-                        await table.ExecuteBatchAsync(batchOperation);
-                       
+                        Console.WriteLine($"The ETag for the entity with RowKey: '{entityGroup.ElementAt(i).RowKey}' is {response.Value[i].Headers.ETag}");
                     }
-                    batchOperation = new TableBatchOperation();
                 }
 
-                if (batchOperation.Any())
-                {
-                    await table.ExecuteBatchAsync(batchOperation);
-                }
             }
-            catch (StorageException exception)
+            catch (SystemException exception)
             {
 
                 return exception.Message;
@@ -106,6 +91,57 @@ namespace PigTool.API.Services
             }
 
             return string.Empty;
+        }
+
+
+        public async Task<List<TableEntity>> GetTableEntities(string tableName,
+         string masterStorageConnectionString, string query)
+        {
+            var tableToQuery = await GetStorageTable(masterStorageConnectionString, tableName);
+
+            var queryResultsFilter = tableToQuery.Query<TableEntity>(filter: query);
+
+            // Iterate the <see cref="Pageable"> to access all queried entities.
+            foreach (TableEntity qEntity in queryResultsFilter)
+            {
+                Console.WriteLine($"{qEntity.GetString("Product")}: {qEntity.GetDouble("Price")}");
+            }
+
+            Console.WriteLine($"The query returned {queryResultsFilter.Count()} entities.");
+
+            return queryResultsFilter.ToList();
+
+        }
+
+        public async Task<TableEntity> GetSingleEntityItem(string tableName,
+       string masterStorageConnectionString, string PartitionKey, string RowKey)
+        {
+            var tableToQuery = await GetStorageTable(masterStorageConnectionString, tableName);
+            TableEntity result = null;
+            try
+            {
+                result = await tableToQuery.GetEntityAsync<TableEntity>(PartitionKey, RowKey);
+            }
+            catch (Azure.RequestFailedException azFaile)
+            {
+                if (azFaile.Status == 404)
+                {
+                    return null;
+                }
+                throw azFaile;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return result;
+
+        }
+
+        public string CreatePartionKeyRowKeyStringFilter(string partitionKey, string RowKey)
+        {
+            return $"PartitionKey eq '{partitionKey}' and RowKey eq '{RowKey}'";
         }
 
     }
