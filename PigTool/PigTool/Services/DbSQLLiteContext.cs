@@ -886,6 +886,9 @@ namespace SQLLiteDbContext
                         Parish = "test",
                         LastModified = DateTime.UtcNow,
                         Timestamp = DateTime.UtcNow
+                        Timestamp = DateTime.UtcNow,
+                        AuthorisedToken = "",
+                        AuthorisedEmail = ""
                     }
                 ) ;
             }

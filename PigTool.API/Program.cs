@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Configuration;
 using PigTool.API.Middleware;
+using Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,18 +17,28 @@ var services = builder.Services;
 services.AddAuthentication(o =>
 {
     o.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-}).AddCookie().AddGoogle(googleOptions =>
+}).AddCookie(options =>
+{
+    options.AccessDeniedPath = Constants.ROUTE_API_DENIED;
+    options.LoginPath = "/mobileauth/Google";
+    //options.AccessDeniedPath = "/Denied/";
+
+}).AddGoogle(googleOptions =>
 {
     //googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-    // googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+    //googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
     googleOptions.ClientId = builder.Configuration.GetValue<string>("GoogleClient");
     googleOptions.ClientSecret = builder.Configuration.GetValue<string>("GoogleSecret");
     googleOptions.SaveTokens = true;
+    googleOptions.AccessDeniedPath = Constants.ROUTE_API_DENIED;
+    //googleOptions.AuthorizationEndpoint = "/mobileauth/Google";
 }).AddFacebook(fb =>
 {
     fb.AppId = builder.Configuration.GetValue<string>("FacebookAppId");
     fb.AppSecret = builder.Configuration.GetValue<string>("FacebookAppSecret");
     fb.SaveTokens = true;
+    fb.AccessDeniedPath = Constants.ROUTE_API_DENIED;
+    //fb.AuthorizationEndpoint = "/mobileauth/Facebook";
 });
 
 var app = builder.Build();

@@ -23,6 +23,9 @@ namespace Shared
 
         public DateTime LastUploadDate { get; set; }
         public UserLangSettings UserLang { get; set; }
+        public string AuthorisedToken {get; set;}
+        public string AuthorisedEmail { get; set; }
+        public string SubmittedPassowrd { get; set; }
         public DateTime LastModified { get; set; }
 
     }

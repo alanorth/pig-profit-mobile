@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Shared;
 
@@ -39,6 +41,21 @@ namespace PigTool.API.Controllers
             {
                 return "Issue connecting to storage account";
             }
+        }
+
+        [HttpGet, Route(Constants.ROUTE_API_DENIED)]
+        public ObjectResult AccessDenied()
+        {
+            return StatusCode(401, "Access has Been Denined again");
+        }
+
+
+        [Authorize]
+        [HttpGet]
+        [Route("api/authTest")]
+        public IActionResult TestAuthorization()
+        {
+            return Ok("You're Authorized");
         }
     }
 }

@@ -23,13 +23,38 @@ namespace PigTool
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<IDataRepo, DataRepo>();
             //MainPage = new NavigationPage(new LoginPage());
-            DisplayMainPage();
+
+            var IsAppInitialized = Task.Run(() => App.IsAppInitialized()).GetAwaiter().GetResult();
+
+            if (IsAppInitialized)
+            {
+                DisplayMainPage();
+            }
+            else
+            {
+                DisplayLoginPage();
+            }
         }
 
 
         public static async Task<bool> IsAppInitialized()
         {
-            return false;
+#if DEBUG
+            return true;
+#endif
+
+            var repo = DependencyService.Get<IDataRepo>();
+
+            var user = await repo.GetUserInfoAsync();
+
+            if(user == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         protected override void OnStart()
@@ -47,6 +72,11 @@ namespace PigTool
         public void DisplayMainPage()
         {
             MainPage = new AppShell();
+        }
+
+        public void DisplayLoginPage()
+        {
+            MainPage = new LegalDisclaimer();
         }
     }
 }
