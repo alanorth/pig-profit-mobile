@@ -27,7 +27,7 @@ namespace PigTool.API.Controllers
 
         }
 
-        [HttpGet, Route(Constants.ROUTE_API_SUBMITDATA)]
+        [HttpPost, Route(Constants.ROUTE_API_SUBMITDATA)]
         //[Authorize]
         //[Authorize(AuthenticationSchemes = "Google")]
         public async Task<ActionResult> SubmitData()

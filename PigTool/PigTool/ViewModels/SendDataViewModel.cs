@@ -446,7 +446,7 @@ namespace PigTool.ViewModels
                 //var response = await httpClient.GetAsync(url);
                 var responseString = await response.Content.ReadAsStringAsync();
 
-                await Application.Current.MainPage.DisplayAlert("Error", response.StatusCode.ToString(), "OK");
+                
 
                 httpClient.Dispose();
 
@@ -456,6 +456,11 @@ namespace PigTool.ViewModels
                     LastTimeDataUploaded = User.LastUploadDate;
                     await repo.UpdateUserInfo(User);
                     await PopulateCollections();
+                    await Application.Current.MainPage.DisplayAlert("Data Uploaded!","The Data has been uploaded", "OK");
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", response.StatusCode.ToString() + " " + response.ToString(), "OK");
                 }
 
                 PageRendered = false;
