@@ -126,6 +126,9 @@
     <AndroidResource Include="Resources\drawable\splash_logo_Ilri.png" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\splash_logo_Iiri.png" />
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png" />
   </ItemGroup>
   <ItemGroup>
