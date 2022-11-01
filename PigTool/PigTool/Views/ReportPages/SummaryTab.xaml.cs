@@ -52,7 +52,7 @@ namespace PigTool.Views
             ListView listvw = new ListView();
             listvw.Header = Headergrid;
             listvw.ItemsSource = _ViewModel.FullList;
-            listvw.ItemTemplate = new DataTemplate(typeof(CellCS));
+            listvw.ItemTemplate = new DataTemplate(typeof(SummaryTableCell));
 
             SummaryTable.Children.Add(listvw);
 
@@ -63,9 +63,9 @@ namespace PigTool.Views
         }
     }
 
-    public class CellCS : ViewCell
+    public class SummaryTableCell : ViewCell
     {
-        public CellCS()
+        public SummaryTableCell()
         {
             var grid = new Grid
             {

@@ -18,7 +18,6 @@ namespace PigTool.ViewModels
         public double totalPeriodCost;
         public double totalPeriodDifference;
 
-        private Dictionary<string, object> data;
         private ObservableCollection<FeedItem> feedItems;
         private ObservableCollection<HealthCareItem> healthCareItems;
 
@@ -67,17 +66,7 @@ namespace PigTool.ViewModels
                 }
             }
         }
-        /*
-        public Dictionary<string, object> Data
-        {
-            get { return data; }
-            set
-            {
-                data = value;
-                OnPropertyChanged(nameof(Data));
-            }
-        }
-        */
+
         public ObservableCollection<FeedItem> FeedItems
         {
 
@@ -141,17 +130,10 @@ namespace PigTool.ViewModels
             public double Revenue { get; set; }
             public double Difference { get; set; }
         }
-        /*
-        public class Column
-        {
-            public double Cost { get; set; }
-            public double Profit { get; set; }
-            public double Difference { get; set; }
-        }
-        */
+
         private async void GetData()
         {
-
+            // Initial grouping for Feed items
             FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItems());
             fullList = feedItems.GroupBy(fi => new YearMonth
             { 
@@ -163,6 +145,7 @@ namespace PigTool.ViewModels
                     Difference = 0
                 }).ToList();
 
+            // Appending Health care items to the full list grouped by YearMonth
             HealthCareItems = new ObservableCollection<HealthCareItem>(await repo.GetHealthCareItems());
             fullList = fullList.Concat(HealthCareItems.GroupBy(fi => new YearMonth
             {
@@ -174,6 +157,7 @@ namespace PigTool.ViewModels
                     Difference = 0
                 }).ToList()).ToList();
             
+            // Group fulllist once more into YearMonths and sort by year then month to get most recent first
             fullList = fullList.GroupBy(fl => new YearMonth{
                 Year = fl.YearMonth.Year, Month = fl.YearMonth.Month })
                 .Select(fl => new Row
@@ -188,51 +172,6 @@ namespace PigTool.ViewModels
             totalPeriodCost = fullList.Sum(fl => fl.Cost);
             totalPeriodRevenue = fullList.Sum(fl => fl.Revenue);
             totalPeriodDifference = totalPeriodRevenue - totalPeriodCost;
-
-
-            /*
-            // Get data between dates
-            FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItems());
-            HealthCareItems = new ObservableCollection<HealthCareItem>(await repo.GetHealthCareItems());
-
-            Dictionary<string, object> data = new Dictionary<string, object>();
-
-            // get start and end month/year
-            var StartMonth = 1;
-            var EndMonth = 12;
-            var StartYear = 2021;
-            var EndYear = 2022;
-
-            // generate dictionary for date range
-            DateTime date = new DateTime(StartYear, StartMonth, 1);
-            var test = (EndMonth + 12 * (EndYear - StartYear));
-            for (var i = StartMonth - 1; i < test; i++)
-            {
-                var m = date.Month;
-                var y = date.Year;
-                data.Add(m+"-"+y, new Column { Cost = 0, Profit = 0 });
-                date = date.AddMonths(1);
-            }
-            
-            // sum numbers into data dictionary
-            for (int i = 0; i < FeedItems.Count; i++)
-            {
-                string id = FeedItems[i].Date.Month + "-" + FeedItems[i].Date.Year;
-                Column x = (Column)data[id];
-                x.Cost += FeedItems[i].TotalCosts;
-                x.Cost += FeedItems[i].TransportationCost;
-                data[id] = x;
-            }
-
-            // calculate difference in revenue - cost
-            foreach(KeyValuePair<string, object> item in data)
-            {
-                Column x = (Column)item.Value;
-                x.Difference = x.Profit - x.Cost;
-                //item.Value = x;
-            }
-
-            */
 
         }
 
