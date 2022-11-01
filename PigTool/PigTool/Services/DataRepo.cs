@@ -94,6 +94,11 @@ namespace PigTool.Services
             return await _context.FeedItems.ToListAsync();
         }
 
+        public async Task<List<FeedItem>> GetFeedItems(DateTime start, DateTime end)
+        {
+            return await _context.FeedItems.Where(x => x.Date > start && x.Date < end).ToListAsync();
+        }
+
         public async Task<List<FeedItem>> GetFeedItems(int selectedYear)
         {
             return await _context.FeedItems.Where(x => x.Date.Year == selectedYear).ToListAsync();

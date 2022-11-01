@@ -29,33 +29,13 @@ namespace PigTool.Views
             StartYear.ItemsSource = Enumerable.Range(baseYear, DateTime.Now.Year - baseYear + 3).ToList();
             EndYear.ItemsSource = Enumerable.Range(baseYear, DateTime.Now.Year - baseYear + 3).ToList();
 
-
-            Random rnd = new Random();
-
-            for (int j = 0; j < 4; j++)
-            {
-                Console.WriteLine(rnd.Next(1000, 10000)); // returns random integers >= 10 and < 20
-            }
-
-            ObservableCollection<Profit> profits = new ObservableCollection<Profit>();
-            profits.Add(new Profit { month = "Jan 22", cost = rnd.Next(1000, 10000), revenue = rnd.Next(1000, 10000), difference = rnd.Next(1000, 10000) });
-            profits.Add(new Profit { month = "Feb 22", cost = rnd.Next(1000, 10000), revenue = rnd.Next(1000, 10000), difference = rnd.Next(1000, 10000) });
-            profits.Add(new Profit { month = "Mar 22", cost = rnd.Next(1000, 10000), revenue = rnd.Next(1000, 10000), difference = rnd.Next(1000, 10000) });
-            profits.Add(new Profit { month = "Apr 22", cost = rnd.Next(1000, 10000), revenue = rnd.Next(1000000, 10000000), difference = rnd.Next(1000, 10000) });
-            profits.Add(new Profit { month = "May 22", cost = rnd.Next(1000, 10000), revenue = rnd.Next(1000, 10000), difference = rnd.Next(1000, 10000) });
-            profits.Add(new Profit { month = "Jun 22", cost = rnd.Next(1000, 10000), revenue = rnd.Next(1000, 10000), difference = rnd.Next(1000, 10000) });
-            profits.Add(new Profit { month = "Jul 22", cost = rnd.Next(1000, 10000), revenue = rnd.Next(1000, 10000), difference = rnd.Next(1000, 10000) });
-            profits.Add(new Profit { month = "Aug 22", cost = rnd.Next(1000, 10000), revenue = rnd.Next(1000, 10000), difference = rnd.Next(1000, 10000) });
-            profits.Add(new Profit { month = "Sep 22", cost = rnd.Next(1000, 10000), revenue = rnd.Next(1000, 10000), difference = rnd.Next(1000, 10000) });
-            profits.Add(new Profit { month = "Oct 22", cost = rnd.Next(1000, 10000), revenue = rnd.Next(1000, 10000), difference = rnd.Next(1000, 10000) });
-
-
             Grid Headergrid = new Grid
             {
                 BackgroundColor = Color.FromHex("#682622"),
                 ColumnDefinitions =
                     {
-                        new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
+                        new ColumnDefinition { Width = new GridLength(0.8, GridUnitType.Star) },
+                        new ColumnDefinition { Width = GridLength.Star },
                         new ColumnDefinition { Width = GridLength.Star },
                         new ColumnDefinition { Width = GridLength.Star },
                         new ColumnDefinition { Width = GridLength.Star }
@@ -63,66 +43,61 @@ namespace PigTool.Views
             };
 
             Headergrid.Children.Add(FormattedElementsHelper.ReportTableHeaderLabelField("Month"), 0, 0);
-            Headergrid.Children.Add(FormattedElementsHelper.ReportTableHeaderLabelField("Income"), 1, 0);
-            Headergrid.Children.Add(FormattedElementsHelper.ReportTableHeaderLabelField("Costs"), 2, 0);
-            Headergrid.Children.Add(FormattedElementsHelper.ReportTableHeaderLabelField("Profit / Loss"), 3, 0);
+            Headergrid.Children.Add(FormattedElementsHelper.ReportTableHeaderLabelField("Year"), 1, 0);
+            Headergrid.Children.Add(FormattedElementsHelper.ReportTableHeaderLabelField("Income"), 2, 0);
+            Headergrid.Children.Add(FormattedElementsHelper.ReportTableHeaderLabelField("Costs"), 3, 0);
+            Headergrid.Children.Add(FormattedElementsHelper.ReportTableHeaderLabelField("Profit / Loss"), 4, 0);
 
 
             ListView listvw = new ListView();
             listvw.Header = Headergrid;
-            listvw.ItemsSource = profits;
-            listvw.ItemTemplate = new DataTemplate(() =>
-            {
-                return new CustomSummaryTableCell(nameof(Profit.month), nameof(Profit.revenue), nameof(Profit.cost), nameof(Profit.difference));
-            });
+            listvw.ItemsSource = _ViewModel.FullList;
+            listvw.ItemTemplate = new DataTemplate(typeof(CellCS));
 
             SummaryTable.Children.Add(listvw);
 
+
+            TotalLabels.Children.Add(new Label { Text = String.Format("Income: {0:C2}", _ViewModel.TotalPeriodRevenue) });
+            TotalLabels.Children.Add(new Label { Text = String.Format("Costs: {0:C2}", _ViewModel.TotalPeriodCost) });
+            TotalLabels.Children.Add(new Label { Text = String.Format("Profit / Loss: {0:C2}", _ViewModel.TotalPeriodDifference) });
         }
     }
 
-
-    public class Profit {
-        public string month { get; set; }
-        public double cost { get; set; }
-        public double revenue { get; set; }
-        public double difference { get; set; }
-    }
-
-    public class CustomSummaryTableCell : ViewCell
+    public class CellCS : ViewCell
     {
-        public CustomSummaryTableCell(string var1, string var2, string var3, string var4)
+        public CellCS()
         {
-
-            var horizontalLayout = new StackLayout() { BackgroundColor = Color.White };
-            horizontalLayout.Orientation = StackOrientation.Horizontal;
-            horizontalLayout.HorizontalOptions = LayoutOptions.Fill;
-
-            Grid TemplateContents = new Grid
+            var grid = new Grid
             {
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                ColumnSpacing = 0,
-                ColumnDefinitions = {
-                    new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) },
-                    new ColumnDefinition { Width = GridLength.Star },
-                    new ColumnDefinition { Width = GridLength.Star },
-                    new ColumnDefinition { Width = GridLength.Star }
+                ColumnDefinitions =
+                    {
+                        new ColumnDefinition { Width = new GridLength(0.8, GridUnitType.Star) },
+                        new ColumnDefinition { Width = GridLength.Star },
+                        new ColumnDefinition { Width = GridLength.Star },
+                        new ColumnDefinition { Width = GridLength.Star },
+                        new ColumnDefinition { Width = GridLength.Star }
                     }
             };
 
-            Label column1Data = FormattedElementsHelper.ReportTableLabelField(var1);
-            Label column2Data = FormattedElementsHelper.ReportTableLabelField(var2);
-            Label column3Data = FormattedElementsHelper.ReportTableLabelField(var3);
-            Label column4Data = FormattedElementsHelper.ReportTableLabelField(var4);
+            var monthLabel = new Label();
+            var yearLabel = new Label();
+            var revenueLabel = new Label();
+            var costLabel = new Label();
+            var differenceLabel = new Label();
 
-            TemplateContents.Children.Add(column1Data, 0, 0);
-            TemplateContents.Children.Add(column2Data, 1, 0);
-            TemplateContents.Children.Add(column3Data, 2, 0);
-            TemplateContents.Children.Add(column4Data, 3, 0);
+            monthLabel.SetBinding(Label.TextProperty, "YearMonth.Month");
+            yearLabel.SetBinding(Label.TextProperty, "YearMonth.Year");
+            revenueLabel.SetBinding(Label.TextProperty, new Binding("Revenue") { StringFormat = "{0:C2}" });
+            costLabel.SetBinding(Label.TextProperty, new Binding("Cost") { StringFormat = "{0:C2}" });
+            differenceLabel.SetBinding(Label.TextProperty, new Binding("Difference") { StringFormat = "{0:C2}" });
 
-            horizontalLayout.Children.Add(TemplateContents);
+            grid.Children.Add(monthLabel);
+            grid.Children.Add(yearLabel, 1, 0);
+            grid.Children.Add(revenueLabel, 2, 0);
+            grid.Children.Add(costLabel, 3, 0);
+            grid.Children.Add(differenceLabel, 4, 0);
 
-            View = horizontalLayout;
+            View = grid;
         }
     }
 }

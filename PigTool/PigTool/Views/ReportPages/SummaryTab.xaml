@@ -41,10 +41,8 @@
                         HeightRequest="150"
                         />
                 <StackLayout
-                        Grid.Column="1">
-                    <Label Text="Income: $200 Ush"/>
-                    <Label Text="Costs: $100 Ush"/>
-                    <Label Text="Profit/Loss: $100 Ush"/>
+                        Grid.Column="1"
+                    x:Name="TotalLabels">
                 </StackLayout>
             </Grid>
             
