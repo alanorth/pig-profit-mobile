@@ -71,11 +71,6 @@
                 <FontImageSource Glyph="&#xf14d;" FontFamily="FA-S" />
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="Authentication Test" ContentTemplate="{DataTemplate local:WebAuthenticatorPage}">
-            <ShellContent.Icon>
-                <FontImageSource Glyph="&#xf1fe;" FontFamily="FA-S" />
-            </ShellContent.Icon>
-        </ShellContent>
 
     </TabBar>
 
