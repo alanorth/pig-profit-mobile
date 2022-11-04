@@ -364,3 +364,5 @@ FodyWeavers.xsd
 /PigTool.API/Properties/ServiceDependencies/pigprofittool - Web Deploy/profile.arm.json
 
 PigTool.API/appsettings.json
+/TestAuthenticateAPI/appsettings.json
+/TestAuthenticateAPI/appsettings.Development.json
