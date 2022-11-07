@@ -17,21 +17,18 @@ namespace PigTool.Views
     {
         private RegistrationViewModel _viewModel;
         private bool IsRendered = false;
+        private UserLangSettings lang;
 
-        public RegistrationPage(string AccessToken,  string email )
+
+        public RegistrationPage(string AccessToken,  string email, UserLangSettings lang, string countryTranslationRowKey)
         {
             InitializeComponent();
-            BindingContext = _viewModel = new RegistrationViewModel();
+            this.lang = lang;
+
+            BindingContext = _viewModel = new RegistrationViewModel(lang, countryTranslationRowKey);
             _viewModel.accessToken = AccessToken;
             _viewModel.registeredEmail = email;
-
-        }
-
-        public RegistrationPage(UserInfo UI)
-        {
-            BindingContext = _viewModel = new RegistrationViewModel();
-            _viewModel.populatewithData(UI);
-            InitializeComponent();
+            RegistrationTitleLabel.Text = _viewModel.RegistrationTitleTranslation;
         }
 
         protected async override void OnAppearing()
@@ -111,25 +108,6 @@ namespace PigTool.Views
             PhoneNumberCell.View = PhoneNumberStack;
             FullTableSection.Add(PhoneNumberCell);
 
-
-            //Country
-            var CountryCell = new ViewCell();
-            var CountryVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
-            CountryVerticalStack.Padding = 0;
-            var CountryStack = FormattedElementsHelper.TableRowStack();
-            CountryStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CountryTranslation)));
-            CountryStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
-                nameof(_viewModel.CountryListOfOptions),
-                nameof(PickerToolHelper.TranslatedValue),
-                nameof(_viewModel.SelectedCountry),
-                nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedCountry,
-                _viewModel.PickerCountryTranslation
-                )
-                );
-            CountryVerticalStack.Children.Add(CountryStack);
-            CountryCell.View = CountryVerticalStack;
-            FullTableSection.Add(CountryCell);
 
             //District
             var DistrictCell = new ViewCell();
