@@ -76,7 +76,7 @@ namespace PigTool
 
         public void DisplayLoginPage()
         {
-            MainPage = new NavigationPage(new LegalDisclaimer());
+            MainPage = new NavigationPage(new LanguageSelectPage());
         }
     }
 }

@@ -1,16 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodel="clr-namespace:Samples.ViewModel" x:DataType="viewmodel:WebAuthenticatorViewModel"
+             NavigationPage.HasNavigationBar="False"
              x:Class="PigTool.Views.WebAuthenticatorPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="The Pig Economic Tool Authenticates with Either Google or Facebook.  We use these services to securely authenticate users and keep your data safe." FontAttributes="Bold" Margin="12" />
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Label x:Name="WebAuthTitle"
+                StyleClass="Title"/>
+            <Label x:Name="WebAuthDesc" HorizontalTextAlignment="Center"/>
 
             <ScrollView>
                 <StackLayout Padding="12,0,12,12" Spacing="6">
 
-                    <Button Text="Google" Command="{Binding GoogleCommand}" BackgroundColor="#d34836" TextColor="White" />
-                    <Button Text="Facebook" Command="{Binding FacebookCommand}" BackgroundColor="#3b5998" TextColor="White" />
+                    <Button x:Name="btnGoogle" Command="{Binding GoogleCommand}" BackgroundColor="#d34836" TextColor="White" />
+                    <Button x:Name="btnFacebook" Command="{Binding FacebookCommand}" BackgroundColor="#3b5998" TextColor="White" />
                 </StackLayout>
             </ScrollView>
         </StackLayout>
