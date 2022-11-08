@@ -7,19 +7,19 @@
     <ContentPage.Content>
         <StackLayout>
             
-            <Label Text="Your Account Has Been Created"
+            <Label x:Name="TitleLabel"
                    StyleClass="Title"
                    Margin="20,0,20,0"
                    VerticalTextAlignment="Center"
                    VerticalOptions="EndAndExpand"></Label>
             <Label VerticalOptions="StartAndExpand" 
-                   Text="You can now begin collecting and storing your data" 
+                   x:Name="DescLabel"
                    FontSize="18"
                    HorizontalTextAlignment="Center"
                    Margin="20,10,20,0"
                    TextColor="{StaticResource PrimaryText}"/>
             <Button Clicked="Continue" 
-                    Text="Continue"
+                    x:Name="ContinueBtn"
                     StyleClass="ContinueButton"
                     VerticalOptions="EndAndExpand"></Button>
         </StackLayout>

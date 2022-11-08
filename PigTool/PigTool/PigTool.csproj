@@ -60,6 +60,12 @@
     <Compile Update="Views\AddDataPages\WaterCostPage.xaml.cs">
       <DependentUpon>WaterCostPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\LanguageSelectPage.xaml.cs">
+      <DependentUpon>LanguageSelectPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CountrySelectPage.xaml.cs">
+      <DependentUpon>CountrySelectPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ReportPages\BenchmarkingTab.xaml.cs">
       <DependentUpon>BenchmarkingTab.xaml</DependentUpon>
     </Compile>

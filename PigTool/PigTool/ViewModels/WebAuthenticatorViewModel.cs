@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json;
 using PigTool;
+using PigTool.Helpers;
 using PigTool.ViewModels;
 using PigTool.Views;
 using Shared;
@@ -17,16 +18,31 @@ using Xamarin.Forms;
 
 namespace Samples.ViewModel
 {
-    public class WebAuthenticatorViewModel
+    public class WebAuthenticatorViewModel : LoggedOutViewModel
     {
         //const string authenticationUrl = "https://xamarin-essentials-auth-sample.azurewebsites.net/mobileauth/";
         const string authenticationUrl = "https://pigprofittool.azurewebsites.net/mobileauth/";
         INavigation navigation;
-        public WebAuthenticatorViewModel(INavigation navigation)
+        UserLangSettings lang;
+        string countryTranslationRowKey;
+
+        public string WebAuthTitleTranslation { get; set; }
+        public string WebAuthDescTranslation { get; set; }
+        public string GoogleTranslation { get; set; }
+        public string FacebookTranslation { get; set; }
+
+
+        public WebAuthenticatorViewModel(INavigation navigation, UserLangSettings lang, string countryTranslationRowKey)
         {
             GoogleCommand = new Command(async () => await OnAuthenticate("Google"));
             FacebookCommand = new Command(async () => await OnAuthenticate("Facebook"));
-            this.navigation = navigation;   
+            this.navigation = navigation;
+            this.lang = lang;
+            this.countryTranslationRowKey = countryTranslationRowKey;
+            WebAuthTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(WebAuthTitleTranslation), lang);
+            WebAuthDescTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(WebAuthDescTranslation), lang);
+            GoogleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(GoogleTranslation), lang);
+            FacebookTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FacebookTranslation), lang);
         }
 
         public ICommand MicrosoftCommand { get; }
@@ -113,7 +129,7 @@ namespace Samples.ViewModel
                     }
                     else if (response.StatusCode.Equals(HttpStatusCode.NonAuthoritativeInformation))
                     {
-                        await navigation.PushAsync(new RegistrationPage(r.AccessToken, email));
+                        await navigation.PushAsync(new RegistrationPage(r.AccessToken, email, lang, countryTranslationRowKey));
                     }
                     else
                     {

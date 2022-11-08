@@ -78,6 +78,13 @@
                 <Setter Property="Margin" Value="0, 10, 0, 20"/>
             </Style>
 
+            <Style TargetType="Button" Class="LangButton">
+
+                <Setter Property="Margin" Value="10, 8, 10, 8"/>
+                <Setter Property="Padding" Value="0, 15, 0, 15"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+
             <Style TargetType="Label" Class="ReportTableHeader">
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
