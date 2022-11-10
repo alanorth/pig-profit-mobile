@@ -3,12 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PigTool.Views.AdvancedTab"
              xmlns:vm="clr-namespace:PigTool.ViewModels"
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
              Title="Advanced">
 
     <ScrollView>
         <StackLayout>
-
-
             <!-- Date Range -->
             <StackLayout 
                     x:Name="DatePickers"
@@ -62,16 +61,15 @@
                 Text="Breakdown"
                 StyleClass="ReportHeader"/>
                 <BoxView StyleClass="Seperator"/>
-                <BoxView
-                    Background="LightGrey"
+                <StackLayout Orientation="Vertical">
+                    <StackLayout Orientation="Vertical">
+                        <oxy:PlotView Model="{Binding GraphModel}" HorizontalOptions="CenterAndExpand" 
+                              VerticalOptions="StartAndExpand" Margin="2"
+                              HeightRequest="300" />
 
-                    HeightRequest="250"
-                    />
+                    </StackLayout>
+                </StackLayout>
             </StackLayout>
-
-
         </StackLayout>
     </ScrollView>
-
-
 </ContentPage>
