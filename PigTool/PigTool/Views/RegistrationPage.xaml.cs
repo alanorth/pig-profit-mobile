@@ -108,6 +108,13 @@ namespace PigTool.Views
             PhoneNumberCell.View = PhoneNumberStack;
             FullTableSection.Add(PhoneNumberCell);
 
+            // Province
+            var ProvinceCell = new ViewCell();
+            var ProvinceStack = FormattedElementsHelper.TableRowStack();
+            ProvinceStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.ProvinceTranslation)));
+            ProvinceStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Province), nameof(_viewModel.IsEditMode), null));
+            ProvinceCell.View = ProvinceStack;
+            FullTableSection.Add(ProvinceCell);
 
             //District
             var DistrictCell = new ViewCell();
@@ -173,6 +180,30 @@ namespace PigTool.Views
             ParishStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Parish), nameof(_viewModel.IsEditMode), null));
             ParishCell.View = ParishStack;
             FullTableSection.Add(ParishCell);
+
+            // Commune
+            var CommuneCell = new ViewCell();
+            var CommuneStack = FormattedElementsHelper.TableRowStack();
+            CommuneStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommuneTranslation)));
+            CommuneStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Commune), nameof(_viewModel.IsEditMode), null));
+            CommuneCell.View = CommuneStack;
+            FullTableSection.Add(CommuneCell);
+
+            // Sector
+            var SectorCell = new ViewCell();
+            var SectorStack = FormattedElementsHelper.TableRowStack();
+            SectorStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.SectorTranslation)));
+            SectorStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Sector), nameof(_viewModel.IsEditMode), null));
+            SectorCell.View = SectorStack;
+            FullTableSection.Add(SectorCell);
+
+            // Cell
+            var CellCell = new ViewCell();
+            var CellStack = FormattedElementsHelper.TableRowStack();
+            CellStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CellTranslation)));
+            CellStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Cell), nameof(_viewModel.IsEditMode), null));
+            CellCell.View = CellStack;
+            FullTableSection.Add(CellCell);
 
             // Village
             var VillageCell = new ViewCell();

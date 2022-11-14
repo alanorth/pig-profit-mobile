@@ -264,6 +264,12 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "ParishTranslation", English = "Parish", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "VillageTranslation", English = "Village", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "CountryTranslation", English = "Country", Lang1 = "", Lang2 = "" },
+
+                         new Translation() { RowKey = "ProvinceTranslation", English = "Province", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "CommuneTranslation", English = "Commune", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "SectorTranslation", English = "Sector", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "CellTranslation", English = "Cell", Lang1 = "", Lang2 = "" },
+
                          new Translation() { RowKey = "CurrencyTranslation", English = "Currency", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "GenderTranslation", English = "Gender", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "LanguageTranslation", English = "Language", Lang1 = "", Lang2 = "" },
@@ -562,14 +568,9 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "SubCountyType7", English = "SubCountyType 7", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "SubCountyType8", English = "SubCountyType 8", Lang1 = "", Lang2 = "" },
 
-                         new Translation() { RowKey = "CountryType1", English = "CountryType 1", Lang1 = "", Lang2 = "" },
-                         new Translation() { RowKey = "CountryType2", English = "CountryType 2", Lang1 = "", Lang2 = "" },
-                         new Translation() { RowKey = "CountryType3", English = "CountryType 3", Lang1 = "", Lang2 = "" },
-                         new Translation() { RowKey = "CountryType4", English = "CountryType 4", Lang1 = "", Lang2 = "" },
-                         new Translation() { RowKey = "CountryType5", English = "CountryType 5", Lang1 = "", Lang2 = "" },
-                         new Translation() { RowKey = "CountryType6", English = "CountryType 6", Lang1 = "", Lang2 = "" },
-                         new Translation() { RowKey = "CountryType7", English = "CountryType 7", Lang1 = "", Lang2 = "" },
-                         new Translation() { RowKey = "CountryType8", English = "CountryType 8", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "CountryType1", English = "Uganda", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "CountryType2", English = "Vietnam", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "CountryType3", English = "Rwanda", Lang1 = "", Lang2 = "" },
 
                          new Translation() { RowKey = "CurrencyType1", English = "CurrencyType 1", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "CurrencyType2", English = "CurrencyType 2", Lang1 = "", Lang2 = "" },
@@ -855,11 +856,6 @@ namespace SQLLiteDbContext
                                               new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.COUNTRYTYPE, TranslationRowKey = "CountryType1" },
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.COUNTRYTYPE, TranslationRowKey = "CountryType2" },
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.COUNTRYTYPE, TranslationRowKey = "CountryType3" },
-                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.COUNTRYTYPE, TranslationRowKey = "CountryType4" },
-                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.COUNTRYTYPE, TranslationRowKey = "CountryType5" },
-                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.COUNTRYTYPE, TranslationRowKey = "CountryType6" },
-                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.COUNTRYTYPE, TranslationRowKey = "CountryType7" },
-                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.COUNTRYTYPE, TranslationRowKey = "CountryType8" },
 
                                               new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SUBCOUNTYTYPE, TranslationRowKey = "SubCountyType1" },
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SUBCOUNTYTYPE, TranslationRowKey = "SubCountyType2" },
