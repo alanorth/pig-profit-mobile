@@ -1,4 +1,7 @@
-﻿using PigTool.Services;
+﻿using OxyPlot;
+using OxyPlot.Axes;
+using OxyPlot.Series;
+using PigTool.Services;
 using Shared;
 using System;
 using System.Collections.Generic;
@@ -25,6 +28,7 @@ namespace PigTool.Helpers
 
         private ObservableCollection<FeedItem> feedItems;
         private ObservableCollection<HealthCareItem> healthCareItems;
+        private ObservableCollection<PigSaleItem> pigSaleItems;
 
         #region Variables
         public List<Row> FullList
@@ -36,42 +40,7 @@ namespace PigTool.Helpers
                 OnPropertyChanged(nameof(FullList));
             }
         }
-        public double TotalPeriodRevenue
-        {
-            get => totalPeriodRevenue;
-            set
-            {
-                if (value != totalPeriodRevenue)
-                {
-                    totalPeriodRevenue = value;
-                    OnPropertyChanged(nameof(TotalPeriodRevenue));
-                }
-            }
-        }
-        public double TotalPeriodCost
-        {
-            get => totalPeriodCost;
-            set
-            {
-                if (value != totalPeriodCost)
-                {
-                    totalPeriodCost = value;
-                    OnPropertyChanged(nameof(TotalPeriodCost));
-                }
-            }
-        }
-        public double TotalPeriodDifference
-        {
-            get => totalPeriodDifference;
-            set
-            {
-                if (value != totalPeriodDifference)
-                {
-                    totalPeriodDifference = value;
-                    OnPropertyChanged(nameof(TotalPeriodDifference));
-                }
-            }
-        }
+        
         #endregion
 
         #region Collections
@@ -94,6 +63,17 @@ namespace PigTool.Helpers
             {
                 healthCareItems = value;
                 OnPropertyChanged(nameof(HealthCareItems));
+            }
+        }
+
+        public ObservableCollection<PigSaleItem> PigSaleItems
+        {
+
+            get { return pigSaleItems; }
+            set
+            {
+                pigSaleItems = value;
+                OnPropertyChanged(nameof(PigSaleItems));
             }
         }
         #endregion
@@ -171,6 +151,19 @@ namespace PigTool.Helpers
                 Difference = 0
             }).ToList()).ToList();
 
+            PigSaleItems = new ObservableCollection<PigSaleItem>(await repo.GetPigSaleItems());
+            fullList = fullList.Concat(PigSaleItems.GroupBy(fi => new YearMonth
+            {
+                Year = fi.Date.Year,
+                Month = fi.Date.Month
+            }).Select(fi => new Row
+            {
+                YearMonth = fi.Key,
+                Cost = fi.Sum(i => i.Brokerage) + fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
+                Revenue = fi.Sum(i => i.SalePrice),
+                Difference = 0
+            }).ToList()).ToList();
+
             // Group fulllist once more into YearMonths and sort by year then month to get most recent first
             fullList = fullList.GroupBy(fl => new YearMonth
             {
@@ -190,7 +183,49 @@ namespace PigTool.Helpers
             totalPeriodRevenue = fullList.Sum(fl => fl.Revenue);
             totalPeriodDifference = totalPeriodRevenue - totalPeriodCost;
 
-            return (FullList, totalPeriodRevenue, TotalPeriodCost, totalPeriodDifference);
+            return (FullList, totalPeriodRevenue, totalPeriodCost, totalPeriodDifference);
+        }
+
+
+        public async Task<PlotModel> GenerateTotalsGraphModel(
+                double totalPeriodRevenue,
+                double totalPeriodCost,
+                double totalPeriodDifference
+            )
+        {
+            OnPropertyChanged("SimpleGraphModel");
+            var model = new PlotModel { };
+
+            #region Series 1
+            var barSeries = new ColumnSeries();
+
+            barSeries.Items.Add(new ColumnItem
+            {
+                Value = Convert.ToDouble(totalPeriodCost),
+                Color = OxyColor.Parse("#bc4749")
+            });
+
+            barSeries.Items.Add(new ColumnItem
+            {
+                Value = Convert.ToDouble(totalPeriodRevenue),
+                Color = OxyColor.Parse("#a7c957")
+            });
+
+            model.Series.Add(barSeries);
+            #endregion
+
+            String[] strNames = new String[] { "Total Cost", "Total Profit" };
+            model.Axes.Add(new CategoryAxis
+            {
+                Position = AxisPosition.Bottom,
+                Key = "Simple Sample Data",
+                ItemsSource = strNames,
+                IsPanEnabled = false,
+                IsZoomEnabled = false,
+                Selectable = false,
+            });
+
+            return model;
         }
 
         #region INotifyPropertyChanged
