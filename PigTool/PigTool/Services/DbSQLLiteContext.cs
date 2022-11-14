@@ -568,9 +568,9 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "SubCountyType7", English = "SubCountyType 7", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "SubCountyType8", English = "SubCountyType 8", Lang1 = "", Lang2 = "" },
 
-                         new Translation() { RowKey = "CountryType1", English = "Uganda", Lang1 = "", Lang2 = "" },
-                         new Translation() { RowKey = "CountryType2", English = "Vietnam", Lang1 = "", Lang2 = "" },
-                         new Translation() { RowKey = "CountryType3", English = "Rwanda", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "CountryTypeUganda", English = "Uganda", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "CountryTypeVietnam", English = "Vietnam", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "CountryTypeRwanda", English = "Rwanda", Lang1 = "", Lang2 = "" },
 
                          new Translation() { RowKey = "CurrencyType1", English = "CurrencyType 1", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "CurrencyType2", English = "CurrencyType 2", Lang1 = "", Lang2 = "" },
@@ -853,9 +853,9 @@ namespace SQLLiteDbContext
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.COUNTYTYPE, TranslationRowKey = "CountyType7" },
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.COUNTYTYPE, TranslationRowKey = "CountyType8" },
 
-                                              new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.COUNTRYTYPE, TranslationRowKey = "CountryType1" },
-                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.COUNTRYTYPE, TranslationRowKey = "CountryType2" },
-                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.COUNTRYTYPE, TranslationRowKey = "CountryType3" },
+                                              new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.COUNTRYTYPE, TranslationRowKey = "CountryTypeUganda" },
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.COUNTRYTYPE, TranslationRowKey = "CountryTypeVietnam" },
+                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.COUNTRYTYPE, TranslationRowKey = "CountryTypeRwanda" },
 
                                               new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SUBCOUNTYTYPE, TranslationRowKey = "SubCountyType1" },
                        new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.SUBCOUNTYTYPE, TranslationRowKey = "SubCountyType2" },

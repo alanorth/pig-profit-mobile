@@ -18,13 +18,14 @@ namespace PigTool.Views
         private RegistrationViewModel _viewModel;
         private bool IsRendered = false;
         private UserLangSettings lang;
+        private string countryTranslationRowKey;
 
 
         public RegistrationPage(string AccessToken,  string email, UserLangSettings lang, string countryTranslationRowKey)
         {
             InitializeComponent();
             this.lang = lang;
-
+            this.countryTranslationRowKey = countryTranslationRowKey;
             BindingContext = _viewModel = new RegistrationViewModel(lang, countryTranslationRowKey);
             _viewModel.accessToken = AccessToken;
             _viewModel.registeredEmail = email;
@@ -108,13 +109,18 @@ namespace PigTool.Views
             PhoneNumberCell.View = PhoneNumberStack;
             FullTableSection.Add(PhoneNumberCell);
 
+
             // Province
-            var ProvinceCell = new ViewCell();
-            var ProvinceStack = FormattedElementsHelper.TableRowStack();
-            ProvinceStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.ProvinceTranslation)));
-            ProvinceStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Province), nameof(_viewModel.IsEditMode), null));
-            ProvinceCell.View = ProvinceStack;
-            FullTableSection.Add(ProvinceCell);
+            if (countryTranslationRowKey == "CountryTypeVietnam" || countryTranslationRowKey == "CountryTypeRwanda")
+            {
+                var ProvinceCell = new ViewCell();
+                var ProvinceStack = FormattedElementsHelper.TableRowStack();
+                ProvinceStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.ProvinceTranslation)));
+                ProvinceStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Province), nameof(_viewModel.IsEditMode), null));
+                ProvinceCell.View = ProvinceStack;
+                FullTableSection.Add(ProvinceCell);
+            }
+
 
             //District
             var DistrictCell = new ViewCell();
@@ -135,75 +141,86 @@ namespace PigTool.Views
             DistrictCell.View = DistrictVerticalStack;
             FullTableSection.Add(DistrictCell);
 
-            //County
-            var CountyCell = new ViewCell();
-            var CountyVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
-            CountyVerticalStack.Padding = 0;
-            var CountyStack = FormattedElementsHelper.TableRowStack();
-            CountyStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CountyTranslation)));
-            CountyStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
-                nameof(_viewModel.CountyListOfOptions),
-                nameof(PickerToolHelper.TranslatedValue),
-                nameof(_viewModel.SelectedCounty),
-                nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedCounty,
-                _viewModel.PickerCountyTranslation
-                )
-                );
-            CountyVerticalStack.Children.Add(CountyStack);
-            CountyCell.View = CountyVerticalStack;
-            FullTableSection.Add(CountyCell);
+            if (countryTranslationRowKey == "CountryTypeUganda")
+            {
+                //County
+                var CountyCell = new ViewCell();
+                var CountyVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
+                CountyVerticalStack.Padding = 0;
+                var CountyStack = FormattedElementsHelper.TableRowStack();
+                CountyStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CountyTranslation)));
+                CountyStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
+                    nameof(_viewModel.CountyListOfOptions),
+                    nameof(PickerToolHelper.TranslatedValue),
+                    nameof(_viewModel.SelectedCounty),
+                    nameof(_viewModel.IsEditMode),
+                    _viewModel.SelectedCounty,
+                    _viewModel.PickerCountyTranslation
+                    )
+                    );
+                CountyVerticalStack.Children.Add(CountyStack);
+                CountyCell.View = CountyVerticalStack;
+                FullTableSection.Add(CountyCell);
 
-            //Sub County
-            var SubCountyCell = new ViewCell();
-            var SubCountyVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
-            SubCountyVerticalStack.Padding = 0;
-            var SubCountyStack = FormattedElementsHelper.TableRowStack();
-            SubCountyStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.SubCountyTranslation)));
-            SubCountyStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
-                nameof(_viewModel.SubCountyListOfOptions),
-                nameof(PickerToolHelper.TranslatedValue),
-                nameof(_viewModel.SelectedSubCounty),
-                nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedSubCounty,
-                _viewModel.PickerSubCountyTranslation
-                )
-                );
-            SubCountyVerticalStack.Children.Add(SubCountyStack);
-            SubCountyCell.View = SubCountyVerticalStack;
-            FullTableSection.Add(SubCountyCell);
+                //Sub County
+                var SubCountyCell = new ViewCell();
+                var SubCountyVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
+                SubCountyVerticalStack.Padding = 0;
+                var SubCountyStack = FormattedElementsHelper.TableRowStack();
+                SubCountyStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.SubCountyTranslation)));
+                SubCountyStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
+                    nameof(_viewModel.SubCountyListOfOptions),
+                    nameof(PickerToolHelper.TranslatedValue),
+                    nameof(_viewModel.SelectedSubCounty),
+                    nameof(_viewModel.IsEditMode),
+                    _viewModel.SelectedSubCounty,
+                    _viewModel.PickerSubCountyTranslation
+                    )
+                    );
+                SubCountyVerticalStack.Children.Add(SubCountyStack);
+                SubCountyCell.View = SubCountyVerticalStack;
+                FullTableSection.Add(SubCountyCell);
 
-            // Parish
-            var ParishCell = new ViewCell();
-            var ParishStack = FormattedElementsHelper.TableRowStack();
-            ParishStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.ParishTranslation)));
-            ParishStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Parish), nameof(_viewModel.IsEditMode), null));
-            ParishCell.View = ParishStack;
-            FullTableSection.Add(ParishCell);
+                // Parish
+                var ParishCell = new ViewCell();
+                var ParishStack = FormattedElementsHelper.TableRowStack();
+                ParishStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.ParishTranslation)));
+                ParishStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Parish), nameof(_viewModel.IsEditMode), null));
+                ParishCell.View = ParishStack;
+                FullTableSection.Add(ParishCell);
+            }
+
 
             // Commune
-            var CommuneCell = new ViewCell();
-            var CommuneStack = FormattedElementsHelper.TableRowStack();
-            CommuneStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommuneTranslation)));
-            CommuneStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Commune), nameof(_viewModel.IsEditMode), null));
-            CommuneCell.View = CommuneStack;
-            FullTableSection.Add(CommuneCell);
+            if (countryTranslationRowKey == "CountryTypeVietnam")
+            {
+                var CommuneCell = new ViewCell();
+                var CommuneStack = FormattedElementsHelper.TableRowStack();
+                CommuneStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommuneTranslation)));
+                CommuneStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Commune), nameof(_viewModel.IsEditMode), null));
+                CommuneCell.View = CommuneStack;
+                FullTableSection.Add(CommuneCell);
+            }
 
-            // Sector
-            var SectorCell = new ViewCell();
-            var SectorStack = FormattedElementsHelper.TableRowStack();
-            SectorStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.SectorTranslation)));
-            SectorStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Sector), nameof(_viewModel.IsEditMode), null));
-            SectorCell.View = SectorStack;
-            FullTableSection.Add(SectorCell);
 
-            // Cell
-            var CellCell = new ViewCell();
-            var CellStack = FormattedElementsHelper.TableRowStack();
-            CellStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CellTranslation)));
-            CellStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Cell), nameof(_viewModel.IsEditMode), null));
-            CellCell.View = CellStack;
-            FullTableSection.Add(CellCell);
+            if (countryTranslationRowKey == "CountryTypeRwanda")
+            { 
+                // Sector
+                var SectorCell = new ViewCell();
+                var SectorStack = FormattedElementsHelper.TableRowStack();
+                SectorStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.SectorTranslation)));
+                SectorStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Sector), nameof(_viewModel.IsEditMode), null));
+                SectorCell.View = SectorStack;
+                FullTableSection.Add(SectorCell);
+
+                // Cell
+                var CellCell = new ViewCell();
+                var CellStack = FormattedElementsHelper.TableRowStack();
+                CellStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CellTranslation)));
+                CellStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Cell), nameof(_viewModel.IsEditMode), null));
+                CellCell.View = CellStack;
+                FullTableSection.Add(CellCell);
+            }
 
             // Village
             var VillageCell = new ViewCell();
