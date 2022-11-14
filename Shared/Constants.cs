@@ -108,7 +108,7 @@ namespace Shared
         public const string PartitionKeyLabourCostItem = "Labour";
         public const string PartitionKeyMembershipItem = "MemberShip";
         public const string PartitionKeyOtherCostItem = "OtherCost";
-        public const string PartitionKeyReporductiveItem = "Reproductive";
+        public const string PartitionKeyReproductiveItem = "Reproductive";
         public const string PartitionKeyWaterCostItem = "Water";
         public const string PartitionKeyAnimalPurchaseItem = "AnimalPurchase";
         public const string PartitionKeyLoanRepaymentItem = "LoanRepayment";
