@@ -43,22 +43,11 @@ namespace PigTool.Views
 
         private void PopulateTheTable()
         {
-            /*
-            List<string> langs = new List<string>() { 
-                "English", 
-                "lang2", 
-                "lang3", 
-                "lang4", 
-                "lang5",
-
-            };*/
-
             List<LanguageDisplay> langs = new List<LanguageDisplay>() {
                 new LanguageDisplay(){ text = "English", lang = UserLangSettings.Eng },
-                new LanguageDisplay(){ text = "Lang1", lang = UserLangSettings.Lang1 },
-                new LanguageDisplay(){ text = "Lang2", lang = UserLangSettings.Lang2 },
-                new LanguageDisplay(){ text = "Lang3", lang = UserLangSettings.Eng },
-                new LanguageDisplay(){ text = "Lang4", lang = UserLangSettings.Eng },
+                new LanguageDisplay(){ text = "Swahili", lang = UserLangSettings.Lang1 },
+                new LanguageDisplay(){ text = "Vietnamese", lang = UserLangSettings.Lang2 },
+                new LanguageDisplay(){ text = "Kinyarwanda", lang = UserLangSettings.Eng },
             };
 
             ViewCell buttonCell = new ViewCell();

@@ -79,7 +79,8 @@
             </Style>
 
             <Style TargetType="Button" Class="LangButton">
-
+                <Setter Property="BorderColor" Value="White"/>
+                <Setter Property="BorderWidth" Value="2"/>
                 <Setter Property="Margin" Value="10, 8, 10, 8"/>
                 <Setter Property="Padding" Value="0, 15, 0, 15"/>
                 <Setter Property="FontSize" Value="16"/>
