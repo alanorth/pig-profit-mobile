@@ -24,8 +24,7 @@ namespace PigTool.Views
 
             WebAuthTitle.Text = _viewModel.WebAuthTitleTranslation;
             WebAuthDesc.Text = _viewModel.WebAuthDescTranslation;
-            btnGoogle.Text = _viewModel.GoogleTranslation;
-            btnFacebook.Text = _viewModel.FacebookTranslation;
+            btnGoogle.Text = _viewModel.GoogleSignUpTranslation;
         }
     }
 }

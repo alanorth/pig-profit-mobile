@@ -28,30 +28,21 @@ namespace Samples.ViewModel
 
         public string WebAuthTitleTranslation { get; set; }
         public string WebAuthDescTranslation { get; set; }
-        public string GoogleTranslation { get; set; }
-        public string FacebookTranslation { get; set; }
+        public string GoogleSignUpTranslation { get; set; }
 
 
         public WebAuthenticatorViewModel(INavigation navigation, UserLangSettings lang, string countryTranslationRowKey)
         {
             GoogleCommand = new Command(async () => await OnAuthenticate("Google"));
-            FacebookCommand = new Command(async () => await OnAuthenticate("Facebook"));
             this.navigation = navigation;
             this.lang = lang;
             this.countryTranslationRowKey = countryTranslationRowKey;
             WebAuthTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(WebAuthTitleTranslation), lang);
             WebAuthDescTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(WebAuthDescTranslation), lang);
-            GoogleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(GoogleTranslation), lang);
-            FacebookTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FacebookTranslation), lang);
+            GoogleSignUpTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(GoogleSignUpTranslation), lang);
         }
 
-        public ICommand MicrosoftCommand { get; }
-
         public ICommand GoogleCommand { get; }
-
-        public ICommand FacebookCommand { get; }
-
-        public ICommand AppleCommand { get; }
 
         string accessToken = string.Empty;
 
