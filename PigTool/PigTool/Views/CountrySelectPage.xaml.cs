@@ -49,20 +49,16 @@ namespace PigTool.Views
 
         private void PopulateTheTable()
         {
-            var FullTableSection = new TableSection();
-
             var ContinueBtn = new Button();
             ContinueBtn.IsEnabled = false;
             ContinueBtn.Clicked += async (sender, args) => await Navigation.PushAsync(new LegalDisclaimer(lang, _viewModel.SelectedCountry.TranslationRowKey));
             ContinueBtn.Text = "Continue";
 
             //Country
-            var CountryCell = new ViewCell();
             var CountryVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             CountryVerticalStack.Padding = 0;
             var CountryStack = FormattedElementsHelper.TableRowStack();
             CountryStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CountryTranslation)));
-
 
             Picker picker = new Picker()
             {
@@ -71,6 +67,7 @@ namespace PigTool.Views
 
             picker.SetBinding(Picker.SelectedItemProperty, new Binding(nameof(_viewModel.SelectedCountry)));
             picker.SetBinding(Picker.ItemsSourceProperty, new Binding(nameof(_viewModel.CountryListOfOptions)));
+            picker.SetBinding(Picker.TitleProperty, new Binding(nameof(_viewModel.PickerCountryTranslation)));
             picker.ItemDisplayBinding = new Binding(nameof(PickerToolHelper.TranslatedValue));
 
             picker.SelectedIndexChanged += (sender, e) =>
@@ -85,18 +82,12 @@ namespace PigTool.Views
 
             CountryStack.Children.Add(picker);
             CountryVerticalStack.Children.Add(CountryStack);
-            CountryCell.View = CountryVerticalStack;
-            FullTableSection.Add(CountryCell);
-
+            CountrySelectTableView.Children.Add(CountryVerticalStack);
 
             //Button Commands
-            var buttonCell = new ViewCell();
-
-            buttonCell.View = ContinueBtn;
-            FullTableSection.Add(buttonCell);
+            CountrySelectTableView.Children.Add(ContinueBtn);
 
             PageTitle.Text = _viewModel.WhereAreYouLocatedTranslation;
-            CountrySelectTableView.Root.Add(FullTableSection);
 
         }
     }

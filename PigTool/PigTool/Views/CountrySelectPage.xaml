@@ -9,8 +9,8 @@
             <Label x:Name="PageTitle"
                        StyleClass="Title">
             </Label>
-            <TableView Intent="Form" HasUnevenRows="True"  x:Name="CountrySelectTableView">
-            </TableView>
+            <StackLayout x:Name="CountrySelectTableView">
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
