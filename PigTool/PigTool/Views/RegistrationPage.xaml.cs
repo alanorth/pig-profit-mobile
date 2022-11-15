@@ -122,7 +122,7 @@ namespace PigTool.Views
             }
 
 
-            //District
+            /*District
             var DistrictCell = new ViewCell();
             var DistrictVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             DistrictVerticalStack.Padding = 0;
@@ -140,10 +140,17 @@ namespace PigTool.Views
             DistrictVerticalStack.Children.Add(DistrictStack);
             DistrictCell.View = DistrictVerticalStack;
             FullTableSection.Add(DistrictCell);
+            */
+            var DistrictCell = new ViewCell();
+            var DistrictStack = FormattedElementsHelper.TableRowStack();
+            DistrictStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.DistrictTranslation)));
+            DistrictStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.District), nameof(_viewModel.IsEditMode), null));
+            DistrictCell.View = DistrictStack;
+            FullTableSection.Add(DistrictCell);
 
             if (countryTranslationRowKey == "CountryTypeUganda")
             {
-                //County
+                /*County
                 var CountyCell = new ViewCell();
                 var CountyVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
                 CountyVerticalStack.Padding = 0;
@@ -161,8 +168,15 @@ namespace PigTool.Views
                 CountyVerticalStack.Children.Add(CountyStack);
                 CountyCell.View = CountyVerticalStack;
                 FullTableSection.Add(CountyCell);
+                */
+                var CountyCell = new ViewCell();
+                var CountyStack = FormattedElementsHelper.TableRowStack();
+                CountyStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CountyTranslation)));
+                CountyStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.County), nameof(_viewModel.IsEditMode), null));
+                CountyCell.View = CountyStack;
+                FullTableSection.Add(CountyCell);
 
-                //Sub County
+                /*Sub County
                 var SubCountyCell = new ViewCell();
                 var SubCountyVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
                 SubCountyVerticalStack.Padding = 0;
@@ -179,6 +193,13 @@ namespace PigTool.Views
                     );
                 SubCountyVerticalStack.Children.Add(SubCountyStack);
                 SubCountyCell.View = SubCountyVerticalStack;
+                FullTableSection.Add(SubCountyCell);
+                */
+                var SubCountyCell = new ViewCell();
+                var SubCountyStack = FormattedElementsHelper.TableRowStack();
+                SubCountyStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.SubCountyTranslation)));
+                SubCountyStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.SubCounty), nameof(_viewModel.IsEditMode), null));
+                SubCountyCell.View = SubCountyStack;
                 FullTableSection.Add(SubCountyCell);
 
                 // Parish
