@@ -17,7 +17,7 @@ namespace Shared
         public const string ROUTE_API_STORAGE = ROUTE_API_BASE + "/storage";
         public const string ROUTE_API_DENIED = ROUTE_API_BASE + "/denied";
 
-        public const string ROUTE_AUTH_BASE = "/auth";
+        public const string ROUTE_AUTH_BASE = "/MobileAuth";
         public const string ROUTE_AUTH_REGISTERUSER = ROUTE_AUTH_BASE + "/RegisterUser";
         public const string ROUTE_AUTH_TEST = ROUTE_AUTH_BASE + "/Test";
 

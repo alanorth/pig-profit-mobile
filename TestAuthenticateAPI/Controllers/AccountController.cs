@@ -13,11 +13,12 @@ using Newtonsoft.Json;
 using Shared;
 using TestAuthenticateAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Security.Cryptography;
 
 namespace TestAuthenticateAPI.Controllers;
 
 //[Route("Account/[action]")]
-[Route("mobileauth/[action]")]
+[Route("[Controller]/[action]")]
 [ApiController]
 public class AccountController : PigToolBaseController
 {
@@ -37,21 +38,19 @@ public class AccountController : PigToolBaseController
         _configuration = configuration;
     }
 
-    [HttpGet("CreateUser")]
-    public async Task SimpleAuth(string email, string givenName, string surName)
+    [HttpGet("{scheme}")]
+    public async Task SimpleAuth()
     {
-            var appUser = new AppUser
-            {
-                Email = email,
-                FirstName = givenName,
-                SecondName = surName
-            };
+        var email = "MyMan@Gmail.Test";
+        var givenName = "GMan";
+        var surName = "SurMan";
 
-            await CreateOrGetUser(appUser);
-            var authToken = GenerateJwtToken(appUser);
 
-            // Get parameters to send back to the callback
-            var qs = new Dictionary<string, string>
+        var appUser = await CreateOrGetUser(email, givenName, surName);
+        var authToken = GenerateJwtToken(appUser);
+
+        // Get parameters to send back to the callback
+        var qs = new Dictionary<string, string>
                 {
                     { "access_token", authToken.token },
                     { "refresh_token",  string.Empty },
@@ -61,15 +60,73 @@ public class AccountController : PigToolBaseController
                     { "secondName", surName },
                 };
 
-            // Build the result url
-            /*var url = Callback + "://#" + string.Join(
-                "&",
-                qs.Where(kvp => !string.IsNullOrEmpty(kvp.Value) && kvp.Value != "-1")
-                .Select(kvp => $"{WebUtility.UrlEncode(kvp.Key)}={WebUtility.UrlEncode(kvp.Value)}"));
+        //Build the result url
+        var url = Callback + "://#" + string.Join(
+            "&",
+            qs.Where(kvp => !string.IsNullOrEmpty(kvp.Value) && kvp.Value != "-1")
+            .Select(kvp => $"{WebUtility.UrlEncode(kvp.Key)}={WebUtility.UrlEncode(kvp.Value)}"));
 
-            // Redirect to final url
-            Request.HttpContext.Response.Redirect(url);*/
+        //Redirect to final url
+        Request.HttpContext.Response.Redirect(url);
+    }
+
+
+    [HttpGet]
+    public async Task<ActionResult> SimpleAuthJSON()
+    {
+        var email = "MyMan@Gmail.Test";
+        var givenName = "GMan";
+        var surName = "SurMan";
+
+
+        var appUser = await CreateOrGetUser(email, givenName, surName);
+        var authToken = GenerateJwtToken(appUser);
+        var refreshToken = GenerateRefreshToken();
+
+        _ = int.TryParse(_configuration["JWT:RefreshTokenValidityInDays"], out int refreshTokenValidityInDays);
+
+        appUser.RefreshToken = refreshToken;
+        appUser.RefreshTokenExpiryTime = DateTime.Now.AddDays(refreshTokenValidityInDays);
+
+        await _userManager.UpdateAsync(appUser);
+
+        // Get parameters to send back to the callback
+        var qs = new Dictionary<string, string>
+                {
+                    { "access_token", authToken.token },
+                    { "refresh_token",  string.Empty },
+                    { "jwt_token_expires", authToken.expirySeconds.ToString() },
+                    { "email", email },
+                    { "firstName", givenName },
+                    { "secondName", surName },
+                };
+
+        try
+        {
+            var compressedQs = JsonConvert.SerializeObject(qs);
+
+            var suucessfullResult = new ContentResult()
+            {
+                StatusCode = 200,
+                Content = compressedQs,
+                ContentType = "application/json",
+            };
+
+            return suucessfullResult;
         }
+        catch(Exception ex)
+        {
+            var failedResult = new ContentResult()
+            {
+                StatusCode = 500,
+                Content = "Something went wrong "+ ex.Message,
+                ContentType = "application/json",
+            };
+
+            return failedResult;
+        }
+
+    }
 
 
 
@@ -97,15 +154,7 @@ public class AccountController : PigToolBaseController
             var surName = claims?.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Surname)?.Value;
             var nameIdentifier = claims?.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 
-            var appUser = new AppUser
-            {
-                Email = email,
-                FirstName = givenName,
-                SecondName = surName,
-            };
-                
-
-            await CreateOrGetUser(appUser);
+            var appUser = await CreateOrGetUser(email, givenName, surName);
             var authToken = GenerateJwtToken(appUser);
 
             // Get parameters to send back to the callback
@@ -131,7 +180,7 @@ public class AccountController : PigToolBaseController
     }
 
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    [HttpPost, Route(Constants.ROUTE_AUTH_REGISTERUSER)]
+    [HttpPost]
     public async Task<ActionResult> RegisterUser()
     {
         var callGUID = Guid.NewGuid().ToString();
@@ -139,25 +188,20 @@ public class AccountController : PigToolBaseController
 
         try
         {
-
             var requestJson = await Parse(Request);
             var unparsedRequest = requestJson.Body;
             var MobileUser = new UserInfo();
             var requeststring = Convert.ToString(unparsedRequest);
 
-
-            
-
             //Log request
             await LoggingOperations.LogRequestToBlob("REGISTERUSER", "POST", requeststring, callGUID, Connection);
-
 
             //Get the user from the request
             MobileUser = JsonConvert.DeserializeObject<UserInfo>(requeststring);
 
             var logUser = await _userManager.FindByEmailAsync(MobileUser.AuthorisedEmail);
 
-            if(logUser == null)
+            if (logUser == null)
             {
                 var contentresultFailed = new ContentResult()
                 {
@@ -174,7 +218,7 @@ public class AccountController : PigToolBaseController
             logUser.updateUserFeilds(MobileUser);
 
 
-            var updateResult  = await _userManager.UpdateAsync(logUser);
+            var updateResult = await _userManager.UpdateAsync(logUser);
 
             //TODO need to check if user exists before creating....
 
@@ -232,19 +276,31 @@ public class AccountController : PigToolBaseController
     }
 
 
-    private async Task CreateOrGetUser(AppUser appUser)
+    private async Task<AppUser> CreateOrGetUser(string appUserEmail, string firstName, string surName)
     {
-        var user = await _userManager.FindByEmailAsync(appUser.Email);
+        var user = await _userManager.FindByEmailAsync(appUserEmail);
 
         if (user == null)
         {
+            user = new AppUser
+            {
+                Email = appUserEmail,
+                FirstName = firstName,
+                SecondName = surName,
+                LastModified = DateTime.UtcNow,
+                LastUploadDate = DateTime.UtcNow
+
+            };
+
+
             //Create a username unique
-            appUser.UserName = CreateUniqueUserName($"{appUser.FirstName} {appUser.SecondName}");
-            var result = await _userManager.CreateAsync(appUser);
-            user = appUser;
+            user.UserName = CreateUniqueUserName($"{user.FirstName} {user.SecondName}");
+            var result = await _userManager.CreateAsync(user);
         }
 
         await _signInManager.SignInAsync(user, true);
+
+        return user;
     }
     string CreateUniqueUserName(string userName)
     {
@@ -283,5 +339,33 @@ public class AccountController : PigToolBaseController
         );
 
         return (new JwtSecurityTokenHandler().WriteToken(token), expirySeconds);
+    }
+
+    private ClaimsPrincipal? GetPrincipalFromExpiredToken(string? token)
+    {
+        var tokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateAudience = false,
+            ValidateIssuer = false,
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"])),
+            ValidateLifetime = false
+        };
+
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
+        if (securityToken is not JwtSecurityToken jwtSecurityToken || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+            throw new SecurityTokenException("Invalid token");
+
+        return principal;
+
+    }
+
+    private static string GenerateRefreshToken()
+    {
+        var randomNumber = new byte[64];
+        using var rng = RandomNumberGenerator.Create();
+        rng.GetBytes(randomNumber);
+        return Convert.ToBase64String(randomNumber);
     }
 }

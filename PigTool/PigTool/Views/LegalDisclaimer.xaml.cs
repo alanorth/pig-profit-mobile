@@ -21,7 +21,15 @@ namespace PigTool.Views
 
         async void Continue(object sender, EventArgs e)
         {
+            var ran = new Random();
+            ran.Next(99999);
             await Navigation.PushAsync(new WebAuthenticatorPage());
+            //await Navigation.PushAsync(new RegistrationPage("Token", "Email" + ran.Next(99999).ToString()));
+            if (1 == 2)
+            {
+                await Navigation.PushAsync(new WebAuthenticatorPage());
+            }
+            //await Navigation.PushAsync(new WebAuthenticatorPage());
             //await Shell.Current.GoToAsync("//Registration");
         }
     }

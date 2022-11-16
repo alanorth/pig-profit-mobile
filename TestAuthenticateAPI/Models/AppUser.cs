@@ -28,6 +28,8 @@ namespace TestAuthenticateAPI.Models
         public string AuthorisedToken { get; set; }
         public string AuthorisedEmail { get; set; }
         public DateTime LastModified { get; set; }
+        public string RefreshToken { get; set; }
+        public DateTime RefreshTokenExpiryTime { get; set; }
 
 
         public void updateUserFeilds(UserInfo mobileUserDetails)

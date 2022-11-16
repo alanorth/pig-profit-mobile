@@ -59,7 +59,10 @@ builder.Services
                         ValidIssuer = config["JwtIssuer"],
                         ValidAudience = config["JwtIssuer"],
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["JwtKey"])),
-                        ClockSkew = TimeSpan.Zero // remove delay of token when expire
+                        ClockSkew = TimeSpan.Zero ,// remove delay of token when expire
+                        ValidateLifetime = true ,
+                        ValidateIssuer = true,
+                        ValidateAudience = true
                     };
                 })
                 .AddGoogle(googleOptions =>

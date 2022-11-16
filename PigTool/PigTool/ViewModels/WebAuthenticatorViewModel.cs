@@ -20,13 +20,16 @@ namespace Samples.ViewModel
     public class WebAuthenticatorViewModel
     {
         //const string authenticationUrl = "https://xamarin-essentials-auth-sample.azurewebsites.net/mobileauth/";
-        const string authenticationUrl = "https://pigprofittool.azurewebsites.net/mobileauth/";
+        //const string authenticationUrl = "https://pigprofittool.azurewebsites.net/mobileauth/";
+        //const string authenticationUrl = "http://10.0.2.2:5272/Account/mobileauth/"; //for local testing purposes
+        const string authenticationUrl = "http://10.0.2.2:5272/Account/SimpleAuthJSON/"; //for local testing purposes
+        const string baseURL = "http://10.0.2.2:5272/Account/";
         INavigation navigation;
         public WebAuthenticatorViewModel(INavigation navigation)
         {
             GoogleCommand = new Command(async () => await OnAuthenticate("Google"));
             FacebookCommand = new Command(async () => await OnAuthenticate("Facebook"));
-            this.navigation = navigation;   
+            this.navigation = navigation;
         }
 
         public ICommand MicrosoftCommand { get; }
@@ -80,23 +83,26 @@ namespace Samples.ViewModel
                     AuthToken += $"Email: {email}{Environment.NewLine}";
                 AuthToken += r?.AccessToken ?? r?.IdToken;
 
-                foreach(var pro in r.Properties)
-                {
-                    Console.WriteLine(pro.Key);
-                    Console.WriteLine(pro.Value);
-                }
+
+                /*
+                 * { "access_token", auth.Properties.GetTokenValue("access_token") },
+                    { "refresh_token", auth.Properties.GetTokenValue("refresh_token") ?? string.Empty },
+                    { "expires", (auth.Properties.ExpiresUtc?.ToUnixTimeSeconds() ?? -1).ToString() },
+                    { "email", email }
+                 */
 
                 //get user if,  null  create, otherwise  proceed.
 
-                if(r?.AccessToken != null)
+                if (r?.AccessToken != null)
                 {
                     var httpClient = new HttpClient();
 
                     //httpClient.DefaultRequestHeaders.Add("XApiKey", "ENTER YOUR API KEY HERE");
                     //httpClient.DefaultRequestHeaders.Authorization =
                     //new AuthenticationHeaderValue("Google", User.AuthorisedToken);
-                    var url = "https://pigprofittool.azurewebsites.net/api/data/GetUser?name=" + email;
-                    var response1 = await httpClient.GetAsync("https://pigprofittool.azurewebsites.net/api/storage");
+                    var url = baseURL + "TestAuth";
+
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", r.AccessToken);
 
                     var response = await httpClient.GetAsync(url);
                     //var response = await httpClient.GetAsync(url);
@@ -172,5 +178,35 @@ namespace Samples.ViewModel
                 await Application.Current.MainPage.DisplayAlert("Error", $"Failed: {ex.Message}", "OK");
             }
         }
+
+
+        async Task OnAuthenticateTest(string scheme)
+        {
+            try
+            {
+
+                var httpClient = new HttpClient();
+
+                var url = baseURL + "SimpleAuthJSON/Google";
+
+                var response = await httpClient.GetAsync(url);
+
+                var responseString = await response.Content.ReadAsStringAsync();
+
+                httpClient.Dispose();
+
+                UserInfo use = JsonConvert.DeserializeObject<UserInfo>(responseString);
+                await Application.Current.MainPage.Navigation.PushAsync(new AppShell());
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Failed: {ex.Message}");
+
+                AuthToken = string.Empty;
+                await Application.Current.MainPage.DisplayAlert("Error", $"Failed: {ex.Message}", "OK");
+            }
+        }
+
     }
 }

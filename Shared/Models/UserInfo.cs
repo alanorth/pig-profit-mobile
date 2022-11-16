@@ -26,6 +26,7 @@ namespace Shared
         public UserLangSettings UserLang { get; set; }
         public string AuthorisedToken {get; set;}
         public string AuthorisedEmail { get; set; }
+        public string? AuthorisedUserName { get; set; }
         public DateTime LastModified { get; set; }
 
         public virtual string PartitionKey { get; set; }

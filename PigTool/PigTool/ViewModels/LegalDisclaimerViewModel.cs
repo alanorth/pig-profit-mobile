@@ -1,4 +1,5 @@
-﻿using PigTool.Views;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using PigTool.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -30,7 +31,14 @@ namespace PigTool.ViewModels
         {
             if (ButtonEnable)
             {
-                _Nav.PushAsync(new WebAuthenticatorPage());   
+                //_Nav.PushAsync(new RegistrationPage("Token", "Email"));
+                _Nav.PushAsync(new WebAuthenticatorPage());
+            }
+
+            if (1 == 2)
+            {
+                _Nav.PushAsync(new WebAuthenticatorPage());
+                
             }
         }
     }

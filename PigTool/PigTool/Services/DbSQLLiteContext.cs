@@ -220,9 +220,9 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "TotalAmountRepaidTranslation", English = "Total Amount Paid", Lang1 = "", Lang2 = "" },
 
                          //Equipment
-                         new Translation() { RowKey = "EquipmentTitleTranslation", English = "Loan Repayment", Lang1 = "", Lang2 = "" },
-                         new Translation() { RowKey = "EquipmentTypeTranslation", English = "Loan Provider", Lang1 = "", Lang2 = "" },
-                         new Translation() { RowKey = "OtherEquipmentTypeTranslation", English = "Other Loan Provider", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "EquipmentTitleTranslation", English = "Equipment", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "EquipmentTypeTranslation", English = "Equipment Type", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "OtherEquipmentTypeTranslation", English = "Other Equipment Type", Lang1 = "", Lang2 = "" },
 
                          //Pig Sale
                          new Translation() { RowKey = "PigSaleTitleTranslation", English = "Pig Sales", Lang1 = "", Lang2 = "" },
