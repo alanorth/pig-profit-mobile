@@ -56,7 +56,6 @@ namespace PigTool.Views
 
             SummaryTable.Children.Add(listvw);
 
-
             TotalLabels.Children.Add(new Label { Text = String.Format("Income: {0:C2}", _ViewModel.TotalPeriodRevenue) });
             TotalLabels.Children.Add(new Label { Text = String.Format("Costs: {0:C2}", _ViewModel.TotalPeriodCost) });
             TotalLabels.Children.Add(new Label { Text = String.Format("Profit / Loss: {0:C2}", _ViewModel.TotalPeriodDifference) });
