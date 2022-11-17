@@ -6,6 +6,7 @@ namespace Shared
 {
     public class AnimalHouseItem : BaseItem
     {
+        
         public DateTime Date { get; set; }
         public string? HousingExpense { get; set; }
         public string? OtherHousingExpense { get; set; }
@@ -14,5 +15,7 @@ namespace Shared
         public double OtherCosts { get; set; }
         public int? YearsExpected { get; set; }
         public string? Comment { get; set; }
-    }
+
+        private DateTime DateHolder;
+    } 
 }
