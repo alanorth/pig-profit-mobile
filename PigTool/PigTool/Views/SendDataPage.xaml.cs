@@ -67,24 +67,26 @@ namespace PigTool.Views
                     nameof(_ViewModel.Countof_AnimalHouseItems), 0, 3);
                 createTableRowandDataLabel(SendDataGrid, nameof(_ViewModel.WaterCostItems),
                     nameof(_ViewModel.Countof_Watercostitems), 0, 4);
+                createTableRowandDataLabel(SendDataGrid, nameof(_ViewModel.ReproductiveItems),
+                    nameof(_ViewModel.Countof_ReproductiveItems), 0, 5);
                 createTableRowandDataLabel(SendDataGrid, nameof(_ViewModel.MembershipItems),
-                    nameof(_ViewModel.Countof_MembershipItems), 0, 5);
+                    nameof(_ViewModel.Countof_MembershipItems), 0, 6);
                 createTableRowandDataLabel(SendDataGrid, nameof(_ViewModel.OtherCostItems),
-                    nameof(_ViewModel.Countof_OtherCostItems), 0, 6);
+                    nameof(_ViewModel.Countof_OtherCostItems), 0, 7);
                 createTableRowandDataLabel(SendDataGrid, nameof(_ViewModel.AnimalPurchaseItems),
-                    nameof(_ViewModel.Countof_AnimalPurchaseItems), 0, 7);
+                    nameof(_ViewModel.Countof_AnimalPurchaseItems), 0, 8);
                 createTableRowandDataLabel(SendDataGrid, nameof(_ViewModel.LoanRepaymentItems),
-                    nameof(_ViewModel.Countof_LoanRepaymentItems), 0, 8);
+                    nameof(_ViewModel.Countof_LoanRepaymentItems), 0, 9);
                 createTableRowandDataLabel(SendDataGrid, nameof(_ViewModel.EquipmentItems),
-                    nameof(_ViewModel.Countof_EquipmentItems), 0, 9);
+                    nameof(_ViewModel.Countof_EquipmentItems), 0, 10);
                 createTableRowandDataLabel(SendDataGrid, nameof(_ViewModel.PigSaleItems),
-                    nameof(_ViewModel.Countof_PigSaleItems), 0, 10);
+                    nameof(_ViewModel.Countof_PigSaleItems), 0, 11);
                 createTableRowandDataLabel(SendDataGrid, nameof(_ViewModel.BreedingServiceSaleItems),
-                    nameof(_ViewModel.Countof_BreedingServiceSaleItems), 0, 11);
+                    nameof(_ViewModel.Countof_BreedingServiceSaleItems), 0, 12);
                 createTableRowandDataLabel(SendDataGrid, nameof(_ViewModel.ManureSaleItems),
-                    nameof(_ViewModel.Countof_ManureSaleItems), 0, 12);
+                    nameof(_ViewModel.Countof_ManureSaleItems), 0, 13);
                 createTableRowandDataLabel(SendDataGrid, nameof(_ViewModel.OtherIncomeItems),
-                    nameof(_ViewModel.Countof_OtherIncomeItems), 0, 13);
+                    nameof(_ViewModel.Countof_OtherIncomeItems), 0, 14);
 
                 _ViewModel.PageRendered = true;
             }
