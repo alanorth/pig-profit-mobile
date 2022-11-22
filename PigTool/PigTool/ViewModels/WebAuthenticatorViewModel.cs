@@ -27,7 +27,7 @@ namespace Samples.ViewModel
         INavigation navigation;
         public WebAuthenticatorViewModel(INavigation navigation)
         {
-            GoogleCommand = new Command(async () => await OnAuthenticate("Google"));
+            GoogleCommand = new Command(async () => await OnAuthenticateTest("Google"));
             FacebookCommand = new Command(async () => await OnAuthenticate("Facebook"));
             this.navigation = navigation;
         }
@@ -113,7 +113,7 @@ namespace Samples.ViewModel
                     if ((int)response.StatusCode == 202)
                     {
                         var responseString3 = await response.Content.ReadAsStringAsync();
-                        UserInfo use = JsonConvert.DeserializeObject<UserInfo>(responseString3);
+                        MobileUser use = JsonConvert.DeserializeObject<MobileUser>(responseString3);
                         await Application.Current.MainPage.Navigation.PushAsync(new AppShell());
 
                     }
@@ -139,7 +139,7 @@ namespace Samples.ViewModel
                         if ((int)response2.StatusCode == 202)
                         {
                             var responseString3 = await response2.Content.ReadAsStringAsync();
-                            UserInfo use = JsonConvert.DeserializeObject<UserInfo>(responseString3);
+                            MobileUser use = JsonConvert.DeserializeObject<MobileUser>(responseString3);
                             await Application.Current.MainPage.Navigation.PushAsync(new AppShell());
 
                         }
@@ -184,10 +184,10 @@ namespace Samples.ViewModel
         {
             try
             {
+                HttpClientHandler insecureHandler = GetInsecureHandler();
+                var httpClient = new HttpClient(insecureHandler);
 
-                var httpClient = new HttpClient();
-
-                var url = baseURL + "SimpleAuthJSON/Google";
+                var url = baseURL + "SimpleAuthJSON";
 
                 var response = await httpClient.GetAsync(url);
 
@@ -195,8 +195,8 @@ namespace Samples.ViewModel
 
                 httpClient.Dispose();
 
-                UserInfo use = JsonConvert.DeserializeObject<UserInfo>(responseString);
-                await Application.Current.MainPage.Navigation.PushAsync(new AppShell());
+                MobileUser use = JsonConvert.DeserializeObject<MobileUser>(responseString);
+                await Application.Current.MainPage.Navigation.PushAsync(new RegistrationPage(use, true));
 
             }
             catch (Exception ex)
@@ -208,5 +208,20 @@ namespace Samples.ViewModel
             }
         }
 
+
+        public HttpClientHandler GetInsecureHandler()
+        {
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) =>
+            {
+                if (cert.Issuer.Equals("CN=localhost"))
+                    return true;
+                return errors == System.Net.Security.SslPolicyErrors.None;
+            };
+            return handler;
+        }
+
     }
+
+
 }

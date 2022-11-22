@@ -59,7 +59,7 @@ namespace PigTool.API.Tests
                 //{
                 
                 //},
-                //UserInfo = new UserInfo  
+                //MobileUser = new MobileUser  
                 //{
                 
                 //},

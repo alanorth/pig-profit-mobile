@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TestAuthenticateAPI.Models
 {
-    public class AppUser : IdentityUser
+    public class APIUser : IdentityUser
     {
         public string FirstName { get; set; }
         public string SecondName { get; set; }
@@ -28,11 +28,11 @@ namespace TestAuthenticateAPI.Models
         public string AuthorisedToken { get; set; }
         public string AuthorisedEmail { get; set; }
         public DateTime LastModified { get; set; }
-        public string RefreshToken { get; set; }
-        public DateTime RefreshTokenExpiryTime { get; set; }
+        public string? RefreshToken { get; set; }
+        public DateTime? RefreshTokenExpiryTime { get; set; }
 
 
-        public void updateUserFeilds(UserInfo mobileUserDetails)
+        public void updateUserFeilds(MobileUser mobileUserDetails)
         {
             Gender = mobileUserDetails.Gender;
             PhoneNumber = mobileUserDetails.PhoneNumber;

@@ -20,7 +20,7 @@ namespace PigTool.ViewModels.DataViewModels
     public class RegistrationViewModel : LoggedOutViewModel, INotifyPropertyChanged
     {
         bool isEditMode, isCreationMode;
-        private bool editExistingMode;
+        private bool editExistingMode, newUser;
         private string? userName;
         private string? name;
         private string? gender;
@@ -41,7 +41,8 @@ namespace PigTool.ViewModels.DataViewModels
         List<PickerToolHelper> subCountyListOfOptions;
         List<PickerToolHelper> countryListOfOptions;
         List<PickerToolHelper> currencyListOfOptions;
-        UserInfo _itemForEditing;
+        MobileUser _itemForEditing;
+       
 
         //Button Clicks
         public Command SaveButtonClicked { get; }
@@ -422,10 +423,11 @@ namespace PigTool.ViewModels.DataViewModels
         public bool EditExistingMode { get => editExistingMode; set { if (editExistingMode != value) { editExistingMode = value; OnPropertyChanged(nameof(EditExistingMode)); } } }
         public bool CreationMode { get; private set; }
 
-        public RegistrationViewModel()
+        public RegistrationViewModel(bool newUser)
         {
             IsEditMode = true;
             CreationMode = true;
+            this.newUser = newUser;
 
             SaveButtonClicked = new Command(SaveButtonCreateHousingItem);
             ResetButtonClicked = new Command(ResetButtonPressed);
@@ -463,7 +465,7 @@ namespace PigTool.ViewModels.DataViewModels
             PickerCurrencyTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerCurrencyTranslation), UserLangSettings.Eng);
         }
 
-        public void populatewithData(UserInfo item)
+        public void populatewithData(MobileUser item)
         {
             isEditMode = false;
             CreationMode = false;
@@ -509,6 +511,7 @@ namespace PigTool.ViewModels.DataViewModels
                 return;
             }
 
+
             if (_itemForEditing != null)
             {
                 _itemForEditing.UserName = UserName;
@@ -524,16 +527,59 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.Country = SelectedCountry != null ? SelectedCountry.TranslationRowKey : null;
                 _itemForEditing.Currency = SelectedCurrency !=null ? SelectedCurrency.TranslationRowKey : null;
                 _itemForEditing.LastModified = DateTime.UtcNow;
-                //_itemForEditing.LastUploadDate = DateTime.UtcNow;
+
+                _itemForEditing.LastUploadDate = DateTime.UtcNow;
                 _itemForEditing.UserLang = UserLangSettings.Eng;
 
-                await repo.UpdateUserInfo(_itemForEditing);
-                //await Application.Current.MainPage.DisplayAlert("Upnamed", "Reproduction record has been updated", "OK");
-                await Shell.Current.Navigation.PopAsync();
+                if (newUser)
+                {
+                    try
+                    {
+                        var rest = new RESTService(_itemForEditing);
+                        var MobileUser = await rest.ExecuteWithRetryAsync(async () =>
+                        {
+                            HttpClientHandler handler = GetInsecureHandler();
+                            using (var client = new HttpClient(handler))
+                            {
+                                client.DefaultRequestHeaders.Add("Authorization", $"bearer {_itemForEditing.AuthorisedToken}");
+
+                                var responseMessage = await client.GetAsync("http://10.0.2.2:5272/Account/TestAuth");
+
+                                responseMessage.EnsureSuccessStatusCode();
+
+                                var jsonResponse = await responseMessage.Content.ReadAsStringAsync();
+
+                                //var response = JsonConvert.DeserializeObject<MobileUser>(jsonResponse);
+
+                                return jsonResponse;
+                            }
+                        });
+
+                        await repo.AddSingleUserInfo(_itemForEditing);
+
+
+
+                        await Application.Current.MainPage.Navigation.PushAsync(new RegistrationSuccessfulPage());
+
+                    } catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message.ToString());
+                    }
+                    
+
+                } else
+                {
+                    await repo.UpdateUserInfo(_itemForEditing);
+                    //await Application.Current.MainPage.DisplayAlert("Upnamed", "Reproduction record has been updated", "OK");
+
+                    //await Shell.Current.Navigation.PopAsync();
+                    Application.Current.MainPage = new AppShell();
+                }
+               
             }
             else
             {
-                var newUserInfo = new UserInfo
+                var newUserInfo = new MobileUser
                 {
                     UserName = UserName,
                     Name = Name,
@@ -582,7 +628,7 @@ namespace PigTool.ViewModels.DataViewModels
                         if ((int)response2.StatusCode == 202)
                         {
                             var responseString3 = await response2.Content.ReadAsStringAsync();
-                            UserInfo use = JsonConvert.DeserializeObject<UserInfo>(responseString3);
+                            MobileUser use = JsonConvert.DeserializeObject<MobileUser>(responseString3);
                             await Application.Current.MainPage.Navigation.PushAsync(new AppShell());
 
                         }
@@ -720,6 +766,18 @@ namespace PigTool.ViewModels.DataViewModels
             {
                 return "";
             }
+        }
+
+        public HttpClientHandler GetInsecureHandler()
+        {
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) =>
+            {
+                if (cert.Issuer.Equals("CN=localhost"))
+                    return true;
+                return errors == System.Net.Security.SslPolicyErrors.None;
+            };
+            return handler;
         }
     }
 }

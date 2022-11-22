@@ -6,7 +6,7 @@ using Azure.Data.Tables;
 
 namespace Shared
 {
-    public class UserInfo : ITableEntity
+    public class MobileUser : ITableEntity
     {
         public string UserName { get; set; }
         public string Name { get; set; }
@@ -28,6 +28,8 @@ namespace Shared
         public string AuthorisedEmail { get; set; }
         public string? AuthorisedUserName { get; set; }
         public DateTime LastModified { get; set; }
+        public string RefreshToken { get; set; }
+        public DateTime? RefreshTokenExpiryTime { get; set; }
 
         public virtual string PartitionKey { get; set; }
         public virtual string RowKey { get; set; }
