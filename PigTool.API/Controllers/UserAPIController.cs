@@ -33,7 +33,7 @@ namespace PigTool.API.Controllers
              
                 var requestJson = await Parse(Request);
                 var unparsedRequest = requestJson.Body;
-                var user = new UserInfo();
+                var user = new MobileUser();
                 var requeststring = Convert.ToString(unparsedRequest);
 
                 //Log request
@@ -41,7 +41,7 @@ namespace PigTool.API.Controllers
 
 
                 //Get the user from the request
-                user = JsonConvert.DeserializeObject<UserInfo>(requeststring);
+                user = JsonConvert.DeserializeObject<MobileUser>(requeststring);
 
 
                 //TODO need to check if user exists before creating....
@@ -50,7 +50,7 @@ namespace PigTool.API.Controllers
                 // var tableOperations = new TableOperations();
                 var opertions = new TableOperations();
                
-                var userlist = new List<UserInfo>();
+                var userlist = new List<MobileUser>();
 
                 userlist.Add(user);
 

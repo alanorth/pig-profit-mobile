@@ -14,7 +14,7 @@ namespace SQLLiteDbContext
     {
         public DbSet<Item> Items { get; set; }
         public DbSet<Translation> Translations { get; set; }
-        public DbSet<UserInfo> UserInfos { get; set; }
+        public DbSet<MobileUser> UserInfos { get; set; }
         public DbSet<FeedItem> FeedItems { get; set; }
         public DbSet<ControlData> ControlDataOptions { get; set; }
         public DbSet<HealthCareItem> HealthCareItems { get; set; }
@@ -52,9 +52,9 @@ namespace SQLLiteDbContext
 
             modelBuilder.Entity<BaseItem>().HasKey(x => x.RowKey);
             modelBuilder.Entity<BaseItem>().Ignore(x => x.ETag);
-            //modelBuilder.Entity<UserInfo>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyUserInfo);
-            modelBuilder.Entity<UserInfo>().HasKey(x => x.RowKey);
-            modelBuilder.Entity<UserInfo>().Ignore(x => x.ETag);
+            //modelBuilder.Entity<MobileUser>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyUserInfo);
+            modelBuilder.Entity<MobileUser>().HasKey(x => x.RowKey);
+            modelBuilder.Entity<MobileUser>().Ignore(x => x.ETag);
             modelBuilder.Entity<BaseItem>().Property(bi => bi.RowKey).HasDefaultValue(Guid.NewGuid().ToString());
 
             modelBuilder.Entity<FeedItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyFeed);
@@ -857,7 +857,7 @@ namespace SQLLiteDbContext
 
 #endif
             //Convert Enum To String
-            modelBuilder.Entity<UserInfo>().Property(x => x.UserLang)
+            modelBuilder.Entity<MobileUser>().Property(x => x.UserLang)
                 .HasConversion(
                 v => v.ToString(),
                 v => (UserLangSettings)Enum.Parse(typeof(UserLangSettings), v)
@@ -865,10 +865,10 @@ namespace SQLLiteDbContext
 
 
             /*
-            modelBuilder.Entity<UserInfo>(x =>
+            modelBuilder.Entity<MobileUser>(x =>
             {
                 x.HasData(
-                    new UserInfo()
+                    new MobileUser()
                     {
                         LastUploadDate = DateTime.Now,
                         UserName = "Marty",

@@ -20,7 +20,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 // Add services to the container.
 
-builder.Services.AddIdentity<AppUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentity<APIUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddAzureTableStores<ApplicationDbContext>(new Func<IdentityConfiguration>(() =>
     {
         IdentityConfiguration idconfig = new IdentityConfiguration();

@@ -176,12 +176,12 @@ namespace PigTool.API.Controllers
                 var requestJson = await Parse(Request);
                 var unparsedRequest = requestJson.Body;
                 var requeststring = Convert.ToString(unparsedRequest);
-                var user = JsonConvert.DeserializeObject<UserInfo>(requeststring);
+                var user = JsonConvert.DeserializeObject<MobileUser>(requeststring);
 
 
                 var operations = new TableOperations();
 
-                var result = await operations.InsertTableEntities(new List<UserInfo> { user }, "Data", GetStorageConnectionString());
+                var result = await operations.InsertTableEntities(new List<MobileUser> { user }, "Data", GetStorageConnectionString());
 
                 if (string.IsNullOrEmpty(result))
                 {

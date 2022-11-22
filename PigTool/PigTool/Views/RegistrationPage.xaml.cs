@@ -21,15 +21,15 @@ namespace PigTool.Views
         public RegistrationPage(string AccessToken,  string email )
         {
             InitializeComponent();
-            BindingContext = _viewModel = new RegistrationViewModel();
+            BindingContext = _viewModel = new RegistrationViewModel(true);
             _viewModel.accessToken = AccessToken;
             _viewModel.registeredEmail = email;
 
         }
 
-        public RegistrationPage(UserInfo UI)
+        public RegistrationPage(MobileUser UI, bool newUser)
         {
-            BindingContext = _viewModel = new RegistrationViewModel();
+            BindingContext = _viewModel = new RegistrationViewModel(newUser);
             _viewModel.populatewithData(UI);
             InitializeComponent();
         }

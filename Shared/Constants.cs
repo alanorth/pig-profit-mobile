@@ -99,7 +99,7 @@ namespace Shared
         #endregion
 
         #region PartitionKeys
-        public const string PartitionKeyUserInfo = "UserInfo";
+        public const string PartitionKeyUserInfo = "MobileUser";
         public const string PartitionKeyAnimalHouse = "AnimalHouse";
         public const string PartitionKeyFeed = "Feed";
         public const string PartitionKeyControlData = "ControlData";

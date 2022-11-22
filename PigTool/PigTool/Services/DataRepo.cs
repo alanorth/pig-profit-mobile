@@ -42,7 +42,7 @@ namespace PigTool.Services
             return await _context.Translations.SingleOrDefaultAsync(a => a.RowKey == Rowkey);
         }
 
-        public Task<UserInfo> GetUserInfoAsync()
+        public Task<MobileUser> GetUserInfoAsync()
         {
             return _context.UserInfos.FirstOrDefaultAsync();
         }
@@ -52,13 +52,13 @@ namespace PigTool.Services
             return _context.UserInfos.CountAsync();
         }
 
-        public async Task AddSingleUserInfo(UserInfo itemToAdd)
+        public async Task AddSingleUserInfo(MobileUser itemToAdd)
         {
             await _context.AddAsync(itemToAdd);
             await _context.SaveChangesAsync();
         }
 
-        public void DeleteUserInfo(UserInfo userItem)
+        public void DeleteUserInfo(MobileUser userItem)
         {
             _context.Remove(userItem);
             _context.SaveChangesAsync();
@@ -608,7 +608,7 @@ namespace PigTool.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateUserInfo(UserInfo userInfo)
+        public async Task UpdateUserInfo(MobileUser userInfo)
         {
             _context.Update(userInfo);
             await _context.SaveChangesAsync();
