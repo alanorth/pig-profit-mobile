@@ -7,90 +7,104 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.Linq;
+using OxyPlot.Series;
+using OxyPlot;
+using OxyPlot.Axes;
+using PigTool.Helpers;
+using static PigTool.Helpers.ChartHelper;
 
 namespace PigTool.ViewModels
 {
     public class SummaryTabViewModel : LoggedInViewModel
     {
-        #region Collections
-        private ObservableCollection<FeedItem> feedItems;
-        private ObservableCollection<HealthCareItem> healthCareItems;
+        public List<Row> fullList;
+        public double totalPeriodRevenue;
+        public double totalPeriodCost;
+        public double totalPeriodDifference;
 
-        public ObservableCollection<FeedItem> FeedItems
+        private PlotModel simpleGraphModel { get; set; }
+
+        
+        public List<Row> FullList
         {
-
-            get { return feedItems; }
+            get { return fullList; }
             set
             {
-                feedItems = value;
-                OnPropertyChanged(nameof(FeedItems));
+                fullList = value;
+                OnPropertyChanged(nameof(FullList));
+            }
+        }
+        public PlotModel SimpleGraphModel
+        {
+            get
+            {
+                return simpleGraphModel;
+            }
+            set
+            {
+                simpleGraphModel = value;
             }
         }
 
-        public ObservableCollection<HealthCareItem> HealthCareItems
+        public double TotalPeriodRevenue
         {
-
-            get { return healthCareItems; }
+            get => totalPeriodRevenue;
             set
             {
-                healthCareItems = value;
-                OnPropertyChanged(nameof(HealthCareItems));
+                if (value != totalPeriodRevenue)
+                {
+                    totalPeriodRevenue = value;
+                    OnPropertyChanged(nameof(TotalPeriodRevenue));
+                }
             }
         }
-        #endregion
+        public double TotalPeriodCost
+        {
+            get => totalPeriodCost;
+            set
+            {
+                if (value != totalPeriodCost)
+                {
+                    totalPeriodCost = value;
+                    OnPropertyChanged(nameof(TotalPeriodCost));
+                }
+            }
+        }
+        public double TotalPeriodDifference
+        {
+            get => totalPeriodDifference;
+            set
+            {
+                if (value != totalPeriodDifference)
+                {
+                    totalPeriodDifference = value;
+                    OnPropertyChanged(nameof(TotalPeriodDifference));
+                }
+            }
+        }
+
 
         public SummaryTabViewModel()
         {
-            GetData();
-        }
-
-        public class Column
-        {
-            public double Cost {  get; set; }
-            public double Profit { get; set; }
-        }
-
-        private async void GetData()
-        {
-            /*
-            // Get data between dates
-            FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItems());
-            HealthCareItems = new ObservableCollection<HealthCareItem>(await repo.GetHealthCareItems());
-
-            Dictionary<string, object> data = new Dictionary<string, object>();
-
-            // get start and end month/year
-            var StartMonth = 1;
-            var EndMonth = 12;
-            var StartYear = 2021;
-            var EndYear = 2022;
-
-            // generate dictionary for date range
-            DateTime date = new DateTime(StartYear, StartMonth, 1);
-            var test = (EndMonth + 12 * (EndYear - StartYear));
-            for (var i = StartMonth - 1; i < test; i++)
-            {
-                
-                var m = date.Month;
-                var y = date.Year;
-                data.Add(m+"-"+y, new Column { Cost = 0, Profit = 0 });
-                date = date.AddMonths(1);
-            }
+            ConstructPage();
             
-            // sum numbers into data dictionary
-            for (int i = 0; i < FeedItems.Count; i++)
-            {
-                string id = FeedItems[i].Date.Month + "-" + FeedItems[i].Date.Year;
-                Column x = (Column)data[id];
-                x.Cost += FeedItems[i].TotalCosts;
-                x.Cost += FeedItems[i].TransportationCost;
-                data[id] = x;
-            }
+        }
 
-            // calculate totals
-            //var Costs = FeedItems.Sum(item => item.TotalCosts) + FeedItems.Sum(item => item.TransportationCost);
+        public async void ConstructPage()
+        {
+            // Get chart data and load variables
+            ChartHelper chartHelper = new ChartHelper();
+            var result = await chartHelper.GetData();
+            FullList = result.Item1; // used by list view
+            TotalPeriodRevenue = result.Item2;
+            TotalPeriodCost = result.Item3;
+            TotalPeriodDifference = result.Item4;
 
-            */
+            SimpleGraphModel = await chartHelper.GenerateTotalsGraphModel(
+                TotalPeriodRevenue,
+                TotalPeriodCost,
+                TotalPeriodDifference);
+            OnPropertyChanged("GraphModel");
         }
 
     }

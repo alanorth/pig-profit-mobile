@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PigTool.Views.RegistrationPage"
+             x:Class="PigTool.Views.CountrySelectPage"
              NavigationPage.HasNavigationBar="False"
-             Title="{Binding RegistrationTitleTranslation}">
+             Title="{Binding CountrySelectTitleTranslation}">
     <ContentPage.Content>
-        <StackLayout>
-            <Label x:Name="RegistrationTitleLabel"
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Label x:Name="PageTitle"
                        StyleClass="Title">
             </Label>
-            <TableView Intent="Form" HasUnevenRows="True"  x:Name="RegistrationTableView">
-            </TableView>
+            <StackLayout x:Name="CountrySelectTableView">
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

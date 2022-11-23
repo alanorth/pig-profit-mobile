@@ -83,13 +83,15 @@ namespace Shared
         //other payment from above
         public const string MANURESOLDTOTYPE = "ManureSoldToType";
 
-        // BreedingServiceSale
+        // User
         public const string GENDERTYPE = "GenderType";
         public const string DISTRICTTYPE = "DistrictType";
         public const string COUNTYTYPE = "CountyType";
         public const string COUNTRYTYPE = "CountryType";
         public const string SUBCOUNTYTYPE = "SubCountyType";
         public const string CURRENCYTYPE = "CurrencyType";
+
+        public const string LANGUAGETYPE = "LanguageType";
         #endregion
 
         #region StorageTables
@@ -107,7 +109,7 @@ namespace Shared
         public const string PartitionKeyLabourCostItem = "Labour";
         public const string PartitionKeyMembershipItem = "MemberShip";
         public const string PartitionKeyOtherCostItem = "OtherCost";
-        public const string PartitionKeyReporductiveItem = "Reproductive";
+        public const string PartitionKeyReproductiveItem = "Reproductive";
         public const string PartitionKeyWaterCostItem = "Water";
         public const string PartitionKeyAnimalPurchaseItem = "AnimalPurchase";
         public const string PartitionKeyLoanRepaymentItem = "LoanRepayment";

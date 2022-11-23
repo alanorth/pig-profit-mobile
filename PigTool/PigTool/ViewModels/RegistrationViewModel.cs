@@ -31,18 +31,23 @@ namespace PigTool.ViewModels.DataViewModels
         private string? subCounty;
         private string? parish;
         private string? village;
-        private string? country;
         private string? currency;
+        private string? province;
+        private string? commune;
+        private string? sector;
+        private string? cell;
         public string? accessToken;
         public string? registeredEmail;
         List<PickerToolHelper> genderListOfOptions;
-        List<PickerToolHelper> districtListOfOptions;
-        List<PickerToolHelper> countyListOfOptions;
-        List<PickerToolHelper> subCountyListOfOptions;
+        //List<PickerToolHelper> districtListOfOptions;
+        //List<PickerToolHelper> countyListOfOptions;
+        //List<PickerToolHelper> subCountyListOfOptions;
         List<PickerToolHelper> countryListOfOptions;
         List<PickerToolHelper> currencyListOfOptions;
         MobileUser _itemForEditing;
-       
+
+        UserLangSettings lang;
+        string countryTranslationRowKey;
 
         //Button Clicks
         public Command SaveButtonClicked { get; }
@@ -66,6 +71,10 @@ namespace PigTool.ViewModels.DataViewModels
         public string CurrencyTranslation { get; set; }
         public string ParishTranslation { get; set; }
         public string VillageTranslation { get; set; }
+        public string ProvinceTranslation { get; set; }
+        public string CommuneTranslation { get; set; }
+        public string SectorTranslation { get; set; }
+        public string CellTranslation { get; set; }
 
         public string SaveTranslation { get; set; }
         public string ResetTranslation { get; set; }
@@ -73,9 +82,9 @@ namespace PigTool.ViewModels.DataViewModels
         public string DeleteTranslation { get; set; }
 
         public string PickerGenderTranslation { get; set; }
-        public string PickerDistrictTranslation { get; set; }
-        public string PickerCountyTranslation { get; set; }
-        public string PickerSubCountyTranslation { get; set; }
+        //public string PickerDistrictTranslation { get; set; }
+        //public string PickerCountyTranslation { get; set; }
+        //public string PickerSubCountyTranslation { get; set; }
         public string PickerCountryTranslation { get; set; }
         public string PickerCurrencyTranslation { get; set; }
         #endregion
@@ -181,19 +190,7 @@ namespace PigTool.ViewModels.DataViewModels
             }
         }
 
-        public string? Country
-        {
-            get => country;
-            set
-            {
-                if (value != country)
-                {
-                    country = value;
-                    OnPropertyChanged(nameof(Country));
-                }
-            }
-        }
-
+        
         public string? Currency
         {
             get => currency;
@@ -232,6 +229,58 @@ namespace PigTool.ViewModels.DataViewModels
             }
         }
 
+        public string? Province
+        {
+            get => province;
+            set
+            {
+                if (value != province)
+                {
+                    province = value;
+                    OnPropertyChanged(nameof(Province));
+                }
+            }
+        }
+
+        public string? Commune
+        {
+            get => commune;
+            set
+            {
+                if (value != commune)
+                {
+                    commune = value;
+                    OnPropertyChanged(nameof(Commune));
+                }
+            }
+        }
+
+
+        public string? Sector
+        {
+            get => sector;
+            set
+            {
+                if (value != sector)
+                {
+                    sector = value;
+                    OnPropertyChanged(nameof(Sector));
+                }
+            }
+        }
+        public string? Cell
+        {
+            get => cell;
+            set
+            {
+                if (value != cell)
+                {
+                    cell = value;
+                    OnPropertyChanged(nameof(Cell));
+                }
+            }
+        }
+
         #endregion
 
         #region Dropdown Lists
@@ -244,7 +293,7 @@ namespace PigTool.ViewModels.DataViewModels
                 OnPropertyChanged(nameof(GenderListOfOptions));
             }
         }
-
+        /*
         public List<PickerToolHelper> DistrictListOfOptions
         {
             get { return districtListOfOptions; }
@@ -274,7 +323,7 @@ namespace PigTool.ViewModels.DataViewModels
                 OnPropertyChanged(nameof(SubCountyListOfOptions));
             }
         }
-
+        */
         public List<PickerToolHelper> CountryListOfOptions
         {
             get { return countryListOfOptions; }
@@ -311,7 +360,7 @@ namespace PigTool.ViewModels.DataViewModels
                 }
             }
         }
-
+        /*
         private PickerToolHelper selectedDistrict;
 
         public PickerToolHelper SelectedDistrict
@@ -356,7 +405,7 @@ namespace PigTool.ViewModels.DataViewModels
                 }
             }
         }
-
+        */
         private PickerToolHelper selectedCountry;
 
         public PickerToolHelper SelectedCountry
@@ -423,46 +472,54 @@ namespace PigTool.ViewModels.DataViewModels
         public bool EditExistingMode { get => editExistingMode; set { if (editExistingMode != value) { editExistingMode = value; OnPropertyChanged(nameof(EditExistingMode)); } } }
         public bool CreationMode { get; private set; }
 
-        public RegistrationViewModel(bool newUser)
+        public RegistrationViewModel(UserLangSettings lang, string countryTranslationRowKey, bool newUser)
         {
+            this.lang = lang;
+            this.countryTranslationRowKey = countryTranslationRowKey;
             IsEditMode = true;
             CreationMode = true;
             this.newUser = newUser;
 
-            SaveButtonClicked = new Command(SaveButtonCreateHousingItem);
+            SaveButtonClicked = new Command(SaveButtonCreateUser);
             ResetButtonClicked = new Command(ResetButtonPressed);
             DeleteButtonClicked = new Command(DeleteItem);
             EditButtonClicked = new Command(EditItem);
             IsEditMode = true;
             IsCreationMode = !EditExistingMode;
 
-            RegistrationTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(RegistrationTitleTranslation), UserLangSettings.Eng);
-            NameTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(NameTranslation), UserLangSettings.Eng) + " *";
-            UserNameTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(UserNameTranslation), UserLangSettings.Eng) + " *";
-            GenderTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(GenderTranslation), UserLangSettings.Eng);
-            EmailTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EmailTranslation), UserLangSettings.Eng);
-            DistrictTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DistrictTranslation), UserLangSettings.Eng);
-            CountyTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CountyTranslation), UserLangSettings.Eng);
-            SubCountyTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SubCountyTranslation), UserLangSettings.Eng);
-            CountryTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CountryTranslation), UserLangSettings.Eng) + " *";
-            CurrencyTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CurrencyTranslation), UserLangSettings.Eng) + " *";
+            RegistrationTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(RegistrationTitleTranslation), lang);
+            NameTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(NameTranslation), lang) + " *";
+            UserNameTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(UserNameTranslation), lang) + " *";
+            GenderTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(GenderTranslation), lang);
+            EmailTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EmailTranslation), lang);
+            DistrictTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DistrictTranslation), lang);
+            CountyTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CountyTranslation), lang);
+            SubCountyTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SubCountyTranslation), lang);
+            ProvinceTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ProvinceTranslation), lang);
+            CommuneTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommuneTranslation), lang);
+            SectorTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SectorTranslation), lang);
+            CellTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CellTranslation), lang);
 
-            PhoneNumberTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PhoneNumberTranslation), UserLangSettings.Eng) + " *";
-            DistrictTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DistrictTranslation), UserLangSettings.Eng);
-            ParishTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ParishTranslation), UserLangSettings.Eng);
-            VillageTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(VillageTranslation), UserLangSettings.Eng);
+            CurrencyTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CurrencyTranslation), lang) + " *";
 
-            SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), UserLangSettings.Eng);
-            ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), UserLangSettings.Eng);
-            EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), UserLangSettings.Eng);
-            DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), UserLangSettings.Eng);
+            PhoneNumberTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PhoneNumberTranslation), lang) + " *";
+            DistrictTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DistrictTranslation), lang);
+            ParishTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ParishTranslation), lang);
+            VillageTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(VillageTranslation), lang);
 
-            PickerDistrictTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerDistrictTranslation), UserLangSettings.Eng);
-            PickerGenderTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerGenderTranslation), UserLangSettings.Eng);
-            PickerCountyTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerCountyTranslation), UserLangSettings.Eng);
-            PickerSubCountyTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerSubCountyTranslation), UserLangSettings.Eng);
-            PickerCountryTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerCountryTranslation), UserLangSettings.Eng);
-            PickerCurrencyTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerCurrencyTranslation), UserLangSettings.Eng);
+            SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), lang);
+            ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), lang);
+            EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), lang);
+            DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), lang);
+
+            //PickerDistrictTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerDistrictTranslation), lang);
+            PickerGenderTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerGenderTranslation), lang);
+            //PickerCountyTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerCountyTranslation), lang);
+            //PickerSubCountyTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerSubCountyTranslation), lang);
+            PickerCountryTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerCountryTranslation), lang);
+            PickerCurrencyTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerCurrencyTranslation), lang);
+
+
         }
 
         public void populatewithData(MobileUser item)
@@ -483,8 +540,11 @@ namespace PigTool.ViewModels.DataViewModels
             SubCounty = item.SubCounty;
             Parish = item.Parish;
             Village = item.Village;
-            Country = item.Country;
             Currency = item.Currency;
+            Province = item.Province;
+            Commune = item.Commune;
+            Sector = item.Sector;
+            Cell = item.Cell;
         }
 
         public void SetPickers()
@@ -492,15 +552,14 @@ namespace PigTool.ViewModels.DataViewModels
             if (EditExistingMode)
             {
                 SelectedGender = GenderListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Gender).FirstOrDefault();
-                SelectedDistrict = DistrictListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.District).FirstOrDefault();
-                SelectedCounty = CountyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.County).FirstOrDefault();
-                SelectedSubCounty = SubCountyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.SubCounty).FirstOrDefault();
-                SelectedCountry = CountryListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Country).FirstOrDefault();
+                //SelectedDistrict = DistrictListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.District).FirstOrDefault();
+                //SelectedCounty = CountyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.County).FirstOrDefault();
+                //SelectedSubCounty = SubCountyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.SubCounty).FirstOrDefault();
                 SelectedCurrency = CurrencyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Currency).FirstOrDefault();
             }
         }
 
-        private async void SaveButtonCreateHousingItem(object obj)
+        private async void SaveButtonCreateUser(object obj)
         {
 
             var valid = ValidateSave();
@@ -519,17 +578,23 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.PhoneNumber = PhoneNumber;
                 _itemForEditing.Gender = SelectedGender != null ? SelectedGender.TranslationRowKey : null;
                 _itemForEditing.Email = Email;
-                _itemForEditing.District = SelectedDistrict != null ? SelectedDistrict.TranslationRowKey : null;
-                _itemForEditing.County = SelectedCounty != null ? SelectedCounty.TranslationRowKey : null;
-                _itemForEditing.SubCounty = SelectedSubCounty != null ? SelectedSubCounty.TranslationRowKey : null;
+                //_itemForEditing.District = SelectedDistrict != null ? SelectedDistrict.TranslationRowKey : null;
+                //_itemForEditing.County = SelectedCounty != null ? SelectedCounty.TranslationRowKey : null;
+                //_itemForEditing.SubCounty = SelectedSubCounty != null ? SelectedSubCounty.TranslationRowKey : null;
+                _itemForEditing.District = District;
+                _itemForEditing.County = County;
+                _itemForEditing.SubCounty = SubCounty;
                 _itemForEditing.Parish = Parish;
                 _itemForEditing.Village = Village;
-                _itemForEditing.Country = SelectedCountry != null ? SelectedCountry.TranslationRowKey : null;
                 _itemForEditing.Currency = SelectedCurrency !=null ? SelectedCurrency.TranslationRowKey : null;
+                _itemForEditing.Province = Province;
+                _itemForEditing.Commune = Commune;
+                _itemForEditing.Sector = Sector;
+                _itemForEditing.Cell = Cell;
                 _itemForEditing.LastModified = DateTime.UtcNow;
-
                 _itemForEditing.LastUploadDate = DateTime.UtcNow;
-                _itemForEditing.UserLang = UserLangSettings.Eng;
+                _itemForEditing.UserLang = lang;
+                //_itemForEditing.Country = SelectedCountry != null ? SelectedCountry.TranslationRowKey : null;
 
                 if (newUser)
                 {
@@ -586,25 +651,29 @@ namespace PigTool.ViewModels.DataViewModels
                     PhoneNumber = PhoneNumber,
                     Gender = SelectedGender != null ? SelectedGender.TranslationRowKey : null,
                     Email = Email,
-                    District = SelectedDistrict != null ? SelectedDistrict.TranslationRowKey : null,
-                    County = SelectedCounty != null ? SelectedCounty.TranslationRowKey : null,
-                    SubCounty = SelectedSubCounty != null ? SelectedSubCounty.TranslationRowKey : null,
+                    //District = SelectedDistrict != null ? SelectedDistrict.TranslationRowKey : null,
+                    //County = SelectedCounty != null ? SelectedCounty.TranslationRowKey : null,
+                    //SubCounty = SelectedSubCounty != null ? SelectedSubCounty.TranslationRowKey : null,
+                    District = District,
+                    County = County,
+                    SubCounty = SubCounty,
                     Parish = Parish,
                     Village = Village,
-                    Country = SelectedCountry != null ? SelectedCountry.TranslationRowKey : null,
                     Currency = SelectedCurrency != null ? SelectedCurrency.TranslationRowKey : null,
+                    Province = Province,
+                    Commune = Commune,
+                    Sector = Sector,
+                    Cell = Cell,
                     LastModified = DateTime.UtcNow,
                     LastUploadDate = DateTime.UtcNow,
                     PartitionKey = Constants.PartitionKeyUserInfo,
-                    UserLang = UserLangSettings.Eng,
+                    UserLang = lang,
                     Timestamp = DateTime.UtcNow,
                     RowKey = registeredEmail,
                     AuthorisedEmail = registeredEmail,
                     AuthorisedToken = accessToken,
+                    Country = countryTranslationRowKey
                 };
-
-                //go and save the user in the database;
-
 
                
                 //await Shell.Current.GoToAsync(nameof(RegistrationSuccessfulPage));
@@ -713,13 +782,19 @@ namespace PigTool.ViewModels.DataViewModels
             PhoneNumber = null;
             SelectedGender = null;
             Email = null;
-            SelectedDistrict = null;
-            SelectedCounty = null;
-            SelectedSubCounty = null;
+            //SelectedDistrict = null;
+            //SelectedCounty = null;
+            //SelectedSubCounty = null;
+            District = null;
+            County = null;
+            SubCounty = null;
             Parish = null;
             Village = null;
             SelectedCurrency = null;
-            SelectedCountry = null;
+            Province = null;
+            Commune = null;
+            Sector = null;
+            Cell = null;
         }
 
         public async Task PopulateDataDowns()
@@ -728,23 +803,23 @@ namespace PigTool.ViewModels.DataViewModels
             var DistrictControlData = await repo.GetControlData(Constants.DISTRICTTYPE);
             var CountyControlData = await repo.GetControlData(Constants.COUNTYTYPE);
             var SubCountyControlData = await repo.GetControlData(Constants.SUBCOUNTYTYPE);
-            var CountryControlData = await repo.GetControlData(Constants.COUNTRYTYPE);
+
             var CurrencyControlData = await repo.GetControlData(Constants.CURRENCYTYPE);
 
-            GenderListOfOptions = LogicHelper.CreatePickerToolOption(GenderControlData, UserLangSettings.Eng);
-            DistrictListOfOptions = LogicHelper.CreatePickerToolOption(DistrictControlData, UserLangSettings.Eng);
-            CountyListOfOptions = LogicHelper.CreatePickerToolOption(CountyControlData, UserLangSettings.Eng);
-            SubCountyListOfOptions = LogicHelper.CreatePickerToolOption(SubCountyControlData, UserLangSettings.Eng);
-            CountryListOfOptions = LogicHelper.CreatePickerToolOption(CountryControlData, UserLangSettings.Eng);
-            CurrencyListOfOptions = LogicHelper.CreatePickerToolOption(CurrencyControlData, UserLangSettings.Eng);
+            GenderListOfOptions = LogicHelper.CreatePickerToolOption(GenderControlData, lang);
+            //DistrictListOfOptions = LogicHelper.CreatePickerToolOption(DistrictControlData, lang);
+            //CountyListOfOptions = LogicHelper.CreatePickerToolOption(CountyControlData, lang);
+            //SubCountyListOfOptions = LogicHelper.CreatePickerToolOption(SubCountyControlData, lang);
+
+            CurrencyListOfOptions = LogicHelper.CreatePickerToolOption(CurrencyControlData, lang);
+
 
             if (!IsEditMode)
             {
                 SelectedGender = GenderListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Gender).FirstOrDefault();
-                SelectedDistrict = DistrictListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.District).FirstOrDefault();
-                SelectedCounty = CountyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.County).FirstOrDefault();
-                SelectedSubCounty = SubCountyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.SubCounty).FirstOrDefault();
-                SelectedCountry = CountryListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Country).FirstOrDefault();
+                //SelectedDistrict = DistrictListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.District).FirstOrDefault();
+                //SelectedCounty = CountyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.County).FirstOrDefault();
+                //SelectedSubCounty = SubCountyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.SubCounty).FirstOrDefault();
                 SelectedCurrency = CurrencyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Currency).FirstOrDefault();
             }
         }
@@ -757,7 +832,6 @@ namespace PigTool.ViewModels.DataViewModels
                 if (UserName == null) returnString.AppendLine("UserName Not provided");
                 if (Name == null) returnString.AppendLine("Name Not provided");
                 if (PhoneNumber == null) returnString.AppendLine("Phone Number Not Provided");
-                if (SelectedCountry == null) returnString.AppendLine("Country Not Provided");
                 if (SelectedCurrency == null) returnString.AppendLine("Currency Not Provided");
 
                 return returnString.ToString();

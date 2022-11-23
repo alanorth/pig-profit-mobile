@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PigTool.Views.SummaryTab"
-             xmlns:vm="clr-namespace:PigTool.ViewModels"
+             xmlns:vm="clr-namespace:PigTool.ViewModels" 
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
              Title="Summary">
     <ScrollView>
 
@@ -35,16 +36,14 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <BoxView
-                        Background="LightGrey"
-                        Grid.Column="0"
-                        HeightRequest="150"
-                        />
+                <oxy:PlotView Model="{Binding SimpleGraphModel}" HorizontalOptions="CenterAndExpand" 
+                              VerticalOptions="StartAndExpand" 
+                              Margin="2"
+                              HeightRequest="150" 
+                              Grid.Column="0"/>
                 <StackLayout
-                        Grid.Column="1">
-                    <Label Text="Income: $200 Ush"/>
-                    <Label Text="Costs: $100 Ush"/>
-                    <Label Text="Profit/Loss: $100 Ush"/>
+                        Grid.Column="1"
+                    x:Name="TotalLabels">
                 </StackLayout>
             </Grid>
             

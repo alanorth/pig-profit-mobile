@@ -80,7 +80,7 @@ namespace PigTool.Views
 
                 var LabourCostItems = createExpanderElement(
                       ExpanderTitle: "Labour Cost Items",
-                      ColoumnHeader1: "Labour Cost Tyoe",
+                      ColoumnHeader1: "Labour Cost Type",
                       ColoumnHeader2: "Date",
                       ColoumnHeader3: "Labour Cost",
                       BindableColumns1: nameof(LabourCostItem.LabourType),

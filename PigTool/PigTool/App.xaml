@@ -21,9 +21,10 @@
             
             <x:String x:Key="IconSend">&#xf1d8;</x:String>
             <x:String x:Key="IconPrivacy">&#xf06e;</x:String>
+            
             <Style TargetType="Button">
                 <Setter Property="TextColor" Value="White"></Setter>
-
+                <Setter Property="CornerRadius" Value="5"/>
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
@@ -76,6 +77,14 @@
 
             <Style TargetType="Button" Class="ContinueButton">
                 <Setter Property="Margin" Value="0, 10, 0, 20"/>
+            </Style>
+
+            <Style TargetType="Button" Class="LangButton">
+                <Setter Property="BorderColor" Value="White"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="Margin" Value="10, 8, 10, 8"/>
+                <Setter Property="Padding" Value="0, 15, 0, 15"/>
+                <Setter Property="FontSize" Value="16"/>
             </Style>
 
             <Style TargetType="Label" Class="ReportTableHeader">

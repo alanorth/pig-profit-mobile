@@ -43,6 +43,11 @@
                 <Button Text="{Binding ViewReports}"
                         Grid.Row="2"
                         Style="{StaticResource PrimaryHomeButton}"/>
+                <Button Text="(DEV) Add Example Data"
+                        Grid.Row="3"
+                        Style="{StaticResource PrimaryHomeButton}"
+                        Command="{Binding PopulateDB}"
+                        BackgroundColor="#EFCA58"/>
             </Grid>
             <Label Text="{Binding DateTime, StringFormat='{0:T}'}"
                    FontSize="Large"

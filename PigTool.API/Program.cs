@@ -32,13 +32,6 @@ services.AddAuthentication(o =>
     googleOptions.SaveTokens = true;
     googleOptions.AccessDeniedPath = Constants.ROUTE_API_DENIED;
     //googleOptions.AuthorizationEndpoint = "/mobileauth/Google";
-}).AddFacebook(fb =>
-{
-    fb.AppId = builder.Configuration.GetValue<string>("FacebookAppId");
-    fb.AppSecret = builder.Configuration.GetValue<string>("FacebookAppSecret");
-    fb.SaveTokens = true;
-    fb.AccessDeniedPath = Constants.ROUTE_API_DENIED;
-    //fb.AuthorizationEndpoint = "/mobileauth/Facebook";
 });
 
 var app = builder.Build();

@@ -9,16 +9,22 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using PigTool.ViewModels.DataViewModels;
+using PigTool.ViewModels;
 
 namespace PigTool.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RegistrationSuccessfulPage : ContentPage
     {
+        RegistrationSuccessfulViewModel _viewModel;
 
         public RegistrationSuccessfulPage()
         {
+            BindingContext = _viewModel = new RegistrationSuccessfulViewModel();
             InitializeComponent();
+            TitleLabel.Text = _viewModel.RegistrationSuccessfulTitleTranslation;
+            DescLabel.Text = _viewModel.RegistrationSuccessfulDescTranslation;
+            ContinueBtn.Text = _viewModel.RegistrationSuccessfulContinueTranslation;
         }
 
         async void Continue(object sender, EventArgs e)
