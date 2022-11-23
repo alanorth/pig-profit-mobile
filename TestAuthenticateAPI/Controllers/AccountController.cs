@@ -233,10 +233,15 @@ public class AccountController : PigToolBaseController
             var surName = claims?.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.Surname)?.Value;
             var nameIdentifier = claims?.FirstOrDefault(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 
+            // create the user
             var appUser = await CreateOrGetUser(email, givenName, surName);
+
+            // create tokens
             var authToken = GenerateJwtToken(appUser);
+            var refreshToken = GenerateRefreshToken();
 
             // Get parameters to send back to the callback
+            /*
             var qs = new Dictionary<string, string>
                 {
                     { "access_token", authToken.token },
@@ -246,14 +251,26 @@ public class AccountController : PigToolBaseController
                     { "firstName", givenName },
                     { "secondName", surName },
                 };
+            */
 
-            // Build the result url
+             var qs = new Dictionary<string, string>
+                {
+                    { nameof(MobileUser.AuthorisedToken), authToken.token },
+                    { nameof(MobileUser.RefreshToken),  refreshToken },
+                    //{ nameof(MobileUser.RefreshTokenExpiryTime), authToken.expirySeconds.ToString() },
+                    { nameof(MobileUser.AuthorisedEmail), email },
+                    { nameof(MobileUser.Name), givenName },
+                    { nameof(MobileUser.RowKey), appUser.RowKey },
+                    { nameof(MobileUser.PartitionKey), appUser.PartitionKey },
+                };
+
+            // build url with previously calculated info to send back to app
             var url = Callback + "://#" + string.Join(
                 "&",
                 qs.Where(kvp => !string.IsNullOrEmpty(kvp.Value) && kvp.Value != "-1")
                 .Select(kvp => $"{WebUtility.UrlEncode(kvp.Key)}={WebUtility.UrlEncode(kvp.Value)}"));
 
-            // Redirect to final url
+            // Redirect to final url (back to the app)
             Request.HttpContext.Response.Redirect(url);
         }
     }

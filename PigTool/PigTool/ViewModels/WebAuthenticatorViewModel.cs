@@ -134,40 +134,7 @@ namespace Samples.ViewModel
                         await Application.Current.MainPage.DisplayAlert("Error", response.StatusCode.ToString(), "OK");
                     }
 
-
-                    /*
-                    using (var client = new HttpClient())
-                    {
-                        client.BaseAddress = new Uri("https://pigprofittool.azurewebsites.net/");
-                        client.DefaultRequestHeaders.Accept.Clear();
-
-                        // New code:
-                        HttpResponseMessage response2 = await client.GetAsync("api/data/GetUser?name=" + email);
-                        if ((int)response2.StatusCode == 202)
-                        {
-                            var responseString3 = await response2.Content.ReadAsStringAsync();
-                            MobileUser use = JsonConvert.DeserializeObject<MobileUser>(responseString3);
-                            await Application.Current.MainPage.Navigation.PushAsync(new AppShell());
-
-                        }
-                        else if(response2.StatusCode.Equals(HttpStatusCode.NonAuthoritativeInformation))
-                        {
-                            await navigation.PushAsync(new RegistrationPage(r.AccessToken, email));
-                        }
-                        else
-                        {
-                            //something went wrong
-                            await Application.Current.MainPage.DisplayAlert("Error", response2.StatusCode.ToString(), "OK");
-                        }
-                    }*/
-
                 }
-
-                //await navigation.PushAsync(new RegistrationPage(r.AccessToken, email));
-                /*User.AuthorisedToken = r?.AccessToken;
-                User.AuthorisedEmail = email;
-
-                await repo.UpdateUserInfo(User);*/
 
             }
             catch (OperationCanceledException)
@@ -203,7 +170,7 @@ namespace Samples.ViewModel
                 httpClient.Dispose();
 
                 MobileUser use = JsonConvert.DeserializeObject<MobileUser>(responseString);
-                await Application.Current.MainPage.Navigation.PushAsync(new RegistrationPage(use, true));
+                //await Application.Current.MainPage.Navigation.PushAsync(new RegistrationPage(use, true));
 
             }
             catch (Exception ex)

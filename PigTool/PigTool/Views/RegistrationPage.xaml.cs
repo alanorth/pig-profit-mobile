@@ -31,13 +31,13 @@ namespace PigTool.Views
             _viewModel.registeredEmail = email;
             RegistrationTitleLabel.Text = _viewModel.RegistrationTitleTranslation;
         }
-
+        /*
         public RegistrationPage(MobileUser UI, bool newUser)
         {
             BindingContext = _viewModel = new RegistrationViewModel(newUser);
             _viewModel.populatewithData(UI);
             InitializeComponent();
-        }
+        }*/
 
         protected async override void OnAppearing()
         {
