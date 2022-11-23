@@ -33,7 +33,11 @@
     <Shell.BindingContext>
         <vm:AppViewModel/>
     </Shell.BindingContext>
+
     
+    <ShellItem Route="CountrySelect" IsVisible="{Binding ShowRegister}">
+        <ShellContent ContentTemplate="{DataTemplate local:CountrySelectPage}"/>
+    </ShellItem>
     <ShellItem Route="Legal" IsVisible="{Binding ShowRegister}">
         <ShellContent ContentTemplate="{DataTemplate local:LegalDisclaimer}"/>
     </ShellItem>
@@ -69,11 +73,6 @@
         <ShellContent Title="Share" ContentTemplate="{DataTemplate local:SendDataPage}">
             <ShellContent.Icon>
                 <FontImageSource Glyph="&#xf14d;" FontFamily="FA-S" />
-            </ShellContent.Icon>
-        </ShellContent>
-        <ShellContent Title="Authentication Test" ContentTemplate="{DataTemplate local:WebAuthenticatorPage}">
-            <ShellContent.Icon>
-                <FontImageSource Glyph="&#xf1fe;" FontFamily="FA-S" />
             </ShellContent.Icon>
         </ShellContent>
 

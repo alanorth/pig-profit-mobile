@@ -20,6 +20,12 @@ namespace Shared
         public string? SubCounty { get; set; }
         public string? Parish { get; set; }
         public string? Village { get; set; }
+
+        public string? Province { get; set; }
+        public string? Commune { get; set; }
+        public string? Sector { get; set; }
+        public string? Cell { get; set; }
+
         public string Currency {  get; set; }
 
         public DateTime LastUploadDate { get; set; }

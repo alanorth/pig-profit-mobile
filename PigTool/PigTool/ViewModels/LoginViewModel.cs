@@ -26,7 +26,7 @@ namespace PigTool.ViewModels
 
         private async void SignUpClicked(object obj)
         {
-            ((App)Application.Current).MainPage = new LegalDisclaimer();
+            //((App)Application.Current).MainPage = new LegalDisclaimer();
         }
     }
 }

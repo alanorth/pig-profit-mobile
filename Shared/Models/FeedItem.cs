@@ -17,7 +17,7 @@ namespace Shared
         public string? OtherPurchasedFrom { get; set; }
         public string? Comment { get; set; }
         [JsonIgnore]
-        public virtual Translation FeedTypeTranslation { get; set; }
-        public virtual string FeedTypeTranslationString { get; set; }
+        public virtual Translation? FeedTypeTranslation { get; set; }
+        public virtual string? FeedTypeTranslationString { get; set; }
     }
 }

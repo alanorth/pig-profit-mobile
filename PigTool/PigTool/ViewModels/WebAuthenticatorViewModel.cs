@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json;
 using PigTool;
+using PigTool.Helpers;
 using PigTool.ViewModels;
 using PigTool.Views;
 using Shared;
@@ -17,7 +18,7 @@ using Xamarin.Forms;
 
 namespace Samples.ViewModel
 {
-    public class WebAuthenticatorViewModel
+    public class WebAuthenticatorViewModel : LoggedOutViewModel
     {
         //const string authenticationUrl = "https://xamarin-essentials-auth-sample.azurewebsites.net/mobileauth/";
         //const string authenticationUrl = "https://pigprofittool.azurewebsites.net/mobileauth/";
@@ -25,20 +26,26 @@ namespace Samples.ViewModel
         const string authenticationUrl = "http://10.0.2.2:5272/Account/SimpleAuthJSON/"; //for local testing purposes
         const string baseURL = "http://10.0.2.2:5272/Account/";
         INavigation navigation;
-        public WebAuthenticatorViewModel(INavigation navigation)
+        UserLangSettings lang;
+        string countryTranslationRowKey;
+
+        public string WebAuthTitleTranslation { get; set; }
+        public string WebAuthDescTranslation { get; set; }
+        public string GoogleSignUpTranslation { get; set; }
+
+
+        public WebAuthenticatorViewModel(INavigation navigation, UserLangSettings lang, string countryTranslationRowKey)
         {
             GoogleCommand = new Command(async () => await OnAuthenticateTest("Google"));
-            FacebookCommand = new Command(async () => await OnAuthenticate("Facebook"));
             this.navigation = navigation;
+            this.lang = lang;
+            this.countryTranslationRowKey = countryTranslationRowKey;
+            WebAuthTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(WebAuthTitleTranslation), lang);
+            WebAuthDescTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(WebAuthDescTranslation), lang);
+            GoogleSignUpTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(GoogleSignUpTranslation), lang);
         }
 
-        public ICommand MicrosoftCommand { get; }
-
         public ICommand GoogleCommand { get; }
-
-        public ICommand FacebookCommand { get; }
-
-        public ICommand AppleCommand { get; }
 
         string accessToken = string.Empty;
 
@@ -119,7 +126,7 @@ namespace Samples.ViewModel
                     }
                     else if (response.StatusCode.Equals(HttpStatusCode.NonAuthoritativeInformation))
                     {
-                        await navigation.PushAsync(new RegistrationPage(r.AccessToken, email));
+                        await navigation.PushAsync(new RegistrationPage(r.AccessToken, email, lang, countryTranslationRowKey));
                     }
                     else
                     {
@@ -127,40 +134,7 @@ namespace Samples.ViewModel
                         await Application.Current.MainPage.DisplayAlert("Error", response.StatusCode.ToString(), "OK");
                     }
 
-
-                    /*
-                    using (var client = new HttpClient())
-                    {
-                        client.BaseAddress = new Uri("https://pigprofittool.azurewebsites.net/");
-                        client.DefaultRequestHeaders.Accept.Clear();
-
-                        // New code:
-                        HttpResponseMessage response2 = await client.GetAsync("api/data/GetUser?name=" + email);
-                        if ((int)response2.StatusCode == 202)
-                        {
-                            var responseString3 = await response2.Content.ReadAsStringAsync();
-                            MobileUser use = JsonConvert.DeserializeObject<MobileUser>(responseString3);
-                            await Application.Current.MainPage.Navigation.PushAsync(new AppShell());
-
-                        }
-                        else if(response2.StatusCode.Equals(HttpStatusCode.NonAuthoritativeInformation))
-                        {
-                            await navigation.PushAsync(new RegistrationPage(r.AccessToken, email));
-                        }
-                        else
-                        {
-                            //something went wrong
-                            await Application.Current.MainPage.DisplayAlert("Error", response2.StatusCode.ToString(), "OK");
-                        }
-                    }*/
-
                 }
-
-                //await navigation.PushAsync(new RegistrationPage(r.AccessToken, email));
-                /*User.AuthorisedToken = r?.AccessToken;
-                User.AuthorisedEmail = email;
-
-                await repo.UpdateUserInfo(User);*/
 
             }
             catch (OperationCanceledException)
@@ -196,7 +170,7 @@ namespace Samples.ViewModel
                 httpClient.Dispose();
 
                 MobileUser use = JsonConvert.DeserializeObject<MobileUser>(responseString);
-                await Application.Current.MainPage.Navigation.PushAsync(new RegistrationPage(use, true));
+                //await Application.Current.MainPage.Navigation.PushAsync(new RegistrationPage(use, true));
 
             }
             catch (Exception ex)

@@ -433,9 +433,12 @@ namespace PigTool.ViewModels
 
                 //httpClient.DefaultRequestHeaders.Add("XApiKey", "ENTER YOUR API KEY HERE");
                 //httpClient.DefaultRequestHeaders.Authorization =
-                  //new AuthenticationHeaderValue("Google", User.AuthorisedToken);
+                //new AuthenticationHeaderValue("Google", User.AuthorisedToken);
 
-                var jObject = JsonConvert.SerializeObject(apiTransfer);
+                var jObject = JsonConvert.SerializeObject(apiTransfer, new JsonSerializerSettings
+                {
+                    DateTimeZoneHandling = DateTimeZoneHandling.Utc
+                }) ;
 
                 var data = new StringContent(jObject, Encoding.UTF8, "application/json");
                 var url = "https://pigprofittool.azurewebsites.net/api/data/SubmitData";
