@@ -14,6 +14,7 @@ using Newtonsoft.Json;
 using System.Net.Http;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Net;
+using System.Net.Http.Headers;
 
 namespace PigTool.ViewModels.DataViewModels
 {
@@ -601,6 +602,14 @@ namespace PigTool.ViewModels.DataViewModels
                     try
                     {
                         var rest = new RESTService(_itemForEditing);
+
+                        HttpClientHandler handlert = GetInsecureHandler();
+                        var cli = new HttpClient(handlert);
+                        //cli.DefaultRequestHeaders.Authorization =
+                        //new AuthenticationHeaderValue("Bearer", _itemForEditing.AuthorisedToken);
+
+                        //go save to database  
+                        //maybe check to see if there are under data coverage
                         var MobileUser = await rest.ExecuteWithRetryAsync(async () =>
                         {
                             HttpClientHandler handler = GetInsecureHandler();
@@ -608,7 +617,7 @@ namespace PigTool.ViewModels.DataViewModels
                             {
                                 client.DefaultRequestHeaders.Add("Authorization", $"bearer {_itemForEditing.AuthorisedToken}");
 
-                                var responseMessage = await client.GetAsync("http://10.0.2.2:5272/Account/TestAuth");
+                                var responseMessage = await client.GetAsync("https://pigprofittool.azurewebsites.net/Account/TestAuth");
 
                                 responseMessage.EnsureSuccessStatusCode();
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TestAuthenticateAPI.Models
 {
-    public class TokenModel
+    public class TokenModel5
     {
         public string? access_token { get; set; }
         public string? refresh_token { get; set; }

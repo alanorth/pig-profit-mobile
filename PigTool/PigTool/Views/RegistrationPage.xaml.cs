@@ -31,6 +31,19 @@ namespace PigTool.Views
             _viewModel.registeredEmail = email;
             RegistrationTitleLabel.Text = _viewModel.RegistrationTitleTranslation;
         }
+
+        public RegistrationPage(MobileUser user,UserLangSettings lang, string countryTranslationRowKey)
+        {
+            InitializeComponent();
+            this.lang = lang;
+            this.countryTranslationRowKey = countryTranslationRowKey;
+            BindingContext = _viewModel = new RegistrationViewModel(lang, countryTranslationRowKey, true);
+            _viewModel.populatewithData(user);
+            _viewModel.accessToken = user.AuthorisedToken;
+            _viewModel.registeredEmail = user.AuthorisedEmail;
+            RegistrationTitleLabel.Text = _viewModel.RegistrationTitleTranslation;
+        }
+
         /*
         public RegistrationPage(MobileUser UI, bool newUser)
         {

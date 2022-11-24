@@ -14,6 +14,7 @@ using Shared;
 using TestAuthenticateAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Security.Cryptography;
+using Shared.Models;
 
 namespace TestAuthenticateAPI.Controllers;
 
@@ -240,19 +241,6 @@ public class AccountController : PigToolBaseController
             var authToken = GenerateJwtToken(appUser);
             var refreshToken = GenerateRefreshToken();
 
-            // Get parameters to send back to the callback
-            /*
-            var qs = new Dictionary<string, string>
-                {
-                    { "access_token", authToken.token },
-                    { "refresh_token",  string.Empty },
-                    { "jwt_token_expires", authToken.expirySeconds.ToString() },
-                    { "email", email },
-                    { "firstName", givenName },
-                    { "secondName", surName },
-                };
-            */
-
              var qs = new Dictionary<string, string>
                 {
                     { nameof(MobileUser.AuthorisedToken), authToken.token },
@@ -362,6 +350,21 @@ public class AccountController : PigToolBaseController
     {
         return Ok("Success");
     }
+
+
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [HttpGet]
+    public IActionResult TestAuth1()
+    {
+        return Ok("Success");
+    }
+
+    [HttpGet]
+    public IActionResult TestAuth12()
+    {
+        return Ok("Success");
+    }
+
 
     [Authorize]
     [HttpGet]

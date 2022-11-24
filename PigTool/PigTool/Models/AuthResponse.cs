@@ -14,6 +14,7 @@ namespace PigTool.Models
         public string BearerToken { get; set; }
 
         public bool Success { get; set; }
+
         
     }
 }

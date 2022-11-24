@@ -1,9 +1,16 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PigTool.Models;
+using PigTool.Views;
 using Shared;
+using Shared.Models;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics.Contracts;
+using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,15 +29,22 @@ namespace PigTool.Services
         public RESTService(MobileUser user)
         {
             this.user = user;
+            Preferences.Set(bearerToken, user.AuthorisedToken);
+            Preferences.Set(refreshToken, user.RefreshToken);
+        }
+
+        public RESTService()
+        {
         }
 
 
-
+        string bearerToken = "BearerToken";
+        string refreshToken = "RefreshToken";
         private HttpClient client = new HttpClient();
 
         private static int _refreshTokenEntered = 0;
-        public string BearerToken => Preferences.Get("BearerToken", string.Empty);
-        public string RefreshToken => Preferences.Get("RefreshToken", string.Empty);
+        public string BearerToken => Preferences.Get(bearerToken, string.Empty);
+        public string RefreshToken => Preferences.Get(refreshToken, string.Empty);
         private const string REFRESH_TOKEN_URL = "http://10.0.0.199:4444/auth/refreshtoken";
         private const string AUTH_URL = "http://10.0.0.199:4444/auth";
 
@@ -56,6 +70,11 @@ namespace PigTool.Services
                 if (tryForceRefreshToken)
                 {
                     var success = await TryAuthWithRefreshTokenAsync();
+                    //try force sigin via google to authenticate
+                    if (!success)
+                    {
+                        var diction = OnAuthenticate("Google");
+                    }
                 }
                 try
                 {
@@ -93,14 +112,15 @@ namespace PigTool.Services
                 var stringResponse = await responseMessage.Content.ReadAsStringAsync();
                 var authResponse = JsonConvert.DeserializeObject<AuthResponse>(stringResponse);
 
-                Preferences.Set("BearerToken", authResponse.BearerToken);
-                Preferences.Set("RefreshToken", authResponse.RefreshToken);
+                Preferences.Set(bearerToken, authResponse.BearerToken);
+                Preferences.Set(refreshToken, authResponse.RefreshToken);
 
                 return authResponse;
             }
             else
             {
-                return new AuthResponse();
+               return new AuthResponse();
+               
             }
         }
 
@@ -109,8 +129,8 @@ namespace PigTool.Services
         {
             try
             {
-                //Tenta executar o refreshtoken apenas da primeira thread que solicitou...
-                //Para as demais threads, faz com que elas aguardem pela renovacao do token.
+                //Try to execute for refreshtoken as soon as the first thread that requested it...
+                // For the other threads, make sure they wait for the renewal of the token.
                 if (Interlocked.CompareExchange(ref _refreshTokenEntered, 1, 0) == 0)
                 {
 
@@ -120,7 +140,7 @@ namespace PigTool.Services
 
                     Interlocked.Exchange(ref _refreshTokenEntered, 0);
                     Console.WriteLine("Refresh Token Renewed");
-                    return authResponse.Success;
+                    return authResponse;
                 }
                 else
                 {
@@ -143,14 +163,14 @@ namespace PigTool.Services
 
         }
 
-        private async Task<AuthResponse> AuthWithRefreshTokenAsync()
+        private async Task<bool> AuthWithRefreshTokenAsync()
         {
-            //var jsonObject = new MobileUser();
-            //jsonObject.RefreshToken = Preferences.Get("RefreshToken", string.Empty);
+            dynamic jsonObject = new JObject();
+            jsonObject.access_token = user.AuthorisedToken;
+            jsonObject.refresh_token = user.RefreshToken;
 
 
-
-            var content = new StringContent(user.RefreshToken, Encoding.UTF8, "application/json");
+            var content = new StringContent(jsonObject.toString(), Encoding.UTF8, "application/json");
             var responseMessage = await client.PostAsync(REFRESH_TOKEN_URL, content);
 
             if (responseMessage.IsSuccessStatusCode)
@@ -158,16 +178,93 @@ namespace PigTool.Services
                 var stringResponse = await responseMessage.Content.ReadAsStringAsync();
                 var authResponse = JsonConvert.DeserializeObject<AuthResponse>(stringResponse);
 
-                Preferences.Set("BearerToken", authResponse.BearerToken);
-                Preferences.Set("RefreshToken", authResponse.RefreshToken);
+                if (authResponse != null && authResponse.Success)
+                {
+                    user.AuthorisedToken = authResponse.BearerToken;
+                    user.RefreshToken = authResponse.RefreshToken;
+                }
 
-                return authResponse;
+                Preferences.Set(bearerToken, authResponse.BearerToken);
+                Preferences.Set(refreshToken, authResponse.RefreshToken);
+
+                return true;
             }
             else
             {
-                return new AuthResponse();
+                return false;
             }
 
+        }
+
+        public async Task<MobileAuthModelData>OnAuthenticate(string scheme)
+        {
+            var authRepsponse = new MobileAuthModelData();
+            authRepsponse.SuccesfulResponse = false;
+
+            try
+            {
+                WebAuthenticatorResult r = null;
+
+                if (scheme.Equals("Apple")
+                    && DeviceInfo.Platform == DevicePlatform.iOS
+                    && DeviceInfo.Version.Major >= 13)
+                {
+                    // Make sure to enable Apple Sign In in both the
+                    // entitlements and the provisioning profile.
+                    var options = new AppleSignInAuthenticator.Options
+                    {
+                        IncludeEmailScope = true,
+                        IncludeFullNameScope = true,
+                    };
+                    r = await AppleSignInAuthenticator.AuthenticateAsync(options);
+                }
+                else
+                {
+                    //var authUrl = new Uri("http://10.0.2.2:5272/Account/mobileauth/" + scheme);
+                    var authUrl = new Uri("https://pigprofittool.azurewebsites.net/Account/MobileAuth/"+scheme);
+                    var callbackUrl = new Uri("pigprofittool://");
+
+                    r = await WebAuthenticator.AuthenticateAsync(authUrl, callbackUrl);
+                }
+
+                /*var AuthToken = string.Empty;
+                if (r.Properties.TryGetValue(nameof(MobileUser.Name), out var name) && !string.IsNullOrEmpty(name))
+                    AuthToken += $"Name: {name}{Environment.NewLine}";
+                if (r.Properties.TryGetValue("email", out var email) && !string.IsNullOrEmpty(email))
+                    AuthToken += $"Email: {email}{Environment.NewLine}";
+                AuthToken += r?.AccessToken ?? r?.IdToken;*/
+
+                
+                authRepsponse.SuccesfulResponse = true;
+                authRepsponse.ResultProperties = r.Properties;
+
+                return authRepsponse;
+                /*var qs = new Dictionary<string, string>
+                {
+                    { nameof(MobileUser.AuthorisedToken), authToken.token },
+                    { nameof(MobileUser.RefreshToken),  refreshToken },
+                    //{ nameof(MobileUser.RefreshTokenExpiryTime), authToken.expirySeconds.ToString() },
+                    { nameof(MobileUser.AuthorisedEmail), email },
+                    { nameof(MobileUser.Name), givenName },
+                    { nameof(MobileUser.RowKey), appUser.RowKey },
+                    { nameof(MobileUser.PartitionKey), appUser.PartitionKey },
+                };*/
+
+               
+
+            }
+            catch (OperationCanceledException)
+            {
+                authRepsponse.FailMessage = "Login cancelled.";
+
+                return authRepsponse;
+            }
+            catch (Exception ex)
+            {
+                authRepsponse.FailMessage = ex.Message;
+
+                return authRepsponse;
+            }
         }
 
     }

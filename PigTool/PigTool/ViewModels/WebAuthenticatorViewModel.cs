@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json;
 using PigTool;
 using PigTool.Helpers;
+using PigTool.Services;
 using PigTool.ViewModels;
 using PigTool.Views;
 using Shared;
@@ -15,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using static System.Net.WebRequestMethods;
 
 namespace Samples.ViewModel
 {
@@ -36,7 +38,7 @@ namespace Samples.ViewModel
 
         public WebAuthenticatorViewModel(INavigation navigation, UserLangSettings lang, string countryTranslationRowKey)
         {
-            GoogleCommand = new Command(async () => await OnAuthenticateTest("Google"));
+            GoogleCommand = new Command(async () => await OnAuthenticate("Google"));
             this.navigation = navigation;
             this.lang = lang;
             this.countryTranslationRowKey = countryTranslationRowKey;
@@ -59,90 +61,43 @@ namespace Samples.ViewModel
         {
             try
             {
-                WebAuthenticatorResult r = null;
+                RESTService rest = new RESTService();
 
-                if (scheme.Equals("Apple")
-                    && DeviceInfo.Platform == DevicePlatform.iOS
-                    && DeviceInfo.Version.Major >= 13)
+                var mobileAuth = await rest.OnAuthenticate(scheme);
+
+                if(mobileAuth != null && mobileAuth.SuccesfulResponse)
                 {
-                    // Make sure to enable Apple Sign In in both the
-                    // entitlements and the provisioning profile.
-                    var options = new AppleSignInAuthenticator.Options
-                    {
-                        IncludeEmailScope = true,
-                        IncludeFullNameScope = true,
-                    };
-                    r = await AppleSignInAuthenticator.AuthenticateAsync(options);
+
+                    mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.AuthorisedToken), out var token);
+                    mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.RefreshToken), out var reToken);
+                    mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.AuthorisedEmail), out var authEmail);
+                    mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.Name), out var name);
+                    mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.RowKey), out var rowKey);
+                    mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.PartitionKey), out var partitionKey);
+
+                    var mobileUser = new MobileUser();
+                    mobileUser.AuthorisedEmail = authEmail;
+                    mobileUser.AuthorisedToken = token;
+                    mobileUser.RefreshToken = reToken;
+                    mobileUser.Name = name;
+                    mobileUser.RowKey = rowKey;
+                    mobileUser.PartitionKey = partitionKey;
+
+                    await Application.Current.MainPage.Navigation.PushAsync(new RegistrationPage(mobileUser, lang,countryTranslationRowKey));
                 }
                 else
                 {
-                    var authUrl = new Uri(authenticationUrl + scheme);
-                    var callbackUrl = new Uri("pigprofittool://");
-                    //var callbackUrl = new Uri("xamarinessentials://");
-
-                    r = await WebAuthenticator.AuthenticateAsync(authUrl, callbackUrl);
-                }
-
-                AuthToken = string.Empty;
-                if (r.Properties.TryGetValue("name", out var name) && !string.IsNullOrEmpty(name))
-                    AuthToken += $"Name: {name}{Environment.NewLine}";
-                if (r.Properties.TryGetValue("email", out var email) && !string.IsNullOrEmpty(email))
-                    AuthToken += $"Email: {email}{Environment.NewLine}";
-                AuthToken += r?.AccessToken ?? r?.IdToken;
-
-
-                /*
-                 * { "access_token", auth.Properties.GetTokenValue("access_token") },
-                    { "refresh_token", auth.Properties.GetTokenValue("refresh_token") ?? string.Empty },
-                    { "expires", (auth.Properties.ExpiresUtc?.ToUnixTimeSeconds() ?? -1).ToString() },
-                    { "email", email }
-                 */
-
-                //get user if,  null  create, otherwise  proceed.
-
-                if (r?.AccessToken != null)
-                {
-                    var httpClient = new HttpClient();
-
-                    //httpClient.DefaultRequestHeaders.Add("XApiKey", "ENTER YOUR API KEY HERE");
-                    //httpClient.DefaultRequestHeaders.Authorization =
-                    //new AuthenticationHeaderValue("Google", User.AuthorisedToken);
-                    var url = baseURL + "TestAuth";
-
-                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", r.AccessToken);
-
-                    var response = await httpClient.GetAsync(url);
-                    //var response = await httpClient.GetAsync(url);
-                    var responseString = await response.Content.ReadAsStringAsync();
-
-                    httpClient.Dispose();
-
-                    if ((int)response.StatusCode == 202)
+                    if(mobileAuth != null)
                     {
-                        var responseString3 = await response.Content.ReadAsStringAsync();
-                        MobileUser use = JsonConvert.DeserializeObject<MobileUser>(responseString3);
-                        await Application.Current.MainPage.Navigation.PushAsync(new AppShell());
-
-                    }
-                    else if (response.StatusCode.Equals(HttpStatusCode.NonAuthoritativeInformation))
-                    {
-                        await navigation.PushAsync(new RegistrationPage(r.AccessToken, email, lang, countryTranslationRowKey));
+                        await Application.Current.MainPage.DisplayAlert("Error", mobileAuth.FailMessage, "OK");
                     }
                     else
                     {
-                        //something went wrong
-                        await Application.Current.MainPage.DisplayAlert("Error", response.StatusCode.ToString(), "OK");
+                        await Application.Current.MainPage.DisplayAlert("Error", "Google Auth Failed", "OK");
                     }
-
+                    
                 }
 
-            }
-            catch (OperationCanceledException)
-            {
-                Console.WriteLine("Login cancelled.");
-
-                AuthToken = string.Empty;
-                await Application.Current.MainPage.DisplayAlert("Error", "Login cancelled.", "OK");
             }
             catch (Exception ex)
             {
@@ -161,7 +116,9 @@ namespace Samples.ViewModel
                 HttpClientHandler insecureHandler = GetInsecureHandler();
                 var httpClient = new HttpClient(insecureHandler);
 
-                var url = baseURL + "SimpleAuthJSON";
+                //var url = baseURL + "SimpleAuthJSON";
+
+                var url = "https://pigprofittool.azurewebsites.net/Account/SimpleAuthJSON";
 
                 var response = await httpClient.GetAsync(url);
 
