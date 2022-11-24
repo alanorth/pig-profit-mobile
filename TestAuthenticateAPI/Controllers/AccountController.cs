@@ -73,7 +73,7 @@ public class AccountController : PigToolBaseController
 
 
     [HttpGet]
-    public async Task<ActionResult> SimpleAuthJSON()
+    public async Task SimpleAuthJSON()
     {
         var email = "MyMan@Gmail.Test";
         var givenName = "GMan";
@@ -104,6 +104,16 @@ public class AccountController : PigToolBaseController
                     { nameof(MobileUser.PartitionKey), appUser.PartitionKey },
                 };
 
+            // build url with previously calculated info to send back to app
+            var url = Callback + "://#" + string.Join(
+                "&",
+                qs.Where(kvp => !string.IsNullOrEmpty(kvp.Value) && kvp.Value != "-1")
+                .Select(kvp => $"{WebUtility.UrlEncode(kvp.Key)}={WebUtility.UrlEncode(kvp.Value)}"));
+
+            // Redirect to final url (back to the app)
+            Request.HttpContext.Response.Redirect(url);
+
+            /*
             try
             {
                 var compressedQs = JsonConvert.SerializeObject(qs);
@@ -127,18 +137,18 @@ public class AccountController : PigToolBaseController
                 };
 
                 return failedResult;
-            }
+            }*/
         }
         catch (Exception ex)
         {
-            var failedResult = new ContentResult()
+           /* var failedResult = new ContentResult()
             {
                 StatusCode = 500,
                 Content = "Something went wrong " + ex.Message,
                 ContentType = "application/json",
             };
 
-            return failedResult;
+            return failedResult;*/
         }
         
 
