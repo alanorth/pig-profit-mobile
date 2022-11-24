@@ -23,7 +23,7 @@ namespace TestAuthenticateAPI.Controllers;
 [ApiController]
 public class AccountController : PigToolBaseController
 {
-    const string Callback = "xamarinapp";
+    const string Callback = "pigprofittool";
     private readonly SignInManager<APIUser> _signInManager;
     private readonly UserManager<APIUser> _userManager;
     private readonly IConfiguration _configuration;
