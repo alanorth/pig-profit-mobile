@@ -25,6 +25,7 @@ namespace PigTool.Services
     public class RESTService : IRESTService
     {
         private MobileUser user;
+        const string baseURL = "https://pigprofittool.azurewebsites.net/Account/";
 
         public RESTService(MobileUser user)
         {
@@ -45,8 +46,6 @@ namespace PigTool.Services
         private static int _refreshTokenEntered = 0;
         public string BearerToken => Preferences.Get(bearerToken, string.Empty);
         public string RefreshToken => Preferences.Get(refreshToken, string.Empty);
-        private const string REFRESH_TOKEN_URL = "http://10.0.0.199:4444/auth/refreshtoken";
-        private const string AUTH_URL = "http://10.0.0.199:4444/auth";
 
         //private const string REFRESH_TOKEN_URL = "https://localhost:47629/auth/refreshtoken";
         //private const string AUTH_URL = "https://localhost:47629/auth";
@@ -73,7 +72,7 @@ namespace PigTool.Services
                     //try force sigin via google to authenticate
                     if (!success)
                     {
-                        var diction = OnAuthenticate("Google");
+                        var diction = await OnAuthenticate("Google");
                     }
                 }
                 try
@@ -100,12 +99,14 @@ namespace PigTool.Services
 
         public async Task<AuthResponse> AuthWithCredentialsAsync(string username, string password)
         {
-            var jsonObject = new MobileUser();
-            jsonObject.AuthorisedUserName = username;
-            jsonObject.AuthorisedEmail = password;
+            dynamic jsonObject = new JObject();
+            jsonObject.access_token = user.AuthorisedToken;
+            jsonObject.refresh_token = user.RefreshToken;
 
-            var content = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync(AUTH_URL, content);
+            var tokenObject = JsonConvert.SerializeObject(jsonObject);
+
+            var content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+            var responseMessage = await client.PostAsync("AUTH_URL", content);
 
             if (responseMessage.IsSuccessStatusCode)
             {
@@ -169,9 +170,10 @@ namespace PigTool.Services
             jsonObject.access_token = user.AuthorisedToken;
             jsonObject.refresh_token = user.RefreshToken;
 
+            var tokenObject = JsonConvert.SerializeObject(jsonObject);
 
-            var content = new StringContent(jsonObject.toString(), Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync(REFRESH_TOKEN_URL, content);
+            var content = new StringContent(tokenObject, Encoding.UTF8, "application/json");
+            var responseMessage = await client.PostAsync(baseURL + "RefreshToken", content);
 
             if (responseMessage.IsSuccessStatusCode)
             {

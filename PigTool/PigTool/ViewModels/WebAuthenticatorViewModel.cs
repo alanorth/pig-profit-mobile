@@ -1,8 +1,10 @@
 ﻿using Azure;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PigTool;
 using PigTool.Helpers;
+using PigTool.Models;
 using PigTool.Services;
 using PigTool.ViewModels;
 using PigTool.Views;
@@ -26,7 +28,8 @@ namespace Samples.ViewModel
         //const string authenticationUrl = "https://pigprofittool.azurewebsites.net/mobileauth/";
         //const string authenticationUrl = "http://10.0.2.2:5272/Account/mobileauth/"; //for local testing purposes
         const string authenticationUrl = "http://10.0.2.2:5272/Account/SimpleAuthJSON/"; //for local testing purposes
-        const string baseURL = "http://10.0.2.2:5272/Account/";
+        //const string baseURL = "http://10.0.2.2:5272/Account/";
+        const string baseURL = "https://pigprofittool.azurewebsites.net/Account/";
         INavigation navigation;
         UserLangSettings lang;
         string countryTranslationRowKey;
@@ -38,7 +41,7 @@ namespace Samples.ViewModel
 
         public WebAuthenticatorViewModel(INavigation navigation, UserLangSettings lang, string countryTranslationRowKey)
         {
-            GoogleCommand = new Command(async () => await OnAuthenticate("Google"));
+            GoogleCommand = new Command(async () => await OnAuthenticateTest("Google"));
             this.navigation = navigation;
             this.lang = lang;
             this.countryTranslationRowKey = countryTranslationRowKey;
@@ -111,10 +114,12 @@ namespace Samples.ViewModel
 
         async Task OnAuthenticateTest(string scheme)
         {
+            //HttpClientHandler insecureHandler = GetInsecureHandler();
+            var httpClient = new HttpClient();
+
             try
             {
-                HttpClientHandler insecureHandler = GetInsecureHandler();
-                var httpClient = new HttpClient(insecureHandler);
+                
 
                 //var url = baseURL + "SimpleAuthJSON";
 
@@ -124,16 +129,44 @@ namespace Samples.ViewModel
 
                 var responseString = await response.Content.ReadAsStringAsync();
 
-                httpClient.Dispose();
+               
 
                 MobileUser use = JsonConvert.DeserializeObject<MobileUser>(responseString);
                 //await Application.Current.MainPage.Navigation.PushAsync(new RegistrationPage(use, true));
+
+                dynamic jsonObject = new JObject();
+                jsonObject.access_token = use.AuthorisedToken;
+                jsonObject.refresh_token = use.RefreshToken;
+
+                var tokenObject = JsonConvert.SerializeObject(jsonObject);
+
+                var content = new StringContent(tokenObject, Encoding.UTF8, "application/json");
+                var responseMessage = await httpClient.PostAsync(baseURL+ "RefreshToken", content);
+
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var stringResponse = await responseMessage.Content.ReadAsStringAsync();
+                    var authResponse = JsonConvert.DeserializeObject<AuthResponse>(stringResponse);
+
+                    if (authResponse != null && authResponse.Success)
+                    {
+                        use.AuthorisedToken = authResponse.BearerToken;
+                        use.RefreshToken = authResponse.RefreshToken;
+                        await Application.Current.MainPage.DisplayAlert("Error", $"We Succeed In Refresfing The Token", "OK");
+                    }
+                    
+                }
+                else
+                {
+                }
+                httpClient.Dispose();
+
 
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Failed: {ex.Message}");
-
+                httpClient.Dispose();
                 AuthToken = string.Empty;
                 await Application.Current.MainPage.DisplayAlert("Error", $"Failed: {ex.Message}", "OK");
             }

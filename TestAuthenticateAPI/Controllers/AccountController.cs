@@ -73,7 +73,7 @@ public class AccountController : PigToolBaseController
 
 
     [HttpGet]
-    public async Task SimpleAuthJSON()
+    public async Task<ActionResult> SimpleAuthJSON()
     {
         var email = "MyMan@Gmail.Test";
         var givenName = "GMan";
@@ -111,9 +111,9 @@ public class AccountController : PigToolBaseController
                 .Select(kvp => $"{WebUtility.UrlEncode(kvp.Key)}={WebUtility.UrlEncode(kvp.Value)}"));
 
             // Redirect to final url (back to the app)
-            Request.HttpContext.Response.Redirect(url);
+            //Request.HttpContext.Response.Redirect(url);
 
-            /*
+
             try
             {
                 var compressedQs = JsonConvert.SerializeObject(qs);
@@ -137,87 +137,84 @@ public class AccountController : PigToolBaseController
                 };
 
                 return failedResult;
-            }*/
+            }
         }
         catch (Exception ex)
         {
-           /* var failedResult = new ContentResult()
+            var failedResult = new ContentResult()
             {
                 StatusCode = 500,
                 Content = "Something went wrong " + ex.Message,
                 ContentType = "application/json",
             };
 
-            return failedResult;*/
+            return failedResult;
         }
-        
 
-        
+
+
 
     }
 
     [HttpPost]
     public async Task<IActionResult> RefreshToken(TokenModel tokenModel)
     {
-        if (tokenModel is null)
+        try
         {
-            return BadRequest("Invalid client request");
-        }
+            if (tokenModel is null)
+            {
+                return BadRequest("Invalid client request");
+            }
 
-        string? accessToken = tokenModel.access_token;
-        string? refreshToken = tokenModel.refresh_token;
+            string? accessToken = tokenModel.access_token;
+            string? refreshToken = tokenModel.refresh_token;
 
-        var principal = GetPrincipalFromExpiredToken(accessToken);
-        if (principal == null)
-        {
-            return BadRequest("Invalid access token or refresh token");
-        }
+            var principal = GetPrincipalFromExpiredToken(accessToken);
+            if (principal == null)
+            {
+                return BadRequest("Invalid access token or refresh token");
+            }
 
 #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
-        string username = principal.Identity.Name;
+            string username = principal.Identity.Name;
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
-        var user = await _userManager.FindByNameAsync(username);
+            var user = await _userManager.FindByNameAsync(username);
 
-        if (user == null || user.RefreshToken != refreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
-        {
-            return BadRequest("Invalid access token or refresh token");
+            if (user == null || user.RefreshToken != refreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
+            {
+                return BadRequest("Invalid access token or refresh token");
+            }
+
+            var newAccessToken = GenerateJwtToken(user);
+            var newRefreshToken = GenerateRefreshToken();
+
+            user.RefreshToken = newRefreshToken;
+            _ = int.TryParse(_configuration["JWT-RefreshTokenValidityInDays"], out int refreshTokenValidityInDays);
+            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(refreshTokenValidityInDays);
+            await _userManager.UpdateAsync(user);
+
+            return new ObjectResult(new
+            {
+                Success = true,
+                bearerToken = newAccessToken.token,
+                refreshToken = newRefreshToken
+            });
         }
-
-        var newAccessToken = GenerateJwtToken(user);
-        var newRefreshToken = GenerateRefreshToken();
-
-        user.RefreshToken = newRefreshToken;
-        _ = int.TryParse(_configuration["JWT-RefreshTokenValidityInDays"], out int refreshTokenValidityInDays);
-        user.RefreshTokenExpiryTime = DateTime.Now.AddDays(refreshTokenValidityInDays);
-        await _userManager.UpdateAsync(user);
-
-        return new ObjectResult(new
+        catch (Exception ex)
         {
-            accessToken = newAccessToken.token,
-            refreshToken = newRefreshToken
-        });
-    }
-    /*
-    private JwtSecurityToken CreateToken(List<Claim> authClaims)
-    {
-        var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
-        _ = int.TryParse(_configuration["JWT:TokenValidityInMinutes"], out int tokenValidityInMinutes);
-
-        var token = new JwtSecurityToken(
-            issuer: _configuration["JWT:ValidIssuer"],
-            audience: _configuration["JWT:ValidAudience"],
-            expires: DateTime.Now.AddMinutes(tokenValidityInMinutes),
-            claims: authClaims,
-            signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
-            );
-
-        return token;
+            Console.WriteLine(ex.Message);
+            return new ObjectResult(new
+            {
+                Success = false,
+                bearerToken = "",
+                refreshToken = ""
+            });
+        }
     }
 
-    */
 
 
     [HttpGet("{scheme}")]
@@ -251,7 +248,7 @@ public class AccountController : PigToolBaseController
             var authToken = GenerateJwtToken(appUser);
             var refreshToken = GenerateRefreshToken();
 
-             var qs = new Dictionary<string, string>
+            var qs = new Dictionary<string, string>
                 {
                     { nameof(MobileUser.AuthorisedToken), authToken.token },
                     { nameof(MobileUser.RefreshToken),  refreshToken },
@@ -390,7 +387,7 @@ public class AccountController : PigToolBaseController
         //var userList = _userManager.Users.First();
         //var yes = _userManager.Users.First(x => x.NormalizedEmail == appUserEmail.ToUpper().Normalize());
         var user = await _userManager.FindByEmailAsync(appUserEmail);
-        
+
         //var user2 = await _userManager.FindByNameAsync(firstName + "-" + surName);
         //var norm = appUserEmail.Normalize();
         if (user == null)
