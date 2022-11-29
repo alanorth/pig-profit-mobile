@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             x:Class="PigTool.App">
+<Application
+    x:Class="PigTool.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
     <!--
         Define global resources and styles here, that apply to all pages in your app.
     -->
@@ -18,13 +19,13 @@
             <x:String x:Key="IconRecord">&#xf328;</x:String>
             <x:String x:Key="IconSettings">&#xf085;</x:String>
             <x:String x:Key="IconRefresh">&#xf021;</x:String>
-            
+
             <x:String x:Key="IconSend">&#xf1d8;</x:String>
             <x:String x:Key="IconPrivacy">&#xf06e;</x:String>
-            
+
             <Style TargetType="Button">
-                <Setter Property="TextColor" Value="White"></Setter>
-                <Setter Property="CornerRadius" Value="5"/>
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="5" />
                 <Setter Property="VisualStateManager.VisualStateGroups">
                     <VisualStateGroupList>
                         <VisualStateGroup x:Name="CommonStates">
@@ -44,58 +45,58 @@
 
             </Style>
 
-            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
-                <Setter Property="Visual" Value="Default"></Setter>
+            <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
+                <Setter Property="Visual" Value="Default" />
                 <!--<Setter Property="BackgroundColor" Value="#eae4d9"/>-->
-                <Setter Property="Padding" Value="10, 0"/>
+                <Setter Property="Padding" Value="10, 0" />
             </Style>
 
-            <Style TargetType="Label" Class="Title">
-                <Setter Property="VerticalOptions" Value="Start"/>
-                <Setter Property="VerticalTextAlignment" Value="Center"/>
-                <Setter Property="HorizontalOptions" Value="Center"/>
-                <Setter Property="HorizontalTextAlignment" Value="Center"/>
-                <Setter Property="Margin" Value="30, 40, 30, 30"/>
-                <Setter Property="TextColor" Value="{StaticResource Primary}"/>
-                <Setter Property="FontSize" Value="30"/>
-                <Setter Property="FontAttributes" Value="Bold"/>
+            <Style Class="Title" TargetType="Label">
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="Margin" Value="30, 40, 30, 30" />
+                <Setter Property="TextColor" Value="{StaticResource Primary}" />
+                <Setter Property="FontSize" Value="30" />
+                <Setter Property="FontAttributes" Value="Bold" />
             </Style>
 
-            <Style TargetType="Label" Class="ReportHeader">
-                <Setter Property="TextColor" Value="{StaticResource Primary}"/>
-                <Setter Property="FontSize" Value="18"/>
-                <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="Margin" Value="0,20,0,0"/>
+            <Style Class="ReportHeader" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource Primary}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Margin" Value="0,20,0,0" />
             </Style>
 
-            <Style TargetType="BoxView" Class="Seperator">
-                <Setter Property="HeightRequest" Value="2"/>
-                <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
-                <Setter Property="Margin" Value="0,0,0,10"/>
-            </Style>
-                   
-
-            <Style TargetType="Button" Class="ContinueButton">
-                <Setter Property="Margin" Value="0, 10, 0, 20"/>
-            </Style>
-
-            <Style TargetType="Button" Class="LangButton">
-                <Setter Property="BorderColor" Value="White"/>
-                <Setter Property="BorderWidth" Value="2"/>
-                <Setter Property="Margin" Value="10, 8, 10, 8"/>
-                <Setter Property="Padding" Value="0, 15, 0, 15"/>
-                <Setter Property="FontSize" Value="16"/>
-            </Style>
-
-            <Style TargetType="Label" Class="ReportTableHeader">
-                <Setter Property="TextColor" Value="White"/>
+            <Style Class="Seperator" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="2" />
                 <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
-                <Setter Property="Margin" Value="0,10,0,10"/>
+                <Setter Property="Margin" Value="0,0,0,10" />
+            </Style>
+
+
+            <Style Class="ContinueButton" TargetType="Button">
+                <Setter Property="Margin" Value="0, 10, 0, 20" />
+            </Style>
+
+            <Style Class="LangButton" TargetType="Button">
+                <Setter Property="BorderColor" Value="White" />
+                <Setter Property="BorderWidth" Value="2" />
+                <Setter Property="Margin" Value="10, 8, 10, 8" />
+                <Setter Property="Padding" Value="0, 15, 0, 15" />
+                <Setter Property="FontSize" Value="16" />
+            </Style>
+
+            <Style Class="ReportTableHeader" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Margin" Value="0,10,0,10" />
             </Style>
 
             <Style x:Key="SliderLowerValueLabelStyle" TargetType="xct:RangeSlider">
-                <Setter Property="IsVisible" Value="false"/>
+                <Setter Property="IsVisible" Value="false" />
             </Style>
-        </ResourceDictionary>        
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

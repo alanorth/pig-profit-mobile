@@ -1,15 +1,8 @@
-﻿using PigTool.Helpers;
+﻿using PigTool.ViewModels.DataViewModels;
 using Shared;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using PigTool.ViewModels.DataViewModels;
-using System.Windows.Input;
 
 namespace PigTool.Views
 {
@@ -22,8 +15,6 @@ namespace PigTool.Views
         public LanguageSelectPage()
         {
             InitializeComponent();
-
-
         }
 
         protected async override void OnAppearing()
@@ -36,7 +27,8 @@ namespace PigTool.Views
             }
         }
 
-        public class LanguageDisplay {
+        public class LanguageDisplay
+        {
             public string text;
             public UserLangSettings lang;
         }
@@ -56,8 +48,8 @@ namespace PigTool.Views
 
             foreach (var lan in langs)
             {
-                buttonStack = new StackLayout() { VerticalOptions = LayoutOptions.CenterAndExpand};
-                button = new Button() { StyleClass= new List<string> { "LangButton" } };
+                buttonStack = new StackLayout() { VerticalOptions = LayoutOptions.CenterAndExpand };
+                button = new Button() { StyleClass = new List<string> { "LangButton" } };
                 button.Text = lan.text;
                 button.Clicked += async (sender, args) => await Navigation.PushAsync(new CountrySelectPage(lan.lang));
                 buttonStack.Children.Add(button);

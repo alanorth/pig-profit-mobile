@@ -1,15 +1,14 @@
 ﻿using Newtonsoft.Json;
+using PigTool.Views.Popups;
+using Rg.Plugins.Popup.Services;
 using Shared;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace PigTool.ViewModels
@@ -27,6 +26,7 @@ namespace PigTool.ViewModels
                 OnPropertyChanged(nameof(LastTimeDataUploaded));
             }
         }
+        public string uploadDataTranslation { get; set; }
 
         private ObservableCollection<FeedItem> feedItems;
         private ObservableCollection<HealthCareItem> healthCareItems;
@@ -201,6 +201,15 @@ namespace PigTool.ViewModels
             }
         }
 
+        public string UploadDataTranslation
+        {
+            get { return uploadDataTranslation; }
+            set
+            {
+                uploadDataTranslation = value;
+                OnPropertyChanged(nameof(UploadDataTranslation));
+            }
+        }
         public int CountOf_FeedItems
         {
             get { return countOf_FeedItems; }
@@ -340,6 +349,16 @@ namespace PigTool.ViewModels
             }
         }
 
+        public int Countof_TotalItems
+        {
+            get { return countof_totalitems; }
+            set
+            {
+                countof_totalitems = value;
+                OnPropertyChanged(nameof(Countof_TotalItems));
+            }
+        }
+
 
 
         private int countOf_FeedItems { get; set; }
@@ -359,10 +378,13 @@ namespace PigTool.ViewModels
         private int countof_manuresaleitems { get; set; }
         private int countof_otherincomeitems { get; set; }
 
+        private int countof_totalitems { get; set; }
+
         public Command SendDataToApi { get; }
 
         public SendDataViewModel()
         {
+
             PageRendered = false;
             LastTimeDataUploaded = User.LastUploadDate.ToUniversalTime();
             SendDataToApi = new Command(PostDataToAPI);
@@ -370,7 +392,10 @@ namespace PigTool.ViewModels
 
         public async Task PopulateCollections()
         {
-            FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItemsAndAttachedTranslation(User.UserLang));
+            UploadDataTranslation = repo.GetTranslationAsync(nameof(UploadDataTranslation)).Result.getTranslation(User.UserLang);
+
+            //FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItemsAndAttachedTranslation(User.UserLang));
+            FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItems());
             HealthCareItems = new ObservableCollection<HealthCareItem>(await repo.GetHealthCareItems());
             LabourCostItems = new ObservableCollection<LabourCostItem>(await repo.GetLabourCostItems());
             AnimalHouseItems = new ObservableCollection<AnimalHouseItem>(await repo.GetAnimalHouseItems());
@@ -385,26 +410,32 @@ namespace PigTool.ViewModels
             BreedingServiceSaleItems = new ObservableCollection<BreedingServiceSaleItem>(await repo.GetBreedingServiceSaleItems());
             ManureSaleItems = new ObservableCollection<ManureSaleItem>(await repo.GetManureSaleItems());
             OtherIncomeItems = new ObservableCollection<OtherIncomeItem>(await repo.GetOtherIncomeItems());
-            CountOf_FeedItems = FeedItems.Count();
-            CountOf_HealthCareItems = HealthCareItems.Count();
-            Countof_LabourCostItems = LabourCostItems.Count();
-            Countof_AnimalHouseItems = AnimalHouseItems.Count();
-            Countof_MembershipItems = MembershipItems.Count();
-            Countof_Watercostitems = WaterCostItems.Count();
-            Countof_OtherCostItems = OtherCostItems.Count();
-            Countof_ReproductiveItems = ReproductiveItems.Count();
-            Countof_AnimalPurchaseItems = AnimalPurchaseItems.Count();
-            Countof_LoanRepaymentItems = LoanRepaymentItems.Count();
-            Countof_EquipmentItems = EquipmentItems.Count();
-            Countof_PigSaleItems = PigSaleItems.Count();
-            Countof_BreedingServiceSaleItems = BreedingServiceSaleItems.Count();
-            Countof_ManureSaleItems = ManureSaleItems.Count();
-            Countof_OtherIncomeItems = OtherIncomeItems.Count();
+            Countof_TotalItems = 0;
+            Countof_TotalItems += CountOf_FeedItems = FeedItems.Count();
+            Countof_TotalItems += CountOf_HealthCareItems = HealthCareItems.Count();
+            Countof_TotalItems += Countof_LabourCostItems = LabourCostItems.Count();
+            Countof_TotalItems += Countof_AnimalHouseItems = AnimalHouseItems.Count();
+            Countof_TotalItems += Countof_MembershipItems = MembershipItems.Count();
+            Countof_TotalItems += Countof_Watercostitems = WaterCostItems.Count();
+            Countof_TotalItems += Countof_OtherCostItems = OtherCostItems.Count();
+            Countof_TotalItems += Countof_ReproductiveItems = ReproductiveItems.Count();
+            Countof_TotalItems += Countof_AnimalPurchaseItems = AnimalPurchaseItems.Count();
+            Countof_TotalItems += Countof_LoanRepaymentItems = LoanRepaymentItems.Count();
+            Countof_TotalItems += Countof_EquipmentItems = EquipmentItems.Count();
+            Countof_TotalItems += Countof_PigSaleItems = PigSaleItems.Count();
+            Countof_TotalItems += Countof_BreedingServiceSaleItems = BreedingServiceSaleItems.Count();
+            Countof_TotalItems += Countof_ManureSaleItems = ManureSaleItems.Count();
+            Countof_TotalItems += Countof_OtherIncomeItems = OtherIncomeItems.Count();
         }
 
 
         public async void PostDataToAPI()
         {
+            // Display Overlay for sending data
+            LoadingOverlay overlay = new LoadingOverlay();
+            await PopupNavigation.Instance.PushAsync(overlay);
+            //await Task.Delay(5000);
+
             try
             {
                 var apiTransfer = new APITransferItem()
@@ -438,7 +469,7 @@ namespace PigTool.ViewModels
                 var jObject = JsonConvert.SerializeObject(apiTransfer, new JsonSerializerSettings
                 {
                     DateTimeZoneHandling = DateTimeZoneHandling.Utc
-                }) ;
+                });
 
                 var data = new StringContent(jObject, Encoding.UTF8, "application/json");
                 var url = "https://pigprofittool.azurewebsites.net/api/data/SubmitData";
@@ -449,7 +480,9 @@ namespace PigTool.ViewModels
                 //var response = await httpClient.GetAsync(url);
                 var responseString = await response.Content.ReadAsStringAsync();
 
-                
+
+                // Remove Overlay
+                await PopupNavigation.Instance.PopAsync();
 
                 httpClient.Dispose();
 
@@ -459,7 +492,7 @@ namespace PigTool.ViewModels
                     LastTimeDataUploaded = User.LastUploadDate;
                     await repo.UpdateUserInfo(User);
                     await PopulateCollections();
-                    await Application.Current.MainPage.DisplayAlert("Data Uploaded!","The Data has been uploaded", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Data Uploaded!", "The Data has been uploaded", "OK");
                 }
                 else
                 {
@@ -482,7 +515,7 @@ namespace PigTool.ViewModels
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message.ToString());
             }
 
         }

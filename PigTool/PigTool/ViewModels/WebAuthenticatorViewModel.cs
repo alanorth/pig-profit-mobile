@@ -5,6 +5,8 @@ using PigTool;
 using PigTool.Helpers;
 using PigTool.ViewModels;
 using PigTool.Views;
+using PigTool.Views.Popups;
+using Rg.Plugins.Popup.Services;
 using Shared;
 using System;
 using System.Net;
@@ -54,6 +56,12 @@ namespace Samples.ViewModel
 
         async Task OnAuthenticate(string scheme)
         {
+
+            // Display Overlay for sending data
+            LoadingOverlay overlay = new LoadingOverlay();
+            await PopupNavigation.Instance.PushAsync(overlay);
+            //await Task.Delay(5000);
+
             try
             {
                 WebAuthenticatorResult r = null;
@@ -111,6 +119,14 @@ namespace Samples.ViewModel
 
                     httpClient.Dispose();
 
+
+
+                    // Remove Overlay
+                    await PopupNavigation.Instance.PopAsync();
+
+
+
+
                     if ((int)response.StatusCode == 202)
                     {
                         var responseString3 = await response.Content.ReadAsStringAsync();
@@ -166,6 +182,9 @@ namespace Samples.ViewModel
             }
             catch (OperationCanceledException)
             {
+                // Remove Overlay
+                await PopupNavigation.Instance.PopAsync();
+
                 Console.WriteLine("Login cancelled.");
 
                 AuthToken = string.Empty;
@@ -173,6 +192,9 @@ namespace Samples.ViewModel
             }
             catch (Exception ex)
             {
+                // Remove Overlay
+                await PopupNavigation.Instance.PopAsync();
+
                 Console.WriteLine($"Failed: {ex.Message}");
 
                 AuthToken = string.Empty;

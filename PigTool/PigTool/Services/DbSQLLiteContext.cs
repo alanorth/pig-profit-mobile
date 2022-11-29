@@ -100,6 +100,7 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "Home", English = "Home", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
                          new Translation() { RowKey = "FilterTranslation", English = "Filter by:", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "RegistrationTranslation", English = "Registration", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "UploadDataTranslation", English = "Upload", Lang1 = "", Lang2 = "" },
 
                          new Translation() { RowKey = "Costs", English = "Costs", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
                          new Translation() { RowKey = "Feed", English = "Feed", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
