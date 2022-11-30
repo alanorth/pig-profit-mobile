@@ -36,8 +36,8 @@
                         VerticalOptions="Center"
                         Color="#682622" />
                     <Label
+                        x:Name="LoadingText"
                         HorizontalTextAlignment="Center"
-                        Text="Sending Data"
                         TextColor="Black" />
 
                 </StackLayout>

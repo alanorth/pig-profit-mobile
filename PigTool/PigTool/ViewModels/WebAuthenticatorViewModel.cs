@@ -1,6 +1,4 @@
-﻿using Azure;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using PigTool;
 using PigTool.Helpers;
 using PigTool.ViewModels;
@@ -11,8 +9,6 @@ using Shared;
 using System;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -58,7 +54,7 @@ namespace Samples.ViewModel
         {
 
             // Display Overlay for sending data
-            LoadingOverlay overlay = new LoadingOverlay();
+            LoadingOverlay overlay = new LoadingOverlay("Please Wait");
             await PopupNavigation.Instance.PushAsync(overlay);
             //await Task.Delay(5000);
 
@@ -95,7 +91,7 @@ namespace Samples.ViewModel
                     AuthToken += $"Email: {email}{Environment.NewLine}";
                 AuthToken += r?.AccessToken ?? r?.IdToken;
 
-                foreach(var pro in r.Properties)
+                foreach (var pro in r.Properties)
                 {
                     Console.WriteLine(pro.Key);
                     Console.WriteLine(pro.Value);
@@ -103,7 +99,7 @@ namespace Samples.ViewModel
 
                 //get user if,  null  create, otherwise  proceed.
 
-                if(r?.AccessToken != null)
+                if (r?.AccessToken != null)
                 {
                     var httpClient = new HttpClient();
 

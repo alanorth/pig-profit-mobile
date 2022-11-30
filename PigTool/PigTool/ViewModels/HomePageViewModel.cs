@@ -1,14 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PigTool.Services;
-using PigTool.Views;
-using Shared;
-using SQLLiteDbContext;
+﻿using Shared;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -42,7 +34,7 @@ namespace PigTool.ViewModels
             {
                 if (nameOfUser != value)
                 {
-                    nameOfUser = "Name: " + value;
+                    nameOfUser = value;
                     OnPropertyChanged(nameof(NameOfUser));
                 }
             }
@@ -58,7 +50,7 @@ namespace PigTool.ViewModels
             {
                 if (villageOfUser != value)
                 {
-                    villageOfUser = "Village: " + value;
+                    villageOfUser = value;
                     OnPropertyChanged(nameof(VillageOfUser));
                 }
             }
@@ -118,10 +110,10 @@ namespace PigTool.ViewModels
 
         public HomePageViewModel()
         {
-            NameOfUser = User.UserName;
-            VillageOfUser = User.Village;
+            NameOfUser = "Hello " + User.UserName;
+            VillageOfUser = "Village: " + User.Village;
             UserLastUpdatedTime = User.LastUploadDate.ToString();
-            
+
             NumberOfTranslations = 60;
             //String translation
             AddData = repo.GetTranslationAsync(nameof(AddData)).Result.getTranslation(User.UserLang);
@@ -195,11 +187,11 @@ namespace PigTool.ViewModels
             Random random = new Random();
             DateTime start = new DateTime(2020, 1, 1);
             int range = (DateTime.Today - start).Days;
-           
+
             try
             {
                 // Feed Items 
-                
+
                 for (int i = 0; i < 20; i++)
                 {
                     var newFeedItem = new FeedItem
@@ -213,7 +205,7 @@ namespace PigTool.ViewModels
                         PartitionKey = Constants.PartitionKeyFeed,
                     };
                     await repo.AddSingleFeedItem(newFeedItem);
-                } 
+                }
                 // HealthCare
                 for (int i = 0; i < 20; i++)
                 {
@@ -246,7 +238,7 @@ namespace PigTool.ViewModels
                     await repo.AddSingleLabourCostItem(newLabourCost);
                 }
 
-                
+
                 // AnimalHousing
                 for (int i = 0; i < 20; i++)
                 {
@@ -355,7 +347,7 @@ namespace PigTool.ViewModels
                     };
                     await repo.AddSingleLoanRepaymentItem(newLoanRepayment);
                 }
-                
+
                 // Equipment
                 for (int i = 0; i < 20; i++)
                 {
@@ -432,7 +424,7 @@ namespace PigTool.ViewModels
                     var newOtherIncome = new OtherIncomeItem
                     {
                         Date = start.AddDays(random.Next(range)),
-                        
+
                         TotalIncome = Math.Round(random.NextDouble() * (2000 - 0) + 0, 2),
                         TransportationCosts = Math.Round(random.NextDouble() * (100 - 0) + 0, 2),
                         OtherCosts = Math.Round(random.NextDouble() * (200 - 0) + 0, 2),

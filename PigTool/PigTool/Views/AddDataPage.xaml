@@ -1,49 +1,171 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:viewmodels="clr-namespace:PigTool.ViewModels" x:DataType="viewmodels:AddDataViewModel"
-             x:Class="PigTool.Views.AddDataPage"
-             Title="Add Data">
+<ContentPage
+    x:Class="PigTool.Views.AddDataPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:PigTool.ViewModels"
+    Title="Add Data"
+    x:DataType="viewmodels:AddDataViewModel">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Margin="0, 10">
-            <StackLayout.Resources>
-                    <Style x:Key="AddNavButton" TargetType="Button">
-                        <Setter Property="VerticalOptions" Value="StartAndExpand" />
-                        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                        <Setter Property="Margin" Value="0,0" />
-                        <Setter Property="FontSize" Value="15"/>
-                        <Setter Property="CornerRadius" Value="6"/>
-                    </Style>
-                </StackLayout.Resources>
-                <Frame Margin="0, 10" CornerRadius="6">
-                    <Label Text="{Binding Costs}"
+            <StackLayout Margin="0,10">
+                <Frame
+                    Margin="0,5,0,2"
+                    BackgroundColor="{StaticResource LightGrey}"
+                    CornerRadius="5">
+                    <Label
+                        Margin="0,5,0,5"
                         FontAttributes="Bold"
-                        VerticalOptions="StartAndExpand"
-                        HorizontalOptions="CenterAndExpand" FontSize="25"/>
+                        FontSize="22"
+                        HorizontalOptions="CenterAndExpand"
+                        StyleClass="AddDataLabel"
+                        Text="{Binding Costs}"
+                        TextColor="{StaticResource Primary}"
+                        VerticalOptions="StartAndExpand" />
                 </Frame>
-                <Button Text="{Binding Feed}" Style="{StaticResource AddNavButton}" Command="{Binding AddFeedItem}"   BackgroundColor="{StaticResource Primary}"/>
-                <Button Text="{Binding Healthcare}" Style="{StaticResource AddNavButton}" Command="{Binding AddHealthCareItem}"  BackgroundColor="{StaticResource Primary}"/>
-                <Button Text="{Binding Labour}" Style="{StaticResource AddNavButton}" Command="{Binding AddLabourCostItem}" BackgroundColor="{StaticResource Primary}"/>
-                <Button Text="{Binding Housing}" Style="{StaticResource AddNavButton}" Command="{Binding AddHousingItem}" BackgroundColor="{StaticResource Primary}"/>
-                <Button Text="{Binding Water}" Style="{StaticResource AddNavButton}" Command="{Binding AddWaterCostItem}" BackgroundColor="{StaticResource Primary}"/>
-                <Button Text="{Binding Reproduction}" Style="{StaticResource AddNavButton}" Command="{Binding AddReproductiveItem}" BackgroundColor="{StaticResource Primary}"/>
-                <Button Text="{Binding Membership}" Style="{StaticResource AddNavButton}" Command="{Binding AddMembershipItem}" BackgroundColor="{StaticResource Primary}"/>
-                <Button Text="{Binding Other}" Style="{StaticResource AddNavButton}" Command="{Binding AddOtherCostItem}" BackgroundColor="{StaticResource Primary}"/>
-                <Button Text="{Binding AnimalPurchase}" Style="{StaticResource AddNavButton}" Command="{Binding AddAnimalPurchaseItem}" BackgroundColor="{StaticResource Primary}"/>
-                <Button Text="{Binding LoanRepayment}" Style="{StaticResource AddNavButton}"  Command="{Binding AddLoanRepaymentItem}" BackgroundColor="{StaticResource Primary}"/>
-                <Button Text="{Binding Equipment}" Style="{StaticResource AddNavButton}" Command="{Binding AddEquipmentItem}" BackgroundColor="{StaticResource Primary}"/>
-                <Frame Margin="0, 10">
-                    <Label Text="{Binding Income}"
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Command="{Binding AddFeedItem}"
+                        StyleClass="AddNavButton"
+                        Text="{Binding Feed}" />
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Command="{Binding AddHealthCareItem}"
+                        StyleClass="AddNavButton"
+                        Text="{Binding Healthcare}" />
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Command="{Binding AddLabourCostItem}"
+                        StyleClass="AddNavButton"
+                        Text="{Binding Labour}" />
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Command="{Binding AddHousingItem}"
+                        StyleClass="AddNavButton"
+                        Text="{Binding Housing}" />
+                    <Button
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Command="{Binding AddWaterCostItem}"
+                        StyleClass="AddNavButton"
+                        Text="{Binding Water}" />
+                    <Button
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Command="{Binding AddReproductiveItem}"
+                        StyleClass="AddNavButton"
+                        Text="{Binding Reproduction}" />
+                    <Button
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Command="{Binding AddMembershipItem}"
+                        StyleClass="AddNavButton"
+                        Text="{Binding Membership}" />
+                    <Button
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Command="{Binding AddOtherCostItem}"
+                        StyleClass="AddNavButton"
+                        Text="{Binding Other}" />
+                    <Button
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Command="{Binding AddAnimalPurchaseItem}"
+                        StyleClass="AddNavButton"
+                        Text="{Binding AnimalPurchase}" />
+                    <Button
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Command="{Binding AddLoanRepaymentItem}"
+                        StyleClass="AddNavButton"
+                        Text="{Binding LoanRepayment}" />
+                    <Button
+                        Grid.Row="5"
+                        Grid.Column="0"
+                        Command="{Binding AddEquipmentItem}"
+                        StyleClass="AddNavButton"
+                        Text="{Binding Equipment}" />
+
+                </Grid>
+
+                <Frame
+                    Margin="0,25,0,2"
+                    BackgroundColor="{StaticResource LightGrey}"
+                    CornerRadius="5">
+                    <Label
+                        Margin="0,5,0,5"
                         FontAttributes="Bold"
-                        VerticalOptions="StartAndExpand"
-                        HorizontalOptions="CenterAndExpand" FontSize="25"/>
+                        FontSize="22"
+                        HorizontalOptions="CenterAndExpand"
+                        StyleClass="AddDataLabel"
+                        Text="{Binding Income}"
+                        TextColor="{StaticResource Primary}"
+                        VerticalOptions="StartAndExpand" />
                 </Frame>
-                <Button Text="{Binding PigSale}" Style="{StaticResource AddNavButton}"  Command="{Binding AddPigSaleItem}" BackgroundColor="{StaticResource Primary}"/>
-                <Button Text="{Binding BreedingServiceSale}" Style="{StaticResource AddNavButton}" Command="{Binding AddBreedingServiceSaleItem}" BackgroundColor="{StaticResource Primary}"/>
-                <Button Text="{Binding ManureSale}" Style="{StaticResource AddNavButton}" Command="{Binding AddManureSaleItem}" BackgroundColor="{StaticResource Primary}"/>
-                <Button Text="{Binding OtherIncome}" Style="{StaticResource AddNavButton}" Command="{Binding AddOtherIncomeItem}" BackgroundColor="{StaticResource Primary}"/>
-        </StackLayout>
-            </ScrollView>
+
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+
+                    </Grid.RowDefinitions>
+
+
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        BackgroundColor="{StaticResource Primary}"
+                        Command="{Binding AddPigSaleItem}"
+                        StyleClass="AddNavButton"
+                        Text="{Binding PigSale}" />
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        BackgroundColor="{StaticResource Primary}"
+                        Command="{Binding AddBreedingServiceSaleItem}"
+                        StyleClass="AddNavButton"
+                        Text="{Binding BreedingServiceSale}" />
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        BackgroundColor="{StaticResource Primary}"
+                        Command="{Binding AddManureSaleItem}"
+                        StyleClass="AddNavButton"
+                        Text="{Binding ManureSale}" />
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        BackgroundColor="{StaticResource Primary}"
+                        Command="{Binding AddOtherIncomeItem}"
+                        StyleClass="AddNavButton"
+                        Text="{Binding OtherIncome}" />
+
+                </Grid>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -12,8 +12,10 @@
             <Color x:Key="Primary">#682622</Color>
             <Color x:Key="Secondary1">#404E65</Color>
             <Color x:Key="Secondary2">#EFCA58</Color>
+            <Color x:Key="Secondary3">#eae4d9</Color>
             <Color x:Key="PrimaryText">#000</Color>
             <Color x:Key="HeaderTextColor">#fff</Color>
+            <Color x:Key="LightGrey">#f4f4f4</Color>
             <x:String x:Key="IconSearch">&#xf002;</x:String>
             <x:String x:Key="IconUpdate">&#xf044;</x:String>
             <x:String x:Key="IconRecord">&#xf328;</x:String>
@@ -78,6 +80,15 @@
 
             <Style Class="ContinueButton" TargetType="Button">
                 <Setter Property="Margin" Value="0, 10, 0, 20" />
+            </Style>
+
+            <Style Class="AddNavButton" TargetType="Button">
+                <Setter Property="Background" Value="{StaticResource Primary}" />
+                <Setter Property="TextColor" Value="{StaticResource Secondary3}" />
+                <Setter Property="HeightRequest" Value="100" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextTransform" Value="None" />
+                <Setter Property="FontAttributes" Value="Bold" />
             </Style>
 
             <Style Class="LangButton" TargetType="Button">

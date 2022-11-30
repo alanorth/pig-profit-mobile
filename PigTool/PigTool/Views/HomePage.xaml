@@ -1,30 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:viewmodels="clr-namespace:PigTool.ViewModels" x:DataType="viewmodels:HomePageViewModel"
-             x:Class="PigTool.Views.HomePage"
-             Title="{Binding Home}">
-             
+<ContentPage
+    x:Class="PigTool.Views.HomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewmodels="clr-namespace:PigTool.ViewModels"
+    Title="{Binding Home}"
+    x:DataType="viewmodels:HomePageViewModel">
+    <!--  Shell.NavBarIsVisible="False"  -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Name="MenuItem1"
+            Icon="Microsoft.png"
+            Order="Primary"
+            Priority="0"
+            Text="Item 1" />
+        <ToolbarItem
+            Name="MenuItem2"
+            Icon="Xamarin.png"
+            Order="Primary"
+            Priority="1"
+            Text="Item 2" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <Frame CornerRadius="6" Margin="0, 20, 0, 10">
-            <Grid BackgroundColor="White">
+            <Grid Margin="0,50,0,20" BackgroundColor="White">
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
-                    <RowDefinition />
                 </Grid.RowDefinitions>
-                <Label Text="{Binding NameOfUser}" FontSize="20"/>
-                <Label Text="{Binding VillageOfUser}" Grid.Row="1" FontSize="20" />
-                <Label Text="{Binding UserLastUpdatedTime}" Grid.Row="2" FontSize="20"/>
+                <Label
+                    Margin="0"
+                    Padding="0"
+                    FontSize="24"
+                    Text="{Binding NameOfUser}"
+                    TextColor="{StaticResource Primary}" />
+                <Label
+                    Grid.Row="1"
+                    FontSize="18"
+                    Text="{Binding VillageOfUser}" />
+
             </Grid>
-            </Frame>
-            <Grid >
+            <Grid>
                 <Grid.Resources>
                     <Style x:Key="PrimaryHomeButton" TargetType="Button">
                         <Setter Property="FontSize" Value="20" />
                         <Setter Property="CornerRadius" Value="6" />
-                        <Setter Property="HeightRequest" Value="100"/>
+                        <Setter Property="HeightRequest" Value="100" />
                     </Style>
                 </Grid.Resources>
                 <Grid.RowDefinitions>
@@ -32,27 +53,39 @@
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Button Text="{Binding AddData}"
-                        Grid.Row="0"
-                        Style="{StaticResource PrimaryHomeButton}"
-                        Command="{Binding AddDataNavigation}"/>
-                <Button Text="{Binding EditData}"
-                        Grid.Row="1"
-                        Style="{StaticResource PrimaryHomeButton}"
-                        Command="{Binding ManageDataNavigation}"/>
-                <Button Text="{Binding ViewReports}"
-                        Grid.Row="2"
-                        Style="{StaticResource PrimaryHomeButton}"/>
-                <Button Text="(DEV) Add Example Data"
-                        Grid.Row="3"
-                        Style="{StaticResource PrimaryHomeButton}"
-                        Command="{Binding PopulateDB}"
-                        BackgroundColor="#EFCA58"/>
+                <Button
+                    Grid.Row="0"
+                    Command="{Binding AddDataNavigation}"
+                    Style="{StaticResource PrimaryHomeButton}"
+                    Text="{Binding AddData}" />
+                <Button
+                    Grid.Row="1"
+                    Command="{Binding ManageDataNavigation}"
+                    Style="{StaticResource PrimaryHomeButton}"
+                    Text="{Binding EditData}" />
+                <Button
+                    Grid.Row="2"
+                    Style="{StaticResource PrimaryHomeButton}"
+                    Text="{Binding ViewReports}" />
+                <Button
+                    Grid.Row="3"
+                    BackgroundColor="#EFCA58"
+                    Command="{Binding PopulateDB}"
+                    Style="{StaticResource PrimaryHomeButton}"
+                    Text="(DEV) Add Example Data" />
             </Grid>
-            <Label Text="{Binding DateTime, StringFormat='{0:T}'}"
-                   FontSize="Large"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"/>
+            <Label
+                Margin="0,20"
+                FontSize="20"
+                HorizontalTextAlignment="Center"
+                Text="{Binding UserLastUpdatedTime}" />
+            <!--
+            <Label
+                FontSize="Large"
+                HorizontalOptions="Center"
+                Text="{Binding DateTime, StringFormat='{0:T}'}"
+                VerticalOptions="Center" />
+            -->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

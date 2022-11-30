@@ -432,7 +432,7 @@ namespace PigTool.ViewModels
         public async void PostDataToAPI()
         {
             // Display Overlay for sending data
-            LoadingOverlay overlay = new LoadingOverlay();
+            LoadingOverlay overlay = new LoadingOverlay("Sending Data");
             await PopupNavigation.Instance.PushAsync(overlay);
             //await Task.Delay(5000);
 
