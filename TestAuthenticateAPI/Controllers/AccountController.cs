@@ -15,6 +15,8 @@ using TestAuthenticateAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Security.Cryptography;
 using Shared.Models;
+using System.Security.Policy;
+using Azure.Storage.Blobs.Models;
 
 namespace TestAuthenticateAPI.Controllers;
 
@@ -113,10 +115,9 @@ public class AccountController : PigToolBaseController
             // Redirect to final url (back to the app)
             //Request.HttpContext.Response.Redirect(url);
 
-
             try
             {
-                var compressedQs = JsonConvert.SerializeObject(qs);
+                var compressedQs = JsonConvert.SerializeObject(appUser);
 
                 var suucessfullResult = new ContentResult()
                 {
@@ -216,12 +217,17 @@ public class AccountController : PigToolBaseController
     }
 
 
+    [HttpGet]
+    public async Task MobileAuthChallenge()
+    {
+        await Request.HttpContext.ChallengeAsync("Google");
+    }
 
-    [HttpGet("{scheme}")]
-    public async Task MobileAuth([FromRoute] string scheme)
+    [HttpGet]
+    public async Task MobileAuth(string? UserSignedIn = null)
     {
         //NOTE: see https://docs.microsoft.com/en-us/xamarin/essentials/web-authenticator?tabs=android
-        var auth = await Request.HttpContext.AuthenticateAsync(scheme);
+        var auth = await Request.HttpContext.AuthenticateAsync("Google");
 
         if (!auth.Succeeded
             || auth?.Principal == null
@@ -229,7 +235,7 @@ public class AccountController : PigToolBaseController
             || string.IsNullOrEmpty(auth.Properties.GetTokenValue("access_token")))
         {
             // Not authenticated, challenge
-            await Request.HttpContext.ChallengeAsync(scheme);
+            await Request.HttpContext.ChallengeAsync("Google");
         }
         else
         {
@@ -270,10 +276,11 @@ public class AccountController : PigToolBaseController
         }
     }
 
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize]
     [HttpPost]
-    public async Task<ActionResult> RegisterUser()
+    public async Task<ActionResult> RegisterMobileUser()
     {
+        /*ExternalLoginInfo info = await _signInManager.GetExternalLoginInfoAsync();*/
         var callGUID = Guid.NewGuid().ToString();
         var Connection = GetStorageConnectionString();
 
@@ -284,12 +291,14 @@ public class AccountController : PigToolBaseController
             var MobileUser = new MobileUser();
             var requeststring = Convert.ToString(unparsedRequest);
 
+           
+
+
             //Log request
             await LoggingOperations.LogRequestToBlob("REGISTERUSER", "POST", requeststring, callGUID, Connection);
 
             //Get the user from the request
             MobileUser = JsonConvert.DeserializeObject<MobileUser>(requeststring);
-
             var logUser = await _userManager.FindByEmailAsync(MobileUser.AuthorisedEmail);
 
             if (logUser == null)
@@ -298,7 +307,7 @@ public class AccountController : PigToolBaseController
                 {
                     Content = $"User Not Found",
                     ContentType = "text/plain",
-                    StatusCode = 300
+                    StatusCode = 377
                 };
 
                 await LoggingOperations.LogRequestToBlob("REGISTERUSER", "RESPONSE", contentresultFailed.Content, callGUID, Connection);
@@ -310,18 +319,6 @@ public class AccountController : PigToolBaseController
 
 
             var updateResult = await _userManager.UpdateAsync(logUser);
-
-            //TODO need to check if user exists before creating....
-
-
-            // var tableOperations = new TableOperations();
-            var opertions = new TableOperations();
-
-            var userlist = new List<MobileUser>();
-
-            userlist.Add(MobileUser);
-
-            var result = opertions.InsertTableEntities(userlist, Constants.TABLEUSERS, Connection);
 
         }
         catch (Exception ex)
@@ -341,7 +338,8 @@ public class AccountController : PigToolBaseController
         var contentresult = new ContentResult()
         {
             Content = $"User Created",
-            ContentType = "text/plain"
+            ContentType = "text/plain",
+            StatusCode = 200
         };
 
         await LoggingOperations.LogRequestToBlob("REGISTERUSER", "RESPONSE", contentresult.Content, callGUID, Connection);
@@ -349,6 +347,197 @@ public class AccountController : PigToolBaseController
         return contentresult;
     }
 
+
+    [HttpGet]
+    public IActionResult GoogleLogin(string authenticatedEmail)
+    {
+        string redirectUrl = Url.Action($"GoogleResponseId", "Account", new { testId = authenticatedEmail });
+        var properties = _signInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);
+        return new ChallengeResult("Google", properties);
+    }
+
+
+    [HttpGet]
+    public IActionResult GoogleLoginNewUser()
+    {
+        string redirectUrl = Url.Action("GoogleResponse", "Account");
+        var properties = _signInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);
+        return new ChallengeResult("Google", properties);
+    }
+
+    [HttpGet]
+    public async Task GoogleResponse()
+    {
+        ExternalLoginInfo info = await _signInManager.GetExternalLoginInfoAsync();
+        if (info == null) { 
+            var url = Callback + "://#";
+            // Redirect to final url (back to the app)
+            Request.HttpContext.Response.StatusCode = 401;
+            Request.HttpContext.Response.Redirect(url);
+        }
+
+        var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false);
+        string[] userInfo = { info.Principal.FindFirst(ClaimTypes.Name).Value, info.Principal.FindFirst(ClaimTypes.Email).Value };
+        if (result.Succeeded)
+        {
+            var user = await _userManager.FindByEmailAsync(info.Principal.FindFirst(ClaimTypes.Email).Value);
+            var authToken = GenerateJwtToken(user);
+            var refreshToken = GenerateRefreshToken();
+
+            _ = int.TryParse(_configuration["JWT-RefreshTokenValidityInDays"], out int refreshTokenValidityInDays);
+
+            user.RefreshToken = refreshToken;
+            user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(refreshTokenValidityInDays);
+
+            await _userManager.UpdateAsync(user);
+
+            var qs = new Dictionary<string, string>
+                {
+                    { nameof(MobileUser.AuthorisedToken), authToken.token },
+                    { nameof(MobileUser.RefreshToken),  refreshToken },
+                    //{ nameof(MobileUser.RefreshTokenExpiryTime), authToken.expirySeconds.ToString() },
+                    { nameof(MobileUser.AuthorisedEmail), user.Email },
+                    { nameof(MobileUser.RowKey), user.RowKey },
+                    { nameof(MobileUser.PartitionKey), user.PartitionKey },
+                };
+
+            // build url with previously calculated info to send back to app
+            var url = Callback + "://#" + string.Join(
+                "&",
+                qs.Where(kvp => !string.IsNullOrEmpty(kvp.Value) && kvp.Value != "-1")
+                .Select(kvp => $"{WebUtility.UrlEncode(kvp.Key)}={WebUtility.UrlEncode(kvp.Value)}"));
+
+            // Redirect to final url (back to the app)
+            Request.HttpContext.Response.Redirect(url);
+
+        }
+
+        else
+        {
+            APIUser user = new APIUser
+            {
+                Email = info.Principal.FindFirst(ClaimTypes.Email).Value,
+                UserName = info.Principal.FindFirst(ClaimTypes.Email).Value,
+                LastModified = DateTime.UtcNow,
+                LastUploadDate = DateTime.UtcNow
+            };
+
+            IdentityResult identResult = await _userManager.CreateAsync(user);
+            if (identResult.Succeeded)
+            {
+                identResult = await _userManager.AddLoginAsync(user, info);
+
+                if (identResult.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, false);
+                    var authToken = GenerateJwtToken(user);
+                    var refreshToken = GenerateRefreshToken();
+
+                    _ = int.TryParse(_configuration["JWT-RefreshTokenValidityInDays"], out int refreshTokenValidityInDays);
+
+                    user.RefreshToken = refreshToken;
+                    user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(refreshTokenValidityInDays);
+                    user.EmailConfirmed = true;
+                    await _userManager.UpdateAsync(user);
+
+                    var qs = new Dictionary<string, string>
+                        {
+                            { nameof(MobileUser.AuthorisedToken), authToken.token },
+                            { nameof(MobileUser.RefreshToken),  refreshToken },
+                            //{ nameof(MobileUser.RefreshTokenExpiryTime), authToken.expirySeconds.ToString() },
+                            { nameof(MobileUser.AuthorisedEmail), user.Email },
+                            { nameof(MobileUser.RowKey), user.RowKey },
+                            { nameof(MobileUser.PartitionKey), user.PartitionKey },
+                        };
+
+                    /*var pUSer = new MobileUser()
+                    {
+                        AuthorisedToken = authToken.token,
+                        RefreshToken = refreshToken,
+                        //{ nameof(MobileUser.RefreshTokenExpiryTime), authToken.expirySeconds.ToString() },
+                        AuthorisedEmail = user.Email,
+                        RowKey = user.RowKey,
+                        PartitionKey = user.PartitionKey,
+                    };
+
+                    var p = JsonConvert.SerializeObject(pUSer);*/
+
+                    // build url with previously calculated info to send back to app
+                    var url = Callback + "://#" + string.Join(
+                        "&",
+                        qs.Where(kvp => !string.IsNullOrEmpty(kvp.Value) && kvp.Value != "-1")
+                        .Select(kvp => $"{WebUtility.UrlEncode(kvp.Key)}={WebUtility.UrlEncode(kvp.Value)}"));
+
+                    // Redirect to final url (back to the app)
+                    Request.HttpContext.Response.Redirect(url);
+                }
+            }
+        }
+    }
+
+    [HttpGet]
+    public async Task GoogleResponseId(string verifiedEmail)
+    {
+        ExternalLoginInfo info = await _signInManager.GetExternalLoginInfoAsync();
+        if (info == null)
+        {
+            var url = Callback + "://#";
+            Request.HttpContext.Response.StatusCode = 401;
+            Request.HttpContext.Response.Redirect(url);
+        }
+
+        var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false);
+        string[] userInfo = { info.Principal.FindFirst(ClaimTypes.Name).Value, info.Principal.FindFirst(ClaimTypes.Email).Value };
+        if (result.Succeeded)
+            if (info.Principal.FindFirst(ClaimTypes.Email).Value == verifiedEmail)
+            {
+
+                var user = await _userManager.FindByEmailAsync(info.Principal.FindFirst(ClaimTypes.Email).Value);
+                var authToken = GenerateJwtToken(user);
+                var refreshToken = GenerateRefreshToken();
+
+                _ = int.TryParse(_configuration["JWT-RefreshTokenValidityInDays"], out int refreshTokenValidityInDays);
+
+                user.RefreshToken = refreshToken;
+                user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(refreshTokenValidityInDays);
+
+                await _userManager.UpdateAsync(user);
+
+                var qs = new Dictionary<string, string>
+                {
+                    { nameof(MobileUser.AuthorisedToken), authToken.token },
+                    { nameof(MobileUser.RefreshToken),  refreshToken },
+                    //{ nameof(MobileUser.RefreshTokenExpiryTime), authToken.expirySeconds.ToString() },
+                    { nameof(MobileUser.AuthorisedEmail), user.Email },
+                    { nameof(MobileUser.RowKey), user.RowKey },
+                    { nameof(MobileUser.PartitionKey), user.PartitionKey },
+                };
+
+                // build url with previously calculated info to send back to app
+                var url = Callback + "://#" + string.Join(
+                    "&",
+                    qs.Where(kvp => !string.IsNullOrEmpty(kvp.Value) && kvp.Value != "-1")
+                    .Select(kvp => $"{WebUtility.UrlEncode(kvp.Key)}={WebUtility.UrlEncode(kvp.Value)}"));
+
+                // Redirect to final url (back to the app)
+                Request.HttpContext.Response.Redirect(url);
+
+            }
+            else
+            {
+                var url = Callback + "://#";
+                Request.HttpContext.Response.StatusCode = 350;
+                Request.HttpContext.Response.Redirect(url);
+
+            }
+        else
+        {
+
+            var url = Callback + "://#";
+            Request.HttpContext.Response.StatusCode = 401;
+            Request.HttpContext.Response.Redirect(url);
+        }
+    }
 
 
     [Authorize]
@@ -365,7 +554,7 @@ public class AccountController : PigToolBaseController
     {
         return Ok("Success");
     }
-
+    
     [HttpGet]
     public IActionResult TestAuth12()
     {
@@ -401,7 +590,7 @@ public class AccountController : PigToolBaseController
                 LastUploadDate = DateTime.UtcNow
 
             };
-
+            user.EmailConfirmed = true;
 
             //Create a username unique
             //user.UserName = CreateUniqueUserName($"{user.FirstName} {user.SecondName}");

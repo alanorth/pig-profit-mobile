@@ -223,7 +223,7 @@ namespace PigTool.Services
                 else
                 {
                     //var authUrl = new Uri("http://10.0.2.2:5272/Account/mobileauth/" + scheme);
-                    var authUrl = new Uri("https://pigprofittool.azurewebsites.net/Account/MobileAuth/"+scheme);
+                    var authUrl = new Uri("https://pigprofittool.azurewebsites.net/Account/GoogleLoginNewUser");
                     var callbackUrl = new Uri("pigprofittool://");
 
                     r = await WebAuthenticator.AuthenticateAsync(authUrl, callbackUrl);

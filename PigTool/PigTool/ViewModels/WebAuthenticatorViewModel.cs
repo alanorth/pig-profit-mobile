@@ -14,6 +14,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -28,8 +29,8 @@ namespace Samples.ViewModel
         //const string authenticationUrl = "https://pigprofittool.azurewebsites.net/mobileauth/";
         //const string authenticationUrl = "http://10.0.2.2:5272/Account/mobileauth/"; //for local testing purposes
         const string authenticationUrl = "http://10.0.2.2:5272/Account/SimpleAuthJSON/"; //for local testing purposes
-        //const string baseURL = "http://10.0.2.2:5272/Account/";
-        const string baseURL = "https://pigprofittool.azurewebsites.net/Account/";
+        const string baseURL = "http://10.0.2.2:5272/Account/";
+        //const string baseURL = "https://pigprofittool.azurewebsites.net/Account/";
         INavigation navigation;
         UserLangSettings lang;
         string countryTranslationRowKey;
@@ -41,7 +42,7 @@ namespace Samples.ViewModel
 
         public WebAuthenticatorViewModel(INavigation navigation, UserLangSettings lang, string countryTranslationRowKey)
         {
-            GoogleCommand = new Command(async () => await OnAuthenticateTest("Google"));
+            GoogleCommand = new Command(async () => await OnAuthenticate("Google"));
             this.navigation = navigation;
             this.lang = lang;
             this.countryTranslationRowKey = countryTranslationRowKey;
@@ -68,7 +69,7 @@ namespace Samples.ViewModel
 
                 var mobileAuth = await rest.OnAuthenticate(scheme);
 
-                if(mobileAuth != null && mobileAuth.SuccesfulResponse)
+                if (mobileAuth != null && mobileAuth.SuccesfulResponse)
                 {
 
                     mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.AuthorisedToken), out var token);
@@ -80,17 +81,18 @@ namespace Samples.ViewModel
 
                     var mobileUser = new MobileUser();
                     mobileUser.AuthorisedEmail = authEmail;
+                    mobileUser.UserName = WebUtility.UrlDecode(authEmail);
                     mobileUser.AuthorisedToken = token;
                     mobileUser.RefreshToken = reToken;
                     mobileUser.Name = name;
                     mobileUser.RowKey = rowKey;
                     mobileUser.PartitionKey = partitionKey;
 
-                    await Application.Current.MainPage.Navigation.PushAsync(new RegistrationPage(mobileUser, lang,countryTranslationRowKey));
+                    await Application.Current.MainPage.Navigation.PushAsync(new RegistrationPage(mobileUser, lang, countryTranslationRowKey));
                 }
                 else
                 {
-                    if(mobileAuth != null)
+                    if (mobileAuth != null)
                     {
                         await Application.Current.MainPage.DisplayAlert("Error", mobileAuth.FailMessage, "OK");
                     }
@@ -98,7 +100,7 @@ namespace Samples.ViewModel
                     {
                         await Application.Current.MainPage.DisplayAlert("Error", "Google Auth Failed", "OK");
                     }
-                    
+
                 }
 
             }
@@ -114,22 +116,23 @@ namespace Samples.ViewModel
 
         async Task OnAuthenticateTest(string scheme)
         {
-            //HttpClientHandler insecureHandler = GetInsecureHandler();
-            var httpClient = new HttpClient();
+            HttpClientHandler insecureHandler = GetInsecureHandler();
+            var httpClient = new HttpClient(insecureHandler);
 
             try
             {
-                
+
 
                 //var url = baseURL + "SimpleAuthJSON";
 
-                var url = "https://pigprofittool.azurewebsites.net/Account/SimpleAuthJSON";
+                //var url = "https://pigprofittool.azurewebsites.net/Account/SimpleAuthJSON";
+                var url = "http://10.0.2.2:5272/Account/SimpleAuthJSON";
 
                 var response = await httpClient.GetAsync(url);
 
                 var responseString = await response.Content.ReadAsStringAsync();
 
-               
+
 
                 MobileUser use = JsonConvert.DeserializeObject<MobileUser>(responseString);
                 //await Application.Current.MainPage.Navigation.PushAsync(new RegistrationPage(use, true));
@@ -141,7 +144,7 @@ namespace Samples.ViewModel
                 var tokenObject = JsonConvert.SerializeObject(jsonObject);
 
                 var content = new StringContent(tokenObject, Encoding.UTF8, "application/json");
-                var responseMessage = await httpClient.PostAsync(baseURL+ "RefreshToken", content);
+                var responseMessage = await httpClient.PostAsync(baseURL + "RefreshToken", content);
 
                 if (responseMessage.IsSuccessStatusCode)
                 {
@@ -154,12 +157,16 @@ namespace Samples.ViewModel
                         use.RefreshToken = authResponse.RefreshToken;
                         await Application.Current.MainPage.DisplayAlert("Error", $"We Succeed In Refresfing The Token", "OK");
                     }
-                    
+
                 }
                 else
                 {
                 }
+
                 httpClient.Dispose();
+                await Application.Current.MainPage.Navigation.PushAsync(new RegistrationPage(use, lang, countryTranslationRowKey));
+
+                
 
 
             }

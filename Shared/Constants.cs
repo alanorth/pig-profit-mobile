@@ -17,15 +17,18 @@ namespace Shared
         public const string ROUTE_API_STORAGE = ROUTE_API_BASE + "/storage";
         public const string ROUTE_API_DENIED = ROUTE_API_BASE + "/denied";
 
-        public const string ROUTE_AUTH_BASE = "/MobileAuth";
-        public const string ROUTE_AUTH_REGISTERUSER = ROUTE_AUTH_BASE + "/RegisterUser";
-        public const string ROUTE_AUTH_TEST = ROUTE_AUTH_BASE + "/Test";
+        public const string ROUTE_ACCOUNT_BASE = BASEURL + "Account/";
+        public const string ROUTE_AUTH_REGISTERUSER = ROUTE_ACCOUNT_BASE + "/RegisterUser";
+        public const string ROUTE_AUTH_TEST = ROUTE_ACCOUNT_BASE + "/Test";
 
 
         public const string ROUTE_API_DATA = ROUTE_API_BASE + "/data";
         public const string ROUTE_API_SUBMITDATA = ROUTE_API_DATA + "/SubmitData";
 
         public const string APICALLID = " API Service ID = ";
+
+        public const string BASEURL = "https://pigprofittool.azurewebsites.net/";
+        //public const string BASEURL = "http://10.0.2.2:5272/";
 
         #endregion
 

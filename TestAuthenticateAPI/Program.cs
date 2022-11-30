@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using TestAuthenticateAPI.Models;
 using Shared;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +21,10 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 // Add services to the container.
 
-builder.Services.AddIdentity<APIUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddIdentity<APIUser, IdentityRole>(options => {
+    options.SignIn.RequireConfirmedAccount = true;
+    options.User.RequireUniqueEmail = true;
+} )
     .AddAzureTableStores<ApplicationDbContext>(new Func<IdentityConfiguration>(() =>
     {
         IdentityConfiguration idconfig = new IdentityConfiguration();
@@ -71,6 +75,12 @@ builder.Services
                     googleOptions.ClientSecret = builder.Configuration.GetValue<string>("GoogleSecret");
                     googleOptions.Scope.Add("profile");
                     googleOptions.SaveTokens = true;
+                    googleOptions.SignInScheme = IdentityConstants.ExternalScheme;
+                    googleOptions.Events.OnRedirectToAuthorizationEndpoint = context =>
+                    {
+                        context.Response.Redirect(context.RedirectUri + "&prompt=consent");
+                        return Task.CompletedTask;
+                    };
 
                 }).AddFacebook(fb =>
                 {

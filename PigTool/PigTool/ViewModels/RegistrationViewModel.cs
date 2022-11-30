@@ -15,6 +15,9 @@ using System.Net.Http;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Net;
 using System.Net.Http.Headers;
+using Newtonsoft.Json.Linq;
+using PigTool.Models;
+using System.Xml.Linq;
 
 namespace PigTool.ViewModels.DataViewModels
 {
@@ -595,6 +598,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.LastModified = DateTime.UtcNow;
                 _itemForEditing.LastUploadDate = DateTime.UtcNow;
                 _itemForEditing.UserLang = lang;
+                _itemForEditing.Country = countryTranslationRowKey;
                 //_itemForEditing.Country = SelectedCountry != null ? SelectedCountry.TranslationRowKey : null;
 
                 if (newUser)
@@ -604,7 +608,7 @@ namespace PigTool.ViewModels.DataViewModels
                         var rest = new RESTService(_itemForEditing);
 
                         HttpClientHandler handlert = GetInsecureHandler();
-                        var cli = new HttpClient(handlert);
+                        //var cli = new HttpClient(handlert);
                         //cli.DefaultRequestHeaders.Authorization =
                         //new AuthenticationHeaderValue("Bearer", _itemForEditing.AuthorisedToken);
 
@@ -616,8 +620,14 @@ namespace PigTool.ViewModels.DataViewModels
                             using (var client = new HttpClient(handler))
                             {
                                 client.DefaultRequestHeaders.Add("Authorization", $"bearer {_itemForEditing.AuthorisedToken}");
+                                var mobUser = JsonConvert.SerializeObject(_itemForEditing, new JsonSerializerSettings
+                                {
+                                    DateTimeZoneHandling = DateTimeZoneHandling.Utc
+                                });
+                                var content = new StringContent(mobUser, Encoding.UTF8, "application/json");
+                                var responseMessage = await client.PostAsync("https://pigprofittool.azurewebsites.net/Account/RegisterMobileUser", content);
 
-                                var responseMessage = await client.GetAsync("https://pigprofittool.azurewebsites.net/Account/TestAuth");
+                                var responseMessage21 = await client.GetAsync("https://pigprofittool.azurewebsites.net/Account/TestAuth");
 
                                 responseMessage.EnsureSuccessStatusCode();
 
@@ -626,6 +636,8 @@ namespace PigTool.ViewModels.DataViewModels
                                 //var response = JsonConvert.DeserializeObject<MobileUser>(jsonResponse);
 
                                 return jsonResponse;
+
+
                             }
                         });
 
