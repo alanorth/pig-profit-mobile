@@ -67,7 +67,7 @@ namespace Samples.ViewModel
             {
                 RESTService rest = new RESTService();
 
-                var mobileAuth = await rest.OnAuthenticate(scheme);
+                var mobileAuth = await rest.OnAuthenticate(scheme, null);
 
                 if (mobileAuth != null && mobileAuth.SuccesfulResponse)
                 {
@@ -80,13 +80,13 @@ namespace Samples.ViewModel
                     mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.PartitionKey), out var partitionKey);
 
                     var mobileUser = new MobileUser();
-                    mobileUser.AuthorisedEmail = authEmail;
+                    mobileUser.AuthorisedEmail = WebUtility.UrlDecode(authEmail);
                     mobileUser.UserName = WebUtility.UrlDecode(authEmail);
-                    mobileUser.AuthorisedToken = token;
-                    mobileUser.RefreshToken = reToken;
-                    mobileUser.Name = name;
-                    mobileUser.RowKey = rowKey;
-                    mobileUser.PartitionKey = partitionKey;
+                    mobileUser.AuthorisedToken = WebUtility.UrlDecode(token);
+                    mobileUser.RefreshToken = WebUtility.UrlDecode(reToken);
+                    mobileUser.Name = WebUtility.UrlDecode(name);
+                    mobileUser.RowKey = WebUtility.UrlDecode(rowKey);
+                    mobileUser.PartitionKey = WebUtility.UrlDecode(partitionKey);
 
                     await Application.Current.MainPage.Navigation.PushAsync(new RegistrationPage(mobileUser, lang, countryTranslationRowKey));
                 }
@@ -121,8 +121,6 @@ namespace Samples.ViewModel
 
             try
             {
-
-
                 //var url = baseURL + "SimpleAuthJSON";
 
                 //var url = "https://pigprofittool.azurewebsites.net/Account/SimpleAuthJSON";

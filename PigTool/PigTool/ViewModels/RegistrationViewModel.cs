@@ -628,7 +628,7 @@ namespace PigTool.ViewModels.DataViewModels
                                 var responseMessage = await client.PostAsync("https://pigprofittool.azurewebsites.net/Account/RegisterMobileUser", content);
 
                                 var responseMessage21 = await client.GetAsync("https://pigprofittool.azurewebsites.net/Account/TestAuth");
-
+                                //_itemForEditing.SavedToDatabase = true; 
                                 responseMessage.EnsureSuccessStatusCode();
 
                                 var jsonResponse = await responseMessage.Content.ReadAsStringAsync();

@@ -17,6 +17,8 @@ using System.Security.Cryptography;
 using Shared.Models;
 using System.Security.Policy;
 using Azure.Storage.Blobs.Models;
+using Azure.Core;
+using Microsoft.EntityFrameworkCore;
 
 namespace TestAuthenticateAPI.Controllers;
 
@@ -29,16 +31,19 @@ public class AccountController : PigToolBaseController
     private readonly SignInManager<APIUser> _signInManager;
     private readonly UserManager<APIUser> _userManager;
     private readonly IConfiguration _configuration;
+    protected ILookupNormalizer _normalizer;
 
     public AccountController(
         UserManager<APIUser> userManager,
         SignInManager<APIUser> signInManager,
-        IConfiguration configuration
+        IConfiguration configuration,
+        ILookupNormalizer normalizer
         ) : base(configuration)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _configuration = configuration;
+        _normalizer = normalizer;
     }
 
     [HttpGet("{scheme}")]
@@ -160,6 +165,11 @@ public class AccountController : PigToolBaseController
     [HttpPost]
     public async Task<IActionResult> RefreshToken(TokenModel tokenModel)
     {
+        var res = new RefreshTokenResponse
+        {
+            Success = false
+        };
+
         try
         {
             if (tokenModel is null)
@@ -182,7 +192,9 @@ public class AccountController : PigToolBaseController
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
-            var user = await _userManager.FindByNameAsync(username);
+            //var user = await _userManager.FindByNameAsync(username);
+
+            var user =  _userManager.Users.FirstOrDefault(u => u.Email == username);
 
             if (user == null || user.RefreshToken != refreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
             {
@@ -210,7 +222,7 @@ public class AccountController : PigToolBaseController
             return new ObjectResult(new
             {
                 Success = false,
-                bearerToken = "",
+                bearerToken = ex.Message,
                 refreshToken = ""
             });
         }
@@ -299,7 +311,8 @@ public class AccountController : PigToolBaseController
 
             //Get the user from the request
             MobileUser = JsonConvert.DeserializeObject<MobileUser>(requeststring);
-            var logUser = await _userManager.FindByEmailAsync(MobileUser.AuthorisedEmail);
+            //var logUser = await _userManager.FindByEmailAsync(MobileUser.AuthorisedEmail);
+            var logUser = _userManager.Users.First(u => u.Email == MobileUser.AuthorisedEmail);
 
             if (logUser == null)
             {
@@ -380,7 +393,8 @@ public class AccountController : PigToolBaseController
         string[] userInfo = { info.Principal.FindFirst(ClaimTypes.Name).Value, info.Principal.FindFirst(ClaimTypes.Email).Value };
         if (result.Succeeded)
         {
-            var user = await _userManager.FindByEmailAsync(info.Principal.FindFirst(ClaimTypes.Email).Value);
+            var user = await _userManager.FindByLoginAsync(info.LoginProvider, info.ProviderKey);
+
             var authToken = GenerateJwtToken(user);
             var refreshToken = GenerateRefreshToken();
 
@@ -419,7 +433,8 @@ public class AccountController : PigToolBaseController
                 Email = info.Principal.FindFirst(ClaimTypes.Email).Value,
                 UserName = info.Principal.FindFirst(ClaimTypes.Email).Value,
                 LastModified = DateTime.UtcNow,
-                LastUploadDate = DateTime.UtcNow
+                LastUploadDate = DateTime.UtcNow,
+                NormalizedEmail = info.Principal.FindFirst(ClaimTypes.Email).Value.Normalize(),
             };
 
             IdentityResult identResult = await _userManager.CreateAsync(user);
@@ -492,7 +507,7 @@ public class AccountController : PigToolBaseController
             if (info.Principal.FindFirst(ClaimTypes.Email).Value == verifiedEmail)
             {
 
-                var user = await _userManager.FindByEmailAsync(info.Principal.FindFirst(ClaimTypes.Email).Value);
+                var user = await _userManager.FindByLoginAsync(info.LoginProvider, info.ProviderKey);
                 var authToken = GenerateJwtToken(user);
                 var refreshToken = GenerateRefreshToken();
 

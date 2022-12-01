@@ -28,7 +28,7 @@ namespace Shared
         public const string APICALLID = " API Service ID = ";
 
         public const string BASEURL = "https://pigprofittool.azurewebsites.net/";
-        //public const string BASEURL = "http://10.0.2.2:5272/";
+        //public const string BASEURL = "http://10.0.2.2:5272";
 
         #endregion
 

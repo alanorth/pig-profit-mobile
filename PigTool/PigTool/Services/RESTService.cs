@@ -72,7 +72,21 @@ namespace PigTool.Services
                     //try force sigin via google to authenticate
                     if (!success)
                     {
-                        var diction = await OnAuthenticate("Google");
+                        var diction = await OnAuthenticate("Google", user.AuthorisedEmail, true);
+                        if (diction != null && diction.SuccesfulResponse)
+                        {
+                            if (diction != null && diction.SuccesfulResponse)
+                            {
+                                diction.ResultProperties.TryGetValue(nameof(MobileUser.AuthorisedToken), out var token);
+                                diction.ResultProperties.TryGetValue(nameof(MobileUser.RefreshToken), out var reToken);
+
+                                user.AuthorisedToken = token;
+                                user.RefreshToken = reToken;
+
+                                Preferences.Set(bearerToken, token);
+                                Preferences.Set(refreshToken, reToken);
+                            }
+                        }
                     }
                 }
                 try
@@ -120,8 +134,8 @@ namespace PigTool.Services
             }
             else
             {
-               return new AuthResponse();
-               
+                return new AuthResponse();
+
             }
         }
 
@@ -198,7 +212,7 @@ namespace PigTool.Services
 
         }
 
-        public async Task<MobileAuthModelData>OnAuthenticate(string scheme)
+        public async Task<MobileAuthModelData> OnAuthenticate(string scheme, string verifiedEmail, bool existingUser = false)
         {
             var authRepsponse = new MobileAuthModelData();
             authRepsponse.SuccesfulResponse = false;
@@ -207,52 +221,26 @@ namespace PigTool.Services
             {
                 WebAuthenticatorResult r = null;
 
-                if (scheme.Equals("Apple")
-                    && DeviceInfo.Platform == DevicePlatform.iOS
-                    && DeviceInfo.Version.Major >= 13)
-                {
-                    // Make sure to enable Apple Sign In in both the
-                    // entitlements and the provisioning profile.
-                    var options = new AppleSignInAuthenticator.Options
-                    {
-                        IncludeEmailScope = true,
-                        IncludeFullNameScope = true,
-                    };
-                    r = await AppleSignInAuthenticator.AuthenticateAsync(options);
-                }
-                else
-                {
-                    //var authUrl = new Uri("http://10.0.2.2:5272/Account/mobileauth/" + scheme);
-                    var authUrl = new Uri("https://pigprofittool.azurewebsites.net/Account/GoogleLoginNewUser");
-                    var callbackUrl = new Uri("pigprofittool://");
 
-                    r = await WebAuthenticator.AuthenticateAsync(authUrl, callbackUrl);
+                //var authUrl = new Uri("http://10.0.2.2:5272/Account/mobileauth/" + scheme);
+
+                var authUrl = new Uri("https://pigprofittool.azurewebsites.net/Account/GoogleLoginNewUser");
+
+                if (existingUser)
+                {
+                    authUrl = new Uri("https://pigprofittool.azurewebsites.net/Account/GoogleLogin" + $"?verifiedEmail={verifiedEmail}");
                 }
 
-                /*var AuthToken = string.Empty;
-                if (r.Properties.TryGetValue(nameof(MobileUser.Name), out var name) && !string.IsNullOrEmpty(name))
-                    AuthToken += $"Name: {name}{Environment.NewLine}";
-                if (r.Properties.TryGetValue("email", out var email) && !string.IsNullOrEmpty(email))
-                    AuthToken += $"Email: {email}{Environment.NewLine}";
-                AuthToken += r?.AccessToken ?? r?.IdToken;*/
+                var callbackUrl = new Uri("pigprofittool://");
 
-                
+                r = await WebAuthenticator.AuthenticateAsync(authUrl, callbackUrl);
+
+
                 authRepsponse.SuccesfulResponse = true;
                 authRepsponse.ResultProperties = r.Properties;
 
                 return authRepsponse;
-                /*var qs = new Dictionary<string, string>
-                {
-                    { nameof(MobileUser.AuthorisedToken), authToken.token },
-                    { nameof(MobileUser.RefreshToken),  refreshToken },
-                    //{ nameof(MobileUser.RefreshTokenExpiryTime), authToken.expirySeconds.ToString() },
-                    { nameof(MobileUser.AuthorisedEmail), email },
-                    { nameof(MobileUser.Name), givenName },
-                    { nameof(MobileUser.RowKey), appUser.RowKey },
-                    { nameof(MobileUser.PartitionKey), appUser.PartitionKey },
-                };*/
 
-               
 
             }
             catch (OperationCanceledException)

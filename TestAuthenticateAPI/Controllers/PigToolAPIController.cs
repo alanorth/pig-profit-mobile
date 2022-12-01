@@ -23,7 +23,7 @@ public class PigToolBaseController : ControllerBase
     protected string GetStorageConnectionString()
     {
         // https://stackoverflow.com/questions/30575689/how-do-we-use-cloudconfigurationmanager-with-asp-net-5-json-configs
-        var storageConnectionString = _configuration[Constants.MasterStorageConnectionString];
+        var storageConnectionString = _configuration["IdentityAzureTable:IdentityConfiguration:StorageConnectionString"];
 
         return storageConnectionString;
     }

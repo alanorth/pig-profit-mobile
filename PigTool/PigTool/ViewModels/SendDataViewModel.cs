@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
+using PigTool.Services;
 using Shared;
+using Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -426,34 +428,42 @@ namespace PigTool.ViewModels
                     ManureSaleItems = ManureSaleItems.ToList(),
                     OtherIncomeItems = OtherIncomeItems.ToList(),
                 };
-
-
-                //await repo.UpdateUserInfo(User);
-                var httpClient = new HttpClient();
+                var SerialisedData = JsonConvert.SerializeObject(apiTransfer, new JsonSerializerSettings
+                {
+                    DateTimeZoneHandling = DateTimeZoneHandling.Utc
+                });
 
                 //httpClient.DefaultRequestHeaders.Add("XApiKey", "ENTER YOUR API KEY HERE");
                 //httpClient.DefaultRequestHeaders.Authorization =
                 //new AuthenticationHeaderValue("Google", User.AuthorisedToken);
 
-                var jObject = JsonConvert.SerializeObject(apiTransfer, new JsonSerializerSettings
+                var rest = new RESTService(User);
+
+                //go save to database  
+                //maybe check to see if there are under data coverage
+                var details = await rest.ExecuteWithRetryAsync(async () =>
                 {
-                    DateTimeZoneHandling = DateTimeZoneHandling.Utc
-                }) ;
+                    using (var client = new HttpClient())
+                    {
+                        client.DefaultRequestHeaders.Add("Authorization", $"bearer {User.AuthorisedToken}");
+                        var mobUser = JsonConvert.SerializeObject(User, new JsonSerializerSettings
+                        {
+                            DateTimeZoneHandling = DateTimeZoneHandling.Utc
+                        });
+                        var content = new StringContent(SerialisedData, Encoding.UTF8, "application/json");
+                        var responseMessage = await client.PostAsync(Constants.BASEURL + Constants.ROUTE_API_SUBMITDATA, content);
+                        responseMessage.EnsureSuccessStatusCode();
 
-                var data = new StringContent(jObject, Encoding.UTF8, "application/json");
-                var url = "https://pigprofittool.azurewebsites.net/api/data/SubmitData";
-                //var url = "https://pigprofittool.azurewebsites.net/api/data/SubmitData";
-                //var url = "https://localhost:7218/api/data/SubmitData";
+                        var jsonResponse = await responseMessage.Content.ReadAsStringAsync();
 
-                var response = await httpClient.PostAsync(url, data);
-                //var response = await httpClient.GetAsync(url);
-                var responseString = await response.Content.ReadAsStringAsync();
+                        //var response = JsonConvert.DeserializeObject<MobileUser>(jsonResponse);
+                        return jsonResponse;
+                    }
+                });
 
-                
+                var res = JsonConvert.DeserializeObject<DataUploadResponse>(details);
 
-                httpClient.Dispose();
-
-                if (response.IsSuccessStatusCode)
+                if (res.Success)
                 {
                     User.LastUploadDate = DateTime.Now;
                     LastTimeDataUploaded = User.LastUploadDate;
@@ -463,11 +473,11 @@ namespace PigTool.ViewModels
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", response.StatusCode.ToString() + " " + response.ToString(), "OK");
+                    await Application.Current.MainPage.DisplayAlert("Error", res.Message, "OK");
                 }
 
                 PageRendered = false;
-                /*
+               
 
                 var baseAddr = new Uri("https://pigprofittool.azurewebsites.net");
                 var client = new HttpClient { BaseAddress = baseAddr };
@@ -477,7 +487,7 @@ namespace PigTool.ViewModels
                 request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", User.AuthorisedToken);
 
                 var response = await client.SendAsync(request);
-                response.EnsureSuccessStatusCode();*/
+                response.EnsureSuccessStatusCode();
 
             }
             catch (Exception ex)
