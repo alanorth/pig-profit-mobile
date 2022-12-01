@@ -20,9 +20,10 @@ namespace PigTool
         {
             InitializeComponent();
             //DependencyService.Register<DbSQLLiteContext>();
-            DependencyService.Register<MockDataStore>();
+            //DependencyService.Register<MockDataStore>();
             DependencyService.Register<IDataRepo, DataRepo>();
             //MainPage = new NavigationPage(new LoginPage());
+            InitializeDatabase();
 
             var IsAppInitialized = Task.Run(() => App.IsAppInitialized()).GetAwaiter().GetResult();
 
@@ -77,6 +78,15 @@ namespace PigTool
         public void DisplayLoginPage()
         {
             MainPage = new NavigationPage(new LanguageSelectPage());
+        }
+
+        private void InitializeDatabase()
+        {
+            SQLitePCL.Batteries_V2.Init();
+            using (var context = new DbSQLLiteContext())
+            {
+                context.Database.Migrate();
+            }
         }
     }
 }
