@@ -10,16 +10,14 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem
             Name="MenuItem1"
-            Icon="Microsoft.png"
-            Order="Primary"
+            Order="Secondary"
             Priority="0"
-            Text="Item 1" />
+            Text="Placeholder" />
         <ToolbarItem
             Name="MenuItem2"
-            Icon="Xamarin.png"
-            Order="Primary"
+            Order="Secondary"
             Priority="1"
-            Text="Item 2" />
+            Text="Placeholder" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
