@@ -82,13 +82,6 @@ builder.Services
                         return Task.CompletedTask;
                     };
 
-                }).AddFacebook(fb =>
-                {
-                    fb.AppId = builder.Configuration.GetValue<string>("FacebookAppId");
-                    fb.AppSecret = builder.Configuration.GetValue<string>("FacebookAppSecret");
-                    fb.SaveTokens = true;
-                    fb.AccessDeniedPath = Constants.ROUTE_API_DENIED;
-                    //fb.AuthorizationEndpoint = "/mobileauth/Facebook";
                 });
 
 JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
