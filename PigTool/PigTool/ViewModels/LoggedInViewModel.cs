@@ -1,6 +1,5 @@
-﻿using Shared;
-using PigTool.Services;
-using SQLLiteDbContext;
+﻿using PigTool.Services;
+using Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +8,7 @@ using Xamarin.Forms;
 
 namespace PigTool.ViewModels
 {
-    public  class LoggedInViewModel
+    public class LoggedInViewModel
     {
         //public DbSQLLiteContext DataConext  => DependencyService.Get<DbSQLLiteContext>();
 
@@ -26,17 +25,21 @@ namespace PigTool.ViewModels
             set { SetProperty(ref isBusy, value); }
         }
 
-        public LoggedInViewModel() {
-            try { 
-            repo = DependencyService.Get<IDataRepo>();
-            //users Variables
-            User = repo.GetUserInfoAsync().Result;
+        public LoggedInViewModel()
+        {
+            try
+            {
+                repo = DependencyService.Get<IDataRepo>();
+                //users Variables
+                User = repo.GetUserInfoAsync().Result;
 
-            TranslationStore = repo.GetAllTranslations().Result;
-            }catch(Exception ex)
+                TranslationStore = repo.GetAllTranslations().Result;
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+
         }
 
 
@@ -53,6 +56,8 @@ namespace PigTool.ViewModels
             return true;
         }
 
+
+
         #region INotifyPropertyChanged
         // public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
@@ -65,7 +70,7 @@ namespace PigTool.ViewModels
         }
         #endregion
 
-        
+
 
     }
 }

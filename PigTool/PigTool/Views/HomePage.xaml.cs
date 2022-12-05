@@ -1,5 +1,4 @@
 ﻿using PigTool.ViewModels;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,6 +13,28 @@ namespace PigTool.Views
         {
             InitializeComponent();
             BindingContext = homePageViewModel = new HomePageViewModel();
+
+            ToolbarItem settingsItem = new ToolbarItem
+            {
+                Text = "Settings",
+                Order = ToolbarItemOrder.Secondary,
+                Priority = 0,
+                Command = new Command(async () => await Application.Current.MainPage.Navigation.PushAsync(new SettingsPage()))
+            };
+
+            // "this" refers to a Page object
+            this.ToolbarItems.Add(settingsItem);
+
+            ToolbarItem logoutItem = new ToolbarItem
+            {
+                Text = "Logout",
+                Order = ToolbarItemOrder.Secondary,
+                Priority = 1,
+                Command = new Command(async () => await Application.Current.MainPage.DisplayAlert("Logout", "To be added", "OK"))
+            };
+
+            // "this" refers to a Page object
+            this.ToolbarItems.Add(logoutItem);
         }
 
         protected async override void OnAppearing()
