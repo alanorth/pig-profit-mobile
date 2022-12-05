@@ -128,6 +128,9 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "EditTranslation", English = "Edit", Lang1 = "Edit Lang1", Lang2 = "Edit Lang2" },
                          new Translation() { RowKey = "DeleteTranslation", English = "Delete", Lang1 = "Delete Lang1", Lang2 = "Delete Lang2" },
 
+                         new Translation() { RowKey = "StartTranslation", English = "Start", Lang1 = "Start Lang1", Lang2 = "Start Lang2" },
+                         new Translation() { RowKey = "FinishTranslation", English = "Finish", Lang1 = "Finish Lang1", Lang2 = "Finish Lang2" },
+
                          //Add Feed Item Translations
                          new Translation() { RowKey = "FeedItemTitleTranslation", English = "Feed Cost", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "FeedTypeTranslation", English = "Feed Type", Lang1 = "Feed Type Lang1", Lang2 = "Feed Type Lang2" },
@@ -149,6 +152,8 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "TransportCostTrans", English = "Transportation Cost", Lang1 = "Transportation Cost Lang1", Lang2 = "Transportation Cost Lang2" },
                          new Translation() { RowKey = "PurchasedFrom", English = "Purchased From", Lang1 = "Purchased From Lang1", Lang2 = "Purchased From Lang2" },
                          new Translation() { RowKey = "CommentTrans", English = "Comment", Lang1 = "Comment Lang1", Lang2 = "Comment Lang2" },
+
+                         new Translation() { RowKey = "FeedDurationTrans", English = "Feed use duration", Lang1 = "Duration Lang1", Lang2 = "Duration Lang2" },
 
                          //Add HeathCare item Translation
                          new Translation() { RowKey = "HealthCareTitleTranslation", English = "Health Care", Lang1 = "", Lang2 = "" },

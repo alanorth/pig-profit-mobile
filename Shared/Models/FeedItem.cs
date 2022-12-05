@@ -1,5 +1,5 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace Shared
 {
@@ -16,6 +16,8 @@ namespace Shared
         public string? PurchasedFrom { get; set; }
         public string? OtherPurchasedFrom { get; set; }
         public string? Comment { get; set; }
+        public DateTime? DurationStart { get; set; }
+        public DateTime? DurationFinish { get; set; }
         [JsonIgnore]
         public virtual Translation? FeedTypeTranslation { get; set; }
         public virtual string? FeedTypeTranslationString { get; set; }
