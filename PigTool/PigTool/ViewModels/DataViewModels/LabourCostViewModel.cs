@@ -1,11 +1,11 @@
-﻿using System;
+﻿using PigTool.Helpers;
+using Shared;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PigTool.Helpers;
-using Shared;
 using Xamarin.Forms;
 
 namespace PigTool.ViewModels.DataViewModels
@@ -42,11 +42,15 @@ namespace PigTool.ViewModels.DataViewModels
         public string DeleteTranslation { get; set; }
         public string ResetTranslation { get; set; }
         public string PickerLabourTypeTranslation { get; set; }
+
+        public string StartTranslation { get; set; }
+        public string FinishTranslation { get; set; }
+        public string LabourDurationTranslation { get; set; }
         #endregion
 
 
         #region FormValues
-        private DateTime date;
+        private DateTime date, durationStart, durationFinish;
 
         public DateTime Date { get => date; set { if (date != value) { date = value; OnPropertyChanged(nameof(Date)); } } }
         public string LabourType
@@ -57,6 +61,30 @@ namespace PigTool.ViewModels.DataViewModels
                 {
                     labourType = value;
                     OnPropertyChanged(nameof(LabourType));
+                }
+            }
+        }
+        public DateTime DurationStart
+        {
+            get => durationStart;
+            set
+            {
+                if (durationStart != value)
+                {
+                    durationStart = value;
+                    OnPropertyChanged(nameof(DurationStart));
+                }
+            }
+        }
+        public DateTime DurationFinish
+        {
+            get => durationFinish;
+            set
+            {
+                if (durationFinish != value)
+                {
+                    durationFinish = value;
+                    OnPropertyChanged(nameof(DurationFinish));
                 }
             }
         }
@@ -159,6 +187,8 @@ namespace PigTool.ViewModels.DataViewModels
         public LabourCostViewModel()
         {
             Date = DateTime.Now;
+            DurationStart = DateTime.Now;
+            DurationFinish = DateTime.Now;
             LabourType = null;
             OtherLaboutType = null;
             AmountPaid = null;
@@ -188,6 +218,10 @@ namespace PigTool.ViewModels.DataViewModels
 
             PickerLabourTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerLabourTypeTranslation), User.UserLang);
 
+            StartTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(StartTranslation), User.UserLang) + " *";
+            FinishTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FinishTranslation), User.UserLang) + " *";
+            LabourDurationTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LabourDurationTranslation), User.UserLang);
+
         }
 
         public void populatewithData(LabourCostItem item)
@@ -204,6 +238,8 @@ namespace PigTool.ViewModels.DataViewModels
             AmountPaid = item.AmountPaid;
             OtherCosts = item.OtherCost;
             Comment = item.Comment;
+            DurationStart = (DateTime)item.DurationStart;
+            DurationFinish = (DateTime)item.DurationFinish;
         }
 
 
@@ -262,6 +298,8 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.OtherCost = (double)OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
+                _itemForEditing.DurationStart = DurationStart;
+                _itemForEditing.DurationFinish = DurationFinish;
 
                 await repo.UpdateLabourCostItem(_itemForEditing);
                 await Application.Current.MainPage.DisplayAlert("Created", "Labour Cost Record Update", "OK");
@@ -281,6 +319,8 @@ namespace PigTool.ViewModels.DataViewModels
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
                     PartitionKey = Constants.PartitionKeyLabourCostItem,
+                    DurationStart = DurationStart,
+                    DurationFinish = DurationFinish
                 };
 
                 await repo.AddSingleLabourCostItem(newLabourCost);
@@ -295,6 +335,8 @@ namespace PigTool.ViewModels.DataViewModels
             if (Date == null) returnString.AppendLine("Date obtained not provided");
             if (AmountPaid == null) returnString.AppendLine("Amount Paid Not Provided");
             if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
+            if (DurationStart == null) returnString.AppendLine("Duration Start Not Provided");
+            if (DurationFinish == null) returnString.AppendLine("Duration Finish Not Provided");
 
             if (selectedLabourType != null && selectedLabourType.TranslationRowKey == Constants.OTHER)
             {
