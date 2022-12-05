@@ -1,5 +1,7 @@
 ﻿using Newtonsoft.Json;
 using PigTool.Services;
+using PigTool.Views.Popups;
+using Rg.Plugins.Popup.Services;
 using Shared;
 using Shared.Models;
 using System;
@@ -7,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;

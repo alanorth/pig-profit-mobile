@@ -94,10 +94,12 @@ namespace Samples.ViewModel
                     mobileUser.RowKey = WebUtility.UrlDecode(rowKey);
                     mobileUser.PartitionKey = WebUtility.UrlDecode(partitionKey);
 
+                    await PopupNavigation.Instance.PopAsync();
                     await Application.Current.MainPage.Navigation.PushAsync(new RegistrationPage(mobileUser, lang, countryTranslationRowKey));
                 }
                 else
                 {
+                    await PopupNavigation.Instance.PopAsync();
                     if (mobileAuth != null)
                     {
                         await Application.Current.MainPage.DisplayAlert("Error", mobileAuth.FailMessage, "OK");
@@ -112,6 +114,7 @@ namespace Samples.ViewModel
             }
             catch (Exception ex)
             {
+                await PopupNavigation.Instance.PopAsync();
                 Console.WriteLine($"Failed: {ex.Message}");
 
                 AuthToken = string.Empty;
