@@ -238,8 +238,8 @@ namespace PigTool.ViewModels.DataViewModels
             AmountPaid = item.AmountPaid;
             OtherCosts = item.OtherCost;
             Comment = item.Comment;
-            DurationStart = (DateTime)item.DurationStart;
-            DurationFinish = (DateTime)item.DurationFinish;
+            DurationStart = item.DurationStart;
+            DurationFinish = item.DurationFinish;
         }
 
 

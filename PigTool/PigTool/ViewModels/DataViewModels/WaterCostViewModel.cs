@@ -1,12 +1,11 @@
-﻿using System;
+﻿using PigTool.Helpers;
+using Shared;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PigTool.Helpers;
-using Shared;
-using PigTool.Views;
 using Xamarin.Forms;
 
 namespace PigTool.ViewModels.DataViewModels
@@ -15,7 +14,7 @@ namespace PigTool.ViewModels.DataViewModels
     {
         bool isEditMode, isCreationMode;
         private bool editExistingMode;
-        private DateTime date;
+        private DateTime date, durationStart, durationFinish;
         private double? waterPurchased;
         private string waterPurchasedUnit;
         private string otherWaterPurchasedUnit;
@@ -56,6 +55,10 @@ namespace PigTool.ViewModels.DataViewModels
 
         public string PickerUnitTranslation { get; set; }
         public string PickerPurchasedFromTranslation { get; set; }
+
+        public string StartTranslation { get; set; }
+        public string FinishTranslation { get; set; }
+        public string LabourDurationTranslation { get; set; }
         #endregion
 
         #region Water cost item fields
@@ -68,6 +71,30 @@ namespace PigTool.ViewModels.DataViewModels
                 {
                     date = value;
                     OnPropertyChanged(nameof(Date));
+                }
+            }
+        }
+        public DateTime DurationStart
+        {
+            get => durationStart;
+            set
+            {
+                if (durationStart != value)
+                {
+                    durationStart = value;
+                    OnPropertyChanged(nameof(DurationStart));
+                }
+            }
+        }
+        public DateTime DurationFinish
+        {
+            get => durationFinish;
+            set
+            {
+                if (durationFinish != value)
+                {
+                    durationFinish = value;
+                    OnPropertyChanged(nameof(DurationFinish));
                 }
             }
         }
@@ -301,7 +328,8 @@ namespace PigTool.ViewModels.DataViewModels
         public WaterCostViewModel()
         {
             Date = DateTime.Now;
-
+            DurationStart = DateTime.Now;
+            DurationFinish = DateTime.Now;
             IsEditMode = true;
             CreationMode = true;
 
@@ -330,6 +358,9 @@ namespace PigTool.ViewModels.DataViewModels
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
             DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), User.UserLang);
 
+            StartTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(StartTranslation), User.UserLang) + " *";
+            FinishTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FinishTranslation), User.UserLang) + " *";
+            LabourDurationTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LabourDurationTranslation), User.UserLang);
 
             PickerUnitTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerUnitTranslation), User.UserLang);
             PickerPurchasedFromTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerPurchasedFromTranslation), User.UserLang);
@@ -353,6 +384,8 @@ namespace PigTool.ViewModels.DataViewModels
             TransportationCost = item.TransportationCost;
             OtherCosts = item.OtherCosts;
             Comment = item.Comment;
+            DurationStart = item.DurationStart;
+            DurationFinish = item.DurationFinish;
         }
 
         public void SetPickers()
@@ -388,6 +421,8 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.OtherCosts = (double)OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
+                _itemForEditing.DurationStart = DurationStart;
+                _itemForEditing.DurationFinish = DurationFinish;
 
                 await repo.UpdateWaterCostItem(_itemForEditing);
                 await Application.Current.MainPage.DisplayAlert("Updated", "Water cost record has been updated", "OK");
@@ -410,6 +445,8 @@ namespace PigTool.ViewModels.DataViewModels
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
                     PartitionKey = Constants.PartitionKeyWaterCostItem,
+                    DurationStart = DurationStart,
+                    DurationFinish = DurationFinish
                 };
 
                 await repo.AddSingleWaterCostItem(newWaterCost);
@@ -475,10 +512,11 @@ namespace PigTool.ViewModels.DataViewModels
             {
                 StringBuilder returnString = new StringBuilder();
                 if (Date == null) returnString.AppendLine("Date obtained not provided");
+                if (DurationStart == null) returnString.AppendLine("Duration Start Not Provided");
+                if (DurationFinish == null) returnString.AppendLine("Duration Finish Not Provided");
                 if (TotalCosts == null) returnString.AppendLine("Total Cost Not Provided");
                 if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
                 if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
-
 
                 if (SelectedWaterPurchasedUnit != null && SelectedWaterPurchasedUnit.TranslationRowKey == Constants.OTHER)
                 {

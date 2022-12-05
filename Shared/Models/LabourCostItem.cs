@@ -11,7 +11,7 @@ namespace Shared
         public double AmountPaid { get; set; }
         public double OtherCost { get; set; }
         public string? Comment { get; set; }
-        public DateTime? DurationStart { get; set; }
-        public DateTime? DurationFinish { get; set; }
+        public DateTime DurationStart { get; set; }
+        public DateTime DurationFinish { get; set; }
     }
 }

@@ -1,14 +1,8 @@
 ﻿using PigTool.Helpers;
+using PigTool.ViewModels.DataViewModels;
 using Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using PigTool.ViewModels.DataViewModels;
 
 namespace PigTool.Views
 {
@@ -59,6 +53,31 @@ namespace PigTool.Views
             DateCell.View = stack;
             FullTableSection.Add(DateCell);
 
+            // Duration
+            var DurationCell = new ViewCell();
+            var DurationVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
+
+            var DurationLabel = FormattedElementsHelper.DataLabel(nameof(_viewModel.LabourDurationTranslation));
+            DurationVerticalStack.Children.Add(DurationLabel);
+
+            //DurationStart
+            var DurationStartCell = new ViewCell();
+            var DurationStartStack = FormattedElementsHelper.TableRowStack();
+            DurationStartStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.StartTranslation)));
+            DurationStartStack.Children.Add(FormattedElementsHelper.FormDatePicker(nameof(_viewModel.DurationStart), nameof(_viewModel.IsEditMode)));
+            DurationStartCell.View = DurationStartStack;
+
+            //DurationFinish
+            var DurationFinishCell = new ViewCell();
+            var DurationFinishStack = FormattedElementsHelper.TableRowStack();
+            DurationFinishStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.FinishTranslation)));
+            DurationFinishStack.Children.Add(FormattedElementsHelper.FormDatePicker(nameof(_viewModel.DurationFinish), nameof(_viewModel.IsEditMode)));
+            DurationFinishCell.View = DurationFinishStack;
+
+            DurationVerticalStack.Children.Add(DurationStartStack);
+            DurationVerticalStack.Children.Add(DurationFinishStack);
+            DurationCell.View = DurationVerticalStack;
+            FullTableSection.Add(DurationCell);
 
             //Water Purchased
 
@@ -82,7 +101,7 @@ namespace PigTool.Views
                 _viewModel.PickerUnitTranslation
                 )
                 );
-            
+
             waterPurchasedUnitTypeStack.Children.Add(InputContainer);
 
             var OtherWaterUnitType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherWaterUnit), true);
