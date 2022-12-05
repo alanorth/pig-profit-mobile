@@ -1,26 +1,65 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PigTool.Views.SendDataPage">
+<ContentPage
+    x:Class="PigTool.Views.SendDataPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="{Binding UploadDataTranslation}">
     <ContentPage.Content>
-        <StackLayout >
-            <Label Text="This Page Will Send All The Data To The API"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Label x:Name="UserLabel"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Label x:Name="LastUpdateDateLabel"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout VerticalOptions="CenterAndExpand">
+
+            <Label
+                x:Name="UserLabel"
+                HorizontalOptions="CenterAndExpand"
+                IsVisible="false"
+                VerticalOptions="CenterAndExpand" />
+
+            <StackLayout x:Name="TestLayout">
+                <Label
+                    x:Name="TotalItemsLabel"
+                    FontSize="36"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand" />
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    Text="new items since last upload at:"
+                    VerticalOptions="CenterAndExpand" />
+                <Label
+                    x:Name="LastUpdateDateLabel"
+                    FontSize="20"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand" />
+
+                <Button
+                    x:Name="ViewDataButton"
+                    BackgroundColor="White"
+                    Clicked="OnViewDetailsClicked"
+                    Text="View Details"
+                    TextColor="LightBlue"
+                    TextTransform="None" />
+
+            </StackLayout>
+
+
+
+            <!--
             <Grid x:Name="SendDataGrid" Margin="20,35,20,20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.75*" />
                     <ColumnDefinition Width="0.25*" />
                 </Grid.ColumnDefinitions>
-            </Grid>
+            </Grid>-->
 
-            <Button x:Name="SendDataButton"  Text="Send Data"></Button>
+            <Button
+                x:Name="SendDataButton"
+                Margin="0,40,0,0"
+                Text="Upload Data" />
+            <Label
+                Margin="20,5,20,10"
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                Text="Ensure that your data stays safe by uploading it to the cloud"
+                VerticalOptions="CenterAndExpand"
+                VerticalTextAlignment="Center" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

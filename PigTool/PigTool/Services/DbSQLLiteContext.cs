@@ -1,11 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PigTool.Helpers;
 using Shared;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Xamarin.Essentials;
 
 namespace SQLLiteDbContext
@@ -85,7 +81,7 @@ namespace SQLLiteDbContext
             modelBuilder.Entity<BaseItem>().Property(bi => bi.IsModified).HasDefaultValue(true);
             modelBuilder.Entity<BaseItem>().Property(bi => bi.LastModified).HasDefaultValue(DateTime.UtcNow);
 
-#if DEBUG
+
 
             modelBuilder.Entity<Translation>(x =>
                  {
@@ -100,6 +96,7 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "Home", English = "Home", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
                          new Translation() { RowKey = "FilterTranslation", English = "Filter by:", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "RegistrationTranslation", English = "Registration", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "UploadDataTranslation", English = "Upload", Lang1 = "", Lang2 = "" },
 
                          new Translation() { RowKey = "Costs", English = "Costs", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
                          new Translation() { RowKey = "Feed", English = "Feed", Lang1 = "Home Lang1", Lang2 = "Home Lang2" },
@@ -279,16 +276,21 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "LegalDisclaimerTitleTranslation", English = "Legal Disclaimer", Lang1 = "Legal Lang 1", Lang2 = "" },
                          new Translation() { RowKey = "LegalDisclaimerAgreeTranslation", English = "By checking this box you agree to the terms listed above", Lang1 = "Legal check 1", Lang2 = "" },
                          new Translation() { RowKey = "LegalDisclaimerProceedTranslation", English = "Proceed", Lang1 = "Proceed Lang 1", Lang2 = "" },
-                         new Translation() { RowKey = "LegalDisclaimerBodyTranslation", 
-                             English = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", 
-                             Lang1 = "Legal body Lang 1", 
-                             Lang2 = "" 
+                         new Translation()
+                         {
+                             RowKey = "LegalDisclaimerBodyTranslation",
+                             English = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                             Lang1 = "Legal body Lang 1",
+                             Lang2 = ""
                          },
                          new Translation() { RowKey = "WebAuthTitleTranslation", English = "Sign Up", Lang1 = "Sign Up Lang 1", Lang2 = "" },
-                         new Translation() { RowKey = "WebAuthDescTranslation", 
-                             English = "The Pig Economic Tool authenticates with Google to securely authenticate your account and keep your data safe.", 
-                             Lang1 = "Desc Lang 1", 
-                             Lang2 = "" },
+                         new Translation()
+                         {
+                             RowKey = "WebAuthDescTranslation",
+                             English = "The Pig Economic Tool authenticates with Google to securely authenticate your account and keep your data safe.",
+                             Lang1 = "Desc Lang 1",
+                             Lang2 = ""
+                         },
                          new Translation() { RowKey = "GoogleSignUpTranslation", English = "Sign up with Google", Lang1 = "Google Lang 1", Lang2 = "" },
                          new Translation() { RowKey = "RegistrationSuccessfulTitleTranslation", English = "Your Account Has Been Created", Lang1 = "Account Created Lang 1", Lang2 = "" },
                          new Translation() { RowKey = "RegistrationSuccessfulDescTranslation", English = "You can now begin collecting and storing your data", Lang1 = "Begin Lang 1", Lang2 = "" },
@@ -885,7 +887,6 @@ namespace SQLLiteDbContext
                 }
             );
 
-#endif
             //Convert Enum To String
             modelBuilder.Entity<MobileUser>().Property(x => x.UserLang)
                 .HasConversion(
@@ -893,7 +894,7 @@ namespace SQLLiteDbContext
                 v => (UserLangSettings)Enum.Parse(typeof(UserLangSettings), v)
                 );
 
-            
+
 
             /*
             modelBuilder.Entity<MobileUser>(x =>
@@ -933,4 +934,4 @@ namespace SQLLiteDbContext
         }
 
     }
-    }
+}

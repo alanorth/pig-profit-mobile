@@ -1,6 +1,4 @@
-﻿using Azure;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using PigTool;
 using PigTool.Helpers;
@@ -8,6 +6,8 @@ using PigTool.Models;
 using PigTool.Services;
 using PigTool.ViewModels;
 using PigTool.Views;
+using PigTool.Views.Popups;
+using Rg.Plugins.Popup.Services;
 using Shared;
 using System;
 using System.Net;
@@ -63,6 +63,12 @@ namespace Samples.ViewModel
 
         async Task OnAuthenticate(string scheme)
         {
+
+            // Display Overlay for sending data
+            LoadingOverlay overlay = new LoadingOverlay("Please Wait");
+            await PopupNavigation.Instance.PushAsync(overlay);
+            //await Task.Delay(5000);
+
             try
             {
                 RESTService rest = new RESTService();
@@ -166,10 +172,17 @@ namespace Samples.ViewModel
 
                 
 
+            }
+            catch (OperationCanceledException)
+            {
+                Console.WriteLine("Login cancelled.");
 
             }
             catch (Exception ex)
             {
+                // Remove Overlay
+                await PopupNavigation.Instance.PopAsync();
+
                 Console.WriteLine($"Failed: {ex.Message}");
                 httpClient.Dispose();
                 AuthToken = string.Empty;
