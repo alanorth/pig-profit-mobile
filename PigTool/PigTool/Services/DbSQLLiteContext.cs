@@ -153,7 +153,7 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "PurchasedFrom", English = "Purchased From", Lang1 = "Purchased From Lang1", Lang2 = "Purchased From Lang2" },
                          new Translation() { RowKey = "CommentTrans", English = "Comment", Lang1 = "Comment Lang1", Lang2 = "Comment Lang2" },
 
-                         new Translation() { RowKey = "FeedDurationTrans", English = "Feed use duration", Lang1 = "Duration Lang1", Lang2 = "Duration Lang2" },
+                         new Translation() { RowKey = "FeedDurationTranslation", English = "Feed use duration", Lang1 = "Duration Lang1", Lang2 = "Duration Lang2" },
 
                          //Add HeathCare item Translation
                          new Translation() { RowKey = "HealthCareTitleTranslation", English = "Health Care", Lang1 = "", Lang2 = "" },
