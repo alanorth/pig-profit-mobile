@@ -20,9 +20,9 @@ namespace PigTool.API.Controllers
         {
 
         }
-
         
-        [HttpPost, Route(Constants.ROUTE_AUTH_REGISTERUSER)]
+        
+        [HttpPost, Route("Account/RegisterUser")]
         public async Task<ActionResult> RegisterUser()
         {
             var callGUID = Guid.NewGuid().ToString();
@@ -81,6 +81,6 @@ namespace PigTool.API.Controllers
 
             return contentresult;
         }
-
+        
         }
 }

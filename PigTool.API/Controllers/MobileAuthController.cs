@@ -16,7 +16,7 @@ namespace PigTool.API.WebAuthenticator
     {
         const string callbackScheme = "pigprofittool";
         //const string callbackScheme = "xamarinessentials";
-
+        
         [HttpGet("{scheme}")]
         public async Task Get([FromRoute] string scheme)
         {

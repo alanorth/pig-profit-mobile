@@ -17,7 +17,7 @@ namespace PigTool.API.Controllers
         {
 
         }
-
+        
         [HttpGet, Route(Constants.ROUTE_API_VERSION)]
         public ActionResult GetAuthApiVersion()
         {
@@ -98,4 +98,4 @@ namespace PigTool.API.Controllers
             }
         }
     }
-}
+    }
