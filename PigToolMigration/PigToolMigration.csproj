@@ -3,10 +3,52 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Shared</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20221206023347_Initial_Migration.cs" />
+    <Compile Remove="Migrations\20221206023347_Initial_Migration.Designer.cs" />
+    <Compile Remove="Migrations\20221206024748_Initial_Migration.cs" />
+    <Compile Remove="Migrations\20221206024748_Initial_Migration.Designer.cs" />
+    <Compile Remove="Migrations\20221206025303_Initial_Migration.cs" />
+    <Compile Remove="Migrations\20221206025303_Initial_Migration.Designer.cs" />
+    <Compile Remove="Migrations\20221206030114_Initial_Migration.cs" />
+    <Compile Remove="Migrations\20221206030114_Initial_Migration.Designer.cs" />
+    <Compile Remove="Migrations\20221206030634_Initial_Migration.cs" />
+    <Compile Remove="Migrations\20221206030634_Initial_Migration.Designer.cs" />
+    <Compile Remove="Migrations\20221206031153_Initial_Migration.cs" />
+    <Compile Remove="Migrations\20221206031153_Initial_Migration.Designer.cs" />
+    <Compile Remove="Migrations\20221206031509_Initial_Migration.cs" />
+    <Compile Remove="Migrations\20221206031509_Initial_Migration.Designer.cs" />
+    <Compile Remove="Migrations\20221206031935_Initial_Migration.cs" />
+    <Compile Remove="Migrations\20221206031935_Initial_Migration.Designer.cs" />
+    <Compile Remove="Migrations\20221206032136_Initial_Migration.cs" />
+    <Compile Remove="Migrations\20221206032136_Initial_Migration.Designer.cs" />
+    <Compile Remove="Migrations\20221206032955_Initial_Migration.cs" />
+    <Compile Remove="Migrations\20221206032955_Initial_Migration.Designer.cs" />
+    <Compile Remove="Migrations\20221206033122_Initial_Migration.cs" />
+    <Compile Remove="Migrations\20221206033122_Initial_Migration.Designer.cs" />
+    <Compile Remove="Migrations\20221206193747_Initial-Migration.cs" />
+    <Compile Remove="Migrations\20221206193747_Initial-Migration.Designer.cs" />
+    <Compile Remove="Migrations\20221206203217_testing3.cs" />
+    <Compile Remove="Migrations\20221206203217_testing3.Designer.cs" />
+    <Compile Remove="Migrations\DbSQLLiteContextModelSnapshot.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PigTool\PigTool\PigTool.csproj" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

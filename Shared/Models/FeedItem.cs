@@ -1,8 +1,13 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Azure;
+using Azure.Data.Tables;
 using Newtonsoft.Json;
 
 namespace Shared
 {
+    [Table("FeedItems")]
     public class FeedItem : BaseItem
     {
         public DateTime Date { get; set; }
