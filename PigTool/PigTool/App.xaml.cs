@@ -46,15 +46,22 @@ namespace PigTool
 
             var repo = DependencyService.Get<IDataRepo>();
 
+            try { 
             var user = await repo.GetUserInfoAsync();
+            
 
-            if(user == null)
+
+            if (user == null)
             {
                 return false;
             }
             else
             {
                 return true;
+            }
+            }catch(Exception ex)
+            {
+                return false;
             }
         }
 

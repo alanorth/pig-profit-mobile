@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Azure;
@@ -10,6 +11,7 @@ namespace Shared
     [Table("FeedItems")]
     public class FeedItem : BaseItem
     {
+        
         public DateTime Date { get; set; }
         public string? FeedType { get; set; }
         public string? OtherFeedType { get; set; }

@@ -62,21 +62,38 @@ namespace SQLLiteDbContext
             modelBuilder.Entity<BaseItem>().Property(bi => bi.RowKey).HasDefaultValue(Guid.NewGuid().ToString());
 
             modelBuilder.Entity<FeedItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyFeed);
+            modelBuilder.Entity<FeedItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
+            modelBuilder.Entity<ControlData>().ToTable(nameof(ControlDataOptions));
             modelBuilder.Entity<ControlData>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyControlData);
+            modelBuilder.Entity<ControlData>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<HealthCareItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyHealthCareItem);
+            modelBuilder.Entity<HealthCareItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<LabourCostItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyLabourCostItem);
+            modelBuilder.Entity<LabourCostItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<AnimalHouseItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyAnimalHouse);
+            modelBuilder.Entity<AnimalHouseItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<WaterCostItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyWaterCostItem);
+            modelBuilder.Entity<WaterCostItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<MembershipItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyMembershipItem);
+            modelBuilder.Entity<MembershipItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<OtherCostItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyOtherCostItem);
+            modelBuilder.Entity<OtherCostItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<ReproductiveItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyReproductiveItem);
+            modelBuilder.Entity<ReproductiveItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<AnimalPurchaseItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyAnimalPurchaseItem);
+            modelBuilder.Entity<AnimalPurchaseItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<LoanRepaymentItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyLoanRepaymentItem);
+            modelBuilder.Entity<LoanRepaymentItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<EquipmentItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyEquipmentItem);
+            modelBuilder.Entity<EquipmentItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<PigSaleItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyPigSaleItem);
+            modelBuilder.Entity<PigSaleItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<BreedingServiceSaleItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyBreedingServiceSaleItem);
+            modelBuilder.Entity<BreedingServiceSaleItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<ManureSaleItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyManureSaleItem);
+            modelBuilder.Entity<ManureSaleItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<OtherIncomeItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyOtherIncomeItem);
+            modelBuilder.Entity<OtherIncomeItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
 
             modelBuilder.Entity<ControlData>()
             .HasOne(cd => cd.Translation).WithMany(t => t.ControlDatas).HasForeignKey(cd => cd.TranslationRowKey);

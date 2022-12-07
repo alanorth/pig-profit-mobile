@@ -33,7 +33,20 @@
     <Compile Remove="Migrations\20221206193747_Initial-Migration.Designer.cs" />
     <Compile Remove="Migrations\20221206203217_testing3.cs" />
     <Compile Remove="Migrations\20221206203217_testing3.Designer.cs" />
-    <Compile Remove="Migrations\DbSQLLiteContextModelSnapshot.cs" />
+    <Compile Remove="Migrations\20221206220431_IntialStandup.cs" />
+    <Compile Remove="Migrations\20221206220431_IntialStandup.Designer.cs" />
+    <Compile Remove="Migrations\20221206220831_IntialStandup2.cs" />
+    <Compile Remove="Migrations\20221206220831_IntialStandup2.Designer.cs" />
+    <Compile Remove="Migrations\20221206221511_IntialStandup.cs" />
+    <Compile Remove="Migrations\20221206221511_IntialStandup.Designer.cs" />
+    <Compile Remove="Migrations\20221206223246_IntialStandup.cs" />
+    <Compile Remove="Migrations\20221206223246_IntialStandup.Designer.cs" />
+    <Compile Remove="Migrations\20221206233542_IntialStandup.cs" />
+    <Compile Remove="Migrations\20221206233542_IntialStandup.Designer.cs" />
+    <Compile Remove="Migrations\20221206233949_IntialStandup.cs" />
+    <Compile Remove="Migrations\20221206233949_IntialStandup.Designer.cs" />
+    <Compile Remove="Migrations\20221207003322_IntialStandup.cs" />
+    <Compile Remove="Migrations\20221207003322_IntialStandup.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
