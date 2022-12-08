@@ -78,7 +78,10 @@ public class AccountController : PigToolBaseController
         Request.HttpContext.Response.Redirect(url);
     }
 
-
+    /// <summary>
+    /// Not in use
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public async Task<ActionResult> SimpleAuthJSON()
     {
@@ -235,6 +238,11 @@ public class AccountController : PigToolBaseController
         await Request.HttpContext.ChallengeAsync("Google");
     }
 
+    /// <summary>
+    /// Not in use
+    /// </summary>
+    /// <param name="UserSignedIn"></param>
+    /// <returns></returns>
     [HttpGet]
     public async Task MobileAuth(string? UserSignedIn = null)
     {
@@ -364,7 +372,7 @@ public class AccountController : PigToolBaseController
     [HttpGet]
     public IActionResult GoogleLogin(string authenticatedEmail)
     {
-        string redirectUrl = Url.Action($"GoogleResponseId", "Account", new { testId = authenticatedEmail });
+        string redirectUrl = Url.Action($"GoogleResponseId", "Account", new { verifiedEmail = authenticatedEmail });
         var properties = _signInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);
         return new ChallengeResult("Google", properties);
     }
@@ -526,6 +534,7 @@ public class AccountController : PigToolBaseController
                     { nameof(MobileUser.AuthorisedEmail), user.Email },
                     { nameof(MobileUser.RowKey), user.RowKey },
                     { nameof(MobileUser.PartitionKey), user.PartitionKey },
+                    { "CorrectUser", "true" },
                 };
 
                 // build url with previously calculated info to send back to app
@@ -540,8 +549,19 @@ public class AccountController : PigToolBaseController
             }
             else
             {
-                var url = Callback + "://#";
-                Request.HttpContext.Response.StatusCode = 350;
+
+                var loggedEmail = info.Principal.FindFirst(ClaimTypes.Email).Value;
+
+                var qs = new Dictionary<string, string>
+                {
+                    { nameof(MobileUser.AuthorisedEmail), loggedEmail },
+                    { "CorrectUser", "false" },
+                };
+                var url = Callback + "://#" + string.Join(
+                   "&",
+                   qs.Where(kvp => !string.IsNullOrEmpty(kvp.Value) && kvp.Value != "-1")
+                   .Select(kvp => $"{WebUtility.UrlEncode(kvp.Key)}={WebUtility.UrlEncode(kvp.Value)}"));
+                Request.HttpContext.Response.StatusCode = 200;
                 Request.HttpContext.Response.Redirect(url);
 
             }

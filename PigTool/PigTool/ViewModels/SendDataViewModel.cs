@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -434,11 +435,8 @@ namespace PigTool.ViewModels
 
         public async void PostDataToAPI()
         {
-            // Display Overlay for sending data
             LoadingOverlay overlay = new LoadingOverlay("Sending Data");
             await PopupNavigation.Instance.PushAsync(overlay);
-            //await Task.Delay(5000);
-
             try
             {
                 var apiTransfer = new APITransferItem()
@@ -464,10 +462,6 @@ namespace PigTool.ViewModels
                 {
                     DateTimeZoneHandling = DateTimeZoneHandling.Utc
                 });
-
-                //httpClient.DefaultRequestHeaders.Add("XApiKey", "ENTER YOUR API KEY HERE");
-                //httpClient.DefaultRequestHeaders.Authorization =
-                //new AuthenticationHeaderValue("Google", User.AuthorisedToken);
 
                 var rest = new RESTService(User);
 
@@ -502,29 +496,25 @@ namespace PigTool.ViewModels
                     await repo.UpdateUserInfo(User);
                     await PopulateCollections();
                     await Application.Current.MainPage.DisplayAlert("Data Uploaded!", "The Data has been uploaded", "OK");
+                    
                 }
                 else
                 {
                     await Application.Current.MainPage.DisplayAlert("Error", res.Message, "OK");
+                    
                 }
 
+                await PopupNavigation.Instance.PopAsync();
+
                 PageRendered = false;
-               
 
-                var baseAddr = new Uri("https://pigprofittool.azurewebsites.net");
-                var client = new HttpClient { BaseAddress = baseAddr };
-
-                var reviewUri = new Uri(baseAddr, "api/data/SubmitData");
-                var request = new HttpRequestMessage(HttpMethod.Get, reviewUri);
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", User.AuthorisedToken);
-
-                var response = await client.SendAsync(request);
-                response.EnsureSuccessStatusCode();
 
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message.ToString());
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message.ToString(), "OK");
+                await PopupNavigation.Instance.PopAsync();
             }
 
         }

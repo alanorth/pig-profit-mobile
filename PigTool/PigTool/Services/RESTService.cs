@@ -77,14 +77,22 @@ namespace PigTool.Services
                         {
                             if (diction != null && diction.SuccesfulResponse)
                             {
-                                diction.ResultProperties.TryGetValue(nameof(MobileUser.AuthorisedToken), out var token);
-                                diction.ResultProperties.TryGetValue(nameof(MobileUser.RefreshToken), out var reToken);
+                                diction.ResultProperties.TryGetValue("CorrectUser", out var correctUser);
 
-                                user.AuthorisedToken = token;
-                                user.RefreshToken = reToken;
+                                bool.TryParse(correctUser, out var userConfirmed);
 
-                                Preferences.Set(bearerToken, token);
-                                Preferences.Set(refreshToken, reToken);
+                                if (userConfirmed)
+                                {
+                                    diction.ResultProperties.TryGetValue(nameof(MobileUser.AuthorisedToken), out var token);
+                                    diction.ResultProperties.TryGetValue(nameof(MobileUser.RefreshToken), out var reToken);
+
+                                    user.AuthorisedToken = token;
+                                    user.RefreshToken = reToken;
+
+                                    Preferences.Set(bearerToken, token);
+                                    Preferences.Set(refreshToken, reToken);
+                                }
+                               
                             }
                         }
                     }
@@ -228,7 +236,7 @@ namespace PigTool.Services
 
                 if (existingUser)
                 {
-                    authUrl = new Uri("https://pigprofittool.azurewebsites.net/Account/GoogleLogin" + $"?verifiedEmail={verifiedEmail}");
+                    authUrl = new Uri("https://pigprofittool.azurewebsites.net/Account/GoogleLogin" + $"?authenticatedEmail={verifiedEmail}");
                 }
 
                 var callbackUrl = new Uri("pigprofittool://");

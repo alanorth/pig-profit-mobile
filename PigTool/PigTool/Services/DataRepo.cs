@@ -66,7 +66,7 @@ namespace PigTool.Services
 
         public async Task<List<ControlData>> GetControlData(string dropDownOption)
         {
-           return await _context.ControlDataOptions.Where(x => x.DropDownControlOption == dropDownOption).Include(cd => cd.Translation).ToListAsync();
+           return await _context.ControlDataOptions.Where(x => x.DropDownControlOption == dropDownOption).OrderBy(y => y.DisplayOrder).Include(cd => cd.Translation).ToListAsync();
         }
 
         public async Task AddSingleControlData(ControlData cd)

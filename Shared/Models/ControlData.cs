@@ -15,6 +15,7 @@ namespace Shared
         public string DropDownControlOption { get; set; }
         public string TranslationRowKey { get; set; }
         public Translation Translation { get; set; }
+        public int DisplayOrder { get; set; }
 
         public string getTranslation(UserLangSettings lang)
         {
