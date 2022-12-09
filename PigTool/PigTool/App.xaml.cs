@@ -89,10 +89,16 @@ namespace PigTool
 
         private void InitializeDatabase()
         {
+            try { 
             SQLitePCL.Batteries_V2.Init();
             using (var context = new DbSQLLiteContext())
             {
                 context.Database.Migrate();
+            }
+            }
+            catch(Exception ex)
+            {
+
             }
         }
     }

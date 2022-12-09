@@ -47,21 +47,24 @@
     <Compile Remove="Migrations\20221206233949_IntialStandup.Designer.cs" />
     <Compile Remove="Migrations\20221207003322_IntialStandup.cs" />
     <Compile Remove="Migrations\20221207003322_IntialStandup.Designer.cs" />
+    <Compile Remove="Migrations\20221208025819_IntialStandup.cs" />
+    <Compile Remove="Migrations\20221208025819_IntialStandup.Designer.cs" />
+    <Compile Remove="Migrations\20221208201847_IntialStandup.cs" />
+    <Compile Remove="Migrations\20221208201847_IntialStandup.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.2.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.17" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\PigTool\PigTool\PigTool.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

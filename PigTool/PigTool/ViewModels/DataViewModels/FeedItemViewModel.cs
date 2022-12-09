@@ -467,10 +467,17 @@ namespace PigTool.ViewModels.DataViewModels
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
                     PartitionKey = Constants.PartitionKeyFeed,
+                    CreatedTimeStamp =  DateTime.UtcNow
                 };
 
-                await repo.AddSingleFeedItem(newFeedItem);
-                await Application.Current.MainPage.DisplayAlert("Created", "Feed item has been saved", "OK");
+                try { 
+                    await repo.AddSingleFeedItem(newFeedItem);
+                    await Application.Current.MainPage.DisplayAlert("Created", "Feed item has been saved", "OK");
+                }
+                catch(Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                }
             }
         }
 
