@@ -17,14 +17,18 @@ namespace Shared
         public const string ROUTE_API_STORAGE = ROUTE_API_BASE + "/storage";
         public const string ROUTE_API_DENIED = ROUTE_API_BASE + "/denied";
 
-        public const string ROUTE_AUTH_BASE = "/auth";
-        public const string ROUTE_AUTH_REGISTERUSER = ROUTE_AUTH_BASE + "/RegisterUser";
+        public const string ROUTE_ACCOUNT_BASE = BASEURL + "Account/";
+        public const string ROUTE_AUTH_REGISTERUSER = ROUTE_ACCOUNT_BASE + "/RegisterUser";
+        public const string ROUTE_AUTH_TEST = ROUTE_ACCOUNT_BASE + "/Test";
 
 
         public const string ROUTE_API_DATA = ROUTE_API_BASE + "/data";
         public const string ROUTE_API_SUBMITDATA = ROUTE_API_DATA + "/SubmitData";
 
         public const string APICALLID = " API Service ID = ";
+
+        public const string BASEURL = "https://pigprofittool.azurewebsites.net/";
+        //public const string BASEURL = "http://10.0.2.2:5272";
 
         #endregion
 
@@ -100,7 +104,7 @@ namespace Shared
         #endregion
 
         #region PartitionKeys
-        public const string PartitionKeyUserInfo = "UserInfo";
+        public const string PartitionKeyUserInfo = "MobileUser";
         public const string PartitionKeyAnimalHouse = "AnimalHouse";
         public const string PartitionKeyFeed = "Feed";
         public const string PartitionKeyControlData = "ControlData";

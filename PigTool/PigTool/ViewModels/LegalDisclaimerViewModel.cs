@@ -1,4 +1,5 @@
-﻿using PigTool.Helpers;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using PigTool.Helpers;
 using PigTool.Views;
 using Shared;
 using System;
@@ -13,6 +14,7 @@ namespace PigTool.ViewModels
     {
         INavigation _Nav;
         public bool ButtonEnable { get; set; }
+        UserLangSettings lang;
 
         public Command ProceedClicked { get; }
 
@@ -24,8 +26,8 @@ namespace PigTool.ViewModels
         public LegalDisclaimerViewModel(INavigation Nav, UserLangSettings lang)
         {
             _Nav = Nav;
+            this.lang = lang;
             ButtonEnable = false;
-            ProceedClicked = new Command(ProceedClickAsync);
             LegalDisclaimerTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LegalDisclaimerTitleTranslation), lang);
             LegalDisclaimerBodyTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LegalDisclaimerBodyTranslation), lang);
             LegalDisclaimerAgreeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LegalDisclaimerAgreeTranslation), lang);
@@ -34,14 +36,6 @@ namespace PigTool.ViewModels
         public void DisclaimerAcknowlegde()
         {
             ButtonEnable = !ButtonEnable;
-        }
-
-        private void ProceedClickAsync()
-        {
-            if (ButtonEnable)
-            {
-                //_Nav.PushAsync(new WebAuthenticatorPage());   
-            }
         }
     }
 }

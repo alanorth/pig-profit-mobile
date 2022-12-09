@@ -1,15 +1,18 @@
 ﻿using Newtonsoft.Json;
+using PigTool.Services;
+using PigTool.Views.Popups;
+using Rg.Plugins.Popup.Services;
 using Shared;
+using Shared.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace PigTool.ViewModels
@@ -27,6 +30,7 @@ namespace PigTool.ViewModels
                 OnPropertyChanged(nameof(LastTimeDataUploaded));
             }
         }
+        public string uploadDataTranslation { get; set; }
 
         private ObservableCollection<FeedItem> feedItems;
         private ObservableCollection<HealthCareItem> healthCareItems;
@@ -201,6 +205,15 @@ namespace PigTool.ViewModels
             }
         }
 
+        public string UploadDataTranslation
+        {
+            get { return uploadDataTranslation; }
+            set
+            {
+                uploadDataTranslation = value;
+                OnPropertyChanged(nameof(UploadDataTranslation));
+            }
+        }
         public int CountOf_FeedItems
         {
             get { return countOf_FeedItems; }
@@ -340,6 +353,16 @@ namespace PigTool.ViewModels
             }
         }
 
+        public int Countof_TotalItems
+        {
+            get { return countof_totalitems; }
+            set
+            {
+                countof_totalitems = value;
+                OnPropertyChanged(nameof(Countof_TotalItems));
+            }
+        }
+
 
 
         private int countOf_FeedItems { get; set; }
@@ -359,10 +382,13 @@ namespace PigTool.ViewModels
         private int countof_manuresaleitems { get; set; }
         private int countof_otherincomeitems { get; set; }
 
+        private int countof_totalitems { get; set; }
+
         public Command SendDataToApi { get; }
 
         public SendDataViewModel()
         {
+
             PageRendered = false;
             LastTimeDataUploaded = User.LastUploadDate.ToUniversalTime();
             SendDataToApi = new Command(PostDataToAPI);
@@ -370,7 +396,10 @@ namespace PigTool.ViewModels
 
         public async Task PopulateCollections()
         {
-            FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItemsAndAttachedTranslation(User.UserLang));
+            UploadDataTranslation = repo.GetTranslationAsync(nameof(UploadDataTranslation)).Result.getTranslation(User.UserLang);
+
+            //FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItemsAndAttachedTranslation(User.UserLang));
+            FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItems());
             HealthCareItems = new ObservableCollection<HealthCareItem>(await repo.GetHealthCareItems());
             LabourCostItems = new ObservableCollection<LabourCostItem>(await repo.GetLabourCostItems());
             AnimalHouseItems = new ObservableCollection<AnimalHouseItem>(await repo.GetAnimalHouseItems());
@@ -385,26 +414,29 @@ namespace PigTool.ViewModels
             BreedingServiceSaleItems = new ObservableCollection<BreedingServiceSaleItem>(await repo.GetBreedingServiceSaleItems());
             ManureSaleItems = new ObservableCollection<ManureSaleItem>(await repo.GetManureSaleItems());
             OtherIncomeItems = new ObservableCollection<OtherIncomeItem>(await repo.GetOtherIncomeItems());
-            CountOf_FeedItems = FeedItems.Count();
-            CountOf_HealthCareItems = HealthCareItems.Count();
-            Countof_LabourCostItems = LabourCostItems.Count();
-            Countof_AnimalHouseItems = AnimalHouseItems.Count();
-            Countof_MembershipItems = MembershipItems.Count();
-            Countof_Watercostitems = WaterCostItems.Count();
-            Countof_OtherCostItems = OtherCostItems.Count();
-            Countof_ReproductiveItems = ReproductiveItems.Count();
-            Countof_AnimalPurchaseItems = AnimalPurchaseItems.Count();
-            Countof_LoanRepaymentItems = LoanRepaymentItems.Count();
-            Countof_EquipmentItems = EquipmentItems.Count();
-            Countof_PigSaleItems = PigSaleItems.Count();
-            Countof_BreedingServiceSaleItems = BreedingServiceSaleItems.Count();
-            Countof_ManureSaleItems = ManureSaleItems.Count();
-            Countof_OtherIncomeItems = OtherIncomeItems.Count();
+            Countof_TotalItems = 0;
+            Countof_TotalItems += CountOf_FeedItems = FeedItems.Count();
+            Countof_TotalItems += CountOf_HealthCareItems = HealthCareItems.Count();
+            Countof_TotalItems += Countof_LabourCostItems = LabourCostItems.Count();
+            Countof_TotalItems += Countof_AnimalHouseItems = AnimalHouseItems.Count();
+            Countof_TotalItems += Countof_MembershipItems = MembershipItems.Count();
+            Countof_TotalItems += Countof_Watercostitems = WaterCostItems.Count();
+            Countof_TotalItems += Countof_OtherCostItems = OtherCostItems.Count();
+            Countof_TotalItems += Countof_ReproductiveItems = ReproductiveItems.Count();
+            Countof_TotalItems += Countof_AnimalPurchaseItems = AnimalPurchaseItems.Count();
+            Countof_TotalItems += Countof_LoanRepaymentItems = LoanRepaymentItems.Count();
+            Countof_TotalItems += Countof_EquipmentItems = EquipmentItems.Count();
+            Countof_TotalItems += Countof_PigSaleItems = PigSaleItems.Count();
+            Countof_TotalItems += Countof_BreedingServiceSaleItems = BreedingServiceSaleItems.Count();
+            Countof_TotalItems += Countof_ManureSaleItems = ManureSaleItems.Count();
+            Countof_TotalItems += Countof_OtherIncomeItems = OtherIncomeItems.Count();
         }
 
 
         public async void PostDataToAPI()
         {
+            LoadingOverlay overlay = new LoadingOverlay("Sending Data");
+            await PopupNavigation.Instance.PushAsync(overlay);
             try
             {
                 var apiTransfer = new APITransferItem()
@@ -426,60 +458,63 @@ namespace PigTool.ViewModels
                     ManureSaleItems = ManureSaleItems.ToList(),
                     OtherIncomeItems = OtherIncomeItems.ToList(),
                 };
+                var SerialisedData = JsonConvert.SerializeObject(apiTransfer, new JsonSerializerSettings
+                {
+                    DateTimeZoneHandling = DateTimeZoneHandling.Utc
+                });
 
+                var rest = new RESTService(User);
 
-                //await repo.UpdateUserInfo(User);
-                var httpClient = new HttpClient();
+                //go save to database  
+                //maybe check to see if there are under data coverage
+                var details = await rest.ExecuteWithRetryAsync(async () =>
+                {
+                    using (var client = new HttpClient())
+                    {
+                        client.DefaultRequestHeaders.Add("Authorization", $"bearer {User.AuthorisedToken}");
+                        var mobUser = JsonConvert.SerializeObject(User, new JsonSerializerSettings
+                        {
+                            DateTimeZoneHandling = DateTimeZoneHandling.Utc
+                        });
+                        var content = new StringContent(SerialisedData, Encoding.UTF8, "application/json");
+                        var responseMessage = await client.PostAsync(Constants.BASEURL + Constants.ROUTE_API_SUBMITDATA, content);
+                        responseMessage.EnsureSuccessStatusCode();
 
-                //httpClient.DefaultRequestHeaders.Add("XApiKey", "ENTER YOUR API KEY HERE");
-                //httpClient.DefaultRequestHeaders.Authorization =
-                  //new AuthenticationHeaderValue("Google", User.AuthorisedToken);
+                        var jsonResponse = await responseMessage.Content.ReadAsStringAsync();
 
-                var jObject = JsonConvert.SerializeObject(apiTransfer);
+                        //var response = JsonConvert.DeserializeObject<MobileUser>(jsonResponse);
+                        return jsonResponse;
+                    }
+                });
 
-                var data = new StringContent(jObject, Encoding.UTF8, "application/json");
-                var url = "https://pigprofittool.azurewebsites.net/api/data/SubmitData";
-                //var url = "https://pigprofittool.azurewebsites.net/api/data/SubmitData";
-                //var url = "https://localhost:7218/api/data/SubmitData";
+                var res = JsonConvert.DeserializeObject<DataUploadResponse>(details);
 
-                var response = await httpClient.PostAsync(url, data);
-                //var response = await httpClient.GetAsync(url);
-                var responseString = await response.Content.ReadAsStringAsync();
-
-                
-
-                httpClient.Dispose();
-
-                if (response.IsSuccessStatusCode)
+                if (res.Success)
                 {
                     User.LastUploadDate = DateTime.Now;
                     LastTimeDataUploaded = User.LastUploadDate;
                     await repo.UpdateUserInfo(User);
                     await PopulateCollections();
-                    await Application.Current.MainPage.DisplayAlert("Data Uploaded!","The Data has been uploaded", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Data Uploaded!", "The Data has been uploaded", "OK");
+                    
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", response.StatusCode.ToString() + " " + response.ToString(), "OK");
+                    await Application.Current.MainPage.DisplayAlert("Error", res.Message, "OK");
+                    
                 }
 
+                await PopupNavigation.Instance.PopAsync();
+
                 PageRendered = false;
-                /*
 
-                var baseAddr = new Uri("https://pigprofittool.azurewebsites.net");
-                var client = new HttpClient { BaseAddress = baseAddr };
-
-                var reviewUri = new Uri(baseAddr, "api/data/SubmitData");
-                var request = new HttpRequestMessage(HttpMethod.Get, reviewUri);
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", User.AuthorisedToken);
-
-                var response = await client.SendAsync(request);
-                response.EnsureSuccessStatusCode();*/
 
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.Message.ToString());
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message.ToString(), "OK");
+                await PopupNavigation.Instance.PopAsync();
             }
 
         }

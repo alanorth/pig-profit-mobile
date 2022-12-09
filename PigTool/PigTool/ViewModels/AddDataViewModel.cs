@@ -76,7 +76,7 @@ namespace PigTool.ViewModels
             Water = LogicHelper.getTranslation(repo, nameof(Water), User.UserLang).Result;
             Reproduction = LogicHelper.getTranslation(repo, nameof(Reproduction), User.UserLang).Result;
             Membership = LogicHelper.getTranslation(repo, nameof(Membership), User.UserLang).Result;
-            Other = LogicHelper.getTranslation(repo, nameof(Other), User.UserLang).Result;
+            Other = LogicHelper.getTranslation(repo, "OtherCostEvent", User.UserLang).Result;
             AnimalPurchase = LogicHelper.getTranslation(repo, nameof(AnimalPurchase), User.UserLang).Result;
             LoanRepayment = LogicHelper.getTranslation(repo, nameof(LoanRepayment), User.UserLang).Result;
             Equipment = LogicHelper.getTranslation(repo, nameof(Equipment), User.UserLang).Result;

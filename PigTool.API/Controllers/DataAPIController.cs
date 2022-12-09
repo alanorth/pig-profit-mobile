@@ -26,31 +26,12 @@ namespace PigTool.API.Controllers
         {
 
         }
-
+        
         [HttpPost, Route(Constants.ROUTE_API_SUBMITDATA)]
         //[Authorize]
         //[Authorize(AuthenticationSchemes = "Google")]
         public async Task<ActionResult> SubmitData()
         {
-            /*
-           var  requeststring = Mocks.ConstructAPIItem();
-
-            var callGUID = Guid.NewGuid().ToString();
-            var Connection = GetStorageConnectionString();
-            
-            var transferitems = JsonConvert.DeserializeObject<APITransferItem>(requeststring);
-            var opertions = new TableOperations();
-            var result = await opertions.InsertTableEntities(transferitems.AnimalHouseItems, Constants.TABLEDATA, Connection);
-
-            var contentresult = new ContentResult()
-            {
-                Content = $"Data Created" + Constants.APICALLID + callGUID,
-                ContentType = "text/plain"
-            };
-
-            await LoggingOperations.LogRequestToBlob("SUBMITDATA", "RESPONSE", contentresult.Content, callGUID, Connection);
-            return contentresult;*/
-
             var callGUID = Guid.NewGuid().ToString();
             var Connection = GetStorageConnectionString();
             try
@@ -78,22 +59,40 @@ namespace PigTool.API.Controllers
 
                 var opertions = new TableOperations();
 
-                //AnimalHouse
-                result = await opertions.InsertTableEntities(transferitems.AnimalHouseItems, Constants.TABLEDATA, Connection);
+                
                 //Feed
                 result = await opertions.InsertTableEntities(transferitems.FeedItems, Constants.TABLEDATA, Connection);
                 //Helthcare
                 result = await opertions.InsertTableEntities(transferitems.HealthCareItems, Constants.TABLEDATA, Connection);
                 //Labourcosts
                 result = await opertions.InsertTableEntities(transferitems.LabourCostItems, Constants.TABLEDATA, Connection);
+                //AnimalHouse
+                result = await opertions.InsertTableEntities(transferitems.AnimalHouseItems, Constants.TABLEDATA, Connection);
+                //Water costs
+                result = await opertions.InsertTableEntities(transferitems.WaterCostItems, Constants.TABLEDATA, Connection);
+                //Reproductive
+                result = await opertions.InsertTableEntities(transferitems.ReproductiveItems, Constants.TABLEDATA, Connection);
                 //Memberships
                 result = await opertions.InsertTableEntities(transferitems.MembershipItems, Constants.TABLEDATA, Connection);
                 //Other costs
                 result = await opertions.InsertTableEntities(transferitems.OtherCostItems, Constants.TABLEDATA, Connection);
-                //Reproductive
-                result = await opertions.InsertTableEntities(transferitems.ReproductiveItems, Constants.TABLEDATA, Connection);
-                //Water costs
-                result = await opertions.InsertTableEntities(transferitems.WaterCostItems, Constants.TABLEDATA, Connection);
+                //Animal Purchase
+                result = await opertions.InsertTableEntities(transferitems.AnimalPurchaseItems, Constants.TABLEDATA, Connection);
+                //Loan Payment
+                result = await opertions.InsertTableEntities(transferitems.LoanRepaymentItems, Constants.TABLEDATA, Connection);
+                //Equipment
+                result = await opertions.InsertTableEntities(transferitems.EquipmentItems, Constants.TABLEDATA, Connection);
+
+                //Sale of Pigs
+                result = await opertions.InsertTableEntities(transferitems.PigSaleItems, Constants.TABLEDATA, Connection);
+                //Sale of Breeding Services
+                result = await opertions.InsertTableEntities(transferitems.BreedingServiceSaleItems, Constants.TABLEDATA, Connection);
+                //Sale of Manure
+                result = await opertions.InsertTableEntities(transferitems.ManureSaleItems, Constants.TABLEDATA, Connection);
+                //Other income
+                result = await opertions.InsertTableEntities(transferitems.OtherIncomeItems, Constants.TABLEDATA, Connection);
+
+
 
 
             }
@@ -176,12 +175,12 @@ namespace PigTool.API.Controllers
                 var requestJson = await Parse(Request);
                 var unparsedRequest = requestJson.Body;
                 var requeststring = Convert.ToString(unparsedRequest);
-                var user = JsonConvert.DeserializeObject<UserInfo>(requeststring);
+                var user = JsonConvert.DeserializeObject<MobileUser>(requeststring);
 
 
                 var operations = new TableOperations();
 
-                var result = await operations.InsertTableEntities(new List<UserInfo> { user }, "Data", GetStorageConnectionString());
+                var result = await operations.InsertTableEntities(new List<MobileUser> { user }, "Data", GetStorageConnectionString());
 
                 if (string.IsNullOrEmpty(result))
                 {
@@ -211,6 +210,6 @@ namespace PigTool.API.Controllers
             }
 
         }
-
+        
     }
 }

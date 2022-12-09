@@ -54,7 +54,7 @@ namespace PigTool.ViewModels.DataViewModels
         #region housing item fields
         public DateTime Date
         {
-            get => date;
+            get => DateTime.SpecifyKind(date, DateTimeKind.Utc);
             set
             {
                 if (date != value)

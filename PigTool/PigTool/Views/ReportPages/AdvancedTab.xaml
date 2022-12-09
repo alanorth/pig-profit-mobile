@@ -3,17 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PigTool.Views.AdvancedTab"
              xmlns:vm="clr-namespace:PigTool.ViewModels"
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
              Title="Advanced">
 
     <ScrollView>
         <StackLayout>
-
-
             <!-- Date Range -->
             <StackLayout 
                     x:Name="DatePickers"
                     Orientation="Horizontal"
-                    Margin="0,10,0,20"
+                    Margin="0,10,0,0"
                     Grid.Column="0">
                 <DatePicker 
                         HorizontalOptions="CenterAndExpand"/>
@@ -42,15 +41,15 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <BoxView
-                        Background="LightGrey"
-                        Grid.Column="0"
-                        HeightRequest="150"
-                        />
+                <oxy:PlotView Model="{Binding SimpleGraphModel}" HorizontalOptions="CenterAndExpand" 
+                              VerticalOptions="StartAndExpand" 
+                              Margin="2"
+                              HeightRequest="150" 
+                              Grid.Column="0"/>
                 <StackLayout
                         Grid.Column="1">
                     <Label Text="Profit / Loss Summary"/>
-                    <Label Text="Income: 200 Ush"/>
+                    <Label Text="Income: $200 Ush"/>
                     <Label Text="Costs: $100 Ush"/>
                     <Label Text="Total: $100 Ush"/>
                 </StackLayout>
@@ -62,16 +61,15 @@
                 Text="Breakdown"
                 StyleClass="ReportHeader"/>
                 <BoxView StyleClass="Seperator"/>
-                <BoxView
-                    Background="LightGrey"
+                <StackLayout Orientation="Vertical">
+                    <StackLayout Orientation="Vertical">
+                        <oxy:PlotView Model="{Binding GraphModel}" HorizontalOptions="CenterAndExpand" 
+                              VerticalOptions="StartAndExpand" Margin="2"
+                              HeightRequest="300" />
 
-                    HeightRequest="250"
-                    />
+                    </StackLayout>
+                </StackLayout>
             </StackLayout>
-
-
         </StackLayout>
     </ScrollView>
-
-
 </ContentPage>
