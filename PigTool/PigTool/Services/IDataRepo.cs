@@ -24,7 +24,7 @@ namespace PigTool.Services
         Task AddSingleFeedItem(FeedItem itemToAdd);
         Task<List<FeedItem>> GetFeedItems();
         Task<List<FeedItem>> GetFeedItems(int selectedYear);
-        Task<List<FeedItem>> GetFeedItemsAndAttachedTranslation(UserLangSettings userLanguage);
+        Task<List<FeedItem>> GetFeedItemsAndAttachedTranslation(int selectedYear,UserLangSettings userLanguage);
         Task<FeedItem> GetFeedItem(string RowKey);
         Task UpdateFeedItem(FeedItem feedItem);
         void DeleteFeedItem(FeedItem feedItem);

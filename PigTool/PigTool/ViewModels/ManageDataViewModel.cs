@@ -273,7 +273,7 @@ namespace PigTool.ViewModels
         public async Task PopulateLists()
         {
             //FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItems());
-            FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItems(selectedYear));//GetFeedItemsAndAttachedTranslation(User.UserLang) to fix dropdown translation
+            FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItemsAndAttachedTranslation(selectedYear, User.UserLang));//GetFeedItemsAndAttachedTranslation(selectedYear,User.UserLang) to fix dropdown translation
             HealthCareItems = new ObservableCollection<HealthCareItem>(await repo.GetHealthCareItems(selectedYear));
             LabourCostItems = new ObservableCollection<LabourCostItem>(await repo.GetLabourCostItems(selectedYear));
             AnimalHouseItems = new ObservableCollection<AnimalHouseItem>(await repo.GetAnimalHouseItems(selectedYear));

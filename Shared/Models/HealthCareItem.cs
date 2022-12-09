@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Shared
 {
+    [Table("HealthCareItems")]
     public class HealthCareItem : BaseItem
     {
         public DateTime Date { get; set; }

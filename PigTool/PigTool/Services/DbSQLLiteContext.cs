@@ -8,6 +8,14 @@ namespace SQLLiteDbContext
 {
     public class DbSQLLiteContext : DbContext
     {
+        const string DatabaseName = "Pigs.db3";
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, DatabaseName);
+            optionsBuilder.UseSqlite($"Filename={dbPath}");
+        }
+
         public DbSet<Item> Items { get; set; }
         public DbSet<Translation> Translations { get; set; }
         public DbSet<MobileUser> UserInfos { get; set; }
@@ -27,45 +35,38 @@ namespace SQLLiteDbContext
         public DbSet<BreedingServiceSaleItem> BreedingServiceSaleItems { get; set; }
         public DbSet<ManureSaleItem> ManureSaleItems { get; set; }
         public DbSet<OtherIncomeItem> OtherIncomeItems { get; set; }
+        public DbSet<BaseItem> BaseItems { get; set; }
 
 
         public DbSQLLiteContext()
         {
             //SQLitePCL.Batteries_V2.Init();
             //this.Database.EnsureCreated();
-            
-        
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Pigs.db3");
-            optionsBuilder.UseSqlite($"Filename={dbPath}");
 
 
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            /*modelBuilder.Entity<BaseItem>().HasKey(x => x.RowKey);
+            modelBuilder.Entity<BaseItem>().HasKey(x => x.RowKey);
             modelBuilder.Entity<BaseItem>().Ignore(x => x.ETag);
             modelBuilder.Entity<BaseItem>().Property(bi => bi.RowKey).HasDefaultValue(Guid.NewGuid().ToString());
-            modelBuilder.Entity<BaseItem>().Property(bi => bi.CreatedTimeStamp).HasDefaultValue(DateTime.UtcNow);
+            modelBuilder.Entity<BaseItem>().Property(bi => bi.CreatedTimeStamp).HasDefaultValueSql("datetime()");
             modelBuilder.Entity<BaseItem>().Property(bi => bi.IsEnable).HasDefaultValue(true);
             modelBuilder.Entity<BaseItem>().Property(bi => bi.IsDeleted).HasDefaultValue(false);
             modelBuilder.Entity<BaseItem>().Property(bi => bi.IsModified).HasDefaultValue(true);
-            modelBuilder.Entity<BaseItem>().Property(bi => bi.LastModified).HasDefaultValue(DateTime.UtcNow);*/
+            modelBuilder.Entity<BaseItem>().Property(bi => bi.LastModified).HasDefaultValueSql("datetime()");
 
             modelBuilder.Entity<Translation>().HasKey(x => x.RowKey);
             //modelBuilder.Entity<UserInfo>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyUserInfo);
             modelBuilder.Entity<MobileUser>().HasKey(x => x.RowKey);
             modelBuilder.Entity<MobileUser>().Ignore(x => x.ETag);
-            
+
             modelBuilder.Entity<FeedItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyFeed);
             //modelBuilder.Entity<FeedItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             //modelBuilder.Entity<ControlData>().ToTable("ControlDataOptions");
             modelBuilder.Entity<ControlData>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyControlData);
+            //modelBuilder.Entity<ControlData>().Property(bi => bi.LastModified).HasDefaultValue(DateTime.UtcNow);
             //modelBuilder.Entity<ControlData>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<HealthCareItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyHealthCareItem);
             //modelBuilder.Entity<HealthCareItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
@@ -100,8 +101,6 @@ namespace SQLLiteDbContext
             .HasOne(cd => cd.Translation).WithMany(t => t.ControlDatas).HasForeignKey(cd => cd.TranslationRowKey);
 
             modelBuilder.Entity<FeedItem>().HasOne(fi => fi.FeedTypeTranslation).WithMany(trans => trans.FeedItems).HasForeignKey(fi => fi.FeedType);
-
-
 
 
             modelBuilder.Entity<Translation>(x =>
@@ -457,8 +456,6 @@ namespace SQLLiteDbContext
 
                         new Translation() { RowKey = "VolumeUnitType1", English = "Kg", Lang1 = "Kg Lang1", Lang2 = "Kg Lang2" },
 
-
-
                          new Translation() { RowKey = "GenderType1", English = "Male", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "GenderType2", English = "Female", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "GenderType3", English = "Other", Lang1 = "", Lang2 = "" },
@@ -538,12 +535,9 @@ namespace SQLLiteDbContext
                        new ControlData() { DisplayOrder = 19, PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDTYPE, TranslationRowKey = "DropDownFeedType19" },
                        new ControlData() { DisplayOrder = 20, PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDTYPE, TranslationRowKey = Constants.OTHER },
 
-                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType1" },
-                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType2" },
-                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType3" },
-                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType4" },
-                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType5" },
-                       new ControlData() { PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = Constants.OTHER },
+                       new ControlData() { DisplayOrder = 1, PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType1" },
+                       new ControlData() { DisplayOrder = 2, PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType2" },
+                       new ControlData() { DisplayOrder = 3, PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = Constants.OTHER },
 
                        new ControlData() { DisplayOrder = 1, PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDPURCHASEDFROMTYPE, TranslationRowKey = "DropDownPurchaseFrom1" },
                        new ControlData() { DisplayOrder = 2, PartitionKey = Constants.PartitionKeyControlData, RowKey = Guid.NewGuid().ToString(), CreatedBy = "InitialUpload", CreatedTimeStamp = new DateTime(), DropDownControlOption = Constants.FEEDPURCHASEDFROMTYPE, TranslationRowKey = "DropDownPurchaseFrom2" },

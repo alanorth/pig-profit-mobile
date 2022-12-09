@@ -16,83 +16,12 @@ namespace Shared.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.17");
 
-            modelBuilder.Entity("Shared.AnimalHouseItem", b =>
+            modelBuilder.Entity("Shared.BaseItem", b =>
                 {
                     b.Property<string>("RowKey")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("CreatedTimeStamp")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("HousingExpense")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsEnable")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsModified")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("LastModified")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("OtherCosts")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("OtherHousingExpense")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PartitionKey")
-                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
-                        .HasDefaultValue("AnimalHouse");
-
-                    b.Property<DateTimeOffset?>("Timestamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("TotalCosts")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("TransportationCost")
-                        .HasColumnType("REAL");
-
-                    b.Property<int?>("YearsExpected")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("RowKey");
-
-                    b.ToTable("AnimalHouseItems");
-                });
-
-            modelBuilder.Entity("Shared.AnimalPurchaseItem", b =>
-                {
-                    b.Property<string>("RowKey")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("AnimalPurchasedFrom")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("AnimalType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("TEXT");
+                        .HasDefaultValue("a09c5210-f57e-4cdc-a0da-db1f105ccfc4");
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -100,4043 +29,28 @@ namespace Shared.Migrations
 
                     b.Property<DateTime?>("CreatedTimeStamp")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsEnable")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsModified")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("LastModified")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("NumberPurchased")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("OtherAnimalPurchasedFrom")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OtherAnimalType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("OtherCosts")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("PartitionKey")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
-                        .HasDefaultValue("AnimalPurchase");
-
-                    b.Property<DateTimeOffset?>("Timestamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("TotalCosts")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("TransportationCost")
-                        .HasColumnType("REAL");
-
-                    b.HasKey("RowKey");
-
-                    b.ToTable("AnimalPurchaseItems");
-                });
-
-            modelBuilder.Entity("Shared.BreedingServiceSaleItem", b =>
-                {
-                    b.Property<string>("RowKey")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("AmountRecieved")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("Client")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("CreatedTimeStamp")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
+                        .HasDefaultValueSql("datetime()");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsEnable")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsModified")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("LastModified")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int?>("NumberServices")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("OtherClient")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("OtherCosts")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("OtherServiceType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PartitionKey")
-                        .IsRequired()
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValue("BreedingServiceSale");
-
-                    b.Property<string>("PaymentType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("PaymentValue")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("ServiceType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTimeOffset?>("Timestamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("TransportationCost")
-                        .HasColumnType("REAL");
-
-                    b.HasKey("RowKey");
-
-                    b.ToTable("BreedingServiceSaleItems");
-                });
-
-            modelBuilder.Entity("Shared.ControlData", b =>
-                {
-                    b.Property<string>("RowKey")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("CreatedTimeStamp")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("DropDownControlOption")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("INTEGER")
+                        .HasDefaultValue(false);
 
                     b.Property<bool>("IsEnable")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsModified")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("LastModified")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PartitionKey")
-                        .IsRequired()
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValue("ControlData");
-
-                    b.Property<DateTimeOffset?>("Timestamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TranslationRowKey")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("RowKey");
-
-                    b.HasIndex("TranslationRowKey");
-
-                    b.ToTable("ControlDataOptions");
-
-                    b.HasData(
-                        new
-                        {
-                            RowKey = "65fea029-f790-419c-967a-bb440b1a564c",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(5282),
-                            DropDownControlOption = "FeedType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(5668),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DropDownFeedType1"
-                        },
-                        new
-                        {
-                            RowKey = "304ebbc9-7d64-4b63-8cb0-37784eb91b17",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7122),
-                            DropDownControlOption = "FeedType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7133),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DropDownFeedType2"
-                        },
-                        new
-                        {
-                            RowKey = "10dd6f10-0af2-4ca7-b0c5-91d4286cd153",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7192),
-                            DropDownControlOption = "FeedType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7194),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DropDownFeedType3"
-                        },
-                        new
-                        {
-                            RowKey = "cf1e6dd6-6548-406d-bb14-00d35d24c7f1",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7201),
-                            DropDownControlOption = "FeedType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7202),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DropDownFeedType4"
-                        },
-                        new
-                        {
-                            RowKey = "3489d901-bed1-40be-b2d6-d3feeb3ad868",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7208),
-                            DropDownControlOption = "FeedType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7209),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DropDownFeedType5"
-                        },
-                        new
-                        {
-                            RowKey = "9b42ad2e-9471-4c69-8473-f17f4f2c67e7",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7220),
-                            DropDownControlOption = "FeedType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7221),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "dd9a0ef7-843a-44c4-bbec-7b9bf16b1643",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7228),
-                            DropDownControlOption = "FeedAmountPurchasedUnitType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7229),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DropDownUnitType1"
-                        },
-                        new
-                        {
-                            RowKey = "259b95b5-7345-4561-86b7-3032c7deaff0",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7236),
-                            DropDownControlOption = "FeedAmountPurchasedUnitType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7236),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DropDownUnitType2"
-                        },
-                        new
-                        {
-                            RowKey = "5db90d8f-69ad-4604-bac0-0f73a413d94b",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7243),
-                            DropDownControlOption = "FeedAmountPurchasedUnitType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7244),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DropDownUnitType3"
-                        },
-                        new
-                        {
-                            RowKey = "0ff9691e-5827-4f63-8c58-7dc5e8e4e201",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7253),
-                            DropDownControlOption = "FeedAmountPurchasedUnitType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7254),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DropDownUnitType4"
-                        },
-                        new
-                        {
-                            RowKey = "ee5f04a1-b198-47f4-bc92-043fee8f3cd6",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7260),
-                            DropDownControlOption = "FeedAmountPurchasedUnitType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7261),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DropDownUnitType5"
-                        },
-                        new
-                        {
-                            RowKey = "6b604691-20f1-438e-9522-3a146d21cd20",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7267),
-                            DropDownControlOption = "FeedAmountPurchasedUnitType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7267),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "c4521989-2d98-44da-b205-b7c3285b0bb1",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7273),
-                            DropDownControlOption = "FeedPurchasedType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7274),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DropDownPurchaseFrom1"
-                        },
-                        new
-                        {
-                            RowKey = "79fc6bb0-99e5-4242-8570-2d59478261e3",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7283),
-                            DropDownControlOption = "FeedPurchasedType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7283),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DropDownPurchaseFrom2"
-                        },
-                        new
-                        {
-                            RowKey = "12451e02-bce2-4c0e-b216-0b78b8323c66",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7290),
-                            DropDownControlOption = "FeedPurchasedType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7291),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DropDownPurchaseFrom3"
-                        },
-                        new
-                        {
-                            RowKey = "4db11f62-817b-4279-a53e-b3d91dd70a15",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7314),
-                            DropDownControlOption = "FeedPurchasedType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7315),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DropDownPurchaseFrom4"
-                        },
-                        new
-                        {
-                            RowKey = "3456dfea-1ab7-4954-96a9-fc7dab1e1952",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7321),
-                            DropDownControlOption = "FeedPurchasedType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7322),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DropDownPurchaseFrom5"
-                        },
-                        new
-                        {
-                            RowKey = "f3932957-6b67-4407-b0f0-faac2f0f0285",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7330),
-                            DropDownControlOption = "HealthCareType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7331),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HeathCareType1"
-                        },
-                        new
-                        {
-                            RowKey = "0016cd60-88cd-4b9e-8420-5f35d91d4b15",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7337),
-                            DropDownControlOption = "HealthCareType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7338),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HeathCareType2"
-                        },
-                        new
-                        {
-                            RowKey = "8884c348-e6d9-422a-9d74-5cc9d9acfd15",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7344),
-                            DropDownControlOption = "HealthCareType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7345),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HeathCareType3"
-                        },
-                        new
-                        {
-                            RowKey = "e83ed694-c73b-41ef-a576-76bdd0453ab7",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7351),
-                            DropDownControlOption = "HealthCareType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7352),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HeathCareType4"
-                        },
-                        new
-                        {
-                            RowKey = "fe0de186-0f77-4e44-beae-d585e934ec6b",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7361),
-                            DropDownControlOption = "HealthCareType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7362),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HeathCareType5"
-                        },
-                        new
-                        {
-                            RowKey = "3e57e32e-79bc-4791-ace6-3d87bf247fb5",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7368),
-                            DropDownControlOption = "HealthCareType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7369),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HeathCareType6"
-                        },
-                        new
-                        {
-                            RowKey = "78a2da5f-0bef-4256-b91f-d5cc691e9c6f",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7375),
-                            DropDownControlOption = "HealthCareType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7376),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HeathCareType7"
-                        },
-                        new
-                        {
-                            RowKey = "c1fcc3d9-afcc-4a10-b417-d54f20df7dc7",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7382),
-                            DropDownControlOption = "HealthCareType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7383),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HeathCareType8"
-                        },
-                        new
-                        {
-                            RowKey = "e21015e5-9194-4b15-a399-34e3bb38aed6",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7392),
-                            DropDownControlOption = "HealthCareType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7392),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HeathCareType9"
-                        },
-                        new
-                        {
-                            RowKey = "92ea807e-c789-41e5-a1c2-d2607fae2cd8",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7398),
-                            DropDownControlOption = "HealthCareType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7399),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HeathCareType10"
-                        },
-                        new
-                        {
-                            RowKey = "1bbbe86d-8c37-4d72-930d-6ceb2d8d1352",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7405),
-                            DropDownControlOption = "HealthCareType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7406),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "2597f6b7-507e-4c91-bc36-d16961ab12d0",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7413),
-                            DropDownControlOption = "HealthServivceProivderType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7414),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HealthProviderType1"
-                        },
-                        new
-                        {
-                            RowKey = "bf86c9ec-9979-4310-9840-1166b55f3bfe",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7422),
-                            DropDownControlOption = "HealthServivceProivderType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7423),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HealthProviderType2"
-                        },
-                        new
-                        {
-                            RowKey = "a55684ce-0e41-47d3-8c7e-3bc842858b4d",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7429),
-                            DropDownControlOption = "HealthServivceProivderType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7430),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HealthProviderType3"
-                        },
-                        new
-                        {
-                            RowKey = "2e1acf67-4e83-4903-8490-6c63a000e9ba",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7436),
-                            DropDownControlOption = "HealthServivceProivderType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7437),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HealthProviderType4"
-                        },
-                        new
-                        {
-                            RowKey = "55ad2efc-0776-4334-bb3d-3e399fef96a4",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7443),
-                            DropDownControlOption = "HealthServivceProivderType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7444),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HealthProviderType5"
-                        },
-                        new
-                        {
-                            RowKey = "40294d6f-6c1a-45a1-a9a2-f895e5ee46f6",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7452),
-                            DropDownControlOption = "HealthServivceProivderType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7453),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HealthProviderType6"
-                        },
-                        new
-                        {
-                            RowKey = "26a3217d-dca3-43bb-8da6-3476a321befe",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7458),
-                            DropDownControlOption = "HealthServivceProivderType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7459),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HealthProviderType7"
-                        },
-                        new
-                        {
-                            RowKey = "143b9f04-04ec-4cb7-902f-f7ee51af0f3f",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7465),
-                            DropDownControlOption = "HealthServivceProivderType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7466),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HealthProviderType8"
-                        },
-                        new
-                        {
-                            RowKey = "a8d2c94a-c51f-44ac-b8cb-ca0cc77e0b69",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7472),
-                            DropDownControlOption = "HealthServivceProivderType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7473),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HealthProviderType9"
-                        },
-                        new
-                        {
-                            RowKey = "d8fcec1f-67c4-45b5-9108-8d558634575f",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7481),
-                            DropDownControlOption = "HealthServivceProivderType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7482),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HealthProviderType10"
-                        },
-                        new
-                        {
-                            RowKey = "6dd3af94-05d3-4c3e-9654-a074daf5d808",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7488),
-                            DropDownControlOption = "HealthServivceProivderType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7489),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "1d9b2152-d037-4c4a-8af8-4c1ec9890115",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7495),
-                            DropDownControlOption = "HealthMedicineType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7496),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "MedicineType1"
-                        },
-                        new
-                        {
-                            RowKey = "5ca2ed25-8f10-4177-9fbe-ec5b60f2a582",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7508),
-                            DropDownControlOption = "HealthMedicineType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7509),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "MedicineType2"
-                        },
-                        new
-                        {
-                            RowKey = "9255650b-2427-4221-a4d5-c56bd4a6ed30",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7517),
-                            DropDownControlOption = "HealthMedicineType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7518),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "MedicineType3"
-                        },
-                        new
-                        {
-                            RowKey = "98f7edea-29fd-4672-b5a0-75368fb8386a",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7524),
-                            DropDownControlOption = "HealthMedicineType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7525),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "MedicineType4"
-                        },
-                        new
-                        {
-                            RowKey = "ad4162af-fb12-4b32-a254-97e1a81f5ea9",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7531),
-                            DropDownControlOption = "HealthMedicineType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7532),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "MedicineType5"
-                        },
-                        new
-                        {
-                            RowKey = "9cd54ad3-6725-40e7-b2d4-ed7429ed3f9e",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7538),
-                            DropDownControlOption = "HealthMedicineType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7539),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "MedicineType6"
-                        },
-                        new
-                        {
-                            RowKey = "4114f371-a687-42e0-a258-93cf17902894",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7547),
-                            DropDownControlOption = "HealthMedicineType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7548),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "MedicineType7"
-                        },
-                        new
-                        {
-                            RowKey = "3b53c96a-a5e2-4e77-b689-e6457b808498",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7554),
-                            DropDownControlOption = "HealthMedicineType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7555),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "MedicineType8"
-                        },
-                        new
-                        {
-                            RowKey = "bd01253b-479b-470a-82b8-17a5bd1f70b0",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7560),
-                            DropDownControlOption = "HealthMedicineType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7561),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "MedicineType9"
-                        },
-                        new
-                        {
-                            RowKey = "fb819eda-2d41-441a-8e70-7246aac37662",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7567),
-                            DropDownControlOption = "HealthMedicineType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7568),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "MedicineType10"
-                        },
-                        new
-                        {
-                            RowKey = "8561f04d-8760-4a0e-a72b-1f60c3042fc2",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7577),
-                            DropDownControlOption = "HealthMedicineType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7577),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "e146345f-e127-4cbd-9b28-c0dcfae9a12b",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7584),
-                            DropDownControlOption = "HealthPurchaseFromType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7585),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PruchaseFromType1"
-                        },
-                        new
-                        {
-                            RowKey = "ccd0e0b7-7d1d-4e4f-9548-def25f0b16d1",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7591),
-                            DropDownControlOption = "HealthPurchaseFromType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7592),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PruchaseFromType2"
-                        },
-                        new
-                        {
-                            RowKey = "8f580a62-72ba-4988-97ab-060f30d50cfd",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7599),
-                            DropDownControlOption = "HealthPurchaseFromType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7600),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PruchaseFromType3"
-                        },
-                        new
-                        {
-                            RowKey = "d8b88320-d1c8-428d-a388-e4ecf7887d2c",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7608),
-                            DropDownControlOption = "HealthPurchaseFromType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7609),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PruchaseFromType4"
-                        },
-                        new
-                        {
-                            RowKey = "35b3b9b8-359f-40e9-ada3-4595dd66b100",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7615),
-                            DropDownControlOption = "HealthPurchaseFromType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7616),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PruchaseFromType5"
-                        },
-                        new
-                        {
-                            RowKey = "de2ffeb2-b643-4f48-bfaa-96feb9c12960",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7623),
-                            DropDownControlOption = "HealthPurchaseFromType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7624),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PruchaseFromType6"
-                        },
-                        new
-                        {
-                            RowKey = "23bb3fa2-626e-4a8a-a921-760f711ff52d",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7630),
-                            DropDownControlOption = "HealthPurchaseFromType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7631),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PruchaseFromType7"
-                        },
-                        new
-                        {
-                            RowKey = "83622f69-c2e8-4ab4-b745-e6d2974d35cc",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7639),
-                            DropDownControlOption = "HealthPurchaseFromType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7640),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PruchaseFromType8"
-                        },
-                        new
-                        {
-                            RowKey = "bbe6c87d-7a52-41d3-8a39-e9fd15a38632",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7646),
-                            DropDownControlOption = "HealthPurchaseFromType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7647),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PruchaseFromType9"
-                        },
-                        new
-                        {
-                            RowKey = "aa0ad0ba-71a0-4bfa-844c-c299aafe80e0",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7657),
-                            DropDownControlOption = "HealthPurchaseFromType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7658),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PruchaseFromType10"
-                        },
-                        new
-                        {
-                            RowKey = "7a8f8aa9-f493-48ea-8dad-73ba617f4244",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7665),
-                            DropDownControlOption = "HealthPurchaseFromType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7666),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "8b279231-877c-4757-89cf-998a1434dfab",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7674),
-                            DropDownControlOption = "LabourType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7675),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LabourType1"
-                        },
-                        new
-                        {
-                            RowKey = "0428d966-2800-4a7d-91a3-587457bf0ca1",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7681),
-                            DropDownControlOption = "LabourType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7682),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LabourType2"
-                        },
-                        new
-                        {
-                            RowKey = "3efd9762-84d5-441a-b42c-3cbed28b8943",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7687),
-                            DropDownControlOption = "LabourType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7688),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LabourType3"
-                        },
-                        new
-                        {
-                            RowKey = "dee0b103-23f1-45b1-a249-0d40076f2581",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7694),
-                            DropDownControlOption = "LabourType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7695),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LabourType4"
-                        },
-                        new
-                        {
-                            RowKey = "751a552b-8b87-4d5c-b3c2-ddf535fdc182",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7703),
-                            DropDownControlOption = "LabourType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7704),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LabourType5"
-                        },
-                        new
-                        {
-                            RowKey = "5efab53a-4aef-4f0a-8954-d20d700b8e40",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7713),
-                            DropDownControlOption = "LabourType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7714),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LabourType6"
-                        },
-                        new
-                        {
-                            RowKey = "71f0fa4c-3218-4bfa-b74d-e4017f9a6516",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7720),
-                            DropDownControlOption = "LabourType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7721),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "803d3334-8f1a-430c-883e-25603a11b42e",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7727),
-                            DropDownControlOption = "HousingType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7728),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HousingExpenseType1"
-                        },
-                        new
-                        {
-                            RowKey = "4dc7bdbc-2d36-427f-a0c9-b5c0d053c673",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7736),
-                            DropDownControlOption = "HousingType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7737),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HousingExpenseType2"
-                        },
-                        new
-                        {
-                            RowKey = "f122201b-b572-41f7-890f-dadb503d68cd",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7743),
-                            DropDownControlOption = "HousingType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7743),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HousingExpenseType3"
-                        },
-                        new
-                        {
-                            RowKey = "98ef8c66-ce96-4f16-acde-d17cd035f73f",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7749),
-                            DropDownControlOption = "HousingType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7750),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HousingExpenseType4"
-                        },
-                        new
-                        {
-                            RowKey = "b437441d-f89f-43cc-83a9-9e62d2f2301a",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7757),
-                            DropDownControlOption = "HousingType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7758),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "HousingExpenseType5"
-                        },
-                        new
-                        {
-                            RowKey = "ccfec117-8e22-475a-aacb-67257dfbe818",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7766),
-                            DropDownControlOption = "HousingType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7767),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "56e5db30-0a63-49b1-8ad4-dd2ed3f979a8",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7773),
-                            DropDownControlOption = "WaterPurchasedUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7774),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "WaterPurchasedUnitType1"
-                        },
-                        new
-                        {
-                            RowKey = "62f4e2a4-d776-4b22-ae53-315a43f25c11",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7781),
-                            DropDownControlOption = "WaterPurchasedUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7782),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "WaterPurchasedUnitType2"
-                        },
-                        new
-                        {
-                            RowKey = "cfc89207-d382-431c-bfca-9139aed5b34c",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7788),
-                            DropDownControlOption = "WaterPurchasedUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7789),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "WaterPurchasedUnitType3"
-                        },
-                        new
-                        {
-                            RowKey = "52f40e7a-0de6-4774-9769-658f0087c4dc",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7797),
-                            DropDownControlOption = "WaterPurchasedUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7798),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "WaterPurchasedUnitType4"
-                        },
-                        new
-                        {
-                            RowKey = "0cc1c8b3-0f55-40a8-b25d-c2926b5931a3",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7804),
-                            DropDownControlOption = "WaterPurchasedUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7804),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "WaterPurchasedUnitType5"
-                        },
-                        new
-                        {
-                            RowKey = "e7bc6c1f-3305-446e-9fd9-822e6c3a14df",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7811),
-                            DropDownControlOption = "WaterPurchasedUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7812),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "9e27082b-1b9a-4b2e-b185-2f02b753e933",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7818),
-                            DropDownControlOption = "PurchasedWaterFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7819),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PurchasedWaterFromType1"
-                        },
-                        new
-                        {
-                            RowKey = "e1162d88-7521-4edc-abe7-29788b0b4625",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7827),
-                            DropDownControlOption = "PurchasedWaterFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7828),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PurchasedWaterFromType2"
-                        },
-                        new
-                        {
-                            RowKey = "b27617e7-8156-40be-8d61-a361783a5509",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7834),
-                            DropDownControlOption = "PurchasedWaterFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7835),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PurchasedWaterFromType3"
-                        },
-                        new
-                        {
-                            RowKey = "f3558818-1183-427f-a5d2-e9d0ed83dced",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7840),
-                            DropDownControlOption = "PurchasedWaterFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7841),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PurchasedWaterFromType4"
-                        },
-                        new
-                        {
-                            RowKey = "856623a9-b9e9-4a9f-8bed-0d3d31fdba31",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7847),
-                            DropDownControlOption = "PurchasedWaterFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7848),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PurchasedWaterFromType5"
-                        },
-                        new
-                        {
-                            RowKey = "c812d19e-5097-4e37-a2f8-ec5ddc71d86d",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7857),
-                            DropDownControlOption = "PurchasedWaterFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7858),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PurchasedWaterFromType6"
-                        },
-                        new
-                        {
-                            RowKey = "3f17c6a1-97bc-4e83-aa79-0a0fffcdd342",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7864),
-                            DropDownControlOption = "PurchasedWaterFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7865),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PurchasedWaterFromType7"
-                        },
-                        new
-                        {
-                            RowKey = "9f00498e-99ae-4310-99be-7efe3d3c6b3e",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7871),
-                            DropDownControlOption = "PurchasedWaterFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7872),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PurchasedWaterFromType8"
-                        },
-                        new
-                        {
-                            RowKey = "0d8ef31e-4e08-4af0-9633-178dd314e033",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7878),
-                            DropDownControlOption = "PurchasedWaterFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7879),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PurchasedWaterFromType9"
-                        },
-                        new
-                        {
-                            RowKey = "0a73b889-d7bf-4102-8f22-ceb65aa4eef9",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7888),
-                            DropDownControlOption = "PurchasedWaterFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7888),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PurchasedWaterFromType10"
-                        },
-                        new
-                        {
-                            RowKey = "7a6647a2-c6bf-45f6-b1e5-ddce7cee1dce",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7895),
-                            DropDownControlOption = "PurchasedWaterFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7896),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "e5375aff-73fd-46df-b855-6b67d15200fc",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7907),
-                            DropDownControlOption = "MembershipType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7908),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "MembershipType1"
-                        },
-                        new
-                        {
-                            RowKey = "dff664dc-092a-48bb-a664-4211e3d3a1ce",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7914),
-                            DropDownControlOption = "MembershipType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7915),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "MembershipType2"
-                        },
-                        new
-                        {
-                            RowKey = "fb8c13f3-86ca-454c-87d8-b94e2d844a3f",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7923),
-                            DropDownControlOption = "MembershipType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7924),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "MembershipType3"
-                        },
-                        new
-                        {
-                            RowKey = "d3b1f41f-a8df-4c6b-a10b-f676ff2dbeb0",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7930),
-                            DropDownControlOption = "MembershipType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7931),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "MembershipType4"
-                        },
-                        new
-                        {
-                            RowKey = "22b0d45e-68bd-4b7a-bbb0-fd40d91a76ff",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7938),
-                            DropDownControlOption = "MembershipType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7939),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "MembershipType5"
-                        },
-                        new
-                        {
-                            RowKey = "cabb288c-3522-4445-8560-e152d17ec5a0",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7946),
-                            DropDownControlOption = "MembershipType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7947),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "MembershipType6"
-                        },
-                        new
-                        {
-                            RowKey = "e2de2d28-bafd-41b3-aa39-a812375fd9c8",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7955),
-                            DropDownControlOption = "MembershipType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7956),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "MembershipType7"
-                        },
-                        new
-                        {
-                            RowKey = "1dda4d2d-ad44-4448-9598-4e7c927a93c7",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7962),
-                            DropDownControlOption = "MembershipType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7963),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "MembershipType8"
-                        },
-                        new
-                        {
-                            RowKey = "97c1f966-cf92-439e-a004-0cf04f110216",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7969),
-                            DropDownControlOption = "MembershipType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7970),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "d4160da1-cefb-4203-8f3c-ed5fb017e8b2",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7976),
-                            DropDownControlOption = "TimePeriodUnitType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7977),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "TimePeriodUnitType1"
-                        },
-                        new
-                        {
-                            RowKey = "dcc6a66c-1dae-42dc-905d-76ddc48fc14a",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7985),
-                            DropDownControlOption = "TimePeriodUnitType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7986),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "TimePeriodUnitType2"
-                        },
-                        new
-                        {
-                            RowKey = "dda9f899-0aea-4eae-9836-dee28497fa3e",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7992),
-                            DropDownControlOption = "ServiceUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7993),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "ServiceType1"
-                        },
-                        new
-                        {
-                            RowKey = "2694c845-3361-497d-8e3b-b6a684f59dde",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(7999),
-                            DropDownControlOption = "ServiceUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8000),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "ServiceType2"
-                        },
-                        new
-                        {
-                            RowKey = "137c02dc-9127-4dc4-8211-7723fda4219a",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8007),
-                            DropDownControlOption = "ServiceUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8008),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "ServiceType3"
-                        },
-                        new
-                        {
-                            RowKey = "bc8720e6-d2b8-4404-ad6f-19d5da107cd3",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8016),
-                            DropDownControlOption = "ServiceUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8017),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "ServiceType4"
-                        },
-                        new
-                        {
-                            RowKey = "ba2af367-7796-4793-b59b-67e52139bfcf",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8025),
-                            DropDownControlOption = "ServiceUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8026),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "ServiceType5"
-                        },
-                        new
-                        {
-                            RowKey = "22d86529-4133-4489-8e47-870612083880",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8032),
-                            DropDownControlOption = "ServiceUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8033),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "ServiceType6"
-                        },
-                        new
-                        {
-                            RowKey = "11d1069b-9257-4c08-b044-4d9a7d37f58a",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8039),
-                            DropDownControlOption = "ServiceUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8040),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "ServiceType7"
-                        },
-                        new
-                        {
-                            RowKey = "2c939b32-a41b-4aa2-81c5-471f15acd721",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8048),
-                            DropDownControlOption = "ServiceUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8049),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "ServiceType8"
-                        },
-                        new
-                        {
-                            RowKey = "6afbde10-2906-4e95-a396-7825c65759db",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8055),
-                            DropDownControlOption = "ServiceUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8056),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "e77cafce-7a6d-4df0-b1a7-93f6a038e1d7",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8061),
-                            DropDownControlOption = "WhoProvidedServiceUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8062),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "WhoProvidedServiceType1"
-                        },
-                        new
-                        {
-                            RowKey = "0254db5a-285e-45e3-96d4-01c21125235b",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8068),
-                            DropDownControlOption = "WhoProvidedServiceUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8069),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "WhoProvidedServiceType2"
-                        },
-                        new
-                        {
-                            RowKey = "6f008a4b-f26f-4f92-939b-d076629013b7",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8077),
-                            DropDownControlOption = "WhoProvidedServiceUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8078),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "WhoProvidedServiceType3"
-                        },
-                        new
-                        {
-                            RowKey = "04057ad8-3dda-4fc2-9fb0-e0da7948a055",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8084),
-                            DropDownControlOption = "WhoProvidedServiceUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8085),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "WhoProvidedServiceType4"
-                        },
-                        new
-                        {
-                            RowKey = "a4c5a99d-3ede-4c75-8601-9e5c94933aa7",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8091),
-                            DropDownControlOption = "WhoProvidedServiceUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8092),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "WhoProvidedServiceType5"
-                        },
-                        new
-                        {
-                            RowKey = "da20651a-684f-4a3e-b982-5a0b74664199",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8175),
-                            DropDownControlOption = "WhoProvidedServiceUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8177),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "WhoProvidedServiceType6"
-                        },
-                        new
-                        {
-                            RowKey = "8c3c585a-cf7c-4979-8673-b09d4fd913dd",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8189),
-                            DropDownControlOption = "WhoProvidedServiceUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8190),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "WhoProvidedServiceType7"
-                        },
-                        new
-                        {
-                            RowKey = "326f1492-a506-4ef3-beab-f7d9dc519151",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8196),
-                            DropDownControlOption = "WhoProvidedServiceUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8197),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "WhoProvidedServiceType8"
-                        },
-                        new
-                        {
-                            RowKey = "734cd5a5-8b32-4fe8-8660-cdfa8d55fd59",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8204),
-                            DropDownControlOption = "WhoProvidedServiceUnit",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8205),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "517f92e3-b93b-4d17-a51e-a3c7c3c8a43c",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8211),
-                            DropDownControlOption = "AnimalType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8212),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "AnimalType1"
-                        },
-                        new
-                        {
-                            RowKey = "d56a2a58-abbf-4e27-8e9e-2d588f133301",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8221),
-                            DropDownControlOption = "AnimalType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8221),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "AnimalType2"
-                        },
-                        new
-                        {
-                            RowKey = "979b1a15-a2e8-4af1-bced-9c228a2f9a60",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8233),
-                            DropDownControlOption = "AnimalType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8234),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "AnimalType3"
-                        },
-                        new
-                        {
-                            RowKey = "04fb6391-1da6-45f6-9c05-cd088ea7ce04",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8241),
-                            DropDownControlOption = "AnimalType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8241),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "AnimalType4"
-                        },
-                        new
-                        {
-                            RowKey = "1cd82d2a-0e16-4307-b1fe-bed0f5063e24",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8248),
-                            DropDownControlOption = "AnimalType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8249),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "AnimalType5"
-                        },
-                        new
-                        {
-                            RowKey = "32192899-5d73-4f87-ae4c-47277e454db9",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8257),
-                            DropDownControlOption = "AnimalType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8258),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "AnimalType6"
-                        },
-                        new
-                        {
-                            RowKey = "af5c456e-33ec-4674-916c-c675422196d1",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8264),
-                            DropDownControlOption = "AnimalType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8265),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "AnimalType7"
-                        },
-                        new
-                        {
-                            RowKey = "f1f0512d-51b2-4d8f-83d9-2e5f7b814254",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8272),
-                            DropDownControlOption = "AnimalType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8273),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "AnimalType8"
-                        },
-                        new
-                        {
-                            RowKey = "8f05dbdc-de7c-4722-82e7-06f43418faf9",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8279),
-                            DropDownControlOption = "AnimalType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8280),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "752ad166-0048-4625-a6b1-f496bf3357e2",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8288),
-                            DropDownControlOption = "AnimalPurchasedFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8289),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "AnimalPurchasedFromType1"
-                        },
-                        new
-                        {
-                            RowKey = "b10ed6ac-2b6e-4117-a2d5-c62c02086514",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8295),
-                            DropDownControlOption = "AnimalPurchasedFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8296),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "AnimalPurchasedFromType2"
-                        },
-                        new
-                        {
-                            RowKey = "3c2f2eee-2386-4b10-ab2a-490cddc9e603",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8302),
-                            DropDownControlOption = "AnimalPurchasedFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8303),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "AnimalPurchasedFromType3"
-                        },
-                        new
-                        {
-                            RowKey = "bb89c17d-2d40-4d9c-98df-7333c41087c4",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8309),
-                            DropDownControlOption = "AnimalPurchasedFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8310),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "AnimalPurchasedFromType4"
-                        },
-                        new
-                        {
-                            RowKey = "3138bd83-d3d3-4cf7-832a-fefaaa624bfd",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8318),
-                            DropDownControlOption = "AnimalPurchasedFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8319),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "AnimalPurchasedFromType5"
-                        },
-                        new
-                        {
-                            RowKey = "ab0385c2-da1f-4c0c-9372-b09d63852b38",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8325),
-                            DropDownControlOption = "AnimalPurchasedFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8326),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "AnimalPurchasedFromType6"
-                        },
-                        new
-                        {
-                            RowKey = "4e4092fa-1ce3-476a-baa7-d024f03c8a41",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8332),
-                            DropDownControlOption = "AnimalPurchasedFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8333),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "AnimalPurchasedFromType7"
-                        },
-                        new
-                        {
-                            RowKey = "27aaf357-ccdc-4c8a-8037-3d4f1e9f3e90",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8339),
-                            DropDownControlOption = "AnimalPurchasedFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8340),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "AnimalPurchasedFromType8"
-                        },
-                        new
-                        {
-                            RowKey = "81ec8faa-ef59-4fa5-8a77-ec52ced2730d",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8348),
-                            DropDownControlOption = "AnimalPurchasedFrom",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8349),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "cee61806-4fa8-4b08-9efb-5c5855b89c66",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8357),
-                            DropDownControlOption = "LoanProvider",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8358),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LoanProviderType1"
-                        },
-                        new
-                        {
-                            RowKey = "ab18f290-d307-4ebb-ae4e-e4b76a93d41f",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8364),
-                            DropDownControlOption = "LoanProvider",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8365),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LoanProviderType2"
-                        },
-                        new
-                        {
-                            RowKey = "65cbdf7f-bdf9-4c1b-be53-8acee2c8acfd",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8371),
-                            DropDownControlOption = "LoanProvider",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8372),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LoanProviderType3"
-                        },
-                        new
-                        {
-                            RowKey = "ee5789e0-90a9-4733-bbcd-1c961da13374",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8380),
-                            DropDownControlOption = "LoanProvider",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8381),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LoanProviderType4"
-                        },
-                        new
-                        {
-                            RowKey = "12e37f24-d276-48cc-901a-46c16e57dda0",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8392),
-                            DropDownControlOption = "LoanProvider",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8393),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LoanProviderType5"
-                        },
-                        new
-                        {
-                            RowKey = "cea8e02f-2c18-4a69-9c6e-edbf17675a4f",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8399),
-                            DropDownControlOption = "LoanProvider",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8400),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LoanProviderType6"
-                        },
-                        new
-                        {
-                            RowKey = "261e7f89-372b-4f61-953f-764e64f720e5",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8406),
-                            DropDownControlOption = "LoanProvider",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8407),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LoanProviderType7"
-                        },
-                        new
-                        {
-                            RowKey = "9fcec9a6-6a5b-45ce-9eed-7fd6ea3bef05",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8416),
-                            DropDownControlOption = "LoanProvider",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8416),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LoanProviderType8"
-                        },
-                        new
-                        {
-                            RowKey = "8dc05242-2fc2-4df6-81fc-b7d92a65b1f2",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8423),
-                            DropDownControlOption = "LoanProvider",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8424),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "181456be-c199-4b38-b068-9f43846ee5e5",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8431),
-                            DropDownControlOption = "EquipmentType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8431),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "EquipmentType1"
-                        },
-                        new
-                        {
-                            RowKey = "217486be-b266-410a-8ec1-e32a5d9611ac",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8438),
-                            DropDownControlOption = "EquipmentType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8439),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "EquipmentType2"
-                        },
-                        new
-                        {
-                            RowKey = "cbb8dba5-8356-4932-bdd3-ab6d968eceb8",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8447),
-                            DropDownControlOption = "EquipmentType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8448),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "EquipmentType3"
-                        },
-                        new
-                        {
-                            RowKey = "e0dd38e9-ef03-4c23-bd43-46a950aef42c",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8454),
-                            DropDownControlOption = "EquipmentType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8454),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "EquipmentType4"
-                        },
-                        new
-                        {
-                            RowKey = "c3facaa2-7831-42c1-98d9-84e94bcf4d85",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8461),
-                            DropDownControlOption = "EquipmentType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8462),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "EquipmentType5"
-                        },
-                        new
-                        {
-                            RowKey = "e1a47151-edb7-4e44-bd2d-0752a3922ac1",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8468),
-                            DropDownControlOption = "EquipmentType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8469),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "EquipmentType6"
-                        },
-                        new
-                        {
-                            RowKey = "dfee5afa-fb6f-4788-9540-d320ecbe4e75",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8478),
-                            DropDownControlOption = "EquipmentType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8479),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "EquipmentType7"
-                        },
-                        new
-                        {
-                            RowKey = "e1d6abd3-22b9-4bd2-9560-22519e350d36",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8486),
-                            DropDownControlOption = "EquipmentType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8487),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "EquipmentType8"
-                        },
-                        new
-                        {
-                            RowKey = "6c270e56-b237-44dd-8bfd-9023ce32c9b4",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8493),
-                            DropDownControlOption = "EquipmentType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8494),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "0dbadf35-63bf-4d2d-9f87-004314dacb12",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8501),
-                            DropDownControlOption = "PigSaleType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8501),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PigType1"
-                        },
-                        new
-                        {
-                            RowKey = "93ad9050-7545-44cb-9664-890058345e13",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8510),
-                            DropDownControlOption = "PigSaleType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8510),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PigType2"
-                        },
-                        new
-                        {
-                            RowKey = "32974f5f-2704-4be0-ac57-3a05249472b1",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8516),
-                            DropDownControlOption = "PigSaleType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8517),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PigType3"
-                        },
-                        new
-                        {
-                            RowKey = "59e8252c-f135-4148-b6f2-03a4385fd513",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8523),
-                            DropDownControlOption = "PigSaleType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8524),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PigType4"
-                        },
-                        new
-                        {
-                            RowKey = "09c19e85-4f4f-4082-b2e3-e80bb5d9c994",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8529),
-                            DropDownControlOption = "PigSaleType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8530),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PigType5"
-                        },
-                        new
-                        {
-                            RowKey = "9096057d-0ec1-4898-b375-4f839b78819c",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8538),
-                            DropDownControlOption = "PigSaleType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8539),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PigType6"
-                        },
-                        new
-                        {
-                            RowKey = "8259e20c-ec93-4562-9ec7-723d731d22e2",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8545),
-                            DropDownControlOption = "PigSaleType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8547),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PigType7"
-                        },
-                        new
-                        {
-                            RowKey = "f7f767ce-2252-47f5-ab14-2ec5b8f197d6",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8552),
-                            DropDownControlOption = "PigSaleType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8553),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PigType8"
-                        },
-                        new
-                        {
-                            RowKey = "c97cd62a-103a-442b-b7ec-5503c684ec8a",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8559),
-                            DropDownControlOption = "PigSaleType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8560),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "5b334253-62ed-44ff-92ed-d2e0ad021de6",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8569),
-                            DropDownControlOption = "SoldToType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8570),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "SoldToType1"
-                        },
-                        new
-                        {
-                            RowKey = "f435ebea-26f6-4806-87b8-3ea797f712ce",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8576),
-                            DropDownControlOption = "SoldToType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8577),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "SoldToType2"
-                        },
-                        new
-                        {
-                            RowKey = "999c73c5-7b5a-4119-ab9f-3373e440e192",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8584),
-                            DropDownControlOption = "SoldToType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8585),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "SoldToType3"
-                        },
-                        new
-                        {
-                            RowKey = "93f0364d-e692-4e18-9d27-678f5d6574a4",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8594),
-                            DropDownControlOption = "SoldToType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8595),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "SoldToType4"
-                        },
-                        new
-                        {
-                            RowKey = "4b4c1b1a-321c-479f-9b9d-68015c4a461c",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8604),
-                            DropDownControlOption = "SoldToType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8605),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "SoldToType5"
-                        },
-                        new
-                        {
-                            RowKey = "5cf7720c-6e1c-4f4a-8bc5-65b462a5a67f",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8611),
-                            DropDownControlOption = "SoldToType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8612),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "SoldToType6"
-                        },
-                        new
-                        {
-                            RowKey = "aa06ee62-8695-445f-b7df-bffeb27dd6d1",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8618),
-                            DropDownControlOption = "SoldToType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8619),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "SoldToType7"
-                        },
-                        new
-                        {
-                            RowKey = "7596fc31-28de-4cc6-9ff3-06a753b0ca90",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8626),
-                            DropDownControlOption = "SoldToType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8627),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "SoldToType8"
-                        },
-                        new
-                        {
-                            RowKey = "3080470d-8ed6-4d9e-8049-2c5845683529",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8635),
-                            DropDownControlOption = "SoldToType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8636),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "f49d4535-4402-4d35-b370-3525a4e77bc4",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8641),
-                            DropDownControlOption = "BreedingServiceType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8642),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "BreedingServiceType1"
-                        },
-                        new
-                        {
-                            RowKey = "aaca6028-e30a-4a75-8951-af32c143f259",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8648),
-                            DropDownControlOption = "BreedingServiceType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8649),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "BreedingServiceType2"
-                        },
-                        new
-                        {
-                            RowKey = "6eed4f41-d9c9-43e6-be73-36d775dd824f",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8654),
-                            DropDownControlOption = "BreedingServiceType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8655),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "BreedingServiceType3"
-                        },
-                        new
-                        {
-                            RowKey = "6683e030-9fff-42c6-9dfb-e1627beaba6e",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8664),
-                            DropDownControlOption = "BreedingServiceType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8665),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "BreedingServiceType4"
-                        },
-                        new
-                        {
-                            RowKey = "03ac38b3-d837-4aee-b3fc-eb7965194562",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8671),
-                            DropDownControlOption = "BreedingServiceType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8672),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "BreedingServiceType5"
-                        },
-                        new
-                        {
-                            RowKey = "0d58adef-dc67-4b31-b530-c529c43db22a",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8678),
-                            DropDownControlOption = "BreedingServiceType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8678),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "BreedingServiceType6"
-                        },
-                        new
-                        {
-                            RowKey = "1abd5c9c-99cd-4243-9dbd-fe55af41bb6a",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8684),
-                            DropDownControlOption = "BreedingServiceType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8685),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "BreedingServiceType7"
-                        },
-                        new
-                        {
-                            RowKey = "4a37882b-55d3-4337-b503-a68676ed61e2",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8694),
-                            DropDownControlOption = "BreedingServiceType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8695),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "BreedingServiceType8"
-                        },
-                        new
-                        {
-                            RowKey = "8fb11228-07f8-4c5a-8629-dfee668846c6",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8700),
-                            DropDownControlOption = "BreedingServiceType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8701),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "9e0b07c4-bcb9-4199-a532-d5eebede18b3",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8707),
-                            DropDownControlOption = "OtherPaymentType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8708),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PaymentType1"
-                        },
-                        new
-                        {
-                            RowKey = "6acc0836-cc0b-42e6-b9d6-4f74c770508f",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8714),
-                            DropDownControlOption = "OtherPaymentType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8715),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PaymentType2"
-                        },
-                        new
-                        {
-                            RowKey = "13d1f936-afbf-4440-9ea2-b6799cf1129e",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8723),
-                            DropDownControlOption = "OtherPaymentType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8724),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PaymentType3"
-                        },
-                        new
-                        {
-                            RowKey = "881c1075-4d0b-47bb-a50c-b73b39bd7e13",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8731),
-                            DropDownControlOption = "OtherPaymentType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8731),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PaymentType4"
-                        },
-                        new
-                        {
-                            RowKey = "40bc82b2-c823-4795-96d2-b89b2f71a0e7",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8737),
-                            DropDownControlOption = "OtherPaymentType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8738),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PaymentType5"
-                        },
-                        new
-                        {
-                            RowKey = "5bfc985d-3341-4b49-81eb-b8c80776f042",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8744),
-                            DropDownControlOption = "OtherPaymentType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8745),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PaymentType6"
-                        },
-                        new
-                        {
-                            RowKey = "fe9a6f34-8b9d-4a7e-a943-bae6c75820a6",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8753),
-                            DropDownControlOption = "OtherPaymentType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8754),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PaymentType7"
-                        },
-                        new
-                        {
-                            RowKey = "15661b02-b5e9-4639-9d2c-e34224e95946",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8760),
-                            DropDownControlOption = "OtherPaymentType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8761),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "PaymentType8"
-                        },
-                        new
-                        {
-                            RowKey = "5d939e1f-6fda-480b-9358-cb1a463204ed",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8766),
-                            DropDownControlOption = "ClientType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8767),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "ClientType1"
-                        },
-                        new
-                        {
-                            RowKey = "0c453989-bffb-42b6-a5a8-050ffab7df00",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8773),
-                            DropDownControlOption = "ClientType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8774),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "ClientType2"
-                        },
-                        new
-                        {
-                            RowKey = "2514bf04-994b-4c3e-ae08-91b76fdd8e3e",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8787),
-                            DropDownControlOption = "ClientType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8788),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "ClientType3"
-                        },
-                        new
-                        {
-                            RowKey = "f464969b-1a3d-4ade-9772-afe12512b02d",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8795),
-                            DropDownControlOption = "ClientType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8796),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "ClientType4"
-                        },
-                        new
-                        {
-                            RowKey = "6e92b4c6-8e2d-4a55-859d-d5c43bf6a801",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8802),
-                            DropDownControlOption = "ClientType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8803),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "ClientType5"
-                        },
-                        new
-                        {
-                            RowKey = "c5dcf015-d466-4741-956b-4ea9229514fc",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8809),
-                            DropDownControlOption = "ClientType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8810),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "ClientType6"
-                        },
-                        new
-                        {
-                            RowKey = "db27b2f3-07fb-4f36-98d9-4d42d5b1b864",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8818),
-                            DropDownControlOption = "ClientType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8819),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "ClientType7"
-                        },
-                        new
-                        {
-                            RowKey = "97dcb4fa-3291-4a94-8cf8-fa447c9909fd",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8825),
-                            DropDownControlOption = "ClientType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8826),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "ClientType8"
-                        },
-                        new
-                        {
-                            RowKey = "ec642937-25ff-4ec7-8812-6fd19536696a",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8832),
-                            DropDownControlOption = "ClientType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8833),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "7e778b3c-0925-41e0-a70f-6cef1e091821",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8839),
-                            DropDownControlOption = "VolumeUnitType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8840),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "VolumeUnitType1"
-                        },
-                        new
-                        {
-                            RowKey = "5c0f5946-df01-46b6-93eb-7079b46526af",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8849),
-                            DropDownControlOption = "VolumeUnitType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8849),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "VolumeUnitType2"
-                        },
-                        new
-                        {
-                            RowKey = "2e0ef8e6-f979-4da3-b70c-f095cb2b5efd",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8855),
-                            DropDownControlOption = "VolumeUnitType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8856),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "VolumeUnitType3"
-                        },
-                        new
-                        {
-                            RowKey = "3f3d6c4d-f229-4f37-a905-02054c4c59d3",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8862),
-                            DropDownControlOption = "VolumeUnitType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8863),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "VolumeUnitType4"
-                        },
-                        new
-                        {
-                            RowKey = "ad4d15ba-9fcd-4c10-ae55-18dda48bbea2",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8868),
-                            DropDownControlOption = "VolumeUnitType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8869),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "VolumeUnitType5"
-                        },
-                        new
-                        {
-                            RowKey = "b2df1b58-efc0-45ae-8243-566b36c66ad5",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8878),
-                            DropDownControlOption = "VolumeUnitType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8879),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "VolumeUnitType6"
-                        },
-                        new
-                        {
-                            RowKey = "22bba24d-33ac-43e5-b4a6-bee23aafe143",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8885),
-                            DropDownControlOption = "VolumeUnitType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8886),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "VolumeUnitType7"
-                        },
-                        new
-                        {
-                            RowKey = "5013a9a1-421c-474f-90ad-3309fc674da8",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8893),
-                            DropDownControlOption = "VolumeUnitType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8894),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "VolumeUnitType8"
-                        },
-                        new
-                        {
-                            RowKey = "bc26bb06-2995-4f24-bb30-4f253cf72edd",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8901),
-                            DropDownControlOption = "VolumeUnitType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8901),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "1c5c6c10-dce1-4ee2-8fac-5978428d783c",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8910),
-                            DropDownControlOption = "GenderType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8911),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "GenderType1"
-                        },
-                        new
-                        {
-                            RowKey = "d9c237f4-2eaa-4bf1-a204-ae0dd2eeddcc",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8917),
-                            DropDownControlOption = "GenderType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8918),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "GenderType2"
-                        },
-                        new
-                        {
-                            RowKey = "0fe438d5-7f15-40db-a20f-92ae2f7f6931",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8924),
-                            DropDownControlOption = "GenderType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8925),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "GenderType3"
-                        },
-                        new
-                        {
-                            RowKey = "755838b8-581e-46e0-affa-695db3f3cc7b",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8931),
-                            DropDownControlOption = "DistrictType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8932),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DistrictType1"
-                        },
-                        new
-                        {
-                            RowKey = "b2fb9866-c379-41ff-a414-7631570c3392",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8939),
-                            DropDownControlOption = "DistrictType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8940),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DistrictType2"
-                        },
-                        new
-                        {
-                            RowKey = "07efb3b7-92a2-49e2-90a0-9afad1634c92",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8946),
-                            DropDownControlOption = "DistrictType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8947),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DistrictType3"
-                        },
-                        new
-                        {
-                            RowKey = "f71d9e0c-c052-4aca-89b3-522a128c17fe",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8953),
-                            DropDownControlOption = "DistrictType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8954),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DistrictType4"
-                        },
-                        new
-                        {
-                            RowKey = "ddc19311-18a9-444c-989a-129fa6015717",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8962),
-                            DropDownControlOption = "DistrictType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8963),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DistrictType5"
-                        },
-                        new
-                        {
-                            RowKey = "c177dd7e-496b-4eed-9d9b-e5b48e93e4f0",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8970),
-                            DropDownControlOption = "DistrictType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8971),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DistrictType6"
-                        },
-                        new
-                        {
-                            RowKey = "63ae082f-7ef1-4cc5-bd48-95b92b73840c",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8977),
-                            DropDownControlOption = "DistrictType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8978),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DistrictType7"
-                        },
-                        new
-                        {
-                            RowKey = "3c50db2e-4785-430a-b17a-06ed1e2121de",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8987),
-                            DropDownControlOption = "DistrictType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8987),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "DistrictType8"
-                        },
-                        new
-                        {
-                            RowKey = "3512fa94-4fff-41e8-81f4-2ce6e421d876",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8993),
-                            DropDownControlOption = "CountyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(8994),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "CountyType1"
-                        },
-                        new
-                        {
-                            RowKey = "df2af023-dee5-44ee-a625-a31777785249",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9003),
-                            DropDownControlOption = "CountyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9004),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "CountyType2"
-                        },
-                        new
-                        {
-                            RowKey = "27cf7713-be94-4942-b5d7-87624590be7c",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9010),
-                            DropDownControlOption = "CountyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9011),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "CountyType3"
-                        },
-                        new
-                        {
-                            RowKey = "ca0ef4a1-0527-449a-b8fa-c3b89f06dcef",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9016),
-                            DropDownControlOption = "CountyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9017),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "CountyType4"
-                        },
-                        new
-                        {
-                            RowKey = "86016667-d7fb-4c2b-a83c-81805d207bf1",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9023),
-                            DropDownControlOption = "CountyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9024),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "CountyType5"
-                        },
-                        new
-                        {
-                            RowKey = "324d5ff4-15a2-43cf-860f-9a638c5c693c",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9032),
-                            DropDownControlOption = "CountyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9033),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "CountyType6"
-                        },
-                        new
-                        {
-                            RowKey = "609cb20f-3bf6-4b20-82b1-393fd5a8293b",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9039),
-                            DropDownControlOption = "CountyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9040),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "CountyType7"
-                        },
-                        new
-                        {
-                            RowKey = "da8a47e8-1c55-4721-bd8a-9d713461741c",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9046),
-                            DropDownControlOption = "CountyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9046),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "CountyType8"
-                        },
-                        new
-                        {
-                            RowKey = "86e22b60-fcf7-4f0d-b8a7-cfc152baed3c",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9052),
-                            DropDownControlOption = "CountryType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9053),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "CountryTypeUganda"
-                        },
-                        new
-                        {
-                            RowKey = "8ef0cb03-cd8a-4a93-a44c-332c25205a29",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9062),
-                            DropDownControlOption = "CountryType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9063),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "CountryTypeVietnam"
-                        },
-                        new
-                        {
-                            RowKey = "f7762344-e211-4e11-a6d9-49044525a398",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9069),
-                            DropDownControlOption = "CountryType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9070),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "CountryTypeRwanda"
-                        },
-                        new
-                        {
-                            RowKey = "f3ff6ac4-569a-4e55-b6e0-5099e50cc3f9",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9075),
-                            DropDownControlOption = "SubCountyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9076),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "SubCountyType1"
-                        },
-                        new
-                        {
-                            RowKey = "87d193e2-53ac-4624-8ed2-73001ebd98e4",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9083),
-                            DropDownControlOption = "SubCountyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9084),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "SubCountyType2"
-                        },
-                        new
-                        {
-                            RowKey = "916fd182-e83d-43dd-94ba-a91a51217112",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9092),
-                            DropDownControlOption = "SubCountyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9093),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "SubCountyType3"
-                        },
-                        new
-                        {
-                            RowKey = "2075aeb3-cb50-4082-8187-3aa2c25d49ae",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9098),
-                            DropDownControlOption = "SubCountyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9099),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "SubCountyType4"
-                        },
-                        new
-                        {
-                            RowKey = "355b9986-8eb6-4efd-af83-605fd4d4f861",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9105),
-                            DropDownControlOption = "SubCountyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9106),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "SubCountyType5"
-                        },
-                        new
-                        {
-                            RowKey = "32390add-2dc9-4653-a17e-587989cfc0cc",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9112),
-                            DropDownControlOption = "SubCountyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9113),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "SubCountyType6"
-                        },
-                        new
-                        {
-                            RowKey = "1d534ccc-90fd-4c03-94b9-58f1fcac4dc8",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9121),
-                            DropDownControlOption = "SubCountyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9122),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "SubCountyType7"
-                        },
-                        new
-                        {
-                            RowKey = "15a7208e-588b-4800-b376-eec6f81b3272",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9128),
-                            DropDownControlOption = "SubCountyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9129),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "SubCountyType8"
-                        },
-                        new
-                        {
-                            RowKey = "cc72a4d0-0d9f-49ed-a227-6450434dd218",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9135),
-                            DropDownControlOption = "CurrencyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9136),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "CurrencyType1"
-                        },
-                        new
-                        {
-                            RowKey = "6202b37b-b380-4e0a-9b9a-a8ef28789147",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9143),
-                            DropDownControlOption = "CurrencyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9144),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "CurrencyType2"
-                        },
-                        new
-                        {
-                            RowKey = "7c1a079c-f238-42ca-ad92-a56d6d295fe4",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9152),
-                            DropDownControlOption = "CurrencyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9153),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "CurrencyType3"
-                        },
-                        new
-                        {
-                            RowKey = "ee6c107b-87f3-43c0-a6c1-1b9a42aab015",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9159),
-                            DropDownControlOption = "CurrencyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9160),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "CurrencyType4"
-                        },
-                        new
-                        {
-                            RowKey = "2417517d-b87a-491e-aec3-d47e37778434",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9165),
-                            DropDownControlOption = "CurrencyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9166),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "CurrencyType5"
-                        },
-                        new
-                        {
-                            RowKey = "2b6b0ed7-22b4-43e8-9f6b-1f15e874422a",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9176),
-                            DropDownControlOption = "CurrencyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9177),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "CurrencyType6"
-                        },
-                        new
-                        {
-                            RowKey = "7e478301-b70d-40b7-8f51-ca606b385e0d",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9185),
-                            DropDownControlOption = "CurrencyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9186),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "CurrencyType7"
-                        },
-                        new
-                        {
-                            RowKey = "809e5b2e-6e16-4395-a3d0-6ff022190ab1",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9191),
-                            DropDownControlOption = "CurrencyType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9192),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "CurrencyType8"
-                        },
-                        new
-                        {
-                            RowKey = "e6916571-9dd3-405c-aada-273d367f72d7",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9198),
-                            DropDownControlOption = "LanguageType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9199),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LanguageType1"
-                        },
-                        new
-                        {
-                            RowKey = "be22d24d-8015-4516-8bfe-669d41a6ad13",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9205),
-                            DropDownControlOption = "LanguageType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9206),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LanguageType2"
-                        },
-                        new
-                        {
-                            RowKey = "e877026e-89b5-4627-ac51-84bdfefa11d4",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9214),
-                            DropDownControlOption = "LanguageType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9215),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LanguageType3"
-                        },
-                        new
-                        {
-                            RowKey = "bcff259b-22bd-4fcb-97ef-8cc013909945",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9221),
-                            DropDownControlOption = "LanguageType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9222),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LanguageType4"
-                        },
-                        new
-                        {
-                            RowKey = "4247d234-913f-4180-8339-b60b27b4ba74",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9228),
-                            DropDownControlOption = "LanguageType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9229),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LanguageType5"
-                        },
-                        new
-                        {
-                            RowKey = "15bae5cf-201c-400d-b40b-99b268bf8b6f",
-                            CreatedBy = "InitialUpload",
-                            CreatedTimeStamp = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9235),
-                            DropDownControlOption = "LanguageType",
-                            IsDeleted = true,
-                            IsEnable = false,
-                            IsModified = false,
-                            LastModified = new DateTime(2022, 12, 8, 23, 59, 35, 527, DateTimeKind.Utc).AddTicks(9236),
-                            PartitionKey = "ControlData",
-                            TranslationRowKey = "LanguageType6"
-                        });
-                });
-
-            modelBuilder.Entity("Shared.EquipmentItem", b =>
-                {
-                    b.Property<string>("RowKey")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("CreatedTimeStamp")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("EquipmentType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsEnable")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("INTEGER")
+                        .HasDefaultValue(true);
 
                     b.Property<bool>("IsModified")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("LastModified")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("OtherCosts")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("OtherEquipmentType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PartitionKey")
-                        .IsRequired()
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValue("Equipment");
-
-                    b.Property<DateTimeOffset?>("Timestamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("TotalCosts")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("TransportationCost")
-                        .HasColumnType("REAL");
-
-                    b.HasKey("RowKey");
-
-                    b.ToTable("EquipmentItems");
-                });
-
-            modelBuilder.Entity("Shared.FeedItem", b =>
-                {
-                    b.Property<string>("RowKey")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double?>("AmountPurchased")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("AmountPurchasedUnit")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("CreatedTimeStamp")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("FeedType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("FeedTypeTranslationString")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsEnable")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsModified")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("INTEGER")
+                        .HasDefaultValue(true);
 
                     b.Property<DateTime>("LastModified")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OtherAmountPurchaseUnit")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OtherFeedType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OtherPurchasedFrom")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PartitionKey")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
-                        .HasDefaultValue("Feed");
-
-                    b.Property<string>("PurchasedFrom")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTimeOffset?>("Timestamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("TotalCosts")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("TransportationCost")
-                        .HasColumnType("REAL");
-
-                    b.HasKey("RowKey");
-
-                    b.HasIndex("FeedType");
-
-                    b.ToTable("FeedItems");
-                });
-
-            modelBuilder.Entity("Shared.HealthCareItem", b =>
-                {
-                    b.Property<string>("RowKey")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("CreatedTimeStamp")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("HealthCareCost")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("HealthCareType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsEnable")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsModified")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("LastModified")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("MedicineCost")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("MedicineType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("OtherCosts")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("OtherHealthCareType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OtherMedicineType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OtherProvider")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OtherPurchasedFrom")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PartitionKey")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValue("HealthCare");
-
-                    b.Property<string>("Provider")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PurchasedFrom")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTimeOffset?>("Timestamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("TransportationCost")
-                        .HasColumnType("REAL");
-
-                    b.HasKey("RowKey");
-
-                    b.ToTable("HealthCareItems");
-                });
-
-            modelBuilder.Entity("Shared.LabourCostItem", b =>
-                {
-                    b.Property<string>("RowKey")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("AmountPaid")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("CreatedTimeStamp")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsEnable")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsModified")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("LabourType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("LastModified")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("OtherCost")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("OtherLabourType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PartitionKey")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValue("Labour");
-
-                    b.Property<DateTimeOffset?>("Timestamp")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("RowKey");
-
-                    b.ToTable("LabourCostItems");
-                });
-
-            modelBuilder.Entity("Shared.LoanRepaymentItem", b =>
-                {
-                    b.Property<string>("RowKey")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("CreatedTimeStamp")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsEnable")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsModified")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("LastModified")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("LoanProvider")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("OtherCosts")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("OtherLoanProvider")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PartitionKey")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValue("LoanRepayment");
-
-                    b.Property<DateTimeOffset?>("Timestamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("TotalAmountRepaid")
-                        .HasColumnType("REAL");
-
-                    b.HasKey("RowKey");
-
-                    b.ToTable("LoanRepaymentItems");
-                });
-
-            modelBuilder.Entity("Shared.ManureSaleItem", b =>
-                {
-                    b.Property<string>("RowKey")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("AmountRecieved")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("CreatedTimeStamp")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsEnable")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsModified")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("LastModified")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("OtherCosts")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("OtherSoldTo")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PartitionKey")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValue("ManureSale");
-
-                    b.Property<string>("PaymentType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("PaymentValue")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("SoldTo")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTimeOffset?>("Timestamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("TransportationCost")
-                        .HasColumnType("REAL");
-
-                    b.Property<double?>("VolumeSold")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("VolumeUnitType")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("RowKey");
-
-                    b.ToTable("ManureSaleItems");
-                });
-
-            modelBuilder.Entity("Shared.MembershipItem", b =>
-                {
-                    b.Property<string>("RowKey")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("CreatedTimeStamp")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsEnable")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsModified")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("LastModified")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("MembershipType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double?>("OtherCosts")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("OtherMembershipType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PartitionKey")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValue("MemberShip");
-
-                    b.Property<int>("TimePeriod")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("TimePeriodUnit")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTimeOffset?>("Timestamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("TotalCosts")
-                        .HasColumnType("REAL");
-
-                    b.HasKey("RowKey");
-
-                    b.ToTable("MembershipItems");
-                });
-
-            modelBuilder.Entity("Shared.OtherCostItem", b =>
-                {
-                    b.Property<string>("RowKey")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("CreatedTimeStamp")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsEnable")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsModified")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("LastModified")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("OtherCosts")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("OtherWhatFor")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PartitionKey")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValue("OtherCost");
-
-                    b.Property<DateTimeOffset?>("Timestamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("TotalCosts")
-                        .HasColumnType("REAL");
-
-                    b.Property<double?>("TransportationCosts")
-                        .HasColumnType("REAL");
-
-                    b.HasKey("RowKey");
-
-                    b.ToTable("OtherCostItems");
-                });
-
-            modelBuilder.Entity("Shared.OtherIncomeItem", b =>
-                {
-                    b.Property<string>("RowKey")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("CreatedTimeStamp")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsEnable")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsModified")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("LastModified")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("OtherCosts")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("OtherWhatFor")
-                        .HasColumnType("TEXT");
+                        .HasDefaultValueSql("datetime()");
 
                     b.Property<string>("PartitionKey")
                         .IsRequired()
@@ -4147,152 +61,125 @@ namespace Shared.Migrations
                     b.Property<DateTimeOffset?>("Timestamp")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("TotalIncome")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("TransportationCosts")
-                        .HasColumnType("REAL");
-
                     b.HasKey("RowKey");
 
-                    b.ToTable("OtherIncomeItems");
+                    b.ToTable("BaseItems");
                 });
 
-            modelBuilder.Entity("Shared.PigSaleItem", b =>
+            modelBuilder.Entity("Shared.Item", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("Shared.MobileUser", b =>
                 {
                     b.Property<string>("RowKey")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Brokerage")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("AuthorisedEmail")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("CreatedTimeStamp")
-                        .ValueGeneratedOnAddOrUpdate()
+                    b.Property<string>("AuthorisedToken")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<string>("AuthorisedUserName")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Cell")
+                        .HasColumnType("TEXT");
 
-                    b.Property<bool>("IsEnable")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Commune")
+                        .HasColumnType("TEXT");
 
-                    b.Property<bool>("IsModified")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("County")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("District")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("LastModified")
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("NumberSold")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<double>("OtherCosts")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("OtherPigType")
+                    b.Property<DateTime>("LastUploadDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("OtherSoldTo")
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Parish")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PartitionKey")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValue("PigSale");
-
-                    b.Property<string>("PigType")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("SalePrice")
-                        .HasColumnType("REAL");
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-                    b.Property<string>("SoldTo")
+                    b.Property<string>("Province")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("RefreshToken")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("RefreshTokenExpiryTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Sector")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SubCounty")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTimeOffset?>("Timestamp")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("TransportationCost")
-                        .HasColumnType("REAL");
-
-                    b.HasKey("RowKey");
-
-                    b.ToTable("PigSaleItems");
-                });
-
-            modelBuilder.Entity("Shared.ReproductiveItem", b =>
-                {
-                    b.Property<string>("RowKey")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("UserLang")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("CreatedTimeStamp")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("TEXT");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsEnable")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("IsModified")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime>("LastModified")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("OtherCosts")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("OtherServiceType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("OtherWhoProvidedService")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PartitionKey")
+                    b.Property<string>("UserName")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValue("Reproductive");
-
-                    b.Property<string>("ServiceType")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("SowsServiced")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTimeOffset?>("Timestamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("WhoProvidedService")
+                    b.Property<string>("Village")
                         .HasColumnType("TEXT");
 
                     b.HasKey("RowKey");
 
-                    b.ToTable("ReproductiveItems");
+                    b.ToTable("UserInfos");
                 });
 
             modelBuilder.Entity("Shared.Translation", b =>
@@ -4389,6 +276,13 @@ namespace Shared.Migrations
                         },
                         new
                         {
+                            RowKey = "UploadDataTranslation",
+                            English = "Upload",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
                             RowKey = "Costs",
                             English = "Costs",
                             Lang1 = "Home Lang1",
@@ -4446,9 +340,16 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "Other",
+                            English = "Other, specify",
+                            Lang1 = "Other, specify Lang1",
+                            Lang2 = "Other, specify Lang2"
+                        },
+                        new
+                        {
+                            RowKey = "OtherCostEvent",
                             English = "Other",
-                            Lang1 = "Other Lang1",
-                            Lang2 = "Other Lang2"
+                            Lang1 = "Other",
+                            Lang2 = "Other"
                         },
                         new
                         {
@@ -5034,21 +935,21 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "EquipmentTitleTranslation",
-                            English = "Loan Repayment",
+                            English = "Equipment",
                             Lang1 = "",
                             Lang2 = ""
                         },
                         new
                         {
                             RowKey = "EquipmentTypeTranslation",
-                            English = "Loan Provider",
+                            English = "Equipment Type",
                             Lang1 = "",
                             Lang2 = ""
                         },
                         new
                         {
                             RowKey = "OtherEquipmentTypeTranslation",
-                            English = "Other Loan Provider",
+                            English = "Other Equipment Type",
                             Lang1 = "",
                             Lang2 = ""
                         },
@@ -5552,1311 +1453,611 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "DropDownFeedType1",
-                            English = "Feed Type 1",
-                            Lang1 = "Feed Type 1 Lang 1",
-                            Lang2 = "Feed Type 1 Lang 2"
+                            English = "Maize Bran",
+                            Lang1 = "Maize Bran Lang1",
+                            Lang2 = "Maize Bran Lang2"
                         },
                         new
                         {
                             RowKey = "DropDownFeedType2",
-                            English = "Feed Type 2",
-                            Lang1 = "Feed Type 2 Lang 1",
-                            Lang2 = "Feed Type 2 Lang 2"
+                            English = "Wheat Bran",
+                            Lang1 = "Wheat Bran Lang1",
+                            Lang2 = "Wheat Bran Lang2"
                         },
                         new
                         {
                             RowKey = "DropDownFeedType3",
-                            English = "Feed Type 3",
-                            Lang1 = "Feed Type 3 Lang 1",
-                            Lang2 = "Feed Type 3 Lang 2"
+                            English = "Maize Germ",
+                            Lang1 = "Maize Germ Lang1",
+                            Lang2 = "Maize Germ Lang2"
                         },
                         new
                         {
                             RowKey = "DropDownFeedType4",
-                            English = "Feed Type 4",
-                            Lang1 = "Feed Type 4 Lang 1",
-                            Lang2 = "Feed Type 4 Lang 2"
+                            English = "Rice Bran",
+                            Lang1 = "Rice Bran Lang1",
+                            Lang2 = "Rice Bran Lang2"
                         },
                         new
                         {
                             RowKey = "DropDownFeedType5",
-                            English = "Feed Type 5",
-                            Lang1 = "Feed Type 5 Lang 1",
-                            Lang2 = "Feed Type 5 Lang 2"
+                            English = "Maize Gluten Feed",
+                            Lang1 = "Maize Gluten Feed Lang1",
+                            Lang2 = "Maize Gluten Feed Lang2"
+                        },
+                        new
+                        {
+                            RowKey = "DropDownFeedType6",
+                            English = "Wheat Gluten Feed",
+                            Lang1 = "Wheat Gluten Feed Lang1",
+                            Lang2 = "Wheat Gluten Feed Lang2"
+                        },
+                        new
+                        {
+                            RowKey = "DropDownFeedType7",
+                            English = "Dried Brewers’ Grain",
+                            Lang1 = "Dried Brewers’ Grain Lang1",
+                            Lang2 = "Dried Brewers’ Grain Lang2"
+                        },
+                        new
+                        {
+                            RowKey = "DropDownFeedType8",
+                            English = "Ground Maize",
+                            Lang1 = "Ground Maize Lang1",
+                            Lang2 = "Ground Maize Lang2"
+                        },
+                        new
+                        {
+                            RowKey = "DropDownFeedType9",
+                            English = "Soybean Seed Cake",
+                            Lang1 = "Soybean Seed Cake Lang1",
+                            Lang2 = "Soybean Seed Cake Lang2"
+                        },
+                        new
+                        {
+                            RowKey = "DropDownFeedType10",
+                            English = "Soybean Meal",
+                            Lang1 = "Soybean Meal Lang1",
+                            Lang2 = "Soybean Meal Lang2"
+                        },
+                        new
+                        {
+                            RowKey = "DropDownFeedType11",
+                            English = "Sunflower Cake",
+                            Lang1 = "Sunflower Cake Lang1",
+                            Lang2 = "Sunflower Cake Lang2"
+                        },
+                        new
+                        {
+                            RowKey = "DropDownFeedType12",
+                            English = "Cotton Seed Cake",
+                            Lang1 = "Cotton Seed Cake Lang1",
+                            Lang2 = "Cotton Seed Cake Lang2"
+                        },
+                        new
+                        {
+                            RowKey = "DropDownFeedType13",
+                            English = "Groundnut Cake",
+                            Lang1 = "Groundnut Cake Lang1",
+                            Lang2 = "Groundnut Cake Lang2"
+                        },
+                        new
+                        {
+                            RowKey = "DropDownFeedType14",
+                            English = "Compounded Feeds (Labelled Feeds)",
+                            Lang1 = "Compounded Feeds (Labelled Feeds) Lang1",
+                            Lang2 = "Compounded Feeds (Labelled Feeds) Lang2"
+                        },
+                        new
+                        {
+                            RowKey = "DropDownFeedType15",
+                            English = "Compounded Feeds (Non-Labelled Feeds)",
+                            Lang1 = "Compounded Feeds (Non-Labelled Feeds) Lang1",
+                            Lang2 = "Compounded Feeds (Non-Labelled Feeds) Lang2"
+                        },
+                        new
+                        {
+                            RowKey = "DropDownFeedType16",
+                            English = "Minerals",
+                            Lang1 = "Minerals Lang1",
+                            Lang2 = "Minerals Lang2"
+                        },
+                        new
+                        {
+                            RowKey = "DropDownFeedType17",
+                            English = "Vitamins",
+                            Lang1 = "Vitamins Lang1",
+                            Lang2 = "Vitamins Lang2"
+                        },
+                        new
+                        {
+                            RowKey = "DropDownFeedType18",
+                            English = "Pre-Mixes",
+                            Lang1 = "Pre-Mixes Lang1",
+                            Lang2 = "Pre-Mixes Lang2"
+                        },
+                        new
+                        {
+                            RowKey = "DropDownFeedType19",
+                            English = "Silage",
+                            Lang1 = "Silage Lang1",
+                            Lang2 = "Silage Lang2"
                         },
                         new
                         {
                             RowKey = "DropDownUnitType1",
-                            English = "Unit Type 1",
-                            Lang1 = "lang 1",
-                            Lang2 = "Lang 2"
+                            English = "Kg",
+                            Lang1 = "Kg Lang1",
+                            Lang2 = "Kg Lang2"
                         },
                         new
                         {
                             RowKey = "DropDownUnitType2",
-                            English = "Unit Type 2",
-                            Lang1 = "Unit Type 2 lang 1",
-                            Lang2 = "Unit Type 2 Lang 2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownUnitType3",
-                            English = "Unit Type 3",
-                            Lang1 = "Unit Type 3 lang 1",
-                            Lang2 = "Unit Type 3 Lang 2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownUnitType4",
-                            English = "Unit Type 4",
-                            Lang1 = "Unit Type 4 lang 1",
-                            Lang2 = "Unit Type 4 Lang 2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownUnitType5",
-                            English = "Unit Type 5",
-                            Lang1 = "Unit Type 5 lang 1",
-                            Lang2 = "Unit Type 5 Lang 2"
+                            English = "Number",
+                            Lang1 = "Number Lang1",
+                            Lang2 = "Number Lang2"
                         },
                         new
                         {
                             RowKey = "DropDownPurchaseFrom1",
-                            English = "Puchase From 1",
-                            Lang1 = "Puchase From 1 Lang1",
-                            Lang2 = "Puchase From 1 lang 2"
+                            English = "Feed supplier",
+                            Lang1 = "Feed supplier Lang1",
+                            Lang2 = "Feed supplier Lang2"
                         },
                         new
                         {
                             RowKey = "DropDownPurchaseFrom2",
-                            English = "Puchase From 2",
-                            Lang1 = "Puchase From 2 Lang1",
-                            Lang2 = "Puchase From 2 lang 2"
+                            English = "Agro-vet",
+                            Lang1 = "Agro-vet Lang1",
+                            Lang2 = "Agro-vet Lang2"
                         },
                         new
                         {
                             RowKey = "DropDownPurchaseFrom3",
-                            English = "Puchase From 3",
-                            Lang1 = "Puchase From 3 Lang1",
-                            Lang2 = "Puchase From 3 lang 2"
+                            English = "Another farmer",
+                            Lang1 = "Another farmer Lang1",
+                            Lang2 = "Another farmer Lang2"
                         },
                         new
                         {
                             RowKey = "DropDownPurchaseFrom4",
-                            English = "Puchase From 4",
-                            Lang1 = "Puchase From 4 Lang1",
-                            Lang2 = "Puchase From 4 lang 2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownPurchaseFrom5",
-                            English = "Puchase From 5",
-                            Lang1 = "Puchase From 5 Lang1",
-                            Lang2 = "Puchase From 5 lang 2"
+                            English = "Transporter",
+                            Lang1 = "Transporter Lang1",
+                            Lang2 = "Transporter Lang2"
                         },
                         new
                         {
                             RowKey = "HeathCareType1",
-                            English = "Health Care Type 1",
-                            Lang1 = "Health Care Type 1 Lang1",
-                            Lang2 = "Health Care Type 1 Lang2"
+                            English = "(1)  Curative (treatment of a disease)",
+                            Lang1 = "(1)       Curative (treatment of a disease) Lang1",
+                            Lang2 = "(1)       Curative (treatment of a disease) Lang2"
                         },
                         new
                         {
                             RowKey = "HeathCareType2",
-                            English = "Health Care Type 2",
-                            Lang1 = "Health Care Type 2 Lang1",
-                            Lang2 = "Health Care Type 2 Lang2"
+                            English = "(2)  Preventative (vaccination,",
+                            Lang1 = "(2)       Preventative (vaccination, Lang1",
+                            Lang2 = "(2)       Preventative (vaccination, Lang2"
                         },
                         new
                         {
                             RowKey = "HeathCareType3",
-                            English = "Health Care Type 3",
-                            Lang1 = "Health Care Type 3 Lang1",
-                            Lang2 = "Health Care Type 3 Lang2"
+                            English = "(3)  Administration of vitamins",
+                            Lang1 = "(3)       Administration of vitamins Lang1",
+                            Lang2 = "(3)       Administration of vitamins Lang2"
                         },
                         new
                         {
                             RowKey = "HeathCareType4",
-                            English = "Health Care Type 4",
-                            Lang1 = "Health Care Type 4 Lang1",
-                            Lang2 = "Health Care Type 4 Lang2"
+                            English = "(4)  Deworming",
+                            Lang1 = "(4)  Deworming Lang1",
+                            Lang2 = "(4)  Deworming Lang2"
                         },
                         new
                         {
                             RowKey = "HeathCareType5",
-                            English = "Health Care Type 5",
-                            Lang1 = "Health Care Type 5 Lang1",
-                            Lang2 = "Health Care Type 5 Lang2"
+                            English = "(5)  Use of disinfectants",
+                            Lang1 = "(5)       Use of disinfectants Lang1",
+                            Lang2 = "(5)       Use of disinfectants Lang2"
                         },
                         new
                         {
                             RowKey = "HeathCareType6",
-                            English = "Health Care Type 6",
-                            Lang1 = "Health Care Type 6 Lang1",
-                            Lang2 = "Health Care Type 6 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HeathCareType7",
-                            English = "Health Care Type 7",
-                            Lang1 = "Health Care Type 7 Lang1",
-                            Lang2 = "Health Care Type 7 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HeathCareType8",
-                            English = "Health Care Type 8",
-                            Lang1 = "Health Care Type 8 Lang1",
-                            Lang2 = "Health Care Type 8 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HeathCareType9",
-                            English = "Health Care Type 9",
-                            Lang1 = "Health Care Type 9 Lang1",
-                            Lang2 = "Health Care Type 9 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HeathCareType10",
-                            English = "Health Care Type 10",
-                            Lang1 = "Health Care Type 10 Lang1",
-                            Lang2 = "Health Care Type 10 Lang2"
+                            English = "(6)  Herd visit/monitoring",
+                            Lang1 = "(6)       Herd visit/monitoring Lang1",
+                            Lang2 = "(6)       Herd visit/monitoring Lang2"
                         },
                         new
                         {
                             RowKey = "HealthProviderType1",
-                            English = "Health Provider Type 1",
-                            Lang1 = "Health Provider Type 1 Lang1",
-                            Lang2 = "Health Provider Type 1 Lang2"
+                            English = "Private animal health worker or veterinarian",
+                            Lang1 = "Private animal health worker or veterinarian Lang1",
+                            Lang2 = "Private animal health worker or veterinarian Lang2"
                         },
                         new
                         {
                             RowKey = "HealthProviderType2",
-                            English = "Health Provider Type 2",
-                            Lang1 = "Health Provider Type 2 Lang1",
-                            Lang2 = "Health Provider Type 2 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HealthProviderType3",
-                            English = "Health Provider Type 3",
-                            Lang1 = "Health Provider Type 3 Lang1",
-                            Lang2 = "Health Provider Type 3 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HealthProviderType4",
-                            English = "Health Provider Type 4",
-                            Lang1 = "Health Provider Type 4 Lang1",
-                            Lang2 = "Health Provider Type 4 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HealthProviderType5",
-                            English = "Health Provider Type 5",
-                            Lang1 = "Health Provider Type 5 Lang1",
-                            Lang2 = "Health Provider Type 5 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HealthProviderType6",
-                            English = "Health Provider Type 6",
-                            Lang1 = "Health Provider Type 6 Lang1",
-                            Lang2 = "Health Provider Type 6 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HealthProviderType7",
-                            English = "Health Provider Type 7",
-                            Lang1 = "Health Provider Type 7 Lang1",
-                            Lang2 = "Health Provider Type 7 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HealthProviderType8",
-                            English = "Health Provider Type 8",
-                            Lang1 = "Health Provider Type 8 Lang1",
-                            Lang2 = "Health Provider Type 8 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HealthProviderType9",
-                            English = "Health Provider Type 9",
-                            Lang1 = "Health Provider Type 9 Lang1",
-                            Lang2 = "Health Provider Type 9 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HealthProviderType10",
-                            English = "Health Provider Type 10",
-                            Lang1 = "Health Provider Type 10 Lang1",
-                            Lang2 = "Health Provider Type 10 Lang2"
+                            English = "Government animal health worker veterinarian",
+                            Lang1 = "Government animal health worker veterinarian Lang1",
+                            Lang2 = "Government animal health worker veterinarian Lang2"
                         },
                         new
                         {
                             RowKey = "MedicineType1",
-                            English = "Medicine Type 1",
-                            Lang1 = "Medicine Type 1 Lang1",
-                            Lang2 = "Medicine Type 1 Lang2"
+                            English = "Drugs ",
+                            Lang1 = "Drugs  Lang1",
+                            Lang2 = "Drugs  Lang2"
                         },
                         new
                         {
                             RowKey = "MedicineType2",
-                            English = "Medicine Type 2",
-                            Lang1 = "Medicine Type 2 Lang1",
-                            Lang2 = "Medicine Type 2 Lang2"
+                            English = "Vaccinations",
+                            Lang1 = "Vaccinations Lang1",
+                            Lang2 = "Vaccinations Lang2"
                         },
                         new
                         {
                             RowKey = "MedicineType3",
-                            English = "Medicine Type 3",
-                            Lang1 = "Medicine Type 3 Lang1",
-                            Lang2 = "Medicine Type 3 Lang2"
+                            English = "Dewormers",
+                            Lang1 = "Dewormers Lang1",
+                            Lang2 = "Dewormers Lang2"
                         },
                         new
                         {
                             RowKey = "MedicineType4",
-                            English = "Medicine Type 4",
-                            Lang1 = "Medicine Type 4 Lang1",
-                            Lang2 = "Medicine Type 4 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "MedicineType5",
-                            English = "Medicine Type 5",
-                            Lang1 = "Medicine Type 5 Lang1",
-                            Lang2 = "Medicine Type 5 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "MedicineType6",
-                            English = "Medicine Type 6",
-                            Lang1 = "Medicine Type 6 Lang1",
-                            Lang2 = "Medicine Type 6 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "MedicineType7",
-                            English = "Medicine Type 7",
-                            Lang1 = "Medicine Type 7 Lang1",
-                            Lang2 = "Medicine Type 7 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "MedicineType8",
-                            English = "Medicine Type 8",
-                            Lang1 = "Medicine Type 8 Lang1",
-                            Lang2 = "Medicine Type 8 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "MedicineType9",
-                            English = "Medicine Type 9",
-                            Lang1 = "Medicine Type 9 Lang1",
-                            Lang2 = "Medicine Type 9 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "MedicineType10",
-                            English = "Medicine Type 10",
-                            Lang1 = "Medicine Type 10 Lang1",
-                            Lang2 = "Medicine Type 10 Lang2"
+                            English = "Vitamins",
+                            Lang1 = "Vitamins Lang1",
+                            Lang2 = "Vitamins Lang2"
                         },
                         new
                         {
                             RowKey = "PruchaseFromType1",
-                            English = "Purchase From Type 1",
-                            Lang1 = "Purchase From Type 1 Lang1",
-                            Lang2 = "Purchase From Type 1 Lang2"
+                            English = "Private animal health worker or veterinarian",
+                            Lang1 = "Private animal health worker or veterinarian Lang1",
+                            Lang2 = "Private animal health worker or veterinarian Lang2"
                         },
                         new
                         {
                             RowKey = "PruchaseFromType2",
-                            English = "Purchase From Type 2",
-                            Lang1 = "Purchase From Type 2 Lang1",
-                            Lang2 = "Purchase From Type 2 Lang2"
+                            English = "Government animal health worker veterinarian",
+                            Lang1 = "Government animal health worker veterinarian Lang1",
+                            Lang2 = "Government animal health worker veterinarian Lang2"
                         },
                         new
                         {
                             RowKey = "PruchaseFromType3",
-                            English = "Purchase From Type 3",
-                            Lang1 = "Purchase From Type 3 Lang1",
-                            Lang2 = "Purchase From Type 3 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PruchaseFromType4",
-                            English = "Purchase From Type 4",
-                            Lang1 = "Purchase From Type 4 Lang1",
-                            Lang2 = "Purchase From Type 4 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PruchaseFromType5",
-                            English = "Purchase From Type 5",
-                            Lang1 = "Purchase From Type 5 Lang1",
-                            Lang2 = "Purchase From Type 5 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PruchaseFromType6",
-                            English = "Purchase From Type 6",
-                            Lang1 = "Purchase From Type 6 Lang1",
-                            Lang2 = "Purchase From Type 6 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PruchaseFromType7",
-                            English = "Purchase From Type 7",
-                            Lang1 = "Purchase From Type 7 Lang1",
-                            Lang2 = "Purchase From Type 7 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PruchaseFromType8",
-                            English = "Purchase From Type 8",
-                            Lang1 = "Purchase From Type 8 Lang1",
-                            Lang2 = "Purchase From Type 8 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PruchaseFromType9",
-                            English = "Purchase From Type 9",
-                            Lang1 = "Purchase From Type 9 Lang1",
-                            Lang2 = "Purchase From Type 9 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PruchaseFromType10",
-                            English = "Purchase From Type 10",
-                            Lang1 = "Purchase From Type 10 Lang1",
-                            Lang2 = "Purchase From Type 10 Lang2"
+                            English = "Agro-vet store",
+                            Lang1 = "Agro-vet store Lang1",
+                            Lang2 = "Agro-vet store Lang2"
                         },
                         new
                         {
                             RowKey = "LabourType1",
-                            English = "Labour Type 1",
-                            Lang1 = "Labour Type 1 Lang1",
-                            Lang2 = "Labour Type 1 Lang2"
+                            English = "Permanent hired labourer",
+                            Lang1 = "Permanent hired labourer Lang1",
+                            Lang2 = "Permanent hired labourer Lang2"
                         },
                         new
                         {
                             RowKey = "LabourType2",
-                            English = "Labour Type 2",
-                            Lang1 = "Labour Type 2 Lang1",
-                            Lang2 = "Labour Type 2 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "LabourType3",
-                            English = "Labour Type 3",
-                            Lang1 = "Labour Type 3 Lang1",
-                            Lang2 = "Labour Type 3 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "LabourType4",
-                            English = "Labour Type 4",
-                            Lang1 = "Labour Type 4 Lang1",
-                            Lang2 = "Labour Type 4 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "LabourType5",
-                            English = "Labour Type 5",
-                            Lang1 = "Labour Type 5 Lang1",
-                            Lang2 = "Labour Type 5 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "LabourType6",
-                            English = "Labour Type 6",
-                            Lang1 = "Labour Type 6 Lang1",
-                            Lang2 = "Labour Type 6 Lang2"
+                            English = "Temporary hired labourer",
+                            Lang1 = "Temporary hired labourer Lang1",
+                            Lang2 = "Temporary hired labourer Lang2"
                         },
                         new
                         {
                             RowKey = "HousingExpenseType1",
-                            English = "Housing Expense Type 1",
-                            Lang1 = "Housing Expense Type 1 Lang1",
-                            Lang2 = "Housing Expense Type 1 Lang2"
+                            English = "New house construction",
+                            Lang1 = "New house construction Lang1",
+                            Lang2 = "New house construction Lang2"
                         },
                         new
                         {
                             RowKey = "HousingExpenseType2",
-                            English = "Housing Expense Type 2",
-                            Lang1 = "Housing Expense Type 2 Lang1",
-                            Lang2 = "Housing Expense Type 2 Lang2"
+                            English = "Expansion of existing housing",
+                            Lang1 = "Expansion of existing housing Lang1",
+                            Lang2 = "Expansion of existing housing Lang2"
                         },
                         new
                         {
                             RowKey = "HousingExpenseType3",
-                            English = "Housing Expense Type 3",
-                            Lang1 = "Housing Expense Type 3 Lang1",
-                            Lang2 = "Housing Expense Type 3 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HousingExpenseType4",
-                            English = "Housing Expense Type 4",
-                            Lang1 = "Housing Expense Type 4 Lang1",
-                            Lang2 = "Housing Expense Type 4 Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HousingExpenseType5",
-                            English = "Housing Expense Type 5",
-                            Lang1 = "Housing Expense Type 5 Lang1",
-                            Lang2 = "Housing Expense Type 5 Lang2"
+                            English = "Repairs or maintenance",
+                            Lang1 = "Repairs or maintenance Lang1",
+                            Lang2 = "Repairs or maintenance Lang2"
                         },
                         new
                         {
                             RowKey = "WaterPurchasedUnitType1",
-                            English = "Unit 1",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Litre",
+                            Lang1 = "Litre Lang1",
+                            Lang2 = "Litre Lang2"
                         },
                         new
                         {
                             RowKey = "WaterPurchasedUnitType2",
-                            English = "Unit 2",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "WaterPurchasedUnitType3",
-                            English = "Unit 3",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "WaterPurchasedUnitType4",
-                            English = "Unit 4",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "WaterPurchasedUnitType5",
-                            English = "Unit 5",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Cubic meter",
+                            Lang1 = "Cubic meter Lang1",
+                            Lang2 = "Cubic meter Lang2"
                         },
                         new
                         {
                             RowKey = "PurchasedWaterFromType1",
-                            English = "Purchased From 1",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Mobile water seller",
+                            Lang1 = "Mobile water seller Lang1",
+                            Lang2 = "Mobile water seller Lang2"
                         },
                         new
                         {
                             RowKey = "PurchasedWaterFromType2",
-                            English = "Purchased From 2",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Water company",
+                            Lang1 = "Water company Lang1",
+                            Lang2 = "Water company Lang2"
                         },
                         new
                         {
                             RowKey = "PurchasedWaterFromType3",
-                            English = "Purchased From 3",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PurchasedWaterFromType4",
-                            English = "Purchased From 4",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PurchasedWaterFromType5",
-                            English = "Purchased From 5",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PurchasedWaterFromType6",
-                            English = "Purchased From 6",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PurchasedWaterFromType7",
-                            English = "Purchased From 7",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PurchasedWaterFromType8",
-                            English = "Purchased From 8",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PurchasedWaterFromType9",
-                            English = "Purchased From 9",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PurchasedWaterFromType10",
-                            English = "Purchased From 10",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Neighbour / friend",
+                            Lang1 = "Neighbour / friend Lang1",
+                            Lang2 = "Neighbour / friend Lang2"
                         },
                         new
                         {
                             RowKey = "MembershipType1",
-                            English = "Type 1",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "MembershipType2",
-                            English = "Type 2",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "MembershipType3",
-                            English = "Type 3",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "MembershipType4",
-                            English = "Type 4",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "MembershipType5",
-                            English = "Type 5",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "MembershipType6",
-                            English = "Type 6",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "MembershipType7",
-                            English = "Type 7",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "MembershipType8",
-                            English = "Type 8",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Co-operative or group fees",
+                            Lang1 = "Co-operative or group fees Lang1",
+                            Lang2 = "Co-operative or group fees Lang2"
                         },
                         new
                         {
                             RowKey = "TimePeriodUnitType1",
-                            English = "Weeks",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Months",
+                            Lang1 = "Months Lang1",
+                            Lang2 = "Months Lang2"
                         },
                         new
                         {
                             RowKey = "TimePeriodUnitType2",
-                            English = "Months",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Years",
+                            Lang1 = "Years Lang1",
+                            Lang2 = "Years Lang2"
                         },
                         new
                         {
                             RowKey = "ServiceType1",
-                            English = "Type 1",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Artificial insemination",
+                            Lang1 = "Artificial insemination Lang1",
+                            Lang2 = "Artificial insemination Lang2"
                         },
                         new
                         {
                             RowKey = "ServiceType2",
-                            English = "Type 2",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ServiceType3",
-                            English = "Type 3",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ServiceType4",
-                            English = "Type 4",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ServiceType5",
-                            English = "Type 5",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ServiceType6",
-                            English = "Type 6",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ServiceType7",
-                            English = "Type 7",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ServiceType8",
-                            English = "Type 8",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Natural mating",
+                            Lang1 = "Natural mating Lang1",
+                            Lang2 = "Natural mating Lang2"
                         },
                         new
                         {
                             RowKey = "WhoProvidedServiceType1",
-                            English = "Type 1",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Private artificial insemination service provider",
+                            Lang1 = "Private artificial insemination service provider Lang1",
+                            Lang2 = "Private artificial insemination service provider Lang2"
                         },
                         new
                         {
                             RowKey = "WhoProvidedServiceType2",
-                            English = "Type 2",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Government artificial insemination service provider",
+                            Lang1 = "Government artificial insemination service provider Lang1",
+                            Lang2 = "Government artificial insemination service provider Lang2"
                         },
                         new
                         {
                             RowKey = "WhoProvidedServiceType3",
-                            English = "Type 3",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "WhoProvidedServiceType4",
-                            English = "Type 4",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "WhoProvidedServiceType5",
-                            English = "Type 5",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "WhoProvidedServiceType6",
-                            English = "Type 6",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "WhoProvidedServiceType7",
-                            English = "Type 7",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "WhoProvidedServiceType8",
-                            English = "Type 8",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Boar keeper",
+                            Lang1 = "Boar keeper Lang1",
+                            Lang2 = "Boar keeper Lang2"
                         },
                         new
                         {
                             RowKey = "AnimalType1",
-                            English = "Type 1",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Piglet(s) for fattening",
+                            Lang1 = "Piglet(s) for fattening Lang1",
+                            Lang2 = "Piglet(s) for fattening Lang2"
                         },
                         new
                         {
                             RowKey = "AnimalType2",
-                            English = "Type 2",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Gilt / sow for breeding",
+                            Lang1 = "Gilt / sow for breeding Lang1",
+                            Lang2 = "Gilt / sow for breeding Lang2"
                         },
                         new
                         {
                             RowKey = "AnimalType3",
-                            English = "Type 3",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "AnimalType4",
-                            English = "Type 4",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "AnimalType5",
-                            English = "Type 5",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "AnimalType6",
-                            English = "Type 6",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "AnimalType7",
-                            English = "Type 7",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "AnimalType8",
-                            English = "Type 8",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Young male / boar for breeding",
+                            Lang1 = "Young male / boar for breeding Lang1",
+                            Lang2 = "Young male / boar for breeding Lang2"
                         },
                         new
                         {
                             RowKey = "AnimalPurchasedFromType1",
-                            English = "Type 1",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Market ",
+                            Lang1 = "Market  Lang1",
+                            Lang2 = "Market  Lang2"
                         },
                         new
                         {
                             RowKey = "AnimalPurchasedFromType2",
-                            English = "Type 2",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Trader",
+                            Lang1 = "Trader Lang1",
+                            Lang2 = "Trader Lang2"
                         },
                         new
                         {
                             RowKey = "AnimalPurchasedFromType3",
-                            English = "Type 3",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Pig farmer",
+                            Lang1 = "Pig farmer Lang1",
+                            Lang2 = "Pig farmer Lang2"
                         },
                         new
                         {
                             RowKey = "AnimalPurchasedFromType4",
-                            English = "Type 4",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "AnimalPurchasedFromType5",
-                            English = "Type 5",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "AnimalPurchasedFromType6",
-                            English = "Type 6",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "AnimalPurchasedFromType7",
-                            English = "Type 7",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "AnimalPurchasedFromType8",
-                            English = "Type 8",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Pig breeding company",
+                            Lang1 = "Pig breeding company Lang1",
+                            Lang2 = "Pig breeding company Lang2"
                         },
                         new
                         {
                             RowKey = "LoanProviderType1",
-                            English = "Provider 1",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Micro-credit provider",
+                            Lang1 = "Micro-credit provider Lang1",
+                            Lang2 = "Micro-credit provider Lang2"
                         },
                         new
                         {
                             RowKey = "LoanProviderType2",
-                            English = "Provider 2",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Bank",
+                            Lang1 = "Bank Lang1",
+                            Lang2 = "Bank Lang2"
                         },
                         new
                         {
                             RowKey = "LoanProviderType3",
-                            English = "Provider 3",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Co-operative or group",
+                            Lang1 = "Co-operative or group Lang1",
+                            Lang2 = "Co-operative or group Lang2"
                         },
                         new
                         {
                             RowKey = "LoanProviderType4",
-                            English = "Provider 4",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Self-help group or savings ",
+                            Lang1 = "Self-help group or savings  Lang1",
+                            Lang2 = "Self-help group or savings  Lang2"
                         },
                         new
                         {
                             RowKey = "LoanProviderType5",
-                            English = "Provider 5",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Club",
+                            Lang1 = "Club Lang1",
+                            Lang2 = "Club Lang2"
                         },
                         new
                         {
                             RowKey = "LoanProviderType6",
-                            English = "Provider 6",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "LoanProviderType7",
-                            English = "Provider 7",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "LoanProviderType8",
-                            English = "Provider 8",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Relatives or friends",
+                            Lang1 = "Relatives or friends Lang1",
+                            Lang2 = "Relatives or friends Lang2"
                         },
                         new
                         {
                             RowKey = "EquipmentType1",
-                            English = "EquipmentType 1",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Feeding equipment",
+                            Lang1 = "Feeding equipment Lang1",
+                            Lang2 = "Feeding equipment Lang2"
                         },
                         new
                         {
                             RowKey = "EquipmentType2",
-                            English = "EquipmentType 2",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Watering equipment",
+                            Lang1 = "Watering equipment Lang1",
+                            Lang2 = "Watering equipment Lang2"
                         },
                         new
                         {
                             RowKey = "EquipmentType3",
-                            English = "EquipmentType 3",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Cleaning equipment",
+                            Lang1 = "Cleaning equipment Lang1",
+                            Lang2 = "Cleaning equipment Lang2"
                         },
                         new
                         {
                             RowKey = "EquipmentType4",
-                            English = "EquipmentType 4",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "EquipmentType5",
-                            English = "EquipmentType 5",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "EquipmentType6",
-                            English = "EquipmentType 6",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "EquipmentType7",
-                            English = "EquipmentType 7",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "EquipmentType8",
-                            English = "EquipmentType 8",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Animal tags",
+                            Lang1 = "Animal tags Lang1",
+                            Lang2 = "Animal tags Lang2"
                         },
                         new
                         {
                             RowKey = "PigType1",
-                            English = "PigType 1",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Piglet (for fattening)",
+                            Lang1 = "Piglet (for fattening) Lang1",
+                            Lang2 = "Piglet (for fattening) Lang2"
                         },
                         new
                         {
                             RowKey = "PigType2",
-                            English = "PigType 2",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Slaughter animal",
+                            Lang1 = "Slaughter animal Lang1",
+                            Lang2 = "Slaughter animal Lang2"
                         },
                         new
                         {
                             RowKey = "PigType3",
-                            English = "PigType 3",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Gilt/sow sow for breeding",
+                            Lang1 = "Gilt/sow sow for breeding Lang1",
+                            Lang2 = "Gilt/sow sow for breeding Lang2"
                         },
                         new
                         {
                             RowKey = "PigType4",
-                            English = "PigType 4",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PigType5",
-                            English = "PigType 5",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PigType6",
-                            English = "PigType 6",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PigType7",
-                            English = "PigType 7",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PigType8",
-                            English = "PigType 8",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Young male/boar for breeding ",
+                            Lang1 = "Young male/boar for breeding  Lang1",
+                            Lang2 = "Young male/boar for breeding  Lang2"
                         },
                         new
                         {
                             RowKey = "SoldToType1",
-                            English = "SoldToType 1",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Trader",
+                            Lang1 = "Trader Lang1",
+                            Lang2 = "Trader Lang2"
                         },
                         new
                         {
                             RowKey = "SoldToType2",
-                            English = "SoldToType 2",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Slaughter-house",
+                            Lang1 = "Slaughter-house Lang1",
+                            Lang2 = "Slaughter-house Lang2"
                         },
                         new
                         {
                             RowKey = "SoldToType3",
-                            English = "SoldToType 3",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SoldToType4",
-                            English = "SoldToType 4",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SoldToType5",
-                            English = "SoldToType 5",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SoldToType6",
-                            English = "SoldToType 6",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SoldToType7",
-                            English = "SoldToType 7",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SoldToType8",
-                            English = "SoldToType 8",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Pig farmer",
+                            Lang1 = "Pig farmer Lang1",
+                            Lang2 = "Pig farmer Lang2"
                         },
                         new
                         {
                             RowKey = "BreedingServiceType1",
-                            English = "ServiceType 1",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Boar services",
+                            Lang1 = "Boar services Lang1",
+                            Lang2 = "Boar services Lang2"
                         },
                         new
                         {
                             RowKey = "BreedingServiceType2",
-                            English = "ServiceType 2",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "BreedingServiceType3",
-                            English = "ServiceType 3",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "BreedingServiceType4",
-                            English = "ServiceType 4",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "BreedingServiceType5",
-                            English = "ServiceType 5",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "BreedingServiceType6",
-                            English = "ServiceType 6",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "BreedingServiceType7",
-                            English = "ServiceType 7",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "BreedingServiceType8",
-                            English = "ServiceType 8",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Semen sale (? to include)",
+                            Lang1 = "Semen sale (? to include) Lang1",
+                            Lang2 = "Semen sale (? to include) Lang2"
                         },
                         new
                         {
                             RowKey = "PaymentType1",
-                            English = "PaymentType 1",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PaymentType2",
-                            English = "PaymentType 2",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PaymentType3",
-                            English = "PaymentType 3",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PaymentType4",
-                            English = "PaymentType 4",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PaymentType5",
-                            English = "PaymentType 5",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PaymentType6",
-                            English = "PaymentType 6",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PaymentType7",
-                            English = "PaymentType 7",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PaymentType8",
-                            English = "PaymentType 8",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Piglet",
+                            Lang1 = "Piglet Lang1",
+                            Lang2 = "Piglet Lang2"
                         },
                         new
                         {
                             RowKey = "ClientType1",
-                            English = "ClientType 1",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ClientType2",
-                            English = "ClientType 2",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ClientType3",
-                            English = "ClientType 3",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ClientType4",
-                            English = "ClientType 4",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ClientType5",
-                            English = "ClientType 5",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ClientType6",
-                            English = "ClientType 6",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ClientType7",
-                            English = "ClientType 7",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ClientType8",
-                            English = "ClientType 8",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Pig farmer",
+                            Lang1 = "Pig farmer Lang1",
+                            Lang2 = "Pig farmer Lang2"
                         },
                         new
                         {
                             RowKey = "VolumeUnitType1",
-                            English = "VolumeUnitType 1",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "VolumeUnitType2",
-                            English = "VolumeUnitType 2",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "VolumeUnitType3",
-                            English = "VolumeUnitType 3",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "VolumeUnitType4",
-                            English = "VolumeUnitType 4",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "VolumeUnitType5",
-                            English = "VolumeUnitType 5",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "VolumeUnitType6",
-                            English = "VolumeUnitType 6",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "VolumeUnitType7",
-                            English = "VolumeUnitType 7",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "VolumeUnitType8",
-                            English = "VolumeUnitType 8",
-                            Lang1 = "",
-                            Lang2 = ""
+                            English = "Kg",
+                            Lang1 = "Kg Lang1",
+                            Lang2 = "Kg Lang2"
                         },
                         new
                         {
@@ -7168,124 +2369,2682 @@ namespace Shared.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Shared.UserInfo", b =>
+            modelBuilder.Entity("Shared.AnimalHouseItem", b =>
                 {
-                    b.Property<string>("RowKey")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("AuthorisedEmail")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("AuthorisedToken")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Cell")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Commune")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("County")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Currency")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("District")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Gender")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("LastModified")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("LastUploadDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Parish")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PartitionKey")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Province")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Sector")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("SubCounty")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTimeOffset?>("Timestamp")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("UserLang")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Village")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("RowKey");
-
-                    b.ToTable("UserInfos");
-                });
-
-            modelBuilder.Entity("Shared.WaterCostItem", b =>
-                {
-                    b.Property<string>("RowKey")
-                        .HasColumnType("TEXT");
+                    b.HasBaseType("Shared.BaseItem");
 
                     b.Property<string>("Comment")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime?>("CreatedTimeStamp")
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("IsDeleted")
+                    b.Property<string>("HousingExpense")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("OtherCosts")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("OtherHousingExpense")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("TotalCosts")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("TransportationCost")
+                        .HasColumnType("REAL");
+
+                    b.Property<int?>("YearsExpected")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("IsEnable")
+                    b.ToTable("AnimalHouseItems");
+                });
+
+            modelBuilder.Entity("Shared.AnimalPurchaseItem", b =>
+                {
+                    b.HasBaseType("Shared.BaseItem");
+
+                    b.Property<string>("AnimalPurchasedFrom")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("AnimalType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("NumberPurchased")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("IsModified")
+                    b.Property<string>("OtherAnimalPurchasedFrom")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OtherAnimalType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("OtherCosts")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("TotalCosts")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("TransportationCost")
+                        .HasColumnType("REAL");
+
+                    b.ToTable("AnimalPurchaseItems");
+                });
+
+            modelBuilder.Entity("Shared.BreedingServiceSaleItem", b =>
+                {
+                    b.HasBaseType("Shared.BaseItem");
+
+                    b.Property<double>("AmountRecieved")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("Client")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("NumberServices")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("LastModified")
-                        .ValueGeneratedOnAddOrUpdate()
+                    b.Property<string>("OtherClient")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("OtherCosts")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("OtherServiceType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PaymentType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("PaymentValue")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("ServiceType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("TransportationCost")
+                        .HasColumnType("REAL");
+
+                    b.ToTable("BreedingServiceSaleItems");
+                });
+
+            modelBuilder.Entity("Shared.ControlData", b =>
+                {
+                    b.HasBaseType("Shared.BaseItem");
+
+                    b.Property<int>("DisplayOrder")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("DropDownControlOption")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TranslationRowKey")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasIndex("TranslationRowKey");
+
+                    b.ToTable("ControlDataOptions");
+
+                    b.HasData(
+                        new
+                        {
+                            RowKey = "14c9442b-dca1-449e-827d-043c9caf6afb",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(7315),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(7740),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "DropDownFeedType1"
+                        },
+                        new
+                        {
+                            RowKey = "e18e97cc-1fd7-4c68-a8a6-dbf5b6b61be1",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9264),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9278),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "DropDownFeedType2"
+                        },
+                        new
+                        {
+                            RowKey = "2e191f20-a64b-46f9-8f67-344db87633ac",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9343),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9344),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "DropDownFeedType3"
+                        },
+                        new
+                        {
+                            RowKey = "e55d0630-24c8-4818-9135-8e9a843f32de",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9352),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9353),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 4,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "DropDownFeedType4"
+                        },
+                        new
+                        {
+                            RowKey = "b70e14d8-d548-4560-b1d9-f20939e7620a",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9372),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9373),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 5,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "DropDownFeedType5"
+                        },
+                        new
+                        {
+                            RowKey = "539bee40-dd09-46c8-8581-64274205118c",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9380),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9381),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 6,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "DropDownFeedType6"
+                        },
+                        new
+                        {
+                            RowKey = "b128233c-5b7a-4b5a-82bd-b6dd52e051a2",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9387),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9388),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 7,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "DropDownFeedType7"
+                        },
+                        new
+                        {
+                            RowKey = "b90d081c-8f97-44fc-ae5f-2d66e77c0720",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9394),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9395),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 8,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "DropDownFeedType8"
+                        },
+                        new
+                        {
+                            RowKey = "3c734493-98cb-4aec-b9f4-3b6ec3b61cb7",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9405),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9406),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 9,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "DropDownFeedType9"
+                        },
+                        new
+                        {
+                            RowKey = "1ab11dcf-0379-4ccb-ae08-981e3220fa4a",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9414),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9414),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 10,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "DropDownFeedType10"
+                        },
+                        new
+                        {
+                            RowKey = "efc4dd0f-c700-405a-9a4c-bc1fe3206b18",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9422),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9423),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 11,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "DropDownFeedType11"
+                        },
+                        new
+                        {
+                            RowKey = "048f8e6b-e1c0-49a7-8d05-66a3d3371b35",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9430),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9431),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 12,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "DropDownFeedType12"
+                        },
+                        new
+                        {
+                            RowKey = "0cd92b84-78c9-4693-8fba-a77f7eb4d852",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9465),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9466),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 13,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "DropDownFeedType13"
+                        },
+                        new
+                        {
+                            RowKey = "c3567e23-da8b-4a67-a3ce-5b801af64806",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9473),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9474),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 14,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "DropDownFeedType14"
+                        },
+                        new
+                        {
+                            RowKey = "e4f8b3c2-2612-4c6c-80c1-6ccff30afc6a",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9480),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9481),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 15,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "DropDownFeedType15"
+                        },
+                        new
+                        {
+                            RowKey = "07e32b28-e95e-4dbb-a6d3-85569145584b",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9489),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9490),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 16,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "DropDownFeedType16"
+                        },
+                        new
+                        {
+                            RowKey = "269fb1e8-2cd3-4967-b1d3-27b983bc7156",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9500),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9501),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 17,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "DropDownFeedType17"
+                        },
+                        new
+                        {
+                            RowKey = "8fe6bd77-4456-4f1a-8524-2d97697f7867",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9507),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9508),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 18,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "DropDownFeedType18"
+                        },
+                        new
+                        {
+                            RowKey = "e12108ca-4086-4c1c-963a-a6518f0a8ba0",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9514),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9515),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 19,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "DropDownFeedType19"
+                        },
+                        new
+                        {
+                            RowKey = "78121b2c-8c81-423e-bbd4-7e509bdfd058",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9521),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9522),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 20,
+                            DropDownControlOption = "FeedType",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "399c1faa-25a3-4d1b-91fa-b4bf4aaa5f34",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9531),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9532),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "FeedAmountPurchasedUnitType",
+                            TranslationRowKey = "DropDownUnitType1"
+                        },
+                        new
+                        {
+                            RowKey = "cec7267b-2d31-463e-babd-e2dcf41c4a25",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9539),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9540),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "FeedAmountPurchasedUnitType",
+                            TranslationRowKey = "DropDownUnitType2"
+                        },
+                        new
+                        {
+                            RowKey = "5958b664-0fb3-4c3c-8ca0-15073fa52c1d",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9547),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9548),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 5,
+                            DropDownControlOption = "FeedAmountPurchasedUnitType",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "ebdbeaad-0dfe-4802-a5bb-f07a670153cf",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9554),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9555),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "FeedPurchasedType",
+                            TranslationRowKey = "DropDownPurchaseFrom1"
+                        },
+                        new
+                        {
+                            RowKey = "1d01870a-16bd-4672-bf21-323405d0905b",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9563),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9564),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "FeedPurchasedType",
+                            TranslationRowKey = "DropDownPurchaseFrom2"
+                        },
+                        new
+                        {
+                            RowKey = "4435ce51-7af5-440d-bad4-063ee1724b40",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9570),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9571),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "FeedPurchasedType",
+                            TranslationRowKey = "DropDownPurchaseFrom3"
+                        },
+                        new
+                        {
+                            RowKey = "f2f40090-021c-4862-817b-1d0d7affe33d",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9578),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9579),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 4,
+                            DropDownControlOption = "FeedPurchasedType",
+                            TranslationRowKey = "DropDownPurchaseFrom4"
+                        },
+                        new
+                        {
+                            RowKey = "73a41c2d-b49e-4bfe-b87f-e24dd048a0a5",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9585),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9586),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 5,
+                            DropDownControlOption = "FeedPurchasedType",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "b0b14a49-e65f-4c5a-b50e-6c96a5075c06",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9594),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9595),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "HealthCareType",
+                            TranslationRowKey = "HeathCareType1"
+                        },
+                        new
+                        {
+                            RowKey = "42bdbde3-8027-4265-8b1d-2ec5dbfd4d4d",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9602),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9603),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "HealthCareType",
+                            TranslationRowKey = "HeathCareType2"
+                        },
+                        new
+                        {
+                            RowKey = "fe2ae394-f272-4951-95b3-1ba9a8d8b817",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9611),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9612),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "HealthCareType",
+                            TranslationRowKey = "HeathCareType3"
+                        },
+                        new
+                        {
+                            RowKey = "fe97e73f-29a9-4606-87b8-53bde82dce51",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9618),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9619),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 4,
+                            DropDownControlOption = "HealthCareType",
+                            TranslationRowKey = "HeathCareType4"
+                        },
+                        new
+                        {
+                            RowKey = "37d66923-93fb-4083-891b-49fedc3443af",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9627),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9628),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 5,
+                            DropDownControlOption = "HealthCareType",
+                            TranslationRowKey = "HeathCareType5"
+                        },
+                        new
+                        {
+                            RowKey = "d7cd9298-2f2d-4327-b673-f1d1f599abd7",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9635),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9636),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 6,
+                            DropDownControlOption = "HealthCareType",
+                            TranslationRowKey = "HeathCareType6"
+                        },
+                        new
+                        {
+                            RowKey = "649af70c-224c-4a42-ada3-0239fa0dd7ca",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9642),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9643),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 11,
+                            DropDownControlOption = "HealthCareType",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "4adccac0-6128-456b-924a-b9c9df3f6930",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9649),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9650),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "HealthServivceProivderType",
+                            TranslationRowKey = "HealthProviderType1"
+                        },
+                        new
+                        {
+                            RowKey = "28f219fc-218a-42e2-8106-d3485334bf30",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9659),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9660),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "HealthServivceProivderType",
+                            TranslationRowKey = "HealthProviderType2"
+                        },
+                        new
+                        {
+                            RowKey = "51974689-81ec-423b-a2c1-562f958397ce",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9671),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9672),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 11,
+                            DropDownControlOption = "HealthServivceProivderType",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "8f17d8ea-f196-4cc3-8e77-7fbe8d4bbcf7",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9679),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9680),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "HealthMedicineType",
+                            TranslationRowKey = "MedicineType1"
+                        },
+                        new
+                        {
+                            RowKey = "4a4b8e08-df25-42d2-b2f1-64410aa747f5",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9686),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9687),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "HealthMedicineType",
+                            TranslationRowKey = "MedicineType2"
+                        },
+                        new
+                        {
+                            RowKey = "857cad2d-55a0-4093-a267-dfdf9e3cc61f",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9696),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9697),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "HealthMedicineType",
+                            TranslationRowKey = "MedicineType3"
+                        },
+                        new
+                        {
+                            RowKey = "b8bc6fad-3127-4805-9203-96115a487b02",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9703),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9704),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 4,
+                            DropDownControlOption = "HealthMedicineType",
+                            TranslationRowKey = "MedicineType4"
+                        },
+                        new
+                        {
+                            RowKey = "b32de65c-aec1-4328-a51b-fa5888f0b6d2",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9711),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9712),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 11,
+                            DropDownControlOption = "HealthMedicineType",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "02baee85-9d1d-48d8-b1d2-245657c16cc1",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9719),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9720),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "HealthPurchaseFromType",
+                            TranslationRowKey = "PruchaseFromType1"
+                        },
+                        new
+                        {
+                            RowKey = "f208c2e2-8fb9-445c-b0e2-9469b9c3b0ae",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9729),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9730),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "HealthPurchaseFromType",
+                            TranslationRowKey = "PruchaseFromType2"
+                        },
+                        new
+                        {
+                            RowKey = "8c007b6d-a3ba-44e5-be2d-c4060b6fba42",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9738),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9739),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "HealthPurchaseFromType",
+                            TranslationRowKey = "PruchaseFromType3"
+                        },
+                        new
+                        {
+                            RowKey = "e344fd94-c582-4913-a8a7-a44898fd93ba",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9746),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9746),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 11,
+                            DropDownControlOption = "HealthPurchaseFromType",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "77fc5f46-3e1c-4338-bf0e-12cda58eec70",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9753),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9753),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "LabourType",
+                            TranslationRowKey = "LabourType1"
+                        },
+                        new
+                        {
+                            RowKey = "ef34bb5d-14ef-4c4d-9158-6fdb5398832a",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9762),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9763),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "LabourType",
+                            TranslationRowKey = "LabourType2"
+                        },
+                        new
+                        {
+                            RowKey = "614589d8-4e41-4759-a758-5ee6c5f51489",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9770),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9771),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 7,
+                            DropDownControlOption = "LabourType",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "8870d94b-af65-4c3c-a7bc-b17880e0836f",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9777),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9778),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "HousingType",
+                            TranslationRowKey = "HousingExpenseType1"
+                        },
+                        new
+                        {
+                            RowKey = "35806643-d506-4287-aa89-459389fe9b33",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9785),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9786),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "HousingType",
+                            TranslationRowKey = "HousingExpenseType2"
+                        },
+                        new
+                        {
+                            RowKey = "c77b5356-1602-4faf-88e0-2fb4b24bf79f",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9794),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9795),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "HousingType",
+                            TranslationRowKey = "HousingExpenseType3"
+                        },
+                        new
+                        {
+                            RowKey = "696fea15-e91d-4e05-95aa-8e1c7908b0c8",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9801),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9802),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 6,
+                            DropDownControlOption = "HousingType",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "bbaca534-0515-43a2-921c-5639f5f6044f",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9809),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9810),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "WaterPurchasedUnit",
+                            TranslationRowKey = "WaterPurchasedUnitType1"
+                        },
+                        new
+                        {
+                            RowKey = "3e38f7d6-9569-4463-aac4-eea8fae14eec",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9816),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9817),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "WaterPurchasedUnit",
+                            TranslationRowKey = "WaterPurchasedUnitType2"
+                        },
+                        new
+                        {
+                            RowKey = "8e7378f6-9152-4ef8-8811-4eb5c4aff47e",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9825),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9826),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 6,
+                            DropDownControlOption = "WaterPurchasedUnit",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "5ce26544-a6af-4be6-96b4-eed629378468",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9833),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9834),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "PurchasedWaterFrom",
+                            TranslationRowKey = "PurchasedWaterFromType1"
+                        },
+                        new
+                        {
+                            RowKey = "6e5238ed-c401-4765-885d-765d5882e932",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9840),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9841),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "PurchasedWaterFrom",
+                            TranslationRowKey = "PurchasedWaterFromType2"
+                        },
+                        new
+                        {
+                            RowKey = "b4dd82c0-e5cf-4c1b-b2d6-d90ad3b64b26",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9850),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9850),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "PurchasedWaterFrom",
+                            TranslationRowKey = "PurchasedWaterFromType3"
+                        },
+                        new
+                        {
+                            RowKey = "15e56d57-8208-49b8-9174-460f76eac918",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9860),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9861),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 11,
+                            DropDownControlOption = "PurchasedWaterFrom",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "2b003845-f1f4-4380-a121-117626b75879",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9867),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9868),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "MembershipType",
+                            TranslationRowKey = "MembershipType1"
+                        },
+                        new
+                        {
+                            RowKey = "52845133-65fe-4b70-80e9-8757301f3861",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9879),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9880),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 9,
+                            DropDownControlOption = "MembershipType",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "09dca768-84cb-481f-b047-29ffc5129b2c",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9885),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9886),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "TimePeriodUnitType",
+                            TranslationRowKey = "TimePeriodUnitType1"
+                        },
+                        new
+                        {
+                            RowKey = "c433a1e8-9af9-4e5f-b757-713e02bf06d7",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9895),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9896),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "TimePeriodUnitType",
+                            TranslationRowKey = "TimePeriodUnitType2"
+                        },
+                        new
+                        {
+                            RowKey = "3bcba90c-4efa-4d32-b35b-029d60ed844a",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9903),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9904),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "ServiceUnit",
+                            TranslationRowKey = "ServiceType1"
+                        },
+                        new
+                        {
+                            RowKey = "2374712d-dfd1-48ce-8995-ddacab0d2b6e",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9911),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9911),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "ServiceUnit",
+                            TranslationRowKey = "ServiceType2"
+                        },
+                        new
+                        {
+                            RowKey = "913422cb-42f4-4a0a-bb76-fd30e7cd895a",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9918),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9919),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 9,
+                            DropDownControlOption = "ServiceUnit",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "7737f472-2b5c-4c59-bb53-26ceec572df3",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9928),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9929),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "WhoProvidedServiceUnit",
+                            TranslationRowKey = "WhoProvidedServiceType1"
+                        },
+                        new
+                        {
+                            RowKey = "eb5b9abf-b5d8-4fd0-b1d3-d76fee03fb38",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9936),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9937),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "WhoProvidedServiceUnit",
+                            TranslationRowKey = "WhoProvidedServiceType2"
+                        },
+                        new
+                        {
+                            RowKey = "0181adca-09e0-4f61-8cb1-c24a2c3948b6",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9943),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9944),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "WhoProvidedServiceUnit",
+                            TranslationRowKey = "WhoProvidedServiceType3"
+                        },
+                        new
+                        {
+                            RowKey = "dacd05b3-0ef6-4f89-9474-a23cb32b3702",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9951),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9952),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 9,
+                            DropDownControlOption = "WhoProvidedServiceUnit",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "397c4c00-dc49-4289-aa56-0abc8e835a62",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9961),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9962),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "AnimalType",
+                            TranslationRowKey = "AnimalType1"
+                        },
+                        new
+                        {
+                            RowKey = "4d0dbcc5-bc71-4cce-8952-e0dbe01f6594",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9968),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9969),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "AnimalType",
+                            TranslationRowKey = "AnimalType2"
+                        },
+                        new
+                        {
+                            RowKey = "ea71ba20-dbe9-4b68-89fb-e11468a16643",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9977),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9978),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "AnimalType",
+                            TranslationRowKey = "AnimalType3"
+                        },
+                        new
+                        {
+                            RowKey = "f3c8c59d-5e70-43fb-b029-d8e037bd94c9",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9984),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9985),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 9,
+                            DropDownControlOption = "AnimalType",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "3e1997e3-c921-48ac-854c-93dd41d6e4b7",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9994),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 213, DateTimeKind.Utc).AddTicks(9995),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "AnimalPurchasedFrom",
+                            TranslationRowKey = "AnimalPurchasedFromType1"
+                        },
+                        new
+                        {
+                            RowKey = "3c849c96-fe4e-4560-afde-9769a563a03f",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(2),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(3),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "AnimalPurchasedFrom",
+                            TranslationRowKey = "AnimalPurchasedFromType2"
+                        },
+                        new
+                        {
+                            RowKey = "d723d80c-bbf9-4166-b0de-4c303798d22c",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(10),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(10),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "AnimalPurchasedFrom",
+                            TranslationRowKey = "AnimalPurchasedFromType3"
+                        },
+                        new
+                        {
+                            RowKey = "5a679349-ff98-45ae-8e42-992ec55c8de3",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(16),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(17),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 4,
+                            DropDownControlOption = "AnimalPurchasedFrom",
+                            TranslationRowKey = "AnimalPurchasedFromType4"
+                        },
+                        new
+                        {
+                            RowKey = "009f0888-f88e-4caf-ac36-a19d0059c5c7",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(26),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(27),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 9,
+                            DropDownControlOption = "AnimalPurchasedFrom",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "0416239c-6201-4bbe-b136-d3343ffe278e",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(33),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(34),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "LoanProvider",
+                            TranslationRowKey = "LoanProviderType1"
+                        },
+                        new
+                        {
+                            RowKey = "ed898248-735c-41ec-b48e-fdb5f2477f42",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(41),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(42),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "LoanProvider",
+                            TranslationRowKey = "LoanProviderType2"
+                        },
+                        new
+                        {
+                            RowKey = "bf7b291e-f0e4-46c9-91e0-7fd453edd040",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(49),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(50),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "LoanProvider",
+                            TranslationRowKey = "LoanProviderType3"
+                        },
+                        new
+                        {
+                            RowKey = "8a6e0337-aad7-4bdb-83bc-1e00ef6bd05e",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(59),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(60),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 4,
+                            DropDownControlOption = "LoanProvider",
+                            TranslationRowKey = "LoanProviderType4"
+                        },
+                        new
+                        {
+                            RowKey = "f28cbeca-f630-4c06-9ce4-db9f6fa64697",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(66),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(67),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 5,
+                            DropDownControlOption = "LoanProvider",
+                            TranslationRowKey = "LoanProviderType5"
+                        },
+                        new
+                        {
+                            RowKey = "2fcb2edb-2dd0-4357-9739-c240c4c763d3",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(74),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(75),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 6,
+                            DropDownControlOption = "LoanProvider",
+                            TranslationRowKey = "LoanProviderType6"
+                        },
+                        new
+                        {
+                            RowKey = "c7d4a5c1-d825-4700-81bd-398f9e63e760",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(83),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(84),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 9,
+                            DropDownControlOption = "LoanProvider",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "e8635f63-2dd4-478a-8f84-9f2ba61f7bc6",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(95),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(96),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "EquipmentType",
+                            TranslationRowKey = "EquipmentType1"
+                        },
+                        new
+                        {
+                            RowKey = "1af0ce9f-08f4-4ae8-acf2-065e047585c7",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(102),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(103),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "EquipmentType",
+                            TranslationRowKey = "EquipmentType2"
+                        },
+                        new
+                        {
+                            RowKey = "da5f84a1-8977-4385-a0de-75e65767959d",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(110),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(111),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "EquipmentType",
+                            TranslationRowKey = "EquipmentType3"
+                        },
+                        new
+                        {
+                            RowKey = "4656aef5-9e64-4c08-b8b4-072ff8bcdc98",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(117),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(118),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 4,
+                            DropDownControlOption = "EquipmentType",
+                            TranslationRowKey = "EquipmentType4"
+                        },
+                        new
+                        {
+                            RowKey = "16f62cae-f50d-45c7-9a0f-54e386a992bf",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(126),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(127),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 9,
+                            DropDownControlOption = "EquipmentType",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "07b2793c-4de1-4fff-87a6-b063c41f6acd",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(134),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(135),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "PigSaleType",
+                            TranslationRowKey = "PigType1"
+                        },
+                        new
+                        {
+                            RowKey = "1d5ceeda-1573-434e-a22e-071f3062bfe6",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(142),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(143),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "PigSaleType",
+                            TranslationRowKey = "PigType2"
+                        },
+                        new
+                        {
+                            RowKey = "1bd3eb96-4727-4229-aee2-6626d2768797",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(150),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(151),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "PigSaleType",
+                            TranslationRowKey = "PigType3"
+                        },
+                        new
+                        {
+                            RowKey = "eb82e318-df59-4420-838e-a5d33640e67b",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(159),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(160),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 4,
+                            DropDownControlOption = "PigSaleType",
+                            TranslationRowKey = "PigType4"
+                        },
+                        new
+                        {
+                            RowKey = "0016c2fe-70dd-48be-8c04-c860c68748db",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(167),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(168),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 9,
+                            DropDownControlOption = "PigSaleType",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "6423eef1-b5ce-46d5-b319-ef67a0f2c6aa",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(174),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(175),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "SoldToType",
+                            TranslationRowKey = "SoldToType1"
+                        },
+                        new
+                        {
+                            RowKey = "01cb343f-efda-42f5-a8c6-8ce09ff8cb13",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(182),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(183),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "SoldToType",
+                            TranslationRowKey = "SoldToType2"
+                        },
+                        new
+                        {
+                            RowKey = "0bc48e59-820d-46c5-8b6d-cdf938226b23",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(191),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(192),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "SoldToType",
+                            TranslationRowKey = "SoldToType3"
+                        },
+                        new
+                        {
+                            RowKey = "7b05e4fb-ee6e-4fa8-aac2-42264a14e7ae",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(199),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(200),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 9,
+                            DropDownControlOption = "SoldToType",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "bc8eae9f-d053-4c38-8a23-f422c2c59900",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(207),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(208),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "BreedingServiceType",
+                            TranslationRowKey = "BreedingServiceType1"
+                        },
+                        new
+                        {
+                            RowKey = "ea2af976-d176-417c-a383-15889e5f0c09",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(216),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(217),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "BreedingServiceType",
+                            TranslationRowKey = "BreedingServiceType2"
+                        },
+                        new
+                        {
+                            RowKey = "e1bd7f0a-36a1-4ce5-9423-91bd0ad0b0d4",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(225),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(226),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 9,
+                            DropDownControlOption = "BreedingServiceType",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "88b2ebfd-7793-45e7-a75b-13bccfa1a5e2",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(233),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(234),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "OtherPaymentType",
+                            TranslationRowKey = "PaymentType1"
+                        },
+                        new
+                        {
+                            RowKey = "43a798ca-66d4-45b2-8446-4bb653bb3737",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(241),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(242),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "OtherPaymentType",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "68c4ae11-ea22-4b7a-894f-b64a9cc99ffc",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(248),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(249),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "ClientType",
+                            TranslationRowKey = "ClientType1"
+                        },
+                        new
+                        {
+                            RowKey = "159ad760-d9d3-4006-b06d-b2e1c2a28edc",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(258),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(259),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 9,
+                            DropDownControlOption = "ClientType",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "2a1f02d6-c45a-45cb-8f7b-0631c78bea6c",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(266),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(267),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "VolumeUnitType",
+                            TranslationRowKey = "VolumeUnitType1"
+                        },
+                        new
+                        {
+                            RowKey = "ccd9bde7-b194-42bb-af26-39f84e0b81fc",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(274),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(274),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 9,
+                            DropDownControlOption = "VolumeUnitType",
+                            TranslationRowKey = "Other"
+                        },
+                        new
+                        {
+                            RowKey = "0111b4a9-8e04-4064-96aa-988d579c20de",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(282),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(283),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "GenderType",
+                            TranslationRowKey = "GenderType1"
+                        },
+                        new
+                        {
+                            RowKey = "0980d54e-3d00-4b8d-994c-3c70ccf571ea",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(295),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(296),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "GenderType",
+                            TranslationRowKey = "GenderType2"
+                        },
+                        new
+                        {
+                            RowKey = "13a6da5d-1c5a-4c14-a0ee-63643dc0f579",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(303),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(304),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "GenderType",
+                            TranslationRowKey = "GenderType3"
+                        },
+                        new
+                        {
+                            RowKey = "8a9911fb-7e54-4592-830d-4681fe457b49",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(311),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(312),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "DistrictType",
+                            TranslationRowKey = "DistrictType1"
+                        },
+                        new
+                        {
+                            RowKey = "54f275be-f59d-4d01-bffe-d8f319c99b43",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(318),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(319),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "DistrictType",
+                            TranslationRowKey = "DistrictType2"
+                        },
+                        new
+                        {
+                            RowKey = "0ba4717f-9e1a-4578-adb7-52e89f5b0ced",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(328),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(329),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "DistrictType",
+                            TranslationRowKey = "DistrictType3"
+                        },
+                        new
+                        {
+                            RowKey = "c9fbf14c-bd4b-43e3-ae84-f71345902807",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(340),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(340),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 4,
+                            DropDownControlOption = "DistrictType",
+                            TranslationRowKey = "DistrictType4"
+                        },
+                        new
+                        {
+                            RowKey = "439185db-6270-4fc1-a13f-0e4e73c19464",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(348),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(349),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 5,
+                            DropDownControlOption = "DistrictType",
+                            TranslationRowKey = "DistrictType5"
+                        },
+                        new
+                        {
+                            RowKey = "b39066e9-b831-42d5-8333-ac9ab35532a5",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(355),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(355),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 6,
+                            DropDownControlOption = "DistrictType",
+                            TranslationRowKey = "DistrictType6"
+                        },
+                        new
+                        {
+                            RowKey = "3baf7583-aa21-4c31-90ec-0fd5d253b8a9",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(364),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(365),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 7,
+                            DropDownControlOption = "DistrictType",
+                            TranslationRowKey = "DistrictType7"
+                        },
+                        new
+                        {
+                            RowKey = "cd7669b3-5863-4b94-8103-7ec3b6f3c0e8",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(371),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(372),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 8,
+                            DropDownControlOption = "DistrictType",
+                            TranslationRowKey = "DistrictType8"
+                        },
+                        new
+                        {
+                            RowKey = "7d8e9931-b717-4abb-ba22-e5034051fa69",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(379),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(380),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "CountyType",
+                            TranslationRowKey = "CountyType1"
+                        },
+                        new
+                        {
+                            RowKey = "a8c39632-d077-433b-8cbf-2bafc97cd095",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(386),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(387),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "CountyType",
+                            TranslationRowKey = "CountyType2"
+                        },
+                        new
+                        {
+                            RowKey = "1ac5e15e-2273-481c-b1a3-4e84cb12b339",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(396),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(397),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "CountyType",
+                            TranslationRowKey = "CountyType3"
+                        },
+                        new
+                        {
+                            RowKey = "6ca8e1d7-b21a-483b-aef6-8829134716de",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(403),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(404),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 4,
+                            DropDownControlOption = "CountyType",
+                            TranslationRowKey = "CountyType4"
+                        },
+                        new
+                        {
+                            RowKey = "c3006711-9fe0-472c-9790-cad0b736a4fe",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(411),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(412),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 5,
+                            DropDownControlOption = "CountyType",
+                            TranslationRowKey = "CountyType5"
+                        },
+                        new
+                        {
+                            RowKey = "ba212081-5968-44f7-a9ee-5986aed88234",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(420),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(420),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 6,
+                            DropDownControlOption = "CountyType",
+                            TranslationRowKey = "CountyType6"
+                        },
+                        new
+                        {
+                            RowKey = "cec8ece6-cdc1-4577-a1c0-acaeae876dcf",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(429),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(429),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 7,
+                            DropDownControlOption = "CountyType",
+                            TranslationRowKey = "CountyType7"
+                        },
+                        new
+                        {
+                            RowKey = "3e350de1-0752-4bed-b283-45422c067dd5",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(435),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(436),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 8,
+                            DropDownControlOption = "CountyType",
+                            TranslationRowKey = "CountyType8"
+                        },
+                        new
+                        {
+                            RowKey = "75867a7c-8e5e-42bf-823f-555de8696655",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(443),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(444),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "CountryType",
+                            TranslationRowKey = "CountryTypeUganda"
+                        },
+                        new
+                        {
+                            RowKey = "36051801-dde1-49db-b5b6-1fe5f4d8cac3",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(450),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(451),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "CountryType",
+                            TranslationRowKey = "CountryTypeVietnam"
+                        },
+                        new
+                        {
+                            RowKey = "608178e1-1622-46d0-9ab5-511e8df26234",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(462),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(463),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "CountryType",
+                            TranslationRowKey = "CountryTypeRwanda"
+                        },
+                        new
+                        {
+                            RowKey = "a4925392-07c9-4343-8ec7-e706882c0ace",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(550),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(552),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "SubCountyType",
+                            TranslationRowKey = "SubCountyType1"
+                        },
+                        new
+                        {
+                            RowKey = "8f2e8856-8d00-4e57-9220-1fac043a2a7e",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(559),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(560),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "SubCountyType",
+                            TranslationRowKey = "SubCountyType2"
+                        },
+                        new
+                        {
+                            RowKey = "c56659b2-d9bf-46d5-90fa-c8ff875795ed",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(566),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(567),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "SubCountyType",
+                            TranslationRowKey = "SubCountyType3"
+                        },
+                        new
+                        {
+                            RowKey = "a79f3ecd-bbff-4377-9ce3-c96ee7397232",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(576),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(577),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 4,
+                            DropDownControlOption = "SubCountyType",
+                            TranslationRowKey = "SubCountyType4"
+                        },
+                        new
+                        {
+                            RowKey = "f85572ad-0b98-4bdb-b39a-7ff7912b13e9",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(591),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(592),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 5,
+                            DropDownControlOption = "SubCountyType",
+                            TranslationRowKey = "SubCountyType5"
+                        },
+                        new
+                        {
+                            RowKey = "c0149ef1-6997-4ccf-a3de-3bf674cb8717",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(598),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(599),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 6,
+                            DropDownControlOption = "SubCountyType",
+                            TranslationRowKey = "SubCountyType6"
+                        },
+                        new
+                        {
+                            RowKey = "795c0595-9685-4b57-9493-75a0397f83b4",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(605),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(606),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 7,
+                            DropDownControlOption = "SubCountyType",
+                            TranslationRowKey = "SubCountyType7"
+                        },
+                        new
+                        {
+                            RowKey = "a22b53a6-e5e9-4d55-80d1-7798828cf5ab",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(614),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(615),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 8,
+                            DropDownControlOption = "SubCountyType",
+                            TranslationRowKey = "SubCountyType8"
+                        },
+                        new
+                        {
+                            RowKey = "343bbccd-e1aa-4c07-af22-96caf83bbc8e",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(621),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(622),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "CurrencyType",
+                            TranslationRowKey = "CurrencyType1"
+                        },
+                        new
+                        {
+                            RowKey = "45d24b1e-2916-4585-8f45-c8c2f8318fe2",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(629),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(630),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "CurrencyType",
+                            TranslationRowKey = "CurrencyType2"
+                        },
+                        new
+                        {
+                            RowKey = "4802325f-af46-4e4b-9184-058a29aaaef7",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(636),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(637),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "CurrencyType",
+                            TranslationRowKey = "CurrencyType3"
+                        },
+                        new
+                        {
+                            RowKey = "dadef8cb-6d14-4da3-a017-53c4952be087",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(646),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(647),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 4,
+                            DropDownControlOption = "CurrencyType",
+                            TranslationRowKey = "CurrencyType4"
+                        },
+                        new
+                        {
+                            RowKey = "55c8ba21-3eb9-467a-890f-b2b11dd719d7",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(653),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(654),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 5,
+                            DropDownControlOption = "CurrencyType",
+                            TranslationRowKey = "CurrencyType5"
+                        },
+                        new
+                        {
+                            RowKey = "2d3996d4-ab3f-4357-8640-6df85625e3ed",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(661),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(662),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 6,
+                            DropDownControlOption = "CurrencyType",
+                            TranslationRowKey = "CurrencyType6"
+                        },
+                        new
+                        {
+                            RowKey = "ad5cb049-c345-4fea-bcd2-36499ca3ce12",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(668),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(669),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 7,
+                            DropDownControlOption = "CurrencyType",
+                            TranslationRowKey = "CurrencyType7"
+                        },
+                        new
+                        {
+                            RowKey = "4d2bc0ab-7edf-4613-bd8f-84046aaef544",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(678),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(679),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 8,
+                            DropDownControlOption = "CurrencyType",
+                            TranslationRowKey = "CurrencyType8"
+                        },
+                        new
+                        {
+                            RowKey = "516382c3-bae7-437a-9a2a-66de8e2d68a7",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(685),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(686),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 1,
+                            DropDownControlOption = "LanguageType",
+                            TranslationRowKey = "LanguageType1"
+                        },
+                        new
+                        {
+                            RowKey = "0fa15027-0f0d-462e-8e5c-c6a4483ce08f",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(693),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(694),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 2,
+                            DropDownControlOption = "LanguageType",
+                            TranslationRowKey = "LanguageType2"
+                        },
+                        new
+                        {
+                            RowKey = "5ca17f02-078f-4f88-800f-260efd0b125c",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(700),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(701),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 3,
+                            DropDownControlOption = "LanguageType",
+                            TranslationRowKey = "LanguageType3"
+                        },
+                        new
+                        {
+                            RowKey = "0c0994e5-bb30-4b75-973b-a0f5da30697c",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(710),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(711),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 4,
+                            DropDownControlOption = "LanguageType",
+                            TranslationRowKey = "LanguageType4"
+                        },
+                        new
+                        {
+                            RowKey = "ef03058e-89c7-4740-bd0d-f8de0d02c9a6",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(717),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(718),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 5,
+                            DropDownControlOption = "LanguageType",
+                            TranslationRowKey = "LanguageType5"
+                        },
+                        new
+                        {
+                            RowKey = "786fb005-c7c9-4636-a8f7-9b66da8a683d",
+                            CreatedBy = "InitialUpload",
+                            CreatedTimeStamp = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(725),
+                            IsDeleted = true,
+                            IsEnable = false,
+                            IsModified = false,
+                            LastModified = new DateTime(2022, 12, 9, 2, 51, 41, 214, DateTimeKind.Utc).AddTicks(725),
+                            PartitionKey = "ControlData",
+                            DisplayOrder = 6,
+                            DropDownControlOption = "LanguageType",
+                            TranslationRowKey = "LanguageType6"
+                        });
+                });
+
+            modelBuilder.Entity("Shared.EquipmentItem", b =>
+                {
+                    b.HasBaseType("Shared.BaseItem");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("EquipmentType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("OtherCosts")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("OtherEquipmentType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("TotalCosts")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("TransportationCost")
+                        .HasColumnType("REAL");
+
+                    b.ToTable("EquipmentItems");
+                });
+
+            modelBuilder.Entity("Shared.FeedItem", b =>
+                {
+                    b.HasBaseType("Shared.BaseItem");
+
+                    b.Property<double?>("AmountPurchased")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("AmountPurchasedUnit")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FeedType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FeedTypeTranslationString")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OtherAmountPurchaseUnit")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OtherFeedType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OtherPurchasedFrom")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PurchasedFrom")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("TotalCosts")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("TransportationCost")
+                        .HasColumnType("REAL");
+
+                    b.HasIndex("FeedType");
+
+                    b.ToTable("FeedItems");
+                });
+
+            modelBuilder.Entity("Shared.HealthCareItem", b =>
+                {
+                    b.HasBaseType("Shared.BaseItem");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("HealthCareCost")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("HealthCareType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("MedicineCost")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("MedicineType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("OtherCosts")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("OtherHealthCareType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OtherMedicineType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OtherProvider")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OtherPurchasedFrom")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Provider")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PurchasedFrom")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("TransportationCost")
+                        .HasColumnType("REAL");
+
+                    b.ToTable("HealthCareItems");
+                });
+
+            modelBuilder.Entity("Shared.LabourCostItem", b =>
+                {
+                    b.HasBaseType("Shared.BaseItem");
+
+                    b.Property<double>("AmountPaid")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LabourType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("OtherCost")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("OtherLabourType")
+                        .HasColumnType("TEXT");
+
+                    b.ToTable("LabourCostItems");
+                });
+
+            modelBuilder.Entity("Shared.LoanRepaymentItem", b =>
+                {
+                    b.HasBaseType("Shared.BaseItem");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LoanProvider")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("OtherCosts")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("OtherLoanProvider")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("TotalAmountRepaid")
+                        .HasColumnType("REAL");
+
+                    b.ToTable("LoanRepaymentItems");
+                });
+
+            modelBuilder.Entity("Shared.ManureSaleItem", b =>
+                {
+                    b.HasBaseType("Shared.BaseItem");
+
+                    b.Property<double>("AmountRecieved")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("OtherCosts")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("OtherSoldTo")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PaymentType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("PaymentValue")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("SoldTo")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("TransportationCost")
+                        .HasColumnType("REAL");
+
+                    b.Property<double?>("VolumeSold")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("VolumeUnitType")
+                        .HasColumnType("TEXT");
+
+                    b.ToTable("ManureSaleItems");
+                });
+
+            modelBuilder.Entity("Shared.MembershipItem", b =>
+                {
+                    b.HasBaseType("Shared.BaseItem");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MembershipType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double?>("OtherCosts")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("OtherMembershipType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("TimePeriod")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("TimePeriodUnit")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("TotalCosts")
+                        .HasColumnType("REAL");
+
+                    b.ToTable("MembershipItems");
+                });
+
+            modelBuilder.Entity("Shared.OtherCostItem", b =>
+                {
+                    b.HasBaseType("Shared.BaseItem");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("OtherCosts")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("OtherWhatFor")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("TotalCosts")
+                        .HasColumnType("REAL");
+
+                    b.Property<double?>("TransportationCosts")
+                        .HasColumnType("REAL");
+
+                    b.ToTable("OtherCostItems");
+                });
+
+            modelBuilder.Entity("Shared.OtherIncomeItem", b =>
+                {
+                    b.HasBaseType("Shared.BaseItem");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("OtherCosts")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("OtherWhatFor")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("TotalIncome")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("TransportationCosts")
+                        .HasColumnType("REAL");
+
+                    b.ToTable("OtherIncomeItems");
+                });
+
+            modelBuilder.Entity("Shared.PigSaleItem", b =>
+                {
+                    b.HasBaseType("Shared.BaseItem");
+
+                    b.Property<double>("Brokerage")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("NumberSold")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("OtherCosts")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("OtherPigType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OtherSoldTo")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PigType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("SalePrice")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("SoldTo")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("TransportationCost")
+                        .HasColumnType("REAL");
+
+                    b.ToTable("PigSaleItems");
+                });
+
+            modelBuilder.Entity("Shared.ReproductiveItem", b =>
+                {
+                    b.HasBaseType("Shared.BaseItem");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("OtherCosts")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("OtherServiceType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OtherWhoProvidedService")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ServiceType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("SowsServiced")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("WhoProvidedService")
+                        .HasColumnType("TEXT");
+
+                    b.ToTable("ReproductiveItems");
+                });
+
+            modelBuilder.Entity("Shared.WaterCostItem", b =>
+                {
+                    b.HasBaseType("Shared.BaseItem");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
                     b.Property<double>("OtherCosts")
@@ -7297,16 +5056,7 @@ namespace Shared.Migrations
                     b.Property<string>("OtherWaterPurchasedUnit")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("PartitionKey")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValue("Water");
-
                     b.Property<string>("PurchasedWaterFrom")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTimeOffset?>("Timestamp")
                         .HasColumnType("TEXT");
 
                     b.Property<double>("TotalCosts")
@@ -7321,13 +5071,44 @@ namespace Shared.Migrations
                     b.Property<string>("WaterPurchasedUnit")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("RowKey");
-
                     b.ToTable("WaterCostItems");
+                });
+
+            modelBuilder.Entity("Shared.AnimalHouseItem", b =>
+                {
+                    b.HasOne("Shared.BaseItem", null)
+                        .WithOne()
+                        .HasForeignKey("Shared.AnimalHouseItem", "RowKey")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Shared.AnimalPurchaseItem", b =>
+                {
+                    b.HasOne("Shared.BaseItem", null)
+                        .WithOne()
+                        .HasForeignKey("Shared.AnimalPurchaseItem", "RowKey")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Shared.BreedingServiceSaleItem", b =>
+                {
+                    b.HasOne("Shared.BaseItem", null)
+                        .WithOne()
+                        .HasForeignKey("Shared.BreedingServiceSaleItem", "RowKey")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Shared.ControlData", b =>
                 {
+                    b.HasOne("Shared.BaseItem", null)
+                        .WithOne()
+                        .HasForeignKey("Shared.ControlData", "RowKey")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Shared.Translation", "Translation")
                         .WithMany("ControlDatas")
                         .HasForeignKey("TranslationRowKey")
@@ -7337,13 +5118,118 @@ namespace Shared.Migrations
                     b.Navigation("Translation");
                 });
 
+            modelBuilder.Entity("Shared.EquipmentItem", b =>
+                {
+                    b.HasOne("Shared.BaseItem", null)
+                        .WithOne()
+                        .HasForeignKey("Shared.EquipmentItem", "RowKey")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Shared.FeedItem", b =>
                 {
                     b.HasOne("Shared.Translation", "FeedTypeTranslation")
                         .WithMany("FeedItems")
                         .HasForeignKey("FeedType");
 
+                    b.HasOne("Shared.BaseItem", null)
+                        .WithOne()
+                        .HasForeignKey("Shared.FeedItem", "RowKey")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("FeedTypeTranslation");
+                });
+
+            modelBuilder.Entity("Shared.HealthCareItem", b =>
+                {
+                    b.HasOne("Shared.BaseItem", null)
+                        .WithOne()
+                        .HasForeignKey("Shared.HealthCareItem", "RowKey")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Shared.LabourCostItem", b =>
+                {
+                    b.HasOne("Shared.BaseItem", null)
+                        .WithOne()
+                        .HasForeignKey("Shared.LabourCostItem", "RowKey")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Shared.LoanRepaymentItem", b =>
+                {
+                    b.HasOne("Shared.BaseItem", null)
+                        .WithOne()
+                        .HasForeignKey("Shared.LoanRepaymentItem", "RowKey")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Shared.ManureSaleItem", b =>
+                {
+                    b.HasOne("Shared.BaseItem", null)
+                        .WithOne()
+                        .HasForeignKey("Shared.ManureSaleItem", "RowKey")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Shared.MembershipItem", b =>
+                {
+                    b.HasOne("Shared.BaseItem", null)
+                        .WithOne()
+                        .HasForeignKey("Shared.MembershipItem", "RowKey")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Shared.OtherCostItem", b =>
+                {
+                    b.HasOne("Shared.BaseItem", null)
+                        .WithOne()
+                        .HasForeignKey("Shared.OtherCostItem", "RowKey")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Shared.OtherIncomeItem", b =>
+                {
+                    b.HasOne("Shared.BaseItem", null)
+                        .WithOne()
+                        .HasForeignKey("Shared.OtherIncomeItem", "RowKey")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Shared.PigSaleItem", b =>
+                {
+                    b.HasOne("Shared.BaseItem", null)
+                        .WithOne()
+                        .HasForeignKey("Shared.PigSaleItem", "RowKey")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Shared.ReproductiveItem", b =>
+                {
+                    b.HasOne("Shared.BaseItem", null)
+                        .WithOne()
+                        .HasForeignKey("Shared.ReproductiveItem", "RowKey")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Shared.WaterCostItem", b =>
+                {
+                    b.HasOne("Shared.BaseItem", null)
+                        .WithOne()
+                        .HasForeignKey("Shared.WaterCostItem", "RowKey")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Shared.Translation", b =>

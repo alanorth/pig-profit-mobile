@@ -104,9 +104,9 @@ namespace PigTool.Services
             return await _context.FeedItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
         }
 
-        public async Task<List<FeedItem>> GetFeedItemsAndAttachedTranslation(UserLangSettings userLanguage)
+        public async Task<List<FeedItem>> GetFeedItemsAndAttachedTranslation(int selectedYear, UserLangSettings userLanguage)
         {
-            var feedItems =  await _context.FeedItems.Include("FeedTypeTranslation").ToListAsync();
+            var feedItems =  await _context.FeedItems.Where(x => x.Date.Year == selectedYear).Include("FeedTypeTranslation").ToListAsync();
 
             foreach (var feedItem in feedItems)
             {
