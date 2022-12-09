@@ -456,7 +456,7 @@ namespace Shared.Migrations
                     IsEnable = table.Column<bool>(type: "INTEGER", nullable: false),
                     CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: true),
                     CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
-                    LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "TEXT", nullable: false, defaultValueSql : "datetime()" ),
                     PartitionKey = table.Column<string>(type: "TEXT", nullable: false, defaultValue: "ControlData"),
                     Timestamp = table.Column<DateTimeOffset>(type: "TEXT", nullable: true)
                 },

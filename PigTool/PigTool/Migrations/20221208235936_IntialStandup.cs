@@ -23,7 +23,7 @@ namespace Shared.Migrations
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsModified = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsEnable = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: true),
                     CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
                     LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     PartitionKey = table.Column<string>(type: "TEXT", nullable: false, defaultValue: "AnimalHouse"),
@@ -52,7 +52,7 @@ namespace Shared.Migrations
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsModified = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsEnable = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: true),
                     CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
                     LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     PartitionKey = table.Column<string>(type: "TEXT", nullable: false, defaultValue: "AnimalPurchase"),
@@ -83,7 +83,7 @@ namespace Shared.Migrations
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsModified = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsEnable = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: true),
                     CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
                     LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     PartitionKey = table.Column<string>(type: "TEXT", nullable: false, defaultValue: "BreedingServiceSale"),
@@ -109,7 +109,7 @@ namespace Shared.Migrations
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsModified = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsEnable = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: true),
                     CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
                     LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     PartitionKey = table.Column<string>(type: "TEXT", nullable: false, defaultValue: "Equipment"),
@@ -142,7 +142,7 @@ namespace Shared.Migrations
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsModified = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsEnable = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: true),
                     CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
                     LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     PartitionKey = table.Column<string>(type: "TEXT", nullable: false, defaultValue: "HealthCare"),
@@ -167,7 +167,7 @@ namespace Shared.Migrations
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsModified = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsEnable = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: true),
                     CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
                     LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     PartitionKey = table.Column<string>(type: "TEXT", nullable: false, defaultValue: "Labour"),
@@ -192,7 +192,7 @@ namespace Shared.Migrations
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsModified = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsEnable = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: true),
                     CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
                     LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     PartitionKey = table.Column<string>(type: "TEXT", nullable: false, defaultValue: "LoanRepayment"),
@@ -222,7 +222,7 @@ namespace Shared.Migrations
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsModified = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsEnable = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: true),
                     CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
                     LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     PartitionKey = table.Column<string>(type: "TEXT", nullable: false, defaultValue: "ManureSale"),
@@ -249,7 +249,7 @@ namespace Shared.Migrations
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsModified = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsEnable = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: true),
                     CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
                     LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     PartitionKey = table.Column<string>(type: "TEXT", nullable: false, defaultValue: "MemberShip"),
@@ -274,7 +274,7 @@ namespace Shared.Migrations
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsModified = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsEnable = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: true),
                     CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
                     LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     PartitionKey = table.Column<string>(type: "TEXT", nullable: false, defaultValue: "OtherCost"),
@@ -299,7 +299,7 @@ namespace Shared.Migrations
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsModified = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsEnable = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: true),
                     CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
                     LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     PartitionKey = table.Column<string>(type: "TEXT", nullable: false, defaultValue: "OtherIncome"),
@@ -329,7 +329,7 @@ namespace Shared.Migrations
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsModified = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsEnable = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: true),
                     CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
                     LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     PartitionKey = table.Column<string>(type: "TEXT", nullable: false, defaultValue: "PigSale"),
@@ -356,7 +356,7 @@ namespace Shared.Migrations
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsModified = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsEnable = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: true),
                     CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
                     LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     PartitionKey = table.Column<string>(type: "TEXT", nullable: false, defaultValue: "Reproductive"),
@@ -433,7 +433,7 @@ namespace Shared.Migrations
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsModified = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsEnable = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: true),
                     CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
                     LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     PartitionKey = table.Column<string>(type: "TEXT", nullable: false, defaultValue: "Water"),
@@ -454,9 +454,9 @@ namespace Shared.Migrations
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsModified = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsEnable = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: true),
                     CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
-                    LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "TEXT", nullable: false, defaultValueSql: "datetime()" ),
                     PartitionKey = table.Column<string>(type: "TEXT", nullable: false, defaultValue: "ControlData"),
                     Timestamp = table.Column<DateTimeOffset>(type: "TEXT", nullable: true)
                 },
@@ -491,7 +491,7 @@ namespace Shared.Migrations
                     IsDeleted = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsModified = table.Column<bool>(type: "INTEGER", nullable: false),
                     IsEnable = table.Column<bool>(type: "INTEGER", nullable: false),
-                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    CreatedTimeStamp = table.Column<DateTime>(type: "TEXT", nullable: true),
                     CreatedBy = table.Column<string>(type: "TEXT", nullable: false),
                     LastModified = table.Column<DateTime>(type: "TEXT", nullable: false),
                     PartitionKey = table.Column<string>(type: "TEXT", nullable: false, defaultValue: "Feed"),
@@ -2546,1267 +2546,1267 @@ namespace Shared.Migrations
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "a985d0bd-d462-4b64-bcb3-9fc840ce4e87", "InitialUpload", "FeedType", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "9b42ad2e-9471-4c69-8473-f17f4f2c67e7", "InitialUpload", "FeedType", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "ee66498e-0b00-436c-b9e4-85e44f328988", "InitialUpload", "EquipmentType", true, false, false, "ControlData", null, "EquipmentType8" });
+                values: new object[] { "e1d6abd3-22b9-4bd2-9560-22519e350d36", "InitialUpload", "EquipmentType", true, false, false, "ControlData", null, "EquipmentType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "0b7416c0-6b08-4677-ab44-08ae48670b14", "InitialUpload", "PigSaleType", true, false, false, "ControlData", null, "PigType1" });
+                values: new object[] { "0dbadf35-63bf-4d2d-9f87-004314dacb12", "InitialUpload", "PigSaleType", true, false, false, "ControlData", null, "PigType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "c2cbc6ae-af32-4599-81a3-58752e5a1b46", "InitialUpload", "PigSaleType", true, false, false, "ControlData", null, "PigType2" });
+                values: new object[] { "93ad9050-7545-44cb-9664-890058345e13", "InitialUpload", "PigSaleType", true, false, false, "ControlData", null, "PigType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "ffad326e-1cfa-402b-8250-650665096a08", "InitialUpload", "PigSaleType", true, false, false, "ControlData", null, "PigType3" });
+                values: new object[] { "32974f5f-2704-4be0-ac57-3a05249472b1", "InitialUpload", "PigSaleType", true, false, false, "ControlData", null, "PigType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "79fdb3e9-a474-4e72-89c2-3464d3091724", "InitialUpload", "PigSaleType", true, false, false, "ControlData", null, "PigType4" });
+                values: new object[] { "59e8252c-f135-4148-b6f2-03a4385fd513", "InitialUpload", "PigSaleType", true, false, false, "ControlData", null, "PigType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "a1533e8a-6ac1-4f45-9571-2be3d1d09ca2", "InitialUpload", "PigSaleType", true, false, false, "ControlData", null, "PigType5" });
+                values: new object[] { "09c19e85-4f4f-4082-b2e3-e80bb5d9c994", "InitialUpload", "PigSaleType", true, false, false, "ControlData", null, "PigType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "e6a02d0e-cc91-4111-a5a7-44a41c2614f6", "InitialUpload", "PigSaleType", true, false, false, "ControlData", null, "PigType6" });
+                values: new object[] { "9096057d-0ec1-4898-b375-4f839b78819c", "InitialUpload", "PigSaleType", true, false, false, "ControlData", null, "PigType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "3918d4d2-56a9-437c-baa2-c18cbc7eccb8", "InitialUpload", "PigSaleType", true, false, false, "ControlData", null, "PigType7" });
+                values: new object[] { "8259e20c-ec93-4562-9ec7-723d731d22e2", "InitialUpload", "PigSaleType", true, false, false, "ControlData", null, "PigType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "1849f893-77ec-4dd6-9ab5-69ff40896e83", "InitialUpload", "PigSaleType", true, false, false, "ControlData", null, "PigType8" });
+                values: new object[] { "f7f767ce-2252-47f5-ab14-2ec5b8f197d6", "InitialUpload", "PigSaleType", true, false, false, "ControlData", null, "PigType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "445a5d8f-8a57-44d1-960e-a80aeb4c8ef1", "InitialUpload", "SoldToType", true, false, false, "ControlData", null, "SoldToType1" });
+                values: new object[] { "5b334253-62ed-44ff-92ed-d2e0ad021de6", "InitialUpload", "SoldToType", true, false, false, "ControlData", null, "SoldToType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "70b61146-6653-48d7-9282-d004151e6bea", "InitialUpload", "SoldToType", true, false, false, "ControlData", null, "SoldToType2" });
+                values: new object[] { "f435ebea-26f6-4806-87b8-3ea797f712ce", "InitialUpload", "SoldToType", true, false, false, "ControlData", null, "SoldToType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "ae886681-7cb1-45b6-87f0-3472cbc8c34c", "InitialUpload", "SoldToType", true, false, false, "ControlData", null, "SoldToType3" });
+                values: new object[] { "999c73c5-7b5a-4119-ab9f-3373e440e192", "InitialUpload", "SoldToType", true, false, false, "ControlData", null, "SoldToType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "7b6f18cd-df69-4e6d-acfb-9e992d265c53", "InitialUpload", "SoldToType", true, false, false, "ControlData", null, "SoldToType4" });
+                values: new object[] { "93f0364d-e692-4e18-9d27-678f5d6574a4", "InitialUpload", "SoldToType", true, false, false, "ControlData", null, "SoldToType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "9be6d4e2-60ab-4984-90ab-4c8bbb48cbd6", "InitialUpload", "SoldToType", true, false, false, "ControlData", null, "SoldToType5" });
+                values: new object[] { "4b4c1b1a-321c-479f-9b9d-68015c4a461c", "InitialUpload", "SoldToType", true, false, false, "ControlData", null, "SoldToType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "03ff9e3b-30fc-415b-b55e-ad79c6fa69b7", "InitialUpload", "SoldToType", true, false, false, "ControlData", null, "SoldToType6" });
+                values: new object[] { "5cf7720c-6e1c-4f4a-8bc5-65b462a5a67f", "InitialUpload", "SoldToType", true, false, false, "ControlData", null, "SoldToType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "140f26c0-fe75-452e-a349-f3f222e9587f", "InitialUpload", "SoldToType", true, false, false, "ControlData", null, "SoldToType7" });
+                values: new object[] { "aa06ee62-8695-445f-b7df-bffeb27dd6d1", "InitialUpload", "SoldToType", true, false, false, "ControlData", null, "SoldToType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "cc09dfc7-a696-43c7-9f98-e9c4d2da57b6", "InitialUpload", "SoldToType", true, false, false, "ControlData", null, "SoldToType8" });
+                values: new object[] { "7596fc31-28de-4cc6-9ff3-06a753b0ca90", "InitialUpload", "SoldToType", true, false, false, "ControlData", null, "SoldToType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "6e791ed2-4799-45ac-9e12-cf7028b000e0", "InitialUpload", "BreedingServiceType", true, false, false, "ControlData", null, "BreedingServiceType1" });
+                values: new object[] { "f49d4535-4402-4d35-b370-3525a4e77bc4", "InitialUpload", "BreedingServiceType", true, false, false, "ControlData", null, "BreedingServiceType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "29ad7f73-9017-440f-9ec6-0f7cbb2915d9", "InitialUpload", "BreedingServiceType", true, false, false, "ControlData", null, "BreedingServiceType2" });
+                values: new object[] { "aaca6028-e30a-4a75-8951-af32c143f259", "InitialUpload", "BreedingServiceType", true, false, false, "ControlData", null, "BreedingServiceType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "496c5c92-74df-4a39-af0e-48a70680b2c9", "InitialUpload", "BreedingServiceType", true, false, false, "ControlData", null, "BreedingServiceType3" });
+                values: new object[] { "6eed4f41-d9c9-43e6-be73-36d775dd824f", "InitialUpload", "BreedingServiceType", true, false, false, "ControlData", null, "BreedingServiceType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "8e2812d3-6d7b-4dd4-9903-955d055a9129", "InitialUpload", "BreedingServiceType", true, false, false, "ControlData", null, "BreedingServiceType4" });
+                values: new object[] { "6683e030-9fff-42c6-9dfb-e1627beaba6e", "InitialUpload", "BreedingServiceType", true, false, false, "ControlData", null, "BreedingServiceType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "3d7b56f3-0a29-438b-8485-7f40d00c9e15", "InitialUpload", "BreedingServiceType", true, false, false, "ControlData", null, "BreedingServiceType5" });
+                values: new object[] { "03ac38b3-d837-4aee-b3fc-eb7965194562", "InitialUpload", "BreedingServiceType", true, false, false, "ControlData", null, "BreedingServiceType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "47cd3875-7921-4877-b649-0e5ffe9c153b", "InitialUpload", "BreedingServiceType", true, false, false, "ControlData", null, "BreedingServiceType6" });
+                values: new object[] { "0d58adef-dc67-4b31-b530-c529c43db22a", "InitialUpload", "BreedingServiceType", true, false, false, "ControlData", null, "BreedingServiceType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "687ba879-8831-492c-a9f6-9696a8945090", "InitialUpload", "BreedingServiceType", true, false, false, "ControlData", null, "BreedingServiceType7" });
+                values: new object[] { "1abd5c9c-99cd-4243-9dbd-fe55af41bb6a", "InitialUpload", "BreedingServiceType", true, false, false, "ControlData", null, "BreedingServiceType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "aaefb244-2ef1-4482-909f-82e3b0d9b491", "InitialUpload", "BreedingServiceType", true, false, false, "ControlData", null, "BreedingServiceType8" });
+                values: new object[] { "4a37882b-55d3-4337-b503-a68676ed61e2", "InitialUpload", "BreedingServiceType", true, false, false, "ControlData", null, "BreedingServiceType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "a64d62aa-837e-45ad-b704-57916b31d0c7", "InitialUpload", "OtherPaymentType", true, false, false, "ControlData", null, "PaymentType1" });
+                values: new object[] { "9e0b07c4-bcb9-4199-a532-d5eebede18b3", "InitialUpload", "OtherPaymentType", true, false, false, "ControlData", null, "PaymentType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "83eb3e82-c23f-41b6-b3b6-21fb56226f99", "InitialUpload", "OtherPaymentType", true, false, false, "ControlData", null, "PaymentType2" });
+                values: new object[] { "6acc0836-cc0b-42e6-b9d6-4f74c770508f", "InitialUpload", "OtherPaymentType", true, false, false, "ControlData", null, "PaymentType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "9e607c30-9c3b-48e8-ae29-befaf561a100", "InitialUpload", "EquipmentType", true, false, false, "ControlData", null, "EquipmentType7" });
+                values: new object[] { "dfee5afa-fb6f-4788-9540-d320ecbe4e75", "InitialUpload", "EquipmentType", true, false, false, "ControlData", null, "EquipmentType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "f1a95033-0af9-433b-bbb5-36fef1f4175f", "InitialUpload", "EquipmentType", true, false, false, "ControlData", null, "EquipmentType6" });
+                values: new object[] { "e1a47151-edb7-4e44-bd2d-0752a3922ac1", "InitialUpload", "EquipmentType", true, false, false, "ControlData", null, "EquipmentType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "0d630249-04ef-40f6-bf25-649ca30ee2db", "InitialUpload", "EquipmentType", true, false, false, "ControlData", null, "EquipmentType5" });
+                values: new object[] { "c3facaa2-7831-42c1-98d9-84e94bcf4d85", "InitialUpload", "EquipmentType", true, false, false, "ControlData", null, "EquipmentType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "cfd4a9dd-933e-4535-abdd-d6fb334ba7de", "InitialUpload", "EquipmentType", true, false, false, "ControlData", null, "EquipmentType4" });
+                values: new object[] { "e0dd38e9-ef03-4c23-bd43-46a950aef42c", "InitialUpload", "EquipmentType", true, false, false, "ControlData", null, "EquipmentType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "a77960be-af82-495f-b82b-f85a9d347a49", "InitialUpload", "WhoProvidedServiceUnit", true, false, false, "ControlData", null, "WhoProvidedServiceType8" });
+                values: new object[] { "326f1492-a506-4ef3-beab-f7d9dc519151", "InitialUpload", "WhoProvidedServiceUnit", true, false, false, "ControlData", null, "WhoProvidedServiceType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "bfee9e65-4d17-4a81-9ecd-1820c31b57ca", "InitialUpload", "AnimalType", true, false, false, "ControlData", null, "AnimalType1" });
+                values: new object[] { "517f92e3-b93b-4d17-a51e-a3c7c3c8a43c", "InitialUpload", "AnimalType", true, false, false, "ControlData", null, "AnimalType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "5530d4a9-24de-4476-9b3e-b4b0dd69f3cf", "InitialUpload", "AnimalType", true, false, false, "ControlData", null, "AnimalType2" });
+                values: new object[] { "d56a2a58-abbf-4e27-8e9e-2d588f133301", "InitialUpload", "AnimalType", true, false, false, "ControlData", null, "AnimalType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "dbe985f1-6987-49b3-9daf-47171934c992", "InitialUpload", "AnimalType", true, false, false, "ControlData", null, "AnimalType3" });
+                values: new object[] { "979b1a15-a2e8-4af1-bced-9c228a2f9a60", "InitialUpload", "AnimalType", true, false, false, "ControlData", null, "AnimalType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "4c76d7ee-1599-42b7-b01f-6be975700b73", "InitialUpload", "AnimalType", true, false, false, "ControlData", null, "AnimalType4" });
+                values: new object[] { "04fb6391-1da6-45f6-9c05-cd088ea7ce04", "InitialUpload", "AnimalType", true, false, false, "ControlData", null, "AnimalType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "bc18f066-479d-4a5b-ad43-369e8671fabe", "InitialUpload", "AnimalType", true, false, false, "ControlData", null, "AnimalType5" });
+                values: new object[] { "1cd82d2a-0e16-4307-b1fe-bed0f5063e24", "InitialUpload", "AnimalType", true, false, false, "ControlData", null, "AnimalType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "f78e4fc1-54a2-4471-b2fe-830b29d81e03", "InitialUpload", "AnimalType", true, false, false, "ControlData", null, "AnimalType6" });
+                values: new object[] { "32192899-5d73-4f87-ae4c-47277e454db9", "InitialUpload", "AnimalType", true, false, false, "ControlData", null, "AnimalType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "5bb9830c-6ad3-4a67-b876-a1e9b37ebd5b", "InitialUpload", "AnimalType", true, false, false, "ControlData", null, "AnimalType7" });
+                values: new object[] { "af5c456e-33ec-4674-916c-c675422196d1", "InitialUpload", "AnimalType", true, false, false, "ControlData", null, "AnimalType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "0baa313f-c068-4494-adbc-ee072967ab0b", "InitialUpload", "AnimalType", true, false, false, "ControlData", null, "AnimalType8" });
+                values: new object[] { "f1f0512d-51b2-4d8f-83d9-2e5f7b814254", "InitialUpload", "AnimalType", true, false, false, "ControlData", null, "AnimalType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "e8f495ac-7f87-467e-b93d-0b244d7bc929", "InitialUpload", "AnimalPurchasedFrom", true, false, false, "ControlData", null, "AnimalPurchasedFromType1" });
+                values: new object[] { "752ad166-0048-4625-a6b1-f496bf3357e2", "InitialUpload", "AnimalPurchasedFrom", true, false, false, "ControlData", null, "AnimalPurchasedFromType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "dd42f2bc-daab-47c5-a1f5-c50456df6f1a", "InitialUpload", "AnimalPurchasedFrom", true, false, false, "ControlData", null, "AnimalPurchasedFromType2" });
+                values: new object[] { "b10ed6ac-2b6e-4117-a2d5-c62c02086514", "InitialUpload", "AnimalPurchasedFrom", true, false, false, "ControlData", null, "AnimalPurchasedFromType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "590a4094-ae41-410f-96f0-27962f3721a1", "InitialUpload", "AnimalPurchasedFrom", true, false, false, "ControlData", null, "AnimalPurchasedFromType3" });
+                values: new object[] { "3c2f2eee-2386-4b10-ab2a-490cddc9e603", "InitialUpload", "AnimalPurchasedFrom", true, false, false, "ControlData", null, "AnimalPurchasedFromType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "a8aa45f5-046d-4596-812f-9d687c0e46d4", "InitialUpload", "AnimalPurchasedFrom", true, false, false, "ControlData", null, "AnimalPurchasedFromType4" });
+                values: new object[] { "bb89c17d-2d40-4d9c-98df-7333c41087c4", "InitialUpload", "AnimalPurchasedFrom", true, false, false, "ControlData", null, "AnimalPurchasedFromType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "edf8a627-5efd-4b1a-906a-68333e170090", "InitialUpload", "OtherPaymentType", true, false, false, "ControlData", null, "PaymentType3" });
+                values: new object[] { "13d1f936-afbf-4440-9ea2-b6799cf1129e", "InitialUpload", "OtherPaymentType", true, false, false, "ControlData", null, "PaymentType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "45e931e4-76be-445a-a856-e4dd071dc3f2", "InitialUpload", "AnimalPurchasedFrom", true, false, false, "ControlData", null, "AnimalPurchasedFromType5" });
+                values: new object[] { "3138bd83-d3d3-4cf7-832a-fefaaa624bfd", "InitialUpload", "AnimalPurchasedFrom", true, false, false, "ControlData", null, "AnimalPurchasedFromType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "80c857f1-a208-4ae4-8f29-e5d1001bc551", "InitialUpload", "AnimalPurchasedFrom", true, false, false, "ControlData", null, "AnimalPurchasedFromType7" });
+                values: new object[] { "4e4092fa-1ce3-476a-baa7-d024f03c8a41", "InitialUpload", "AnimalPurchasedFrom", true, false, false, "ControlData", null, "AnimalPurchasedFromType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "2315e139-30a8-4ac4-a275-59afb9637486", "InitialUpload", "AnimalPurchasedFrom", true, false, false, "ControlData", null, "AnimalPurchasedFromType8" });
+                values: new object[] { "27aaf357-ccdc-4c8a-8037-3d4f1e9f3e90", "InitialUpload", "AnimalPurchasedFrom", true, false, false, "ControlData", null, "AnimalPurchasedFromType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "555b0088-4bde-422c-bb80-d09e9bce7163", "InitialUpload", "LoanProvider", true, false, false, "ControlData", null, "LoanProviderType1" });
+                values: new object[] { "cee61806-4fa8-4b08-9efb-5c5855b89c66", "InitialUpload", "LoanProvider", true, false, false, "ControlData", null, "LoanProviderType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "bce89773-8d39-4d9c-adda-e0b2fd038a8e", "InitialUpload", "LoanProvider", true, false, false, "ControlData", null, "LoanProviderType2" });
+                values: new object[] { "ab18f290-d307-4ebb-ae4e-e4b76a93d41f", "InitialUpload", "LoanProvider", true, false, false, "ControlData", null, "LoanProviderType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "2465dd94-2b30-4c9a-b7c0-06b950c27947", "InitialUpload", "LoanProvider", true, false, false, "ControlData", null, "LoanProviderType3" });
+                values: new object[] { "65cbdf7f-bdf9-4c1b-be53-8acee2c8acfd", "InitialUpload", "LoanProvider", true, false, false, "ControlData", null, "LoanProviderType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "9ddd7665-4f53-4a83-8792-7a164342faff", "InitialUpload", "LoanProvider", true, false, false, "ControlData", null, "LoanProviderType4" });
+                values: new object[] { "ee5789e0-90a9-4733-bbcd-1c961da13374", "InitialUpload", "LoanProvider", true, false, false, "ControlData", null, "LoanProviderType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "3e8022d9-e07c-424b-a0b6-3e2e560c1dda", "InitialUpload", "LoanProvider", true, false, false, "ControlData", null, "LoanProviderType5" });
+                values: new object[] { "12e37f24-d276-48cc-901a-46c16e57dda0", "InitialUpload", "LoanProvider", true, false, false, "ControlData", null, "LoanProviderType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "46f19c68-8033-45ed-9ca3-985df1ed8d43", "InitialUpload", "LoanProvider", true, false, false, "ControlData", null, "LoanProviderType6" });
+                values: new object[] { "cea8e02f-2c18-4a69-9c6e-edbf17675a4f", "InitialUpload", "LoanProvider", true, false, false, "ControlData", null, "LoanProviderType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "00fe31bc-85b8-43b0-a7b3-76edcc3dd198", "InitialUpload", "LoanProvider", true, false, false, "ControlData", null, "LoanProviderType7" });
+                values: new object[] { "261e7f89-372b-4f61-953f-764e64f720e5", "InitialUpload", "LoanProvider", true, false, false, "ControlData", null, "LoanProviderType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "9b41f8d7-be46-46b5-9965-99656688497f", "InitialUpload", "LoanProvider", true, false, false, "ControlData", null, "LoanProviderType8" });
+                values: new object[] { "9fcec9a6-6a5b-45ce-9eed-7fd6ea3bef05", "InitialUpload", "LoanProvider", true, false, false, "ControlData", null, "LoanProviderType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "fd2a830c-d54d-4f12-90a0-88819431a410", "InitialUpload", "EquipmentType", true, false, false, "ControlData", null, "EquipmentType1" });
+                values: new object[] { "181456be-c199-4b38-b068-9f43846ee5e5", "InitialUpload", "EquipmentType", true, false, false, "ControlData", null, "EquipmentType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "d49e6f5e-32e3-4617-a4b5-d98a96afcca0", "InitialUpload", "EquipmentType", true, false, false, "ControlData", null, "EquipmentType2" });
+                values: new object[] { "217486be-b266-410a-8ec1-e32a5d9611ac", "InitialUpload", "EquipmentType", true, false, false, "ControlData", null, "EquipmentType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "39c6ea67-27db-488b-accd-b11738d5d0fe", "InitialUpload", "EquipmentType", true, false, false, "ControlData", null, "EquipmentType3" });
+                values: new object[] { "cbb8dba5-8356-4932-bdd3-ab6d968eceb8", "InitialUpload", "EquipmentType", true, false, false, "ControlData", null, "EquipmentType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "d3fc5475-4ace-46c0-85a1-8969148f0b5e", "InitialUpload", "AnimalPurchasedFrom", true, false, false, "ControlData", null, "AnimalPurchasedFromType6" });
+                values: new object[] { "ab0385c2-da1f-4c0c-9372-b09d63852b38", "InitialUpload", "AnimalPurchasedFrom", true, false, false, "ControlData", null, "AnimalPurchasedFromType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "81783275-47f7-45fc-825d-3cc4d10802d3", "InitialUpload", "OtherPaymentType", true, false, false, "ControlData", null, "PaymentType4" });
+                values: new object[] { "881c1075-4d0b-47bb-a50c-b73b39bd7e13", "InitialUpload", "OtherPaymentType", true, false, false, "ControlData", null, "PaymentType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "d12b96ad-d40a-478d-9885-66caec247453", "InitialUpload", "OtherPaymentType", true, false, false, "ControlData", null, "PaymentType5" });
+                values: new object[] { "40bc82b2-c823-4795-96d2-b89b2f71a0e7", "InitialUpload", "OtherPaymentType", true, false, false, "ControlData", null, "PaymentType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "5dcd99e9-205a-4fc4-9d35-421bf9e69636", "InitialUpload", "OtherPaymentType", true, false, false, "ControlData", null, "PaymentType6" });
+                values: new object[] { "5bfc985d-3341-4b49-81eb-b8c80776f042", "InitialUpload", "OtherPaymentType", true, false, false, "ControlData", null, "PaymentType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "cfccf964-7224-4646-aca1-5fe0e270a50b", "InitialUpload", "CountyType", true, false, false, "ControlData", null, "CountyType4" });
+                values: new object[] { "ca0ef4a1-0527-449a-b8fa-c3b89f06dcef", "InitialUpload", "CountyType", true, false, false, "ControlData", null, "CountyType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "a31e0f95-145f-4fd5-9c79-507470206feb", "InitialUpload", "CountyType", true, false, false, "ControlData", null, "CountyType5" });
+                values: new object[] { "86016667-d7fb-4c2b-a83c-81805d207bf1", "InitialUpload", "CountyType", true, false, false, "ControlData", null, "CountyType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "c00d2f35-fff6-4c99-a8c1-979ea26f973d", "InitialUpload", "CountyType", true, false, false, "ControlData", null, "CountyType6" });
+                values: new object[] { "324d5ff4-15a2-43cf-860f-9a638c5c693c", "InitialUpload", "CountyType", true, false, false, "ControlData", null, "CountyType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "60b1e34c-0a4a-4612-ad3e-a360c8a678b0", "InitialUpload", "CountyType", true, false, false, "ControlData", null, "CountyType7" });
+                values: new object[] { "609cb20f-3bf6-4b20-82b1-393fd5a8293b", "InitialUpload", "CountyType", true, false, false, "ControlData", null, "CountyType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "f73bd0d0-4b48-4d59-a1f2-e9d363ff92e4", "InitialUpload", "CountyType", true, false, false, "ControlData", null, "CountyType8" });
+                values: new object[] { "da8a47e8-1c55-4721-bd8a-9d713461741c", "InitialUpload", "CountyType", true, false, false, "ControlData", null, "CountyType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "ba513f29-f6c6-408d-8ac5-a9def0120ad8", "InitialUpload", "SubCountyType", true, false, false, "ControlData", null, "SubCountyType1" });
+                values: new object[] { "f3ff6ac4-569a-4e55-b6e0-5099e50cc3f9", "InitialUpload", "SubCountyType", true, false, false, "ControlData", null, "SubCountyType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "05a091ca-3e46-420f-927e-6206df18643b", "InitialUpload", "SubCountyType", true, false, false, "ControlData", null, "SubCountyType2" });
+                values: new object[] { "87d193e2-53ac-4624-8ed2-73001ebd98e4", "InitialUpload", "SubCountyType", true, false, false, "ControlData", null, "SubCountyType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "e3d31bfc-de7d-4eaa-887d-af8dbaf1acfb", "InitialUpload", "SubCountyType", true, false, false, "ControlData", null, "SubCountyType3" });
+                values: new object[] { "916fd182-e83d-43dd-94ba-a91a51217112", "InitialUpload", "SubCountyType", true, false, false, "ControlData", null, "SubCountyType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "b64ce4fd-1dcd-4c95-8306-845698b8f1e4", "InitialUpload", "SubCountyType", true, false, false, "ControlData", null, "SubCountyType4" });
+                values: new object[] { "2075aeb3-cb50-4082-8187-3aa2c25d49ae", "InitialUpload", "SubCountyType", true, false, false, "ControlData", null, "SubCountyType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "45f8051c-d2b9-4848-a098-9a623b3cd911", "InitialUpload", "SubCountyType", true, false, false, "ControlData", null, "SubCountyType5" });
+                values: new object[] { "355b9986-8eb6-4efd-af83-605fd4d4f861", "InitialUpload", "SubCountyType", true, false, false, "ControlData", null, "SubCountyType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "a078c136-f947-4ad6-b432-f75c3c825967", "InitialUpload", "SubCountyType", true, false, false, "ControlData", null, "SubCountyType6" });
+                values: new object[] { "32390add-2dc9-4653-a17e-587989cfc0cc", "InitialUpload", "SubCountyType", true, false, false, "ControlData", null, "SubCountyType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "c403f439-c7ae-4b83-8b1e-0920b4eb8ada", "InitialUpload", "SubCountyType", true, false, false, "ControlData", null, "SubCountyType7" });
+                values: new object[] { "1d534ccc-90fd-4c03-94b9-58f1fcac4dc8", "InitialUpload", "SubCountyType", true, false, false, "ControlData", null, "SubCountyType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "df859cff-f492-49dd-bfea-3b482a1629ba", "InitialUpload", "SubCountyType", true, false, false, "ControlData", null, "SubCountyType8" });
+                values: new object[] { "15a7208e-588b-4800-b376-eec6f81b3272", "InitialUpload", "SubCountyType", true, false, false, "ControlData", null, "SubCountyType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "d879ea98-3fe8-46bd-8581-9460fbf8e441", "InitialUpload", "CountyType", true, false, false, "ControlData", null, "CountyType3" });
+                values: new object[] { "27cf7713-be94-4942-b5d7-87624590be7c", "InitialUpload", "CountyType", true, false, false, "ControlData", null, "CountyType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "942f7829-3967-4225-bc97-e77b240d9d78", "InitialUpload", "CountryType", true, false, false, "ControlData", null, "CountryTypeUganda" });
+                values: new object[] { "86e22b60-fcf7-4f0d-b8a7-cfc152baed3c", "InitialUpload", "CountryType", true, false, false, "ControlData", null, "CountryTypeUganda" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "d4214435-65a9-41e2-ab9c-54995ded6d70", "InitialUpload", "CountryType", true, false, false, "ControlData", null, "CountryTypeRwanda" });
+                values: new object[] { "f7762344-e211-4e11-a6d9-49044525a398", "InitialUpload", "CountryType", true, false, false, "ControlData", null, "CountryTypeRwanda" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "2c0ae1a7-1e0b-4554-b35d-fc6bd346e7d1", "InitialUpload", "CurrencyType", true, false, false, "ControlData", null, "CurrencyType1" });
+                values: new object[] { "cc72a4d0-0d9f-49ed-a227-6450434dd218", "InitialUpload", "CurrencyType", true, false, false, "ControlData", null, "CurrencyType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "f67ae89b-8a2b-40c4-bc8f-8dfc0b80e27e", "InitialUpload", "CurrencyType", true, false, false, "ControlData", null, "CurrencyType2" });
+                values: new object[] { "6202b37b-b380-4e0a-9b9a-a8ef28789147", "InitialUpload", "CurrencyType", true, false, false, "ControlData", null, "CurrencyType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "3cad1cd6-f9f7-43d1-951e-b8c6bc92c7c8", "InitialUpload", "CurrencyType", true, false, false, "ControlData", null, "CurrencyType3" });
+                values: new object[] { "7c1a079c-f238-42ca-ad92-a56d6d295fe4", "InitialUpload", "CurrencyType", true, false, false, "ControlData", null, "CurrencyType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "198e3717-cdad-481f-83f0-880e7fd8072c", "InitialUpload", "CurrencyType", true, false, false, "ControlData", null, "CurrencyType4" });
+                values: new object[] { "ee6c107b-87f3-43c0-a6c1-1b9a42aab015", "InitialUpload", "CurrencyType", true, false, false, "ControlData", null, "CurrencyType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "74e225c2-174b-4fc9-b6cb-cffeec61ef25", "InitialUpload", "CurrencyType", true, false, false, "ControlData", null, "CurrencyType5" });
+                values: new object[] { "2417517d-b87a-491e-aec3-d47e37778434", "InitialUpload", "CurrencyType", true, false, false, "ControlData", null, "CurrencyType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "985458da-d58f-4e88-84f9-2e8ef57ee465", "InitialUpload", "CurrencyType", true, false, false, "ControlData", null, "CurrencyType6" });
+                values: new object[] { "2b6b0ed7-22b4-43e8-9f6b-1f15e874422a", "InitialUpload", "CurrencyType", true, false, false, "ControlData", null, "CurrencyType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "57ad2d7f-8ac2-49af-b9b4-87158f0fc41c", "InitialUpload", "CurrencyType", true, false, false, "ControlData", null, "CurrencyType7" });
+                values: new object[] { "7e478301-b70d-40b7-8f51-ca606b385e0d", "InitialUpload", "CurrencyType", true, false, false, "ControlData", null, "CurrencyType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "ea05034e-f5a9-4c0d-9965-ebb5c5811cf5", "InitialUpload", "CurrencyType", true, false, false, "ControlData", null, "CurrencyType8" });
+                values: new object[] { "809e5b2e-6e16-4395-a3d0-6ff022190ab1", "InitialUpload", "CurrencyType", true, false, false, "ControlData", null, "CurrencyType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "9d2d127f-e32f-4f1c-a098-6886a6cf5944", "InitialUpload", "LanguageType", true, false, false, "ControlData", null, "LanguageType1" });
+                values: new object[] { "e6916571-9dd3-405c-aada-273d367f72d7", "InitialUpload", "LanguageType", true, false, false, "ControlData", null, "LanguageType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "5be4a579-0cc2-4aaa-aa94-04927afd7915", "InitialUpload", "LanguageType", true, false, false, "ControlData", null, "LanguageType2" });
+                values: new object[] { "be22d24d-8015-4516-8bfe-669d41a6ad13", "InitialUpload", "LanguageType", true, false, false, "ControlData", null, "LanguageType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "85550da9-dc4e-425b-9f44-af996ca73726", "InitialUpload", "LanguageType", true, false, false, "ControlData", null, "LanguageType3" });
+                values: new object[] { "e877026e-89b5-4627-ac51-84bdfefa11d4", "InitialUpload", "LanguageType", true, false, false, "ControlData", null, "LanguageType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "60c51cbb-7222-479f-8a74-bbce6dc31ee3", "InitialUpload", "LanguageType", true, false, false, "ControlData", null, "LanguageType4" });
+                values: new object[] { "bcff259b-22bd-4fcb-97ef-8cc013909945", "InitialUpload", "LanguageType", true, false, false, "ControlData", null, "LanguageType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "c509eadb-5e82-4fe2-baaa-11f7e3f9b866", "InitialUpload", "CountryType", true, false, false, "ControlData", null, "CountryTypeVietnam" });
+                values: new object[] { "8ef0cb03-cd8a-4a93-a44c-332c25205a29", "InitialUpload", "CountryType", true, false, false, "ControlData", null, "CountryTypeVietnam" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "89b0ee44-0aea-45c3-9821-268c1df7be2c", "InitialUpload", "WhoProvidedServiceUnit", true, false, false, "ControlData", null, "WhoProvidedServiceType7" });
+                values: new object[] { "8c3c585a-cf7c-4979-8673-b09d4fd913dd", "InitialUpload", "WhoProvidedServiceUnit", true, false, false, "ControlData", null, "WhoProvidedServiceType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "e7c9591d-1b34-4ab1-8cc7-9aed66e07d1c", "InitialUpload", "CountyType", true, false, false, "ControlData", null, "CountyType2" });
+                values: new object[] { "df2af023-dee5-44ee-a625-a31777785249", "InitialUpload", "CountyType", true, false, false, "ControlData", null, "CountyType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "4132ddbf-6e74-4345-8389-071d8900ae51", "InitialUpload", "DistrictType", true, false, false, "ControlData", null, "DistrictType8" });
+                values: new object[] { "3c50db2e-4785-430a-b17a-06ed1e2121de", "InitialUpload", "DistrictType", true, false, false, "ControlData", null, "DistrictType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "e526cd0a-cae9-433b-9456-648cd7bbc9bb", "InitialUpload", "OtherPaymentType", true, false, false, "ControlData", null, "PaymentType7" });
+                values: new object[] { "fe9a6f34-8b9d-4a7e-a943-bae6c75820a6", "InitialUpload", "OtherPaymentType", true, false, false, "ControlData", null, "PaymentType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "831e6939-0c96-4215-8f7f-674c4bf2f12e", "InitialUpload", "OtherPaymentType", true, false, false, "ControlData", null, "PaymentType8" });
+                values: new object[] { "15661b02-b5e9-4639-9d2c-e34224e95946", "InitialUpload", "OtherPaymentType", true, false, false, "ControlData", null, "PaymentType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "ffd1d505-7ffb-420d-b20f-8dcb464ee7b0", "InitialUpload", "ClientType", true, false, false, "ControlData", null, "ClientType1" });
+                values: new object[] { "5d939e1f-6fda-480b-9358-cb1a463204ed", "InitialUpload", "ClientType", true, false, false, "ControlData", null, "ClientType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "f520ca9e-fe28-421b-8a13-9cb90068fe30", "InitialUpload", "ClientType", true, false, false, "ControlData", null, "ClientType2" });
+                values: new object[] { "0c453989-bffb-42b6-a5a8-050ffab7df00", "InitialUpload", "ClientType", true, false, false, "ControlData", null, "ClientType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "50131af4-2602-4240-b372-b5dfee1c2616", "InitialUpload", "ClientType", true, false, false, "ControlData", null, "ClientType3" });
+                values: new object[] { "2514bf04-994b-4c3e-ae08-91b76fdd8e3e", "InitialUpload", "ClientType", true, false, false, "ControlData", null, "ClientType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "2b744e14-299d-4166-999d-4fa7bf2c8423", "InitialUpload", "ClientType", true, false, false, "ControlData", null, "ClientType4" });
+                values: new object[] { "f464969b-1a3d-4ade-9772-afe12512b02d", "InitialUpload", "ClientType", true, false, false, "ControlData", null, "ClientType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "5d9311b8-a56b-4495-970b-a73a58527551", "InitialUpload", "ClientType", true, false, false, "ControlData", null, "ClientType5" });
+                values: new object[] { "6e92b4c6-8e2d-4a55-859d-d5c43bf6a801", "InitialUpload", "ClientType", true, false, false, "ControlData", null, "ClientType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "47fdf550-c309-4c72-a666-cd21e08307f8", "InitialUpload", "ClientType", true, false, false, "ControlData", null, "ClientType6" });
+                values: new object[] { "c5dcf015-d466-4741-956b-4ea9229514fc", "InitialUpload", "ClientType", true, false, false, "ControlData", null, "ClientType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "60a2fc49-077b-44b5-ba5d-6779b2ad3ba8", "InitialUpload", "ClientType", true, false, false, "ControlData", null, "ClientType7" });
+                values: new object[] { "db27b2f3-07fb-4f36-98d9-4d42d5b1b864", "InitialUpload", "ClientType", true, false, false, "ControlData", null, "ClientType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "ac233f2f-a881-434d-b2a7-739875d60593", "InitialUpload", "ClientType", true, false, false, "ControlData", null, "ClientType8" });
+                values: new object[] { "97dcb4fa-3291-4a94-8cf8-fa447c9909fd", "InitialUpload", "ClientType", true, false, false, "ControlData", null, "ClientType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "d9789ba0-cd05-4f98-a5d7-30855b5b433c", "InitialUpload", "VolumeUnitType", true, false, false, "ControlData", null, "VolumeUnitType1" });
+                values: new object[] { "7e778b3c-0925-41e0-a70f-6cef1e091821", "InitialUpload", "VolumeUnitType", true, false, false, "ControlData", null, "VolumeUnitType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "05e20feb-3e4c-4283-a51c-4b5e6616e9f0", "InitialUpload", "VolumeUnitType", true, false, false, "ControlData", null, "VolumeUnitType2" });
+                values: new object[] { "5c0f5946-df01-46b6-93eb-7079b46526af", "InitialUpload", "VolumeUnitType", true, false, false, "ControlData", null, "VolumeUnitType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "311cbc7f-fb12-4215-841e-2e51c2f9abbe", "InitialUpload", "VolumeUnitType", true, false, false, "ControlData", null, "VolumeUnitType3" });
+                values: new object[] { "2e0ef8e6-f979-4da3-b70c-f095cb2b5efd", "InitialUpload", "VolumeUnitType", true, false, false, "ControlData", null, "VolumeUnitType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "f815abc7-b85a-4c65-8fd8-3b808c6675aa", "InitialUpload", "CountyType", true, false, false, "ControlData", null, "CountyType1" });
+                values: new object[] { "3512fa94-4fff-41e8-81f4-2ce6e421d876", "InitialUpload", "CountyType", true, false, false, "ControlData", null, "CountyType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "107b4991-c64e-4e14-ba7a-aa0421fb6a32", "InitialUpload", "VolumeUnitType", true, false, false, "ControlData", null, "VolumeUnitType4" });
+                values: new object[] { "3f3d6c4d-f229-4f37-a905-02054c4c59d3", "InitialUpload", "VolumeUnitType", true, false, false, "ControlData", null, "VolumeUnitType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "66cd9b83-a6f2-4c7e-bc64-6be8a4b24480", "InitialUpload", "VolumeUnitType", true, false, false, "ControlData", null, "VolumeUnitType6" });
+                values: new object[] { "b2df1b58-efc0-45ae-8243-566b36c66ad5", "InitialUpload", "VolumeUnitType", true, false, false, "ControlData", null, "VolumeUnitType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "12250695-ab03-4f1b-acd3-0ea5348df796", "InitialUpload", "VolumeUnitType", true, false, false, "ControlData", null, "VolumeUnitType7" });
+                values: new object[] { "22bba24d-33ac-43e5-b4a6-bee23aafe143", "InitialUpload", "VolumeUnitType", true, false, false, "ControlData", null, "VolumeUnitType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "13705cce-ef38-48c2-a211-bbccea7e61d3", "InitialUpload", "VolumeUnitType", true, false, false, "ControlData", null, "VolumeUnitType8" });
+                values: new object[] { "5013a9a1-421c-474f-90ad-3309fc674da8", "InitialUpload", "VolumeUnitType", true, false, false, "ControlData", null, "VolumeUnitType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "0b8760c7-7856-40ee-94ab-4eb6e830832f", "InitialUpload", "GenderType", true, false, false, "ControlData", null, "GenderType1" });
+                values: new object[] { "1c5c6c10-dce1-4ee2-8fac-5978428d783c", "InitialUpload", "GenderType", true, false, false, "ControlData", null, "GenderType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "5f8800ec-32dd-4fcf-aba5-b4490b3151b1", "InitialUpload", "GenderType", true, false, false, "ControlData", null, "GenderType2" });
+                values: new object[] { "d9c237f4-2eaa-4bf1-a204-ae0dd2eeddcc", "InitialUpload", "GenderType", true, false, false, "ControlData", null, "GenderType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "99ebbf72-089a-42d7-85b2-25aebc8d4fa6", "InitialUpload", "GenderType", true, false, false, "ControlData", null, "GenderType3" });
+                values: new object[] { "0fe438d5-7f15-40db-a20f-92ae2f7f6931", "InitialUpload", "GenderType", true, false, false, "ControlData", null, "GenderType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "b665ce09-1194-462f-8bc9-a969417e31cb", "InitialUpload", "DistrictType", true, false, false, "ControlData", null, "DistrictType1" });
+                values: new object[] { "755838b8-581e-46e0-affa-695db3f3cc7b", "InitialUpload", "DistrictType", true, false, false, "ControlData", null, "DistrictType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "6226099a-6710-4d7a-b1cb-fd508cda9175", "InitialUpload", "DistrictType", true, false, false, "ControlData", null, "DistrictType2" });
+                values: new object[] { "b2fb9866-c379-41ff-a414-7631570c3392", "InitialUpload", "DistrictType", true, false, false, "ControlData", null, "DistrictType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "628d9f11-c764-4661-ad8e-5e02f8016663", "InitialUpload", "DistrictType", true, false, false, "ControlData", null, "DistrictType3" });
+                values: new object[] { "07efb3b7-92a2-49e2-90a0-9afad1634c92", "InitialUpload", "DistrictType", true, false, false, "ControlData", null, "DistrictType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "4ac0c2be-748a-4fd7-8f50-62d5d215c281", "InitialUpload", "DistrictType", true, false, false, "ControlData", null, "DistrictType4" });
+                values: new object[] { "f71d9e0c-c052-4aca-89b3-522a128c17fe", "InitialUpload", "DistrictType", true, false, false, "ControlData", null, "DistrictType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "066d5840-733e-4e59-9000-8815cb7f5b39", "InitialUpload", "DistrictType", true, false, false, "ControlData", null, "DistrictType5" });
+                values: new object[] { "ddc19311-18a9-444c-989a-129fa6015717", "InitialUpload", "DistrictType", true, false, false, "ControlData", null, "DistrictType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "ca808188-acea-4b98-ace8-0c45135a96f1", "InitialUpload", "DistrictType", true, false, false, "ControlData", null, "DistrictType6" });
+                values: new object[] { "c177dd7e-496b-4eed-9d9b-e5b48e93e4f0", "InitialUpload", "DistrictType", true, false, false, "ControlData", null, "DistrictType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "86aa4b94-f79c-4f39-9beb-0b9cd6aca314", "InitialUpload", "DistrictType", true, false, false, "ControlData", null, "DistrictType7" });
+                values: new object[] { "63ae082f-7ef1-4cc5-bd48-95b92b73840c", "InitialUpload", "DistrictType", true, false, false, "ControlData", null, "DistrictType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "32531ac5-05b4-448b-aeab-8bde3f4bd81a", "InitialUpload", "VolumeUnitType", true, false, false, "ControlData", null, "VolumeUnitType5" });
+                values: new object[] { "ad4d15ba-9fcd-4c10-ae55-18dda48bbea2", "InitialUpload", "VolumeUnitType", true, false, false, "ControlData", null, "VolumeUnitType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "f640254f-c693-43ae-8eb6-f408ac6bf2a7", "InitialUpload", "LanguageType", true, false, false, "ControlData", null, "LanguageType5" });
+                values: new object[] { "4247d234-913f-4180-8339-b60b27b4ba74", "InitialUpload", "LanguageType", true, false, false, "ControlData", null, "LanguageType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "06fb05fe-d0d7-4e0a-b11b-83ca4f3e7c13", "InitialUpload", "WhoProvidedServiceUnit", true, false, false, "ControlData", null, "WhoProvidedServiceType6" });
+                values: new object[] { "da20651a-684f-4a3e-b982-5a0b74664199", "InitialUpload", "WhoProvidedServiceUnit", true, false, false, "ControlData", null, "WhoProvidedServiceType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "cd023dc2-8aee-422a-b8b8-191cdca840fc", "InitialUpload", "WhoProvidedServiceUnit", true, false, false, "ControlData", null, "WhoProvidedServiceType4" });
+                values: new object[] { "04057ad8-3dda-4fc2-9fb0-e0da7948a055", "InitialUpload", "WhoProvidedServiceUnit", true, false, false, "ControlData", null, "WhoProvidedServiceType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "275044fd-b8ac-4b95-bd87-82925d90fe69", "InitialUpload", "FeedPurchasedType", true, false, false, "ControlData", null, "DropDownPurchaseFrom2" });
+                values: new object[] { "79fc6bb0-99e5-4242-8570-2d59478261e3", "InitialUpload", "FeedPurchasedType", true, false, false, "ControlData", null, "DropDownPurchaseFrom2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "11997e37-b077-482f-ad17-fe36c25cc10e", "InitialUpload", "FeedPurchasedType", true, false, false, "ControlData", null, "DropDownPurchaseFrom3" });
+                values: new object[] { "12451e02-bce2-4c0e-b216-0b78b8323c66", "InitialUpload", "FeedPurchasedType", true, false, false, "ControlData", null, "DropDownPurchaseFrom3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "610d9cba-1760-4dfa-85ff-350c47ae027b", "InitialUpload", "FeedPurchasedType", true, false, false, "ControlData", null, "DropDownPurchaseFrom4" });
+                values: new object[] { "4db11f62-817b-4279-a53e-b3d91dd70a15", "InitialUpload", "FeedPurchasedType", true, false, false, "ControlData", null, "DropDownPurchaseFrom4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "5afbb7d8-b3c8-42dd-91bb-eab40b212ed6", "InitialUpload", "FeedPurchasedType", true, false, false, "ControlData", null, "DropDownPurchaseFrom5" });
+                values: new object[] { "3456dfea-1ab7-4954-96a9-fc7dab1e1952", "InitialUpload", "FeedPurchasedType", true, false, false, "ControlData", null, "DropDownPurchaseFrom5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "f158a764-7772-41d3-be99-84b371b115ee", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType1" });
+                values: new object[] { "f3932957-6b67-4407-b0f0-faac2f0f0285", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "6916e350-60dd-4b7b-a06a-13490c14a3e0", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType2" });
+                values: new object[] { "0016cd60-88cd-4b9e-8420-5f35d91d4b15", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "6cc35da6-4dd9-4c73-a996-e78e625fd171", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType3" });
+                values: new object[] { "8884c348-e6d9-422a-9d74-5cc9d9acfd15", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "7c0639f1-7181-4f5d-8e01-a3326898b6d4", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType4" });
+                values: new object[] { "e83ed694-c73b-41ef-a576-76bdd0453ab7", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "4ce1215e-a11d-4d8d-8c41-a7fcfca882ab", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType5" });
+                values: new object[] { "fe0de186-0f77-4e44-beae-d585e934ec6b", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "15f3e59e-5e49-4413-b3d2-565ad85038b5", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType6" });
+                values: new object[] { "3e57e32e-79bc-4791-ace6-3d87bf247fb5", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "db008a17-ae3f-47e2-a16d-7b5ef65d6086", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType7" });
+                values: new object[] { "78a2da5f-0bef-4256-b91f-d5cc691e9c6f", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "6375c280-d141-458f-a34d-9a98a6593ead", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType8" });
+                values: new object[] { "c1fcc3d9-afcc-4a10-b417-d54f20df7dc7", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "f63ed9c4-99cb-4390-b5c7-2e2cb483b1c4", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType9" });
+                values: new object[] { "e21015e5-9194-4b15-a399-34e3bb38aed6", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType9" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "d4aafe09-c957-488c-b244-173f5a38abe8", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType10" });
+                values: new object[] { "92ea807e-c789-41e5-a1c2-d2607fae2cd8", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "HeathCareType10" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "a0c35650-3e0c-4ede-bd89-78cbda0f1035", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType1" });
+                values: new object[] { "2597f6b7-507e-4c91-bc36-d16961ab12d0", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "c62574c6-6b6b-4aee-9ab2-2a88c5033e71", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType2" });
+                values: new object[] { "bf86c9ec-9979-4310-9840-1166b55f3bfe", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "b2c02b12-2f63-40bc-8042-2bcd0cad5e7a", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType3" });
+                values: new object[] { "a55684ce-0e41-47d3-8c7e-3bc842858b4d", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "cda55695-1809-4f46-afe8-39d434374621", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType4" });
+                values: new object[] { "2e1acf67-4e83-4903-8490-6c63a000e9ba", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "a9499b1c-d930-449a-a3f6-7a6e85557890", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType5" });
+                values: new object[] { "55ad2efc-0776-4334-bb3d-3e399fef96a4", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "f1e738d4-5fce-432c-9f63-36713498e21b", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType6" });
+                values: new object[] { "40294d6f-6c1a-45a1-a9a2-f895e5ee46f6", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "3ee4638b-8b8b-4fa7-a254-c613d4f38ad1", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType7" });
+                values: new object[] { "26a3217d-dca3-43bb-8da6-3476a321befe", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "9670f09a-f348-4e37-95ca-5a9b439a02c8", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType8" });
+                values: new object[] { "143b9f04-04ec-4cb7-902f-f7ee51af0f3f", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "a9bc2a0c-6df8-453e-8bf0-3ea20c45b435", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType9" });
+                values: new object[] { "a8d2c94a-c51f-44ac-b8cb-ca0cc77e0b69", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType9" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "4a108414-3d20-4049-a0b0-26b0073ff12a", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType10" });
+                values: new object[] { "d8fcec1f-67c4-45b5-9108-8d558634575f", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "HealthProviderType10" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "8fa0f088-9771-4e79-a61a-55092f299cee", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType1" });
+                values: new object[] { "1d9b2152-d037-4c4a-8af8-4c1ec9890115", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "8e9e7ed9-c1d7-4e0d-8a08-da58453592c1", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType2" });
+                values: new object[] { "5ca2ed25-8f10-4177-9fbe-ec5b60f2a582", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "f7c99c6c-84c9-4ab0-8acc-016bdae1fb9c", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType3" });
+                values: new object[] { "9255650b-2427-4221-a4d5-c56bd4a6ed30", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "84fa1b35-0665-4f1d-9d08-4d2d01f74e20", "InitialUpload", "FeedPurchasedType", true, false, false, "ControlData", null, "DropDownPurchaseFrom1" });
+                values: new object[] { "c4521989-2d98-44da-b205-b7c3285b0bb1", "InitialUpload", "FeedPurchasedType", true, false, false, "ControlData", null, "DropDownPurchaseFrom1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "5edbd432-a0f1-46c4-ade7-00b52c643526", "InitialUpload", "FeedAmountPurchasedUnitType", true, false, false, "ControlData", null, "DropDownUnitType5" });
+                values: new object[] { "ee5f04a1-b198-47f4-bc92-043fee8f3cd6", "InitialUpload", "FeedAmountPurchasedUnitType", true, false, false, "ControlData", null, "DropDownUnitType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "6ac5c9ad-5a7f-4305-aec2-ed3d7981e581", "InitialUpload", "FeedAmountPurchasedUnitType", true, false, false, "ControlData", null, "DropDownUnitType4" });
+                values: new object[] { "0ff9691e-5827-4f63-8c58-7dc5e8e4e201", "InitialUpload", "FeedAmountPurchasedUnitType", true, false, false, "ControlData", null, "DropDownUnitType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "c5abef12-acf2-4417-b35f-be1bb6badc9e", "InitialUpload", "FeedAmountPurchasedUnitType", true, false, false, "ControlData", null, "DropDownUnitType3" });
+                values: new object[] { "5db90d8f-69ad-4604-bac0-0f73a413d94b", "InitialUpload", "FeedAmountPurchasedUnitType", true, false, false, "ControlData", null, "DropDownUnitType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "99d95584-6ac3-45f4-8b15-a25722b08708", "InitialUpload", "FeedAmountPurchasedUnitType", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "6b604691-20f1-438e-9522-3a146d21cd20", "InitialUpload", "FeedAmountPurchasedUnitType", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "4f32b697-9eed-4971-b72f-3848df5700da", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "1bbbe86d-8c37-4d72-930d-6ceb2d8d1352", "InitialUpload", "HealthCareType", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "3de760c7-43bf-4909-b53c-6645f374726a", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "6dd3af94-05d3-4c3e-9654-a074daf5d808", "InitialUpload", "HealthServivceProivderType", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "8b1b789d-db40-4a7d-85b4-d8759ea23956", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "8561f04d-8760-4a0e-a72b-1f60c3042fc2", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "864c9b23-7ccc-4e2e-bd7c-5320c0db0879", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "7a8f8aa9-f493-48ea-8dad-73ba617f4244", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "901d105c-f903-4c27-a2f1-725e797636a8", "InitialUpload", "LabourType", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "71f0fa4c-3218-4bfa-b74d-e4017f9a6516", "InitialUpload", "LabourType", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "16dfae26-60ea-47bd-a044-5658e53604b1", "InitialUpload", "HousingType", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "ccfec117-8e22-475a-aacb-67257dfbe818", "InitialUpload", "HousingType", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "751d08f7-cb1a-474a-9507-af222673e2bd", "InitialUpload", "WaterPurchasedUnit", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "e7bc6c1f-3305-446e-9fd9-822e6c3a14df", "InitialUpload", "WaterPurchasedUnit", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "959938dc-17e0-4066-b11c-cbc549148eb2", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "7a6647a2-c6bf-45f6-b1e5-ddce7cee1dce", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "11bf6d20-c26d-460f-8cbf-27e9d171feb5", "InitialUpload", "MembershipType", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "97c1f966-cf92-439e-a004-0cf04f110216", "InitialUpload", "MembershipType", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "33d0b111-61ba-4514-802e-bf04ac487499", "InitialUpload", "ServiceUnit", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "6afbde10-2906-4e95-a396-7825c65759db", "InitialUpload", "ServiceUnit", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "4ff3b3de-0935-42e9-aacb-cbdf9f4c63f3", "InitialUpload", "WhoProvidedServiceUnit", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "734cd5a5-8b32-4fe8-8660-cdfa8d55fd59", "InitialUpload", "WhoProvidedServiceUnit", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "8c329ef1-1cfc-4b58-b052-7ffa48c241c7", "InitialUpload", "AnimalType", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "8f05dbdc-de7c-4722-82e7-06f43418faf9", "InitialUpload", "AnimalType", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "f671887c-d238-4fc9-9f77-15e6785b683f", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType4" });
+                values: new object[] { "98f7edea-29fd-4672-b5a0-75368fb8386a", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "0e1ea45f-0a94-4186-b12c-8085668d937b", "InitialUpload", "AnimalPurchasedFrom", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "81ec8faa-ef59-4fa5-8a77-ec52ced2730d", "InitialUpload", "AnimalPurchasedFrom", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "6b343c95-433a-4e4c-a71e-4345fb5a34f5", "InitialUpload", "EquipmentType", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "6c270e56-b237-44dd-8bfd-9023ce32c9b4", "InitialUpload", "EquipmentType", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "4199fa3c-1d68-43c3-91c0-827b1fab109d", "InitialUpload", "PigSaleType", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "c97cd62a-103a-442b-b7ec-5503c684ec8a", "InitialUpload", "PigSaleType", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "88816936-11f1-4390-80b8-4bd89371c3a1", "InitialUpload", "SoldToType", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "3080470d-8ed6-4d9e-8049-2c5845683529", "InitialUpload", "SoldToType", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "cec085d5-ef6c-43be-8367-cb876f14aba9", "InitialUpload", "BreedingServiceType", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "8fb11228-07f8-4c5a-8629-dfee668846c6", "InitialUpload", "BreedingServiceType", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "5d4e1682-386a-425e-896c-2d829a9800ee", "InitialUpload", "ClientType", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "ec642937-25ff-4ec7-8812-6fd19536696a", "InitialUpload", "ClientType", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "d8401cdf-4faf-4d07-be80-fde69a582490", "InitialUpload", "VolumeUnitType", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "bc26bb06-2995-4f24-bb30-4f253cf72edd", "InitialUpload", "VolumeUnitType", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "979c1b25-a1eb-4bd9-92ed-1dd6916ae1ea", "InitialUpload", "FeedType", true, false, false, "ControlData", null, "DropDownFeedType1" });
+                values: new object[] { "65fea029-f790-419c-967a-bb440b1a564c", "InitialUpload", "FeedType", true, false, false, "ControlData", null, "DropDownFeedType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "7cc5c67e-74c3-4c2b-8bd2-2ba3561246ad", "InitialUpload", "FeedType", true, false, false, "ControlData", null, "DropDownFeedType2" });
+                values: new object[] { "304ebbc9-7d64-4b63-8cb0-37784eb91b17", "InitialUpload", "FeedType", true, false, false, "ControlData", null, "DropDownFeedType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "5171a108-c395-461a-9b0e-0b1fad3a172a", "InitialUpload", "FeedType", true, false, false, "ControlData", null, "DropDownFeedType3" });
+                values: new object[] { "10dd6f10-0af2-4ca7-b0c5-91d4286cd153", "InitialUpload", "FeedType", true, false, false, "ControlData", null, "DropDownFeedType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "ccc55308-3c22-42d1-9ee1-e3fdfd7fbb16", "InitialUpload", "FeedType", true, false, false, "ControlData", null, "DropDownFeedType4" });
+                values: new object[] { "cf1e6dd6-6548-406d-bb14-00d35d24c7f1", "InitialUpload", "FeedType", true, false, false, "ControlData", null, "DropDownFeedType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "7cbc1887-aaa3-401a-b223-2075568cad98", "InitialUpload", "FeedType", true, false, false, "ControlData", null, "DropDownFeedType5" });
+                values: new object[] { "3489d901-bed1-40be-b2d6-d3feeb3ad868", "InitialUpload", "FeedType", true, false, false, "ControlData", null, "DropDownFeedType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "364397e3-6d41-4d24-9623-bb1ef5b69a73", "InitialUpload", "FeedAmountPurchasedUnitType", true, false, false, "ControlData", null, "DropDownUnitType1" });
+                values: new object[] { "dd9a0ef7-843a-44c4-bbec-7b9bf16b1643", "InitialUpload", "FeedAmountPurchasedUnitType", true, false, false, "ControlData", null, "DropDownUnitType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "ee1ee260-f994-4924-b6cd-ba2410409e8c", "InitialUpload", "FeedAmountPurchasedUnitType", true, false, false, "ControlData", null, "DropDownUnitType2" });
+                values: new object[] { "259b95b5-7345-4561-86b7-3032c7deaff0", "InitialUpload", "FeedAmountPurchasedUnitType", true, false, false, "ControlData", null, "DropDownUnitType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "123a81ce-77a6-47d9-a59c-ec32ef239b28", "InitialUpload", "LoanProvider", true, false, false, "ControlData", null, "Other" });
+                values: new object[] { "8dc05242-2fc2-4df6-81fc-b7d92a65b1f2", "InitialUpload", "LoanProvider", true, false, false, "ControlData", null, "Other" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "79425ad1-a1fd-453c-a2da-578c87f580c8", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType5" });
+                values: new object[] { "ad4162af-fb12-4b32-a254-97e1a81f5ea9", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "63b290b1-bc6a-492b-8320-e2e112d45a52", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType6" });
+                values: new object[] { "9cd54ad3-6725-40e7-b2d4-ed7429ed3f9e", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "3f029645-0b1c-466a-9cc4-ab55f8292e8f", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType7" });
+                values: new object[] { "4114f371-a687-42e0-a258-93cf17902894", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "aec27479-bbe5-47f0-b0b5-63140a5403d6", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType4" });
+                values: new object[] { "f3558818-1183-427f-a5d2-e9d0ed83dced", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "1e3da022-17b8-493a-a02d-8feecd1046b1", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType5" });
+                values: new object[] { "856623a9-b9e9-4a9f-8bed-0d3d31fdba31", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "ae3ce9af-02f9-4165-b702-48d3b6fc25b9", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType6" });
+                values: new object[] { "c812d19e-5097-4e37-a2f8-ec5ddc71d86d", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "fafa76f6-ff03-4c20-aa6c-e07686f2832e", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType7" });
+                values: new object[] { "3f17c6a1-97bc-4e83-aa79-0a0fffcdd342", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "1c264c3f-f763-46c3-a07a-cba892d90acf", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType8" });
+                values: new object[] { "9f00498e-99ae-4310-99be-7efe3d3c6b3e", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "89474c32-610b-49b2-8a6a-536119d51645", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType9" });
+                values: new object[] { "0d8ef31e-4e08-4af0-9633-178dd314e033", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType9" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "b4e39db9-dc61-4b3f-9b56-ac84ee77c0fd", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType10" });
+                values: new object[] { "0a73b889-d7bf-4102-8f22-ceb65aa4eef9", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType10" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "636ca00d-cdb5-4b3c-b325-e249d1857281", "InitialUpload", "MembershipType", true, false, false, "ControlData", null, "MembershipType1" });
+                values: new object[] { "e5375aff-73fd-46df-b855-6b67d15200fc", "InitialUpload", "MembershipType", true, false, false, "ControlData", null, "MembershipType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "170215a4-bbe1-4eb8-96b1-3362286d70ab", "InitialUpload", "MembershipType", true, false, false, "ControlData", null, "MembershipType2" });
+                values: new object[] { "dff664dc-092a-48bb-a664-4211e3d3a1ce", "InitialUpload", "MembershipType", true, false, false, "ControlData", null, "MembershipType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "352b7897-cc79-4a55-8b71-a5d3ddd0bc77", "InitialUpload", "MembershipType", true, false, false, "ControlData", null, "MembershipType3" });
+                values: new object[] { "fb8c13f3-86ca-454c-87d8-b94e2d844a3f", "InitialUpload", "MembershipType", true, false, false, "ControlData", null, "MembershipType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "b570698a-ba41-4ef7-b8ae-7d5222a03be9", "InitialUpload", "MembershipType", true, false, false, "ControlData", null, "MembershipType4" });
+                values: new object[] { "d3b1f41f-a8df-4c6b-a10b-f676ff2dbeb0", "InitialUpload", "MembershipType", true, false, false, "ControlData", null, "MembershipType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "39f74fb0-d71b-44a4-9d7a-f8600354a264", "InitialUpload", "MembershipType", true, false, false, "ControlData", null, "MembershipType5" });
+                values: new object[] { "22b0d45e-68bd-4b7a-bbb0-fd40d91a76ff", "InitialUpload", "MembershipType", true, false, false, "ControlData", null, "MembershipType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "d85b11a7-2f1a-4740-888d-d19e9f0aabb8", "InitialUpload", "MembershipType", true, false, false, "ControlData", null, "MembershipType6" });
+                values: new object[] { "cabb288c-3522-4445-8560-e152d17ec5a0", "InitialUpload", "MembershipType", true, false, false, "ControlData", null, "MembershipType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "1e0496ff-edba-4359-89fb-debeffeea907", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType3" });
+                values: new object[] { "b27617e7-8156-40be-8d61-a361783a5509", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "7d9f98b9-f4d5-41da-b15f-f1be56b2abf8", "InitialUpload", "MembershipType", true, false, false, "ControlData", null, "MembershipType7" });
+                values: new object[] { "e2de2d28-bafd-41b3-aa39-a812375fd9c8", "InitialUpload", "MembershipType", true, false, false, "ControlData", null, "MembershipType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "e4a6e9a6-0b82-4101-a9cb-3f7f720b9b06", "InitialUpload", "TimePeriodUnitType", true, false, false, "ControlData", null, "TimePeriodUnitType1" });
+                values: new object[] { "d4160da1-cefb-4203-8f3c-ed5fb017e8b2", "InitialUpload", "TimePeriodUnitType", true, false, false, "ControlData", null, "TimePeriodUnitType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "10624e1f-c475-44d5-821d-1cbb7698d694", "InitialUpload", "TimePeriodUnitType", true, false, false, "ControlData", null, "TimePeriodUnitType2" });
+                values: new object[] { "dcc6a66c-1dae-42dc-905d-76ddc48fc14a", "InitialUpload", "TimePeriodUnitType", true, false, false, "ControlData", null, "TimePeriodUnitType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "e945ac8e-c5d2-44dd-afaa-90a8068e787c", "InitialUpload", "ServiceUnit", true, false, false, "ControlData", null, "ServiceType1" });
+                values: new object[] { "dda9f899-0aea-4eae-9836-dee28497fa3e", "InitialUpload", "ServiceUnit", true, false, false, "ControlData", null, "ServiceType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "0fa11c09-ffc9-424e-8055-ce12ece026b9", "InitialUpload", "ServiceUnit", true, false, false, "ControlData", null, "ServiceType2" });
+                values: new object[] { "2694c845-3361-497d-8e3b-b6a684f59dde", "InitialUpload", "ServiceUnit", true, false, false, "ControlData", null, "ServiceType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "0ddd0ca7-ef8a-41e5-a9cd-e672154b6533", "InitialUpload", "ServiceUnit", true, false, false, "ControlData", null, "ServiceType3" });
+                values: new object[] { "137c02dc-9127-4dc4-8211-7723fda4219a", "InitialUpload", "ServiceUnit", true, false, false, "ControlData", null, "ServiceType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "453228c5-1837-4013-894d-99861cf7de58", "InitialUpload", "ServiceUnit", true, false, false, "ControlData", null, "ServiceType4" });
+                values: new object[] { "bc8720e6-d2b8-4404-ad6f-19d5da107cd3", "InitialUpload", "ServiceUnit", true, false, false, "ControlData", null, "ServiceType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "fc72e2de-d6c1-4801-935c-faaaf9ada523", "InitialUpload", "ServiceUnit", true, false, false, "ControlData", null, "ServiceType5" });
+                values: new object[] { "ba2af367-7796-4793-b59b-67e52139bfcf", "InitialUpload", "ServiceUnit", true, false, false, "ControlData", null, "ServiceType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "c4e47fe1-e176-4cb0-8448-79385b8565aa", "InitialUpload", "ServiceUnit", true, false, false, "ControlData", null, "ServiceType6" });
+                values: new object[] { "22d86529-4133-4489-8e47-870612083880", "InitialUpload", "ServiceUnit", true, false, false, "ControlData", null, "ServiceType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "56fe788d-10ca-4075-93b4-ec4ded2e408e", "InitialUpload", "ServiceUnit", true, false, false, "ControlData", null, "ServiceType7" });
+                values: new object[] { "11d1069b-9257-4c08-b044-4d9a7d37f58a", "InitialUpload", "ServiceUnit", true, false, false, "ControlData", null, "ServiceType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "d0f74434-3b77-4a0d-834c-14188e76038b", "InitialUpload", "ServiceUnit", true, false, false, "ControlData", null, "ServiceType8" });
+                values: new object[] { "2c939b32-a41b-4aa2-81c5-471f15acd721", "InitialUpload", "ServiceUnit", true, false, false, "ControlData", null, "ServiceType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "d12dd472-5ebb-4eaf-be85-00db4218331f", "InitialUpload", "WhoProvidedServiceUnit", true, false, false, "ControlData", null, "WhoProvidedServiceType1" });
+                values: new object[] { "e77cafce-7a6d-4df0-b1a7-93f6a038e1d7", "InitialUpload", "WhoProvidedServiceUnit", true, false, false, "ControlData", null, "WhoProvidedServiceType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "b780213a-485b-4153-b48b-34143841cdae", "InitialUpload", "WhoProvidedServiceUnit", true, false, false, "ControlData", null, "WhoProvidedServiceType2" });
+                values: new object[] { "0254db5a-285e-45e3-96d4-01c21125235b", "InitialUpload", "WhoProvidedServiceUnit", true, false, false, "ControlData", null, "WhoProvidedServiceType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "2760a1e4-d3aa-4364-bfe6-ee49ad0aad30", "InitialUpload", "WhoProvidedServiceUnit", true, false, false, "ControlData", null, "WhoProvidedServiceType3" });
+                values: new object[] { "6f008a4b-f26f-4f92-939b-d076629013b7", "InitialUpload", "WhoProvidedServiceUnit", true, false, false, "ControlData", null, "WhoProvidedServiceType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "bd033fc1-9eee-4c92-b391-14bc23de34ed", "InitialUpload", "MembershipType", true, false, false, "ControlData", null, "MembershipType8" });
+                values: new object[] { "1dda4d2d-ad44-4448-9598-4e7c927a93c7", "InitialUpload", "MembershipType", true, false, false, "ControlData", null, "MembershipType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "6c7b69bb-7db3-4761-89f5-b928444a5662", "InitialUpload", "WhoProvidedServiceUnit", true, false, false, "ControlData", null, "WhoProvidedServiceType5" });
+                values: new object[] { "a4c5a99d-3ede-4c75-8601-9e5c94933aa7", "InitialUpload", "WhoProvidedServiceUnit", true, false, false, "ControlData", null, "WhoProvidedServiceType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "023fe748-01a9-43de-afdf-e742fa8b27c0", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType2" });
+                values: new object[] { "e1162d88-7521-4edc-abe7-29788b0b4625", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "52060ec0-1d2c-4457-91ae-ed134b57a016", "InitialUpload", "WaterPurchasedUnit", true, false, false, "ControlData", null, "WaterPurchasedUnitType5" });
+                values: new object[] { "0cc1c8b3-0f55-40a8-b25d-c2926b5931a3", "InitialUpload", "WaterPurchasedUnit", true, false, false, "ControlData", null, "WaterPurchasedUnitType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "58a69a8e-e703-4d45-969b-e85ac1491236", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType8" });
+                values: new object[] { "3b53c96a-a5e2-4e77-b689-e6457b808498", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "56012939-b98a-46b7-bf8e-5ef3c3901cd6", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType9" });
+                values: new object[] { "bd01253b-479b-470a-82b8-17a5bd1f70b0", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType9" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "dc3c84be-cf77-401b-bce5-c04d05729d71", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType10" });
+                values: new object[] { "fb819eda-2d41-441a-8e70-7246aac37662", "InitialUpload", "HealthMedicineType", true, false, false, "ControlData", null, "MedicineType10" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "2c21345c-2194-4aeb-96e2-b57ca4344d9c", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType1" });
+                values: new object[] { "e146345f-e127-4cbd-9b28-c0dcfae9a12b", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "829b91ac-9fc6-49d8-9dfd-79c821ef381b", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType2" });
+                values: new object[] { "ccd0e0b7-7d1d-4e4f-9548-def25f0b16d1", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "5e0bd08c-ce7e-4577-a355-2c486ba16af4", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType3" });
+                values: new object[] { "8f580a62-72ba-4988-97ab-060f30d50cfd", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "fd4e8d04-dc4c-4873-b4b3-6157e74253ec", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType4" });
+                values: new object[] { "d8b88320-d1c8-428d-a388-e4ecf7887d2c", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "816da824-a866-4ea0-9eaf-9949fa2f98c2", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType5" });
+                values: new object[] { "35b3b9b8-359f-40e9-ada3-4595dd66b100", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "e7bd6a94-937d-4684-a749-11bfb27547da", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType6" });
+                values: new object[] { "de2ffeb2-b643-4f48-bfaa-96feb9c12960", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "a46edf65-b370-456f-bb96-fe36d6a045f3", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType7" });
+                values: new object[] { "23bb3fa2-626e-4a8a-a921-760f711ff52d", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType7" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "253656ee-2693-41ed-b3e9-7c8b1715b304", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType8" });
+                values: new object[] { "83622f69-c2e8-4ab4-b745-e6d2974d35cc", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType8" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "71b89936-0f9e-400e-9385-ab60952d26f3", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType9" });
+                values: new object[] { "bbe6c87d-7a52-41d3-8a39-e9fd15a38632", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType9" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "814727c9-6e77-4dbb-999b-115fae56f337", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType10" });
+                values: new object[] { "aa0ad0ba-71a0-4bfa-844c-c299aafe80e0", "InitialUpload", "HealthPurchaseFromType", true, false, false, "ControlData", null, "PruchaseFromType10" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "2fd2cabe-4b9e-4bb1-89d1-549dc531390e", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType1" });
+                values: new object[] { "9e27082b-1b9a-4b2e-b185-2f02b753e933", "InitialUpload", "PurchasedWaterFrom", true, false, false, "ControlData", null, "PurchasedWaterFromType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "e942904f-bfa1-4fc4-8504-bac52f33028f", "InitialUpload", "LabourType", true, false, false, "ControlData", null, "LabourType1" });
+                values: new object[] { "8b279231-877c-4757-89cf-998a1434dfab", "InitialUpload", "LabourType", true, false, false, "ControlData", null, "LabourType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "dff4f3d0-d040-420c-9d98-0a11b0660af8", "InitialUpload", "LabourType", true, false, false, "ControlData", null, "LabourType3" });
+                values: new object[] { "3efd9762-84d5-441a-b42c-3cbed28b8943", "InitialUpload", "LabourType", true, false, false, "ControlData", null, "LabourType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "fa6aedb3-17b8-4e06-abc2-3a2209d8a872", "InitialUpload", "LabourType", true, false, false, "ControlData", null, "LabourType4" });
+                values: new object[] { "dee0b103-23f1-45b1-a249-0d40076f2581", "InitialUpload", "LabourType", true, false, false, "ControlData", null, "LabourType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "065a8b30-ff40-431d-9aed-263561bd8ea3", "InitialUpload", "LabourType", true, false, false, "ControlData", null, "LabourType5" });
+                values: new object[] { "751a552b-8b87-4d5c-b3c2-ddf535fdc182", "InitialUpload", "LabourType", true, false, false, "ControlData", null, "LabourType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "1cb937c6-01f7-4ff2-a248-6c4632a25f5d", "InitialUpload", "LabourType", true, false, false, "ControlData", null, "LabourType6" });
+                values: new object[] { "5efab53a-4aef-4f0a-8954-d20d700b8e40", "InitialUpload", "LabourType", true, false, false, "ControlData", null, "LabourType6" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "a520ea79-67d7-4f00-bfc3-4ae4aeab92d3", "InitialUpload", "HousingType", true, false, false, "ControlData", null, "HousingExpenseType1" });
+                values: new object[] { "803d3334-8f1a-430c-883e-25603a11b42e", "InitialUpload", "HousingType", true, false, false, "ControlData", null, "HousingExpenseType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "ee5f2f97-04a8-4b21-88d7-3a9fb1dbebf3", "InitialUpload", "HousingType", true, false, false, "ControlData", null, "HousingExpenseType2" });
+                values: new object[] { "4dc7bdbc-2d36-427f-a0c9-b5c0d053c673", "InitialUpload", "HousingType", true, false, false, "ControlData", null, "HousingExpenseType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "b3536342-73d3-41fb-97c1-58b6f3f2d8c3", "InitialUpload", "HousingType", true, false, false, "ControlData", null, "HousingExpenseType3" });
+                values: new object[] { "f122201b-b572-41f7-890f-dadb503d68cd", "InitialUpload", "HousingType", true, false, false, "ControlData", null, "HousingExpenseType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "2bf391df-2698-47bb-be98-37de8295bd96", "InitialUpload", "HousingType", true, false, false, "ControlData", null, "HousingExpenseType4" });
+                values: new object[] { "98ef8c66-ce96-4f16-acde-d17cd035f73f", "InitialUpload", "HousingType", true, false, false, "ControlData", null, "HousingExpenseType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "e976af74-cb8e-4195-af75-0aa7c22fe94f", "InitialUpload", "HousingType", true, false, false, "ControlData", null, "HousingExpenseType5" });
+                values: new object[] { "b437441d-f89f-43cc-83a9-9e62d2f2301a", "InitialUpload", "HousingType", true, false, false, "ControlData", null, "HousingExpenseType5" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "0210c907-76bc-47bc-a09c-3f6a72796bd0", "InitialUpload", "WaterPurchasedUnit", true, false, false, "ControlData", null, "WaterPurchasedUnitType1" });
+                values: new object[] { "56e5db30-0a63-49b1-8ad4-dd2ed3f979a8", "InitialUpload", "WaterPurchasedUnit", true, false, false, "ControlData", null, "WaterPurchasedUnitType1" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "d59eccdd-84e8-4297-af12-9a721f834bbe", "InitialUpload", "WaterPurchasedUnit", true, false, false, "ControlData", null, "WaterPurchasedUnitType2" });
+                values: new object[] { "62f4e2a4-d776-4b22-ae53-315a43f25c11", "InitialUpload", "WaterPurchasedUnit", true, false, false, "ControlData", null, "WaterPurchasedUnitType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "f7ce0542-7732-47ca-9b69-fe5dfecf6939", "InitialUpload", "WaterPurchasedUnit", true, false, false, "ControlData", null, "WaterPurchasedUnitType3" });
+                values: new object[] { "cfc89207-d382-431c-bfca-9139aed5b34c", "InitialUpload", "WaterPurchasedUnit", true, false, false, "ControlData", null, "WaterPurchasedUnitType3" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "1c7ce4f3-7369-42ae-9ea4-8e88f1796e77", "InitialUpload", "WaterPurchasedUnit", true, false, false, "ControlData", null, "WaterPurchasedUnitType4" });
+                values: new object[] { "52f40e7a-0de6-4774-9769-658f0087c4dc", "InitialUpload", "WaterPurchasedUnit", true, false, false, "ControlData", null, "WaterPurchasedUnitType4" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "6263d504-8729-440d-ac30-efede6083e82", "InitialUpload", "LabourType", true, false, false, "ControlData", null, "LabourType2" });
+                values: new object[] { "0428d966-2800-4a7d-91a3-587457bf0ca1", "InitialUpload", "LabourType", true, false, false, "ControlData", null, "LabourType2" });
 
             migrationBuilder.InsertData(
                 table: "ControlDataOptions",
                 columns: new[] { "RowKey", "CreatedBy", "DropDownControlOption", "IsDeleted", "IsEnable", "IsModified", "PartitionKey", "Timestamp", "TranslationRowKey" },
-                values: new object[] { "97861e28-5747-4044-98b6-dfe9b1396df6", "InitialUpload", "LanguageType", true, false, false, "ControlData", null, "LanguageType6" });
+                values: new object[] { "15bae5cf-201c-400d-b40b-99b268bf8b6f", "InitialUpload", "LanguageType", true, false, false, "ControlData", null, "LanguageType6" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ControlDataOptions_TranslationRowKey",
