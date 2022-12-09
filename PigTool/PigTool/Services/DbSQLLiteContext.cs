@@ -129,6 +129,9 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "EditTranslation", English = "Edit", Lang1 = "Edit Lang1", Lang2 = "Edit Lang2" },
                          new Translation() { RowKey = "DeleteTranslation", English = "Delete", Lang1 = "Delete Lang1", Lang2 = "Delete Lang2" },
 
+                         new Translation() { RowKey = "StartTranslation", English = "Start", Lang1 = "Start Lang1", Lang2 = "Start Lang2" },
+                         new Translation() { RowKey = "FinishTranslation", English = "Finish", Lang1 = "Finish Lang1", Lang2 = "Finish Lang2" },
+
                          //Add Feed Item Translations
                          new Translation() { RowKey = "FeedItemTitleTranslation", English = "Feed Cost", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "FeedTypeTranslation", English = "Feed Type", Lang1 = "Feed Type Lang1", Lang2 = "Feed Type Lang2" },
@@ -151,6 +154,8 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "PurchasedFrom", English = "Purchased From", Lang1 = "Purchased From Lang1", Lang2 = "Purchased From Lang2" },
                          new Translation() { RowKey = "CommentTrans", English = "Comment", Lang1 = "Comment Lang1", Lang2 = "Comment Lang2" },
 
+                         new Translation() { RowKey = "FeedDurationTranslation", English = "Feed use duration", Lang1 = "Duration Lang1", Lang2 = "Duration Lang2" },
+
                          //Add HeathCare item Translation
                          new Translation() { RowKey = "HealthCareTitleTranslation", English = "Health Care", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "HealthCareTypeTranslation", English = "Health Care Type", Lang1 = "Health Care Type Lang1", Lang2 = "Health Care Type Lang2" },
@@ -170,6 +175,7 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "OtherLaboutTypeTranslation", English = "Other LabourType", Lang1 = "Other LabourType Lang1", Lang2 = "Other LabourType Lang2" },
                          new Translation() { RowKey = "AmountPaidTranslation", English = "Amount Paid", Lang1 = "Amount Paid Lang1", Lang2 = "Amount Paid Lang2" },
                          new Translation() { RowKey = "OtherCostsTranslation", English = "Any Other Cost", Lang1 = "Any Other Cost Lang1", Lang2 = "Any Other Cost Lang2" },
+                         new Translation() { RowKey = "LabourDurationTranslation", English = "Labour use duration", Lang1 = "Duration Lang1", Lang2 = "Duration Lang2" },
 
                          //Housing Costs
                          new Translation() { RowKey = "HousingTitleTranslation", English = "Animal Housing", Lang1 = "Animal Housing Lang1", Lang2 = "Animal Housing Lang2" },
@@ -184,6 +190,7 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "OtherWaterPurchasedTranslation", English = "Other unit", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "PurchasedWaterFromTranslation", English = "Who Purchased From", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "OtherPurchasedWaterFromTranslation", English = "Purchased From", Lang1 = "", Lang2 = "" },
+                         new Translation() { RowKey = "WaterDurationTranslation", English = "Water use duration", Lang1 = "Duration Lang1", Lang2 = "Duration Lang2" },
 
                          //Membership
                          new Translation() { RowKey = "MembershipTitleTranslation", English = "Co-Operative / Group membership", Lang1 = "", Lang2 = "" },

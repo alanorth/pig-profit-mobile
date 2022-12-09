@@ -1,11 +1,10 @@
-﻿using Shared;
+﻿using Microsoft.EntityFrameworkCore;
+using Shared;
 using SQLLiteDbContext;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace PigTool.Services
 {
@@ -78,7 +77,7 @@ namespace PigTool.Services
 
         public async Task<List<Translation>> GetAllTranslations()
         {
-           return await _context.Translations.ToListAsync();
+            return await _context.Translations.ToListAsync();
         }
 
         public async Task AddSingleFeedItem(FeedItem itemToAdd)
@@ -106,7 +105,7 @@ namespace PigTool.Services
 
         public async Task<List<FeedItem>> GetFeedItemsAndAttachedTranslation(UserLangSettings userLanguage)
         {
-            var feedItems =  await _context.FeedItems.Include("FeedTypeTranslation").ToListAsync();
+            var feedItems = await _context.FeedItems.Include("FeedTypeTranslation").ToListAsync();
 
             foreach (var feedItem in feedItems)
             {
@@ -118,7 +117,7 @@ namespace PigTool.Services
 
         public async Task<FeedItem> GetFeedItem(string RowKey)
         {
-           return await _context.FeedItems.SingleOrDefaultAsync(feedItem => feedItem.RowKey == RowKey);
+            return await _context.FeedItems.SingleOrDefaultAsync(feedItem => feedItem.RowKey == RowKey);
         }
 
         public async Task UpdateFeedItem(FeedItem feedItem)

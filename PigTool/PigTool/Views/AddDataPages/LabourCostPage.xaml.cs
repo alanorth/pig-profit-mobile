@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PigTool.Helpers;
+﻿using PigTool.Helpers;
+using PigTool.ViewModels.DataViewModels;
 using Shared;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using PigTool.ViewModels.DataViewModels;
 
 namespace PigTool.Views
 {
@@ -58,6 +53,32 @@ namespace PigTool.Views
             DateCell.View = stack;
             FullTableSection.Add(DateCell);
 
+            // Duration
+            var DurationCell = new ViewCell();
+            var DurationVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
+
+            var DurationLabel = FormattedElementsHelper.DataLabel(nameof(_viewModel.LabourDurationTranslation));
+            DurationVerticalStack.Children.Add(DurationLabel);
+
+            //DurationStart
+            var DurationStartCell = new ViewCell();
+            var DurationStartStack = FormattedElementsHelper.TableRowStack();
+            DurationStartStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.StartTranslation)));
+            DurationStartStack.Children.Add(FormattedElementsHelper.FormDatePicker(nameof(_viewModel.DurationStart), nameof(_viewModel.IsEditMode)));
+            DurationStartCell.View = DurationStartStack;
+
+            //DurationFinish
+            var DurationFinishCell = new ViewCell();
+            var DurationFinishStack = FormattedElementsHelper.TableRowStack();
+            DurationFinishStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.FinishTranslation)));
+            DurationFinishStack.Children.Add(FormattedElementsHelper.FormDatePicker(nameof(_viewModel.DurationFinish), nameof(_viewModel.IsEditMode)));
+            DurationFinishCell.View = DurationFinishStack;
+
+            DurationVerticalStack.Children.Add(DurationStartStack);
+            DurationVerticalStack.Children.Add(DurationFinishStack);
+            DurationCell.View = DurationVerticalStack;
+            FullTableSection.Add(DurationCell);
+
 
             //Labour Type
             var LabourCell = new ViewCell();
@@ -66,8 +87,8 @@ namespace PigTool.Views
             var labourTypeStack = FormattedElementsHelper.TableRowStack();
             labourTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.LabourTypeTranslation)));
             labourTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
-                nameof(_viewModel.LabourTypeOptions), 
-                nameof(PickerToolHelper.TranslatedValue), 
+                nameof(_viewModel.LabourTypeOptions),
+                nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedLabourType),
                 nameof(_viewModel.IsEditMode),
                 _viewModel.SelectedLabourType,
@@ -86,7 +107,7 @@ namespace PigTool.Views
             var AmountPaidCell = new ViewCell();
             var AmountPaidStack = FormattedElementsHelper.TableRowStack();
             AmountPaidStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.AmountPaidTranslation)));
-            AmountPaidStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.AmountPaid), nameof(_viewModel.IsEditMode),null));
+            AmountPaidStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.AmountPaid), nameof(_viewModel.IsEditMode), null));
             AmountPaidCell.View = AmountPaidStack;
             FullTableSection.Add(AmountPaidCell);
 
@@ -113,17 +134,17 @@ namespace PigTool.Views
                 EditCommandBinding: nameof(_viewModel.EditButtonClicked),
                 DeleteCommandBinding: nameof(_viewModel.DeleteButtonClicked),
                 SaveCommandBinding: nameof(_viewModel.SaveButtonClicked),
-                EditModeBinding : nameof(_viewModel.IsEditMode),
-                ExistingModeBinding : nameof(_viewModel.EditExistingMode),
-                ResetText : _viewModel.ResetTranslation,
-                SaveText : _viewModel.SaveTranslation,
-                EditText : _viewModel.EditTranslation,
-                DeleteText : _viewModel.DeleteTranslation
+                EditModeBinding: nameof(_viewModel.IsEditMode),
+                ExistingModeBinding: nameof(_viewModel.EditExistingMode),
+                ResetText: _viewModel.ResetTranslation,
+                SaveText: _viewModel.SaveTranslation,
+                EditText: _viewModel.EditTranslation,
+                DeleteText: _viewModel.DeleteTranslation
                 );
             buttonCell.View = buttonStack;
             FullTableSection.Add(buttonCell);
 
-            LabourTableView.Root.Add(FullTableSection); 
+            LabourTableView.Root.Add(FullTableSection);
 
         }
 

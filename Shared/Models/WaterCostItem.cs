@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Shared
 {
@@ -16,5 +14,7 @@ namespace Shared
         public double TransportationCost { get; set; }
         public double OtherCosts { get; set; }
         public string? Comment { get; set; }
+        public DateTime DurationStart { get; set; }
+        public DateTime DurationFinish { get; set; }
     }
 }
