@@ -11,7 +11,7 @@ namespace SQLLiteDbContext
     public class DbSQLLiteContext : DbContext
     {
         public DbSet<Translation> Translations { get; set; }
-        public DbSet<UserInfo> UserInfos { get; set; }
+        public DbSet<MobileUser> UserInfos { get; set; }
         public DbSet<FeedItem> FeedItems { get; set; }
         public DbSet<ControlData> ControlDataOptions { get; set; }
         public DbSet<HealthCareItem> HealthCareItems { get; set; }
@@ -48,8 +48,8 @@ namespace SQLLiteDbContext
             modelBuilder.Entity<Translation>().HasKey(x => x.RowKey);
 
             //modelBuilder.Entity<UserInfo>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyUserInfo);
-            modelBuilder.Entity<UserInfo>().HasKey(x => x.RowKey);
-            modelBuilder.Entity<UserInfo>().Ignore(x => x.ETag);
+            modelBuilder.Entity<MobileUser>().HasKey(x => x.RowKey);
+            modelBuilder.Entity<MobileUser>().Ignore(x => x.ETag);
 
             modelBuilder.Entity<FeedItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyFeed);
             modelBuilder.Entity<ControlData>().HasBaseType((Type)null).Ignore(f => f.ETag).Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyControlData);
@@ -877,7 +877,7 @@ namespace SQLLiteDbContext
 
 #endif
             //Convert Enum To String
-            modelBuilder.Entity<UserInfo>().Property(x => x.UserLang)
+            modelBuilder.Entity<MobileUser>().Property(x => x.UserLang)
                 .HasConversion(
                 v => v.ToString(),
                 v => (UserLangSettings)Enum.Parse(typeof(UserLangSettings), v)

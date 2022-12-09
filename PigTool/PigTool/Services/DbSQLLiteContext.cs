@@ -59,8 +59,8 @@ namespace SQLLiteDbContext
 
             modelBuilder.Entity<Translation>().HasKey(x => x.RowKey);
             //modelBuilder.Entity<UserInfo>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyUserInfo);
-            modelBuilder.Entity<UserInfo>().HasKey(x => x.RowKey);
-            modelBuilder.Entity<UserInfo>().Ignore(x => x.ETag);
+            modelBuilder.Entity<MobileUser>().HasKey(x => x.RowKey);
+            modelBuilder.Entity<MobileUser>().Ignore(x => x.ETag);
             
             modelBuilder.Entity<FeedItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyFeed);
             //modelBuilder.Entity<FeedItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
