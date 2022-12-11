@@ -35,7 +35,7 @@ namespace TestAuthenticateAPI.Services
                 if (entities == null
                     || !entities.Any())
                 {
-                    return "no entities ";
+                    return string.Empty;
                 }
 
                 // Check to see if table name is provided
