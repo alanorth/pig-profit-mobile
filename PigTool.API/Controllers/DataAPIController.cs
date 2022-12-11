@@ -26,31 +26,12 @@ namespace PigTool.API.Controllers
         {
 
         }
-
+        
         [HttpPost, Route(Constants.ROUTE_API_SUBMITDATA)]
         //[Authorize]
         //[Authorize(AuthenticationSchemes = "Google")]
         public async Task<ActionResult> SubmitData()
         {
-            /*
-           var  requeststring = Mocks.ConstructAPIItem();
-
-            var callGUID = Guid.NewGuid().ToString();
-            var Connection = GetStorageConnectionString();
-            
-            var transferitems = JsonConvert.DeserializeObject<APITransferItem>(requeststring);
-            var opertions = new TableOperations();
-            var result = await opertions.InsertTableEntities(transferitems.AnimalHouseItems, Constants.TABLEDATA, Connection);
-
-            var contentresult = new ContentResult()
-            {
-                Content = $"Data Created" + Constants.APICALLID + callGUID,
-                ContentType = "text/plain"
-            };
-
-            await LoggingOperations.LogRequestToBlob("SUBMITDATA", "RESPONSE", contentresult.Content, callGUID, Connection);
-            return contentresult;*/
-
             var callGUID = Guid.NewGuid().ToString();
             var Connection = GetStorageConnectionString();
             try
@@ -194,12 +175,12 @@ namespace PigTool.API.Controllers
                 var requestJson = await Parse(Request);
                 var unparsedRequest = requestJson.Body;
                 var requeststring = Convert.ToString(unparsedRequest);
-                var user = JsonConvert.DeserializeObject<UserInfo>(requeststring);
+                var user = JsonConvert.DeserializeObject<MobileUser>(requeststring);
 
 
                 var operations = new TableOperations();
 
-                var result = await operations.InsertTableEntities(new List<UserInfo> { user }, "Data", GetStorageConnectionString());
+                var result = await operations.InsertTableEntities(new List<MobileUser> { user }, "Data", GetStorageConnectionString());
 
                 if (string.IsNullOrEmpty(result))
                 {
@@ -229,6 +210,6 @@ namespace PigTool.API.Controllers
             }
 
         }
-
+        
     }
 }

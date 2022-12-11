@@ -1,12 +1,16 @@
 ﻿using Newtonsoft.Json;
+using PigTool.Services;
 using PigTool.Views.Popups;
 using Rg.Plugins.Popup.Services;
 using Shared;
+using Shared.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -431,11 +435,8 @@ namespace PigTool.ViewModels
 
         public async void PostDataToAPI()
         {
-            // Display Overlay for sending data
             LoadingOverlay overlay = new LoadingOverlay("Sending Data");
             await PopupNavigation.Instance.PushAsync(overlay);
-            //await Task.Delay(5000);
-
             try
             {
                 var apiTransfer = new APITransferItem()
@@ -457,65 +458,63 @@ namespace PigTool.ViewModels
                     ManureSaleItems = ManureSaleItems.ToList(),
                     OtherIncomeItems = OtherIncomeItems.ToList(),
                 };
-
-
-                //await repo.UpdateUserInfo(User);
-                var httpClient = new HttpClient();
-
-                //httpClient.DefaultRequestHeaders.Add("XApiKey", "ENTER YOUR API KEY HERE");
-                //httpClient.DefaultRequestHeaders.Authorization =
-                //new AuthenticationHeaderValue("Google", User.AuthorisedToken);
-
-                var jObject = JsonConvert.SerializeObject(apiTransfer, new JsonSerializerSettings
+                var SerialisedData = JsonConvert.SerializeObject(apiTransfer, new JsonSerializerSettings
                 {
                     DateTimeZoneHandling = DateTimeZoneHandling.Utc
                 });
 
-                var data = new StringContent(jObject, Encoding.UTF8, "application/json");
-                var url = "https://pigprofittool.azurewebsites.net/api/data/SubmitData";
-                //var url = "https://pigprofittool.azurewebsites.net/api/data/SubmitData";
-                //var url = "https://localhost:7218/api/data/SubmitData";
+                var rest = new RESTService(User);
 
-                var response = await httpClient.PostAsync(url, data);
-                //var response = await httpClient.GetAsync(url);
-                var responseString = await response.Content.ReadAsStringAsync();
+                //go save to database  
+                //maybe check to see if there are under data coverage
+                var details = await rest.ExecuteWithRetryAsync(async () =>
+                {
+                    using (var client = new HttpClient())
+                    {
+                        client.DefaultRequestHeaders.Add("Authorization", $"bearer {User.AuthorisedToken}");
+                        var mobUser = JsonConvert.SerializeObject(User, new JsonSerializerSettings
+                        {
+                            DateTimeZoneHandling = DateTimeZoneHandling.Utc
+                        });
+                        var content = new StringContent(SerialisedData, Encoding.UTF8, "application/json");
+                        var responseMessage = await client.PostAsync(Constants.BASEURL + Constants.ROUTE_API_SUBMITDATA, content);
+                        responseMessage.EnsureSuccessStatusCode();
 
+                        var jsonResponse = await responseMessage.Content.ReadAsStringAsync();
 
-                // Remove Overlay
-                await PopupNavigation.Instance.PopAsync();
+                        //var response = JsonConvert.DeserializeObject<MobileUser>(jsonResponse);
+                        return jsonResponse;
+                    }
+                });
 
-                httpClient.Dispose();
+                var res = JsonConvert.DeserializeObject<DataUploadResponse>(details);
 
-                if (response.IsSuccessStatusCode)
+                if (res.Success)
                 {
                     User.LastUploadDate = DateTime.Now;
                     LastTimeDataUploaded = User.LastUploadDate;
                     await repo.UpdateUserInfo(User);
                     await PopulateCollections();
                     await Application.Current.MainPage.DisplayAlert("Data Uploaded!", "The Data has been uploaded", "OK");
+                    
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", response.StatusCode.ToString() + " " + response.ToString(), "OK");
+                    await Application.Current.MainPage.DisplayAlert("Error", res.Message, "OK");
+                    
                 }
 
+                await PopupNavigation.Instance.PopAsync();
+
                 PageRendered = false;
-                /*
 
-                var baseAddr = new Uri("https://pigprofittool.azurewebsites.net");
-                var client = new HttpClient { BaseAddress = baseAddr };
-
-                var reviewUri = new Uri(baseAddr, "api/data/SubmitData");
-                var request = new HttpRequestMessage(HttpMethod.Get, reviewUri);
-                request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", User.AuthorisedToken);
-
-                var response = await client.SendAsync(request);
-                response.EnsureSuccessStatusCode();*/
 
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message.ToString());
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message.ToString(), "OK");
+                await PopupNavigation.Instance.PopAsync();
             }
 
         }

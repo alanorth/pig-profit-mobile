@@ -1,4 +1,5 @@
-﻿using Shared;
+﻿using PigTool.Helpers;
+using Shared;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using PigTool.Helpers;
 
 namespace PigTool.ViewModels.DataViewModels
 {
@@ -14,7 +14,7 @@ namespace PigTool.ViewModels.DataViewModels
     {
         bool isEditMode, isCreationMode;
         private bool editExistingMode;
-        private DateTime date;
+        private DateTime date, durationStart, durationFinish;
         private string feedType;
         private string otherFeedType;
         private double? amountPurchased;
@@ -45,6 +45,10 @@ namespace PigTool.ViewModels.DataViewModels
         public string PurchasedFromTranslation { get; set; }
         public string OtherPurchasedFromTranslation { get; set; }
 
+        public string StartTranslation { get; set; }
+        public string FinishTranslation { get; set; }
+        public string FeedDurationTranslation { get; set; }
+
         public string AmountPurchasedTranslation { get; set; }
         public string TotalCostTranslation { get; set; }
         public string TransportationCostTranslation { get; set; }
@@ -70,6 +74,30 @@ namespace PigTool.ViewModels.DataViewModels
                 {
                     date = value;
                     OnPropertyChanged(nameof(Date));
+                }
+            }
+        }
+        public DateTime DurationStart
+        {
+            get => durationStart;
+            set
+            {
+                if (durationStart != value)
+                {
+                    durationStart = value;
+                    OnPropertyChanged(nameof(DurationStart));
+                }
+            }
+        }
+        public DateTime DurationFinish
+        {
+            get => durationFinish;
+            set
+            {
+                if (durationFinish != value)
+                {
+                    durationFinish = value;
+                    OnPropertyChanged(nameof(DurationFinish));
                 }
             }
         }
@@ -351,6 +379,8 @@ namespace PigTool.ViewModels.DataViewModels
         public FeedItemViewModel()
         {
             Date = DateTime.Now;
+            DurationStart = DateTime.Now;
+            DurationFinish = DateTime.Now;
 
             IsEditMode = true;
             CreationMode = true;
@@ -372,6 +402,10 @@ namespace PigTool.ViewModels.DataViewModels
             OtherAmountPurchasedUnitTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherAmountPurchasedUnitTranslation), User.UserLang);
             PurchasedFromTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PurchasedFromTranslation), User.UserLang);
             OtherPurchasedFromTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherPurchasedFromTranslation), User.UserLang);
+
+            StartTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(StartTranslation), User.UserLang) + " *";
+            FinishTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FinishTranslation), User.UserLang) + " *";
+            FeedDurationTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FeedDurationTranslation), User.UserLang);
 
             TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang) + " *";
             TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
@@ -407,6 +441,8 @@ namespace PigTool.ViewModels.DataViewModels
             TotalCosts = item.TotalCosts;
             TransportationCost = item.TransportationCost;
             Comment = item.Comment;
+            DurationStart = (DateTime)item.DurationStart;
+            DurationFinish = (DateTime)item.DurationFinish;
         }
 
         public void SetPickers()
@@ -444,6 +480,8 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.TransportationCost = (double)TransportationCost;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
+                _itemForEditing.DurationStart = DurationStart;
+                _itemForEditing.DurationFinish = DurationFinish;
 
                 await repo.UpdateFeedItem(_itemForEditing);
                 await Application.Current.MainPage.DisplayAlert("Updated", "Feed record has been updated", "OK");
@@ -467,6 +505,8 @@ namespace PigTool.ViewModels.DataViewModels
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
                     PartitionKey = Constants.PartitionKeyFeed,
+                    DurationStart = DurationStart,
+                    DurationFinish = DurationFinish
                 };
 
                 await repo.AddSingleFeedItem(newFeedItem);
@@ -537,6 +577,8 @@ namespace PigTool.ViewModels.DataViewModels
                 returnString.AppendLine(Date == null ? "Date obtained not provided" : "");
                 returnString.AppendLine(TotalCosts == null ? "Total Cost Not Provided" : "");
                 returnString.AppendLine(TransportationCost == null ? "Transportation Cost Not Provided" : "");
+                returnString.AppendLine(DurationStart == null ? "Duration Start Not Provided" : "");
+                returnString.AppendLine(DurationFinish == null ? "Duration Finish Not Provided" : "");
 
 
                 if (SelectedFeedType != null)

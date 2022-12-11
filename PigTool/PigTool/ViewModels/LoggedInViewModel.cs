@@ -15,7 +15,7 @@ namespace PigTool.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         public IDataRepo repo;
-        public UserInfo User;
+        public MobileUser User;
         public List<Translation> TranslationStore;
 
         bool isBusy = false;

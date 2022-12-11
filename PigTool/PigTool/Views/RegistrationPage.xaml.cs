@@ -20,11 +20,31 @@ namespace PigTool.Views
             InitializeComponent();
             this.lang = lang;
             this.countryTranslationRowKey = countryTranslationRowKey;
-            BindingContext = _viewModel = new RegistrationViewModel(lang, countryTranslationRowKey);
+            BindingContext = _viewModel = new RegistrationViewModel(lang, countryTranslationRowKey, true);
             _viewModel.accessToken = AccessToken;
             _viewModel.registeredEmail = email;
             RegistrationTitleLabel.Text = _viewModel.RegistrationTitleTranslation;
         }
+
+        public RegistrationPage(MobileUser user,UserLangSettings lang, string countryTranslationRowKey)
+        {
+            InitializeComponent();
+            this.lang = lang;
+            this.countryTranslationRowKey = countryTranslationRowKey;
+            BindingContext = _viewModel = new RegistrationViewModel(lang, countryTranslationRowKey, true);
+            _viewModel.populatewithData(user);
+            _viewModel.accessToken = user.AuthorisedToken;
+            _viewModel.registeredEmail = user.AuthorisedEmail;
+            RegistrationTitleLabel.Text = _viewModel.RegistrationTitleTranslation;
+        }
+
+        /*
+        public RegistrationPage(MobileUser UI, bool newUser)
+        {
+            BindingContext = _viewModel = new RegistrationViewModel(newUser);
+            _viewModel.populatewithData(UI);
+            InitializeComponent();
+        }*/
 
         protected async override void OnAppearing()
         {
@@ -50,14 +70,14 @@ namespace PigTool.Views
         private void PopulateTheTable()
         {
             var FullTableSection = new TableSection();
-
+            /*
             // UserName
             var UserNameCell = new ViewCell();
             var UserNameStack = FormattedElementsHelper.TableRowStack();
             UserNameStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.UserNameTranslation)));
             UserNameStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.UserName), nameof(_viewModel.IsEditMode), null));
             UserNameCell.View = UserNameStack;
-            FullTableSection.Add(UserNameCell);
+            FullTableSection.Add(UserNameCell);*/
 
             // Name
             var NameCell = new ViewCell();

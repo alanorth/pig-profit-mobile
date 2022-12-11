@@ -34,7 +34,7 @@ namespace PigTool.ViewModels.DataViewModels
         //List<PickerToolHelper> subCountyListOfOptions;
         List<PickerToolHelper> countryListOfOptions;
         List<PickerToolHelper> currencyListOfOptions;
-        UserInfo _itemForEditing;
+        MobileUser _itemForEditing;
 
 
         //Button Clicks

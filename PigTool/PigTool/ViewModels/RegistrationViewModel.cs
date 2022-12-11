@@ -8,13 +8,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using PigTool.Services;
+using Newtonsoft.Json;
+using System.Net.Http;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Net;
+using System.Net.Http.Headers;
+using Newtonsoft.Json.Linq;
+using PigTool.Models;
+using System.Xml.Linq;
+using PigTool.Views.Popups;
+using Rg.Plugins.Popup.Services;
 
 namespace PigTool.ViewModels.DataViewModels
 {
     public class RegistrationViewModel : LoggedOutViewModel, INotifyPropertyChanged
     {
         bool isEditMode, isCreationMode;
-        private bool editExistingMode;
+        private bool editExistingMode, newUser;
         private string? userName;
         private string? name;
         private string? gender;
@@ -38,7 +50,7 @@ namespace PigTool.ViewModels.DataViewModels
         //List<PickerToolHelper> subCountyListOfOptions;
         List<PickerToolHelper> countryListOfOptions;
         List<PickerToolHelper> currencyListOfOptions;
-        UserInfo _itemForEditing;
+        MobileUser _itemForEditing;
 
         UserLangSettings lang;
         string countryTranslationRowKey;
@@ -466,19 +478,18 @@ namespace PigTool.ViewModels.DataViewModels
         public bool EditExistingMode { get => editExistingMode; set { if (editExistingMode != value) { editExistingMode = value; OnPropertyChanged(nameof(EditExistingMode)); } } }
         public bool CreationMode { get; private set; }
 
-        public RegistrationViewModel(UserLangSettings lang, string countryTranslationRowKey)
+        public RegistrationViewModel(UserLangSettings lang, string countryTranslationRowKey, bool newUser)
         {
             this.lang = lang;
             this.countryTranslationRowKey = countryTranslationRowKey;
             IsEditMode = true;
-            CreationMode = true;
+            CreationMode = newUser;
+            this.newUser = newUser;
 
             SaveButtonClicked = new Command(SaveButtonCreateUser);
             ResetButtonClicked = new Command(ResetButtonPressed);
             DeleteButtonClicked = new Command(DeleteItem);
             EditButtonClicked = new Command(EditItem);
-            IsEditMode = true;
-            IsCreationMode = !EditExistingMode;
 
             RegistrationTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(RegistrationTitleTranslation), lang);
             NameTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(NameTranslation), lang) + " *";
@@ -515,12 +526,8 @@ namespace PigTool.ViewModels.DataViewModels
 
         }
 
-        public void populatewithData(UserInfo item)
+        public void populatewithData(MobileUser item)
         {
-            isEditMode = false;
-            CreationMode = false;
-            EditExistingMode = !CreationMode;
-
             _itemForEditing = item;
 
             UserName = item.UserName;
@@ -555,151 +562,166 @@ namespace PigTool.ViewModels.DataViewModels
         private async void SaveButtonCreateUser(object obj)
         {
 
-            var valid = ValidateSave();
+            LoadingOverlay overlay = new LoadingOverlay("Sending Data");
+            await PopupNavigation.Instance.PushAsync(overlay);
 
-            if (!string.IsNullOrWhiteSpace(valid))
+            try
             {
-                await Application.Current.MainPage.DisplayAlert("Error", valid, "OK");
-                return;
-            }
 
-            if (_itemForEditing != null)
-            {
-                _itemForEditing.UserName = UserName;
-                _itemForEditing.Name = Name;
-                _itemForEditing.PhoneNumber = PhoneNumber;
-                _itemForEditing.Gender = SelectedGender != null ? SelectedGender.TranslationRowKey : null;
-                _itemForEditing.Email = Email;
-                //_itemForEditing.District = SelectedDistrict != null ? SelectedDistrict.TranslationRowKey : null;
-                //_itemForEditing.County = SelectedCounty != null ? SelectedCounty.TranslationRowKey : null;
-                //_itemForEditing.SubCounty = SelectedSubCounty != null ? SelectedSubCounty.TranslationRowKey : null;
-                _itemForEditing.District = District;
-                _itemForEditing.County = County;
-                _itemForEditing.SubCounty = SubCounty;
-                _itemForEditing.Parish = Parish;
-                _itemForEditing.Village = Village;
-                _itemForEditing.Currency = SelectedCurrency != null ? SelectedCurrency.TranslationRowKey : null;
-                _itemForEditing.Province = Province;
-                _itemForEditing.Commune = Commune;
-                _itemForEditing.Sector = Sector;
-                _itemForEditing.Cell = Cell;
-                _itemForEditing.LastModified = DateTime.UtcNow;
-                //_itemForEditing.LastUploadDate = DateTime.UtcNow;
-                //_itemForEditing.UserLang = lang;
-                //_itemForEditing.Country = SelectedCountry != null ? SelectedCountry.TranslationRowKey : null;
+                var valid = ValidateSave();
 
-                await repo.UpdateUserInfo(_itemForEditing);
-                //await Application.Current.MainPage.DisplayAlert("Upnamed", "Reproduction record has been updated", "OK");
-                await Shell.Current.Navigation.PopAsync();
-            }
-            else
-            {
-                var newUserInfo = new UserInfo
+                if (!string.IsNullOrWhiteSpace(valid))
                 {
-                    UserName = UserName,
-                    Name = Name,
-                    PhoneNumber = PhoneNumber,
-                    Gender = SelectedGender != null ? SelectedGender.TranslationRowKey : null,
-                    Email = Email,
-                    //District = SelectedDistrict != null ? SelectedDistrict.TranslationRowKey : null,
-                    //County = SelectedCounty != null ? SelectedCounty.TranslationRowKey : null,
-                    //SubCounty = SelectedSubCounty != null ? SelectedSubCounty.TranslationRowKey : null,
-                    District = District,
-                    County = County,
-                    SubCounty = SubCounty,
-                    Parish = Parish,
-                    Village = Village,
-                    Currency = SelectedCurrency != null ? SelectedCurrency.TranslationRowKey : null,
-                    Province = Province,
-                    Commune = Commune,
-                    Sector = Sector,
-                    Cell = Cell,
-                    LastModified = DateTime.UtcNow,
-                    LastUploadDate = DateTime.UtcNow,
-                    PartitionKey = Constants.PartitionKeyUserInfo,
-                    UserLang = lang,
-                    Timestamp = DateTime.UtcNow,
-                    RowKey = registeredEmail,
-                    AuthorisedEmail = registeredEmail,
-                    AuthorisedToken = accessToken,
-                    Country = countryTranslationRowKey
-                };
+                    await Application.Current.MainPage.DisplayAlert("Error", valid, "OK");
+                    await PopupNavigation.Instance.PopAsync();
+                    return;
+                }
 
 
-                //await Shell.Current.GoToAsync(nameof(RegistrationSuccessfulPage));
-                try
+                if (_itemForEditing != null)
                 {
-                    await repo.AddSingleUserInfo(newUserInfo);
-                    await Application.Current.MainPage.Navigation.PushAsync(new RegistrationSuccessfulPage());
-                    //ShowSuccess?.Invoke(true);
+                    _itemForEditing.UserName = UserName;
+                    _itemForEditing.Name = Name;
+                    _itemForEditing.PhoneNumber = PhoneNumber;
+                    _itemForEditing.Gender = SelectedGender != null ? SelectedGender.TranslationRowKey : null;
+                    _itemForEditing.Email = Email;
+                    //_itemForEditing.District = SelectedDistrict != null ? SelectedDistrict.TranslationRowKey : null;
+                    //_itemForEditing.County = SelectedCounty != null ? SelectedCounty.TranslationRowKey : null;
+                    //_itemForEditing.SubCounty = SelectedSubCounty != null ? SelectedSubCounty.TranslationRowKey : null;
+                    _itemForEditing.District = District;
+                    _itemForEditing.County = County;
+                    _itemForEditing.SubCounty = SubCounty;
+                    _itemForEditing.Parish = Parish;
+                    _itemForEditing.Village = Village;
+                    _itemForEditing.Currency = SelectedCurrency != null ? SelectedCurrency.TranslationRowKey : null;
+                    _itemForEditing.Province = Province;
+                    _itemForEditing.Commune = Commune;
+                    _itemForEditing.Sector = Sector;
+                    _itemForEditing.Cell = Cell;
+                    _itemForEditing.LastModified = DateTime.UtcNow;
+                    _itemForEditing.LastUploadDate = DateTime.UtcNow;
+                    _itemForEditing.UserLang = lang;
+                    _itemForEditing.Country = countryTranslationRowKey;
+                    //_itemForEditing.Country = SelectedCountry != null ? SelectedCountry.TranslationRowKey : null;
 
-                    /*using (var client = new HttpClient())
+                    if (newUser)
                     {
-                        client.BaseAddress = new Uri("https://pigprofittool.azurewebsites.net/");
-                        client.DefaultRequestHeaders.Accept.Clear();
-
-                        var jObject2 = JsonConvert.SerializeObject(newUserInfo);
-
-                        var data1 = new StringContent(jObject2, Encoding.UTF8, "application/json");
-
-                        // New code:
-                        HttpResponseMessage response2 = await client.PostAsync("api/data/AddUser", data1);
-                        if ((int)response2.StatusCode == 202)
+                        try
                         {
-                            var responseString3 = await response2.Content.ReadAsStringAsync();
-                            UserInfo use = JsonConvert.DeserializeObject<UserInfo>(responseString3);
-                            await Application.Current.MainPage.Navigation.PushAsync(new AppShell());
+                            var rest = new RESTService(_itemForEditing);
+
+                            HttpClientHandler handlert = GetInsecureHandler();
+                            //var cli = new HttpClient(handlert);
+                            //cli.DefaultRequestHeaders.Authorization =
+                            //new AuthenticationHeaderValue("Bearer", _itemForEditing.AuthorisedToken);
+
+                            //go save to database  
+                            //maybe check to see if there are under data coverage
+                            var MobileUser = await rest.ExecuteWithRetryAsync(async () =>
+                            {
+                                HttpClientHandler handler = GetInsecureHandler();
+                                using (var client = new HttpClient(handler))
+                                {
+                                    client.DefaultRequestHeaders.Add("Authorization", $"bearer {_itemForEditing.AuthorisedToken}");
+                                    var mobUser = JsonConvert.SerializeObject(_itemForEditing, new JsonSerializerSettings
+                                    {
+                                        DateTimeZoneHandling = DateTimeZoneHandling.Utc
+                                    });
+                                    var content = new StringContent(mobUser, Encoding.UTF8, "application/json");
+                                    var responseMessage = await client.PostAsync("https://pigprofittool.azurewebsites.net/Account/RegisterMobileUser", content);
+
+                                    var responseMessage21 = await client.GetAsync("https://pigprofittool.azurewebsites.net/Account/TestAuth");
+                                    //_itemForEditing.SavedToDatabase = true; 
+                                    responseMessage.EnsureSuccessStatusCode();
+
+                                    var jsonResponse = await responseMessage.Content.ReadAsStringAsync();
+
+                                    //var response = JsonConvert.DeserializeObject<MobileUser>(jsonResponse);
+
+                                    return jsonResponse;
+
+
+                                }
+                            });
+
+                            await repo.AddSingleUserInfo(_itemForEditing);
+
+
+
+                            await Application.Current.MainPage.Navigation.PushAsync(new RegistrationSuccessfulPage());
 
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            //something went wrong
-                            await Application.Current.MainPage.DisplayAlert("Error", response2.StatusCode.ToString(), "OK");
+                            Console.WriteLine(ex.Message.ToString());
                         }
 
-                    }*/
 
-
-
-                    //await repo.UpdateUserInfo(User);
-                    //var httpClient = new HttpClient();
-
-                    //httpClient.DefaultRequestHeaders.Add("XApiKey", "ENTER YOUR API KEY HERE");
-                    //httpClient.DefaultRequestHeaders.Authorization =
-                    //new AuthenticationHeaderValue("Google", User.AuthorisedToken);
-
-                    //var response1 = await httpClient.GetAsync("https://pigprofittool.azurewebsites.net/api/storage");
-
-                    //var jObject = JsonConvert.SerializeObject(newUserInfo);
-
-                    //var data = new StringContent(jObject, Encoding.UTF8, "application/json");
-                    //var url = "https://pigprofittool.azurewebsites.net/api/data/AddUser";
-
-                    //var response = await httpClient.PostAsync(url, data);
-                    //var response = await httpClient.GetAsync(url);
-                    //var responseString = await response.Content.ReadAsStringAsync();
-
-                    //httpClient.Dispose();
-                    /*
-                    if (response1.IsSuccessStatusCode)
-                    {
-                        newUserInfo.LastUploadDate = DateTime.Now;
-                        await repo.UpdateUserInfo(newUserInfo);
-                        await Shell.Current.GoToAsync(nameof(RegistrationSuccessfulPage));
                     }
                     else
                     {
-                        //something failed;
-                        await Application.Current.MainPage.DisplayAlert("Error", response1.StatusCode.ToString(), "OK");
-                    }*/
+                        await repo.UpdateUserInfo(_itemForEditing);
+                        //await Application.Current.MainPage.DisplayAlert("Upnamed", "Reproduction record has been updated", "OK");
 
+                        //await Shell.Current.Navigation.PopAsync();
+                        Application.Current.MainPage = new AppShell();
+                    }
 
                 }
-                catch (Exception ex)
+                else
                 {
-                    Console.WriteLine(ex.ToString());
+                    var newUserInfo = new MobileUser
+                    {
+                        UserName = UserName,
+                        Name = Name,
+                        PhoneNumber = PhoneNumber,
+                        Gender = SelectedGender != null ? SelectedGender.TranslationRowKey : null,
+                        Email = Email,
+                        //District = SelectedDistrict != null ? SelectedDistrict.TranslationRowKey : null,
+                        //County = SelectedCounty != null ? SelectedCounty.TranslationRowKey : null,
+                        //SubCounty = SelectedSubCounty != null ? SelectedSubCounty.TranslationRowKey : null,
+                        District = District,
+                        County = County,
+                        SubCounty = SubCounty,
+                        Parish = Parish,
+                        Village = Village,
+                        Currency = SelectedCurrency != null ? SelectedCurrency.TranslationRowKey : null,
+                        Province = Province,
+                        Commune = Commune,
+                        Sector = Sector,
+                        Cell = Cell,
+                        LastModified = DateTime.UtcNow,
+                        LastUploadDate = DateTime.UtcNow,
+                        PartitionKey = Constants.PartitionKeyUserInfo,
+                        UserLang = lang,
+                        Timestamp = DateTime.UtcNow,
+                        RowKey = registeredEmail,
+                        AuthorisedEmail = registeredEmail,
+                        AuthorisedToken = accessToken,
+                        Country = countryTranslationRowKey
+                    };
+
+
+                    //await Shell.Current.GoToAsync(nameof(RegistrationSuccessfulPage));
+                    try
+                    {
+                        await repo.AddSingleUserInfo(newUserInfo);
+                        await Application.Current.MainPage.Navigation.PushAsync(new RegistrationSuccessfulPage());
+
+
+
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.ToString());
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                await PopupNavigation.Instance.PopAsync();
+            }
+            await PopupNavigation.Instance.PopAsync();
         }
 
         private async void DeleteItem(object obj)
@@ -790,6 +812,18 @@ namespace PigTool.ViewModels.DataViewModels
             {
                 return "";
             }
+        }
+
+        public HttpClientHandler GetInsecureHandler()
+        {
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) =>
+            {
+                if (cert.Issuer.Equals("CN=localhost"))
+                    return true;
+                return errors == System.Net.Security.SslPolicyErrors.None;
+            };
+            return handler;
         }
     }
 }
