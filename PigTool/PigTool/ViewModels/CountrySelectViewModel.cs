@@ -39,7 +39,7 @@ namespace PigTool.ViewModels.DataViewModels
 
         #region translations
         public string WhereAreYouLocatedTranslation { get; set; }
-       
+
         public string CountryTranslation { get; set; }
 
         public string SaveTranslation { get; set; }
@@ -52,7 +52,7 @@ namespace PigTool.ViewModels.DataViewModels
         #endregion
 
         #region CountrySelect item fields
-        
+
         public string? Country
         {
             get => country;
@@ -234,12 +234,18 @@ namespace PigTool.ViewModels.DataViewModels
 
         public async Task PopulateDataDowns()
         {
+            try
+            {
+                var CountryControlData = await repo.GetControlData(Constants.COUNTRYTYPE);
+                var LanguageControlData = await repo.GetControlData(Constants.CURRENCYTYPE);
 
-            var CountryControlData = await repo.GetControlData(Constants.COUNTRYTYPE);
-            var LanguageControlData = await repo.GetControlData(Constants.CURRENCYTYPE);
 
+                CountryListOfOptions = LogicHelper.CreatePickerToolOption(CountryControlData, UserLangSettings.Eng);
+            }
+            catch (Exception ex)
+            {
 
-            CountryListOfOptions = LogicHelper.CreatePickerToolOption(CountryControlData, UserLangSettings.Eng);
+            }
         }
 
         private string ValidateSave()

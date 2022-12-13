@@ -8,6 +8,14 @@ namespace SQLLiteDbContext
 {
     public class DbSQLLiteContext : DbContext
     {
+        const string DatabaseName = "Pigs.db3";
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, DatabaseName);
+            optionsBuilder.UseSqlite($"Filename={dbPath}");
+        }
+
         public DbSet<Item> Items { get; set; }
         public DbSet<Translation> Translations { get; set; }
         public DbSet<MobileUser> UserInfos { get; set; }
@@ -27,60 +35,72 @@ namespace SQLLiteDbContext
         public DbSet<BreedingServiceSaleItem> BreedingServiceSaleItems { get; set; }
         public DbSet<ManureSaleItem> ManureSaleItems { get; set; }
         public DbSet<OtherIncomeItem> OtherIncomeItems { get; set; }
+        public DbSet<BaseItem> BaseItems { get; set; }
+
 
         public DbSQLLiteContext()
         {
-            SQLitePCL.Batteries_V2.Init();
-            this.Database.EnsureCreated();
-        }
+            //SQLitePCL.Batteries_V2.Init();
+            //this.Database.EnsureCreated();
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "Pigs.db3");
-
-            optionsBuilder.UseSqlite($"Filename={dbPath}");
 
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Translation>().HasKey(x => x.RowKey);
-
             modelBuilder.Entity<BaseItem>().HasKey(x => x.RowKey);
             modelBuilder.Entity<BaseItem>().Ignore(x => x.ETag);
-            //modelBuilder.Entity<MobileUser>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyUserInfo);
+            modelBuilder.Entity<BaseItem>().Property(bi => bi.RowKey).HasDefaultValue(Guid.NewGuid().ToString());
+            modelBuilder.Entity<BaseItem>().Property(bi => bi.CreatedTimeStamp).HasDefaultValueSql("datetime()");
+            modelBuilder.Entity<BaseItem>().Property(bi => bi.IsEnable).HasDefaultValue(true);
+            modelBuilder.Entity<BaseItem>().Property(bi => bi.IsDeleted).HasDefaultValue(false);
+            modelBuilder.Entity<BaseItem>().Property(bi => bi.IsModified).HasDefaultValue(true);
+            modelBuilder.Entity<BaseItem>().Property(bi => bi.LastModified).HasDefaultValueSql("datetime()");
+
+            modelBuilder.Entity<Translation>().HasKey(x => x.RowKey);
+            //modelBuilder.Entity<UserInfo>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyUserInfo);
             modelBuilder.Entity<MobileUser>().HasKey(x => x.RowKey);
             modelBuilder.Entity<MobileUser>().Ignore(x => x.ETag);
-            modelBuilder.Entity<BaseItem>().Property(bi => bi.RowKey).HasDefaultValue(Guid.NewGuid().ToString());
 
             modelBuilder.Entity<FeedItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyFeed);
+            //modelBuilder.Entity<FeedItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
+            //modelBuilder.Entity<ControlData>().ToTable("ControlDataOptions");
             modelBuilder.Entity<ControlData>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyControlData);
+            //modelBuilder.Entity<ControlData>().Property(bi => bi.LastModified).HasDefaultValue(DateTime.UtcNow);
+            //modelBuilder.Entity<ControlData>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<HealthCareItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyHealthCareItem);
+            //modelBuilder.Entity<HealthCareItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<LabourCostItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyLabourCostItem);
+            //modelBuilder.Entity<LabourCostItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<AnimalHouseItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyAnimalHouse);
+            //modelBuilder.Entity<AnimalHouseItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<WaterCostItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyWaterCostItem);
+            //modelBuilder.Entity<WaterCostItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<MembershipItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyMembershipItem);
+            //modelBuilder.Entity<MembershipItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<OtherCostItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyOtherCostItem);
+            //modelBuilder.Entity<OtherCostItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<ReproductiveItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyReproductiveItem);
+            //modelBuilder.Entity<ReproductiveItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<AnimalPurchaseItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyAnimalPurchaseItem);
+            //modelBuilder.Entity<AnimalPurchaseItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<LoanRepaymentItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyLoanRepaymentItem);
+            //modelBuilder.Entity<LoanRepaymentItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<EquipmentItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyEquipmentItem);
+            //modelBuilder.Entity<EquipmentItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<PigSaleItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyPigSaleItem);
+            //modelBuilder.Entity<PigSaleItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<BreedingServiceSaleItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyBreedingServiceSaleItem);
+            //modelBuilder.Entity<BreedingServiceSaleItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<ManureSaleItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyManureSaleItem);
+            //modelBuilder.Entity<ManureSaleItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
             modelBuilder.Entity<OtherIncomeItem>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyOtherIncomeItem);
+            //modelBuilder.Entity<OtherIncomeItem>().Property(bi => bi.CreatedTimeStamp).ValueGeneratedOnAddOrUpdate();
 
             modelBuilder.Entity<ControlData>()
             .HasOne(cd => cd.Translation).WithMany(t => t.ControlDatas).HasForeignKey(cd => cd.TranslationRowKey);
 
             modelBuilder.Entity<FeedItem>().HasOne(fi => fi.FeedTypeTranslation).WithMany(trans => trans.FeedItems).HasForeignKey(fi => fi.FeedType);
-
-            modelBuilder.Entity<BaseItem>().Property(bi => bi.CreatedTimeStamp).HasDefaultValue(DateTime.UtcNow);
-            modelBuilder.Entity<BaseItem>().Property(bi => bi.IsEnable).HasDefaultValue(true);
-            modelBuilder.Entity<BaseItem>().Property(bi => bi.IsDeleted).HasDefaultValue(false);
-            modelBuilder.Entity<BaseItem>().Property(bi => bi.IsModified).HasDefaultValue(true);
-            modelBuilder.Entity<BaseItem>().Property(bi => bi.LastModified).HasDefaultValue(DateTime.UtcNow);
-
 
 
             modelBuilder.Entity<Translation>(x =>
@@ -442,8 +462,6 @@ namespace SQLLiteDbContext
                         new Translation() { RowKey = "ClientType1", English = "Pig farmer", Lang1 = "Pig farmer Lang1", Lang2 = "Pig farmer Lang2" },
 
                         new Translation() { RowKey = "VolumeUnitType1", English = "Kg", Lang1 = "Kg Lang1", Lang2 = "Kg Lang2" },
-
-
 
                          new Translation() { RowKey = "GenderType1", English = "Male", Lang1 = "", Lang2 = "" },
                          new Translation() { RowKey = "GenderType2", English = "Female", Lang1 = "", Lang2 = "" },

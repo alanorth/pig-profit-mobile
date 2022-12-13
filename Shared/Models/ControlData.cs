@@ -1,6 +1,7 @@
 ﻿using Shared;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Shared
@@ -10,6 +11,7 @@ namespace Shared
     /// beacuse the drop downs need to be translated we cannot store the vlaue as string,
     /// Instead it will be store as ints in other tables and referenced back to this table
     /// </summary>
+    [Table("ControlDataOptions")]
     public class ControlData : BaseItem
     {
         public string DropDownControlOption { get; set; }
