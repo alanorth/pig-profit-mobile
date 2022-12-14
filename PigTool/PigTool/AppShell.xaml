@@ -87,7 +87,11 @@
                 <FontImageSource FontFamily="FA-S" Glyph="&#xf14d;" />
             </ShellContent.Icon>
         </ShellContent>
-
+        <ShellContent Title="Settings" ContentTemplate="{DataTemplate local:SettingsPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="FA-S" Glyph="&#xf14d;" />
+            </ShellContent.Icon>
+        </ShellContent>
     </TabBar>
 
     <!--
@@ -96,7 +100,6 @@
     -->
     <TabBar>
         <ShellContent ContentTemplate="{DataTemplate local:LoginPage}" Route="LoginPage" />
-        <ShellContent ContentTemplate="{DataTemplate local:SettingsPage}" Route="SettingsPage" />
         <ShellContent ContentTemplate="{DataTemplate local:EditUserPage}" Route="SettingsPage/EditUserPage" />
     </TabBar>
 

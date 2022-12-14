@@ -14,6 +14,8 @@ namespace PigTool.Views
             InitializeComponent();
             BindingContext = homePageViewModel = new HomePageViewModel();
 
+            // Adding three dot menu to homepage to access settings and logout
+            /*
             ToolbarItem settingsItem = new ToolbarItem
             {
                 Text = "Settings",
@@ -35,6 +37,7 @@ namespace PigTool.Views
 
             // "this" refers to a Page object
             this.ToolbarItems.Add(logoutItem);
+            */
         }
 
         protected async override void OnAppearing()
