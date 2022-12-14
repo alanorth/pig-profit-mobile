@@ -14,7 +14,7 @@ namespace PigTool.ViewModels.DataViewModels
     {
         bool isEditMode;
         private bool editExistingMode;
-        private string? userName;
+        //private string? userName;
         private string? name;
         private string? gender;
         private string? phoneNumber;
@@ -90,18 +90,18 @@ namespace PigTool.ViewModels.DataViewModels
             }
         }
 
-        public string? UserName
-        {
-            get => userName;
-            set
-            {
-                if (userName != value)
-                {
-                    userName = value;
-                    OnPropertyChanged(nameof(UserName));
-                }
-            }
-        }
+        //public string? UserName
+        //{
+        //    get => userName;
+        //    set
+        //    {
+        //        if (userName != value)
+        //        {
+        //            userName = value;
+        //            OnPropertyChanged(nameof(UserName));
+        //        }
+        //    }
+        //}
 
         public string? Gender
         {
@@ -443,7 +443,7 @@ namespace PigTool.ViewModels.DataViewModels
 
             RegistrationTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(RegistrationTitleTranslation), User.UserLang);
             NameTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(NameTranslation), User.UserLang) + " *";
-            UserNameTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(UserNameTranslation), User.UserLang) + " *";
+            //UserNameTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(UserNameTranslation), User.UserLang) + " *";
             GenderTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(GenderTranslation), User.UserLang);
             EmailTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EmailTranslation), User.UserLang);
             DistrictTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DistrictTranslation), User.UserLang);
@@ -480,7 +480,7 @@ namespace PigTool.ViewModels.DataViewModels
 
             _itemForEditing = User;
 
-            UserName = _itemForEditing.UserName;
+            //UserName = _itemForEditing.UserName;
             Name = _itemForEditing.Name;
             Gender = _itemForEditing.Gender;
             PhoneNumber = _itemForEditing.PhoneNumber;
@@ -518,32 +518,40 @@ namespace PigTool.ViewModels.DataViewModels
                 return;
             }
 
+            try
+            {
+                //_itemForEditing.UserName = UserName;
+                _itemForEditing.Name = Name;
+                _itemForEditing.PhoneNumber = PhoneNumber;
+                _itemForEditing.Gender = SelectedGender != null ? SelectedGender.TranslationRowKey : null;
+                //_itemForEditing.District = SelectedDistrict != null ? SelectedDistrict.TranslationRowKey : null;
+                //_itemForEditing.County = SelectedCounty != null ? SelectedCounty.TranslationRowKey : null;
+                //_itemForEditing.SubCounty = SelectedSubCounty != null ? SelectedSubCounty.TranslationRowKey : null;
+                _itemForEditing.District = District;
+                _itemForEditing.County = County;
+                _itemForEditing.SubCounty = SubCounty;
+                _itemForEditing.Parish = Parish;
+                _itemForEditing.Village = Village;
+                _itemForEditing.Currency = SelectedCurrency != null ? SelectedCurrency.TranslationRowKey : null;
+                _itemForEditing.Province = Province;
+                _itemForEditing.Commune = Commune;
+                _itemForEditing.Sector = Sector;
+                _itemForEditing.Cell = Cell;
+                _itemForEditing.LastModified = DateTime.UtcNow;
+                //_itemForEditing.LastUploadDate = DateTime.UtcNow;
+                //_itemForEditing.UserLang = lang;
+                //_itemForEditing.Country = SelectedCountry != null ? SelectedCountry.TranslationRowKey : null;
 
-            _itemForEditing.UserName = UserName;
-            _itemForEditing.Name = Name;
-            _itemForEditing.PhoneNumber = PhoneNumber;
-            _itemForEditing.Gender = SelectedGender != null ? SelectedGender.TranslationRowKey : null;
-            //_itemForEditing.District = SelectedDistrict != null ? SelectedDistrict.TranslationRowKey : null;
-            //_itemForEditing.County = SelectedCounty != null ? SelectedCounty.TranslationRowKey : null;
-            //_itemForEditing.SubCounty = SelectedSubCounty != null ? SelectedSubCounty.TranslationRowKey : null;
-            _itemForEditing.District = District;
-            _itemForEditing.County = County;
-            _itemForEditing.SubCounty = SubCounty;
-            _itemForEditing.Parish = Parish;
-            _itemForEditing.Village = Village;
-            _itemForEditing.Currency = SelectedCurrency != null ? SelectedCurrency.TranslationRowKey : null;
-            _itemForEditing.Province = Province;
-            _itemForEditing.Commune = Commune;
-            _itemForEditing.Sector = Sector;
-            _itemForEditing.Cell = Cell;
-            _itemForEditing.LastModified = DateTime.UtcNow;
-            //_itemForEditing.LastUploadDate = DateTime.UtcNow;
-            //_itemForEditing.UserLang = lang;
-            //_itemForEditing.Country = SelectedCountry != null ? SelectedCountry.TranslationRowKey : null;
-
-            await repo.UpdateUserInfo(_itemForEditing);
-            //await Application.Current.MainPage.DisplayAlert("Upnamed", "Reproduction record has been updated", "OK");
-            //await Shell.Current.Navigation.PopAsync();
+                await repo.UpdateUserInfo(_itemForEditing);
+                //await Application.Current.MainPage.DisplayAlert("Upnamed", "Reproduction record has been updated", "OK");
+                //await Shell.Current.Navigation.PopAsync();
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Something went wrong, please try again later", "OK");
+            }
+            await Application.Current.MainPage.DisplayAlert("Saved", "Your changes have been saved", "OK");
+            await Application.Current.MainPage.Navigation.PopAsync();
 
         }
 
@@ -564,7 +572,7 @@ namespace PigTool.ViewModels.DataViewModels
 
         private void ClearFormVariables()
         {
-            UserName = null;
+            //UserName = null;
             Name = null;
             PhoneNumber = null;
             SelectedGender = null;
@@ -614,7 +622,7 @@ namespace PigTool.ViewModels.DataViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                if (UserName == null) returnString.AppendLine("UserName Not provided");
+                //if (UserName == null) returnString.AppendLine("UserName Not provided");
                 if (Name == null) returnString.AppendLine("Name Not provided");
                 if (PhoneNumber == null) returnString.AppendLine("Phone Number Not Provided");
                 if (SelectedCurrency == null) returnString.AppendLine("Currency Not Provided");
