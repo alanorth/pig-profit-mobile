@@ -13,7 +13,7 @@ namespace PigTool.Views
         {
             InitializeComponent();
             _viewModel = new SettingsViewModel();
-
+            UserLanguage.Detail = _viewModel.GetUserLanguage();
         }
 
 

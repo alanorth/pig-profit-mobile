@@ -12,6 +12,32 @@ namespace PigTool.ViewModels
 
         }
 
+        public string GetUserLanguage()
+        {
+            var lang = User.UserLang;
+            var langName = "";
+            switch (lang)
+            {
+                case UserLangSettings.Eng:
+                    langName = "English";
+                    break;
+                case UserLangSettings.Lang1:
+                    langName = "Swahili";
+                    break;
+                case UserLangSettings.Lang2:
+                    langName = "Vietnamese";
+                    break;
+                /*
+                case UserLangSettings.Eng:
+                    langName = "Kinyarwanda";
+                    break;
+                */
+                default:
+                    break;
+            }
+
+            return langName;
+        }
 
         public async void ChangeUserLanguage(string language)
         {
