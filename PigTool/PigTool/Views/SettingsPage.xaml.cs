@@ -32,17 +32,21 @@ namespace PigTool.Views
         private async void ChangeLanguage_Tapped(object sender, System.EventArgs e)
         {
             //await Application.Current.MainPage.DisplayAlert("Language", "To be added", "OK");
-            string action = await DisplayActionSheet("Change Language", "Cancel", null, "English", "Swahili", "Vietnamese", "Kinyarwanda");
-            Console.WriteLine(action);
-            bool answer = await DisplayAlert("Are you sure?", "Are you sure you want to change your language to " + action + "?", "Yes", "No");
-            if (answer)
+            string action = await DisplayActionSheet("Change Language", null, null, "English", "Swahili", "Vietnamese", "Kinyarwanda");
+            if (action != null)
             {
-                Console.WriteLine("this");
+                Console.WriteLine(action);
+                bool answer = await DisplayAlert("Are you sure?", "Are you sure you want to change your language to " + action + "?", "Yes", "No");
+                if (answer)
+                {
+                    Console.WriteLine("this");
 
-                //change language
-                _viewModel.ChangeUserLanguage(action);
-                //refresh page
+                    //change language
+                    _viewModel.ChangeUserLanguage(action);
+                    //refresh page
+                }
             }
+
         }
     }
 }
