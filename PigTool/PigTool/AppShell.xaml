@@ -1,15 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:local="clr-namespace:PigTool.Views"
-       xmlns:vm="clr-namespace:PigTool.ViewModels"
-       FlyoutBehavior="Disabled"
-       Title="PigTool"
-       x:Class="PigTool.AppShell">
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="PigTool.AppShell"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:PigTool.Views"
+    xmlns:vm="clr-namespace:PigTool.ViewModels"
+    Title="PigTool"
+    FlyoutBehavior="Disabled">
 
     <!--
         The overall app visual hierarchy is defined here, along with navigation.
-    
+        
         https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
     -->
 
@@ -22,60 +23,75 @@
                 <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
                 <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
                 <Setter Property="Shell.TabBarBackgroundColor" Value="White" />
-                <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource Primary}"/>
-                <Setter Property="Shell.TabBarUnselectedColor" Value="#c2c2c2"/>
-                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource Primary}"/>
+                <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.TabBarUnselectedColor" Value="#c2c2c2" />
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource Primary}" />
             </Style>
-            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="TabBar" />
         </ResourceDictionary>
     </Shell.Resources>
 
     <Shell.BindingContext>
-        <vm:AppViewModel/>
+        <vm:AppViewModel />
     </Shell.BindingContext>
 
-    
-    <ShellItem Route="CountrySelect" IsVisible="{Binding ShowRegister}">
-        <ShellContent ContentTemplate="{DataTemplate local:CountrySelectPage}"/>
+
+    <ShellItem IsVisible="{Binding ShowRegister}" Route="CountrySelect">
+        <ShellContent ContentTemplate="{DataTemplate local:CountrySelectPage}" />
     </ShellItem>
-    <ShellItem Route="Legal" IsVisible="{Binding ShowRegister}">
-        <ShellContent ContentTemplate="{DataTemplate local:LegalDisclaimer}"/>
+    <ShellItem IsVisible="{Binding ShowRegister}" Route="Legal">
+        <ShellContent ContentTemplate="{DataTemplate local:LegalDisclaimer}" />
     </ShellItem>
-    <ShellItem Route="Registration" IsVisible="{Binding ShowRegister}">
-        <ShellContent ContentTemplate="{DataTemplate local:RegistrationPage}"/>
+    <ShellItem IsVisible="{Binding ShowRegister}" Route="Registration">
+        <ShellContent ContentTemplate="{DataTemplate local:RegistrationPage}" />
     </ShellItem>
-    <ShellItem Route="RegistrationSuccessful" IsVisible="{Binding ShowRegister}">
-        <ShellContent ContentTemplate="{DataTemplate local:RegistrationSuccessfulPage}"/>
+    <ShellItem IsVisible="{Binding ShowRegister}" Route="RegistrationSuccessful">
+        <ShellContent ContentTemplate="{DataTemplate local:RegistrationSuccessfulPage}" />
     </ShellItem>
 
 
     <TabBar Route="main">
-        <ShellContent Title="Home"  Route="HomePage" ContentTemplate="{DataTemplate local:HomePage}" >
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate local:HomePage}"
+            Route="HomePage">
             <ShellContent.Icon>
-                <FontImageSource Glyph="&#xf015;" FontFamily="FA-S" />
+                <FontImageSource FontFamily="FA-S" Glyph="&#xf015;" />
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="Add Data"  Route="AddDatePage" x:Name="AddData" ContentTemplate="{DataTemplate local:AddDataPage}" >
+        <ShellContent
+            x:Name="AddData"
+            Title="Add Data"
+            ContentTemplate="{DataTemplate local:AddDataPage}"
+            Route="AddDatePage">
             <ShellContent.Icon>
-                <FontImageSource Glyph="&#xf0fe;" FontFamily="FA-S" />
+                <FontImageSource FontFamily="FA-S" Glyph="&#xf0fe;" />
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="Manage" Route="ManageDataPage" x:Name="ManageData" ContentTemplate="{DataTemplate local:ManageDataPage}" >
+        <ShellContent
+            x:Name="ManageData"
+            Title="Manage"
+            ContentTemplate="{DataTemplate local:ManageDataPage}"
+            Route="ManageDataPage">
             <ShellContent.Icon>
-                <FontImageSource Glyph="&#xf0ce;" FontFamily="FA-S" />
+                <FontImageSource FontFamily="FA-S" Glyph="&#xf0ce;" />
             </ShellContent.Icon>
         </ShellContent>
         <ShellContent Title="Reports" ContentTemplate="{DataTemplate local:ReportsPage}">
             <ShellContent.Icon>
-                <FontImageSource Glyph="&#xf1fe;" FontFamily="FA-S" />
+                <FontImageSource FontFamily="FA-S" Glyph="&#xf1fe;" />
             </ShellContent.Icon>
         </ShellContent>
         <ShellContent Title="Upload" ContentTemplate="{DataTemplate local:SendDataPage}">
             <ShellContent.Icon>
-                <FontImageSource Glyph="&#xf14d;" FontFamily="FA-S" />
+                <FontImageSource FontFamily="FA-S" Glyph="&#xf14d;" />
             </ShellContent.Icon>
         </ShellContent>
-
+        <ShellContent Title="Settings" ContentTemplate="{DataTemplate local:SettingsPage}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="FA-S" Glyph="&#xf013;" />
+            </ShellContent.Icon>
+        </ShellContent>
     </TabBar>
 
     <!--
@@ -83,7 +99,8 @@
         await Shell.Current.GoToAsync("//LoginPage");
     -->
     <TabBar>
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
+        <ShellContent ContentTemplate="{DataTemplate local:LoginPage}" Route="LoginPage" />
+        <ShellContent ContentTemplate="{DataTemplate local:EditUserPage}" Route="SettingsPage/EditUserPage" />
     </TabBar>
 
 </Shell>
