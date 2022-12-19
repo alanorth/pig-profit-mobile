@@ -12,16 +12,8 @@ namespace PigTool.Views
         public SettingsPage()
         {
             InitializeComponent();
-            _viewModel = new SettingsViewModel();
+            this.BindingContext = _viewModel = new SettingsViewModel();
             UserLanguage.Detail = _viewModel.GetUserLanguage();
-        }
-
-
-        protected async override void OnAppearing()
-        {
-
-
-
         }
 
         private async void EditUser_Tapped(object sender, System.EventArgs e)
@@ -36,14 +28,14 @@ namespace PigTool.Views
             if (action != null)
             {
                 Console.WriteLine(action);
-                bool answer = await DisplayAlert("Are you sure?", "Are you sure you want to change your language to " + action + "?", "Yes", "No");
+                bool answer = await DisplayAlert("Are you sure?", "Are you sure you want to change your language to " + action + "? Doing so will close the application.", "Yes", "No");
                 if (answer)
                 {
-                    Console.WriteLine("this");
-
                     //change language
                     _viewModel.ChangeUserLanguage(action);
-                    //refresh page
+
+                    //Close app
+                    System.Diagnostics.Process.GetCurrentProcess().Kill();
                 }
             }
 

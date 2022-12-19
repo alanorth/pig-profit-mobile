@@ -18,7 +18,7 @@
                         Text="Change Profile Info" />
                     <TextCell
                         x:Name="UserLanguage"
-                        Detail="Display Language Here"
+                        Detail=""
                         StyleId="disclosure"
                         Tapped="ChangeLanguage_Tapped"
                         Text="Language" />
