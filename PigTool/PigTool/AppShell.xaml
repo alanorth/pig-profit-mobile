@@ -89,7 +89,7 @@
         </ShellContent>
         <ShellContent Title="Settings" ContentTemplate="{DataTemplate local:SettingsPage}">
             <ShellContent.Icon>
-                <FontImageSource FontFamily="FA-S" Glyph="&#xf14d;" />
+                <FontImageSource FontFamily="FA-S" Glyph="&#xf013;" />
             </ShellContent.Icon>
         </ShellContent>
     </TabBar>
