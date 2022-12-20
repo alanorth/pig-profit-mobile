@@ -1,55 +1,30 @@
 ﻿using PigTool.Helpers;
 using PigTool.ViewModels.DataViewModels;
-using Shared;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace PigTool.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RegistrationPage : ContentPage
+    public partial class EditUserPage : ContentPage
     {
-        private RegistrationViewModel _viewModel;
+        private EditUserViewModel _viewModel;
         private bool IsRendered = false;
-        private UserLangSettings lang;
-        private string countryTranslationRowKey;
 
 
-        public RegistrationPage(string AccessToken, string email, UserLangSettings lang, string countryTranslationRowKey)
+        public EditUserPage()
         {
             InitializeComponent();
-            this.lang = lang;
-            this.countryTranslationRowKey = countryTranslationRowKey;
-            BindingContext = _viewModel = new RegistrationViewModel(lang, countryTranslationRowKey, true);
-            _viewModel.accessToken = AccessToken;
-            _viewModel.registeredEmail = email;
-            RegistrationTitleLabel.Text = _viewModel.RegistrationTitleTranslation;
+
+            BindingContext = _viewModel = new EditUserViewModel();
+            //EditUserTitleLabel.Text = _viewModel.RegistrationTitleTranslation;
         }
-
-        public RegistrationPage(MobileUser user,UserLangSettings lang, string countryTranslationRowKey)
-        {
-            InitializeComponent();
-            this.lang = lang;
-            this.countryTranslationRowKey = countryTranslationRowKey;
-            BindingContext = _viewModel = new RegistrationViewModel(lang, countryTranslationRowKey, true);
-            _viewModel.populatewithData(user);
-            _viewModel.accessToken = user.AuthorisedToken;
-            _viewModel.registeredEmail = user.AuthorisedEmail;
-            RegistrationTitleLabel.Text = _viewModel.RegistrationTitleTranslation;
-        }
-
-        /*
-        public RegistrationPage(MobileUser UI, bool newUser)
-        {
-            BindingContext = _viewModel = new RegistrationViewModel(newUser);
-            _viewModel.populatewithData(UI);
-            InitializeComponent();
-        }*/
 
         protected async override void OnAppearing()
         {
             if (!IsRendered)
             {
+                _viewModel.populatewithData();
                 await _viewModel.PopulateDataDowns();
 
                 PopulateTheTable();
@@ -59,25 +34,21 @@ namespace PigTool.Views
                 base.OnAppearing();
 
                 IsRendered = true;
-
-                _viewModel.ShowSuccess = (async (obj) =>
-                {
-                    await Shell.Current.GoToAsync("//RegistrationSuccessful");
-                });
             }
         }
 
         private void PopulateTheTable()
         {
             var FullTableSection = new TableSection();
-            /*
-            // UserName
+
+            /* UserName
             var UserNameCell = new ViewCell();
             var UserNameStack = FormattedElementsHelper.TableRowStack();
             UserNameStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.UserNameTranslation)));
             UserNameStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.UserName), nameof(_viewModel.IsEditMode), null));
             UserNameCell.View = UserNameStack;
-            FullTableSection.Add(UserNameCell);*/
+            FullTableSection.Add(UserNameCell);
+            */
 
             // Name
             var NameCell = new ViewCell();
@@ -107,14 +78,6 @@ namespace PigTool.Views
             GenderCell.View = GenderVerticalStack;
             FullTableSection.Add(GenderCell);
 
-            // Email
-            var EmailCell = new ViewCell();
-            var EmailStack = FormattedElementsHelper.TableRowStack();
-            EmailStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.EmailTranslation)));
-            EmailStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Email), nameof(_viewModel.IsEditMode), null));
-            EmailCell.View = EmailStack;
-            FullTableSection.Add(EmailCell);
-
             // PhoneNumber
             var PhoneNumberCell = new ViewCell();
             var PhoneNumberStack = FormattedElementsHelper.TableRowStack();
@@ -125,7 +88,7 @@ namespace PigTool.Views
 
 
             // Province
-            if (countryTranslationRowKey == "CountryTypeVietnam" || countryTranslationRowKey == "CountryTypeRwanda")
+            if (_viewModel.User.Country == "CountryTypeVietnam" || _viewModel.User.Country == "CountryTypeRwanda")
             {
                 var ProvinceCell = new ViewCell();
                 var ProvinceStack = FormattedElementsHelper.TableRowStack();
@@ -162,7 +125,7 @@ namespace PigTool.Views
             DistrictCell.View = DistrictStack;
             FullTableSection.Add(DistrictCell);
 
-            if (countryTranslationRowKey == "CountryTypeUganda")
+            if (_viewModel.User.Country == "CountryTypeUganda")
             {
                 /*County
                 var CountyCell = new ViewCell();
@@ -227,7 +190,7 @@ namespace PigTool.Views
 
 
             // Commune
-            if (countryTranslationRowKey == "CountryTypeVietnam")
+            if (_viewModel.User.Country == "CountryTypeVietnam")
             {
                 var CommuneCell = new ViewCell();
                 var CommuneStack = FormattedElementsHelper.TableRowStack();
@@ -238,7 +201,7 @@ namespace PigTool.Views
             }
 
 
-            if (countryTranslationRowKey == "CountryTypeRwanda")
+            if (_viewModel.User.Country == "CountryTypeRwanda")
             {
                 // Sector
                 var SectorCell = new ViewCell();
@@ -303,6 +266,7 @@ namespace PigTool.Views
 
 
             RegistrationTableView.Root.Add(FullTableSection);
+
 
         }
     }

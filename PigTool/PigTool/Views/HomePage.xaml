@@ -7,18 +7,8 @@
     Title="{Binding Home}"
     x:DataType="viewmodels:HomePageViewModel">
     <!--  Shell.NavBarIsVisible="False"  -->
-    <ContentPage.ToolbarItems>
-        <ToolbarItem
-            Name="MenuItem1"
-            Order="Secondary"
-            Priority="0"
-            Text="Placeholder" />
-        <ToolbarItem
-            Name="MenuItem2"
-            Order="Secondary"
-            Priority="1"
-            Text="Placeholder" />
-    </ContentPage.ToolbarItems>
+
+
     <ContentPage.Content>
         <StackLayout>
             <Grid Margin="0,50,0,20" BackgroundColor="White">
