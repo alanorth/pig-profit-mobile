@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -19,5 +20,9 @@ namespace Shared
         public string? Comment { get; set; }
 
         private DateTime DateHolder;
+        [JsonIgnore]
+        [ForeignKey("RowKey")]
+        public virtual Translation? AnimalExpenseTranslation { get; set; }
+        public virtual string? AnimalExpenseTranslationString { get; set; }
     } 
 }

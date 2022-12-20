@@ -15,6 +15,17 @@ namespace Shared
         public List<ControlData> ControlDatas { get; set; }
 
         public virtual ICollection<FeedItem> FeedItems { get; set; }
+        public virtual ICollection<AnimalHouseItem> AnimalHouseItems { get; set; }
+        public virtual ICollection<AnimalPurchaseItem> AnimalPurchaseItems { get; set; }
+        public virtual ICollection<BreedingServiceSaleItem> BreedingServiceSaleItems { get; set; }
+        public virtual ICollection<EquipmentItem> EquipmentItems { get; set; }
+        public virtual ICollection<HealthCareItem> HealthCareItems { get; set; }
+        public virtual ICollection<LabourCostItem> LabourCostItems { get; set; }
+        public virtual ICollection<LoanRepaymentItem> LoanRepaymentItems { get; set; }
+        public virtual ICollection<MembershipItem> MembershipItems { get; set; }
+        public virtual ICollection<PigSaleItem> PigSaleItems { get; set; }
+        public virtual ICollection<ReproductiveItem> ReproductiveItems { get; set; }
+        public virtual ICollection<ManureSaleItem> ManureSaleItems { get; set; }
 
         public Translation()
         {

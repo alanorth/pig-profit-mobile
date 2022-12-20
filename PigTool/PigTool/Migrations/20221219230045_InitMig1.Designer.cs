@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SQLLiteDbContext;
 
 namespace Shared.Migrations
 {
     [DbContext(typeof(DbSQLLiteContext))]
-    partial class DbSQLLiteContextModelSnapshot : ModelSnapshot
+    [Migration("20221219230045_InitMig1")]
+    partial class InitMig1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -4097,6 +4099,9 @@ namespace Shared.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("DisplayTypeTranslationRowKey")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("DisplayTypeTranslationString")
                         .HasColumnType("TEXT");
 
@@ -4124,7 +4129,7 @@ namespace Shared.Migrations
                     b.Property<double>("TransportationCost")
                         .HasColumnType("REAL");
 
-                    b.HasIndex("ServiceType");
+                    b.HasIndex("DisplayTypeTranslationRowKey");
 
                     b.ToTable("BreedingServiceSaleItems");
                 });
@@ -4137,6 +4142,9 @@ namespace Shared.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DisplayTypeTranslationRowKey")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DisplayTypeTranslationString")
@@ -4157,7 +4165,7 @@ namespace Shared.Migrations
                     b.Property<double>("TransportationCost")
                         .HasColumnType("REAL");
 
-                    b.HasIndex("EquipmentType");
+                    b.HasIndex("DisplayTypeTranslationRowKey");
 
                     b.ToTable("EquipmentItems");
                 });
@@ -4223,6 +4231,9 @@ namespace Shared.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("DisplayTypeTranslationRowKey")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("DisplayTypeTranslationString")
                         .HasColumnType("TEXT");
 
@@ -4262,7 +4273,7 @@ namespace Shared.Migrations
                     b.Property<double>("TransportationCost")
                         .HasColumnType("REAL");
 
-                    b.HasIndex("HealthCareType");
+                    b.HasIndex("DisplayTypeTranslationRowKey");
 
                     b.ToTable("HealthCareItems");
                 });
@@ -4278,6 +4289,9 @@ namespace Shared.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DisplayTypeTranslationRowKey")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DisplayTypeTranslationString")
@@ -4298,7 +4312,7 @@ namespace Shared.Migrations
                     b.Property<string>("OtherLabourType")
                         .HasColumnType("TEXT");
 
-                    b.HasIndex("LabourType");
+                    b.HasIndex("DisplayTypeTranslationRowKey");
 
                     b.ToTable("LabourCostItems");
                 });
@@ -4311,6 +4325,9 @@ namespace Shared.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DisplayTypeTranslationRowKey")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DisplayTypeTranslationString")
@@ -4328,7 +4345,7 @@ namespace Shared.Migrations
                     b.Property<double>("TotalAmountRepaid")
                         .HasColumnType("REAL");
 
-                    b.HasIndex("LoanProvider");
+                    b.HasIndex("DisplayTypeTranslationRowKey");
 
                     b.ToTable("LoanRepaymentItems");
                 });
@@ -4344,6 +4361,9 @@ namespace Shared.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DisplayTypeTranslationRowKey")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DisplayTypeTranslationString")
@@ -4373,7 +4393,7 @@ namespace Shared.Migrations
                     b.Property<string>("VolumeUnitType")
                         .HasColumnType("TEXT");
 
-                    b.HasIndex("SoldTo");
+                    b.HasIndex("DisplayTypeTranslationRowKey");
 
                     b.ToTable("ManureSaleItems");
                 });
@@ -4386,6 +4406,9 @@ namespace Shared.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DisplayTypeTranslationRowKey")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DisplayTypeTranslationString")
@@ -4410,7 +4433,7 @@ namespace Shared.Migrations
                     b.Property<double>("TotalCosts")
                         .HasColumnType("REAL");
 
-                    b.HasIndex("MembershipType");
+                    b.HasIndex("DisplayTypeTranslationRowKey");
 
                     b.ToTable("MembershipItems");
                 });
@@ -4478,6 +4501,9 @@ namespace Shared.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("DisplayTypeTranslationRowKey")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("DisplayTypeTranslationString")
                         .HasColumnType("TEXT");
 
@@ -4505,7 +4531,7 @@ namespace Shared.Migrations
                     b.Property<double>("TransportationCost")
                         .HasColumnType("REAL");
 
-                    b.HasIndex("PigType");
+                    b.HasIndex("DisplayTypeTranslationRowKey");
 
                     b.ToTable("PigSaleItems");
                 });
@@ -4518,6 +4544,9 @@ namespace Shared.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DisplayTypeTranslationRowKey")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("DisplayTypeTranslationString")
@@ -4541,7 +4570,7 @@ namespace Shared.Migrations
                     b.Property<string>("WhoProvidedService")
                         .HasColumnType("TEXT");
 
-                    b.HasIndex("ServiceType");
+                    b.HasIndex("DisplayTypeTranslationRowKey");
 
                     b.ToTable("ReproductiveItems");
                 });
@@ -4634,16 +4663,15 @@ namespace Shared.Migrations
 
             modelBuilder.Entity("Shared.BreedingServiceSaleItem", b =>
                 {
+                    b.HasOne("Shared.Translation", "DisplayTypeTranslation")
+                        .WithMany()
+                        .HasForeignKey("DisplayTypeTranslationRowKey");
+
                     b.HasOne("Shared.BaseItem", null)
                         .WithOne()
                         .HasForeignKey("Shared.BreedingServiceSaleItem", "RowKey")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Shared.Translation", "DisplayTypeTranslation")
-                        .WithMany("BreedingServiceSaleItems")
-                        .HasForeignKey("ServiceType")
-                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("DisplayTypeTranslation");
                 });
@@ -4651,9 +4679,8 @@ namespace Shared.Migrations
             modelBuilder.Entity("Shared.EquipmentItem", b =>
                 {
                     b.HasOne("Shared.Translation", "DisplayTypeTranslation")
-                        .WithMany("EquipmentItems")
-                        .HasForeignKey("EquipmentType")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .WithMany()
+                        .HasForeignKey("DisplayTypeTranslationRowKey");
 
                     b.HasOne("Shared.BaseItem", null)
                         .WithOne()
@@ -4683,9 +4710,8 @@ namespace Shared.Migrations
             modelBuilder.Entity("Shared.HealthCareItem", b =>
                 {
                     b.HasOne("Shared.Translation", "DisplayTypeTranslation")
-                        .WithMany("HealthCareItems")
-                        .HasForeignKey("HealthCareType")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .WithMany()
+                        .HasForeignKey("DisplayTypeTranslationRowKey");
 
                     b.HasOne("Shared.BaseItem", null)
                         .WithOne()
@@ -4699,9 +4725,8 @@ namespace Shared.Migrations
             modelBuilder.Entity("Shared.LabourCostItem", b =>
                 {
                     b.HasOne("Shared.Translation", "DisplayTypeTranslation")
-                        .WithMany("LabourCostItems")
-                        .HasForeignKey("LabourType")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .WithMany()
+                        .HasForeignKey("DisplayTypeTranslationRowKey");
 
                     b.HasOne("Shared.BaseItem", null)
                         .WithOne()
@@ -4715,9 +4740,8 @@ namespace Shared.Migrations
             modelBuilder.Entity("Shared.LoanRepaymentItem", b =>
                 {
                     b.HasOne("Shared.Translation", "DisplayTypeTranslation")
-                        .WithMany("LoanRepaymentItems")
-                        .HasForeignKey("LoanProvider")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .WithMany()
+                        .HasForeignKey("DisplayTypeTranslationRowKey");
 
                     b.HasOne("Shared.BaseItem", null)
                         .WithOne()
@@ -4730,16 +4754,15 @@ namespace Shared.Migrations
 
             modelBuilder.Entity("Shared.ManureSaleItem", b =>
                 {
+                    b.HasOne("Shared.Translation", "DisplayTypeTranslation")
+                        .WithMany()
+                        .HasForeignKey("DisplayTypeTranslationRowKey");
+
                     b.HasOne("Shared.BaseItem", null)
                         .WithOne()
                         .HasForeignKey("Shared.ManureSaleItem", "RowKey")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Shared.Translation", "DisplayTypeTranslation")
-                        .WithMany("ManureSaleItems")
-                        .HasForeignKey("SoldTo")
-                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("DisplayTypeTranslation");
                 });
@@ -4747,9 +4770,8 @@ namespace Shared.Migrations
             modelBuilder.Entity("Shared.MembershipItem", b =>
                 {
                     b.HasOne("Shared.Translation", "DisplayTypeTranslation")
-                        .WithMany("MembershipItems")
-                        .HasForeignKey("MembershipType")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .WithMany()
+                        .HasForeignKey("DisplayTypeTranslationRowKey");
 
                     b.HasOne("Shared.BaseItem", null)
                         .WithOne()
@@ -4781,9 +4803,8 @@ namespace Shared.Migrations
             modelBuilder.Entity("Shared.PigSaleItem", b =>
                 {
                     b.HasOne("Shared.Translation", "DisplayTypeTranslation")
-                        .WithMany("PigSaleItems")
-                        .HasForeignKey("PigType")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .WithMany()
+                        .HasForeignKey("DisplayTypeTranslationRowKey");
 
                     b.HasOne("Shared.BaseItem", null)
                         .WithOne()
@@ -4796,16 +4817,15 @@ namespace Shared.Migrations
 
             modelBuilder.Entity("Shared.ReproductiveItem", b =>
                 {
+                    b.HasOne("Shared.Translation", "DisplayTypeTranslation")
+                        .WithMany()
+                        .HasForeignKey("DisplayTypeTranslationRowKey");
+
                     b.HasOne("Shared.BaseItem", null)
                         .WithOne()
                         .HasForeignKey("Shared.ReproductiveItem", "RowKey")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Shared.Translation", "DisplayTypeTranslation")
-                        .WithMany("ReproductiveItems")
-                        .HasForeignKey("ServiceType")
-                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("DisplayTypeTranslation");
                 });
@@ -4825,27 +4845,9 @@ namespace Shared.Migrations
 
                     b.Navigation("AnimalPurchaseItems");
 
-                    b.Navigation("BreedingServiceSaleItems");
-
                     b.Navigation("ControlDatas");
 
-                    b.Navigation("EquipmentItems");
-
                     b.Navigation("FeedItems");
-
-                    b.Navigation("HealthCareItems");
-
-                    b.Navigation("LabourCostItems");
-
-                    b.Navigation("LoanRepaymentItems");
-
-                    b.Navigation("ManureSaleItems");
-
-                    b.Navigation("MembershipItems");
-
-                    b.Navigation("PigSaleItems");
-
-                    b.Navigation("ReproductiveItems");
                 });
 #pragma warning restore 612, 618
         }

@@ -65,7 +65,7 @@ namespace PigTool.Services
 
         public async Task<List<ControlData>> GetControlData(string dropDownOption)
         {
-           return await _context.ControlDataOptions.Where(x => x.DropDownControlOption == dropDownOption).OrderBy(y => y.DisplayOrder).Include(cd => cd.Translation).ToListAsync();
+            return await _context.ControlDataOptions.Where(x => x.DropDownControlOption == dropDownOption).OrderBy(y => y.DisplayOrder).Include(cd => cd.Translation).ToListAsync();
         }
 
         public async Task AddSingleControlData(ControlData cd)
@@ -105,7 +105,7 @@ namespace PigTool.Services
 
         public async Task<List<FeedItem>> GetFeedItemsAndAttachedTranslation(int selectedYear, UserLangSettings userLanguage)
         {
-            var feedItems =  await _context.FeedItems.Where(x => x.Date.Year == selectedYear).Include("FeedTypeTranslation").ToListAsync();
+            var feedItems = await _context.FeedItems.Where(x => x.Date.Year == selectedYear).Include("FeedTypeTranslation").ToListAsync();
 
             foreach (var feedItem in feedItems)
             {
@@ -136,11 +136,18 @@ namespace PigTool.Services
         {
             return await _context.HealthCareItems.ToListAsync();
         }
-        public async Task<List<HealthCareItem>> GetHealthCareItems(int selectedYear)
+        public async Task<List<HealthCareItem>> GetHealthCareItems(int selectedYear, UserLangSettings userLanguage)
         {
-            return await _context.HealthCareItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
-        }
+            var items = await _context.HealthCareItems.Where(x => x.Date.Year == selectedYear).Include("DisplayTypeTranslation").ToListAsync();
 
+            foreach (var item in items)
+            {
+                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+            }
+
+            return items;
+
+        }
         public async Task<HealthCareItem> GetHealthCareItem(string RowKey)
         {
             return await _context.HealthCareItems.SingleOrDefaultAsync(Item => Item.RowKey == RowKey);
@@ -195,18 +202,33 @@ namespace PigTool.Services
         {
             return await _context.LabourCostItems.ToListAsync();
         }
-        public async Task<List<LabourCostItem>> GetLabourCostItems(int selectedYear)
+        public async Task<List<LabourCostItem>> GetLabourCostItems(int selectedYear, UserLangSettings userLanguage)
         {
-            return await _context.LabourCostItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+            var items = await _context.LabourCostItems.Where(x => x.Date.Year == selectedYear).Include("DisplayTypeTranslation").ToListAsync();
+
+            foreach (var item in items)
+            {
+                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+            }
+
+            return items;
+
         }
 
         public async Task<List<AnimalHouseItem>> GetAnimalHouseItems()
         {
             return await _context.AnimalHouseItems.ToListAsync();
         }
-        public async Task<List<AnimalHouseItem>> GetAnimalHouseItems(int selectedYear)
+        public async Task<List<AnimalHouseItem>> GetAnimalHouseItems(int selectedYear, UserLangSettings userLanguage)
         {
-            return await _context.AnimalHouseItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+            var items = await _context.AnimalHouseItems.Where(x => x.Date.Year == selectedYear).Include("AnimalExpenseTranslation").ToListAsync();
+
+            foreach (var item in items)
+            {
+                item.AnimalExpenseTranslationString = item.AnimalExpenseTranslation.getTranslation(userLanguage);
+            }
+
+            return items;
         }
 
         public async Task<AnimalHouseItem> GetAnimalHouseItem(string RowKey)
@@ -228,10 +250,16 @@ namespace PigTool.Services
 
         public async Task AddSingleAnimalHouseItem(AnimalHouseItem itemToAdd)
         {
-            if (_context.AnimalHouseItems.Any(fd => fd.RowKey == itemToAdd.RowKey)) return;
-
-            await _context.AddAsync(itemToAdd);
-            await _context.SaveChangesAsync();
+            try
+            {
+                if (_context.AnimalHouseItems.Any(fd => fd.RowKey == itemToAdd.RowKey)) return;
+                await _context.AddAsync(itemToAdd);
+                await _context.SaveChangesAsync();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public async Task<List<WaterCostItem>> GetWaterCostItems()
@@ -240,7 +268,9 @@ namespace PigTool.Services
         }
         public async Task<List<WaterCostItem>> GetWaterCostItems(int selectedYear)
         {
-            return await _context.WaterCostItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+            var items = await _context.WaterCostItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+            return items;
+
         }
 
         public async Task<WaterCostItem> GetWaterCostItem(string RowKey)
@@ -272,9 +302,17 @@ namespace PigTool.Services
         {
             return await _context.MembershipItems.ToListAsync();
         }
-        public async Task<List<MembershipItem>> GetMembershipItems(int selectedYear)
+        public async Task<List<MembershipItem>> GetMembershipItems(int selectedYear, UserLangSettings userLanguage)
         {
-            return await _context.MembershipItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+            var items = await _context.MembershipItems.Where(x => x.Date.Year == selectedYear).Include("DisplayTypeTranslation").ToListAsync();
+
+            foreach (var item in items)
+            {
+                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+            }
+
+            return items;
+
         }
 
         public async Task<MembershipItem> GetMembershipItem(string RowKey)
@@ -340,9 +378,17 @@ namespace PigTool.Services
         {
             return await _context.ReproductiveItems.ToListAsync();
         }
-        public async Task<List<ReproductiveItem>> GetReproductiveItems(int selectedYear)
+        public async Task<List<ReproductiveItem>> GetReproductiveItems(int selectedYear, UserLangSettings userLanguage)
         {
-            return await _context.ReproductiveItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+            var items = await _context.ReproductiveItems.Where(x => x.Date.Year == selectedYear).Include("DisplayTypeTranslation").ToListAsync();
+
+            foreach (var item in items)
+            {
+                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+            }
+
+            return items;
+
         }
 
         public async Task<ReproductiveItem> GetReproductiveItem(string RowKey)
@@ -374,10 +420,19 @@ namespace PigTool.Services
         {
             return await _context.AnimalPurchaseItems.ToListAsync();
         }
-        public async Task<List<AnimalPurchaseItem>> GetAnimalPurchaseItems(int selectedYear)
+        public async Task<List<AnimalPurchaseItem>> GetAnimalPurchaseItems(int selectedYear, UserLangSettings userLanguage)
         {
-            return await _context.AnimalPurchaseItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+            var items = await _context.AnimalPurchaseItems.Where(x => x.Date.Year == selectedYear).Include("DisplayTypeTranslation").ToListAsync();
+
+            foreach (var item in items)
+            {
+                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+            }
+
+            return items;
+
         }
+
 
         public async Task<AnimalPurchaseItem> GetAnimalPurchaseItem(string RowKey)
         {
@@ -408,10 +463,19 @@ namespace PigTool.Services
         {
             return await _context.LoanRepaymentItems.ToListAsync();
         }
-        public async Task<List<LoanRepaymentItem>> GetLoanRepaymentItems(int selectedYear)
+        public async Task<List<LoanRepaymentItem>> GetLoanRepaymentItems(int selectedYear, UserLangSettings userLanguage)
         {
-            return await _context.LoanRepaymentItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+            var items = await _context.LoanRepaymentItems.Where(x => x.Date.Year == selectedYear).Include("DisplayTypeTranslation").ToListAsync();
+
+            foreach (var item in items)
+            {
+                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+            }
+
+            return items;
+
         }
+
 
         public async Task<LoanRepaymentItem> GetLoanRepaymentItem(string RowKey)
         {
@@ -443,10 +507,19 @@ namespace PigTool.Services
             return await _context.EquipmentItems.ToListAsync();
         }
 
-        public async Task<List<EquipmentItem>> GetEquipmentItems(int selectedYear)
+        public async Task<List<EquipmentItem>> GetEquipmentItems(int selectedYear, UserLangSettings userLanguage)
         {
-            return await _context.EquipmentItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+            var items = await _context.EquipmentItems.Where(x => x.Date.Year == selectedYear).Include("DisplayTypeTranslation").ToListAsync();
+
+            foreach (var item in items)
+            {
+                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+            }
+
+            return items;
+
         }
+
 
         public async Task<EquipmentItem> GetEquipmentItem(string RowKey)
         {
@@ -478,9 +551,17 @@ namespace PigTool.Services
             return await _context.PigSaleItems.ToListAsync();
         }
 
-        public async Task<List<PigSaleItem>> GetPigSaleItems(int selectedYear)
+        public async Task<List<PigSaleItem>> GetPigSaleItems(int selectedYear, UserLangSettings userLanguage)
         {
-            return await _context.PigSaleItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+            var items = await _context.PigSaleItems.Where(x => x.Date.Year == selectedYear).Include("DisplayTypeTranslation").ToListAsync();
+
+            foreach (var item in items)
+            {
+                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+            }
+
+            return items;
+
         }
 
         public async Task<PigSaleItem> GetPigSaleItem(string RowKey)
@@ -512,9 +593,17 @@ namespace PigTool.Services
             return await _context.BreedingServiceSaleItems.ToListAsync();
         }
 
-        public async Task<List<BreedingServiceSaleItem>> GetBreedingServiceSaleItems(int selectedYear)
+        public async Task<List<BreedingServiceSaleItem>> GetBreedingServiceSaleItems(int selectedYear, UserLangSettings userLanguage)
         {
-            return await _context.BreedingServiceSaleItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+            var items = await _context.BreedingServiceSaleItems.Where(x => x.Date.Year == selectedYear).Include("DisplayTypeTranslation").ToListAsync();
+
+            foreach (var item in items)
+            {
+                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+            }
+
+            return items;
+
         }
 
         public async Task<BreedingServiceSaleItem> GetBreedingServiceSaleItem(string RowKey)
@@ -547,10 +636,18 @@ namespace PigTool.Services
             return await _context.ManureSaleItems.ToListAsync();
         }
 
-        public async Task<List<ManureSaleItem>> GetManureSaleItems(int selectedYear)
+        public async Task<List<ManureSaleItem>> GetManureSaleItems(int selectedYear, UserLangSettings userLanguage)
         {
-            return await _context.ManureSaleItems.Where(x => x.Date.Year == selectedYear).ToListAsync();
+            var items = await _context.ManureSaleItems.Where(x => x.Date.Year == selectedYear).Include("DisplayTypeTranslation").ToListAsync();
+
+            foreach (var item in items)
+            {
+                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+            }
+
+            return items;
         }
+
 
         public async Task<ManureSaleItem> GetManureSaleItem(string RowKey)
         {

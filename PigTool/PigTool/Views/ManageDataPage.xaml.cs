@@ -71,7 +71,7 @@ namespace PigTool.Views
                       ColoumnHeader1: "Health Care Type",
                       ColoumnHeader2: "Date",
                       ColoumnHeader3: "Care Cost",
-                      BindableColumns1: nameof(HealthCareItem.HealthCareType),
+                      BindableColumns1: nameof(HealthCareItem.DisplayTypeTranslationString),
                       BindableColumns2: nameof(HealthCareItem.Date),
                       BindableColumns3: nameof(HealthCareItem.HealthCareCost),
                       BindingList: nameof(_ViewModel.HealthCareItems),
@@ -83,7 +83,7 @@ namespace PigTool.Views
                       ColoumnHeader1: "Labour Cost Type",
                       ColoumnHeader2: "Date",
                       ColoumnHeader3: "Labour Cost",
-                      BindableColumns1: nameof(LabourCostItem.LabourType),
+                      BindableColumns1: nameof(LabourCostItem.DisplayTypeTranslationString),
                       BindableColumns2: nameof(LabourCostItem.Date),
                       BindableColumns3: nameof(LabourCostItem.AmountPaid),
                       BindingList: nameof(_ViewModel.LabourCostItems),
@@ -96,7 +96,7 @@ namespace PigTool.Views
                       ColoumnHeader2: "Housing Expense",
                       ColoumnHeader3: "Cost",
                       BindableColumns1: nameof(AnimalHouseItem.Date),
-                      BindableColumns2: nameof(AnimalHouseItem.HousingExpense),
+                      BindableColumns2: nameof(AnimalHouseItem.AnimalExpenseTranslationString),
                       BindableColumns3: nameof(AnimalHouseItem.TotalCosts),
                       BindingList: nameof(_ViewModel.AnimalHouseItems),
                       NavigationCommand: _ViewModel.EditAnimalHouseItem
@@ -120,7 +120,7 @@ namespace PigTool.Views
                       ColoumnHeader2: "Type",
                       ColoumnHeader3: "Sows Serviced",
                       BindableColumns1: nameof(ReproductiveItem.Date),
-                      BindableColumns2: nameof(ReproductiveItem.ServiceType),
+                      BindableColumns2: nameof(ReproductiveItem.DisplayTypeTranslationString),
                       BindableColumns3: nameof(ReproductiveItem.SowsServiced),
                       BindingList: nameof(_ViewModel.ReproductiveItems),
                       NavigationCommand: _ViewModel.EditReproductiveItem
@@ -132,7 +132,7 @@ namespace PigTool.Views
                       ColoumnHeader2: "Type",
                       ColoumnHeader3: "Cost",
                       BindableColumns1: nameof(MembershipItem.Date),
-                      BindableColumns2: nameof(MembershipItem.MembershipType),
+                      BindableColumns2: nameof(MembershipItem.DisplayTypeTranslationString),
                       BindableColumns3: nameof(MembershipItem.TotalCosts),
                       BindingList: nameof(_ViewModel.MembershipItems),
                       NavigationCommand: _ViewModel.EditMembershipItem
@@ -156,7 +156,7 @@ namespace PigTool.Views
                       ColoumnHeader2: "Animal Type",
                       ColoumnHeader3: "Cost",
                       BindableColumns1: nameof(AnimalPurchaseItem.Date),
-                      BindableColumns2: nameof(AnimalPurchaseItem.AnimalType),
+                      BindableColumns2: nameof(AnimalPurchaseItem.DisplayTypeTranslationString),
                       BindableColumns3: nameof(AnimalPurchaseItem.TotalCosts),
                       BindingList: nameof(_ViewModel.AnimalPurchaseItems),
                       NavigationCommand: _ViewModel.EditAnimalPurchaseItem
@@ -169,7 +169,7 @@ namespace PigTool.Views
                       ColoumnHeader3: "Provider",
                       BindableColumns1: nameof(LoanRepaymentItem.Date),
                       BindableColumns2: nameof(LoanRepaymentItem.TotalAmountRepaid),
-                      BindableColumns3: nameof(LoanRepaymentItem.LoanProvider),
+                      BindableColumns3: nameof(LoanRepaymentItem.DisplayTypeTranslationString),
                       BindingList: nameof(_ViewModel.LoanRepaymentItems),
                       NavigationCommand: _ViewModel.EditLoanRepaymentItem
                       );
@@ -180,7 +180,7 @@ namespace PigTool.Views
                       ColoumnHeader2: "Equipment Type",
                       ColoumnHeader3: "Total Cost",
                       BindableColumns1: nameof(EquipmentItem.Date),
-                      BindableColumns2: nameof(EquipmentItem.EquipmentType),
+                      BindableColumns2: nameof(EquipmentItem.DisplayTypeTranslationString),
                       BindableColumns3: nameof(EquipmentItem.TotalCosts),
                       BindingList: nameof(_ViewModel.EquipmentItems),
                       NavigationCommand: _ViewModel.EditEquipmentItem
@@ -192,7 +192,7 @@ namespace PigTool.Views
                       ColoumnHeader2: "Pig Type",
                       ColoumnHeader3: "Sale Price",
                       BindableColumns1: nameof(PigSaleItem.Date),
-                      BindableColumns2: nameof(PigSaleItem.PigType),
+                      BindableColumns2: nameof(PigSaleItem.DisplayTypeTranslationString),
                       BindableColumns3: nameof(PigSaleItem.SalePrice),
                       BindingList: nameof(_ViewModel.PigSaleItems),
                       NavigationCommand: _ViewModel.EditPigSaleItem
@@ -204,7 +204,7 @@ namespace PigTool.Views
                       ColoumnHeader2: "Service Type",
                       ColoumnHeader3: "Amount Recieved",
                       BindableColumns1: nameof(BreedingServiceSaleItem.Date),
-                      BindableColumns2: nameof(BreedingServiceSaleItem.ServiceType),
+                      BindableColumns2: nameof(BreedingServiceSaleItem.DisplayTypeTranslationString),
                       BindableColumns3: nameof(BreedingServiceSaleItem.AmountRecieved),
                       BindingList: nameof(_ViewModel.BreedingServiceSaleItems),
                       NavigationCommand: _ViewModel.EditBreedingServiceSaleItem
@@ -216,7 +216,7 @@ namespace PigTool.Views
                       ColoumnHeader2: "Sold To",
                       ColoumnHeader3: "Amount Recieved",
                       BindableColumns1: nameof(ManureSaleItem.Date),
-                      BindableColumns2: nameof(ManureSaleItem.SoldTo),
+                      BindableColumns2: nameof(ManureSaleItem.DisplayTypeTranslationString),
                       BindableColumns3: nameof(ManureSaleItem.AmountRecieved),
                       BindingList: nameof(_ViewModel.ManureSaleItems),
                       NavigationCommand: _ViewModel.EditManureSaleItem

@@ -31,7 +31,7 @@ namespace PigTool.Services
 
         // Health Care
         Task<List<HealthCareItem>> GetHealthCareItems();
-        Task<List<HealthCareItem>> GetHealthCareItems(int selectedYear);
+        Task<List<HealthCareItem>> GetHealthCareItems(int selectedYear, UserLangSettings userLanguage);
         Task<HealthCareItem> GetHealthCareItem(string RowKey);
         Task UpdateHealthCareItem(HealthCareItem Item);
         void DeleteHealthCareItem(HealthCareItem Item);
@@ -39,7 +39,7 @@ namespace PigTool.Services
 
         //Labour Costs
         Task<List<LabourCostItem>> GetLabourCostItems();
-        Task<List<LabourCostItem>> GetLabourCostItems(int selectedYear);
+        Task<List<LabourCostItem>> GetLabourCostItems(int selectedYear, UserLangSettings userLanguage);
         Task<LabourCostItem> GetLabourCostItem(string RowKey);
         Task UpdateLabourCostItem(LabourCostItem Item);
         void DeleteLabourCostItem(LabourCostItem Item);
@@ -47,7 +47,7 @@ namespace PigTool.Services
 
         //Animal Housing
         Task<List<AnimalHouseItem>> GetAnimalHouseItems();
-        Task<List<AnimalHouseItem>> GetAnimalHouseItems(int selectedYear);
+        Task<List<AnimalHouseItem>> GetAnimalHouseItems(int selectedYear, UserLangSettings userLanguage);
         Task<AnimalHouseItem> GetAnimalHouseItem(string RowKey);
         Task UpdateAnimalHouseItem(AnimalHouseItem Item);
         void DeleteAnimalHouseItem(AnimalHouseItem Item);
@@ -63,7 +63,7 @@ namespace PigTool.Services
 
         //Membership
         Task<List<MembershipItem>> GetMembershipItems();
-        Task<List<MembershipItem>> GetMembershipItems(int selectedYear);
+        Task<List<MembershipItem>> GetMembershipItems(int selectedYear, UserLangSettings userLanguage);
         Task<MembershipItem> GetMembershipItem(string RowKey);
         Task UpdateMembershipItem(MembershipItem Item);
         void DeleteMembershipItem(MembershipItem Item);
@@ -79,7 +79,7 @@ namespace PigTool.Services
 
         //Reproductive
         Task<List<ReproductiveItem>> GetReproductiveItems();
-        Task<List<ReproductiveItem>> GetReproductiveItems(int selectedYear);
+        Task<List<ReproductiveItem>> GetReproductiveItems(int selectedYear, UserLangSettings userLanguage);
         Task<ReproductiveItem> GetReproductiveItem(string RowKey);
         Task UpdateReproductiveItem(ReproductiveItem Item);
         void DeleteReproductiveItem(ReproductiveItem Item);
@@ -87,7 +87,7 @@ namespace PigTool.Services
 
         //Animal Purchase
         Task<List<AnimalPurchaseItem>> GetAnimalPurchaseItems();
-        Task<List<AnimalPurchaseItem>> GetAnimalPurchaseItems(int selectedYear);
+        Task<List<AnimalPurchaseItem>> GetAnimalPurchaseItems(int selectedYear, UserLangSettings userLanguage);
         Task<AnimalPurchaseItem> GetAnimalPurchaseItem(string Rowkey);
         Task UpdateAnimalPurchaseItem(AnimalPurchaseItem Item);
         void DeleteAnimalPurchaseItem(AnimalPurchaseItem Item);
@@ -95,7 +95,7 @@ namespace PigTool.Services
 
         //Loan Repayment
         Task<List<LoanRepaymentItem>> GetLoanRepaymentItems();
-        Task<List<LoanRepaymentItem>> GetLoanRepaymentItems(int selectedYear);
+        Task<List<LoanRepaymentItem>> GetLoanRepaymentItems(int selectedYear, UserLangSettings userLanguage);
         Task<LoanRepaymentItem> GetLoanRepaymentItem(string RowKey);
         Task UpdateLoanRepaymentItem(LoanRepaymentItem Item);
         void DeleteLoanRepaymentItem(LoanRepaymentItem Item);
@@ -103,7 +103,7 @@ namespace PigTool.Services
 
         //Equipment
         Task<List<EquipmentItem>> GetEquipmentItems();
-        Task<List<EquipmentItem>> GetEquipmentItems(int selectedYear);
+        Task<List<EquipmentItem>> GetEquipmentItems(int selectedYear, UserLangSettings userLanguage);
         Task<EquipmentItem> GetEquipmentItem(string RowKey);
         Task UpdateEquipmentItem(EquipmentItem Item);
         void DeleteEquipmentItem(EquipmentItem Item);
@@ -111,7 +111,7 @@ namespace PigTool.Services
 
         //PigSale
         Task<List<PigSaleItem>> GetPigSaleItems();
-        Task<List<PigSaleItem>> GetPigSaleItems(int selectedYear);
+        Task<List<PigSaleItem>> GetPigSaleItems(int selectedYear, UserLangSettings userLanguage);
         Task<PigSaleItem> GetPigSaleItem(string RowKey);
         Task UpdatePigSaleItem(PigSaleItem Item);
         void DeletePigSaleItem(PigSaleItem Item);
@@ -119,7 +119,7 @@ namespace PigTool.Services
 
         //BreedingServiceSale
         Task<List<BreedingServiceSaleItem>> GetBreedingServiceSaleItems();
-        Task<List<BreedingServiceSaleItem>> GetBreedingServiceSaleItems(int selectedYear);
+        Task<List<BreedingServiceSaleItem>> GetBreedingServiceSaleItems(int selectedYear, UserLangSettings userLanguage);
         Task<BreedingServiceSaleItem> GetBreedingServiceSaleItem(string RowKey);
         Task UpdateBreedingServiceSaleItem(BreedingServiceSaleItem Item);
         void DeleteBreedingServiceSaleItem(BreedingServiceSaleItem Item);
@@ -127,7 +127,7 @@ namespace PigTool.Services
 
         //ManureSale
         Task<List<ManureSaleItem>> GetManureSaleItems();
-        Task<List<ManureSaleItem>> GetManureSaleItems(int selectedYear);
+        Task<List<ManureSaleItem>> GetManureSaleItems(int selectedYear, UserLangSettings userLanguage);
         Task<ManureSaleItem> GetManureSaleItem(string RowKey);
         Task UpdateManureSaleItem(ManureSaleItem Item);
         void DeleteManureSaleItem(ManureSaleItem Item);

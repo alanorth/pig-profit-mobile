@@ -203,6 +203,8 @@ namespace PigTool.ViewModels
                         LastModified = DateTime.UtcNow,
                         CreatedBy = User.UserName,
                         PartitionKey = Constants.PartitionKeyFeed,
+                        DurationStart  = dateTime.AddDays((random.Next(range))*-1),
+                        DurationFinish = dateTime.AddDays((random.Next(30)))
                     };
                     await repo.AddSingleFeedItem(newFeedItem);
                 }
@@ -234,11 +236,11 @@ namespace PigTool.ViewModels
                         LastModified = DateTime.UtcNow,
                         CreatedBy = User.UserName,
                         PartitionKey = Constants.PartitionKeyEquipmentItem,
+                        DurationStart = dateTime.AddDays((random.Next(range)) * -1),
+                        DurationFinish = dateTime.AddDays((random.Next(30)))
                     };
                     await repo.AddSingleLabourCostItem(newLabourCost);
                 }
-
-
                 // AnimalHousing
                 for (int i = 0; i < 20; i++)
                 {
@@ -251,7 +253,7 @@ namespace PigTool.ViewModels
                         OtherCosts = Math.Round(random.NextDouble() * (200 - 0) + 0, 2),
                         LastModified = DateTime.UtcNow,
                         CreatedBy = User.UserName,
-                        PartitionKey = Constants.PartitionKeyAnimalHouse,
+                        PartitionKey = Constants.PartitionKeyAnimalHouse
                     };
                     await repo.AddSingleAnimalHouseItem(newAnimalHousing);
                 }
@@ -268,6 +270,8 @@ namespace PigTool.ViewModels
                         LastModified = DateTime.UtcNow,
                         CreatedBy = User.UserName,
                         PartitionKey = Constants.PartitionKeyWaterCostItem,
+                        DurationStart = dateTime.AddDays((random.Next(range)) * -1),
+                        DurationFinish = dateTime.AddDays((random.Next(30)))
                     };
                     await repo.AddSingleWaterCostItem(newWaterCost);
                 }
@@ -283,6 +287,7 @@ namespace PigTool.ViewModels
                         LastModified = DateTime.UtcNow,
                         CreatedBy = User.UserName,
                         PartitionKey = Constants.PartitionKeyMembershipItem,
+                        TimePeriodUnit = "TimePeriodUnitType2"
                     };
                     await repo.AddSingleMembershipItem(newMembership);
                 }
@@ -347,7 +352,6 @@ namespace PigTool.ViewModels
                     };
                     await repo.AddSingleLoanRepaymentItem(newLoanRepayment);
                 }
-
                 // Equipment
                 for (int i = 0; i < 20; i++)
                 {
@@ -364,7 +368,6 @@ namespace PigTool.ViewModels
                     };
                     await repo.AddSingleEquipmentItem(newEquipment);
                 }
-
                 // PigSale
                 for (int i = 0; i < 20; i++)
                 {
@@ -378,11 +381,10 @@ namespace PigTool.ViewModels
                         OtherCosts = Math.Round(random.NextDouble() * (200 - 0) + 0, 2),
                         LastModified = DateTime.UtcNow,
                         CreatedBy = User.UserName,
-                        PartitionKey = Constants.PartitionKeyPigSaleItem,
+                        PartitionKey = Constants.PartitionKeyPigSaleItem
                     };
                     await repo.AddSinglePigSaleItem(newPigSale);
                 }
-
                 // BreedingServiceSale
                 for (int i = 0; i < 20; i++)
                 {
@@ -396,11 +398,10 @@ namespace PigTool.ViewModels
                         OtherCosts = Math.Round(random.NextDouble() * (200 - 0) + 0, 2),
                         LastModified = DateTime.UtcNow,
                         CreatedBy = User.UserName,
-                        PartitionKey = Constants.PartitionKeyBreedingServiceSaleItem,
+                        PartitionKey = Constants.PartitionKeyBreedingServiceSaleItem
                     };
                     await repo.AddSingleBreedingServiceSaleItem(newBreedingServiceSale);
                 }
-
                 // ManureSale
                 for (int i = 0; i < 20; i++)
                 {
@@ -413,11 +414,10 @@ namespace PigTool.ViewModels
                         OtherCosts = Math.Round(random.NextDouble() * (200 - 0) + 0, 2),
                         LastModified = DateTime.UtcNow,
                         CreatedBy = User.UserName,
-                        PartitionKey = Constants.PartitionKeyManureSaleItem,
+                        PartitionKey = Constants.PartitionKeyManureSaleItem
                     };
                     await repo.AddSingleManureSaleItem(newManureSale);
                 }
-
                 // OtherIncome
                 for (int i = 0; i < 20; i++)
                 {
@@ -430,7 +430,7 @@ namespace PigTool.ViewModels
                         OtherCosts = Math.Round(random.NextDouble() * (200 - 0) + 0, 2),
                         LastModified = DateTime.UtcNow,
                         CreatedBy = User.UserName,
-                        PartitionKey = Constants.PartitionKeyOtherIncomeItem,
+                        PartitionKey = Constants.PartitionKeyOtherIncomeItem
                     };
                     await repo.AddSingleOtherIncomeItem(newOtherIncome);
                 }

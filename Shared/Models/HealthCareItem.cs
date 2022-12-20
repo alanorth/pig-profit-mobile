@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -22,6 +23,9 @@ namespace Shared
         public double TransportationCost { get; set; }
         public double OtherCosts { get; set; }
         public string? Comment { get; set; }
+        [JsonIgnore]
+        public virtual Translation? DisplayTypeTranslation { get; set; }
+        public virtual string? DisplayTypeTranslationString { get; set; }
 
     }
 }
