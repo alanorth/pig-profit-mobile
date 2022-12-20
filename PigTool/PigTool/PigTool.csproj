@@ -79,6 +79,9 @@
     <Compile Update="Views\CountrySelectPage.xaml.cs">
       <DependentUpon>CountrySelectPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\FailedLoadUpPage.xaml.cs">
+      <DependentUpon>FailedLoadUpPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Popups\SendDataDetails.xaml.cs">
       <DependentUpon>SendDataDetails.xaml</DependentUpon>
     </Compile>
@@ -137,6 +140,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ManageDataPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\FailedLoadUpPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Popups\SendDataDetails.xaml">

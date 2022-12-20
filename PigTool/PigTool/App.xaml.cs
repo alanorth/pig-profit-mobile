@@ -19,21 +19,32 @@ namespace PigTool
         public App()
         {
             InitializeComponent();
-            //DependencyService.Register<DbSQLLiteContext>();
-            //DependencyService.Register<MockDataStore>();
-            DependencyService.Register<IDataRepo, DataRepo>();
-            //MainPage = new NavigationPage(new LoginPage());
-            InitializeDatabase();
-
-            var IsAppInitialized = Task.Run(() => App.IsAppInitialized()).GetAwaiter().GetResult();
-
-            if (IsAppInitialized)
+            try
             {
-                DisplayMainPage();
+                DependencyService.Register<IDataRepo, DataRepo>();
+                var databaseMessage = InitializeDatabase();
+
+                if (!string.IsNullOrWhiteSpace(databaseMessage))
+                {
+                    DisplayedFailedloadupPage(databaseMessage);
+                }
+                else
+                {
+                    var IsAppInitialized = Task.Run(() => App.IsAppInitialized()).GetAwaiter().GetResult();
+
+                    if (IsAppInitialized)
+                    {
+                        DisplayMainPage();
+                    }
+                    else
+                    {
+                        DisplayLoginPage();
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                DisplayLoginPage();
+                DisplayedFailedloadupPage(ex.InnerException?.Message);
             }
         }
 
@@ -46,20 +57,22 @@ namespace PigTool
 
             var repo = DependencyService.Get<IDataRepo>();
 
-            try { 
-            var user = await repo.GetUserInfoAsync();
-            
+            try
+            {
+                var user = await repo.GetUserInfoAsync();
 
 
-            if (user == null)
-            {
-                return false;
+
+                if (user == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
-            else
-            {
-                return true;
-            }
-            }catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -82,23 +95,31 @@ namespace PigTool
             MainPage = new AppShell();
         }
 
+        public void DisplayedFailedloadupPage(string Message)
+        {
+            MainPage = new FailedLoadUpPage(Message);
+        }
+
         public void DisplayLoginPage()
         {
             MainPage = new NavigationPage(new LanguageSelectPage());
         }
 
-        private void InitializeDatabase()
+        private string InitializeDatabase()
         {
-            try { 
-            SQLitePCL.Batteries_V2.Init();
-            using (var context = new DbSQLLiteContext())
+            try
             {
-                context.Database.Migrate();
-            }
-            }
-            catch(Exception ex)
-            {
+                SQLitePCL.Batteries_V2.Init();
+                using (var context = new DbSQLLiteContext())
+                {
+                    context.Database.Migrate();
+                }
 
+                return "";
+            }
+            catch (Exception ex)
+            {
+                return ex.InnerException?.Message;
             }
         }
     }

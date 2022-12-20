@@ -57,7 +57,7 @@ namespace PigTool.ViewModels
             get { return feedItems; }
             set
             {
-                feedItems = new ObservableCollection<FeedItem>(value.Where(x => x.LastModified > LastTimeDataUploaded).ToList());
+                feedItems = new ObservableCollection<FeedItem>(value.Where(x => x.LastModified > LastTimeDataUploaded.ToUniversalTime()).ToList());
                 OnPropertyChanged(nameof(FeedItems));
             }
         }
@@ -67,7 +67,7 @@ namespace PigTool.ViewModels
             get { return healthCareItems; }
             set
             {
-                healthCareItems = new ObservableCollection<HealthCareItem>(value.Where(x => x.LastModified > LastTimeDataUploaded).ToList());
+                healthCareItems = new ObservableCollection<HealthCareItem>(value.Where(x => x.LastModified > LastTimeDataUploaded.ToUniversalTime()).ToList());
                 OnPropertyChanged(nameof(HealthCareItems));
             }
         }
@@ -77,7 +77,7 @@ namespace PigTool.ViewModels
             get { return labourCostItems; }
             set
             {
-                labourCostItems = new ObservableCollection<LabourCostItem>(value.Where(x => x.LastModified > LastTimeDataUploaded).ToList());
+                labourCostItems = new ObservableCollection<LabourCostItem>(value.Where(x => x.LastModified > LastTimeDataUploaded.ToUniversalTime()).ToList());
                 OnPropertyChanged(nameof(LabourCostItems));
             }
         }
@@ -87,7 +87,7 @@ namespace PigTool.ViewModels
             get { return animalHouseItems; }
             set
             {
-                animalHouseItems = new ObservableCollection<AnimalHouseItem>(value.Where(x => x.LastModified > LastTimeDataUploaded).ToList());
+                animalHouseItems = new ObservableCollection<AnimalHouseItem>(value.Where(x => x.LastModified > LastTimeDataUploaded.ToUniversalTime()).ToList());
                 OnPropertyChanged(nameof(AnimalHouseItems));
             }
         }
@@ -97,7 +97,7 @@ namespace PigTool.ViewModels
             get { return waterCostItems; }
             set
             {
-                waterCostItems = new ObservableCollection<WaterCostItem>(value.Where(x => x.LastModified > LastTimeDataUploaded).ToList());
+                waterCostItems = new ObservableCollection<WaterCostItem>(value.Where(x => x.LastModified > LastTimeDataUploaded.ToUniversalTime()).ToList());
                 OnPropertyChanged(nameof(WaterCostItems));
             }
         }
@@ -108,7 +108,7 @@ namespace PigTool.ViewModels
             set
             {
                 membershipItems =
-                    new ObservableCollection<MembershipItem>(value.Where(x => x.LastModified > LastTimeDataUploaded).ToList());
+                    new ObservableCollection<MembershipItem>(value.Where(x => x.LastModified > LastTimeDataUploaded.ToUniversalTime()).ToList());
                 OnPropertyChanged(nameof(MembershipItems));
             }
         }
@@ -120,7 +120,7 @@ namespace PigTool.ViewModels
             {
                 value.Where(x => x.LastModified > LastTimeDataUploaded);
 
-                otherCostItems = new ObservableCollection<OtherCostItem>(value.Where(x => x.LastModified > LastTimeDataUploaded).ToList());
+                otherCostItems = new ObservableCollection<OtherCostItem>(value.Where(x => x.LastModified > LastTimeDataUploaded.ToUniversalTime()).ToList());
                 OnPropertyChanged(nameof(OtherCostItems));
             }
         }
@@ -130,7 +130,7 @@ namespace PigTool.ViewModels
             get { return reproductiveItems; }
             set
             {
-                reproductiveItems = new ObservableCollection<ReproductiveItem>(value.Where(x => x.LastModified > LastTimeDataUploaded).ToList());
+                reproductiveItems = new ObservableCollection<ReproductiveItem>(value.Where(x => x.LastModified > LastTimeDataUploaded.ToUniversalTime()).ToList());
                 OnPropertyChanged(nameof(ReproductiveItems));
             }
         }
@@ -142,7 +142,7 @@ namespace PigTool.ViewModels
             {
                 value.Where(x => x.LastModified > LastTimeDataUploaded);
 
-                animalPurchaseItems = new ObservableCollection<AnimalPurchaseItem>(value.Where(x => x.LastModified > LastTimeDataUploaded).ToList());
+                animalPurchaseItems = new ObservableCollection<AnimalPurchaseItem>(value.Where(x => x.LastModified > LastTimeDataUploaded.ToUniversalTime()).ToList());
                 OnPropertyChanged(nameof(AnimalPurchaseItems));
             }
         }
@@ -152,7 +152,7 @@ namespace PigTool.ViewModels
             get { return loanRepaymentItems; }
             set
             {
-                loanRepaymentItems = new ObservableCollection<LoanRepaymentItem>(value.Where(x => x.LastModified > LastTimeDataUploaded).ToList());
+                loanRepaymentItems = new ObservableCollection<LoanRepaymentItem>(value.Where(x => x.LastModified > LastTimeDataUploaded.ToUniversalTime()).ToList());
                 OnPropertyChanged(nameof(LoanRepaymentItems));
             }
         }
@@ -161,7 +161,7 @@ namespace PigTool.ViewModels
             get { return equipmentItems; }
             set
             {
-                equipmentItems = new ObservableCollection<EquipmentItem>(value.Where(x => x.LastModified > LastTimeDataUploaded).ToList());
+                equipmentItems = new ObservableCollection<EquipmentItem>(value.Where(x => x.LastModified > LastTimeDataUploaded.ToUniversalTime()).ToList());
                 OnPropertyChanged(nameof(EquipmentItems));
             }
         }
@@ -170,7 +170,7 @@ namespace PigTool.ViewModels
             get { return pigSaleItems; }
             set
             {
-                pigSaleItems = new ObservableCollection<PigSaleItem>(value.Where(x => x.LastModified > LastTimeDataUploaded).ToList());
+                pigSaleItems = new ObservableCollection<PigSaleItem>(value.Where(x => x.LastModified > LastTimeDataUploaded.ToUniversalTime()).ToList());
                 OnPropertyChanged(nameof(PigSaleItems));
             }
         }
@@ -180,7 +180,7 @@ namespace PigTool.ViewModels
             get { return breedingServiceSaleItems; }
             set
             {
-                breedingServiceSaleItems = new ObservableCollection<BreedingServiceSaleItem>(value.Where(x => x.LastModified > LastTimeDataUploaded).ToList());
+                breedingServiceSaleItems = new ObservableCollection<BreedingServiceSaleItem>(value.Where(x => x.LastModified > LastTimeDataUploaded.ToUniversalTime()).ToList());
                 OnPropertyChanged(nameof(BreedingServiceSaleItems));
             }
         }
@@ -190,7 +190,7 @@ namespace PigTool.ViewModels
             get { return manureSaleItems; }
             set
             {
-                manureSaleItems = new ObservableCollection<ManureSaleItem>(value.Where(x => x.LastModified > LastTimeDataUploaded).ToList());
+                manureSaleItems = new ObservableCollection<ManureSaleItem>(value.Where(x => x.LastModified > LastTimeDataUploaded.ToUniversalTime()).ToList());
                 OnPropertyChanged(nameof(ManureSaleItems));
             }
         }
@@ -200,7 +200,7 @@ namespace PigTool.ViewModels
             get { return otherIncomeItems; }
             set
             {
-                otherIncomeItems = new ObservableCollection<OtherIncomeItem>(value.Where(x => x.LastModified > LastTimeDataUploaded).ToList());
+                otherIncomeItems = new ObservableCollection<OtherIncomeItem>(value.Where(x => x.LastModified > LastTimeDataUploaded.ToUniversalTime()).ToList());
                 OnPropertyChanged(nameof(OtherIncomeItems));
             }
         }
@@ -496,7 +496,8 @@ namespace PigTool.ViewModels
                     await repo.UpdateUserInfo(User);
                     await PopulateCollections();
                     await Application.Current.MainPage.DisplayAlert("Data Uploaded!", "The Data has been uploaded", "OK");
-                    
+                    Countof_TotalItems = 0;
+
                 }
                 else
                 {
