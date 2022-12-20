@@ -109,7 +109,8 @@ namespace PigTool.Services
 
             foreach (var feedItem in feedItems)
             {
-                feedItem.FeedTypeTranslationString = feedItem.FeedTypeTranslation.getTranslation(userLanguage);
+                if (feedItem.FeedTypeTranslation != null)
+                    feedItem.FeedTypeTranslationString = feedItem.FeedTypeTranslation.getTranslation(userLanguage);
             }
 
             return feedItems;
@@ -142,7 +143,8 @@ namespace PigTool.Services
 
             foreach (var item in items)
             {
-                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+                if (item.DisplayTypeTranslation != null)
+                    item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
             }
 
             return items;
@@ -208,7 +210,8 @@ namespace PigTool.Services
 
             foreach (var item in items)
             {
-                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+                if (item.DisplayTypeTranslation != null)
+                    item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
             }
 
             return items;
@@ -225,7 +228,8 @@ namespace PigTool.Services
 
             foreach (var item in items)
             {
-                item.AnimalExpenseTranslationString = item.AnimalExpenseTranslation.getTranslation(userLanguage);
+                if (item.AnimalExpenseTranslation != null)
+                    item.AnimalExpenseTranslationString = item.AnimalExpenseTranslation.getTranslation(userLanguage);
             }
 
             return items;
@@ -308,7 +312,8 @@ namespace PigTool.Services
 
             foreach (var item in items)
             {
-                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+                if (item.DisplayTypeTranslation != null)
+                    item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
             }
 
             return items;
@@ -384,7 +389,8 @@ namespace PigTool.Services
 
             foreach (var item in items)
             {
-                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+                if (item.DisplayTypeTranslation != null)
+                    item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
             }
 
             return items;
@@ -426,7 +432,8 @@ namespace PigTool.Services
 
             foreach (var item in items)
             {
-                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+                if (item.DisplayTypeTranslation != null)
+                    item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
             }
 
             return items;
@@ -469,7 +476,8 @@ namespace PigTool.Services
 
             foreach (var item in items)
             {
-                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+                if (item.DisplayTypeTranslation != null)
+                    item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
             }
 
             return items;
@@ -513,7 +521,8 @@ namespace PigTool.Services
 
             foreach (var item in items)
             {
-                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+                if (item.DisplayTypeTranslation != null)
+                    item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
             }
 
             return items;
@@ -557,7 +566,8 @@ namespace PigTool.Services
 
             foreach (var item in items)
             {
-                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+                if (item.DisplayTypeTranslation != null)
+                    item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
             }
 
             return items;
@@ -599,7 +609,8 @@ namespace PigTool.Services
 
             foreach (var item in items)
             {
-                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+                if (item.DisplayTypeTranslation != null)
+                    item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
             }
 
             return items;
@@ -642,7 +653,8 @@ namespace PigTool.Services
 
             foreach (var item in items)
             {
-                item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
+                if (item.DisplayTypeTranslation != null)
+                    item.DisplayTypeTranslationString = item.DisplayTypeTranslation.getTranslation(userLanguage);
             }
 
             return items;
