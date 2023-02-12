@@ -92,6 +92,14 @@ namespace PigTool.Views
             LoanProviderFromCell.View = LoanProviderVerticalStack;
             FullTableSection.Add(LoanProviderFromCell);
 
+            //Any Transport Cost
+            var TransportCostCell = new ViewCell();
+            var TransportCostStack = FormattedElementsHelper.TableRowStack();
+            TransportCostStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.TransportCostTrans)));
+            TransportCostStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.TransportCosts), nameof(_viewModel.IsEditMode), null));
+            TransportCostCell.View = TransportCostStack;
+            FullTableSection.Add(TransportCostCell);
+
             //Any Other Cost
             var OtherCostCell = new ViewCell();
             var OtherCostsStack = FormattedElementsHelper.TableRowStack();

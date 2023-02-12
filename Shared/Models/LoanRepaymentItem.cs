@@ -13,7 +13,8 @@ namespace Shared
         public double TotalAmountRepaid { get; set; }
         public string? LoanProvider { get; set; }
         public string? OtherLoanProvider { get; set; }
-        public double OtherCosts { get; set; }
+        public double? OtherCosts { get; set; }
+        public double? TransportCosts { get; set; }
         public string? Comment { get; set; }
         [JsonIgnore]
         public virtual Translation? DisplayTypeTranslation { get; set; }

@@ -47,9 +47,15 @@ namespace PigTool.Views
 
             //Date
             var DateCell = new ViewCell();
-            var stack = FormattedElementsHelper.TableRowStack();
-            stack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.DateTranslation)));
-            stack.Children.Add(FormattedElementsHelper.FormDatePicker(nameof(_viewModel.Date), nameof(_viewModel.IsEditMode)));
+            var stack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                stack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.DateTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                stack,
+                FormattedElementsHelper.FormDatePicker(nameof(_viewModel.Date), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
             DateCell.View = stack;
             FullTableSection.Add(DateCell);
 
@@ -86,21 +92,34 @@ namespace PigTool.Views
             var FeedTypeCell = new ViewCell();
             var FeedVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             FeedVerticalStack.Padding = 0;
-            var FeedTypeStack = FormattedElementsHelper.TableRowStack();
-            FeedTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.FeedTypeTranslation)));
-            FeedTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
+            var FeedTypeGrid = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                FeedTypeGrid,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.FeedTypeTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                FeedTypeGrid,
+                FormattedElementsHelper.FormPickerEntry(
                 nameof(_viewModel.FeedTypeListOfOptions),
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedFeedType),
                 nameof(_viewModel.IsEditMode),
                 _viewModel.SelectedFeedType,
                 _viewModel.PickerFeedTypeTranslation
-                )
-                );
-            var OtherFeedType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherFeedType), true);
-            OtherFeedType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherFeedTypeTranslation)));
-            OtherFeedType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherFeedType), nameof(_viewModel.IsEditMode)));
-            FeedVerticalStack.Children.Add(FeedTypeStack);
+                ),
+                GridPostion.TwoRight);
+            var OtherFeedType = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherFeedType), true);
+            FormattedElementsHelper.AddGridValue(
+                OtherFeedType,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherFeedTypeTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                OtherFeedType,
+                FormattedElementsHelper.FormTextEntry(
+                    nameof(_viewModel.OtherFeedType),
+                    nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
+            FeedVerticalStack.Children.Add(FeedTypeGrid);
             FeedVerticalStack.Children.Add(OtherFeedType);
             FeedTypeCell.View = FeedVerticalStack;
             FullTableSection.Add(FeedTypeCell);
@@ -113,27 +132,37 @@ namespace PigTool.Views
             var AmountPurchasedVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             AmountPurchasedVerticalStack.Padding = 0;
 
-            var AmountPurchasedUnitTypeStack = FormattedElementsHelper.TableRowStack();
-            AmountPurchasedUnitTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.AmountPurchasedTranslation)));
-
-            var AmountPurchasedInputContainer = FormattedElementsHelper.TableRowStack();
-            AmountPurchasedInputContainer.Padding = 0;
-            AmountPurchasedInputContainer.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.AmountPurchased), nameof(_viewModel.IsEditMode), null));
-            AmountPurchasedInputContainer.Children.Add(FormattedElementsHelper.FormPickerEntry(
+            var AmountPurchasedUnitTypeStack = FormattedElementsHelper.TableRowGrid(fields: GridFields.Three);
+            FormattedElementsHelper.AddGridValue(
+                AmountPurchasedUnitTypeStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.AmountPurchasedTranslation)),
+                GridPostion.ThreeLeft);
+            FormattedElementsHelper.AddGridValue(
+                AmountPurchasedUnitTypeStack,
+                FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.AmountPurchased), nameof(_viewModel.IsEditMode), null),
+                GridPostion.ThreeCenter);
+            FormattedElementsHelper.AddGridValue(
+                AmountPurchasedUnitTypeStack,
+                FormattedElementsHelper.FormPickerEntry(
                 nameof(_viewModel.AmountPurchasedUnitListOfOptions),
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedAmountPurchasedUnit),
                 nameof(_viewModel.IsEditMode),
                 _viewModel.SelectedAmountPurchasedUnit,
                 _viewModel.PickerUnitTranslation
-                )
-            );
+                ),
+                GridPostion.ThreeRight);
 
-            AmountPurchasedUnitTypeStack.Children.Add(AmountPurchasedInputContainer);
+            var OtherAmountPurchasedUnitType = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherAmountPurchasedUnit), true);
+            FormattedElementsHelper.AddGridValue(
+                OtherAmountPurchasedUnitType,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.AmountPurchasedTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                OtherAmountPurchasedUnitType,
+                FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherAmountPurchasedUnit), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
 
-            var OtherAmountPurchasedUnitType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherAmountPurchasedUnit), true);
-            OtherAmountPurchasedUnitType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherAmountPurchasedUnitTranslation)));
-            OtherAmountPurchasedUnitType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherAmountPurchasedUnit), nameof(_viewModel.IsEditMode)));
             AmountPurchasedVerticalStack.Children.Add(AmountPurchasedUnitTypeStack);
             AmountPurchasedVerticalStack.Children.Add(OtherAmountPurchasedUnitType);
             AmountPurchasedCell.View = AmountPurchasedVerticalStack;

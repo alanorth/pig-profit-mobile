@@ -276,7 +276,7 @@ namespace PigTool.ViewModels.DataViewModels
             TimePeriodTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TimePeriodTranslation), User.UserLang) + " *";
 
             TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang) + " *";
-            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
+            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang);
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
 
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
@@ -359,8 +359,16 @@ namespace PigTool.ViewModels.DataViewModels
                     PartitionKey = Constants.PartitionKeyMembershipItem,
                 };
 
-                await repo.AddSingleMembershipItem(newMembership);
-                await Application.Current.MainPage.DisplayAlert("Created", "Membership has been saved", "OK");
+                try
+                {
+                    await repo.AddSingleMembershipItem(newMembership);
+                    await Application.Current.MainPage.DisplayAlert("Created", "Membership has been saved", "OK");
+                    await Shell.Current.Navigation.PopAsync();
+                }
+                catch (Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                }
             }
         }
 
@@ -422,7 +430,7 @@ namespace PigTool.ViewModels.DataViewModels
                 if (TotalCosts == null) returnString.AppendLine("Total Cost Not Provided");
                 if (TimePeriod == null) returnString.AppendLine("Time Period Not Provided");
                 if (SelectedTimePeriodUnit == null) returnString.AppendLine("Time Period Unit Not Provided");
-                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
+                //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
                 if (selectedMembershipType != null && selectedMembershipType.TranslationRowKey == Constants.OTHER)
                 {

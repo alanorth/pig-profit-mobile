@@ -325,10 +325,20 @@ namespace Shared.Migrations
                         },
                         new
                         {
-                            TranslationRowKey = "DropDownUnitType2",
+                            TranslationRowKey = "DropDownUnitType3",
                             DropDownControlOption = "FeedAmountPurchasedUnitType",
                             CreatedBy = "InitialUpload",
                             DisplayOrder = 2,
+                            IsDeleted = false,
+                            IsEnable = false,
+                            PartitionKey = "ControlData"
+                        },
+                        new
+                        {
+                            TranslationRowKey = "DropDownUnitType2",
+                            DropDownControlOption = "FeedAmountPurchasedUnitType",
+                            CreatedBy = "InitialUpload",
+                            DisplayOrder = 3,
                             IsDeleted = false,
                             IsEnable = false,
                             PartitionKey = "ControlData"
@@ -476,6 +486,26 @@ namespace Shared.Migrations
                         new
                         {
                             TranslationRowKey = "HealthProviderType2",
+                            DropDownControlOption = "HealthServivceProivderType",
+                            CreatedBy = "InitialUpload",
+                            DisplayOrder = 2,
+                            IsDeleted = false,
+                            IsEnable = false,
+                            PartitionKey = "ControlData"
+                        },
+                        new
+                        {
+                            TranslationRowKey = "HealthProviderType3",
+                            DropDownControlOption = "HealthServivceProivderType",
+                            CreatedBy = "InitialUpload",
+                            DisplayOrder = 2,
+                            IsDeleted = false,
+                            IsEnable = false,
+                            PartitionKey = "ControlData"
+                        },
+                        new
+                        {
+                            TranslationRowKey = "HealthProviderType4",
                             DropDownControlOption = "HealthServivceProivderType",
                             CreatedBy = "InitialUpload",
                             DisplayOrder = 2,
@@ -1206,6 +1236,16 @@ namespace Shared.Migrations
                         new
                         {
                             TranslationRowKey = "VolumeUnitType1",
+                            DropDownControlOption = "VolumeUnitType",
+                            CreatedBy = "InitialUpload",
+                            DisplayOrder = 1,
+                            IsDeleted = false,
+                            IsEnable = false,
+                            PartitionKey = "ControlData"
+                        },
+                        new
+                        {
+                            TranslationRowKey = "VolumeUnitType2",
                             DropDownControlOption = "VolumeUnitType",
                             CreatedBy = "InitialUpload",
                             DisplayOrder = 1,
@@ -2086,7 +2126,7 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "FeedItemTitleTranslation",
-                            English = "Feed Cost",
+                            English = "Feed",
                             Lang1 = "",
                             Lang2 = ""
                         },
@@ -2135,7 +2175,7 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "OtherPurchasedFromTranslation",
-                            English = "Purchased From",
+                            English = "Other Purchased From",
                             Lang1 = "Purchased From Lang1",
                             Lang2 = "Purchased From Lang2"
                         },
@@ -2226,7 +2266,7 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "HealthCareTitleTranslation",
-                            English = "Health Care",
+                            English = "Healthcare",
                             Lang1 = "",
                             Lang2 = ""
                         },
@@ -2247,9 +2287,9 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "HealthCareCostTranslation",
-                            English = "Care Cost",
-                            Lang1 = "Care Cost",
-                            Lang2 = ""
+                            English = "Service Provider Cost",
+                            Lang1 = "Service Provider Cost Lang1",
+                            Lang2 = "Service Provider Cost Lang2"
                         },
                         new
                         {
@@ -2296,7 +2336,7 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "LabourTitleTranslation",
-                            English = "Labour Cost",
+                            English = "Labour",
                             Lang1 = "Labour Cost Lang1",
                             Lang2 = "Labour Cost Lang2"
                         },
@@ -2317,9 +2357,9 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "AmountPaidTranslation",
-                            English = "Amount Paid",
-                            Lang1 = "Amount Paid Lang1",
-                            Lang2 = "Amount Paid Lang2"
+                            English = "Amount paid over the labour use duration",
+                            Lang1 = "Amount paid over the labour use duration Lang1",
+                            Lang2 = "Amount paid over the labour use duration Lang2"
                         },
                         new
                         {
@@ -2338,7 +2378,7 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "HousingTitleTranslation",
-                            English = "Animal Housing",
+                            English = "Housing",
                             Lang1 = "Animal Housing Lang1",
                             Lang2 = "Animal Housing Lang2"
                         },
@@ -2372,8 +2412,15 @@ namespace Shared.Migrations
                         },
                         new
                         {
+                            RowKey = "WatherDurationTranslation",
+                            English = "Water Use Duration",
+                            Lang1 = "Water Use Duration Lang1",
+                            Lang2 = "Water Use Duration Lang2"
+                        },
+                        new
+                        {
                             RowKey = "WaterCostTitleTranslation",
-                            English = "Water Cost",
+                            English = "Water",
                             Lang1 = "",
                             Lang2 = ""
                         },
@@ -2443,7 +2490,7 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "OtherCostTitleTranslation",
-                            English = "Other Cost",
+                            English = "Other",
                             Lang1 = "",
                             Lang2 = ""
                         },
@@ -2477,8 +2524,8 @@ namespace Shared.Migrations
                         },
                         new
                         {
-                            RowKey = "SowsServicedTranslation",
-                            English = "Sows Serviced",
+                            RowKey = "SowsServicedCostTranslation",
+                            English = "Total Service Cost",
                             Lang1 = "",
                             Lang2 = ""
                         },
@@ -2535,6 +2582,13 @@ namespace Shared.Migrations
                         {
                             RowKey = "OtherAnimalPurchasedTranslation",
                             English = "Purchased from",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "TotalAnimalCosts",
+                            English = "",
                             Lang1 = "",
                             Lang2 = ""
                         },
@@ -3226,6 +3280,13 @@ namespace Shared.Migrations
                         },
                         new
                         {
+                            RowKey = "DropDownUnitType3",
+                            English = "gram",
+                            Lang1 = "Kg Lang1",
+                            Lang2 = "Kg Lang2"
+                        },
+                        new
+                        {
                             RowKey = "DropDownUnitType2",
                             English = "Number",
                             Lang1 = "Number Lang1",
@@ -3262,44 +3323,44 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "HeathCareType1",
-                            English = "(1)  Curative (treatment of a disease)",
-                            Lang1 = "(1)       Curative (treatment of a disease) Lang1",
-                            Lang2 = "(1)       Curative (treatment of a disease) Lang2"
+                            English = "Curative (treatment of a disease)",
+                            Lang1 = "Curative (treatment of a disease) Lang1",
+                            Lang2 = "Curative (treatment of a disease) Lang2"
                         },
                         new
                         {
                             RowKey = "HeathCareType2",
-                            English = "(2)  Preventative (vaccination,",
-                            Lang1 = "(2)       Preventative (vaccination, Lang1",
-                            Lang2 = "(2)       Preventative (vaccination, Lang2"
+                            English = "Preventative (such as vaccinations)",
+                            Lang1 = "Preventative (such as vaccinations) Lang1",
+                            Lang2 = "Preventative (such as vaccinations) Lang2"
                         },
                         new
                         {
                             RowKey = "HeathCareType3",
-                            English = "(3)  Administration of vitamins",
-                            Lang1 = "(3)       Administration of vitamins Lang1",
-                            Lang2 = "(3)       Administration of vitamins Lang2"
+                            English = "Administration of vitamins",
+                            Lang1 = "Administration of vitamins Lang1",
+                            Lang2 = "Administration of vitamins Lang2"
                         },
                         new
                         {
                             RowKey = "HeathCareType4",
-                            English = "(4)  Deworming",
-                            Lang1 = "(4)  Deworming Lang1",
-                            Lang2 = "(4)  Deworming Lang2"
+                            English = "Deworming",
+                            Lang1 = "Deworming Lang1",
+                            Lang2 = "Deworming Lang2"
                         },
                         new
                         {
                             RowKey = "HeathCareType5",
-                            English = "(5)  Use of disinfectants",
-                            Lang1 = "(5)       Use of disinfectants Lang1",
-                            Lang2 = "(5)       Use of disinfectants Lang2"
+                            English = "Use of disinfectants",
+                            Lang1 = "Use of disinfectants Lang1",
+                            Lang2 = "Use of disinfectants Lang2"
                         },
                         new
                         {
                             RowKey = "HeathCareType6",
-                            English = "(6)  Herd visit/monitoring",
-                            Lang1 = "(6)       Herd visit/monitoring Lang1",
-                            Lang2 = "(6)       Herd visit/monitoring Lang2"
+                            English = "Herd visit/monitoring",
+                            Lang1 = "Herd visit/monitoring Lang1",
+                            Lang2 = "Herd visit/monitoring Lang2"
                         },
                         new
                         {
@@ -3314,6 +3375,20 @@ namespace Shared.Migrations
                             English = "Government animal health worker veterinarian",
                             Lang1 = "Government animal health worker veterinarian Lang1",
                             Lang2 = "Government animal health worker veterinarian Lang2"
+                        },
+                        new
+                        {
+                            RowKey = "HealthProviderType3",
+                            English = "Self",
+                            Lang1 = "Self Lang1",
+                            Lang2 = "Self Lang2"
+                        },
+                        new
+                        {
+                            RowKey = "HealthProviderType4",
+                            English = "Neighbour, friend, or relative",
+                            Lang1 = "Neighbour, friend, or relative Lang1",
+                            Lang2 = "Neighbour, friend, or relative Lang2"
                         },
                         new
                         {
@@ -3500,7 +3575,7 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "AnimalType2",
-                            English = "Gilt / sow for breeding",
+                            English = "Gilt/Sow for breeding",
                             Lang1 = "Gilt / sow for breeding Lang1",
                             Lang2 = "Gilt / sow for breeding Lang2"
                         },
@@ -3626,7 +3701,7 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "PigType3",
-                            English = "Gilt/sow sow for breeding",
+                            English = "Gilt/Sow for breeding",
                             Lang1 = "Gilt/sow sow for breeding Lang1",
                             Lang2 = "Gilt/sow sow for breeding Lang2"
                         },
@@ -3692,6 +3767,13 @@ namespace Shared.Migrations
                             English = "Kg",
                             Lang1 = "Kg Lang1",
                             Lang2 = "Kg Lang2"
+                        },
+                        new
+                        {
+                            RowKey = "VolumeUnitType2",
+                            English = "Bag",
+                            Lang1 = "Bag Lang1",
+                            Lang2 = "Bag Lang2"
                         },
                         new
                         {
@@ -4019,7 +4101,7 @@ namespace Shared.Migrations
                     b.Property<string>("HousingExpense")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("OtherCosts")
+                    b.Property<double?>("OtherCosts")
                         .HasColumnType("REAL");
 
                     b.Property<string>("OtherHousingExpense")
@@ -4067,7 +4149,7 @@ namespace Shared.Migrations
                     b.Property<string>("OtherAnimalType")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("OtherCosts")
+                    b.Property<double?>("OtherCosts")
                         .HasColumnType("REAL");
 
                     b.Property<double>("TotalCosts")
@@ -4106,7 +4188,7 @@ namespace Shared.Migrations
                     b.Property<string>("OtherClient")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("OtherCosts")
+                    b.Property<double?>("OtherCosts")
                         .HasColumnType("REAL");
 
                     b.Property<string>("OtherServiceType")
@@ -4115,7 +4197,7 @@ namespace Shared.Migrations
                     b.Property<string>("PaymentType")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("PaymentValue")
+                    b.Property<double?>("PaymentValue")
                         .HasColumnType("REAL");
 
                     b.Property<string>("ServiceType")
@@ -4145,7 +4227,7 @@ namespace Shared.Migrations
                     b.Property<string>("EquipmentType")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("OtherCosts")
+                    b.Property<double?>("OtherCosts")
                         .HasColumnType("REAL");
 
                     b.Property<string>("OtherEquipmentType")
@@ -4238,7 +4320,7 @@ namespace Shared.Migrations
                     b.Property<string>("MedicineType")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("OtherCosts")
+                    b.Property<double?>("OtherCosts")
                         .HasColumnType("REAL");
 
                     b.Property<string>("OtherHealthCareType")
@@ -4292,7 +4374,7 @@ namespace Shared.Migrations
                     b.Property<string>("LabourType")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("OtherCost")
+                    b.Property<double?>("OtherCost")
                         .HasColumnType("REAL");
 
                     b.Property<string>("OtherLabourType")
@@ -4319,13 +4401,16 @@ namespace Shared.Migrations
                     b.Property<string>("LoanProvider")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("OtherCosts")
+                    b.Property<double?>("OtherCosts")
                         .HasColumnType("REAL");
 
                     b.Property<string>("OtherLoanProvider")
                         .HasColumnType("TEXT");
 
                     b.Property<double>("TotalAmountRepaid")
+                        .HasColumnType("REAL");
+
+                    b.Property<double?>("TransportCosts")
                         .HasColumnType("REAL");
 
                     b.HasIndex("LoanProvider");
@@ -4349,7 +4434,7 @@ namespace Shared.Migrations
                     b.Property<string>("DisplayTypeTranslationString")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("OtherCosts")
+                    b.Property<double?>("OtherCosts")
                         .HasColumnType("REAL");
 
                     b.Property<string>("OtherSoldTo")
@@ -4358,7 +4443,7 @@ namespace Shared.Migrations
                     b.Property<string>("PaymentType")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("PaymentValue")
+                    b.Property<double?>("PaymentValue")
                         .HasColumnType("REAL");
 
                     b.Property<string>("SoldTo")
@@ -4425,7 +4510,7 @@ namespace Shared.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("OtherCosts")
+                    b.Property<double?>("OtherCosts")
                         .HasColumnType("REAL");
 
                     b.Property<string>("OtherWhatFor")
@@ -4450,7 +4535,7 @@ namespace Shared.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("OtherCosts")
+                    b.Property<double?>("OtherCosts")
                         .HasColumnType("REAL");
 
                     b.Property<string>("OtherWhatFor")
@@ -4484,7 +4569,7 @@ namespace Shared.Migrations
                     b.Property<int?>("NumberSold")
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("OtherCosts")
+                    b.Property<double?>("OtherCosts")
                         .HasColumnType("REAL");
 
                     b.Property<string>("OtherPigType")
@@ -4523,7 +4608,7 @@ namespace Shared.Migrations
                     b.Property<string>("DisplayTypeTranslationString")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("OtherCosts")
+                    b.Property<double?>("OtherCosts")
                         .HasColumnType("REAL");
 
                     b.Property<string>("OtherServiceType")
@@ -4535,8 +4620,11 @@ namespace Shared.Migrations
                     b.Property<string>("ServiceType")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("SowsServiced")
+                    b.Property<int>("SowsServicedCost")
                         .HasColumnType("INTEGER");
+
+                    b.Property<double?>("TransportCost")
+                        .HasColumnType("REAL");
 
                     b.Property<string>("WhoProvidedService")
                         .HasColumnType("TEXT");
@@ -4562,7 +4650,7 @@ namespace Shared.Migrations
                     b.Property<DateTime>("DurationStart")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("OtherCosts")
+                    b.Property<double?>("OtherCosts")
                         .HasColumnType("REAL");
 
                     b.Property<string>("OtherPurchasedWaterFrom")

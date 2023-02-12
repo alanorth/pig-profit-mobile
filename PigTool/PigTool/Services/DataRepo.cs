@@ -260,7 +260,7 @@ namespace PigTool.Services
                 await _context.AddAsync(itemToAdd);
                 await _context.SaveChangesAsync();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }

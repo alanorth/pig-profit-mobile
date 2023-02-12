@@ -342,7 +342,7 @@ namespace PigTool.ViewModels.DataViewModels
             SalePriceTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SalePriceTranslation), User.UserLang) + " *";
             BrokerageTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(BrokerageTranslation), User.UserLang) + " *";
             TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
-            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
+            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang);
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
 
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
@@ -433,9 +433,15 @@ namespace PigTool.ViewModels.DataViewModels
                     CreatedBy = User.UserName,
                     PartitionKey = Constants.PartitionKeyPigSaleItem,
                 };
-
+                try { 
                 await repo.AddSinglePigSaleItem(newPigSale);
                 await Application.Current.MainPage.DisplayAlert("Created", "Pig sale has been saved", "OK");
+                    await Shell.Current.Navigation.PopAsync();
+                }
+                catch (Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                }
             }
         }
 
@@ -501,7 +507,7 @@ namespace PigTool.ViewModels.DataViewModels
                 if (SalePrice == null) returnString.AppendLine("Sale Price Not Provided");
                 if (Brokerage == null) returnString.AppendLine("Brokerage Not Provided");
                 if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
-                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
+                //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
 
                 if (SelectedPigType != null && SelectedPigType.TranslationRowKey == Constants.OTHER)

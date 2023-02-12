@@ -19,7 +19,7 @@ namespace PigTool.ViewModels.DataViewModels
         private double? totalAmountRepaid;
         private string loanProvider;
         private string otherLoanProvider;
-        private double? otherCosts;
+        private double? otherCosts, transportCosts;
         private string comment;
         List<PickerToolHelper> loanProviderListOfOptions;
         LoanRepaymentItem _itemForEditing;
@@ -33,14 +33,12 @@ namespace PigTool.ViewModels.DataViewModels
         #region translations
         public string LoanRepaymentTitleTranslation { get; set; }
         public string DateTranslation { get; set; }
-
         public string LoanProviderTranslation { get; set; }
         public string OtherLoanProviderTranslation { get; set; }
-
         public string TotalAmountRepaidTranslation { get; set; }
         public string OtherCostTranslation { get; set; }
+        public string TransportCostTrans { get; set; }
         public string CommentTranslation { get; set; }
-
         public string SaveTranslation { get; set; }
         public string ResetTranslation { get; set; }
         public string EditTranslation { get; set; }
@@ -108,6 +106,18 @@ namespace PigTool.ViewModels.DataViewModels
                 {
                     otherCosts = value;
                     OnPropertyChanged(nameof(OtherCosts));
+                }
+            }
+        }
+        public double? TransportCosts
+        {
+            get => transportCosts;
+            set
+            {
+                if (value != transportCosts)
+                {
+                    transportCosts = value;
+                    OnPropertyChanged(nameof(TransportCosts));
                 }
             }
         }
@@ -224,7 +234,8 @@ namespace PigTool.ViewModels.DataViewModels
             LoanProviderTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LoanProviderTranslation), User.UserLang);
             OtherLoanProviderTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherLoanProviderTranslation), User.UserLang);
 
-            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
+            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang);
+            TransportCostTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportCostTrans), User.UserLang);
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
 
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
@@ -248,6 +259,7 @@ namespace PigTool.ViewModels.DataViewModels
             LoanProvider = item.LoanProvider;
             OtherLoanProvider = item.OtherLoanProvider;
             OtherCosts = item.OtherCosts;
+            TransportCosts = item.TransportCosts;
             Comment = item.Comment;
         }
 
@@ -276,7 +288,8 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.TotalAmountRepaid = (double)TotalAmountRepaid;
                 _itemForEditing.LoanProvider = SelectedLoanProvider != null ? SelectedLoanProvider.TranslationRowKey : null;
                 _itemForEditing.OtherLoanProvider = OtherLoanProvider;
-                _itemForEditing.OtherCosts = (double)OtherCosts;
+                _itemForEditing.OtherCosts = OtherCosts;
+                _itemForEditing.TransportCosts = TransportCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
@@ -292,15 +305,24 @@ namespace PigTool.ViewModels.DataViewModels
                     TotalAmountRepaid = (double)TotalAmountRepaid,
                     LoanProvider = SelectedLoanProvider != null ? SelectedLoanProvider.TranslationRowKey : null,
                     OtherLoanProvider = OtherLoanProvider,
-                    OtherCosts = (double)OtherCosts,
+                    OtherCosts = OtherCosts,
+                    TransportCosts = TransportCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
                     PartitionKey = Constants.PartitionKeyLoanRepaymentItem
                 };
 
-                await repo.AddSingleLoanRepaymentItem(newLoanRepayment);
-                await Application.Current.MainPage.DisplayAlert("Created", "Loan repayment has been saved", "OK");
+                try
+                {
+                    await repo.AddSingleLoanRepaymentItem(newLoanRepayment);
+                    await Application.Current.MainPage.DisplayAlert("Created", "Loan repayment has been saved", "OK");
+                    await Shell.Current.Navigation.PopAsync();
+                }
+                catch (Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                }
             }
         }
 
@@ -334,6 +356,7 @@ namespace PigTool.ViewModels.DataViewModels
             SelectedLoanProvider = null;
             OtherLoanProvider = null;
             OtherCosts = null;
+            TransportCosts = null;
             Comment = null;
         }
 
@@ -356,7 +379,7 @@ namespace PigTool.ViewModels.DataViewModels
                 StringBuilder returnString = new StringBuilder();
                 if (Date == null) returnString.AppendLine("Date obtained not provided");
                 if (TotalAmountRepaid == null) returnString.AppendLine("Total Amount Repaid Not Provided");
-                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
+                //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
 
                 if (SelectedLoanProvider != null && SelectedLoanProvider.TranslationRowKey == Constants.OTHER)

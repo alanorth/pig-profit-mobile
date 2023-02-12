@@ -413,20 +413,26 @@ public class AccountController : PigToolBaseController
 
             await _userManager.UpdateAsync(user);
 
+            //get user variables
+            var UserDic = user.ReturnDisreteUserVariablesInDiction();
+
+            //Get the new token Variables
             var qs = new Dictionary<string, string>
                 {
                     { nameof(MobileUser.AuthorisedToken), authToken.token },
                     { nameof(MobileUser.RefreshToken),  refreshToken },
-                    //{ nameof(MobileUser.RefreshTokenExpiryTime), authToken.expirySeconds.ToString() },
                     { nameof(MobileUser.AuthorisedEmail), user.Email },
                     { nameof(MobileUser.RowKey), user.RowKey },
                     { nameof(MobileUser.PartitionKey), user.PartitionKey },
+                    {Constants.ExistingUser, true.ToString() }
                 };
+
+            var combineDic= qs.Concat(UserDic.Where(kvp => !qs.ContainsKey(kvp.Key))).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
             // build url with previously calculated info to send back to app
             var url = Callback + "://#" + string.Join(
                 "&",
-                qs.Where(kvp => !string.IsNullOrEmpty(kvp.Value) && kvp.Value != "-1")
+                combineDic.Where(kvp => !string.IsNullOrEmpty(kvp.Value) && kvp.Value != "-1")
                 .Select(kvp => $"{WebUtility.UrlEncode(kvp.Key)}={WebUtility.UrlEncode(kvp.Value)}"));
 
             // Redirect to final url (back to the app)
@@ -440,6 +446,7 @@ public class AccountController : PigToolBaseController
             {
                 Email = info.Principal.FindFirst(ClaimTypes.Email).Value,
                 UserName = info.Principal.FindFirst(ClaimTypes.Email).Value,
+                Name = info.Principal.FindFirst(ClaimTypes.Name).Value,
                 LastModified = DateTime.UtcNow,
                 LastUploadDate = DateTime.UtcNow,
                 NormalizedEmail = info.Principal.FindFirst(ClaimTypes.Email).Value.Normalize(),
@@ -467,10 +474,11 @@ public class AccountController : PigToolBaseController
                         {
                             { nameof(MobileUser.AuthorisedToken), authToken.token },
                             { nameof(MobileUser.RefreshToken),  refreshToken },
-                            //{ nameof(MobileUser.RefreshTokenExpiryTime), authToken.expirySeconds.ToString() },
                             { nameof(MobileUser.AuthorisedEmail), user.Email },
                             { nameof(MobileUser.RowKey), user.RowKey },
                             { nameof(MobileUser.PartitionKey), user.PartitionKey },
+                            { nameof(MobileUser.Name), user.Name },
+                            { Constants.ExistingUser, false.ToString() }
                         };
 
                     /*var pUSer = new MobileUser()

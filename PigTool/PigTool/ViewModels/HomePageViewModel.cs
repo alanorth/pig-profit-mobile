@@ -313,7 +313,7 @@ namespace PigTool.ViewModels
                     {
                         Date = start.AddDays(random.Next(range)),
                         ServiceType = "ReproductiveType2",
-                        SowsServiced = random.Next() * (200 - 0) + 0,
+                        SowsServicedCost = random.Next() * (200 - 0) + 0,
                         OtherCosts = Math.Round(random.NextDouble() * (200 - 0) + 0, 2),
                         LastModified = DateTime.UtcNow,
                         CreatedBy = User.UserName,

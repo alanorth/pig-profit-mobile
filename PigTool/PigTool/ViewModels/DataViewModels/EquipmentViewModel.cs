@@ -243,7 +243,7 @@ namespace PigTool.ViewModels.DataViewModels
 
             TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang) + " *";
             TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
-            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
+            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang);
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
 
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
@@ -321,9 +321,16 @@ namespace PigTool.ViewModels.DataViewModels
                     CreatedBy = User.UserName,
                     PartitionKey = Constants.PartitionKeyEquipmentItem,
                 };
-
-                await repo.AddSingleEquipmentItem(newEquipment);
-                await Application.Current.MainPage.DisplayAlert("Created", "Equipment record has been saved", "OK");
+                try
+                {
+                    await repo.AddSingleEquipmentItem(newEquipment);
+                    await Application.Current.MainPage.DisplayAlert("Created", "Equipment record has been saved", "OK");
+                    await Shell.Current.Navigation.PopAsync();
+                }
+                catch (Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                }
             }
         }
 
@@ -382,7 +389,7 @@ namespace PigTool.ViewModels.DataViewModels
                 if (Date == null) returnString.AppendLine("Date obtained not provided");
                 if (TotalCosts == null) returnString.AppendLine("Total Cost Not Provided");
                 if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
-                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
+                //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
 
                 if (SelectedEquipmentType != null && SelectedEquipmentType.TranslationRowKey == Constants.OTHER)

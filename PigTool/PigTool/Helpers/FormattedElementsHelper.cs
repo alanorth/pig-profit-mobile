@@ -235,7 +235,7 @@ namespace PigTool.Helpers
             {
                 Orientation = stackOrientation,
                 Padding = 10,
-                HorizontalOptions = LayoutOptions.FillAndExpand
+                HorizontalOptions = LayoutOptions.FillAndExpand,
             };
 
             if (hiddenField)
@@ -245,6 +245,77 @@ namespace PigTool.Helpers
 
             return stack;
         }
+
+        public static Grid TableRowGrid(string isVisibleBinding = null, bool hiddenField = false, GridFields fields = GridFields.Two)
+        {
+            Grid objGrid = new Grid()
+            {
+                VerticalOptions = LayoutOptions.StartAndExpand
+            };
+
+            if (fields == GridFields.Two) { 
+                
+                objGrid.ColumnDefinitions.Add(new ColumnDefinition
+                {
+                    Width = new GridLength(1, GridUnitType.Star)
+                });
+                objGrid.ColumnDefinitions.Add(new ColumnDefinition
+                {
+                    Width = new GridLength(1, GridUnitType.Star)
+                });
+                objGrid.ColumnDefinitions.Add(new ColumnDefinition
+                {
+                    Width = new GridLength(1, GridUnitType.Star)
+                }); objGrid.ColumnDefinitions.Add(new ColumnDefinition
+                {
+                    Width = new GridLength(1, GridUnitType.Star)
+                }); objGrid.ColumnDefinitions.Add(new ColumnDefinition
+                {
+                    Width = new GridLength(1, GridUnitType.Star)
+                });
+            }
+            else if (fields == GridFields.Three)
+            {
+                objGrid.ColumnDefinitions.Add(new ColumnDefinition
+                {
+                    Width = new GridLength(1, GridUnitType.Star)
+                });
+                objGrid.ColumnDefinitions.Add(new ColumnDefinition
+                {
+                    Width = new GridLength(1, GridUnitType.Star)
+                });
+                objGrid.ColumnDefinitions.Add(new ColumnDefinition
+                {
+                    Width = new GridLength(1, GridUnitType.Star)
+                });
+            }
+
+            if (hiddenField)
+            {
+                objGrid.SetBinding(StackLayout.IsVisibleProperty, new Binding(isVisibleBinding));
+            }
+
+            return objGrid;
+        }
+
+        public static void AddGridValue(Grid grid, View view, GridPostion gridPostion)
+        {
+            if(gridPostion == GridPostion.TwoLeft)
+                grid.Children.Add(view, left: 0, right: 2, top: 0, bottom: 1);
+
+            if (gridPostion == GridPostion.TwoRight) 
+                grid.Children.Add(view, left: 2, right: 5, top: 0, bottom: 1);
+
+            if (gridPostion == GridPostion.ThreeLeft) 
+                grid.Children.Add(view, left: 0, right: 1, top: 0, bottom: 1);
+
+            if (gridPostion == GridPostion.ThreeCenter)
+                grid.Children.Add(view, left: 1, right: 2, top: 0, bottom: 1);
+
+            if (gridPostion == GridPostion.ThreeRight)
+                grid.Children.Add(view, left: 2, right: 3, top: 0, bottom: 1);
+        }
+
 
         public static StackLayout ButtonCommandStack(
             string ResetCommandBinding,

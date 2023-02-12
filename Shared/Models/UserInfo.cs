@@ -42,6 +42,71 @@ namespace Shared
         public DateTimeOffset? Timestamp { get; set; }
         public ETag ETag { get; set; }
 
+        public Dictionary<string, string> ReturnDisreteUserVariablesInDiction()
+        {
+            Dictionary<string, string> variables = new Dictionary<string, string>();
+
+            if(Name != null)
+            {
+                variables.Add(nameof(Name), Name);
+            }
+            if (Gender != null)
+            {
+                variables.Add(nameof(Gender), Gender);
+            }
+            if (Email != null)
+            {
+                variables.Add(nameof(Email), Email);
+            }
+            if (PhoneNumber != null)
+            {
+                variables.Add(nameof(PhoneNumber), PhoneNumber);
+            }
+            if (Country != null)
+            {
+                variables.Add(nameof(Country), Country);
+            }
+            if (District != null)
+            {
+                variables.Add(nameof(District), District);
+            }
+            if (County != null)
+            {
+                variables.Add(nameof(County), County);
+            }
+            if (SubCounty != null)
+            {
+                variables.Add(nameof(SubCounty), SubCounty);
+            }
+            if (Parish != null)
+            {
+                variables.Add(nameof(Parish), Parish);
+            }
+            if (Village != null)
+            {
+                variables.Add(nameof(Village), Village);
+            }
+            if (Province != null)
+            {
+                variables.Add(nameof(Province), Province);
+            }
+            if (Commune != null)
+            {
+                variables.Add(nameof(Commune), Commune);
+            }
+            if (Sector != null)
+            {
+                variables.Add(nameof(Sector), Sector);
+            }
+            if (Cell != null)
+            {
+                variables.Add(nameof(Cell), Cell);
+            }
+
+            return variables;
+
+        }
+
 
     }
     public enum UserLangSettings

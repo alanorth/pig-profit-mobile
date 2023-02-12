@@ -17,7 +17,7 @@ namespace Shared
         public string? AnimalPurchasedFrom { get; set; }
         public string? OtherAnimalPurchasedFrom { get; set; }
         public double TransportationCost { get; set; }
-        public double OtherCosts { get; set; }
+        public double? OtherCosts { get; set; }
         public string? Comment { get; set; }
         [JsonIgnore]
         public virtual Translation? DisplayTypeTranslation { get; set; }

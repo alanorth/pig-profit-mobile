@@ -356,7 +356,7 @@ namespace PigTool.ViewModels.DataViewModels
             PaymentTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PaymentTypeTranslation), User.UserLang);
             PaymentValueTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PaymentValueTranslation), User.UserLang) + " *";
             TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
-            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
+            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang);
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
 
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
@@ -441,7 +441,7 @@ namespace PigTool.ViewModels.DataViewModels
                     OtherSoldTo = OtherSoldTo,
                     AmountRecieved = (double)AmountRecieved,
                     PaymentType = SelectedPaymentType != null ? SelectedPaymentType.TranslationRowKey : null,
-                    PaymentValue = (double)PaymentValue,
+                    PaymentValue = PaymentValue,
                     TransportationCost = (double)TransportationCost,
                     OtherCosts = (double)OtherCosts,
                     Comment = Comment,
@@ -450,8 +450,16 @@ namespace PigTool.ViewModels.DataViewModels
                     PartitionKey = Constants.PartitionKeyManureSaleItem,
                 };
 
-                await repo.AddSingleManureSaleItem(newManureSale);
-                await Application.Current.MainPage.DisplayAlert("Created", "Manure sale has been saved", "OK");
+                try
+                {
+                    await repo.AddSingleManureSaleItem(newManureSale);
+                    await Application.Current.MainPage.DisplayAlert("Created", "Manure sale has been saved", "OK");
+                    await Shell.Current.Navigation.PopAsync();
+                }
+                catch (Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                }
             }
         }
 
@@ -518,9 +526,9 @@ namespace PigTool.ViewModels.DataViewModels
                 StringBuilder returnString = new StringBuilder();
                 if (Date == null) returnString.AppendLine("Date obtained not provided");
                 if (AmountRecieved == null) returnString.AppendLine("Amount Recieved Not Provided");
-                if (PaymentValue == null) returnString.AppendLine("Payment Value Not Provided");
                 if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
-                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
+                if (PaymentType != null  && PaymentValue == null) returnString.AppendLine("Payment Value Not Provided");
+                //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
 
                 if (SelectedSoldTo != null && SelectedSoldTo.TranslationRowKey == Constants.OTHER)

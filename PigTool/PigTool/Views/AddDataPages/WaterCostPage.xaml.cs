@@ -57,7 +57,7 @@ namespace PigTool.Views
             var DurationCell = new ViewCell();
             var DurationVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
 
-            var DurationLabel = FormattedElementsHelper.DataLabel(nameof(_viewModel.LabourDurationTranslation));
+            var DurationLabel = FormattedElementsHelper.DataLabel(nameof(_viewModel.WaterDurationTranslation));
             DurationVerticalStack.Children.Add(DurationLabel);
 
             //DurationStart

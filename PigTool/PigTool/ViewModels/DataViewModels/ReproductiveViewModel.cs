@@ -19,10 +19,11 @@ namespace PigTool.ViewModels.DataViewModels
 
         private string serviceType;
         private string otherServiceType;
-        private int? sowsServiced;
+        private int? sowsServicedCost;
         private string whoProvidedService;
         private string otherWhoProvidedService;
         private double? otherCosts;
+        private double? transportCosts;
         private string comment;
         List<PickerToolHelper> serviceTypeListOfOptions;
         List<PickerToolHelper> whoProvidedServiceListOfOptions;
@@ -43,7 +44,7 @@ namespace PigTool.ViewModels.DataViewModels
         public string WhoProvidedServiceTranslation { get; set; }
         public string OtherWhoProvidedServiceTranslation { get; set; }
 
-        public string SowsServicedTranslation { get; set; }
+        public string SowsServicedCostTranslation { get; set; }
         public string OtherCostTranslation { get; set; }
         public string CommentTranslation { get; set; }
 
@@ -54,6 +55,7 @@ namespace PigTool.ViewModels.DataViewModels
 
         public string PickerServiceTypeTranslation { get; set; }
         public string PickerProviderTranslation { get; set; }
+        public string TransportationCostTranslation { get; set; }
         #endregion
 
         #region Reproductive item fields
@@ -94,15 +96,15 @@ namespace PigTool.ViewModels.DataViewModels
                 }
             }
         }
-        public int? SowsServiced
+        public int? SowsServicedCost
         {
-            get => sowsServiced;
+            get => sowsServicedCost;
             set
             {
-                if (value != sowsServiced)
+                if (value != sowsServicedCost)
                 {
-                    sowsServiced = value;
-                    OnPropertyChanged(nameof(SowsServiced));
+                    sowsServicedCost = value;
+                    OnPropertyChanged(nameof(SowsServicedCost));
                 }
             }
         }
@@ -131,6 +133,19 @@ namespace PigTool.ViewModels.DataViewModels
             }
         }
 
+        public double? TransportCosts
+        {
+            get => transportCosts;
+            set
+            {
+                if (value != transportCosts)
+                {
+                    transportCosts = value;
+                    OnPropertyChanged(nameof(TransportCosts));
+                }
+            }
+        }
+
         public double? OtherCosts
         {
             get => otherCosts;
@@ -138,6 +153,7 @@ namespace PigTool.ViewModels.DataViewModels
             {
                 if (value != otherCosts)
                 {
+
                     otherCosts = value;
                     OnPropertyChanged(nameof(OtherCosts));
                 }
@@ -215,6 +231,7 @@ namespace PigTool.ViewModels.DataViewModels
         #region Hidden Fields
         private bool displayOtherServiceType;
         private bool displayOtherWhoProvidedService;
+        private string transportationCostTranslation;
 
         public bool DisplayOtherServiceType
         {
@@ -295,9 +312,10 @@ namespace PigTool.ViewModels.DataViewModels
             OtherServiceTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherServiceTypeTranslation), User.UserLang);
             WhoProvidedServiceTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(WhoProvidedServiceTranslation), User.UserLang);
             OtherWhoProvidedServiceTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherWhoProvidedServiceTranslation), User.UserLang);
+            TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang);
 
-            SowsServicedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SowsServicedTranslation), User.UserLang) + " *";
-            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
+            SowsServicedCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SowsServicedCostTranslation), User.UserLang) + " *";
+            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang);
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
 
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
@@ -320,10 +338,11 @@ namespace PigTool.ViewModels.DataViewModels
             Date = item.Date;
             ServiceType = item.ServiceType;
             OtherServiceType = item.OtherServiceType;
-            SowsServiced = item.SowsServiced;
+            SowsServicedCost = item.SowsServicedCost;
             WhoProvidedService = item.WhoProvidedService;
             OtherWhoProvidedService = item.OtherWhoProvidedService;
             OtherCosts = item.OtherCosts;
+            TransportCosts = item.TransportCost;
             Comment = item.Comment;
         }
 
@@ -350,12 +369,13 @@ namespace PigTool.ViewModels.DataViewModels
             {
 
                 _itemForEditing.Date = Date;
-                _itemForEditing.SowsServiced = (int)SowsServiced;
+                _itemForEditing.SowsServicedCost = (int)SowsServicedCost;
                 _itemForEditing.ServiceType = SelectedServiceType != null ? SelectedServiceType.TranslationRowKey : null;
                 _itemForEditing.OtherServiceType = OtherServiceType;
                 _itemForEditing.WhoProvidedService = SelectedWhoProvidedService != null ? SelectedWhoProvidedService.TranslationRowKey : null;
                 _itemForEditing.OtherWhoProvidedService = OtherWhoProvidedService;
                 _itemForEditing.OtherCosts = (double)OtherCosts;
+                _itemForEditing.TransportCost = TransportCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
@@ -368,20 +388,28 @@ namespace PigTool.ViewModels.DataViewModels
                 var newReproductiveItem = new ReproductiveItem
                 {
                     Date = Date,
-                    SowsServiced = (int)SowsServiced,
+                    SowsServicedCost = (int)SowsServicedCost,
                     ServiceType = SelectedServiceType != null ? SelectedServiceType.TranslationRowKey : null,
                     OtherServiceType = OtherServiceType,
                     WhoProvidedService = SelectedWhoProvidedService != null ? SelectedWhoProvidedService.TranslationRowKey : null,
                     OtherWhoProvidedService = OtherWhoProvidedService,
                     OtherCosts = (double)OtherCosts,
+                    TransportCost = TransportCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
                     PartitionKey = Constants.PartitionKeyReproductiveItem,
                 };
-
-                await repo.AddSingleReproductiveItem(newReproductiveItem);
-                await Application.Current.MainPage.DisplayAlert("Created", "Reproduction record has been saved", "OK");
+                try
+                {
+                    await repo.AddSingleReproductiveItem(newReproductiveItem);
+                    await Application.Current.MainPage.DisplayAlert("Created", "Reproduction record has been saved", "OK");
+                    await Shell.Current.Navigation.PopAsync();
+                }
+                catch (Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                }
             }
         }
 
@@ -410,13 +438,14 @@ namespace PigTool.ViewModels.DataViewModels
 
         private void ClearFormVariables()
         {
-            SowsServiced = null;
+            SowsServicedCost = null;
             SelectedServiceType = null;
             OtherServiceType = null;
             SelectedWhoProvidedService = null;
             OtherWhoProvidedService = null;
             OtherCosts = null;
             Comment = null;
+            TransportCosts = null;
         }
 
         public async Task PopulateDataDowns()
@@ -440,8 +469,8 @@ namespace PigTool.ViewModels.DataViewModels
             {
                 StringBuilder returnString = new StringBuilder();
                 if (Date == null) returnString.AppendLine("Date obtained not provided");
-                if (SowsServiced == null) returnString.AppendLine("Sows Serviced Not Provided");
-                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
+                if (SowsServicedCost == null) returnString.AppendLine("Sows Serviced Not Provided");
+                //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
 
                 if (SelectedServiceType != null && SelectedServiceType.TranslationRowKey == Constants.OTHER)

@@ -84,6 +84,7 @@ namespace Samples.ViewModel
                     mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.Name), out var name);
                     mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.RowKey), out var rowKey);
                     mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.PartitionKey), out var partitionKey);
+                    mobileAuth.ResultProperties.TryGetValue(nameof(Constants.ExistingUser), out var existingUser);
 
                     var mobileUser = new MobileUser();
                     mobileUser.AuthorisedEmail = WebUtility.UrlDecode(authEmail);
@@ -94,6 +95,27 @@ namespace Samples.ViewModel
                     mobileUser.RowKey = WebUtility.UrlDecode(rowKey);
                     mobileUser.PartitionKey = WebUtility.UrlDecode(partitionKey);
 
+                    if(existingUser != null && bool.Parse(existingUser))
+                    {
+                        mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.Gender), out var gender);
+                        mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.Email), out var email);
+                        mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.PhoneNumber), out var phoneNumber);
+                        mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.Country), out var country);
+                        mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.District), out var district);
+                        mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.County), out var county);
+                        mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.SubCounty), out var subCounty);
+                        mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.Village), out var village);
+
+                        mobileUser.Gender = gender;
+                        mobileUser.Email = email;
+                        mobileUser.PhoneNumber = phoneNumber;
+                        mobileUser.Country = country;
+                        mobileUser.District = district;
+                        mobileUser.County = county;
+                        mobileUser.SubCounty = subCounty;
+                        mobileUser.Village = village;
+
+                    }
                     await PopupNavigation.Instance.PopAsync();
                     await Application.Current.MainPage.Navigation.PushAsync(new RegistrationPage(mobileUser, lang, countryTranslationRowKey));
                 }

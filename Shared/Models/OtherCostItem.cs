@@ -12,7 +12,7 @@ namespace Shared
         public double TotalCosts { get; set; }
         public string? OtherWhatFor { get; set; }
         public double? TransportationCosts { get; set; }
-        public double OtherCosts { get; set; }
+        public double? OtherCosts { get; set; }
         public string? Comment { get; set; }
     }
 }

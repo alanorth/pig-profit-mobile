@@ -88,8 +88,8 @@ namespace PigTool.Views
             // Sows Serviced
             var SowsServicedCell = new ViewCell();
             var SowsServicedStack = FormattedElementsHelper.TableRowStack();
-            SowsServicedStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.SowsServicedTranslation)));
-            SowsServicedStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.SowsServiced), nameof(_viewModel.IsEditMode), null));
+            SowsServicedStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.SowsServicedCostTranslation)));
+            SowsServicedStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.SowsServicedCost), nameof(_viewModel.IsEditMode), null));
             SowsServicedCell.View = SowsServicedStack;
             FullTableSection.Add(SowsServicedCell);
 
@@ -115,6 +115,16 @@ namespace PigTool.Views
             WhoProvidedServiceVerticalStack.Children.Add(OtherWhoProvidedService);
             WhoProvidedServiceCell.View = WhoProvidedServiceVerticalStack;
             FullTableSection.Add(WhoProvidedServiceCell);
+
+            //Transport Costs
+            var TransportCostCell = new ViewCell();
+            var TransportCostsStack = FormattedElementsHelper.TableRowStack();
+            TransportCostsStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.TransportationCostTranslation)));
+            TransportCostsStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.TransportCosts), nameof(_viewModel.IsEditMode), null));
+            TransportCostCell.View = TransportCostsStack;
+            FullTableSection.Add(TransportCostCell);
+            //TransportCosts
+
 
             //Any Other Cost
             var OtherCostCell = new ViewCell();

@@ -166,14 +166,14 @@ namespace SQLLiteDbContext
                          new Translation() { RowKey = "FinishTranslation", English = "Finish", Lang1 = "Finish Lang1", Lang2 = "Finish Lang2" },
 
                     //Add Feed Item Translations
-                    new Translation() { RowKey = "FeedItemTitleTranslation", English = "Feed Cost", Lang1 = "", Lang2 = "" },
+                    new Translation() { RowKey = "FeedItemTitleTranslation", English = "Feed", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "FeedTypeTranslation", English = "Feed Type", Lang1 = "Feed Type Lang1", Lang2 = "Feed Type Lang2" },
                     new Translation() { RowKey = "OtherFeedTypeTranslation", English = "Other Feed Type", Lang1 = "Other Feed Type Lang1", Lang2 = "Other Feed Type Lang2" },
                     new Translation() { RowKey = "AmountPurchasedTranslation", English = "Amount Purchased", Lang1 = "Amount Purchased Lang1", Lang2 = "Amount Purchased Lang2" },
                     new Translation() { RowKey = "AmountPurchasedUnitTranslation", English = "Amount Purchased", Lang1 = "Amount Purchased Lang1", Lang2 = "Amount Purchased Lang2" },
                     new Translation() { RowKey = "OtherAmountPurchasedUnitTranslation", English = "Other Amount Purchased", Lang1 = "Other Amount Purchased Lang1", Lang2 = "Other Amount Purchased Lang2" },
                     new Translation() { RowKey = "PurchasedFromTranslation", English = "Purchased From", Lang1 = "Purchased From Lang1", Lang2 = "Purchased From Lang2" },
-                    new Translation() { RowKey = "OtherPurchasedFromTranslation", English = "Purchased From", Lang1 = "Purchased From Lang1", Lang2 = "Purchased From Lang2" },
+                    new Translation() { RowKey = "OtherPurchasedFromTranslation", English = "Other Purchased From", Lang1 = "Purchased From Lang1", Lang2 = "Purchased From Lang2" },
 
                     new Translation() { RowKey = "AddFeedItemTrans", English = "Add Feed Cost", Lang1 = "Add Feed Cost Lang1", Lang2 = "Add Feed Cost Lang2", },
                     new Translation() { RowKey = "DateObtainedTrans", English = "Date Obtained", Lang1 = "Date Obtained Lang1", Lang2 = "Date Obtained Lang2" },
@@ -187,13 +187,13 @@ namespace SQLLiteDbContext
                     new Translation() { RowKey = "PurchasedFrom", English = "Purchased From", Lang1 = "Purchased From Lang1", Lang2 = "Purchased From Lang2" },
                     new Translation() { RowKey = "CommentTrans", English = "Comment", Lang1 = "Comment Lang1", Lang2 = "Comment Lang2" },
 
-                         new Translation() { RowKey = "FeedDurationTranslation", English = "Feed use duration", Lang1 = "Duration Lang1", Lang2 = "Duration Lang2" },
+                    new Translation() { RowKey = "FeedDurationTranslation", English = "Feed use duration", Lang1 = "Duration Lang1", Lang2 = "Duration Lang2" },
 
                     //Add HeathCare item Translation
-                    new Translation() { RowKey = "HealthCareTitleTranslation", English = "Health Care", Lang1 = "", Lang2 = "" },
+                    new Translation() { RowKey = "HealthCareTitleTranslation", English = "Healthcare", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "HealthCareTypeTranslation", English = "Health Care Type", Lang1 = "Health Care Type Lang1", Lang2 = "Health Care Type Lang2" },
                     new Translation() { RowKey = "OtherHealthCareTypeTranslation", English = "Other Health Care Type", Lang1 = "Other Health Care Type Lang 1", Lang2 = "Other Health Care Type Lang2" },
-                    new Translation() { RowKey = "HealthCareCostTranslation", English = "Care Cost", Lang1 = "Care Cost", Lang2 = "" },
+                    new Translation() { RowKey = "HealthCareCostTranslation", English = "Service Provider Cost", Lang1 = "Service Provider Cost Lang1", Lang2 = "Service Provider Cost Lang2" },
                     new Translation() { RowKey = "ProviderTranslation", English = "Who provided service", Lang1 = "Who provided service: Lang1", Lang2 = "Who provided service: Lang2" },
                     new Translation() { RowKey = "OtherProviderTranslation", English = "Other provided service", Lang1 = "Other provided service: Lang1", Lang2 = "Other provided service: Lang2" },
                     new Translation() { RowKey = "MedicineCostTranslation", English = "Medicine Cost", Lang1 = "Medicine Cost: Lang1", Lang2 = "Medicine Cost: Lang2" },
@@ -203,22 +203,23 @@ namespace SQLLiteDbContext
                     new Translation() { RowKey = "CostTranslation", English = "Any other cost:", Lang1 = "Any other cost: Lang1", Lang2 = "Any other cost: Lang2" },
 
                     //Labour Costs
-                    new Translation() { RowKey = "LabourTitleTranslation", English = "Labour Cost", Lang1 = "Labour Cost Lang1", Lang2 = "Labour Cost Lang2" },
+                    new Translation() { RowKey = "LabourTitleTranslation", English = "Labour", Lang1 = "Labour Cost Lang1", Lang2 = "Labour Cost Lang2" },
                     new Translation() { RowKey = "LabourTypeTranslation", English = "Labour Type", Lang1 = "Labour Type Lang1", Lang2 = "Labour Type Lang2" },
                     new Translation() { RowKey = "OtherLaboutTypeTranslation", English = "Other LabourType", Lang1 = "Other LabourType Lang1", Lang2 = "Other LabourType Lang2" },
-                    new Translation() { RowKey = "AmountPaidTranslation", English = "Amount Paid", Lang1 = "Amount Paid Lang1", Lang2 = "Amount Paid Lang2" },
+                    new Translation() { RowKey = "AmountPaidTranslation", English = "Amount paid over the labour use duration", Lang1 = "Amount paid over the labour use duration Lang1", Lang2 = "Amount paid over the labour use duration Lang2" },
                     new Translation() { RowKey = "OtherCostsTranslation", English = "Any Other Cost", Lang1 = "Any Other Cost Lang1", Lang2 = "Any Other Cost Lang2" },
                          new Translation() { RowKey = "LabourDurationTranslation", English = "Labour use duration", Lang1 = "Duration Lang1", Lang2 = "Duration Lang2" },
 
                     //Housing Costs
-                    new Translation() { RowKey = "HousingTitleTranslation", English = "Animal Housing", Lang1 = "Animal Housing Lang1", Lang2 = "Animal Housing Lang2" },
+                    new Translation() { RowKey = "HousingTitleTranslation", English = "Housing", Lang1 = "Animal Housing Lang1", Lang2 = "Animal Housing Lang2" },
                     new Translation() { RowKey = "HousingExpenseTranslation", English = "Housing Expense", Lang1 = "Housing Expense Lang1", Lang2 = "Housing Expense Lang2" },
                     new Translation() { RowKey = "OtherHousingExpenseTranslation", English = "Other Housing Expense", Lang1 = "Other Housing Expense Lang1", Lang2 = "Other Housing Expense Lang2" },
                     new Translation() { RowKey = "YearsExpectedTranslation", English = "Expected Housing Lifespan (Years)", Lang1 = "Expected Housing Lifespan (Years)1", Lang2 = "Expected Housing Lifespan (Years)2" },
                     new Translation() { RowKey = "SliderControlTranslation", English = "If new housing built (rather than maintenance) lifespan in years + expected salvage value at end ? ", Lang1 = "If new housing built(rather than maintenance)lifespan in years + expected salvage value at end ? Lang1", Lang2 = "If new housing built(rather than maintenance)lifespan in years + expected salvage value at end ? Lang2" },
 
                     //Water Costs
-                    new Translation() { RowKey = "WaterCostTitleTranslation", English = "Water Cost", Lang1 = "", Lang2 = "" },
+                    new Translation() { RowKey = "WatherDurationTranslation", English = "Water Use Duration", Lang1 = "Water Use Duration Lang1", Lang2 = "Water Use Duration Lang2" },
+                    new Translation() { RowKey = "WaterCostTitleTranslation", English = "Water", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "WaterPurchasedTranslation", English = "Water Purchased", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "OtherWaterPurchasedTranslation", English = "Other unit", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "PurchasedWaterFromTranslation", English = "Who Purchased From", Lang1 = "", Lang2 = "" },
@@ -232,14 +233,14 @@ namespace SQLLiteDbContext
                     new Translation() { RowKey = "TimePeriodTranslation", English = "Time-period covered", Lang1 = "", Lang2 = "" },
 
                     //Other Cost
-                    new Translation() { RowKey = "OtherCostTitleTranslation", English = "Other Cost", Lang1 = "", Lang2 = "" },
+                    new Translation() { RowKey = "OtherCostTitleTranslation", English = "Other", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "OtherWhatForTranslation", English = "What for", Lang1 = "", Lang2 = "" },
 
                     //Reproductive
                     new Translation() { RowKey = "ReproductiveTitleTranslation", English = "Reproduction", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "ServiceTypeTranslation", English = "Service type", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "OtherServiceTypeTranslation", English = "Other service type", Lang1 = "", Lang2 = "" },
-                    new Translation() { RowKey = "SowsServicedTranslation", English = "Sows Serviced", Lang1 = "", Lang2 = "" },
+                    new Translation() { RowKey = "SowsServicedCostTranslation", English = "Total Service Cost", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "WhoProvidedServiceTranslation", English = "Who Provided Service", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "OtherWhoProvidedServiceTranslation", English = "Who Provided Service", Lang1 = "", Lang2 = "" },
 
@@ -250,6 +251,7 @@ namespace SQLLiteDbContext
                     new Translation() { RowKey = "NumberPurchasedTranslation", English = "Number purchased", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "AnimalPurchasedFromTranslation", English = "Purchased from", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "OtherAnimalPurchasedTranslation", English = "Purchased from", Lang1 = "", Lang2 = "" },
+                    new Translation() { RowKey = "TotalAnimalCosts", English="", Lang1 = "", Lang2 = ""},
 
                     //Loan Repayment
                     new Translation() { RowKey = "LoanRepaymentTitleTranslation", English = "Loan Repayment", Lang1 = "", Lang2 = "" },
@@ -385,6 +387,7 @@ namespace SQLLiteDbContext
                    new Translation() { RowKey = "DropDownFeedType19", English = "Silage", Lang1 = "Silage Lang1", Lang2 = "Silage Lang2" },
 
                    new Translation() { RowKey = "DropDownUnitType1", English = "Kg", Lang1 = "Kg Lang1", Lang2 = "Kg Lang2" },
+                   new Translation() { RowKey = "DropDownUnitType3", English = "gram", Lang1 = "Kg Lang1", Lang2 = "Kg Lang2" },
                    new Translation() { RowKey = "DropDownUnitType2", English = "Number", Lang1 = "Number Lang1", Lang2 = "Number Lang2" },
 
                    new Translation() { RowKey = "DropDownPurchaseFrom1", English = "Feed supplier", Lang1 = "Feed supplier Lang1", Lang2 = "Feed supplier Lang2" },
@@ -392,15 +395,17 @@ namespace SQLLiteDbContext
                    new Translation() { RowKey = "DropDownPurchaseFrom3", English = "Another farmer", Lang1 = "Another farmer Lang1", Lang2 = "Another farmer Lang2" },
                    new Translation() { RowKey = "DropDownPurchaseFrom4", English = "Transporter", Lang1 = "Transporter Lang1", Lang2 = "Transporter Lang2" },
 
-                   new Translation() { RowKey = "HeathCareType1", English = "(1)  Curative (treatment of a disease)", Lang1 = "(1)       Curative (treatment of a disease) Lang1", Lang2 = "(1)       Curative (treatment of a disease) Lang2" },
-                   new Translation() { RowKey = "HeathCareType2", English = "(2)  Preventative (vaccination,", Lang1 = "(2)       Preventative (vaccination, Lang1", Lang2 = "(2)       Preventative (vaccination, Lang2" },
-                   new Translation() { RowKey = "HeathCareType3", English = "(3)  Administration of vitamins", Lang1 = "(3)       Administration of vitamins Lang1", Lang2 = "(3)       Administration of vitamins Lang2" },
-                   new Translation() { RowKey = "HeathCareType4", English = "(4)  Deworming", Lang1 = "(4)  Deworming Lang1", Lang2 = "(4)  Deworming Lang2" },
-                   new Translation() { RowKey = "HeathCareType5", English = "(5)  Use of disinfectants", Lang1 = "(5)       Use of disinfectants Lang1", Lang2 = "(5)       Use of disinfectants Lang2" },
-                   new Translation() { RowKey = "HeathCareType6", English = "(6)  Herd visit/monitoring", Lang1 = "(6)       Herd visit/monitoring Lang1", Lang2 = "(6)       Herd visit/monitoring Lang2" },
+                   new Translation() { RowKey = "HeathCareType1", English = "Curative (treatment of a disease)", Lang1 = "Curative (treatment of a disease) Lang1", Lang2 = "Curative (treatment of a disease) Lang2" },
+                   new Translation() { RowKey = "HeathCareType2", English = "Preventative (such as vaccinations)", Lang1 = "Preventative (such as vaccinations) Lang1", Lang2 = "Preventative (such as vaccinations) Lang2" },
+                   new Translation() { RowKey = "HeathCareType3", English = "Administration of vitamins", Lang1 = "Administration of vitamins Lang1", Lang2 = "Administration of vitamins Lang2" },
+                   new Translation() { RowKey = "HeathCareType4", English = "Deworming", Lang1 = "Deworming Lang1", Lang2 = "Deworming Lang2" },
+                   new Translation() { RowKey = "HeathCareType5", English = "Use of disinfectants", Lang1 = "Use of disinfectants Lang1", Lang2 = "Use of disinfectants Lang2" },
+                   new Translation() { RowKey = "HeathCareType6", English = "Herd visit/monitoring", Lang1 = "Herd visit/monitoring Lang1", Lang2 = "Herd visit/monitoring Lang2" },
 
                    new Translation() { RowKey = "HealthProviderType1", English = "Private animal health worker or veterinarian", Lang1 = "Private animal health worker or veterinarian Lang1", Lang2 = "Private animal health worker or veterinarian Lang2" },
                    new Translation() { RowKey = "HealthProviderType2", English = "Government animal health worker veterinarian", Lang1 = "Government animal health worker veterinarian Lang1", Lang2 = "Government animal health worker veterinarian Lang2" },
+                   new Translation() { RowKey = "HealthProviderType3", English = "Self", Lang1 = "Self Lang1", Lang2 = "Self Lang2" },
+                   new Translation() { RowKey = "HealthProviderType4", English = "Neighbour, friend, or relative", Lang1 = "Neighbour, friend, or relative Lang1", Lang2 = "Neighbour, friend, or relative Lang2" },
 
                    new Translation() { RowKey = "MedicineType1", English = "Drugs ", Lang1 = "Drugs  Lang1", Lang2 = "Drugs  Lang2" },
                    new Translation() { RowKey = "MedicineType2", English = "Vaccinations", Lang1 = "Vaccinations Lang1", Lang2 = "Vaccinations Lang2" },
@@ -438,7 +443,7 @@ namespace SQLLiteDbContext
                    new Translation() { RowKey = "WhoProvidedServiceType3", English = "Boar keeper", Lang1 = "Boar keeper Lang1", Lang2 = "Boar keeper Lang2" },
 
                    new Translation() { RowKey = "AnimalType1", English = "Piglet(s) for fattening", Lang1 = "Piglet(s) for fattening Lang1", Lang2 = "Piglet(s) for fattening Lang2" },
-                   new Translation() { RowKey = "AnimalType2", English = "Gilt / sow for breeding", Lang1 = "Gilt / sow for breeding Lang1", Lang2 = "Gilt / sow for breeding Lang2" },
+                   new Translation() { RowKey = "AnimalType2", English = "Gilt/Sow for breeding", Lang1 = "Gilt / sow for breeding Lang1", Lang2 = "Gilt / sow for breeding Lang2" },
                    new Translation() { RowKey = "AnimalType3", English = "Young male / boar for breeding", Lang1 = "Young male / boar for breeding Lang1", Lang2 = "Young male / boar for breeding Lang2" },
 
                    new Translation() { RowKey = "AnimalPurchasedFromType1", English = "Market ", Lang1 = "Market  Lang1", Lang2 = "Market  Lang2" },
@@ -460,7 +465,7 @@ namespace SQLLiteDbContext
 
                    new Translation() { RowKey = "PigType1", English = "Piglet (for fattening)", Lang1 = "Piglet (for fattening) Lang1", Lang2 = "Piglet (for fattening) Lang2" },
                    new Translation() { RowKey = "PigType2", English = "Slaughter animal", Lang1 = "Slaughter animal Lang1", Lang2 = "Slaughter animal Lang2" },
-                   new Translation() { RowKey = "PigType3", English = "Gilt/sow sow for breeding", Lang1 = "Gilt/sow sow for breeding Lang1", Lang2 = "Gilt/sow sow for breeding Lang2" },
+                   new Translation() { RowKey = "PigType3", English = "Gilt/Sow for breeding", Lang1 = "Gilt/sow sow for breeding Lang1", Lang2 = "Gilt/sow sow for breeding Lang2" },
                    new Translation() { RowKey = "PigType4", English = "Young male/boar for breeding ", Lang1 = "Young male/boar for breeding  Lang1", Lang2 = "Young male/boar for breeding  Lang2" },
 
                    new Translation() { RowKey = "SoldToType1", English = "Trader", Lang1 = "Trader Lang1", Lang2 = "Trader Lang2" },
@@ -475,8 +480,7 @@ namespace SQLLiteDbContext
                    new Translation() { RowKey = "ClientType1", English = "Pig farmer", Lang1 = "Pig farmer Lang1", Lang2 = "Pig farmer Lang2" },
 
                    new Translation() { RowKey = "VolumeUnitType1", English = "Kg", Lang1 = "Kg Lang1", Lang2 = "Kg Lang2" },
-
-
+                   new Translation() { RowKey = "VolumeUnitType2", English = "Bag", Lang1 = "Bag Lang1", Lang2 = "Bag Lang2" },
 
                     new Translation() { RowKey = "GenderType1", English = "Male", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "GenderType2", English = "Female", Lang1 = "", Lang2 = "" },
@@ -558,7 +562,8 @@ namespace SQLLiteDbContext
                    new ControlData() { DisplayOrder = 20, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.FEEDTYPE, TranslationRowKey = Constants.OTHER },
 
                    new ControlData() { DisplayOrder = 1, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType1" },
-                   new ControlData() { DisplayOrder = 2, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType2" },
+                   new ControlData() { DisplayOrder = 2, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType3" },
+                   new ControlData() { DisplayOrder = 3, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = "DropDownUnitType2" },
                    new ControlData() { DisplayOrder = 5, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.FEEDAMOUNTPURCHASEDUNITTYPE, TranslationRowKey = Constants.OTHER },
 
                    new ControlData() { DisplayOrder = 1, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.FEEDPURCHASEDFROMTYPE, TranslationRowKey = "DropDownPurchaseFrom1" },
@@ -577,6 +582,8 @@ namespace SQLLiteDbContext
 
                    new ControlData() { DisplayOrder = 1, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType1" },
                    new ControlData() { DisplayOrder = 2, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType2" },
+                   new ControlData() { DisplayOrder = 2, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType3" },
+                   new ControlData() { DisplayOrder = 2, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = "HealthProviderType4" },
                    new ControlData() { DisplayOrder = 11, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.HEALTHSERVICEPROVIDER, TranslationRowKey = Constants.OTHER },
 
                    new ControlData() { DisplayOrder = 1, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType1" },
@@ -670,6 +677,7 @@ namespace SQLLiteDbContext
                    new ControlData() { DisplayOrder = 9, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.CLIENTTYPE, TranslationRowKey = Constants.OTHER },
 
                    new ControlData() { DisplayOrder = 1, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType1" },
+                   new ControlData() { DisplayOrder = 1, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = "VolumeUnitType2" },
                    new ControlData() { DisplayOrder = 9, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.VOLUMEUNITTYPE, TranslationRowKey = Constants.OTHER },
 
                     new ControlData() { DisplayOrder = 1, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.GENDERTYPE, TranslationRowKey = "GenderType1" },

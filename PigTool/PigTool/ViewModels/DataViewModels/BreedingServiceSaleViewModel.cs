@@ -387,7 +387,7 @@ namespace PigTool.ViewModels.DataViewModels
             PaymentTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PaymentTypeTranslation), User.UserLang);
             PaymentValueTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PaymentValueTranslation), User.UserLang) + " *";
             TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
-            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
+            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang);
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
 
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
@@ -453,14 +453,14 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.OtherClient = OtherClient;
                 _itemForEditing.AmountRecieved = (double)AmountRecieved;
                 _itemForEditing.PaymentType = SelectedPaymentType != null ? SelectedPaymentType.TranslationRowKey : null;
-                _itemForEditing.PaymentValue = (double)PaymentValue;
+                _itemForEditing.PaymentValue = PaymentValue;
                 _itemForEditing.TransportationCost = (double)TransportationCost;
                 _itemForEditing.OtherCosts = (double)OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
                 await repo.UpdateBreedingServiceSaleItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert("Updated", "Breeding service sale record has been updated", "OK");
+                await Application.Current.MainPage.DisplayAlert("Updated", "Sale of reproductive services has been saved", "OK");
                 await Shell.Current.Navigation.PopAsync();
             }
             else
@@ -475,7 +475,7 @@ namespace PigTool.ViewModels.DataViewModels
                     OtherClient = OtherClient,
                     AmountRecieved = (double)AmountRecieved,
                     PaymentType = SelectedPaymentType != null ? SelectedPaymentType.TranslationRowKey : null,
-                    PaymentValue = (double)PaymentValue,
+                    PaymentValue = PaymentValue,
                     TransportationCost = (double)TransportationCost,
                     OtherCosts = (double)OtherCosts,
                     Comment = Comment,
@@ -483,9 +483,16 @@ namespace PigTool.ViewModels.DataViewModels
                     CreatedBy = User.UserName,
                     PartitionKey = Constants.PartitionKeyBreedingServiceSaleItem,
                 };
-
-                await repo.AddSingleBreedingServiceSaleItem(newBreedingServiceSale);
-                await Application.Current.MainPage.DisplayAlert("Created", "Breeding service sale has been saved", "OK");
+                try
+                {
+                    await repo.AddSingleBreedingServiceSaleItem(newBreedingServiceSale);
+                    await Application.Current.MainPage.DisplayAlert("Created", "Breeding service sale has been saved", "OK");
+                    await Shell.Current.Navigation.PopAsync();
+                }
+                catch (Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                }
             }
         }
 
@@ -553,9 +560,9 @@ namespace PigTool.ViewModels.DataViewModels
                 StringBuilder returnString = new StringBuilder();
                 if (Date == null) returnString.AppendLine("Date obtained not provided");
                 if (AmountRecieved == null) returnString.AppendLine("Amount Recieved Not Provided");
-                if (PaymentValue == null) returnString.AppendLine("Payment Value Not Provided");
+                if (PaymentType != null && PaymentValue == null) returnString.AppendLine("Payment Value Not Provided");
                 if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
-                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
+                //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
 
                 if (SelectedServiceType != null && SelectedServiceType.TranslationRowKey == Constants.OTHER)

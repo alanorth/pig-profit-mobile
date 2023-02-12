@@ -14,7 +14,7 @@ namespace Shared
         public string? EquipmentType { get; set; }
         public string? OtherEquipmentType { get; set; }
         public double TransportationCost { get; set; }
-        public double OtherCosts { get; set; }
+        public double? OtherCosts { get; set; }
         public string? Comment { get; set; }
         [JsonIgnore]
         public virtual Translation? DisplayTypeTranslation { get; set; }

@@ -470,7 +470,7 @@ namespace PigTool.ViewModels.DataViewModels
             MedicineCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(MedicineCostTranslation), User.UserLang) + " *";
 
             TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
-            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
+            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang);
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
 
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
@@ -544,7 +544,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.OtherMedicineType = OtherMedicineType;
                 _itemForEditing.PurchasedFrom = SelectedPurchasedFrom != null ? SelectedPurchasedFrom.TranslationRowKey : null;
                 _itemForEditing.OtherPurchasedFrom = OtherPurchasedFrom;
-
+                //_itemForEditing.CreatedBy = User.AuthorisedUserName;
                 _itemForEditing.TransportationCost = (double)TransportationCost;
                 _itemForEditing.OtherCosts = (double)OtherCosts;
                 _itemForEditing.Comment = Comment;
@@ -557,9 +557,10 @@ namespace PigTool.ViewModels.DataViewModels
             else
             {
 
-                var newHealthCare = new HealthCareItem();
+
                 try
                 {
+                    var newHealthCare = new HealthCareItem();
                     newHealthCare = new HealthCareItem
                     {
                         Date = Date,
@@ -574,21 +575,27 @@ namespace PigTool.ViewModels.DataViewModels
                         PurchasedFrom = SelectedPurchasedFrom != null ? SelectedPurchasedFrom.TranslationRowKey : null,
                         OtherPurchasedFrom = OtherPurchasedFrom,
                         TransportationCost = (double)TransportationCost,
-                        OtherCosts = (double)OtherCosts,
+                        OtherCosts = OtherCosts,
                         Comment = Comment,
                         LastModified = DateTime.UtcNow,
                         CreatedBy = User.UserName,
                         PartitionKey = Constants.PartitionKeyHealthCareItem,
                     };
+                    await repo.AddSingleHealthCareItem(newHealthCare);
+                    await Application.Current.MainPage.DisplayAlert("Created", "Health care record has been saved", "OK");
+                    await Shell.Current.Navigation.PopAsync();
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.ToString());
+                    if (ex.InnerException != null)
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+                    }
                 }
-
-
-                await repo.AddSingleHealthCareItem(newHealthCare);
-                await Application.Current.MainPage.DisplayAlert("Created", "Health care record has been saved", "OK");
             }
         }
 
@@ -662,7 +669,7 @@ namespace PigTool.ViewModels.DataViewModels
                 if (HealthCareCost == null) returnString.AppendLine("Health Care Cost Not Provided");
                 if (MedicineCost == null) returnString.AppendLine("Medicine Cost Not Provided");
                 if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
-                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
+                //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
 
                 if (SelectedHealthCareType != null && SelectedHealthCareType.TranslationRowKey == Constants.OTHER)

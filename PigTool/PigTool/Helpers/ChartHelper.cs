@@ -146,7 +146,7 @@ namespace PigTool.Helpers
             }).Select(fi => new Row
             {
                 YearMonth = fi.Key,
-                Cost = fi.Sum(i => i.MedicineCost) + fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
+                Cost = fi.Sum(i => i.MedicineCost) + fi.Sum(i => i.TransportationCost) + fi.Sum(i => (double)i.OtherCosts),
                 Revenue = 0,
                 Difference = 0
             }).ToList()).ToList();
@@ -159,7 +159,7 @@ namespace PigTool.Helpers
             }).Select(fi => new Row
             {
                 YearMonth = fi.Key,
-                Cost = fi.Sum(i => i.Brokerage) + fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
+                Cost = fi.Sum(i => i.Brokerage) + fi.Sum(i => i.TransportationCost) + fi.Sum(i => (double)i.OtherCosts),
                 Revenue = fi.Sum(i => i.SalePrice),
                 Difference = 0
             }).ToList()).ToList();

@@ -209,7 +209,7 @@ namespace PigTool.ViewModels.DataViewModels
             LabourTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LabourTypeTranslation), User.UserLang);
             OtherLaboutTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherLaboutTypeTranslation), User.UserLang);
             AmountPaidTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AmountPaidTranslation), User.UserLang) + " *";
-            OtherCostsTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostsTranslation), User.UserLang) + " *";
+            OtherCostsTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostsTranslation), User.UserLang);
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
@@ -322,9 +322,16 @@ namespace PigTool.ViewModels.DataViewModels
                     DurationStart = DurationStart,
                     DurationFinish = DurationFinish
                 };
-
-                await repo.AddSingleLabourCostItem(newLabourCost);
-                await Application.Current.MainPage.DisplayAlert("Created", "Labour Cost Record Saved", "OK");
+                try
+                {
+                    await repo.AddSingleLabourCostItem(newLabourCost);
+                    await Application.Current.MainPage.DisplayAlert("Created", "Labour Cost Record Saved", "OK");
+                    await Shell.Current.Navigation.PopAsync();
+                }
+                catch (Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                }
             }
 
         }
@@ -334,9 +341,10 @@ namespace PigTool.ViewModels.DataViewModels
             StringBuilder returnString = new StringBuilder();
             if (Date == null) returnString.AppendLine("Date obtained not provided");
             if (AmountPaid == null) returnString.AppendLine("Amount Paid Not Provided");
-            if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
+            //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
             if (DurationStart == null) returnString.AppendLine("Duration Start Not Provided");
             if (DurationFinish == null) returnString.AppendLine("Duration Finish Not Provided");
+            if(DurationFinish < DurationStart) returnString.AppendLine("Duration Finish is before Duration Start");
 
             if (selectedLabourType != null && selectedLabourType.TranslationRowKey == Constants.OTHER)
             {

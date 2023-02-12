@@ -267,7 +267,7 @@ namespace PigTool.ViewModels.DataViewModels
             OtherHousingExpenseTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherHousingExpenseTranslation), User.UserLang);
             TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang) + " *";
             TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
-            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
+            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang);
             YearsExpectedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(YearsExpectedTranslation), User.UserLang);
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
@@ -349,9 +349,16 @@ namespace PigTool.ViewModels.DataViewModels
                     CreatedBy = User.UserName,
                     PartitionKey = Constants.PartitionKeyAnimalHouse
                 };
-
-                await repo.AddSingleAnimalHouseItem(newHousingCost);
-                await Application.Current.MainPage.DisplayAlert("Created", "Housing record has been saved", "OK");
+                try
+                {
+                    await repo.AddSingleAnimalHouseItem(newHousingCost);
+                    await Application.Current.MainPage.DisplayAlert("Created", "Housing record has been saved", "OK");
+                    await Shell.Current.Navigation.PopAsync();
+                }
+                catch (Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                }
             }
         }
 
@@ -411,7 +418,7 @@ namespace PigTool.ViewModels.DataViewModels
                 if (Date == null) returnString.AppendLine("Date obtained not provided");
                 if (TotalCosts == null) returnString.AppendLine("Total Cost Not Provided");
                 if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
-                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
+                //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
                 if (SelectedHousingType != null)
                 {

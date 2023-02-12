@@ -32,6 +32,10 @@ namespace Shared
 
         #endregion
 
+        #region User Controls
+        public const string ExistingUser = "ExistingUser";
+        #endregion
+
         #region DropDown Key Controls
         //Feed Item DropDowns
         public const string FEEDTYPE = "FeedType";

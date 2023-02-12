@@ -21,7 +21,7 @@ namespace Shared
         public string? PurchasedFrom { get; set; }
         public string? OtherPurchasedFrom { get; set; }
         public double TransportationCost { get; set; }
-        public double OtherCosts { get; set; }
+        public double? OtherCosts { get; set; }
         public string? Comment { get; set; }
         [JsonIgnore]
         public virtual Translation? DisplayTypeTranslation { get; set; }

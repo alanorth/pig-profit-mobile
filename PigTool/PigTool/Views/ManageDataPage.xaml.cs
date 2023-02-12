@@ -121,7 +121,7 @@ namespace PigTool.Views
                       ColoumnHeader3: "Sows Serviced",
                       BindableColumns1: nameof(ReproductiveItem.Date),
                       BindableColumns2: nameof(ReproductiveItem.DisplayTypeTranslationString),
-                      BindableColumns3: nameof(ReproductiveItem.SowsServiced),
+                      BindableColumns3: nameof(ReproductiveItem.SowsServicedCost),
                       BindingList: nameof(_ViewModel.ReproductiveItems),
                       NavigationCommand: _ViewModel.EditReproductiveItem
                       );

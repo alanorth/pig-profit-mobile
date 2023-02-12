@@ -12,10 +12,11 @@ namespace Shared
         public DateTime Date { get; set; }
         public string? ServiceType { get; set; }
         public string? OtherServiceType { get; set; }
-        public int SowsServiced { get; set; }
+        public int SowsServicedCost { get; set; }
         public string? WhoProvidedService { get; set; }
         public string? OtherWhoProvidedService { get; set; }
-        public double OtherCosts { get; set; }
+        public double? OtherCosts { get; set; }
+        public double?TransportCost { get; set; }
         public string? Comment { get; set; }
         [JsonIgnore]
         public virtual Translation? DisplayTypeTranslation { get; set; }

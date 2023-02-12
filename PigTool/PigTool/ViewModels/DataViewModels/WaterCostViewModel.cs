@@ -58,7 +58,7 @@ namespace PigTool.ViewModels.DataViewModels
 
         public string StartTranslation { get; set; }
         public string FinishTranslation { get; set; }
-        public string LabourDurationTranslation { get; set; }
+        public string WaterDurationTranslation { get; set; }
         #endregion
 
         #region Water cost item fields
@@ -350,7 +350,7 @@ namespace PigTool.ViewModels.DataViewModels
 
             TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang) + " *";
             TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
-            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
+            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang);
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
 
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
@@ -360,7 +360,7 @@ namespace PigTool.ViewModels.DataViewModels
 
             StartTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(StartTranslation), User.UserLang) + " *";
             FinishTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FinishTranslation), User.UserLang) + " *";
-            LabourDurationTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LabourDurationTranslation), User.UserLang);
+            WaterDurationTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(WaterDurationTranslation), User.UserLang);
 
             PickerUnitTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerUnitTranslation), User.UserLang);
             PickerPurchasedFromTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerPurchasedFromTranslation), User.UserLang);
@@ -448,9 +448,16 @@ namespace PigTool.ViewModels.DataViewModels
                     DurationStart = DurationStart,
                     DurationFinish = DurationFinish
                 };
-
-                await repo.AddSingleWaterCostItem(newWaterCost);
-                await Application.Current.MainPage.DisplayAlert("Created", "Water record has been saved", "OK");
+                try
+                {
+                    await repo.AddSingleWaterCostItem(newWaterCost);
+                    await Application.Current.MainPage.DisplayAlert("Created", "Water record has been saved", "OK");
+                    await Shell.Current.Navigation.PopAsync();
+                }
+                catch (Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                }
             }
         }
 
@@ -516,7 +523,8 @@ namespace PigTool.ViewModels.DataViewModels
                 if (DurationFinish == null) returnString.AppendLine("Duration Finish Not Provided");
                 if (TotalCosts == null) returnString.AppendLine("Total Cost Not Provided");
                 if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
-                if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
+                if (DurationFinish < DurationStart) returnString.AppendLine("Duration Finish is before Duration Start");
+                //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
                 if (SelectedWaterPurchasedUnit != null && SelectedWaterPurchasedUnit.TranslationRowKey == Constants.OTHER)
                 {

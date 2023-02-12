@@ -194,8 +194,8 @@ namespace PigTool.ViewModels.DataViewModels
             OtherWhatForTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherWhatForTranslation), User.UserLang);
 
             TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang) + " *";
-            TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang);
-            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang) + " *";
+            TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
+            OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang);
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
 
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
@@ -268,8 +268,16 @@ namespace PigTool.ViewModels.DataViewModels
                     PartitionKey = Constants.PartitionKeyOtherCostItem,
                 };
 
-                await repo.AddSingleOtherCostItem(newOtherCost);
-                await Application.Current.MainPage.DisplayAlert("Created", "Other Cost has been saved", "OK");
+                try
+                {
+                    await repo.AddSingleOtherCostItem(newOtherCost);
+                    await Application.Current.MainPage.DisplayAlert("Created", "Other Cost has been saved", "OK");
+                    await Shell.Current.Navigation.PopAsync();
+                }
+                catch (Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                }
             }
         }
 
@@ -317,7 +325,8 @@ namespace PigTool.ViewModels.DataViewModels
                 StringBuilder returnString = new StringBuilder();
                 if (Date == null) returnString.AppendLine("Date obtained not provided");
                 if (TotalCosts == null) returnString.AppendLine("Total cost not provided");
-                if (OtherCosts == null) returnString.AppendLine("Other cost not provided");
+                if (TransportationCosts == null) returnString.AppendLine("Transportation Costs is required");
+                //if (OtherCosts == null) returnString.AppendLine("Other cost not provided");
 
                 return returnString.ToString();
             }

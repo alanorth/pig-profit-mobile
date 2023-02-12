@@ -512,6 +512,7 @@ namespace PigTool.ViewModels.DataViewModels
                 try { 
                     await repo.AddSingleFeedItem(newFeedItem);
                     await Application.Current.MainPage.DisplayAlert("Created", "Feed item has been saved", "OK");
+                    await Shell.Current.Navigation.PopAsync();
                 }
                 catch(Exception ex)
                 {
@@ -585,6 +586,7 @@ namespace PigTool.ViewModels.DataViewModels
                 returnString.AppendLine(TransportationCost == null ? "Transportation Cost Not Provided" : "");
                 returnString.AppendLine(DurationStart == null ? "Duration Start Not Provided" : "");
                 returnString.AppendLine(DurationFinish == null ? "Duration Finish Not Provided" : "");
+                returnString.AppendLine(DurationStart > DurationFinish ? "Duration Finish is before Duration Start" : "");
 
 
                 if (SelectedFeedType != null)
