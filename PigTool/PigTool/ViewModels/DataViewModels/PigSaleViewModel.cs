@@ -406,7 +406,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.SalePrice = (double)SalePrice;
                 _itemForEditing.Brokerage = (double)Brokerage;
                 _itemForEditing.TransportationCost = (double)TransportationCost;
-                _itemForEditing.OtherCosts = (double)OtherCosts;
+                _itemForEditing.OtherCosts = OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
@@ -427,7 +427,7 @@ namespace PigTool.ViewModels.DataViewModels
                     SalePrice = (double)SalePrice,
                     Brokerage = (double)Brokerage,
                     TransportationCost = (double)TransportationCost,
-                    OtherCosts = (double)OtherCosts,
+                    OtherCosts = OtherCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,

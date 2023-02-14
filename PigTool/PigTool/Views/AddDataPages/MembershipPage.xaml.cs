@@ -59,6 +59,32 @@ namespace PigTool.Views
             DateCell.View = stack;
             FullTableSection.Add(DateCell);
 
+            // Duration
+            var DurationCell = new ViewCell();
+            var DurationVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
+
+            var DurationLabel = FormattedElementsHelper.DataLabel(nameof(_viewModel.MembershipDurationTranslation));
+            DurationVerticalStack.Children.Add(DurationLabel);
+
+            //DurationStart
+            var DurationStartCell = new ViewCell();
+            var DurationStartStack = FormattedElementsHelper.TableRowStack();
+            DurationStartStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.StartTranslation)));
+            DurationStartStack.Children.Add(FormattedElementsHelper.FormDatePicker(nameof(_viewModel.DurationStart), nameof(_viewModel.IsEditMode)));
+            DurationStartCell.View = DurationStartStack;
+
+            //DurationFinish
+            var DurationFinishCell = new ViewCell();
+            var DurationFinishStack = FormattedElementsHelper.TableRowStack();
+            DurationFinishStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.FinishTranslation)));
+            DurationFinishStack.Children.Add(FormattedElementsHelper.FormDatePicker(nameof(_viewModel.DurationFinish), nameof(_viewModel.IsEditMode)));
+            DurationFinishCell.View = DurationFinishStack;
+
+            DurationVerticalStack.Children.Add(DurationStartStack);
+            DurationVerticalStack.Children.Add(DurationFinishStack);
+            DurationCell.View = DurationVerticalStack;
+            FullTableSection.Add(DurationCell);
+
             //Total Cost
             var TotalCostCell = new ViewCell();
             var TotalCostStack = FormattedElementsHelper.TableRowStack();
@@ -91,7 +117,7 @@ namespace PigTool.Views
             FullTableSection.Add(MembershipCell);
 
             //Time Period
-
+            /*
             var TimePeriodCell = new ViewCell();
 
             var UnitVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
@@ -117,7 +143,7 @@ namespace PigTool.Views
             
             UnitVerticalStack.Children.Add(TimePeriodUnitTypeStack);
             TimePeriodCell.View = UnitVerticalStack;
-            FullTableSection.Add(TimePeriodCell);
+            FullTableSection.Add(TimePeriodCell);*/
 
             //Any Other Cost
             var OtherCostCell = new ViewCell();

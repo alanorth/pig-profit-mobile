@@ -1,6 +1,7 @@
 ﻿using PigTool.Helpers;
 using PigTool.ViewModels.DataViewModels;
 using Shared;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -34,6 +35,8 @@ namespace PigTool.Views
 
                 PopulateTheTable();
 
+                _viewModel.SetPickers();
+
                 base.OnAppearing();
 
                 IsRendered = true;
@@ -44,7 +47,7 @@ namespace PigTool.Views
         private void PopulateTheTable()
         {
             var FullTableSection = new TableSection();
-
+            try { 
             //Date
             var DateCell = new ViewCell();
             var stack = FormattedElementsHelper.TableRowStack();
@@ -102,7 +105,7 @@ namespace PigTool.Views
             LabourCell.View = labourVerticalStack;
             FullTableSection.Add(LabourCell);
 
-
+              
             //Amount Paid
             var AmountPaidCell = new ViewCell();
             var AmountPaidStack = FormattedElementsHelper.TableRowStack();
@@ -145,7 +148,10 @@ namespace PigTool.Views
             FullTableSection.Add(buttonCell);
 
             LabourTableView.Root.Add(FullTableSection);
+            }catch(Exception ex)
+            {
 
+            }
         }
 
 

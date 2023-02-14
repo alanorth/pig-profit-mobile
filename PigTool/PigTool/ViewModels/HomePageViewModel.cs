@@ -287,7 +287,7 @@ namespace PigTool.ViewModels
                         LastModified = DateTime.UtcNow,
                         CreatedBy = User.UserName,
                         PartitionKey = Constants.PartitionKeyMembershipItem,
-                        TimePeriodUnit = "TimePeriodUnitType2"
+                        //TimePeriodUnit = "TimePeriodUnitType2"
                     };
                     await repo.AddSingleMembershipItem(newMembership);
                 }

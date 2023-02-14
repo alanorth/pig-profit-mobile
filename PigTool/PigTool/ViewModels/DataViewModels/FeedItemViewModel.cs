@@ -17,7 +17,7 @@ namespace PigTool.ViewModels.DataViewModels
         private DateTime date, durationStart, durationFinish;
         private string feedType;
         private string otherFeedType;
-        private double? amountPurchased;
+        private double? amountPurchased, otherCosts;
         private string amountPurchasedUnit;
         private string otherAmountPurchasedUnit;
         private double? totalCosts;
@@ -41,6 +41,7 @@ namespace PigTool.ViewModels.DataViewModels
         public string FeedTypeTranslation { get; set; }
         public string OtherFeedTypeTranslation { get; set; }
         public string AmountPurchasedUnitTranslation { get; set; }
+        public string OtherCostsTranslation { get; set; }
         public string OtherAmountPurchasedUnitTranslation { get; set; }
         public string PurchasedFromTranslation { get; set; }
         public string OtherPurchasedFromTranslation { get; set; }
@@ -137,6 +138,19 @@ namespace PigTool.ViewModels.DataViewModels
                 }
             }
         }
+
+        public double? OtherCosts
+        {
+            get => otherCosts; set
+            {
+                if (otherCosts != value)
+                {
+                    otherCosts = value;
+                    OnPropertyChanged(nameof(OtherCosts));
+                }
+            }
+        }
+
         public string AmountPurchasedUnit
         {
             get => amountPurchasedUnit;
@@ -397,6 +411,7 @@ namespace PigTool.ViewModels.DataViewModels
 
             FeedTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FeedTypeTranslation), User.UserLang);
             AmountPurchasedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AmountPurchasedTranslation), User.UserLang);
+            OtherCostsTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostsTranslation), User.UserLang);
             OtherFeedTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherFeedTypeTranslation), User.UserLang);
             AmountPurchasedUnitTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AmountPurchasedUnitTranslation), User.UserLang);
             OtherAmountPurchasedUnitTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherAmountPurchasedUnitTranslation), User.UserLang);
@@ -434,6 +449,7 @@ namespace PigTool.ViewModels.DataViewModels
             FeedType = item.FeedType;
             OtherFeedType = item.OtherFeedType;
             AmountPurchased = item.AmountPurchased;
+            OtherCosts = item.OtherCosts;
             AmountPurchasedUnit = item.AmountPurchasedUnit;
             OtherAmountPurchasedUnit = item.OtherAmountPurchaseUnit;
             PurchasedFrom = item.PurchasedFrom;
@@ -472,6 +488,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.FeedType = SelectedFeedType != null ? SelectedFeedType.TranslationRowKey : null;
                 _itemForEditing.OtherFeedType = OtherFeedType;
                 _itemForEditing.AmountPurchased = AmountPurchased;
+                _itemForEditing.OtherCosts = OtherCosts;
                 _itemForEditing.AmountPurchasedUnit = SelectedAmountPurchasedUnit != null ? SelectedAmountPurchasedUnit.TranslationRowKey : null;
                 _itemForEditing.OtherAmountPurchaseUnit = OtherAmountPurchasedUnitTranslation;
                 _itemForEditing.PurchasedFrom = SelectedPurchasedFrom != null ? SelectedPurchasedFrom.TranslationRowKey : null;
@@ -495,6 +512,7 @@ namespace PigTool.ViewModels.DataViewModels
                     FeedType = SelectedFeedType != null ? SelectedFeedType.TranslationRowKey : null,
                     OtherFeedType = OtherFeedType,
                     AmountPurchased = AmountPurchased,
+                    OtherCosts = OtherCosts,
                     AmountPurchasedUnit = SelectedAmountPurchasedUnit != null ? SelectedAmountPurchasedUnit.TranslationRowKey : null,
                     OtherAmountPurchaseUnit = OtherAmountPurchasedUnitTranslation,
                     PurchasedFrom = SelectedPurchasedFrom != null ? SelectedPurchasedFrom.TranslationRowKey : null,
@@ -549,6 +567,7 @@ namespace PigTool.ViewModels.DataViewModels
             FeedType = null;
             OtherFeedType = null;
             AmountPurchased = null;
+            OtherCosts= null;
             AmountPurchasedUnit = null;
             OtherAmountPurchasedUnit = null;
             PurchasedFrom = null;
@@ -581,7 +600,7 @@ namespace PigTool.ViewModels.DataViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                returnString.AppendLine(Date == null ? "Date obtained not provided" : "");
+                if(Date == null) returnString.AppendLine("Date obtained not provided");
                 returnString.AppendLine(TotalCosts == null ? "Total Cost Not Provided" : "");
                 returnString.AppendLine(TransportationCost == null ? "Transportation Cost Not Provided" : "");
                 returnString.AppendLine(DurationStart == null ? "Duration Start Not Provided" : "");

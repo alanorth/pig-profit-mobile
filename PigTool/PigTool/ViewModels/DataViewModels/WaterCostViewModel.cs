@@ -418,7 +418,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.OtherPurchasedWaterFrom = OtherPurchasedWaterFrom;
                 _itemForEditing.TotalCosts = (double)TotalCosts;
                 _itemForEditing.TransportationCost = (double)TransportationCost;
-                _itemForEditing.OtherCosts = (double)OtherCosts;
+                _itemForEditing.OtherCosts = OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
                 _itemForEditing.DurationStart = DurationStart;
@@ -440,7 +440,7 @@ namespace PigTool.ViewModels.DataViewModels
                     OtherPurchasedWaterFrom = OtherPurchasedWaterFrom,
                     TotalCosts = (double)TotalCosts,
                     TransportationCost = (double)TransportationCost,
-                    OtherCosts = (double)OtherCosts,
+                    OtherCosts = OtherCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,

@@ -15,7 +15,7 @@ namespace PigTool.ViewModels.DataViewModels
     {
         bool isEditMode, isCreationMode;
         private bool editExistingMode;
-        private DateTime date;
+        private DateTime date, durationStart, durationFinish;
         private double? totalCosts;
         private string membershipType;
         private string otherMembershipType;
@@ -50,6 +50,9 @@ namespace PigTool.ViewModels.DataViewModels
 
         public string PickerUnitTranslation { get; set; }
         public string PickerMembershipTypeTranslation { get; set; }
+        public string StartTranslation { get; set; }
+        public string FinishTranslation { get; set; }
+        public string MembershipDurationTranslation { get; set; }
         #endregion
 
         #region Membership item fields
@@ -89,7 +92,7 @@ namespace PigTool.ViewModels.DataViewModels
                 }
             }
         }
-        public int? TimePeriod
+        /*public int? TimePeriod
         {
             get => timePeriod;
             set
@@ -100,8 +103,8 @@ namespace PigTool.ViewModels.DataViewModels
                     OnPropertyChanged(nameof(TimePeriod));
                 }
             }
-        }
-        public string TimePerdiodUnit
+        }*/
+        /*public string TimePerdiodUnit
         {
             get => timePerdiodUnit;
             set
@@ -112,7 +115,7 @@ namespace PigTool.ViewModels.DataViewModels
                     OnPropertyChanged(nameof(TimePerdiodUnit));
                 }
             }
-        }
+        }*/
         public double? TotalCosts
         {
             get => totalCosts;
@@ -146,6 +149,31 @@ namespace PigTool.ViewModels.DataViewModels
                 {
                     comment = value;
                     OnPropertyChanged(nameof(Comment));
+                }
+            }
+        }
+
+        public DateTime DurationStart
+        {
+            get => durationStart;
+            set
+            {
+                if (durationStart != value)
+                {
+                    durationStart = value;
+                    OnPropertyChanged(nameof(DurationStart));
+                }
+            }
+        }
+        public DateTime DurationFinish
+        {
+            get => durationFinish;
+            set
+            {
+                if (durationFinish != value)
+                {
+                    durationFinish = value;
+                    OnPropertyChanged(nameof(DurationFinish));
                 }
             }
         }
@@ -189,7 +217,7 @@ namespace PigTool.ViewModels.DataViewModels
             }
         }
 
-        private PickerToolHelper selectedTimePeriodUnit;
+        /*private PickerToolHelper selectedTimePeriodUnit;
 
         public PickerToolHelper SelectedTimePeriodUnit
         {
@@ -202,7 +230,7 @@ namespace PigTool.ViewModels.DataViewModels
                     OnPropertyChanged(nameof(SelectedTimePeriodUnit));
                 }
             }
-        }
+        }*/
         #endregion
 
         #region Hidden Fields
@@ -257,6 +285,8 @@ namespace PigTool.ViewModels.DataViewModels
         public MembershipViewModel()
         {
             Date = DateTime.Now;
+            DurationStart = DateTime.Now;
+            DurationFinish = DateTime.Now;
 
             IsEditMode = true;
             CreationMode = true;
@@ -286,6 +316,10 @@ namespace PigTool.ViewModels.DataViewModels
 
             PickerUnitTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerUnitTranslation), User.UserLang);
             PickerMembershipTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerMembershipTypeTranslation), User.UserLang);
+
+            StartTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(StartTranslation), User.UserLang) + " *";
+            FinishTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FinishTranslation), User.UserLang) + " *";
+            MembershipDurationTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(MembershipDurationTranslation), User.UserLang);
         }
 
         public void populatewithData(MembershipItem item)
@@ -299,11 +333,13 @@ namespace PigTool.ViewModels.DataViewModels
             Date = item.Date;
             MemberhipType = item.MembershipType;
             OtherMembershipType = item.OtherMembershipType;
-            TimePeriod = item.TimePeriod;
-            TimePerdiodUnit = item.TimePeriodUnit;
+            //TimePeriod = item.TimePeriod;
+            //TimePerdiodUnit = item.TimePeriodUnit;
             TotalCosts = item.TotalCosts;
             OtherCosts = item.OtherCosts;
             Comment = item.Comment;
+            DurationStart = item.DurationStart;
+            DurationFinish = item.DurationFinish;
         }
 
         public void SetPickers()
@@ -311,7 +347,7 @@ namespace PigTool.ViewModels.DataViewModels
             if (EditExistingMode)
             {
                 SelectedMembershipType = MembershipTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.MembershipType).FirstOrDefault();
-                SelectedTimePeriodUnit = TimePeriodUnitListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.TimePeriodUnit).FirstOrDefault();
+                //SelectedTimePeriodUnit = TimePeriodUnitListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.TimePeriodUnit).FirstOrDefault();
             }
         }
 
@@ -331,12 +367,14 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.Date = Date;
                 _itemForEditing.MembershipType = SelectedMembershipType != null ? SelectedMembershipType.TranslationRowKey : null;
                 _itemForEditing.OtherMembershipType = OtherMembershipType;
-                _itemForEditing.TimePeriod = (int)TimePeriod;
-                _itemForEditing.TimePeriodUnit = SelectedTimePeriodUnit.TranslationRowKey;
+                //_itemForEditing.TimePeriod = (int)TimePeriod;
+                //_itemForEditing.TimePeriodUnit = SelectedTimePeriodUnit.TranslationRowKey;
                 _itemForEditing.TotalCosts = (double)TotalCosts;
-                _itemForEditing.OtherCosts = (double)OtherCosts;
+                _itemForEditing.OtherCosts = OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
+                _itemForEditing.DurationStart = DurationStart;
+                _itemForEditing.DurationFinish = DurationFinish;
 
                 await repo.UpdateMembershipItem(_itemForEditing);
                 await Application.Current.MainPage.DisplayAlert("Updated", "Water cost record has been updated", "OK");
@@ -349,14 +387,16 @@ namespace PigTool.ViewModels.DataViewModels
                     Date = Date,
                     MembershipType = SelectedMembershipType != null ? SelectedMembershipType.TranslationRowKey : null,
                     OtherMembershipType = OtherMembershipType,
-                    TimePeriod = (int)TimePeriod,
-                    TimePeriodUnit = SelectedTimePeriodUnit.TranslationRowKey,
+                    //TimePeriod = (int)TimePeriod,
+                    ///TimePeriodUnit = SelectedTimePeriodUnit.TranslationRowKey,
                     TotalCosts = (double)TotalCosts,
-                    OtherCosts = (double)OtherCosts,
+                    OtherCosts = OtherCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
                     PartitionKey = Constants.PartitionKeyMembershipItem,
+                    DurationStart = DurationStart,
+                    DurationFinish = DurationFinish
                 };
 
                 try
@@ -399,8 +439,8 @@ namespace PigTool.ViewModels.DataViewModels
         {
             SelectedMembershipType = null;
             OtherMembershipType = null;
-            TimePeriod = 0;
-            SelectedTimePeriodUnit = null;
+            //TimePeriod = 0;
+            //SelectedTimePeriodUnit = null;
             TotalCosts = null;
             OtherCosts = null;
             Comment = null;
@@ -417,7 +457,7 @@ namespace PigTool.ViewModels.DataViewModels
             if (!IsEditMode)
             {
                 selectedMembershipType = MembershipTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.MembershipType).FirstOrDefault();
-                selectedTimePeriodUnit = TimePeriodUnitListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.TimePeriodUnit).FirstOrDefault();
+                //selectedTimePeriodUnit = TimePeriodUnitListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.TimePeriodUnit).FirstOrDefault();
             }
         }
 
@@ -428,8 +468,11 @@ namespace PigTool.ViewModels.DataViewModels
                 StringBuilder returnString = new StringBuilder();
                 if (Date == null) returnString.AppendLine("Date obtained not provided");
                 if (TotalCosts == null) returnString.AppendLine("Total Cost Not Provided");
-                if (TimePeriod == null) returnString.AppendLine("Time Period Not Provided");
-                if (SelectedTimePeriodUnit == null) returnString.AppendLine("Time Period Unit Not Provided");
+                //if (TimePeriod == null) returnString.AppendLine("Time Period Not Provided");
+                //if (SelectedTimePeriodUnit == null) returnString.AppendLine("Time Period Unit Not Provided");
+                if (DurationStart == null) returnString.AppendLine("Duration Start Not Provided");
+                if (DurationFinish == null) returnString.AppendLine("Duration Finish Not Provided");
+                if (DurationFinish < DurationStart) returnString.AppendLine("Duration Finish is before Duration Start");
                 //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
                 if (selectedMembershipType != null && selectedMembershipType.TranslationRowKey == Constants.OTHER)

@@ -324,7 +324,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.OtherHousingExpense = OtherHousingExpense;
                 _itemForEditing.TotalCosts = (double)TotalCosts;
                 _itemForEditing.TransportationCost = (double)TransportationCost;
-                _itemForEditing.OtherCosts = (double)OtherCosts;
+                _itemForEditing.OtherCosts = OtherCosts;
                 _itemForEditing.YearsExpected = YearsExpected;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
@@ -335,29 +335,37 @@ namespace PigTool.ViewModels.DataViewModels
             }
             else
             {
-                var newHousingCost = new AnimalHouseItem
-                {
-                    Date = Date,
-                    HousingExpense = SelectedHousingType != null ? SelectedHousingType.TranslationRowKey : null,
-                    OtherHousingExpense = OtherHousingExpense,
-                    TotalCosts = (double)TotalCosts,
-                    TransportationCost = (double)TransportationCost,
-                    OtherCosts = (double)OtherCosts,
-                    YearsExpected = YearsExpected,
-                    Comment = Comment,
-                    LastModified = DateTime.UtcNow,
-                    CreatedBy = User.UserName,
-                    PartitionKey = Constants.PartitionKeyAnimalHouse
-                };
                 try
                 {
+                    var newHousingCost = new AnimalHouseItem
+                    {
+                        Date = Date,
+                        HousingExpense = SelectedHousingType != null ? SelectedHousingType.TranslationRowKey : null,
+                        OtherHousingExpense = OtherHousingExpense,
+                        TotalCosts = (double)TotalCosts,
+                        TransportationCost = (double)TransportationCost,
+                        OtherCosts = OtherCosts,
+                        YearsExpected = YearsExpected,
+                        Comment = Comment,
+                        LastModified = DateTime.UtcNow,
+                        CreatedBy = User.UserName,
+                        PartitionKey = Constants.PartitionKeyAnimalHouse
+                    };
+
                     await repo.AddSingleAnimalHouseItem(newHousingCost);
                     await Application.Current.MainPage.DisplayAlert("Created", "Housing record has been saved", "OK");
                     await Shell.Current.Navigation.PopAsync();
                 }
                 catch (Exception ex)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                    if (ex.InnerException != null)
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+                    }
                 }
             }
         }

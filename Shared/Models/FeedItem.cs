@@ -17,6 +17,7 @@ namespace Shared
         public string? FeedType { get; set; }
         public string? OtherFeedType { get; set; }
         public double? AmountPurchased { get; set; }
+        public double? OtherCosts { get; set; }
         public string? AmountPurchasedUnit { get; set; }
         public string? OtherAmountPurchaseUnit { get; set; }
         public double TotalCosts { get; set; }

@@ -141,7 +141,7 @@ namespace PigTool.ViewModels.DataViewModels
                 {
                     DisplayOtherLabourType = value?.TranslationRowKey == Constants.OTHER;
                     selectedLabourType = value;
-                    LabourType = value.TranslationRowKey;
+                    //LabourType = value.TranslationRowKey; #caused bug,  do not think this line is needed
                     OnPropertyChanged(nameof(SelectedLabourType));
                 }
             }
@@ -242,6 +242,14 @@ namespace PigTool.ViewModels.DataViewModels
             DurationFinish = item.DurationFinish;
         }
 
+        public void SetPickers()
+        {
+            if (EditExistingMode)
+            {
+                SelectedLabourType = labourTypeOptions.Where(x => x.TranslationRowKey == _itemForEditing.LabourType).FirstOrDefault();
+            }
+        }
+
 
         public async Task PopulateDataDowns()
         {
@@ -292,10 +300,10 @@ namespace PigTool.ViewModels.DataViewModels
             if (_itemForEditing != null)
             {
                 _itemForEditing.Date = Date;
-                _itemForEditing.LabourType = LabourType;
+                _itemForEditing.LabourType = SelectedLabourType != null ? SelectedLabourType.TranslationRowKey : null;
                 _itemForEditing.OtherLabourType = OtherLaboutType;
                 _itemForEditing.AmountPaid = (double)AmountPaid;
-                _itemForEditing.OtherCost = (double)OtherCosts;
+                _itemForEditing.OtherCost = OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
                 _itemForEditing.DurationStart = DurationStart;
@@ -308,29 +316,37 @@ namespace PigTool.ViewModels.DataViewModels
             }
             else
             {
-                var newLabourCost = new LabourCostItem
-                {
-                    Date = Date,
-                    LabourType = LabourType,
-                    OtherLabourType = OtherLaboutType,
-                    AmountPaid = (double)AmountPaid,
-                    OtherCost = (double)OtherCosts,
-                    Comment = Comment,
-                    LastModified = DateTime.UtcNow,
-                    CreatedBy = User.UserName,
-                    PartitionKey = Constants.PartitionKeyLabourCostItem,
-                    DurationStart = DurationStart,
-                    DurationFinish = DurationFinish
-                };
                 try
                 {
+                    var newLabourCost = new LabourCostItem
+                    {
+                        Date = Date,
+                        LabourType = SelectedLabourType != null ? SelectedLabourType.TranslationRowKey : null,
+                        OtherLabourType = OtherLaboutType,
+                        AmountPaid = (double)AmountPaid,
+                        OtherCost = OtherCosts,
+                        Comment = Comment,
+                        LastModified = DateTime.UtcNow,
+                        CreatedBy = User.UserName,
+                        PartitionKey = Constants.PartitionKeyLabourCostItem,
+                        DurationStart = DurationStart,
+                        DurationFinish = DurationFinish
+                    };
+
                     await repo.AddSingleLabourCostItem(newLabourCost);
                     await Application.Current.MainPage.DisplayAlert("Created", "Labour Cost Record Saved", "OK");
                     await Shell.Current.Navigation.PopAsync();
                 }
                 catch (Exception ex)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                    if(ex.InnerException!= null) { 
+                        await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                    }
+
                 }
             }
 
@@ -344,7 +360,7 @@ namespace PigTool.ViewModels.DataViewModels
             //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
             if (DurationStart == null) returnString.AppendLine("Duration Start Not Provided");
             if (DurationFinish == null) returnString.AppendLine("Duration Finish Not Provided");
-            if(DurationFinish < DurationStart) returnString.AppendLine("Duration Finish is before Duration Start");
+            if (DurationFinish < DurationStart) returnString.AppendLine("Duration Finish is before Duration Start");
 
             if (selectedLabourType != null && selectedLabourType.TranslationRowKey == Constants.OTHER)
             {

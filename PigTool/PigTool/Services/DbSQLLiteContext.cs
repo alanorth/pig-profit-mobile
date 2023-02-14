@@ -111,7 +111,7 @@ namespace SQLLiteDbContext
             modelBuilder.Entity<LabourCostItem>().HasOne(En => En.DisplayTypeTranslation).WithMany(trans => trans.LabourCostItems).HasForeignKey(fi => fi.LabourType).OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<LoanRepaymentItem>().HasOne(En => En.DisplayTypeTranslation).WithMany(trans => trans.LoanRepaymentItems).HasForeignKey(fi => fi.LoanProvider).OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<MembershipItem>().HasOne(En => En.DisplayTypeTranslation).WithMany(trans => trans.MembershipItems).HasForeignKey(fi => fi.MembershipType).OnDelete(DeleteBehavior.NoAction );
+            modelBuilder.Entity<MembershipItem>().HasOne(En => En.DisplayTypeTranslation).WithMany(trans => trans.MembershipItems).HasForeignKey(fi => fi.MembershipType).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<PigSaleItem>().HasOne(En => En.DisplayTypeTranslation).WithMany(trans => trans.PigSaleItems).HasForeignKey(fi => fi.PigType).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<ReproductiveItem>().HasOne(En => En.DisplayTypeTranslation).WithMany(trans => trans.ReproductiveItems).HasForeignKey(fi => fi.ServiceType).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<ManureSaleItem>().HasOne(En => En.DisplayTypeTranslation).WithMany(trans => trans.ManureSaleItems).HasForeignKey(fi => fi.SoldTo).OnDelete(DeleteBehavior.NoAction);
@@ -208,7 +208,7 @@ namespace SQLLiteDbContext
                     new Translation() { RowKey = "OtherLaboutTypeTranslation", English = "Other LabourType", Lang1 = "Other LabourType Lang1", Lang2 = "Other LabourType Lang2" },
                     new Translation() { RowKey = "AmountPaidTranslation", English = "Amount paid over the labour use duration", Lang1 = "Amount paid over the labour use duration Lang1", Lang2 = "Amount paid over the labour use duration Lang2" },
                     new Translation() { RowKey = "OtherCostsTranslation", English = "Any Other Cost", Lang1 = "Any Other Cost Lang1", Lang2 = "Any Other Cost Lang2" },
-                         new Translation() { RowKey = "LabourDurationTranslation", English = "Labour use duration", Lang1 = "Duration Lang1", Lang2 = "Duration Lang2" },
+                    new Translation() { RowKey = "LabourDurationTranslation", English = "Labour use duration", Lang1 = "Duration Lang1", Lang2 = "Duration Lang2" },
 
                     //Housing Costs
                     new Translation() { RowKey = "HousingTitleTranslation", English = "Housing", Lang1 = "Animal Housing Lang1", Lang2 = "Animal Housing Lang2" },
@@ -224,13 +224,14 @@ namespace SQLLiteDbContext
                     new Translation() { RowKey = "OtherWaterPurchasedTranslation", English = "Other unit", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "PurchasedWaterFromTranslation", English = "Who Purchased From", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "OtherPurchasedWaterFromTranslation", English = "Purchased From", Lang1 = "", Lang2 = "" },
-                         new Translation() { RowKey = "WaterDurationTranslation", English = "Water use duration", Lang1 = "Duration Lang1", Lang2 = "Duration Lang2" },
+                    new Translation() { RowKey = "WaterDurationTranslation", English = "Water use duration", Lang1 = "Duration Lang1", Lang2 = "Duration Lang2" },
 
                     //Membership
                     new Translation() { RowKey = "MembershipTitleTranslation", English = "Co-Operative / Group membership", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "MembershipTypeTranslation", English = "Membership type", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "OtherMembershipTypeTranslation", English = "Other type", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "TimePeriodTranslation", English = "Time-period covered", Lang1 = "", Lang2 = "" },
+                    new Translation() { RowKey = "MembershipDurationTranslation", English = "Membership duration", Lang1 = "Duration Lang1", Lang2 = "Duration Lang2" },
 
                     //Other Cost
                     new Translation() { RowKey = "OtherCostTitleTranslation", English = "Other", Lang1 = "", Lang2 = "" },
@@ -250,8 +251,8 @@ namespace SQLLiteDbContext
                     new Translation() { RowKey = "OtherAnimalTypeTranslation", English = "Animal type", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "NumberPurchasedTranslation", English = "Number purchased", Lang1 = "", Lang2 = "" },
                     new Translation() { RowKey = "AnimalPurchasedFromTranslation", English = "Purchased from", Lang1 = "", Lang2 = "" },
-                    new Translation() { RowKey = "OtherAnimalPurchasedTranslation", English = "Purchased from", Lang1 = "", Lang2 = "" },
-                    new Translation() { RowKey = "TotalAnimalCosts", English="", Lang1 = "", Lang2 = ""},
+                    new Translation() { RowKey = "OtherAnimalPurchasedTranslation", English = "Other Purchased from", Lang1 = "", Lang2 = "" },
+                    new Translation() { RowKey = "TotalAnimalCostsTranslation", English = "Total cost for all animals", Lang1 = "", Lang2 = "" },
 
                     //Loan Repayment
                     new Translation() { RowKey = "LoanRepaymentTitleTranslation", English = "Loan Repayment", Lang1 = "", Lang2 = "" },

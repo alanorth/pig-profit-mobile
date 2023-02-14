@@ -13,10 +13,12 @@ namespace Shared
         public double TotalCosts { get; set; }
         public string? MembershipType { get; set; }
         public string? OtherMembershipType { get; set; }
-        public int TimePeriod { get; set; }
-        public string TimePeriodUnit { get; set; }
+        //public int TimePeriod { get; set; }
+        //public string TimePeriodUnit { get; set; }
         public double? OtherCosts { get; set; }
         public string? Comment { get; set; }
+        public DateTime DurationStart { get; set; }
+        public DateTime DurationFinish { get; set; }
         [JsonIgnore]
         public virtual Translation? DisplayTypeTranslation { get; set; }
         public virtual string? DisplayTypeTranslationString { get; set; }

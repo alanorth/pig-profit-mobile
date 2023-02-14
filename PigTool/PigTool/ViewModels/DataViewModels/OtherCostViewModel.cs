@@ -245,7 +245,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.OtherWhatFor = OtherWhatFor;
                 _itemForEditing.TransportationCosts = (double)TransportationCosts;
                 _itemForEditing.TotalCosts = (double)TotalCosts;
-                _itemForEditing.OtherCosts = (double)OtherCosts;
+                _itemForEditing.OtherCosts = OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
@@ -261,7 +261,7 @@ namespace PigTool.ViewModels.DataViewModels
                     OtherWhatFor = OtherWhatFor,
                     TransportationCosts = TransportationCosts,
                     TotalCosts = (double)TotalCosts,
-                    OtherCosts = (double)OtherCosts,
+                    OtherCosts = OtherCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,

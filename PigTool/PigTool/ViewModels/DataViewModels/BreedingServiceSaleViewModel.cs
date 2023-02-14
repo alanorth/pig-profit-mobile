@@ -455,7 +455,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.PaymentType = SelectedPaymentType != null ? SelectedPaymentType.TranslationRowKey : null;
                 _itemForEditing.PaymentValue = PaymentValue;
                 _itemForEditing.TransportationCost = (double)TransportationCost;
-                _itemForEditing.OtherCosts = (double)OtherCosts;
+                _itemForEditing.OtherCosts = OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
@@ -477,7 +477,7 @@ namespace PigTool.ViewModels.DataViewModels
                     PaymentType = SelectedPaymentType != null ? SelectedPaymentType.TranslationRowKey : null,
                     PaymentValue = PaymentValue,
                     TransportationCost = (double)TransportationCost,
-                    OtherCosts = (double)OtherCosts,
+                    OtherCosts = OtherCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
@@ -486,7 +486,7 @@ namespace PigTool.ViewModels.DataViewModels
                 try
                 {
                     await repo.AddSingleBreedingServiceSaleItem(newBreedingServiceSale);
-                    await Application.Current.MainPage.DisplayAlert("Created", "Breeding service sale has been saved", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Created", "Sale of reproductive services has been saved", "OK");
                     await Shell.Current.Navigation.PopAsync();
                 }
                 catch (Exception ex)

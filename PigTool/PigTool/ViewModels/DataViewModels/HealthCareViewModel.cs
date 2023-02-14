@@ -546,7 +546,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.OtherPurchasedFrom = OtherPurchasedFrom;
                 //_itemForEditing.CreatedBy = User.AuthorisedUserName;
                 _itemForEditing.TransportationCost = (double)TransportationCost;
-                _itemForEditing.OtherCosts = (double)OtherCosts;
+                _itemForEditing.OtherCosts = OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 

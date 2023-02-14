@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SQLLiteDbContext;
 
 namespace Shared.Migrations
 {
     [DbContext(typeof(DbSQLLiteContext))]
-    partial class DbSQLLiteContextModelSnapshot : ModelSnapshot
+    [Migration("20230213224131_ChangeOrder-14-02-23")]
+    partial class ChangeOrder140223
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -4499,6 +4501,13 @@ namespace Shared.Migrations
                         .HasColumnType("REAL");
 
                     b.Property<string>("OtherMembershipType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("TimePeriod")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("TimePeriodUnit")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<double>("TotalCosts")

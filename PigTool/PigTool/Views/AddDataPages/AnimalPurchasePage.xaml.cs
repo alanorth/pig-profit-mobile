@@ -93,7 +93,7 @@ namespace PigTool.Views
             //Total Cost
             var TotalCostCell = new ViewCell();
             var TotalCostStack = FormattedElementsHelper.TableRowStack();
-            TotalCostStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.TotalCostTranslation)));
+            TotalCostStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.TotalAnimalCostsTranslation)));
             TotalCostStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.TotalCosts), nameof(_viewModel.IsEditMode), null));
             TotalCostCell.View = TotalCostStack;
             FullTableSection.Add(TotalCostCell);
@@ -114,7 +114,7 @@ namespace PigTool.Views
                 )
                 );
             var OtherAnimalPurchasedFrom = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherAnimalPurchasedFrom), true);
-            OtherAnimalPurchasedFrom.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherAnimalPurchasedFromTranslation)));
+            OtherAnimalPurchasedFrom.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherAnimalPurchasedTranslation)));
             OtherAnimalPurchasedFrom.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherAnimalPurchasedFrom), nameof(_viewModel.IsEditMode)));
             AnimalPurchasedFromVerticalStack.Children.Add(AnimalPurchasedFromTypeStack);
             AnimalPurchasedFromVerticalStack.Children.Add(OtherAnimalPurchasedFrom);

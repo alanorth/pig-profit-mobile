@@ -184,7 +184,7 @@ namespace PigTool.Views
             TransportCostCell.View = TransportCostsStack;
             FullTableSection.Add(TransportCostCell);
 
-            //Water Purchased From
+            //Purchased From
             var PurchasedFromCell = new ViewCell();
             var PurchasedFromVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             PurchasedFromVerticalStack.Padding = 0;
@@ -199,14 +199,21 @@ namespace PigTool.Views
                 _viewModel.PickerPurchasedFromTranslation
                 )
                 );
-            var OtherWaterFromType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherPurchasedFrom), true);
-            OtherWaterFromType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherPurchasedFromTranslation)));
-            OtherWaterFromType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherPurchasedFrom), nameof(_viewModel.IsEditMode)));
+            var OtherPurchasedFrom = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherPurchasedFrom), true);
+            OtherPurchasedFrom.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherPurchasedFromTranslation)));
+            OtherPurchasedFrom.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherPurchasedFrom), nameof(_viewModel.IsEditMode)));
             PurchasedFromVerticalStack.Children.Add(PurchasedFromTypeStack);
-            PurchasedFromVerticalStack.Children.Add(OtherWaterFromType);
+            PurchasedFromVerticalStack.Children.Add(OtherPurchasedFrom);
             PurchasedFromCell.View = PurchasedFromVerticalStack;
             FullTableSection.Add(PurchasedFromCell);
 
+            //Other costs
+            var OtherCostCell = new ViewCell();
+            var OtherCostsStack = FormattedElementsHelper.TableRowStack();
+            OtherCostsStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherCostsTranslation)));
+            OtherCostsStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.OtherCosts), nameof(_viewModel.IsEditMode), null));
+            OtherCostCell.View = OtherCostsStack;
+            FullTableSection.Add(OtherCostCell);
 
             //Comment
             var commentCell = new ViewCell();

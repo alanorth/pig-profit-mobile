@@ -42,11 +42,11 @@ namespace PigTool.ViewModels.DataViewModels
         public string AnimalTypeTranslation { get; set; }
         public string OtherAnimalTypeTranslation { get; set; }
         public string AnimalPurchasedFromTranslation { get; set; }
-        public string OtherAnimalPurchasedFromTranslation { get; set; }
+        public string OtherAnimalPurchasedTranslation { get; set; }
 
         public string NumberPurchasedTranslation { get; set; }
 
-        public string TotalCostTranslation { get; set; }
+        public string TotalAnimalCostsTranslation { get; set; }
         public string TransportationCostTranslation { get; set; }
         public string OtherCostTranslation { get; set; }
         public string CommentTranslation { get; set; }
@@ -320,11 +320,11 @@ namespace PigTool.ViewModels.DataViewModels
             AnimalTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AnimalTypeTranslation), User.UserLang);
             OtherAnimalTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherAnimalTypeTranslation), User.UserLang);
             AnimalPurchasedFromTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AnimalPurchasedFromTranslation), User.UserLang);
-            OtherAnimalPurchasedFromTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherAnimalPurchasedFromTranslation), User.UserLang);
+            OtherAnimalPurchasedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherAnimalPurchasedTranslation), User.UserLang);
 
             NumberPurchasedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(NumberPurchasedTranslation), User.UserLang);
 
-            TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang) + " *";
+            TotalAnimalCostsTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalAnimalCostsTranslation), User.UserLang) + " *";
             TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
             OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang);
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
@@ -388,7 +388,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.OtherAnimalPurchasedFrom = OtherAnimalPurchasedFrom;
                 _itemForEditing.TotalCosts = (double)TotalCosts;
                 _itemForEditing.TransportationCost = (double)TransportationCost;
-                _itemForEditing.OtherCosts = (double)OtherCosts;
+                _itemForEditing.OtherCosts = OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
@@ -408,7 +408,7 @@ namespace PigTool.ViewModels.DataViewModels
                     OtherAnimalPurchasedFrom = OtherAnimalPurchasedFrom,
                     TotalCosts = (double)TotalCosts,
                     TransportationCost = (double)TransportationCost,
-                    OtherCosts = (double)OtherCosts,
+                    OtherCosts = OtherCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,

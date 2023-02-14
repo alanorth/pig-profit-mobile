@@ -2489,6 +2489,13 @@ namespace Shared.Migrations
                         },
                         new
                         {
+                            RowKey = "MembershipDurationTranslation",
+                            English = "Membership duration",
+                            Lang1 = "Duration Lang1",
+                            Lang2 = "Duration Lang2"
+                        },
+                        new
+                        {
                             RowKey = "OtherCostTitleTranslation",
                             English = "Other",
                             Lang1 = "",
@@ -2581,14 +2588,14 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "OtherAnimalPurchasedTranslation",
-                            English = "Purchased from",
+                            English = "Other Purchased from",
                             Lang1 = "",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "TotalAnimalCosts",
-                            English = "",
+                            RowKey = "TotalAnimalCostsTranslation",
+                            English = "Total cost for all animals",
                             Lang1 = "",
                             Lang2 = ""
                         },
@@ -4275,6 +4282,9 @@ namespace Shared.Migrations
                     b.Property<string>("OtherAmountPurchaseUnit")
                         .HasColumnType("TEXT");
 
+                    b.Property<double?>("OtherCosts")
+                        .HasColumnType("REAL");
+
                     b.Property<string>("OtherFeedType")
                         .HasColumnType("TEXT");
 
@@ -4476,6 +4486,12 @@ namespace Shared.Migrations
                     b.Property<string>("DisplayTypeTranslationString")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime>("DurationFinish")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("DurationStart")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("MembershipType")
                         .HasColumnType("TEXT");
 
@@ -4483,13 +4499,6 @@ namespace Shared.Migrations
                         .HasColumnType("REAL");
 
                     b.Property<string>("OtherMembershipType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("TimePeriod")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("TimePeriodUnit")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<double>("TotalCosts")
