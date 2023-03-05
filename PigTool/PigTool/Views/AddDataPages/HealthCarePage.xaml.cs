@@ -51,6 +51,25 @@ namespace PigTool.Views
         {
             var FullTableSection = new TableSection();
 
+            if (_viewModel.EditExistingMode)
+            {
+                var buttonCellTop = new ViewCell();
+                var buttonStackTop = FormattedElementsHelper.ButtonCommandStack(
+                    ResetCommandBinding: nameof(_viewModel.ResetButtonClicked),
+                    EditCommandBinding: nameof(_viewModel.EditButtonClicked),
+                    DeleteCommandBinding: nameof(_viewModel.DeleteButtonClicked),
+                    SaveCommandBinding: nameof(_viewModel.SaveButtonClicked),
+                    EditModeBinding: nameof(_viewModel.IsEditMode),
+                    ExistingModeBinding: nameof(_viewModel.EditExistingMode),
+                    ResetText: _viewModel.ResetTranslation,
+                    SaveText: _viewModel.SaveTranslation,
+                    EditText: _viewModel.EditTranslation,
+                    DeleteText: _viewModel.DeleteTranslation
+                    );
+                buttonCellTop.View = buttonStackTop;
+                FullTableSection.Add(buttonCellTop);
+            }
+
             //Date
             var DateCell = new ViewCell();
             var stack = FormattedElementsHelper.TableRowStack();
@@ -59,26 +78,36 @@ namespace PigTool.Views
             DateCell.View = stack;
             FullTableSection.Add(DateCell);
 
-
             // Health Care Type
             var HealthCareTypeCell = new ViewCell();
             var HealthCareTypeVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             HealthCareTypeVerticalStack.Padding = 0;
-            var HealthCareTypeStack = FormattedElementsHelper.TableRowStack();
-            HealthCareTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.HealthCareTypeTranslation)));
-            HealthCareTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
+            var HealthCareGrid = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                HealthCareGrid,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.HealthCareTypeTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                HealthCareGrid,
+                FormattedElementsHelper.FormPickerEntry(
                 nameof(_viewModel.HealthCareTypeListOfOptions),
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedHealthCareType),
                 nameof(_viewModel.IsEditMode),
                 _viewModel.SelectedHealthCareType,
                 _viewModel.PickerHealthCareTypeTranslation
-                )
-                );
-            var OtherHealthCareType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherHealthCareType), true);
-            OtherHealthCareType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherHealthCareTypeTranslation)));
-            OtherHealthCareType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherHealthCareType), nameof(_viewModel.IsEditMode)));
-            HealthCareTypeVerticalStack.Children.Add(HealthCareTypeStack);
+                ),
+                GridPostion.TwoRight);
+            var OtherHealthCareType = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherHealthCareType), true);
+            FormattedElementsHelper.AddGridValue(
+                OtherHealthCareType,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherHealthCareTypeTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                OtherHealthCareType,
+                FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherHealthCareType), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
+            HealthCareTypeVerticalStack.Children.Add(HealthCareGrid);
             HealthCareTypeVerticalStack.Children.Add(OtherHealthCareType);
             HealthCareTypeCell.View = HealthCareTypeVerticalStack;
             FullTableSection.Add(HealthCareTypeCell);
@@ -95,21 +124,30 @@ namespace PigTool.Views
             var ProviderCell = new ViewCell();
             var ProviderVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             ProviderVerticalStack.Padding = 0;
-            var ProviderTypeStack = FormattedElementsHelper.TableRowStack();
-            ProviderTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.ProviderTranslation)));
-            ProviderTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
+            var ProviderTypeGrid = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(ProviderTypeGrid,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.ProviderTranslation)), GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(ProviderTypeGrid,
+                FormattedElementsHelper.FormPickerEntry(
                 nameof(_viewModel.ProviderListOfOptions),
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedProvider),
                 nameof(_viewModel.IsEditMode),
                 _viewModel.SelectedProvider,
                 _viewModel.PickerProviderTranslation
-                )
+                ),
+                GridPostion.TwoRight
                 );
-            var OtherProviderType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherProvider), true);
-            OtherProviderType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherProviderTranslation)));
-            OtherProviderType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherProvider), nameof(_viewModel.IsEditMode)));
-            ProviderVerticalStack.Children.Add(ProviderTypeStack);
+
+            var OtherProviderType = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherProvider), true);
+            FormattedElementsHelper.AddGridValue(OtherProviderType,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherProviderTranslation)),
+            GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(OtherProviderType,
+                FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherProvider), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight
+                );
+            ProviderVerticalStack.Children.Add(ProviderTypeGrid);
             ProviderVerticalStack.Children.Add(OtherProviderType);
             ProviderCell.View = ProviderVerticalStack;
             FullTableSection.Add(ProviderCell);
@@ -126,20 +164,31 @@ namespace PigTool.Views
             var MedicineTypeCell = new ViewCell();
             var MedicineTypeVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             MedicineTypeVerticalStack.Padding = 0;
-            var MedicineTypeTypeStack = FormattedElementsHelper.TableRowStack();
-            MedicineTypeTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.MedicineTypeTranslation)));
-            MedicineTypeTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
-                nameof(_viewModel.MedicineTypeListOfOptions),
-                nameof(PickerToolHelper.TranslatedValue),
-                nameof(_viewModel.SelectedMedicineType),
-                nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedMedicineType,
-                _viewModel.PickerMedicineTypeTranslation
-                )
-                );
-            var OtherMedicineType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherMedicineType), true);
-            OtherMedicineType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherMedicineTypeTranslation)));
-            OtherMedicineType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherMedicineType), nameof(_viewModel.IsEditMode)));
+            var MedicineTypeTypeStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                MedicineTypeTypeStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.MedicineTypeTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                MedicineTypeTypeStack,
+                FormattedElementsHelper.FormPickerEntry(
+                    nameof(_viewModel.MedicineTypeListOfOptions),
+                    nameof(PickerToolHelper.TranslatedValue),
+                    nameof(_viewModel.SelectedMedicineType),
+                    nameof(_viewModel.IsEditMode),
+                    _viewModel.SelectedMedicineType,
+                    _viewModel.PickerMedicineTypeTranslation
+                    ),
+                GridPostion.TwoRight);
+            var OtherMedicineType = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherMedicineType), true);
+            FormattedElementsHelper.AddGridValue(
+                OtherMedicineType,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherMedicineTypeTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                OtherMedicineType,
+                FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherMedicineType), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
             MedicineTypeVerticalStack.Children.Add(MedicineTypeTypeStack);
             MedicineTypeVerticalStack.Children.Add(OtherMedicineType);
             MedicineTypeCell.View = MedicineTypeVerticalStack;
@@ -149,20 +198,30 @@ namespace PigTool.Views
             var PurchasedFromCell = new ViewCell();
             var FromVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             FromVerticalStack.Padding = 0;
-            var PurchasedFromTypeStack = FormattedElementsHelper.TableRowStack();
-            PurchasedFromTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.PurchasedFromTranslation)));
-            PurchasedFromTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
-                nameof(_viewModel.PurchasedFromListOfOptions),
-                nameof(PickerToolHelper.TranslatedValue),
-                nameof(_viewModel.SelectedPurchasedFrom),
-                nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedPurchasedFrom,
-                _viewModel.PickerPurchasedFromTranslation
-                )
-                );
-            var OtherPurchasedFromType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherPurchasedFrom), true);
-            OtherPurchasedFromType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherPurchasedFromTranslation)));
-            OtherPurchasedFromType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherPurchasedFrom), nameof(_viewModel.IsEditMode)));
+            var PurchasedFromTypeStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                PurchasedFromTypeStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.PurchasedFromTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                PurchasedFromTypeStack,
+                FormattedElementsHelper.FormPickerEntry(
+                    nameof(_viewModel.PurchasedFromListOfOptions),
+                    nameof(PickerToolHelper.TranslatedValue),
+                    nameof(_viewModel.SelectedPurchasedFrom),
+                    nameof(_viewModel.IsEditMode),
+                    _viewModel.SelectedPurchasedFrom,
+                    _viewModel.PickerPurchasedFromTranslation),
+                GridPostion.TwoRight);
+            var OtherPurchasedFromType = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherPurchasedFrom), true);
+            FormattedElementsHelper.AddGridValue(
+                OtherPurchasedFromType,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherPurchasedFromTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                OtherPurchasedFromType,
+                FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherPurchasedFrom), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
             FromVerticalStack.Children.Add(PurchasedFromTypeStack);
             FromVerticalStack.Children.Add(OtherPurchasedFromType);
             PurchasedFromCell.View = FromVerticalStack;
@@ -186,10 +245,15 @@ namespace PigTool.Views
 
             //Comment
             var commentCell = new ViewCell();
-            var CommentStack = FormattedElementsHelper.TableRowStack();
-            CommentStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)));
-            //CommentStack.Children.Add(FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode), heightRequest: 100));
-            CommentStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode), heightRequest: 100));
+            var CommentStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
             commentCell.View = CommentStack;
             FullTableSection.Add(commentCell);
 

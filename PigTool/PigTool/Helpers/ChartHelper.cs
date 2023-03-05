@@ -110,9 +110,9 @@ namespace PigTool.Helpers
         public class Row
         {
             public YearMonth YearMonth { get; set; }
-            public double Cost { get; set; }
-            public double Revenue { get; set; }
-            public double Difference { get; set; }
+            public double? Cost { get; set; }
+            public double? Revenue { get; set; }
+            public double? Difference { get; set; }
         }
 
         public ChartHelper()
@@ -146,7 +146,7 @@ namespace PigTool.Helpers
             }).Select(fi => new Row
             {
                 YearMonth = fi.Key,
-                Cost = fi.Sum(i => i.MedicineCost) + fi.Sum(i => i.TransportationCost) + fi.Sum(i => (double)i.OtherCosts),
+                Cost = fi.Sum(i => i.MedicineCost) + fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
                 Revenue = 0,
                 Difference = 0
             }).ToList()).ToList();
@@ -159,7 +159,7 @@ namespace PigTool.Helpers
             }).Select(fi => new Row
             {
                 YearMonth = fi.Key,
-                Cost = fi.Sum(i => i.Brokerage) + fi.Sum(i => i.TransportationCost) + fi.Sum(i => (double)i.OtherCosts),
+                Cost = fi.Sum(i => i.Brokerage) + fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
                 Revenue = fi.Sum(i => i.SalePrice),
                 Difference = 0
             }).ToList()).ToList();
@@ -179,8 +179,8 @@ namespace PigTool.Helpers
                 }).OrderByDescending(fl => fl.YearMonth.Year).ThenByDescending(fl => fl.YearMonth.Month).ToList();
 
             //Calculate totals
-            totalPeriodCost = fullList.Sum(fl => fl.Cost);
-            totalPeriodRevenue = fullList.Sum(fl => fl.Revenue);
+            totalPeriodCost = fullList.Sum(fl => (double)fl.Cost);
+            totalPeriodRevenue = fullList.Sum(fl => (double)fl.Revenue);
             totalPeriodDifference = totalPeriodRevenue - totalPeriodCost;
 
             return (FullList, totalPeriodRevenue, totalPeriodCost, totalPeriodDifference);

@@ -51,6 +51,25 @@ namespace PigTool.Views
         {
             var FullTableSection = new TableSection();
 
+            if (_viewModel.EditExistingMode)
+            {
+                var buttonCellTop = new ViewCell();
+                var buttonStackTop = FormattedElementsHelper.ButtonCommandStack(
+                    ResetCommandBinding: nameof(_viewModel.ResetButtonClicked),
+                    EditCommandBinding: nameof(_viewModel.EditButtonClicked),
+                    DeleteCommandBinding: nameof(_viewModel.DeleteButtonClicked),
+                    SaveCommandBinding: nameof(_viewModel.SaveButtonClicked),
+                    EditModeBinding: nameof(_viewModel.IsEditMode),
+                    ExistingModeBinding: nameof(_viewModel.EditExistingMode),
+                    ResetText: _viewModel.ResetTranslation,
+                    SaveText: _viewModel.SaveTranslation,
+                    EditText: _viewModel.EditTranslation,
+                    DeleteText: _viewModel.DeleteTranslation
+                    );
+                buttonCellTop.View = buttonStackTop;
+                FullTableSection.Add(buttonCellTop);
+            }
+
             //Date
             var DateCell = new ViewCell();
             var stack = FormattedElementsHelper.TableRowStack();
@@ -70,9 +89,15 @@ namespace PigTool.Views
 
             //Comment
             var whatForCell = new ViewCell();
-            var WhatForStack = FormattedElementsHelper.TableRowStack();
-            WhatForStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherWhatForTranslation)));
-            WhatForStack.Children.Add(FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.OtherWhatFor), nameof(_viewModel.IsEditMode), heightRequest: 100));
+            var WhatForStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                WhatForStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherWhatForTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                WhatForStack,
+                FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.OtherWhatFor), nameof(_viewModel.IsEditMode), heightRequest: 100),
+                GridPostion.TwoRight);
             whatForCell.View = WhatForStack;
             FullTableSection.Add(whatForCell);
 
@@ -95,9 +120,15 @@ namespace PigTool.Views
 
             //Comment
             var commentCell = new ViewCell();
-            var CommentStack = FormattedElementsHelper.TableRowStack();
-            CommentStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)));
-            CommentStack.Children.Add(FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode), heightRequest: 100));
+            var CommentStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode), heightRequest: 100),
+                GridPostion.TwoRight);
             commentCell.View = CommentStack;
             FullTableSection.Add(commentCell);
 

@@ -45,6 +45,25 @@ namespace PigTool.Views
         {
             var FullTableSection = new TableSection();
 
+            if (_viewModel.EditExistingMode)
+            {
+                var buttonCellTop = new ViewCell();
+                var buttonStackTop = FormattedElementsHelper.ButtonCommandStack(
+                    ResetCommandBinding: nameof(_viewModel.ResetButtonClicked),
+                    EditCommandBinding: nameof(_viewModel.EditButtonClicked),
+                    DeleteCommandBinding: nameof(_viewModel.DeleteButtonClicked),
+                    SaveCommandBinding: nameof(_viewModel.SaveButtonClicked),
+                    EditModeBinding: nameof(_viewModel.IsEditMode),
+                    ExistingModeBinding: nameof(_viewModel.EditExistingMode),
+                    ResetText: _viewModel.ResetTranslation,
+                    SaveText: _viewModel.SaveTranslation,
+                    EditText: _viewModel.EditTranslation,
+                    DeleteText: _viewModel.DeleteTranslation
+                    );
+                buttonCellTop.View = buttonStackTop;
+                FullTableSection.Add(buttonCellTop);
+            }
+
             //Date
             var DateCell = new ViewCell();
             var stack = FormattedElementsHelper.TableRowStack();
@@ -86,27 +105,35 @@ namespace PigTool.Views
             var UnitVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             UnitVerticalStack.Padding = 0;
 
-            var waterPurchasedUnitTypeStack = FormattedElementsHelper.TableRowStack();
-            waterPurchasedUnitTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.WaterPurchasedTranslation)));
-
-            var InputContainer = FormattedElementsHelper.TableRowStack();
-            InputContainer.Padding = 0;
-            InputContainer.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.WaterPurchased), nameof(_viewModel.IsEditMode), null));
-            InputContainer.Children.Add(FormattedElementsHelper.FormPickerEntry(
+            var waterPurchasedUnitTypeStack = FormattedElementsHelper.TableRowGrid(fields: GridFields.Three);
+            FormattedElementsHelper.AddGridValue(
+                waterPurchasedUnitTypeStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.WaterPurchasedTranslation)),
+                GridPostion.ThreeLeft);
+            FormattedElementsHelper.AddGridValue(
+                waterPurchasedUnitTypeStack,
+                FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.WaterPurchased), nameof(_viewModel.IsEditMode), null),
+                GridPostion.ThreeCenter);
+            FormattedElementsHelper.AddGridValue(
+                waterPurchasedUnitTypeStack,
+                FormattedElementsHelper.FormPickerEntry(
                 nameof(_viewModel.WaterPurchasedUnitListOfOptions),
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedWaterPurchasedUnit),
                 nameof(_viewModel.IsEditMode),
                 _viewModel.SelectedWaterPurchasedUnit,
                 _viewModel.PickerUnitTranslation
-                )
-                );
-
-            waterPurchasedUnitTypeStack.Children.Add(InputContainer);
-
-            var OtherWaterUnitType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherWaterUnit), true);
-            OtherWaterUnitType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherWaterPurchasedTranslation)));
-            OtherWaterUnitType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherWaterPurchasedUnit), nameof(_viewModel.IsEditMode)));
+                ),
+                GridPostion.ThreeRight);
+            var OtherWaterUnitType = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherWaterUnit), true);
+            FormattedElementsHelper.AddGridValue(
+                OtherWaterUnitType,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherWaterPurchasedTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                OtherWaterUnitType,
+                FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherWaterPurchasedUnit), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
             UnitVerticalStack.Children.Add(waterPurchasedUnitTypeStack);
             UnitVerticalStack.Children.Add(OtherWaterUnitType);
             WaterPurchasedUnitCell.View = UnitVerticalStack;
@@ -124,20 +151,31 @@ namespace PigTool.Views
             var WaterPurchasedFromCell = new ViewCell();
             var FromVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             FromVerticalStack.Padding = 0;
-            var waterPurchasedFromTypeStack = FormattedElementsHelper.TableRowStack();
-            waterPurchasedFromTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.PurchasedWaterFromTranslation)));
-            waterPurchasedFromTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
+            var waterPurchasedFromTypeStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                waterPurchasedFromTypeStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.PurchasedWaterFromTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                waterPurchasedFromTypeStack,
+                FormattedElementsHelper.FormPickerEntry(
                 nameof(_viewModel.PurchasedWaterFromListOfOptions),
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedPurchasedWaterFrom),
                 nameof(_viewModel.IsEditMode),
                 _viewModel.SelectedPurchasedWaterFrom,
                 _viewModel.PickerPurchasedFromTranslation
-                )
-                );
-            var OtherWaterFromType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherPurchasedFrom), true);
-            OtherWaterFromType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherPurchasedWaterFromTranslation)));
-            OtherWaterFromType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherPurchasedWaterFrom), nameof(_viewModel.IsEditMode)));
+                ),
+                GridPostion.TwoRight);
+            var OtherWaterFromType = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherPurchasedFrom), true);
+            FormattedElementsHelper.AddGridValue(
+                OtherWaterFromType,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherPurchasedWaterFromTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                OtherWaterFromType,
+                FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherPurchasedWaterFrom), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
             FromVerticalStack.Children.Add(waterPurchasedFromTypeStack);
             FromVerticalStack.Children.Add(OtherWaterFromType);
             WaterPurchasedFromCell.View = FromVerticalStack;
@@ -161,9 +199,15 @@ namespace PigTool.Views
 
             //Comment
             var commentCell = new ViewCell();
-            var CommentStack = FormattedElementsHelper.TableRowStack();
-            CommentStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)));
-            CommentStack.Children.Add(FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode), heightRequest: 100));
+            var CommentStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
             commentCell.View = CommentStack;
             FullTableSection.Add(commentCell);
 

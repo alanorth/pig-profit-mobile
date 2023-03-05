@@ -51,6 +51,26 @@ namespace PigTool.Views
         {
             var FullTableSection = new TableSection();
 
+            if (_viewModel.EditExistingMode)
+            {
+                var buttonCellTop = new ViewCell();
+                var buttonStackTop = FormattedElementsHelper.ButtonCommandStack(
+                    ResetCommandBinding: nameof(_viewModel.ResetButtonClicked),
+                    EditCommandBinding: nameof(_viewModel.EditButtonClicked),
+                    DeleteCommandBinding: nameof(_viewModel.DeleteButtonClicked),
+                    SaveCommandBinding: nameof(_viewModel.SaveButtonClicked),
+                    EditModeBinding: nameof(_viewModel.IsEditMode),
+                    ExistingModeBinding: nameof(_viewModel.EditExistingMode),
+                    ResetText: _viewModel.ResetTranslation,
+                    SaveText: _viewModel.SaveTranslation,
+                    EditText: _viewModel.EditTranslation,
+                    DeleteText: _viewModel.DeleteTranslation
+                    );
+                buttonCellTop.View = buttonStackTop;
+                FullTableSection.Add(buttonCellTop);
+            }
+
+
             //Date
             var DateCell = new ViewCell();
             var stack = FormattedElementsHelper.TableRowStack();
@@ -58,8 +78,6 @@ namespace PigTool.Views
             stack.Children.Add(FormattedElementsHelper.FormDatePicker(nameof(_viewModel.Date), nameof(_viewModel.IsEditMode)));
             DateCell.View = stack;
             FullTableSection.Add(DateCell);
-
-
 
             //Total Amount Paid
             var TotalAmountRepaidCell = new ViewCell();
@@ -73,20 +91,31 @@ namespace PigTool.Views
             var LoanProviderFromCell = new ViewCell();
             var LoanProviderVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             LoanProviderVerticalStack.Padding = 0;
-            var LoanProviderTypeStack = FormattedElementsHelper.TableRowStack();
-            LoanProviderTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.LoanProviderTranslation)));
-            LoanProviderTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
+            var LoanProviderTypeStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                LoanProviderTypeStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.LoanProviderTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                LoanProviderTypeStack,
+                FormattedElementsHelper.FormPickerEntry(
                 nameof(_viewModel.LoanProviderListOfOptions),
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedLoanProvider),
                 nameof(_viewModel.IsEditMode),
                 _viewModel.SelectedLoanProvider,
                 _viewModel.PickerProviderTranslation
-                )
-                );
-            var OtherLoanProviderType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherLoanProvider), true);
-            OtherLoanProviderType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherLoanProviderTranslation)));
-            OtherLoanProviderType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherLoanProvider), nameof(_viewModel.IsEditMode)));
+                ),
+                GridPostion.TwoRight);
+            var OtherLoanProviderType = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherLoanProvider), true);
+            FormattedElementsHelper.AddGridValue(
+                OtherLoanProviderType,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherLoanProviderTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                OtherLoanProviderType,
+                FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherLoanProvider), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
             LoanProviderVerticalStack.Children.Add(LoanProviderTypeStack);
             LoanProviderVerticalStack.Children.Add(OtherLoanProviderType);
             LoanProviderFromCell.View = LoanProviderVerticalStack;
@@ -110,9 +139,15 @@ namespace PigTool.Views
 
             //Comment
             var commentCell = new ViewCell();
-            var CommentStack = FormattedElementsHelper.TableRowStack();
-            CommentStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)));
-            CommentStack.Children.Add(FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode), heightRequest: 100));
+            var CommentStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
             commentCell.View = CommentStack;
             FullTableSection.Add(commentCell);
 

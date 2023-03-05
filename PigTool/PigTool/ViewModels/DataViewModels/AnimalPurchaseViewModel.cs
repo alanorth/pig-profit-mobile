@@ -381,8 +381,8 @@ namespace PigTool.ViewModels.DataViewModels
             {
 
                 _itemForEditing.Date = Date;
-                _itemForEditing.AnimalType = AnimalType;
-                _itemForEditing.OtherAnimalType = SelectedAnimalType != null ? SelectedAnimalType.TranslationRowKey : null;
+                _itemForEditing.AnimalType = SelectedAnimalType != null ? SelectedAnimalType.TranslationRowKey : null;
+                _itemForEditing.OtherAnimalType = OtherAnimalType;
                 _itemForEditing.NumberPurchased = NumberPurchased;
                 _itemForEditing.AnimalPurchasedFrom = SelectedAnimalPurchasedFrom != null ? SelectedAnimalPurchasedFrom.TranslationRowKey : null;
                 _itemForEditing.OtherAnimalPurchasedFrom = OtherAnimalPurchasedFrom;
@@ -402,7 +402,7 @@ namespace PigTool.ViewModels.DataViewModels
                 {
                     Date = Date,
                     AnimalType = SelectedAnimalType != null ? SelectedAnimalType.TranslationRowKey : null,
-                    OtherAnimalType = AnimalType,
+                    OtherAnimalType = OtherAnimalType,
                     NumberPurchased = NumberPurchased,
                     AnimalPurchasedFrom = SelectedAnimalPurchasedFrom != null ? SelectedAnimalPurchasedFrom.TranslationRowKey : null,
                     OtherAnimalPurchasedFrom = OtherAnimalPurchasedFrom,

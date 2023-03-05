@@ -51,6 +51,25 @@ namespace PigTool.Views
         {
             var FullTableSection = new TableSection();
 
+            if (_viewModel.EditExistingMode)
+            {
+                var buttonCellTop = new ViewCell();
+                var buttonStackTop = FormattedElementsHelper.ButtonCommandStack(
+                    ResetCommandBinding: nameof(_viewModel.ResetButtonClicked),
+                    EditCommandBinding: nameof(_viewModel.EditButtonClicked),
+                    DeleteCommandBinding: nameof(_viewModel.DeleteButtonClicked),
+                    SaveCommandBinding: nameof(_viewModel.SaveButtonClicked),
+                    EditModeBinding: nameof(_viewModel.IsEditMode),
+                    ExistingModeBinding: nameof(_viewModel.EditExistingMode),
+                    ResetText: _viewModel.ResetTranslation,
+                    SaveText: _viewModel.SaveTranslation,
+                    EditText: _viewModel.EditTranslation,
+                    DeleteText: _viewModel.DeleteTranslation
+                    );
+                buttonCellTop.View = buttonStackTop;
+                FullTableSection.Add(buttonCellTop);
+            }
+
             //Date
             var DateCell = new ViewCell();
             var stack = FormattedElementsHelper.TableRowStack();
@@ -97,20 +116,31 @@ namespace PigTool.Views
             var MembershipCell = new ViewCell();
             var MembershipVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             MembershipVerticalStack.Padding = 0;
-            var MembershipTypeStack = FormattedElementsHelper.TableRowStack();
-            MembershipTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.MembershipTypeTranslation)));
-            MembershipTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
-                nameof(_viewModel.MembershipTypeListOfOptions),
-                nameof(PickerToolHelper.TranslatedValue),
-                nameof(_viewModel.SelectedMembershipType),
-                nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedMembershipType,
-                _viewModel.PickerMembershipTypeTranslation
-                )
-                );
-            var OtherMembershipType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherMembershipType), true);
-            OtherMembershipType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherMembershipTypeTranslation)));
-            OtherMembershipType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherMembershipType), nameof(_viewModel.IsEditMode)));
+            var MembershipTypeStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                MembershipTypeStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.MembershipTypeTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                MembershipTypeStack,
+                FormattedElementsHelper.FormPickerEntry(
+                    nameof(_viewModel.MembershipTypeListOfOptions),
+                    nameof(PickerToolHelper.TranslatedValue),
+                    nameof(_viewModel.SelectedMembershipType),
+                    nameof(_viewModel.IsEditMode),
+                    _viewModel.SelectedMembershipType,
+                    _viewModel.PickerMembershipTypeTranslation
+                    ),
+                GridPostion.TwoRight);
+            var OtherMembershipType = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherMembershipType), true);
+            FormattedElementsHelper.AddGridValue(
+                OtherMembershipType,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherMembershipTypeTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                OtherMembershipType,
+                FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherMembershipType), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
             MembershipVerticalStack.Children.Add(MembershipTypeStack);
             MembershipVerticalStack.Children.Add(OtherMembershipType);
             MembershipCell.View = MembershipVerticalStack;
@@ -155,9 +185,15 @@ namespace PigTool.Views
 
             //Comment
             var commentCell = new ViewCell();
-            var CommentStack = FormattedElementsHelper.TableRowStack();
-            CommentStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)));
-            CommentStack.Children.Add(FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode), heightRequest: 100));
+            var CommentStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode), heightRequest: 100),
+                GridPostion.TwoRight);
             commentCell.View = CommentStack;
             FullTableSection.Add(commentCell);
 

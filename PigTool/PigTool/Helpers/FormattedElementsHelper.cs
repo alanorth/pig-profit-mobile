@@ -158,12 +158,12 @@ namespace PigTool.Helpers
         }
 
 
-        public static Entry FormTextEntry(string TextBindingProperty, string IsEnableBinding,string ViewHideBinding = null,  bool IsVisibile = true, int heightRequest = -1, string startingvalue = null )
+        public static Entry FormTextEntry(string TextBindingProperty, string IsEnableBinding,string ViewHideBinding = null,  bool IsVisibile = true,  string startingvalue = null )
         {
             var Entry = new Entry()
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                HeightRequest = heightRequest,
+                //HeightRequest = heightRequest,
                 Placeholder = ""
             };
 
@@ -184,12 +184,12 @@ namespace PigTool.Helpers
             return Entry;
         }
 
-        public static Editor FormEditorEntry(string TextBindingProperty, string IsEnableBinding, string ViewHideBinding = null, bool IsVisibile = true, int heightRequest = -1)
+        public static Entry FormEditorEntry(string TextBindingProperty, string IsEnableBinding, string ViewHideBinding = null, bool IsVisibile = true, int heightRequest = -1)
         {
-            var Edds = new Editor()
+            var Edds = new Entry()
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                HeightRequest = heightRequest,
+                //HeightRequest = heightRequest,
                 Placeholder = ""
             };
 
@@ -250,7 +250,8 @@ namespace PigTool.Helpers
         {
             Grid objGrid = new Grid()
             {
-                VerticalOptions = LayoutOptions.StartAndExpand
+                VerticalOptions = LayoutOptions.StartAndExpand,
+                Padding = 10
             };
 
             if (fields == GridFields.Two) { 
@@ -333,6 +334,7 @@ namespace PigTool.Helpers
             var stack = TableRowStack();
             stack.Margin = new Thickness( 0, 20, 0, 20);
             stack.Padding = 0;
+            //stack.SetBinding(VisualElement.IsVisibleProperty, new Binding(ExistingModeBinding));
 
             var resertButton = new Button();
             resertButton.Text = ResetText;

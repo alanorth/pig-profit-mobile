@@ -50,7 +50,25 @@ namespace PigTool.Views
         private void PopulateTheTable()
         {
             var FullTableSection = new TableSection();
-
+            
+            if (_viewModel.EditExistingMode)
+            {
+                var buttonCellTop = new ViewCell();
+                var buttonStackTop = FormattedElementsHelper.ButtonCommandStack(
+                    ResetCommandBinding: nameof(_viewModel.ResetButtonClicked),
+                    EditCommandBinding: nameof(_viewModel.EditButtonClicked),
+                    DeleteCommandBinding: nameof(_viewModel.DeleteButtonClicked),
+                    SaveCommandBinding: nameof(_viewModel.SaveButtonClicked),
+                    EditModeBinding: nameof(_viewModel.IsEditMode),
+                    ExistingModeBinding: nameof(_viewModel.EditExistingMode),
+                    ResetText: _viewModel.ResetTranslation,
+                    SaveText: _viewModel.SaveTranslation,
+                    EditText: _viewModel.EditTranslation,
+                    DeleteText: _viewModel.DeleteTranslation
+                    );
+                buttonCellTop.View = buttonStackTop;
+                FullTableSection.Add(buttonCellTop);
+            }
             //Date
             var DateCell = new ViewCell();
             var stack = FormattedElementsHelper.TableRowStack();
@@ -59,26 +77,35 @@ namespace PigTool.Views
             DateCell.View = stack;
             FullTableSection.Add(DateCell);
 
-            
-
             //Service
             var ServiceTypeCell = new ViewCell();
             var ServiceTypeVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             ServiceTypeVerticalStack.Padding = 0;
-            var ServiceTypeStack = FormattedElementsHelper.TableRowStack();
-            ServiceTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.ServiceTypeTranslation)));
-            ServiceTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
-                nameof(_viewModel.ServiceTypeListOfOptions),
-                nameof(PickerToolHelper.TranslatedValue),
-                nameof(_viewModel.SelectedServiceType),
-                nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedServiceType,
-                _viewModel.PickerServiceTypeTranslation
-                )
-                );
-            var OtherServiceType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherServiceType), true);
-            OtherServiceType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherServiceTypeTranslation)));
-            OtherServiceType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherServiceType), nameof(_viewModel.IsEditMode)));
+            var ServiceTypeStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                ServiceTypeStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.ServiceTypeTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                ServiceTypeStack,
+                FormattedElementsHelper.FormPickerEntry(
+                    nameof(_viewModel.ServiceTypeListOfOptions),
+                    nameof(PickerToolHelper.TranslatedValue),
+                    nameof(_viewModel.SelectedServiceType),
+                    nameof(_viewModel.IsEditMode),
+                    _viewModel.SelectedServiceType,
+                    _viewModel.PickerServiceTypeTranslation
+                    ),
+                GridPostion.TwoRight);
+            var OtherServiceType = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherServiceType), true);
+            FormattedElementsHelper.AddGridValue(
+                OtherServiceType,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherServiceTypeTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                OtherServiceType,
+                FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherServiceType), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
             ServiceTypeVerticalStack.Children.Add(ServiceTypeStack);
             ServiceTypeVerticalStack.Children.Add(OtherServiceType);
             ServiceTypeCell.View = ServiceTypeVerticalStack;
@@ -97,20 +124,31 @@ namespace PigTool.Views
             var WhoProvidedServiceCell = new ViewCell();
             var WhoProvidedServiceVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             WhoProvidedServiceVerticalStack.Padding = 0;
-            var WhoProvidedServiceStack = FormattedElementsHelper.TableRowStack();
-            WhoProvidedServiceStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.WhoProvidedServiceTranslation)));
-            WhoProvidedServiceStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
-                nameof(_viewModel.WhoProvidedServiceListOfOptions),
-                nameof(PickerToolHelper.TranslatedValue),
-                nameof(_viewModel.SelectedWhoProvidedService),
-                nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedWhoProvidedService,
-                _viewModel.PickerProviderTranslation
-                )
-                );
-            var OtherWhoProvidedService = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherWhoProvidedService), true);
-            OtherWhoProvidedService.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherWhoProvidedServiceTranslation)));
-            OtherWhoProvidedService.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherWhoProvidedService), nameof(_viewModel.IsEditMode)));
+            var WhoProvidedServiceStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                WhoProvidedServiceStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.WhoProvidedServiceTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                WhoProvidedServiceStack,
+                FormattedElementsHelper.FormPickerEntry(
+                    nameof(_viewModel.WhoProvidedServiceListOfOptions),
+                    nameof(PickerToolHelper.TranslatedValue),
+                    nameof(_viewModel.SelectedWhoProvidedService),
+                    nameof(_viewModel.IsEditMode),
+                    _viewModel.SelectedWhoProvidedService,
+                    _viewModel.PickerProviderTranslation
+                    ),
+                GridPostion.TwoRight);
+            var OtherWhoProvidedService = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherWhoProvidedService), true);
+            FormattedElementsHelper.AddGridValue(
+                OtherWhoProvidedService,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherWhoProvidedServiceTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                OtherWhoProvidedService,
+                FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherWhoProvidedService), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
             WhoProvidedServiceVerticalStack.Children.Add(WhoProvidedServiceStack);
             WhoProvidedServiceVerticalStack.Children.Add(OtherWhoProvidedService);
             WhoProvidedServiceCell.View = WhoProvidedServiceVerticalStack;
@@ -136,9 +174,15 @@ namespace PigTool.Views
 
             //Comment
             var commentCell = new ViewCell();
-            var CommentStack = FormattedElementsHelper.TableRowStack();
-            CommentStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)));
-            CommentStack.Children.Add(FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode), heightRequest: 100));
+            var CommentStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode), heightRequest: 100),
+                GridPostion.TwoRight);
             commentCell.View = CommentStack;
             FullTableSection.Add(commentCell);
 

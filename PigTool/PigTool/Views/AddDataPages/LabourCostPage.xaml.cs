@@ -47,7 +47,26 @@ namespace PigTool.Views
         private void PopulateTheTable()
         {
             var FullTableSection = new TableSection();
-            try { 
+
+            if (_viewModel.EditExistingMode)
+            {
+                var buttonCellTop = new ViewCell();
+                var buttonStackTop = FormattedElementsHelper.ButtonCommandStack(
+                    ResetCommandBinding: nameof(_viewModel.ResetButtonClicked),
+                    EditCommandBinding: nameof(_viewModel.EditButtonClicked),
+                    DeleteCommandBinding: nameof(_viewModel.DeleteButtonClicked),
+                    SaveCommandBinding: nameof(_viewModel.SaveButtonClicked),
+                    EditModeBinding: nameof(_viewModel.IsEditMode),
+                    ExistingModeBinding: nameof(_viewModel.EditExistingMode),
+                    ResetText: _viewModel.ResetTranslation,
+                    SaveText: _viewModel.SaveTranslation,
+                    EditText: _viewModel.EditTranslation,
+                    DeleteText: _viewModel.DeleteTranslation
+                    );
+                buttonCellTop.View = buttonStackTop;
+                FullTableSection.Add(buttonCellTop);
+            }
+
             //Date
             var DateCell = new ViewCell();
             var stack = FormattedElementsHelper.TableRowStack();
@@ -87,25 +106,37 @@ namespace PigTool.Views
             var LabourCell = new ViewCell();
             var labourVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             labourVerticalStack.Padding = 0;
-            var labourTypeStack = FormattedElementsHelper.TableRowStack();
-            labourTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.LabourTypeTranslation)));
-            labourTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
+            var labourTypeStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                labourTypeStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.LabourTypeTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                labourTypeStack,
+                FormattedElementsHelper.FormPickerEntry(
                 nameof(_viewModel.LabourTypeOptions),
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedLabourType),
                 nameof(_viewModel.IsEditMode),
                 _viewModel.SelectedLabourType,
                 _viewModel.PickerLabourTypeTranslation
-                ));
-            var OtherLabourType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherLabourType), true);
-            OtherLabourType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherLaboutTypeTranslation)));
-            OtherLabourType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherLaboutType), nameof(_viewModel.IsEditMode)));
+                ),
+                GridPostion.TwoRight);
+            var OtherLabourType = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherLabourType), true);
+            FormattedElementsHelper.AddGridValue(
+                OtherLabourType,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherLaboutTypeTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                OtherLabourType,
+                FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherLaboutType), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
             labourVerticalStack.Children.Add(labourTypeStack);
             labourVerticalStack.Children.Add(OtherLabourType);
             LabourCell.View = labourVerticalStack;
             FullTableSection.Add(LabourCell);
 
-              
+
             //Amount Paid
             var AmountPaidCell = new ViewCell();
             var AmountPaidStack = FormattedElementsHelper.TableRowStack();
@@ -124,9 +155,15 @@ namespace PigTool.Views
 
             //Comment
             var commentCell = new ViewCell();
-            var CommentStack = FormattedElementsHelper.TableRowStack();
-            CommentStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)));
-            CommentStack.Children.Add(FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode), heightRequest: 100));
+            var CommentStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
             commentCell.View = CommentStack;
             FullTableSection.Add(commentCell);
 
@@ -148,10 +185,7 @@ namespace PigTool.Views
             FullTableSection.Add(buttonCell);
 
             LabourTableView.Root.Add(FullTableSection);
-            }catch(Exception ex)
-            {
 
-            }
         }
 
 

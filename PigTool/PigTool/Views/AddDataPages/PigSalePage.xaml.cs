@@ -51,6 +51,25 @@ namespace PigTool.Views
         {
             var FullTableSection = new TableSection();
 
+            if (_viewModel.EditExistingMode)
+            {
+                var buttonCellTop = new ViewCell();
+                var buttonStackTop = FormattedElementsHelper.ButtonCommandStack(
+                    ResetCommandBinding: nameof(_viewModel.ResetButtonClicked),
+                    EditCommandBinding: nameof(_viewModel.EditButtonClicked),
+                    DeleteCommandBinding: nameof(_viewModel.DeleteButtonClicked),
+                    SaveCommandBinding: nameof(_viewModel.SaveButtonClicked),
+                    EditModeBinding: nameof(_viewModel.IsEditMode),
+                    ExistingModeBinding: nameof(_viewModel.EditExistingMode),
+                    ResetText: _viewModel.ResetTranslation,
+                    SaveText: _viewModel.SaveTranslation,
+                    EditText: _viewModel.EditTranslation,
+                    DeleteText: _viewModel.DeleteTranslation
+                    );
+                buttonCellTop.View = buttonStackTop;
+                FullTableSection.Add(buttonCellTop);
+            }
+
             //Date
             var DateCell = new ViewCell();
             var stack = FormattedElementsHelper.TableRowStack();
@@ -64,20 +83,31 @@ namespace PigTool.Views
             var PigTypeCell = new ViewCell();
             var PigTypeVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             PigTypeVerticalStack.Padding = 0;
-            var PigTypeTypeStack = FormattedElementsHelper.TableRowStack();
-            PigTypeTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.PigTypeTranslation)));
-            PigTypeTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
+            var PigTypeTypeStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                PigTypeTypeStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.PigTypeTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                PigTypeTypeStack,
+                FormattedElementsHelper.FormPickerEntry(
                 nameof(_viewModel.PigTypeListOfOptions),
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedPigType),
                 nameof(_viewModel.IsEditMode),
                 _viewModel.SelectedPigType,
                 _viewModel.PickerPigTypeTranslation
-                )
-                );
-            var OtherPigType = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherPigType), true);
-            OtherPigType.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherPigTypeTranslation)));
-            OtherPigType.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherPigType), nameof(_viewModel.IsEditMode)));
+                ),
+                GridPostion.TwoRight);
+            var OtherPigType = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherPigType), true);
+            FormattedElementsHelper.AddGridValue(
+                OtherPigType,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherPigTypeTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                OtherPigType,
+                FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherPigType), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
             PigTypeVerticalStack.Children.Add(PigTypeTypeStack);
             PigTypeVerticalStack.Children.Add(OtherPigType);
             PigTypeCell.View = PigTypeVerticalStack;
@@ -103,20 +133,31 @@ namespace PigTool.Views
             var SoldToCell = new ViewCell();
             var SoldToVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             SoldToVerticalStack.Padding = 0;
-            var SoldToTypeStack = FormattedElementsHelper.TableRowStack();
-            SoldToTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.SoldToTranslation)));
-            SoldToTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
+            var SoldToTypeStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                SoldToTypeStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.SoldToTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                SoldToTypeStack,
+                FormattedElementsHelper.FormPickerEntry(
                 nameof(_viewModel.SoldToListOfOptions),
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedSoldTo),
                 nameof(_viewModel.IsEditMode),
                 _viewModel.SelectedSoldTo,
                 _viewModel.PickerSoldToTranslation
-                )
-                );
-            var OtherSoldTo = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherSoldTo), true);
-            OtherSoldTo.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherSoldToTranslation)));
-            OtherSoldTo.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherSoldTo), nameof(_viewModel.IsEditMode)));
+                ),
+                GridPostion.TwoRight);
+            var OtherSoldTo = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherSoldTo), true);
+            FormattedElementsHelper.AddGridValue(
+                OtherSoldTo,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherSoldToTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                OtherSoldTo,
+                FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherSoldTo), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
             SoldToVerticalStack.Children.Add(SoldToTypeStack);
             SoldToVerticalStack.Children.Add(OtherSoldTo);
             SoldToCell.View = SoldToVerticalStack;
@@ -148,9 +189,15 @@ namespace PigTool.Views
 
             //Comment
             var commentCell = new ViewCell();
-            var CommentStack = FormattedElementsHelper.TableRowStack();
-            CommentStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)));
-            CommentStack.Children.Add(FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode), heightRequest: 100));
+            var CommentStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode), heightRequest: 100),
+                GridPostion.TwoRight);
             commentCell.View = CommentStack;
             FullTableSection.Add(commentCell);
 

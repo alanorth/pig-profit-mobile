@@ -45,6 +45,25 @@ namespace PigTool.Views
         {
             var FullTableSection = new TableSection();
 
+            if (_viewModel.EditExistingMode)
+            {
+                var buttonCellTop = new ViewCell();
+                var buttonStackTop = FormattedElementsHelper.ButtonCommandStack(
+                    ResetCommandBinding: nameof(_viewModel.ResetButtonClicked),
+                    EditCommandBinding: nameof(_viewModel.EditButtonClicked),
+                    DeleteCommandBinding: nameof(_viewModel.DeleteButtonClicked),
+                    SaveCommandBinding: nameof(_viewModel.SaveButtonClicked),
+                    EditModeBinding: nameof(_viewModel.IsEditMode),
+                    ExistingModeBinding: nameof(_viewModel.EditExistingMode),
+                    ResetText: _viewModel.ResetTranslation,
+                    SaveText: _viewModel.SaveTranslation,
+                    EditText: _viewModel.EditTranslation,
+                    DeleteText: _viewModel.DeleteTranslation
+                    );
+                buttonCellTop.View = buttonStackTop;
+                FullTableSection.Add(buttonCellTop);
+            }
+
             //Date
             var DateCell = new ViewCell();
             var stack = FormattedElementsHelper.TableRowGrid();
@@ -188,24 +207,37 @@ namespace PigTool.Views
             var PurchasedFromCell = new ViewCell();
             var PurchasedFromVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             PurchasedFromVerticalStack.Padding = 0;
-            var PurchasedFromTypeStack = FormattedElementsHelper.TableRowStack();
-            PurchasedFromTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.PurchasedFromTranslation)));
-            PurchasedFromTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
+            var PurchasedFromTypeGrid = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                PurchasedFromTypeGrid,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.PurchasedFromTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+               PurchasedFromTypeGrid,
+              FormattedElementsHelper.FormPickerEntry(
                 nameof(_viewModel.PurchasedFromListOfOptions),
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedPurchasedFrom),
                 nameof(_viewModel.IsEditMode),
                 _viewModel.SelectedPurchasedFrom,
                 _viewModel.PickerPurchasedFromTranslation
-                )
-                );
-            var OtherPurchasedFrom = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherPurchasedFrom), true);
-            OtherPurchasedFrom.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherPurchasedFromTranslation)));
-            OtherPurchasedFrom.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherPurchasedFrom), nameof(_viewModel.IsEditMode)));
-            PurchasedFromVerticalStack.Children.Add(PurchasedFromTypeStack);
+                ),
+               GridPostion.TwoRight);
+
+            var OtherPurchasedFrom = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherFeedType), true);
+            FormattedElementsHelper.AddGridValue(
+                OtherPurchasedFrom,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherPurchasedFromTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                OtherPurchasedFrom,
+                FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherPurchasedFrom), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
+            PurchasedFromVerticalStack.Children.Add(PurchasedFromTypeGrid);
             PurchasedFromVerticalStack.Children.Add(OtherPurchasedFrom);
             PurchasedFromCell.View = PurchasedFromVerticalStack;
             FullTableSection.Add(PurchasedFromCell);
+
 
             //Other costs
             var OtherCostCell = new ViewCell();
@@ -217,9 +249,15 @@ namespace PigTool.Views
 
             //Comment
             var commentCell = new ViewCell();
-            var CommentStack = FormattedElementsHelper.TableRowStack();
-            CommentStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)));
-            CommentStack.Children.Add(FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode), heightRequest: 100));
+            var CommentStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode), heightRequest: 100),
+                GridPostion.TwoRight);
             commentCell.View = CommentStack;
             FullTableSection.Add(commentCell);
 

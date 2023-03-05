@@ -51,6 +51,25 @@ namespace PigTool.Views
         {
             var FullTableSection = new TableSection();
 
+            if (_viewModel.EditExistingMode)
+            {
+                var buttonCellTop = new ViewCell();
+                var buttonStackTop = FormattedElementsHelper.ButtonCommandStack(
+                    ResetCommandBinding: nameof(_viewModel.ResetButtonClicked),
+                    EditCommandBinding: nameof(_viewModel.EditButtonClicked),
+                    DeleteCommandBinding: nameof(_viewModel.DeleteButtonClicked),
+                    SaveCommandBinding: nameof(_viewModel.SaveButtonClicked),
+                    EditModeBinding: nameof(_viewModel.IsEditMode),
+                    ExistingModeBinding: nameof(_viewModel.EditExistingMode),
+                    ResetText: _viewModel.ResetTranslation,
+                    SaveText: _viewModel.SaveTranslation,
+                    EditText: _viewModel.EditTranslation,
+                    DeleteText: _viewModel.DeleteTranslation
+                    );
+                buttonCellTop.View = buttonStackTop;
+                FullTableSection.Add(buttonCellTop);
+            }
+
             //Date
             var DateCell = new ViewCell();
             var stack = FormattedElementsHelper.TableRowStack();
@@ -59,30 +78,33 @@ namespace PigTool.Views
             DateCell.View = stack;
             FullTableSection.Add(DateCell);
 
-            //Water Purchased
+            //Volume Purchased
 
             var VolumeSoldUnitCell = new ViewCell();
 
             var UnitVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             UnitVerticalStack.Padding = 0;
 
-            var VolumeSoldUnitTypeStack = FormattedElementsHelper.TableRowStack();
-            VolumeSoldUnitTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.VolumeSoldTranslation)));
-
-            var InputContainer = FormattedElementsHelper.TableRowStack();
-            InputContainer.Padding = 0;
-            InputContainer.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.VolumeSold), nameof(_viewModel.IsEditMode), null));
-            InputContainer.Children.Add(FormattedElementsHelper.FormPickerEntry(
+            var VolumeSoldUnitTypeStack = FormattedElementsHelper.TableRowGrid(fields: GridFields.Three);
+            FormattedElementsHelper.AddGridValue(
+                VolumeSoldUnitTypeStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.VolumeSoldTranslation)),
+                GridPostion.ThreeLeft);
+            FormattedElementsHelper.AddGridValue(
+                VolumeSoldUnitTypeStack,
+                FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.VolumeSold), nameof(_viewModel.IsEditMode), null),
+                GridPostion.ThreeCenter);
+            FormattedElementsHelper.AddGridValue(
+                VolumeSoldUnitTypeStack,
+                FormattedElementsHelper.FormPickerEntry(
                 nameof(_viewModel.VolumeUnitTypeListOfOptions),
                 nameof(PickerToolHelper.TranslatedValue),
                 nameof(_viewModel.SelectedVolumeUnitType),
                 nameof(_viewModel.IsEditMode),
                 _viewModel.SelectedVolumeUnitType,
                 _viewModel.PickerUnitTranslation
-                )
-                );
-
-            VolumeSoldUnitTypeStack.Children.Add(InputContainer);
+                ),
+                GridPostion.ThreeRight);
 
             UnitVerticalStack.Children.Add(VolumeSoldUnitTypeStack);
             VolumeSoldUnitCell.View = UnitVerticalStack;
@@ -104,23 +126,34 @@ namespace PigTool.Views
             var OtherPaymentLabel = FormattedElementsHelper.DataLabel(nameof(_viewModel.AnyOtherPaymentTranslation));
             PaymentTypeVerticalStack.Children.Add(OtherPaymentLabel);
 
-            var PaymentTypeTypeStack = FormattedElementsHelper.TableRowStack();
-            PaymentTypeTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.PaymentTypeTranslation)));
-            PaymentTypeTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
-                nameof(_viewModel.PaymentTypeListOfOptions),
-                nameof(PickerToolHelper.TranslatedValue),
-                nameof(_viewModel.SelectedPaymentType),
-                nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedPaymentType,
-                _viewModel.PickerPaymentTypeTranslation
-                )
-                );
+            var PaymentTypeTypeStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                PaymentTypeTypeStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.PaymentTypeTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                PaymentTypeTypeStack,
+                FormattedElementsHelper.FormPickerEntry(
+                    nameof(_viewModel.PaymentTypeListOfOptions),
+                    nameof(PickerToolHelper.TranslatedValue),
+                    nameof(_viewModel.SelectedPaymentType),
+                    nameof(_viewModel.IsEditMode),
+                    _viewModel.SelectedPaymentType,
+                    _viewModel.PickerPaymentTypeTranslation
+                    ),
+                GridPostion.TwoRight);
 
             //PaymentValue
             var PaymentValueCell = new ViewCell();
-            var PaymentValueStack = FormattedElementsHelper.TableRowStack();
-            PaymentValueStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.PaymentValueTranslation)));
-            PaymentValueStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.PaymentValue), nameof(_viewModel.IsEditMode), null));
+            var PaymentValueStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                PaymentValueStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.PaymentValueTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                PaymentValueStack,
+                FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.PaymentValue), nameof(_viewModel.IsEditMode), null),
+                GridPostion.TwoRight);
             PaymentValueCell.View = PaymentValueStack;
 
             PaymentTypeVerticalStack.Children.Add(PaymentTypeTypeStack);
@@ -128,26 +161,37 @@ namespace PigTool.Views
             PaymentTypeCell.View = PaymentTypeVerticalStack;
             FullTableSection.Add(PaymentTypeCell);
 
-           
+
 
             // SoldTo
             var SoldToCell = new ViewCell();
             var SoldToVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             SoldToVerticalStack.Padding = 0;
-            var SoldToTypeStack = FormattedElementsHelper.TableRowStack();
-            SoldToTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.SoldToTranslation)));
-            SoldToTypeStack.Children.Add(FormattedElementsHelper.FormPickerEntry(
-                nameof(_viewModel.SoldToListOfOptions),
-                nameof(PickerToolHelper.TranslatedValue),
-                nameof(_viewModel.SelectedSoldTo),
-                nameof(_viewModel.IsEditMode),
-                _viewModel.SelectedSoldTo,
-                _viewModel.PickerSoldToTranslation
-                )
-                );
-            var OtherSoldTo = FormattedElementsHelper.TableRowStack(nameof(_viewModel.DisplayOtherSoldTo), true);
-            OtherSoldTo.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherSoldToTranslation)));
-            OtherSoldTo.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherSoldTo), nameof(_viewModel.IsEditMode)));
+            var SoldToTypeStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                SoldToTypeStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.SoldToTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                SoldToTypeStack,
+                FormattedElementsHelper.FormPickerEntry(
+                    nameof(_viewModel.SoldToListOfOptions),
+                    nameof(PickerToolHelper.TranslatedValue),
+                    nameof(_viewModel.SelectedSoldTo),
+                    nameof(_viewModel.IsEditMode),
+                    _viewModel.SelectedSoldTo,
+                    _viewModel.PickerSoldToTranslation
+                    ),
+                GridPostion.TwoRight);
+            var OtherSoldTo = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherSoldTo), true);
+            FormattedElementsHelper.AddGridValue(
+                OtherSoldTo,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherSoldToTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                OtherSoldTo,
+                FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherSoldTo), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
             SoldToVerticalStack.Children.Add(SoldToTypeStack);
             SoldToVerticalStack.Children.Add(OtherSoldTo);
             SoldToCell.View = SoldToVerticalStack;
@@ -171,9 +215,15 @@ namespace PigTool.Views
 
             //Comment
             var commentCell = new ViewCell();
-            var CommentStack = FormattedElementsHelper.TableRowStack();
-            CommentStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)));
-            CommentStack.Children.Add(FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode), heightRequest: 100));
+            var CommentStack = FormattedElementsHelper.TableRowGrid();
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.CommentTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                CommentStack,
+                FormattedElementsHelper.FormEditorEntry(nameof(_viewModel.Comment), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
             commentCell.View = CommentStack;
             FullTableSection.Add(commentCell);
 
