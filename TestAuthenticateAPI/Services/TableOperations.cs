@@ -63,7 +63,7 @@ namespace TestAuthenticateAPI.Services
                     // Create the batch.
                     List<TableTransactionAction> addEntitiesBatch = new List<TableTransactionAction>();
 
-                    addEntitiesBatch.AddRange(entityGroup.Select(e => new TableTransactionAction(TableTransactionActionType.Add, e)));
+                    addEntitiesBatch.AddRange(entityGroup.Select(e => new TableTransactionAction(TableTransactionActionType.UpsertMerge, e)));
 
 
 

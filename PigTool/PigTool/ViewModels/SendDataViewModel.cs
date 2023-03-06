@@ -467,7 +467,7 @@ namespace PigTool.ViewModels
 
                 //go save to database  
                 //maybe check to see if there are under data coverage
-                var details = await rest.ExecuteWithRetryAsync(async () =>
+               var details = await rest.ExecuteWithRetryAsync(async () =>
                 {
                     using (var client = new HttpClient())
                     {

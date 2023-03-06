@@ -318,7 +318,7 @@ namespace PigTool.Helpers
         }
 
 
-        public static StackLayout ButtonCommandStack(
+        public static View ButtonCommandStack(
             string ResetCommandBinding,
             string EditCommandBinding,
             string DeleteCommandBinding,
@@ -355,14 +355,17 @@ namespace PigTool.Helpers
             saveButton.SetBinding(Button.CommandProperty, new Binding(SaveCommandBinding));
             saveButton.SetBinding(Button.IsVisibleProperty, new Binding(EditModeBinding));
             saveButton.SetBinding(Button.IsEnabledProperty, new Binding(EditModeBinding));
-            saveButton.HorizontalOptions = LayoutOptions.FillAndExpand;
+            //saveButton.HorizontalOptions = LayoutOptions.FillAndExpand;
 
             stack.Children.Add(resertButton);
             stack.Children.Add(editButton);
             stack.Children.Add(deleteButton);
             stack.Children.Add(saveButton);
+            ScrollView scrollView = new ScrollView();
+            scrollView.Content = stack;
+            scrollView.Orientation = ScrollOrientation.Horizontal;
 
-            return stack;
+            return scrollView;
         }
 
         // Custom slider input using the community range selector. Lower values have been hidden with the intention of only binding the upper value

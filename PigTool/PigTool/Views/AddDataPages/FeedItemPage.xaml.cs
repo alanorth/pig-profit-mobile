@@ -224,7 +224,7 @@ namespace PigTool.Views
                 ),
                GridPostion.TwoRight);
 
-            var OtherPurchasedFrom = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherFeedType), true);
+            var OtherPurchasedFrom = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherPurchasedFrom), true);
             FormattedElementsHelper.AddGridValue(
                 OtherPurchasedFrom,
                 FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherPurchasedFromTranslation)),
