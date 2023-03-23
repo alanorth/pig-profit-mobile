@@ -21,7 +21,7 @@ namespace TestAuthenticateAPI.Models
         public string? SubCounty { get; set; }
         public string? Parish { get; set; }
         public string? Village { get; set; }
-        public string Currency { get; set; }
+        public string? Currency { get; set; }
 
         public DateTime LastUploadDate { get; set; }
         public UserLangSettings UserLang { get; set; }
@@ -42,11 +42,12 @@ namespace TestAuthenticateAPI.Models
             SubCounty = mobileUserDetails.SubCounty;
             Parish = mobileUserDetails.Parish;
             Village = mobileUserDetails.Village;
-            Currency = mobileUserDetails.Currency;
+            //Currency = mobileUserDetails.Currency;
             LastUploadDate = mobileUserDetails.LastUploadDate;
             AuthorisedToken = mobileUserDetails.AuthorisedToken;
             AuthorisedEmail = mobileUserDetails.AuthorisedEmail;
             LastModified = mobileUserDetails.LastModified;
+            Name = mobileUserDetails.Name;
         }
 
         public Dictionary<string, string> ReturnDisreteUserVariablesInDiction()

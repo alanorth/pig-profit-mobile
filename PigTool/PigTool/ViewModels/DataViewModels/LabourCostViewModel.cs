@@ -273,7 +273,7 @@ namespace PigTool.ViewModels.DataViewModels
         {
             if (EditExistingMode)
             {
-                var confirmDelete = await Application.Current.MainPage.DisplayAlert("Deletion Confirmation", "Are you sure you want to Delete this item", "OK", "Cancel");
+                var confirmDelete = await Application.Current.MainPage.DisplayAlert(DeleteConfirmation, DeleteVerify, OK, Cancel);
                 if (confirmDelete)
                 {
                     //repo.DeleteHealthCaredItem(_itemForEditing);
@@ -284,7 +284,19 @@ namespace PigTool.ViewModels.DataViewModels
 
         private void ResetButtonPressed(object obj)
         {
-            //ClearFormVariables();
+            ClearFormVariables();
+        }
+
+        private void ClearFormVariables()
+        {
+            SelectedLabourType = null;
+            AmountPaid = null;
+            OtherCosts = null;
+            OtherLaboutType = null;
+            Comment = null;
+            Date = DateTime.Today;
+            DurationStart = DateTime.Today;
+            DurationFinish = DateTime.Today;
         }
 
         private async void SaveButtonCreateLabourCostItemAsync(object obj)

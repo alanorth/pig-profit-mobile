@@ -190,7 +190,7 @@ namespace PigTool.Views
             //Total Cost
             var TotalCostCell = new ViewCell();
             var TotalCostStack = FormattedElementsHelper.TableRowStack();
-            TotalCostStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.TotalCostTranslation)));
+            TotalCostStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.TotalCostAllUnits)));
             TotalCostStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.TotalCosts), nameof(_viewModel.IsEditMode), null));
             TotalCostCell.View = TotalCostStack;
             FullTableSection.Add(TotalCostCell);

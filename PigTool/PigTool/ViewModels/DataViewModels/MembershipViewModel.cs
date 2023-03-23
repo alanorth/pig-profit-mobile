@@ -377,7 +377,9 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.DurationFinish = DurationFinish;
 
                 await repo.UpdateMembershipItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert("Updated", "Water cost record has been updated", "OK");
+                await DisplayUpdateMessage(
+                    LogicHelper.GetTranslationFromStore(TranslationStore, Constants.MembershipUpdated, User.UserLang)
+                    );
                 await Shell.Current.Navigation.PopAsync();
             }
             else
@@ -416,7 +418,7 @@ namespace PigTool.ViewModels.DataViewModels
         {
             if (EditExistingMode)
             {
-                var confirmDelete = await Application.Current.MainPage.DisplayAlert("Deletion Confirmation", "Are you sure you want to delete this item", "OK", "Cancel");
+                var confirmDelete = await Application.Current.MainPage.DisplayAlert(DeleteConfirmation, DeleteVerify, OK, Cancel);
                 if (confirmDelete)
                 {
                     repo.DeleteMembershipItem(_itemForEditing);
@@ -444,6 +446,9 @@ namespace PigTool.ViewModels.DataViewModels
             TotalCosts = null;
             OtherCosts = null;
             Comment = null;
+            DurationStart = DateTime.Today;
+            DurationFinish = DateTime.Today;
+
         }
 
         public async Task PopulateDataDowns()

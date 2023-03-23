@@ -110,6 +110,7 @@ namespace PigTool.Helpers
             var DPicker = new DatePicker()
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
+                Format = "dd/MMM/yyyy"
             };
 
             DPicker.SetBinding(DatePicker.DateProperty, new Binding(DateBindingProperty));

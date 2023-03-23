@@ -489,7 +489,6 @@ namespace PigTool.ViewModels.DataViewModels
             SubCounty = _itemForEditing.SubCounty;
             Parish = _itemForEditing.Parish;
             Village = _itemForEditing.Village;
-            Currency = _itemForEditing.Currency;
             Province = _itemForEditing.Province;
             Commune = _itemForEditing.Commune;
             Sector = _itemForEditing.Sector;
@@ -504,7 +503,7 @@ namespace PigTool.ViewModels.DataViewModels
             //SelectedDistrict = DistrictListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.District).FirstOrDefault();
             //SelectedCounty = CountyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.County).FirstOrDefault();
             //SelectedSubCounty = SubCountyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.SubCounty).FirstOrDefault();
-            SelectedCurrency = CurrencyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Currency).FirstOrDefault();
+            //SelectedCurrency = CurrencyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Currency).FirstOrDefault();
         }
 
         private async void SaveButtonCreateUser(object obj)
@@ -532,7 +531,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.SubCounty = SubCounty;
                 _itemForEditing.Parish = Parish;
                 _itemForEditing.Village = Village;
-                _itemForEditing.Currency = SelectedCurrency != null ? SelectedCurrency.TranslationRowKey : null;
+                //_itemForEditing.Currency = SelectedCurrency != null ? SelectedCurrency.TranslationRowKey : null;
                 _itemForEditing.Province = Province;
                 _itemForEditing.Commune = Commune;
                 _itemForEditing.Sector = Sector;
@@ -613,7 +612,7 @@ namespace PigTool.ViewModels.DataViewModels
             //SelectedDistrict = DistrictListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.District).FirstOrDefault();
             //SelectedCounty = CountyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.County).FirstOrDefault();
             //SelectedSubCounty = SubCountyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.SubCounty).FirstOrDefault();
-            SelectedCurrency = CurrencyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Currency).FirstOrDefault();
+            //SelectedCurrency = CurrencyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Currency).FirstOrDefault();
 
         }
 

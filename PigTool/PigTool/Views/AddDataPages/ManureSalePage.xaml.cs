@@ -114,13 +114,13 @@ namespace PigTool.Views
             //AmountRecieved
             var AmountRecievedCell = new ViewCell();
             var AmountRecievedStack = FormattedElementsHelper.TableRowStack();
-            AmountRecievedStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.AmountRecievedTranslation)));
+            AmountRecievedStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.ManureAmountRecievedTranslation)));
             AmountRecievedStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.AmountRecieved), nameof(_viewModel.IsEditMode), null));
             AmountRecievedCell.View = AmountRecievedStack;
             FullTableSection.Add(AmountRecievedCell);
 
             // PaymentType
-            var PaymentTypeCell = new ViewCell();
+           /* var PaymentTypeCell = new ViewCell();
             var PaymentTypeVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
 
             var OtherPaymentLabel = FormattedElementsHelper.DataLabel(nameof(_viewModel.AnyOtherPaymentTranslation));
@@ -159,7 +159,7 @@ namespace PigTool.Views
             PaymentTypeVerticalStack.Children.Add(PaymentTypeTypeStack);
             PaymentTypeVerticalStack.Children.Add(PaymentValueStack);
             PaymentTypeCell.View = PaymentTypeVerticalStack;
-            FullTableSection.Add(PaymentTypeCell);
+            FullTableSection.Add(PaymentTypeCell);*/
 
 
 

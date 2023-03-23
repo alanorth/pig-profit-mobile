@@ -465,7 +465,7 @@ namespace PigTool.ViewModels.DataViewModels
         {
             if (EditExistingMode)
             {
-                var confirmDelete = await Application.Current.MainPage.DisplayAlert("Deletion Confirmation", "Are you sure you want to delete this item", "OK", "Cancel");
+                var confirmDelete = await Application.Current.MainPage.DisplayAlert(DeleteConfirmation, DeleteVerify, OK, Cancel);
                 if (confirmDelete)
                 {
                     repo.DeleteWaterCostItem(_itemForEditing);
@@ -496,6 +496,9 @@ namespace PigTool.ViewModels.DataViewModels
             TransportationCost = null;
             OtherCosts = null;
             Comment = null;
+            Date = DateTime.Now;
+            DurationStart = DateTime.Now;
+            DurationFinish = DateTime.Now;
         }
 
         public async Task PopulateDataDowns()

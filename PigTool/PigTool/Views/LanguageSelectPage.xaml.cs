@@ -37,7 +37,7 @@ namespace PigTool.Views
         {
             List<LanguageDisplay> langs = new List<LanguageDisplay>() {
                 new LanguageDisplay(){ text = "English", lang = UserLangSettings.Eng },
-                new LanguageDisplay(){ text = "Swahili", lang = UserLangSettings.Lang1 },
+                new LanguageDisplay(){ text = "Luganda", lang = UserLangSettings.Lang1 },
                 new LanguageDisplay(){ text = "Vietnamese", lang = UserLangSettings.Lang2 },
                 new LanguageDisplay(){ text = "Kinyarwanda", lang = UserLangSettings.Eng },
             };

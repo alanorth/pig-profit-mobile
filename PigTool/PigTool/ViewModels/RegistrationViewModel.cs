@@ -429,7 +429,7 @@ namespace PigTool.ViewModels.DataViewModels
 
         private PickerToolHelper selectedCurrency;
 
-        public PickerToolHelper SelectedCurrency
+        /*public PickerToolHelper SelectedCurrency
         {
             get { return selectedCurrency; }
             set
@@ -440,7 +440,7 @@ namespace PigTool.ViewModels.DataViewModels
                     OnPropertyChanged(nameof(SelectedCurrency));
                 }
             }
-        }
+        }*/
         #endregion
 
         #region Hidden Fields
@@ -540,7 +540,7 @@ namespace PigTool.ViewModels.DataViewModels
             SubCounty = item.SubCounty;
             Parish = item.Parish;
             Village = item.Village;
-            Currency = item.Currency;
+            //Currency = item.Currency;
             Province = item.Province;
             Commune = item.Commune;
             Sector = item.Sector;
@@ -555,7 +555,7 @@ namespace PigTool.ViewModels.DataViewModels
                 //SelectedDistrict = DistrictListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.District).FirstOrDefault();
                 //SelectedCounty = CountyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.County).FirstOrDefault();
                 //SelectedSubCounty = SubCountyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.SubCounty).FirstOrDefault();
-                SelectedCurrency = CurrencyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Currency).FirstOrDefault();
+                //SelectedCurrency = CurrencyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Currency).FirstOrDefault();
             }
         }
 
@@ -593,7 +593,7 @@ namespace PigTool.ViewModels.DataViewModels
                     _itemForEditing.SubCounty = SubCounty;
                     _itemForEditing.Parish = Parish;
                     _itemForEditing.Village = Village;
-                    _itemForEditing.Currency = SelectedCurrency != null ? SelectedCurrency.TranslationRowKey : null;
+                    //_itemForEditing.Currency = SelectedCurrency != null ? SelectedCurrency.TranslationRowKey : null;
                     _itemForEditing.Province = Province;
                     _itemForEditing.Commune = Commune;
                     _itemForEditing.Sector = Sector;
@@ -685,7 +685,7 @@ namespace PigTool.ViewModels.DataViewModels
                         SubCounty = SubCounty,
                         Parish = Parish,
                         Village = Village,
-                        Currency = SelectedCurrency != null ? SelectedCurrency.TranslationRowKey : null,
+                        //Currency = SelectedCurrency != null ? SelectedCurrency.TranslationRowKey : null,
                         Province = Province,
                         Commune = Commune,
                         Sector = Sector,
@@ -762,7 +762,7 @@ namespace PigTool.ViewModels.DataViewModels
             SubCounty = null;
             Parish = null;
             Village = null;
-            SelectedCurrency = null;
+            //SelectedCurrency = null;
             Province = null;
             Commune = null;
             Sector = null;
@@ -792,7 +792,7 @@ namespace PigTool.ViewModels.DataViewModels
                 //SelectedDistrict = DistrictListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.District).FirstOrDefault();
                 //SelectedCounty = CountyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.County).FirstOrDefault();
                 //SelectedSubCounty = SubCountyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.SubCounty).FirstOrDefault();
-                SelectedCurrency = CurrencyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Currency).FirstOrDefault();
+                //SelectedCurrency = CurrencyListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.Currency).FirstOrDefault();
             }
         }
 
@@ -804,7 +804,7 @@ namespace PigTool.ViewModels.DataViewModels
                 if (UserName == null) returnString.AppendLine("UserName Not provided");
                 if (Name == null) returnString.AppendLine("Name Not provided");
                 if (PhoneNumber == null) returnString.AppendLine("Phone Number Not Provided");
-                if (SelectedCurrency == null) returnString.AppendLine("Currency Not Provided");
+                //if (SelectedCurrency == null) returnString.AppendLine("Currency Not Provided");
 
                 return returnString.ToString();
             }

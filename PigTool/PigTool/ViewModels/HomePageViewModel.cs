@@ -110,7 +110,7 @@ namespace PigTool.ViewModels
 
         public HomePageViewModel()
         {
-            NameOfUser = "Hello " + User.UserName;
+            NameOfUser = "Hello " + User.Name;
             VillageOfUser = "Village: " + User.Village;
             UserLastUpdatedTime = User.LastUploadDate.ToString();
 
@@ -376,7 +376,7 @@ namespace PigTool.ViewModels
                         Date = start.AddDays(random.Next(range)),
                         PigType = "PigType2",
                         SalePrice = Math.Round(random.NextDouble() * (2000 - 0) + 0, 2),
-                        Brokerage = Math.Round(random.NextDouble() * (500 - 0) + 0, 2),
+                        //Brokerage = Math.Round(random.NextDouble() * (500 - 0) + 0, 2),
                         TransportationCost = Math.Round(random.NextDouble() * (200 - 0) + 0, 2),
                         OtherCosts = Math.Round(random.NextDouble() * (200 - 0) + 0, 2),
                         LastModified = DateTime.UtcNow,
@@ -409,7 +409,7 @@ namespace PigTool.ViewModels
                     {
                         Date = start.AddDays(random.Next(range)),
                         AmountRecieved = Math.Round(random.NextDouble() * (2000 - 0) + 0, 2),
-                        PaymentValue = Math.Round(random.NextDouble() * (2000 - 0) + 0, 2),
+                        //PaymentValue = Math.Round(random.NextDouble() * (2000 - 0) + 0, 2),
                         TransportationCost = Math.Round(random.NextDouble() * (200 - 0) + 0, 2),
                         OtherCosts = Math.Round(random.NextDouble() * (200 - 0) + 0, 2),
                         LastModified = DateTime.UtcNow,

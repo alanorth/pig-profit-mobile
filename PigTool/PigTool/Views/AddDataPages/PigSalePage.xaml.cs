@@ -164,12 +164,12 @@ namespace PigTool.Views
             FullTableSection.Add(SoldToCell);
 
             //Transport Cost
-            var BrokerageCell = new ViewCell();
+            /*var BrokerageCell = new ViewCell();
             var BrokeragesStack = FormattedElementsHelper.TableRowStack();
             BrokeragesStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.BrokerageTranslation)));
             BrokeragesStack.Children.Add(FormattedElementsHelper.FormNumericEntry(nameof(_viewModel.Brokerage), nameof(_viewModel.IsEditMode), null));
             BrokerageCell.View = BrokeragesStack;
-            FullTableSection.Add(BrokerageCell);
+            FullTableSection.Add(BrokerageCell);*/
 
             //Transport Cost
             var TransportCostCell = new ViewCell();

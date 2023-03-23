@@ -353,7 +353,7 @@ namespace PigTool.ViewModels.DataViewModels
                     };
 
                     await repo.AddSingleAnimalHouseItem(newHousingCost);
-                    await Application.Current.MainPage.DisplayAlert("Created", "Housing record has been saved", "OK");
+                    await DisplaySavedMessage(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.SaveHouseRecord, User.UserLang));
                     await Shell.Current.Navigation.PopAsync();
                 }
                 catch (Exception ex)
@@ -374,7 +374,7 @@ namespace PigTool.ViewModels.DataViewModels
         {
             if (EditExistingMode)
             {
-                var confirmDelete = await Application.Current.MainPage.DisplayAlert("Deletion Confirmation", "Are you sure you want to Delete this item", "OK", "Cancel");
+                var confirmDelete = await Application.Current.MainPage.DisplayAlert(DeleteConfirmation, DeleteVerify, OK, Cancel);
                 if (confirmDelete)
                 {
                     repo.DeleteAnimalHouseItem(_itemForEditing);

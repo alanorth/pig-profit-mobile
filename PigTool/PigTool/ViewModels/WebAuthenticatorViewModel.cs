@@ -105,15 +105,17 @@ namespace Samples.ViewModel
                         mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.County), out var county);
                         mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.SubCounty), out var subCounty);
                         mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.Village), out var village);
+                        mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.Name), out var userName);
 
-                        mobileUser.Gender = gender;
-                        mobileUser.Email = email;
-                        mobileUser.PhoneNumber = phoneNumber;
-                        mobileUser.Country = country;
-                        mobileUser.District = district;
-                        mobileUser.County = county;
-                        mobileUser.SubCounty = subCounty;
-                        mobileUser.Village = village;
+                        mobileUser.Gender = WebUtility.UrlDecode(gender);
+                        mobileUser.Email = WebUtility.UrlDecode(email);
+                        mobileUser.PhoneNumber = WebUtility.UrlDecode(phoneNumber);
+                        mobileUser.Country = WebUtility.UrlDecode(country);
+                        mobileUser.District = WebUtility.UrlDecode(district);
+                        mobileUser.County = WebUtility.UrlDecode(county);
+                        mobileUser.SubCounty = WebUtility.UrlDecode(subCounty);
+                        mobileUser.Village = WebUtility.UrlDecode(village);
+                        mobileUser.Name = WebUtility.UrlDecode(userName);
 
                     }
                     await PopupNavigation.Instance.PopAsync();

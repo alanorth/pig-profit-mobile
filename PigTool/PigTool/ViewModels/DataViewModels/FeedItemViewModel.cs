@@ -51,7 +51,7 @@ namespace PigTool.ViewModels.DataViewModels
         public string FeedDurationTranslation { get; set; }
 
         public string AmountPurchasedTranslation { get; set; }
-        public string TotalCostTranslation { get; set; }
+        public string TotalCostAllUnits { get; set; }
         public string TransportationCostTranslation { get; set; }
         public string CommentTranslation { get; set; }
 
@@ -422,7 +422,7 @@ namespace PigTool.ViewModels.DataViewModels
             FinishTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FinishTranslation), User.UserLang) + " *";
             FeedDurationTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FeedDurationTranslation), User.UserLang);
 
-            TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang) + " *";
+            TotalCostAllUnits = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostAllUnits), User.UserLang) + " *";
             TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
 
@@ -477,7 +477,7 @@ namespace PigTool.ViewModels.DataViewModels
 
             if (!string.IsNullOrWhiteSpace(valid))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", valid, "OK");
+                await Application.Current.MainPage.DisplayAlert(Error, valid, OK);
                 return;
             }
 
@@ -501,7 +501,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.DurationFinish = DurationFinish;
 
                 await repo.UpdateFeedItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert("Updated", "Feed record has been updated", "OK");
+                await Application.Current.MainPage.DisplayAlert(Updated, "Feed record has been updated", OK);
                 await Shell.Current.Navigation.PopAsync();
             }
             else
@@ -529,12 +529,12 @@ namespace PigTool.ViewModels.DataViewModels
 
                 try { 
                     await repo.AddSingleFeedItem(newFeedItem);
-                    await Application.Current.MainPage.DisplayAlert("Created", "Feed item has been saved", "OK");
+                    await DisplaySavedMessage(LogicHelper.GetTranslationFromStore(TranslationStore,Constants.FeedSaved,User.UserLang));
                     await Shell.Current.Navigation.PopAsync();
                 }
                 catch(Exception ex)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                    await Application.Current.MainPage.DisplayAlert(Error, ex.InnerException.Message, OK);
                 }
             }
         }
@@ -543,7 +543,7 @@ namespace PigTool.ViewModels.DataViewModels
         {
             if (EditExistingMode)
             {
-                var confirmDelete = await Application.Current.MainPage.DisplayAlert("Deletion Confirmation", "Are you sure you want to delete this item", "OK", "Cancel");
+                var confirmDelete = await Application.Current.MainPage.DisplayAlert(DeleteConfirmation, DeleteVerify, OK, Cancel);
                 if (confirmDelete)
                 {
                     repo.DeleteFeedItem(_itemForEditing);
@@ -564,6 +564,8 @@ namespace PigTool.ViewModels.DataViewModels
 
         private void ClearFormVariables()
         {
+            SelectedAmountPurchasedUnit = null;
+            SelectedFeedType = null;
             FeedType = null;
             OtherFeedType = null;
             AmountPurchased = null;
@@ -591,7 +593,7 @@ namespace PigTool.ViewModels.DataViewModels
             {
                 SelectedFeedType = FeedTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.FeedType).FirstOrDefault();
                 SelectedPurchasedFrom = PurchasedFromListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.PurchasedFrom).FirstOrDefault();
-                selectedAmountPurchasedUnit = AmountPurchasedUnitListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.AmountPurchasedUnit).FirstOrDefault();
+                SelectedAmountPurchasedUnit = AmountPurchasedUnitListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.AmountPurchasedUnit).FirstOrDefault();
             }
         }
 
@@ -600,19 +602,19 @@ namespace PigTool.ViewModels.DataViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                if(Date == null) returnString.AppendLine("Date obtained not provided");
-                returnString.AppendLine(TotalCosts == null ? "Total Cost Not Provided" : "");
-                returnString.AppendLine(TransportationCost == null ? "Transportation Cost Not Provided" : "");
-                returnString.AppendLine(DurationStart == null ? "Duration Start Not Provided" : "");
-                returnString.AppendLine(DurationFinish == null ? "Duration Finish Not Provided" : "");
-                returnString.AppendLine(DurationStart > DurationFinish ? "Duration Finish is before Duration Start" : "");
+                if(Date == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDate, User.UserLang));
+                if(TotalCosts == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoTotalCost, User.UserLang));
+                if (TransportationCost == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoTransportationCost, User.UserLang));
+                if (DurationStart == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDurationStart, User.UserLang));
+                if (DurationFinish == null ) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDurationEnd, User.UserLang));
+                if (DurationStart > DurationFinish) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.DurIsbefore, User.UserLang));
 
 
                 if (SelectedFeedType != null)
                 {
                     if (SelectedFeedType.TranslationRowKey == Constants.OTHER)
                     {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherFeedType) ? "Other Feed Type Not Provided" : "");
+                        if(string.IsNullOrWhiteSpace(OtherFeedType))returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoFeedType, User.UserLang));//NoFeedType
                     }
                 }
 
@@ -620,7 +622,7 @@ namespace PigTool.ViewModels.DataViewModels
                 {
                     if (SelectedAmountPurchasedUnit.TranslationRowKey == Constants.OTHER)
                     {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherAmountPurchasedUnit) ? "Other Amount Purchased Unit Not Provided" : "");
+                        if(string.IsNullOrWhiteSpace(OtherAmountPurchasedUnit)) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.OtherPurchasedUnitNotProvided, User.UserLang));//OtherPurchasedUnitNotProvided
                     }
                 }
 
@@ -628,7 +630,7 @@ namespace PigTool.ViewModels.DataViewModels
                 {
                     if (SelectedPurchasedFrom.TranslationRowKey == Constants.OTHER)
                     {
-                        returnString.AppendLine(string.IsNullOrWhiteSpace(OtherPurchasedFrom) ? "Other Purchased From Not Provided" : "");
+                        if(string.IsNullOrWhiteSpace(OtherPurchasedFrom)) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoOtherPurcFrom, User.UserLang));//Other Purchased From Not Provided
                     }
                 }
 

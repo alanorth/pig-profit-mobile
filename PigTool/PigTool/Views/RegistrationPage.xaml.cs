@@ -266,7 +266,7 @@ namespace PigTool.Views
             FullTableSection.Add(VillageCell);
 
             //Currency
-            var CurrencyCell = new ViewCell();
+            /*var CurrencyCell = new ViewCell();
             var CurrencyVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
             CurrencyVerticalStack.Padding = 0;
             var CurrencyStack = FormattedElementsHelper.TableRowStack();
@@ -282,7 +282,7 @@ namespace PigTool.Views
                 );
             CurrencyVerticalStack.Children.Add(CurrencyStack);
             CurrencyCell.View = CurrencyVerticalStack;
-            FullTableSection.Add(CurrencyCell);
+            FullTableSection.Add(CurrencyCell);*/
 
             //Button Commands
             var buttonCell = new ViewCell();

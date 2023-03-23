@@ -46,10 +46,10 @@ namespace PigTool.ViewModels.DataViewModels
         public string SoldToTranslation { get; set; }
         public string OtherSoldToTranslation { get; set; }
 
-        public string AmountRecievedTranslation { get; set; }
+        public string ManureAmountRecievedTranslation { get; set; }
         public string AnyOtherPaymentTranslation { get; set; }
-        public string PaymentTypeTranslation { get; set; }
-        public string PaymentValueTranslation { get; set; }
+        //public string PaymentTypeTranslation { get; set; }
+        //public string PaymentValueTranslation { get; set; }
         public string TransportationCostTranslation { get; set; }
         public string OtherCostTranslation { get; set; }
         public string CommentTranslation { get; set; }
@@ -351,10 +351,10 @@ namespace PigTool.ViewModels.DataViewModels
             SoldToTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SoldToTranslation), User.UserLang);
             OtherSoldToTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherSoldToTranslation), User.UserLang);
 
-            AmountRecievedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AmountRecievedTranslation), User.UserLang) + " *";
+            ManureAmountRecievedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ManureAmountRecievedTranslation), User.UserLang) + " *";
             AnyOtherPaymentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AnyOtherPaymentTranslation), User.UserLang);
-            PaymentTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PaymentTypeTranslation), User.UserLang);
-            PaymentValueTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PaymentValueTranslation), User.UserLang) + " *";
+            //PaymentTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PaymentTypeTranslation), User.UserLang);
+            //PaymentValueTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PaymentValueTranslation), User.UserLang) + " *";
             TransportationCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportationCostTranslation), User.UserLang) + " *";
             OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang);
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
@@ -383,8 +383,8 @@ namespace PigTool.ViewModels.DataViewModels
             SoldTo = item.SoldTo;
             OtherSoldTo = item.OtherSoldTo;
             AmountRecieved = item.AmountRecieved;
-            PaymentType = item.PaymentType;
-            PaymentValue = item.PaymentValue;
+            //PaymentType = item.PaymentType;
+            //PaymentValue = item.PaymentValue;
             TransportationCost = item.TransportationCost;
             OtherCosts = item.OtherCosts;
             Comment = item.Comment;
@@ -396,7 +396,7 @@ namespace PigTool.ViewModels.DataViewModels
             {
                 SelectedVolumeUnitType = VolumeUnitTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.VolumeUnitType).FirstOrDefault();
                 SelectedSoldTo = SoldToListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.SoldTo).FirstOrDefault();
-                SelectedPaymentType = PaymentTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.PaymentType).FirstOrDefault();
+                //SelectedPaymentType = PaymentTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.PaymentType).FirstOrDefault();
             }
         }
 
@@ -419,8 +419,8 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.SoldTo = SelectedSoldTo != null ? SelectedSoldTo.TranslationRowKey : null;
                 _itemForEditing.OtherSoldTo = OtherSoldTo;
                 _itemForEditing.AmountRecieved = (double)AmountRecieved;
-                _itemForEditing.PaymentType = SelectedPaymentType != null ? SelectedPaymentType.TranslationRowKey : null;
-                _itemForEditing.PaymentValue = (double)PaymentValue;
+                //_itemForEditing.PaymentType = SelectedPaymentType != null ? SelectedPaymentType.TranslationRowKey : null;
+                //_itemForEditing.PaymentValue = (double)PaymentValue;
                 _itemForEditing.TransportationCost = (double)TransportationCost;
                 _itemForEditing.OtherCosts = OtherCosts;
                 _itemForEditing.Comment = Comment;
@@ -440,8 +440,8 @@ namespace PigTool.ViewModels.DataViewModels
                     SoldTo = SelectedSoldTo != null ? SelectedSoldTo.TranslationRowKey : null,
                     OtherSoldTo = OtherSoldTo,
                     AmountRecieved = (double)AmountRecieved,
-                    PaymentType = SelectedPaymentType != null ? SelectedPaymentType.TranslationRowKey : null,
-                    PaymentValue = PaymentValue,
+                    //PaymentType = SelectedPaymentType != null ? SelectedPaymentType.TranslationRowKey : null,
+                    //PaymentValue = PaymentValue,
                     TransportationCost = (double)TransportationCost,
                     OtherCosts = OtherCosts,
                     Comment = Comment,
@@ -467,7 +467,7 @@ namespace PigTool.ViewModels.DataViewModels
         {
             if (EditExistingMode)
             {
-                var confirmDelete = await Application.Current.MainPage.DisplayAlert("Deletion Confirmation", "Are you sure you want to delete this item", "OK", "Cancel");
+                var confirmDelete = await Application.Current.MainPage.DisplayAlert(DeleteConfirmation, DeleteVerify, OK, Cancel);
                 if (confirmDelete)
                 {
                     repo.DeleteManureSaleItem(_itemForEditing);
@@ -515,7 +515,7 @@ namespace PigTool.ViewModels.DataViewModels
             {
                 selectedVolumeUnitType = VolumeUnitTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.VolumeUnitType).FirstOrDefault();
                 selectedSoldTo = SoldToListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.SoldTo).FirstOrDefault();
-                selectedPaymentType = PaymentTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.PaymentType).FirstOrDefault();
+                //selectedPaymentType = PaymentTypeListOfOptions.Where(x => x.TranslationRowKey == _itemForEditing.PaymentType).FirstOrDefault();
             }
         }
 

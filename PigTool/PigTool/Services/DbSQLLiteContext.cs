@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shared;
+using Shared.Configurations;
 using System;
 using System.IO;
 using Xamarin.Essentials;
@@ -56,7 +57,8 @@ namespace SQLLiteDbContext
             modelBuilder.Entity<BaseItem>().Property(bi => bi.IsModified).HasDefaultValue(true);
             modelBuilder.Entity<BaseItem>().Property(bi => bi.LastModified).HasDefaultValueSql("datetime()");
 
-            modelBuilder.Entity<Translation>().HasKey(x => x.RowKey);
+            //modelBuilder.Entity<Translation>().HasKey(x => x.RowKey);
+            modelBuilder.ApplyConfiguration(new TranslationConfigurations());
             //modelBuilder.Entity<UserInfo>().Property(bi => bi.PartitionKey).HasDefaultValue(Constants.PartitionKeyUserInfo);
             modelBuilder.Entity<MobileUser>().HasKey(x => x.RowKey);
             modelBuilder.Entity<MobileUser>().Ignore(x => x.ETag);
@@ -115,7 +117,7 @@ namespace SQLLiteDbContext
             modelBuilder.Entity<PigSaleItem>().HasOne(En => En.DisplayTypeTranslation).WithMany(trans => trans.PigSaleItems).HasForeignKey(fi => fi.PigType).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<ReproductiveItem>().HasOne(En => En.DisplayTypeTranslation).WithMany(trans => trans.ReproductiveItems).HasForeignKey(fi => fi.ServiceType).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<ManureSaleItem>().HasOne(En => En.DisplayTypeTranslation).WithMany(trans => trans.ManureSaleItems).HasForeignKey(fi => fi.SoldTo).OnDelete(DeleteBehavior.NoAction);
-
+            /*
             modelBuilder.Entity<Translation>(x =>
             {
                 x.HasData(
@@ -536,7 +538,7 @@ namespace SQLLiteDbContext
 
                     );
             }
-             );
+             );*/
 
             modelBuilder.Entity<ControlData>(async x =>
             {
@@ -591,6 +593,7 @@ namespace SQLLiteDbContext
                    new ControlData() { DisplayOrder = 2, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType2" },
                    new ControlData() { DisplayOrder = 3, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType3" },
                    new ControlData() { DisplayOrder = 4, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType4" },
+                   new ControlData() { DisplayOrder = 5, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = "MedicineType5" },
                    new ControlData() { DisplayOrder = 11, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.HEALTHMEDICETYPE, TranslationRowKey = Constants.OTHER },
 
                    new ControlData() { DisplayOrder = 1, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.HEALTHPURCHASEFROMTYPE, TranslationRowKey = "PruchaseFromType1" },
@@ -668,7 +671,7 @@ namespace SQLLiteDbContext
                    new ControlData() { DisplayOrder = 9, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.SOLDTOTYPE, TranslationRowKey = Constants.OTHER },
 
                    new ControlData() { DisplayOrder = 1, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.BREEDINGSERVICETYPE, TranslationRowKey = "BreedingServiceType1" },
-                   new ControlData() { DisplayOrder = 2, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.BREEDINGSERVICETYPE, TranslationRowKey = "BreedingServiceType2" },
+                   //new ControlData() { DisplayOrder = 2, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.BREEDINGSERVICETYPE, TranslationRowKey = "BreedingServiceType2" },
                    new ControlData() { DisplayOrder = 9, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.BREEDINGSERVICETYPE, TranslationRowKey = Constants.OTHER },
 
                    new ControlData() { DisplayOrder = 1, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.OTHERPAYMENTTYPE, TranslationRowKey = "PaymentType1" },

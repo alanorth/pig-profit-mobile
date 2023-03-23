@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SQLLiteDbContext;
 
 namespace Shared.Migrations
 {
     [DbContext(typeof(DbSQLLiteContext))]
-    partial class DbSQLLiteContextModelSnapshot : ModelSnapshot
+    [Migration("20230322220905_Trans")]
+    partial class Trans
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -559,16 +561,6 @@ namespace Shared.Migrations
                             DropDownControlOption = "HealthMedicineType",
                             CreatedBy = "InitialUpload",
                             DisplayOrder = 4,
-                            IsDeleted = false,
-                            IsEnable = false,
-                            PartitionKey = "ControlData"
-                        },
-                        new
-                        {
-                            TranslationRowKey = "MedicineType5",
-                            DropDownControlOption = "HealthMedicineType",
-                            CreatedBy = "InitialUpload",
-                            DisplayOrder = 5,
                             IsDeleted = false,
                             IsEnable = false,
                             PartitionKey = "ControlData"
@@ -1185,6 +1177,16 @@ namespace Shared.Migrations
                         },
                         new
                         {
+                            TranslationRowKey = "BreedingServiceType2",
+                            DropDownControlOption = "BreedingServiceType",
+                            CreatedBy = "InitialUpload",
+                            DisplayOrder = 2,
+                            IsDeleted = false,
+                            IsEnable = false,
+                            PartitionKey = "ControlData"
+                        },
+                        new
+                        {
                             TranslationRowKey = "Other",
                             DropDownControlOption = "BreedingServiceType",
                             CreatedBy = "InitialUpload",
@@ -1750,6 +1752,10 @@ namespace Shared.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("County")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("District")
@@ -2597,6 +2603,13 @@ namespace Shared.Migrations
                         },
                         new
                         {
+                            RowKey = "BreedingServiceType2",
+                            English = "Semen sale (? to include)",
+                            Lang1 = "Okutunda amazzi agokuwakisa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
                             RowKey = "EquipmentType2",
                             English = "Watering equipment",
                             Lang1 = "Ebifukirila amazzi",
@@ -2831,6 +2844,13 @@ namespace Shared.Migrations
                             RowKey = "OtherCostsTranslation",
                             English = "Any Other Cost",
                             Lang1 = "Ensasanya endala yona",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AmountPaidTranslation",
+                            English = "Amount paid over the labour use duration",
+                            Lang1 = "Sente zosasula abakozi",
                             Lang2 = ""
                         },
                         new
@@ -3489,6 +3509,13 @@ namespace Shared.Migrations
                             RowKey = "SoldToTranslation",
                             English = "Sold To",
                             Lang1 = "Bewaguzza",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SalePriceTranslation",
+                            English = "Sale Price",
+                            Lang1 = "Wabaguzza sente meka",
                             Lang2 = ""
                         },
                         new
@@ -4607,56 +4634,7 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "TotalAnimalCostsTranslation",
-                            English = "Total cost for all animals",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "Created",
-                            English = "Created",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "TotalCostAllUnits",
-                            English = "Total Cost (all units)",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "MedicineType5",
-                            English = "Disinfectant",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "AmountPaidTranslation",
-                            English = "Amount paid for piggery labour over the duration",
-                            Lang1 = "Sente zosasula abakozi",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SalePriceTranslation",
-                            English = "Sale price for all animals sold",
-                            Lang1 = "Wabaguzza sente meka",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ManureAmountRecievedTranslation",
-                            English = "Sale price for all manure sold",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "MembershipUpdated",
-                            English = "Membership Updated",
+                            English = "TotalAnimalCostsTranslation",
                             Lang1 = "",
                             Lang2 = ""
                         });
@@ -5020,6 +4998,12 @@ namespace Shared.Migrations
                     b.Property<string>("OtherSoldTo")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("PaymentType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double?>("PaymentValue")
+                        .HasColumnType("REAL");
+
                     b.Property<string>("SoldTo")
                         .HasColumnType("TEXT");
 
@@ -5126,6 +5110,9 @@ namespace Shared.Migrations
             modelBuilder.Entity("Shared.PigSaleItem", b =>
                 {
                     b.HasBaseType("Shared.BaseItem");
+
+                    b.Property<double>("Brokerage")
+                        .HasColumnType("REAL");
 
                     b.Property<string>("Comment")
                         .HasColumnType("TEXT");

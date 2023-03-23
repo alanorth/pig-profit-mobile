@@ -369,7 +369,7 @@ namespace PigTool.ViewModels.DataViewModels
             SoldTo = item.SoldTo;
             OtherSoldTo = item.OtherSoldTo;
             SalePrice = item.SalePrice;
-            Brokerage = item.Brokerage;
+            //Brokerage = item.Brokerage;
             TransportationCost = item.TransportationCost;
             OtherCosts = item.OtherCosts;
             Comment = item.Comment;
@@ -404,7 +404,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.SoldTo = SelectedSoldTo != null ? SelectedSoldTo.TranslationRowKey : null;
                 _itemForEditing.OtherSoldTo = OtherSoldTo;
                 _itemForEditing.SalePrice = (double)SalePrice;
-                _itemForEditing.Brokerage = (double)Brokerage;
+                //_itemForEditing.Brokerage = (double)Brokerage;
                 _itemForEditing.TransportationCost = (double)TransportationCost;
                 _itemForEditing.OtherCosts = OtherCosts;
                 _itemForEditing.Comment = Comment;
@@ -425,7 +425,7 @@ namespace PigTool.ViewModels.DataViewModels
                     SoldTo = SelectedSoldTo != null ? SelectedSoldTo.TranslationRowKey : null,
                     OtherSoldTo = OtherSoldTo,
                     SalePrice = (double)SalePrice,
-                    Brokerage = (double)Brokerage,
+                    //Brokerage = (double)Brokerage,
                     TransportationCost = (double)TransportationCost,
                     OtherCosts = OtherCosts,
                     Comment = Comment,
@@ -449,7 +449,7 @@ namespace PigTool.ViewModels.DataViewModels
         {
             if (EditExistingMode)
             {
-                var confirmDelete = await Application.Current.MainPage.DisplayAlert("Deletion Confirmation", "Are you sure you want to delete this item", "OK", "Cancel");
+                var confirmDelete = await Application.Current.MainPage.DisplayAlert(DeleteConfirmation, DeleteVerify, OK, Cancel);
                 if (confirmDelete)
                 {
                     repo.DeletePigSaleItem(_itemForEditing);
@@ -505,7 +505,7 @@ namespace PigTool.ViewModels.DataViewModels
                 StringBuilder returnString = new StringBuilder();
                 if (Date == null) returnString.AppendLine("Date obtained not provided");
                 if (SalePrice == null) returnString.AppendLine("Sale Price Not Provided");
-                if (Brokerage == null) returnString.AppendLine("Brokerage Not Provided");
+                //if (Brokerage == null) returnString.AppendLine("Brokerage Not Provided");
                 if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
                 //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 

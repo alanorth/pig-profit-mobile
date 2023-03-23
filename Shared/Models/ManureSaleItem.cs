@@ -13,8 +13,8 @@ namespace Shared
         public double? VolumeSold { get; set; }
         public string? VolumeUnitType { get; set; }
         public double AmountRecieved { get; set; }
-        public string? PaymentType { get; set; }
-        public double? PaymentValue { get; set; }
+        //public string? PaymentType { get; set; }
+        //public double? PaymentValue { get; set; }
         public string? SoldTo { get; set; }
         public string? OtherSoldTo { get; set; }
         public double TransportationCost { get; set; }

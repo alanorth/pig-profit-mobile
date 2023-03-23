@@ -26,7 +26,7 @@ namespace Shared
         public string? Sector { get; set; }
         public string? Cell { get; set; }
 
-        public string Currency {  get; set; }
+        //public string? Currency {  get; set; }
 
         public DateTime LastUploadDate { get; set; }
         public UserLangSettings UserLang { get; set; }

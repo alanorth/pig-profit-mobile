@@ -565,6 +565,16 @@ namespace Shared.Migrations
                         },
                         new
                         {
+                            TranslationRowKey = "MedicineType5",
+                            DropDownControlOption = "HealthMedicineType",
+                            CreatedBy = "InitialUpload",
+                            DisplayOrder = 5,
+                            IsDeleted = false,
+                            IsEnable = false,
+                            PartitionKey = "ControlData"
+                        },
+                        new
+                        {
                             TranslationRowKey = "Other",
                             DropDownControlOption = "HealthMedicineType",
                             CreatedBy = "InitialUpload",
@@ -1175,16 +1185,6 @@ namespace Shared.Migrations
                         },
                         new
                         {
-                            TranslationRowKey = "BreedingServiceType2",
-                            DropDownControlOption = "BreedingServiceType",
-                            CreatedBy = "InitialUpload",
-                            DisplayOrder = 2,
-                            IsDeleted = false,
-                            IsEnable = false,
-                            PartitionKey = "ControlData"
-                        },
-                        new
-                        {
                             TranslationRowKey = "Other",
                             DropDownControlOption = "BreedingServiceType",
                             CreatedBy = "InitialUpload",
@@ -1752,10 +1752,6 @@ namespace Shared.Migrations
                     b.Property<string>("County")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Currency")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("District")
                         .HasColumnType("TEXT");
 
@@ -1847,2149 +1843,2611 @@ namespace Shared.Migrations
                         {
                             RowKey = "LoginButton",
                             English = "Login",
-                            Lang1 = "SignUP",
-                            Lang2 = "OverHere"
-                        },
-                        new
-                        {
-                            RowKey = "Name",
-                            English = "Name",
-                            Lang1 = "NameLang1",
-                            Lang2 = "NameLang2"
-                        },
-                        new
-                        {
-                            RowKey = "Village",
-                            English = "Village",
-                            Lang1 = "VillageLang1",
-                            Lang2 = "VillageLang2"
-                        },
-                        new
-                        {
-                            RowKey = "DateLastUploaded",
-                            English = "Data last uploaded",
-                            Lang1 = "Data last uploaded lang1",
-                            Lang2 = "Data last uploaded lang2"
-                        },
-                        new
-                        {
-                            RowKey = "AddData",
-                            English = "Add Data",
-                            Lang1 = "Add Data lang1",
-                            Lang2 = "Add Data lang2"
-                        },
-                        new
-                        {
-                            RowKey = "EditData",
-                            English = "View / Edit / Delete data",
-                            Lang1 = "View / Edit / Delete data lang1",
-                            Lang2 = "View / Edit / Delete data lang2"
-                        },
-                        new
-                        {
-                            RowKey = "ViewReports",
-                            English = "Reports",
-                            Lang1 = "Reports Lang1",
-                            Lang2 = "Reports Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "Home",
-                            English = "Home",
-                            Lang1 = "Home Lang1",
-                            Lang2 = "Home Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "FilterTranslation",
-                            English = "Filter by:",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "RegistrationTranslation",
-                            English = "Registration",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "UploadDataTranslation",
-                            English = "Upload",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "Costs",
-                            English = "Costs",
-                            Lang1 = "Home Lang1",
-                            Lang2 = "Home Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "Feed",
-                            English = "Feed",
-                            Lang1 = "Home Lang1",
-                            Lang2 = "Home Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "Healthcare",
-                            English = "Healthcare",
-                            Lang1 = "Home Lang1",
-                            Lang2 = "Home Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "Labour",
-                            English = "Labour",
-                            Lang1 = "Home Lang1",
-                            Lang2 = "Home Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "Housing",
-                            English = "Housing",
-                            Lang1 = "Home Lang1",
-                            Lang2 = "Home Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "Water",
-                            English = "Water",
-                            Lang1 = "Home Lang1",
-                            Lang2 = "Home Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "Reproduction",
-                            English = "Reproduction",
-                            Lang1 = "Home Lang1",
-                            Lang2 = "Home Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "Membership",
-                            English = "Co-Operative / Group membership",
-                            Lang1 = "Home Lang1",
-                            Lang2 = "Home Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "Other",
-                            English = "Other, specify",
-                            Lang1 = "Other, specify Lang1",
-                            Lang2 = "Other, specify Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "OtherCostEvent",
-                            English = "Other",
-                            Lang1 = "Other",
-                            Lang2 = "Other"
-                        },
-                        new
-                        {
-                            RowKey = "AnimalPurchase",
-                            English = "Animal Purchase",
-                            Lang1 = "Home Lang1",
-                            Lang2 = "Home Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "LoanRepayment",
-                            English = "Loan Repayment",
-                            Lang1 = "Home Lang1",
-                            Lang2 = "Home Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "Income",
-                            English = "Income",
-                            Lang1 = "Home Lang1",
-                            Lang2 = "Home Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PigSale",
-                            English = "Sale of Pigs",
-                            Lang1 = "Home Lang1",
-                            Lang2 = "Home Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "BreedingServiceSale",
-                            English = "Sale of breeding services",
-                            Lang1 = "Home Lang1",
-                            Lang2 = "Home Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "ManureSale",
-                            English = "Sale of manure",
-                            Lang1 = "Home Lang1",
-                            Lang2 = "Home Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "OtherIncome",
-                            English = "Other Income",
-                            Lang1 = "Home Lang1",
-                            Lang2 = "Home Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "Equipment",
-                            English = "Equipment",
-                            Lang1 = "Equipment Lang1",
-                            Lang2 = "Equipment Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DateTranslation",
-                            English = "Date",
-                            Lang1 = "Date Lang1",
-                            Lang2 = "Date Lang 2"
-                        },
-                        new
-                        {
-                            RowKey = "TotalCostTranslation",
-                            English = "Total Cost",
-                            Lang1 = "Total Cost Lang1",
-                            Lang2 = "Total Cost Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "TransportationCostTranslation",
-                            English = "Transport Cost",
-                            Lang1 = "Transport Cost Lang1",
-                            Lang2 = "Transport Cost Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "OtherCostTranslation",
-                            English = "Any Other Cost",
-                            Lang1 = "Any Other Cost Lang1",
-                            Lang2 = "Any Other Cost Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "CommentTranslation",
-                            English = "Comment",
-                            Lang1 = "Comment Lang1",
-                            Lang2 = "Comment Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "SaveTranslation",
-                            English = "Save",
-                            Lang1 = "Save Lang1",
-                            Lang2 = "Save Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "ResetTranslation",
-                            English = "Reset",
-                            Lang1 = "Reset Lang1",
-                            Lang2 = "Reset Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "EditTranslation",
-                            English = "Edit",
-                            Lang1 = "Edit Lang1",
-                            Lang2 = "Edit Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DeleteTranslation",
-                            English = "Delete",
-                            Lang1 = "Delete Lang1",
-                            Lang2 = "Delete Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "StartTranslation",
-                            English = "Start",
-                            Lang1 = "Start Lang1",
-                            Lang2 = "Start Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "FinishTranslation",
-                            English = "Finish",
-                            Lang1 = "Finish Lang1",
-                            Lang2 = "Finish Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "FeedItemTitleTranslation",
-                            English = "Feed",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "FeedTypeTranslation",
-                            English = "Feed Type",
-                            Lang1 = "Feed Type Lang1",
-                            Lang2 = "Feed Type Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "OtherFeedTypeTranslation",
-                            English = "Other Feed Type",
-                            Lang1 = "Other Feed Type Lang1",
-                            Lang2 = "Other Feed Type Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "AmountPurchasedTranslation",
-                            English = "Amount Purchased",
-                            Lang1 = "Amount Purchased Lang1",
-                            Lang2 = "Amount Purchased Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "AmountPurchasedUnitTranslation",
-                            English = "Amount Purchased",
-                            Lang1 = "Amount Purchased Lang1",
-                            Lang2 = "Amount Purchased Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "OtherAmountPurchasedUnitTranslation",
-                            English = "Other Amount Purchased",
-                            Lang1 = "Other Amount Purchased Lang1",
-                            Lang2 = "Other Amount Purchased Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PurchasedFromTranslation",
-                            English = "Purchased From",
-                            Lang1 = "Purchased From Lang1",
-                            Lang2 = "Purchased From Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "OtherPurchasedFromTranslation",
-                            English = "Other Purchased From",
-                            Lang1 = "Purchased From Lang1",
-                            Lang2 = "Purchased From Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "AddFeedItemTrans",
-                            English = "Add Feed Cost",
-                            Lang1 = "Add Feed Cost Lang1",
-                            Lang2 = "Add Feed Cost Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DateObtainedTrans",
-                            English = "Date Obtained",
-                            Lang1 = "Date Obtained Lang1",
-                            Lang2 = "Date Obtained Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "FeedTypeTrans",
-                            English = "Feed Type",
-                            Lang1 = "Feed Type Lang1",
-                            Lang2 = "Feed Type Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "OtherFeedTypeTrans",
-                            English = "Other Feed Type",
-                            Lang1 = "Other Feed Type Lang1",
-                            Lang2 = "Other Feed Type Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "AmountPurchasedTrans",
-                            English = "Amount Purchased",
-                            Lang1 = "Amount Purchased Lang1",
-                            Lang2 = "Amount Purchased Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "UnitTrans",
-                            English = "Unit",
-                            Lang1 = "Unit Lang1",
-                            Lang2 = "Unit Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "OtherAmountPurchaseTrans",
-                            English = "Other Amount Purchased",
-                            Lang1 = "Other Amount Purchased Lang1",
-                            Lang2 = "Other Amount Purchased Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "CostTrans",
-                            English = "Cost",
-                            Lang1 = "Cost Lang1",
-                            Lang2 = "Cost Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "TransportCostTrans",
-                            English = "Transportation Cost",
-                            Lang1 = "Transportation Cost Lang1",
-                            Lang2 = "Transportation Cost Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PurchasedFrom",
-                            English = "Purchased From",
-                            Lang1 = "Purchased From Lang1",
-                            Lang2 = "Purchased From Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "CommentTrans",
-                            English = "Comment",
-                            Lang1 = "Comment Lang1",
-                            Lang2 = "Comment Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "FeedDurationTranslation",
-                            English = "Feed use duration",
-                            Lang1 = "Duration Lang1",
-                            Lang2 = "Duration Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HealthCareTitleTranslation",
-                            English = "Healthcare",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "HealthCareTypeTranslation",
-                            English = "Health Care Type",
-                            Lang1 = "Health Care Type Lang1",
-                            Lang2 = "Health Care Type Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "OtherHealthCareTypeTranslation",
-                            English = "Other Health Care Type",
-                            Lang1 = "Other Health Care Type Lang 1",
-                            Lang2 = "Other Health Care Type Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HealthCareCostTranslation",
-                            English = "Service Provider Cost",
-                            Lang1 = "Service Provider Cost Lang1",
-                            Lang2 = "Service Provider Cost Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "ProviderTranslation",
-                            English = "Who provided service",
-                            Lang1 = "Who provided service: Lang1",
-                            Lang2 = "Who provided service: Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "OtherProviderTranslation",
-                            English = "Other provided service",
-                            Lang1 = "Other provided service: Lang1",
-                            Lang2 = "Other provided service: Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "MedicineCostTranslation",
-                            English = "Medicine Cost",
-                            Lang1 = "Medicine Cost: Lang1",
-                            Lang2 = "Medicine Cost: Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "MedicineTypeTranslation",
-                            English = "Medicine Type",
-                            Lang1 = "Medicine Type: Lang1",
-                            Lang2 = "Medicine Type: Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "OtherMedicineTypeTranslation",
-                            English = "Other Medicine Type",
-                            Lang1 = "Other Medicine Type: Lang1",
-                            Lang2 = "Other Medicine Type: Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "CostTranslation",
-                            English = "Any other cost:",
-                            Lang1 = "Any other cost: Lang1",
-                            Lang2 = "Any other cost: Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "LabourTitleTranslation",
-                            English = "Labour",
-                            Lang1 = "Labour Cost Lang1",
-                            Lang2 = "Labour Cost Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "LabourTypeTranslation",
-                            English = "Labour Type",
-                            Lang1 = "Labour Type Lang1",
-                            Lang2 = "Labour Type Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "OtherLaboutTypeTranslation",
-                            English = "Other LabourType",
-                            Lang1 = "Other LabourType Lang1",
-                            Lang2 = "Other LabourType Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "AmountPaidTranslation",
-                            English = "Amount paid over the labour use duration",
-                            Lang1 = "Amount paid over the labour use duration Lang1",
-                            Lang2 = "Amount paid over the labour use duration Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "OtherCostsTranslation",
-                            English = "Any Other Cost",
-                            Lang1 = "Any Other Cost Lang1",
-                            Lang2 = "Any Other Cost Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "LabourDurationTranslation",
-                            English = "Labour use duration",
-                            Lang1 = "Duration Lang1",
-                            Lang2 = "Duration Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HousingTitleTranslation",
-                            English = "Housing",
-                            Lang1 = "Animal Housing Lang1",
-                            Lang2 = "Animal Housing Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HousingExpenseTranslation",
-                            English = "Housing Expense",
-                            Lang1 = "Housing Expense Lang1",
-                            Lang2 = "Housing Expense Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "OtherHousingExpenseTranslation",
-                            English = "Other Housing Expense",
-                            Lang1 = "Other Housing Expense Lang1",
-                            Lang2 = "Other Housing Expense Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "YearsExpectedTranslation",
-                            English = "Expected Housing Lifespan (Years)",
-                            Lang1 = "Expected Housing Lifespan (Years)1",
-                            Lang2 = "Expected Housing Lifespan (Years)2"
-                        },
-                        new
-                        {
-                            RowKey = "SliderControlTranslation",
-                            English = "If new housing built (rather than maintenance) lifespan in years + expected salvage value at end ? ",
-                            Lang1 = "If new housing built(rather than maintenance)lifespan in years + expected salvage value at end ? Lang1",
-                            Lang2 = "If new housing built(rather than maintenance)lifespan in years + expected salvage value at end ? Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "WatherDurationTranslation",
-                            English = "Water Use Duration",
-                            Lang1 = "Water Use Duration Lang1",
-                            Lang2 = "Water Use Duration Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "WaterCostTitleTranslation",
-                            English = "Water",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "WaterPurchasedTranslation",
-                            English = "Water Purchased",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "OtherWaterPurchasedTranslation",
-                            English = "Other unit",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PurchasedWaterFromTranslation",
-                            English = "Who Purchased From",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "OtherPurchasedWaterFromTranslation",
-                            English = "Purchased From",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "WaterDurationTranslation",
-                            English = "Water use duration",
-                            Lang1 = "Duration Lang1",
-                            Lang2 = "Duration Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "MembershipTitleTranslation",
-                            English = "Co-Operative / Group membership",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "MembershipTypeTranslation",
-                            English = "Membership type",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "OtherMembershipTypeTranslation",
-                            English = "Other type",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "TimePeriodTranslation",
-                            English = "Time-period covered",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "MembershipDurationTranslation",
-                            English = "Membership duration",
-                            Lang1 = "Duration Lang1",
-                            Lang2 = "Duration Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "OtherCostTitleTranslation",
-                            English = "Other",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "OtherWhatForTranslation",
-                            English = "What for",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ReproductiveTitleTranslation",
-                            English = "Reproduction",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ServiceTypeTranslation",
-                            English = "Service type",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "OtherServiceTypeTranslation",
-                            English = "Other service type",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SowsServicedCostTranslation",
-                            English = "Total Service Cost",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "WhoProvidedServiceTranslation",
-                            English = "Who Provided Service",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "OtherWhoProvidedServiceTranslation",
-                            English = "Who Provided Service",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "AnimalPurchaseTitleTranslation",
-                            English = "Animal Purchase",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "AnimalTypeTranslation",
-                            English = "Animal type",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "OtherAnimalTypeTranslation",
-                            English = "Animal type",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "NumberPurchasedTranslation",
-                            English = "Number purchased",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "AnimalPurchasedFromTranslation",
-                            English = "Purchased from",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "OtherAnimalPurchasedTranslation",
-                            English = "Other Purchased from",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "TotalAnimalCostsTranslation",
-                            English = "Total cost for all animals",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "LoanRepaymentTitleTranslation",
-                            English = "Loan Repayment",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "LoanProviderTranslation",
-                            English = "Loan Provider",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "OtherLoanProviderTranslation",
-                            English = "Other Loan Provider",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "TotalAmountRepaidTranslation",
-                            English = "Total Amount Paid",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "EquipmentTitleTranslation",
-                            English = "Equipment",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "EquipmentTypeTranslation",
-                            English = "Equipment Type",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "OtherEquipmentTypeTranslation",
-                            English = "Other Equipment Type",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PigSaleTitleTranslation",
-                            English = "Pig Sales",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PigTypeTranslation",
-                            English = "Pig type",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "OtherPigTypeTranslation",
-                            English = "Other Pig Type",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "NumberSoldTranslation",
-                            English = "Number Sold",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SalePriceTranslation",
-                            English = "Sale Price",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SoldToTranslation",
-                            English = "Sold To",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "OtherSoldToTranslation",
-                            English = "Other Sold To",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "BrokerageTranslation",
-                            English = "Brokerage",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "BreedingServiceSaleTitleTranslation",
-                            English = "Sale of Reproductive Services",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "NumberServicesTranslation",
-                            English = "Number Services",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "AmountRecievedTranslation",
-                            English = "Amount recieved for all services",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "AnyOtherPaymentTranslation",
-                            English = "Any Other Payment Recieved",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PaymentTypeTranslation",
-                            English = "Type",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "PaymentValueTranslation",
-                            English = "Value",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ClientTranslation",
-                            English = "Client",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "OtherClientTranslation",
-                            English = "Other Client",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ManureSaleTitleTranslation",
-                            English = "Sale of Manure",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "VolumeSoldTranslation",
-                            English = "Volume Sold",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "OtherIncomeTitleTranslation",
-                            English = "Other Income",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "TotalIncomeTranslation",
-                            English = "Total Income",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "RegistrationTitleTranslation",
-                            English = "Registration",
-                            Lang1 = "Registration Lang 1",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "UserNameTranslation",
-                            English = "Username",
-                            Lang1 = "",
+                            Lang1 = "Nyiga wano okutandika",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "NameTranslation",
-                            English = "Name",
-                            Lang1 = "",
+                            RowKey = "HeathCareType5",
+                            English = "Use of disinfectants",
+                            Lang1 = "Okozesa edagala elita obuwuka obtalabika",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "EmailTranslation",
-                            English = "Email",
-                            Lang1 = "",
+                            RowKey = "HeathCareType4",
+                            English = "Deworming",
+                            Lang1 = "Okuta enjoka",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "PhoneNumberTranslation",
-                            English = "Phone Number",
-                            Lang1 = "",
+                            RowKey = "HeathCareType3",
+                            English = "Administration of vitamins",
+                            Lang1 = "Okujiwa vitamini",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "DistrictTranslation",
-                            English = "District",
-                            Lang1 = "",
+                            RowKey = "HeathCareType2",
+                            English = "Preventative (such as vaccinations)",
+                            Lang1 = "Okuzeyiza endwaade katugeze nga okuzigema",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "CountyTranslation",
-                            English = "County",
-                            Lang1 = "",
+                            RowKey = "HeathCareType1",
+                            English = "Curative (treatment of a disease)",
+                            Lang1 = "Okujanjaba endwaade ",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "SubCountyTranslation",
-                            English = "Sub County",
-                            Lang1 = "",
+                            RowKey = "DropDownPurchaseFrom4",
+                            English = "Transporter",
+                            Lang1 = "Owe byentambula",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "ParishTranslation",
-                            English = "Parish",
-                            Lang1 = "",
+                            RowKey = "DropDownPurchaseFrom3",
+                            English = "Another farmer",
+                            Lang1 = "Omulimi omulala",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "VillageTranslation",
-                            English = "Village",
-                            Lang1 = "",
+                            RowKey = "DropDownPurchaseFrom2",
+                            English = "Agro-vet",
+                            Lang1 = "Omusawo",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "CountryTranslation",
-                            English = "Country",
-                            Lang1 = "",
+                            RowKey = "DropDownPurchaseFrom1",
+                            English = "Feed supplier",
+                            Lang1 = "Atunda emere ye bisolo",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "ProvinceTranslation",
-                            English = "Province",
-                            Lang1 = "",
+                            RowKey = "DropDownUnitType2",
+                            English = "Number",
+                            Lang1 = "Namba",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "CommuneTranslation",
-                            English = "Commune",
-                            Lang1 = "",
+                            RowKey = "DropDownUnitType1",
+                            English = "Kg",
+                            Lang1 = "Kilo",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "SectorTranslation",
-                            English = "Sector",
-                            Lang1 = "",
+                            RowKey = "DropDownFeedType19",
+                            English = "Silage",
+                            Lang1 = "Sayirajji",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "CellTranslation",
-                            English = "Cell",
-                            Lang1 = "",
+                            RowKey = "DropDownFeedType18",
+                            English = "Pre-Mixes",
+                            Lang1 = "Ebilungo",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "CurrencyTranslation",
-                            English = "Currency",
-                            Lang1 = "",
+                            RowKey = "DropDownFeedType17",
+                            English = "Vitamins",
+                            Lang1 = "vitamini",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "GenderTranslation",
-                            English = "Gender",
-                            Lang1 = "",
+                            RowKey = "DropDownFeedType16",
+                            English = "Minerals",
+                            Lang1 = "Ekilungo kyomunyu",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "LanguageTranslation",
-                            English = "Language",
-                            Lang1 = "",
+                            RowKey = "HeathCareType6",
+                            English = "Herd visit/monitoring",
+                            Lang1 = "Okwekebejja ebisol",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "WhereAreYouLocatedTranslation",
-                            English = "Where Are You Located?",
-                            Lang1 = "Located Lang 1",
+                            RowKey = "HealthProviderType1",
+                            English = "Private animal health worker or veterinarian",
+                            Lang1 = "Omusawo we bisolo atali wagavumenti",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "LegalDisclaimerTitleTranslation",
-                            English = "Legal Disclaimer",
-                            Lang1 = "Legal Lang 1",
+                            RowKey = "HealthProviderType2",
+                            English = "Government animal health worker veterinarian",
+                            Lang1 = "Omusawo we bisolo wagavumenti",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "LegalDisclaimerAgreeTranslation",
-                            English = "By checking this box you agree to the terms listed above",
-                            Lang1 = "Legal check 1",
+                            RowKey = "MedicineType1",
+                            English = "Drugs",
+                            Lang1 = "Amakerenda/edagala",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "LegalDisclaimerProceedTranslation",
-                            English = "Proceed",
-                            Lang1 = "Proceed Lang 1",
+                            RowKey = "PurchasedWaterFromType3",
+                            English = "Neighbour / friend",
+                            Lang1 = "Mulirwana/ Mulilaanwa/Mukwano gwo",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "LegalDisclaimerBodyTranslation",
-                            English = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-                            Lang1 = "Legal body Lang 1",
+                            RowKey = "PurchasedWaterFromType2",
+                            English = "Water company",
+                            Lang1 = "Ekitongole kyamazzi",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "WebAuthTitleTranslation",
-                            English = "Sign Up",
-                            Lang1 = "Sign Up Lang 1",
+                            RowKey = "PurchasedWaterFromType1",
+                            English = "Mobile water seller",
+                            Lang1 = "Abatunda ebidomola by mazzi/abatembeyi ba amazzi",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "WebAuthDescTranslation",
-                            English = "The Pig Economic Tool authenticates with Google to securely authenticate your account and keep your data safe.",
-                            Lang1 = "Desc Lang 1",
+                            RowKey = "WaterPurchasedUnitType2",
+                            English = "Cubic meter",
+                            Lang1 = "Ekipimo Kya mazzi",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "GoogleSignUpTranslation",
-                            English = "Sign up with Google",
-                            Lang1 = "Google Lang 1",
+                            RowKey = "WaterPurchasedUnitType1",
+                            English = "Litre",
+                            Lang1 = "Liita",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "RegistrationSuccessfulTitleTranslation",
-                            English = "Your Account Has Been Created",
-                            Lang1 = "Account Created Lang 1",
+                            RowKey = "HousingExpenseType3",
+                            English = "Repairs or maintenance",
+                            Lang1 = "Okudabiliza",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "RegistrationSuccessfulDescTranslation",
-                            English = "You can now begin collecting and storing your data",
-                            Lang1 = "Begin Lang 1",
+                            RowKey = "HousingExpenseType2",
+                            English = "Expansion of existing housing",
+                            Lang1 = "Okugaziya  enyumba ye bisolo eliwo",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "RegistrationSuccessfulContinueTranslation",
-                            English = "Continue",
-                            Lang1 = "Continue Lang 1",
+                            RowKey = "DropDownFeedType15",
+                            English = "Compounded Feeds (Non-Labelled Feeds)",
+                            Lang1 = "Emere entabule nga teliko buwandike",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "PickerUnitTranslation",
-                            English = "Unit",
-                            Lang1 = "",
+                            RowKey = "HousingExpenseType1",
+                            English = "New house construction",
+                            Lang1 = "Okuzimba enyumba empya",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "PickerFeedTypeTranslation",
-                            English = "Select a Feed Type",
-                            Lang1 = "",
+                            RowKey = "LabourType1",
+                            English = "Permanent hired labourer",
+                            Lang1 = "Abakozi abenkalakalira",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "PickerPurchasedFromTranslation",
-                            English = "Select a Provider",
-                            Lang1 = "",
+                            RowKey = "PruchaseFromType3",
+                            English = "Agro-vet store",
+                            Lang1 = "Eduuka lyedagala lyebisolo",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "PickerHealthCareTypeTranslation",
-                            English = "Select a Care Type",
-                            Lang1 = "",
+                            RowKey = "PruchaseFromType2",
+                            English = "Government animal health worker veterinarian",
+                            Lang1 = "Omusawo  webisolo owagovumenti",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "PickerProviderTranslation",
-                            English = "Select a Provider",
-                            Lang1 = "",
+                            RowKey = "PruchaseFromType1",
+                            English = "Private animal health worker or veterinarian",
+                            Lang1 = "Omusawo webisoliatali wagavumenti",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "PickerMedicineTypeTranslation",
-                            English = "Select a Medicine Type",
-                            Lang1 = "",
+                            RowKey = "MedicineType4",
+                            English = "Vitamins",
+                            Lang1 = "Vitamini",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "PickerLabourTypeTranslation",
-                            English = "Select a Labour Type",
-                            Lang1 = "",
+                            RowKey = "MedicineType3",
+                            English = "Dewormers",
+                            Lang1 = "Edagala lye njoka",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "PickerHousingExpenseTranslation",
-                            English = "Select an Expense",
-                            Lang1 = "",
+                            RowKey = "MedicineType2",
+                            English = "Vaccinations",
+                            Lang1 = "Okugema ",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "PickerServiceTypeTranslation",
-                            English = "Select a Service Type",
-                            Lang1 = "",
+                            RowKey = "LabourType2",
+                            English = "Temporary hired labourer",
+                            Lang1 = "Abakozi abatali  bankalakalira",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "PickerMembershipTypeTranslation",
-                            English = "Select a Membership",
-                            Lang1 = "",
+                            RowKey = "MembershipType1",
+                            English = "Co-operative or group fees",
+                            Lang1 = "Sente ze kibiina ekyo bwegasi, ",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "PickerAnimalTypeTranslation",
-                            English = "Select a Animal Type",
-                            Lang1 = "",
+                            RowKey = "DropDownFeedType14",
+                            English = "Compounded Feeds (Labelled Feeds)",
+                            Lang1 = "Emere entabule, eliko obuwandike",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "PickerEquipmentTypeTranslation",
-                            English = "Select an Equipment Type",
-                            Lang1 = "",
+                            RowKey = "DropDownFeedType12",
+                            English = "Cotton Seed Cake",
+                            Lang1 = "Ekikamulo kya pamba",
                             Lang2 = ""
                         },
                         new
                         {
                             RowKey = "PickerPigTypeTranslation",
                             English = "Select a Pig Type",
-                            Lang1 = "",
+                            Lang1 = "Londako ekyika kye mbizi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PickerEquipmentTypeTranslation",
+                            English = "Select an Equipment Type",
+                            Lang1 = "Londako ekyika kyebikozesebwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PickerAnimalTypeTranslation",
+                            English = "Select a Animal Type",
+                            Lang1 = "Londako ekyika kye ebisolo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PickerMembershipTypeTranslation",
+                            English = "Select a Membership",
+                            Lang1 = "Londako obwa memba bwolina",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PickerServiceTypeTranslation",
+                            English = "Select a Service Type",
+                            Lang1 = "Londako ekyika kyo obuwerezza",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PickerHousingExpenseTranslation",
+                            English = "Select an Expense",
+                            Lang1 = "Londako ensasaanya yo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PickerLabourTypeTranslation",
+                            English = "Select a Labour Type",
+                            Lang1 = "Londako ekyika kya bakozi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PickerMedicineTypeTranslation",
+                            English = "Select a Medicine Type",
+                            Lang1 = "Londako ekyika kye dagala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PickerProviderTranslation",
+                            English = "Select a Provider",
+                            Lang1 = "Londako  akuwa obuwerezza obwo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PickerHealthCareTypeTranslation",
+                            English = "Select a Care Type",
+                            Lang1 = "Londako ekyika  kyo kolabilila embiizi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PickerPurchasedFromTranslation",
+                            English = "Select a Provider",
+                            Lang1 = "Londako akuwa  obuwerezza obwo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PickerFeedTypeTranslation",
+                            English = "Select a Feed Type",
+                            Lang1 = "Londako ekyika kyemere yebisolo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PickerUnitTranslation",
+                            English = "Unit",
+                            Lang1 = "Ekipimo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "RegistrationSuccessfulContinueTranslation",
+                            English = "Continue",
+                            Lang1 = "Genda Mumaaso",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "RegistrationSuccessfulDescTranslation",
+                            English = "You can now begin collecting and storing your data",
+                            Lang1 = "Oliwandembe okutandika oku kungaanya no kutereka ebiwandiko byo",
                             Lang2 = ""
                         },
                         new
                         {
                             RowKey = "PickerSoldToTranslation",
                             English = "Select a Buyer",
-                            Lang1 = "",
+                            Lang1 = "Londa omuguzi",
                             Lang2 = ""
                         },
                         new
                         {
                             RowKey = "PickerPaymentTypeTranslation",
                             English = "Select a Payment Type",
-                            Lang1 = "",
+                            Lang1 = "Londa  ensasula joyagala",
                             Lang2 = ""
                         },
                         new
                         {
                             RowKey = "PickerClientTranslation",
                             English = "Select a Client",
-                            Lang1 = "",
+                            Lang1 = "Londa kasitoma wo",
                             Lang2 = ""
                         },
                         new
                         {
                             RowKey = "PickerGenderTranslation",
                             English = "Select a Gender",
-                            Lang1 = "",
+                            Lang1 = "Londako ekikulakyo",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "PickerDistrictTranslation",
-                            English = "Select a District",
-                            Lang1 = "",
+                            RowKey = "DropDownFeedType11",
+                            English = "Sunflower Cake",
+                            Lang1 = "Kikamulo kya e'ntungo enene",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "PickerCountyTranslation",
-                            English = "Select a County",
-                            Lang1 = "",
+                            RowKey = "DropDownFeedType10",
+                            English = "Soybean Meal",
+                            Lang1 = "Soyaa ensekule ",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "PickerSubCountyTranslation",
-                            English = "Select a Sub County",
-                            Lang1 = "",
+                            RowKey = "DropDownFeedType9",
+                            English = "Soybean Seed Cake",
+                            Lang1 = "Kikamulo kya soyaa",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "PickerCountryTranslation",
-                            English = "Select a Country",
-                            Lang1 = "",
+                            RowKey = "DropDownFeedType8",
+                            English = "Ground Maize",
+                            Lang1 = "Kasooli omukube",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "PickerCurrencyTranslation",
-                            English = "Select a Currency",
-                            Lang1 = "",
+                            RowKey = "DropDownFeedType7",
+                            English = "Dried Brewers’ Grain",
+                            Lang1 = "Ebikanjja ebikalu",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "DropDownFeedType6",
+                            English = "Wheat Gluten Feed",
+                            Lang1 = "Ekimere kye' ngano",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "DropDownFeedType5",
+                            English = "Maize Gluten Feed",
+                            Lang1 = "Ekimere kya kasooli",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "DropDownFeedType13",
+                            English = "Groundnut Cake",
+                            Lang1 = "Ekikamulo kye e'binwyobwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "DropDownFeedType4",
+                            English = "Rice Bran",
+                            Lang1 = "Kyakyu  w'omukyere",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "DropDownFeedType2",
+                            English = "Wheat Bran",
+                            Lang1 = "Kyakyu w'engano",
                             Lang2 = ""
                         },
                         new
                         {
                             RowKey = "DropDownFeedType1",
                             English = "Maize Bran",
-                            Lang1 = "Maize Bran Lang1",
-                            Lang2 = "Maize Bran Lang2"
+                            Lang1 = "Kyakyu wa kasoli",
+                            Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "DropDownFeedType2",
-                            English = "Wheat Bran",
-                            Lang1 = "Wheat Bran Lang1",
-                            Lang2 = "Wheat Bran Lang2"
+                            RowKey = "PickerCurrencyTranslation",
+                            English = "Select a Currency",
+                            Lang1 = "Londako ekyika kyasente",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PickerCountryTranslation",
+                            English = "Select a Country",
+                            Lang1 = "Londa ensi jova",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PickerSubCountyTranslation",
+                            English = "Select a Sub County",
+                            Lang1 = "Londa Egombolola jova",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PickerCountyTranslation",
+                            English = "Select a County",
+                            Lang1 = "Londa Esaaza jova ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PickerDistrictTranslation",
+                            English = "Select a District",
+                            Lang1 = "Londa Distulikiti jova ",
+                            Lang2 = ""
                         },
                         new
                         {
                             RowKey = "DropDownFeedType3",
                             English = "Maize Germ",
-                            Lang1 = "Maize Germ Lang1",
-                            Lang2 = "Maize Germ Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownFeedType4",
-                            English = "Rice Bran",
-                            Lang1 = "Rice Bran Lang1",
-                            Lang2 = "Rice Bran Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownFeedType5",
-                            English = "Maize Gluten Feed",
-                            Lang1 = "Maize Gluten Feed Lang1",
-                            Lang2 = "Maize Gluten Feed Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownFeedType6",
-                            English = "Wheat Gluten Feed",
-                            Lang1 = "Wheat Gluten Feed Lang1",
-                            Lang2 = "Wheat Gluten Feed Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownFeedType7",
-                            English = "Dried Brewers’ Grain",
-                            Lang1 = "Dried Brewers’ Grain Lang1",
-                            Lang2 = "Dried Brewers’ Grain Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownFeedType8",
-                            English = "Ground Maize",
-                            Lang1 = "Ground Maize Lang1",
-                            Lang2 = "Ground Maize Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownFeedType9",
-                            English = "Soybean Seed Cake",
-                            Lang1 = "Soybean Seed Cake Lang1",
-                            Lang2 = "Soybean Seed Cake Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownFeedType10",
-                            English = "Soybean Meal",
-                            Lang1 = "Soybean Meal Lang1",
-                            Lang2 = "Soybean Meal Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownFeedType11",
-                            English = "Sunflower Cake",
-                            Lang1 = "Sunflower Cake Lang1",
-                            Lang2 = "Sunflower Cake Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownFeedType12",
-                            English = "Cotton Seed Cake",
-                            Lang1 = "Cotton Seed Cake Lang1",
-                            Lang2 = "Cotton Seed Cake Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownFeedType13",
-                            English = "Groundnut Cake",
-                            Lang1 = "Groundnut Cake Lang1",
-                            Lang2 = "Groundnut Cake Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownFeedType14",
-                            English = "Compounded Feeds (Labelled Feeds)",
-                            Lang1 = "Compounded Feeds (Labelled Feeds) Lang1",
-                            Lang2 = "Compounded Feeds (Labelled Feeds) Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownFeedType15",
-                            English = "Compounded Feeds (Non-Labelled Feeds)",
-                            Lang1 = "Compounded Feeds (Non-Labelled Feeds) Lang1",
-                            Lang2 = "Compounded Feeds (Non-Labelled Feeds) Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownFeedType16",
-                            English = "Minerals",
-                            Lang1 = "Minerals Lang1",
-                            Lang2 = "Minerals Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownFeedType17",
-                            English = "Vitamins",
-                            Lang1 = "Vitamins Lang1",
-                            Lang2 = "Vitamins Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownFeedType18",
-                            English = "Pre-Mixes",
-                            Lang1 = "Pre-Mixes Lang1",
-                            Lang2 = "Pre-Mixes Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownFeedType19",
-                            English = "Silage",
-                            Lang1 = "Silage Lang1",
-                            Lang2 = "Silage Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownUnitType1",
-                            English = "Kg",
-                            Lang1 = "Kg Lang1",
-                            Lang2 = "Kg Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownUnitType3",
-                            English = "gram",
-                            Lang1 = "Kg Lang1",
-                            Lang2 = "Kg Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownUnitType2",
-                            English = "Number",
-                            Lang1 = "Number Lang1",
-                            Lang2 = "Number Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownPurchaseFrom1",
-                            English = "Feed supplier",
-                            Lang1 = "Feed supplier Lang1",
-                            Lang2 = "Feed supplier Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownPurchaseFrom2",
-                            English = "Agro-vet",
-                            Lang1 = "Agro-vet Lang1",
-                            Lang2 = "Agro-vet Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownPurchaseFrom3",
-                            English = "Another farmer",
-                            Lang1 = "Another farmer Lang1",
-                            Lang2 = "Another farmer Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "DropDownPurchaseFrom4",
-                            English = "Transporter",
-                            Lang1 = "Transporter Lang1",
-                            Lang2 = "Transporter Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HeathCareType1",
-                            English = "Curative (treatment of a disease)",
-                            Lang1 = "Curative (treatment of a disease) Lang1",
-                            Lang2 = "Curative (treatment of a disease) Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HeathCareType2",
-                            English = "Preventative (such as vaccinations)",
-                            Lang1 = "Preventative (such as vaccinations) Lang1",
-                            Lang2 = "Preventative (such as vaccinations) Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HeathCareType3",
-                            English = "Administration of vitamins",
-                            Lang1 = "Administration of vitamins Lang1",
-                            Lang2 = "Administration of vitamins Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HeathCareType4",
-                            English = "Deworming",
-                            Lang1 = "Deworming Lang1",
-                            Lang2 = "Deworming Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HeathCareType5",
-                            English = "Use of disinfectants",
-                            Lang1 = "Use of disinfectants Lang1",
-                            Lang2 = "Use of disinfectants Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HeathCareType6",
-                            English = "Herd visit/monitoring",
-                            Lang1 = "Herd visit/monitoring Lang1",
-                            Lang2 = "Herd visit/monitoring Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HealthProviderType1",
-                            English = "Private animal health worker or veterinarian",
-                            Lang1 = "Private animal health worker or veterinarian Lang1",
-                            Lang2 = "Private animal health worker or veterinarian Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HealthProviderType2",
-                            English = "Government animal health worker veterinarian",
-                            Lang1 = "Government animal health worker veterinarian Lang1",
-                            Lang2 = "Government animal health worker veterinarian Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HealthProviderType3",
-                            English = "Self",
-                            Lang1 = "Self Lang1",
-                            Lang2 = "Self Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HealthProviderType4",
-                            English = "Neighbour, friend, or relative",
-                            Lang1 = "Neighbour, friend, or relative Lang1",
-                            Lang2 = "Neighbour, friend, or relative Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "MedicineType1",
-                            English = "Drugs ",
-                            Lang1 = "Drugs  Lang1",
-                            Lang2 = "Drugs  Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "MedicineType2",
-                            English = "Vaccinations",
-                            Lang1 = "Vaccinations Lang1",
-                            Lang2 = "Vaccinations Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "MedicineType3",
-                            English = "Dewormers",
-                            Lang1 = "Dewormers Lang1",
-                            Lang2 = "Dewormers Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "MedicineType4",
-                            English = "Vitamins",
-                            Lang1 = "Vitamins Lang1",
-                            Lang2 = "Vitamins Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PruchaseFromType1",
-                            English = "Private animal health worker or veterinarian",
-                            Lang1 = "Private animal health worker or veterinarian Lang1",
-                            Lang2 = "Private animal health worker or veterinarian Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PruchaseFromType2",
-                            English = "Government animal health worker veterinarian",
-                            Lang1 = "Government animal health worker veterinarian Lang1",
-                            Lang2 = "Government animal health worker veterinarian Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PruchaseFromType3",
-                            English = "Agro-vet store",
-                            Lang1 = "Agro-vet store Lang1",
-                            Lang2 = "Agro-vet store Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "LabourType1",
-                            English = "Permanent hired labourer",
-                            Lang1 = "Permanent hired labourer Lang1",
-                            Lang2 = "Permanent hired labourer Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "LabourType2",
-                            English = "Temporary hired labourer",
-                            Lang1 = "Temporary hired labourer Lang1",
-                            Lang2 = "Temporary hired labourer Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HousingExpenseType1",
-                            English = "New house construction",
-                            Lang1 = "New house construction Lang1",
-                            Lang2 = "New house construction Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HousingExpenseType2",
-                            English = "Expansion of existing housing",
-                            Lang1 = "Expansion of existing housing Lang1",
-                            Lang2 = "Expansion of existing housing Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "HousingExpenseType3",
-                            English = "Repairs or maintenance",
-                            Lang1 = "Repairs or maintenance Lang1",
-                            Lang2 = "Repairs or maintenance Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "WaterPurchasedUnitType1",
-                            English = "Litre",
-                            Lang1 = "Litre Lang1",
-                            Lang2 = "Litre Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "WaterPurchasedUnitType2",
-                            English = "Cubic meter",
-                            Lang1 = "Cubic meter Lang1",
-                            Lang2 = "Cubic meter Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PurchasedWaterFromType1",
-                            English = "Mobile water seller",
-                            Lang1 = "Mobile water seller Lang1",
-                            Lang2 = "Mobile water seller Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PurchasedWaterFromType2",
-                            English = "Water company",
-                            Lang1 = "Water company Lang1",
-                            Lang2 = "Water company Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PurchasedWaterFromType3",
-                            English = "Neighbour / friend",
-                            Lang1 = "Neighbour / friend Lang1",
-                            Lang2 = "Neighbour / friend Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "MembershipType1",
-                            English = "Co-operative or group fees",
-                            Lang1 = "Co-operative or group fees Lang1",
-                            Lang2 = "Co-operative or group fees Lang2"
+                            Lang1 = "Obuweeke bya kasooli",
+                            Lang2 = ""
                         },
                         new
                         {
                             RowKey = "TimePeriodUnitType1",
                             English = "Months",
-                            Lang1 = "Months Lang1",
-                            Lang2 = "Months Lang2"
+                            Lang1 = "Emyeezi",
+                            Lang2 = ""
                         },
                         new
                         {
                             RowKey = "TimePeriodUnitType2",
                             English = "Years",
-                            Lang1 = "Years Lang1",
-                            Lang2 = "Years Lang2"
+                            Lang1 = "Emyaaka",
+                            Lang2 = ""
                         },
                         new
                         {
                             RowKey = "ServiceType1",
                             English = "Artificial insemination",
-                            Lang1 = "Artificial insemination Lang1",
-                            Lang2 = "Artificial insemination Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "ServiceType2",
-                            English = "Natural mating",
-                            Lang1 = "Natural mating Lang1",
-                            Lang2 = "Natural mating Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "WhoProvidedServiceType1",
-                            English = "Private artificial insemination service provider",
-                            Lang1 = "Private artificial insemination service provider Lang1",
-                            Lang2 = "Private artificial insemination service provider Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "WhoProvidedServiceType2",
-                            English = "Government artificial insemination service provider",
-                            Lang1 = "Government artificial insemination service provider Lang1",
-                            Lang2 = "Government artificial insemination service provider Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "WhoProvidedServiceType3",
-                            English = "Boar keeper",
-                            Lang1 = "Boar keeper Lang1",
-                            Lang2 = "Boar keeper Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "AnimalType1",
-                            English = "Piglet(s) for fattening",
-                            Lang1 = "Piglet(s) for fattening Lang1",
-                            Lang2 = "Piglet(s) for fattening Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "AnimalType2",
-                            English = "Gilt/Sow for breeding",
-                            Lang1 = "Gilt / sow for breeding Lang1",
-                            Lang2 = "Gilt / sow for breeding Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "AnimalType3",
-                            English = "Young male / boar for breeding",
-                            Lang1 = "Young male / boar for breeding Lang1",
-                            Lang2 = "Young male / boar for breeding Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "AnimalPurchasedFromType1",
-                            English = "Market ",
-                            Lang1 = "Market  Lang1",
-                            Lang2 = "Market  Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "AnimalPurchasedFromType2",
-                            English = "Trader",
-                            Lang1 = "Trader Lang1",
-                            Lang2 = "Trader Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "AnimalPurchasedFromType3",
-                            English = "Pig farmer",
-                            Lang1 = "Pig farmer Lang1",
-                            Lang2 = "Pig farmer Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "AnimalPurchasedFromType4",
-                            English = "Pig breeding company",
-                            Lang1 = "Pig breeding company Lang1",
-                            Lang2 = "Pig breeding company Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "LoanProviderType1",
-                            English = "Micro-credit provider",
-                            Lang1 = "Micro-credit provider Lang1",
-                            Lang2 = "Micro-credit provider Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "LoanProviderType2",
-                            English = "Bank",
-                            Lang1 = "Bank Lang1",
-                            Lang2 = "Bank Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "LoanProviderType3",
-                            English = "Co-operative or group",
-                            Lang1 = "Co-operative or group Lang1",
-                            Lang2 = "Co-operative or group Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "LoanProviderType4",
-                            English = "Self-help group or savings ",
-                            Lang1 = "Self-help group or savings  Lang1",
-                            Lang2 = "Self-help group or savings  Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "LoanProviderType5",
-                            English = "Club",
-                            Lang1 = "Club Lang1",
-                            Lang2 = "Club Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "LoanProviderType6",
-                            English = "Relatives or friends",
-                            Lang1 = "Relatives or friends Lang1",
-                            Lang2 = "Relatives or friends Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "EquipmentType1",
-                            English = "Feeding equipment",
-                            Lang1 = "Feeding equipment Lang1",
-                            Lang2 = "Feeding equipment Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "EquipmentType2",
-                            English = "Watering equipment",
-                            Lang1 = "Watering equipment Lang1",
-                            Lang2 = "Watering equipment Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "EquipmentType3",
-                            English = "Cleaning equipment",
-                            Lang1 = "Cleaning equipment Lang1",
-                            Lang2 = "Cleaning equipment Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "EquipmentType4",
-                            English = "Animal tags",
-                            Lang1 = "Animal tags Lang1",
-                            Lang2 = "Animal tags Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PigType1",
-                            English = "Piglet (for fattening)",
-                            Lang1 = "Piglet (for fattening) Lang1",
-                            Lang2 = "Piglet (for fattening) Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PigType2",
-                            English = "Slaughter animal",
-                            Lang1 = "Slaughter animal Lang1",
-                            Lang2 = "Slaughter animal Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PigType3",
-                            English = "Gilt/Sow for breeding",
-                            Lang1 = "Gilt/sow sow for breeding Lang1",
-                            Lang2 = "Gilt/sow sow for breeding Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PigType4",
-                            English = "Young male/boar for breeding ",
-                            Lang1 = "Young male/boar for breeding  Lang1",
-                            Lang2 = "Young male/boar for breeding  Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "SoldToType1",
-                            English = "Trader",
-                            Lang1 = "Trader Lang1",
-                            Lang2 = "Trader Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "SoldToType2",
-                            English = "Slaughter-house",
-                            Lang1 = "Slaughter-house Lang1",
-                            Lang2 = "Slaughter-house Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "SoldToType3",
-                            English = "Pig farmer",
-                            Lang1 = "Pig farmer Lang1",
-                            Lang2 = "Pig farmer Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "BreedingServiceType1",
-                            English = "Boar services",
-                            Lang1 = "Boar services Lang1",
-                            Lang2 = "Boar services Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "BreedingServiceType2",
-                            English = "Semen sale (? to include)",
-                            Lang1 = "Semen sale (? to include) Lang1",
-                            Lang2 = "Semen sale (? to include) Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "PaymentType1",
-                            English = "Piglet",
-                            Lang1 = "Piglet Lang1",
-                            Lang2 = "Piglet Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "ClientType1",
-                            English = "Pig farmer",
-                            Lang1 = "Pig farmer Lang1",
-                            Lang2 = "Pig farmer Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "VolumeUnitType1",
-                            English = "Kg",
-                            Lang1 = "Kg Lang1",
-                            Lang2 = "Kg Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "VolumeUnitType2",
-                            English = "Bag",
-                            Lang1 = "Bag Lang1",
-                            Lang2 = "Bag Lang2"
-                        },
-                        new
-                        {
-                            RowKey = "GenderType1",
-                            English = "Male",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "GenderType2",
-                            English = "Female",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "GenderType3",
-                            English = "Other",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "DistrictType1",
-                            English = "DistrictType 1",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "DistrictType2",
-                            English = "DistrictType 2",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "DistrictType3",
-                            English = "DistrictType 3",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "DistrictType4",
-                            English = "DistrictType 4",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "DistrictType5",
-                            English = "DistrictType 5",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "DistrictType6",
-                            English = "DistrictType 6",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "DistrictType7",
-                            English = "DistrictType 7",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "DistrictType8",
-                            English = "DistrictType 8",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "CountyType1",
-                            English = "CountyType 1",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "CountyType2",
-                            English = "CountyType 2",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "CountyType3",
-                            English = "CountyType 3",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "CountyType4",
-                            English = "CountyType 4",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "CountyType5",
-                            English = "CountyType 5",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "CountyType6",
-                            English = "CountyType 6",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "CountyType7",
-                            English = "CountyType 7",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "CountyType8",
-                            English = "CountyType 8",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SubCountyType1",
-                            English = "SubCountyType 1",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SubCountyType2",
-                            English = "SubCountyType 2",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SubCountyType3",
-                            English = "SubCountyType 3",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SubCountyType4",
-                            English = "SubCountyType 4",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SubCountyType5",
-                            English = "SubCountyType 5",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SubCountyType6",
-                            English = "SubCountyType 6",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SubCountyType7",
-                            English = "SubCountyType 7",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SubCountyType8",
-                            English = "SubCountyType 8",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "CountryTypeUganda",
-                            English = "Uganda",
-                            Lang1 = "",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "CountryTypeVietnam",
-                            English = "Vietnam",
-                            Lang1 = "",
+                            Lang1 = "Okuwakisa ebisolo",
                             Lang2 = ""
                         },
                         new
                         {
                             RowKey = "CountryTypeRwanda",
                             English = "Rwanda",
+                            Lang1 = "Rwanda",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "CountryTypeVietnam",
+                            English = "Vietnam",
+                            Lang1 = "Ventinamu",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "CountryTypeUganda",
+                            English = "Uganda",
+                            Lang1 = "Uganda",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LoanProviderType5",
+                            English = "Club",
+                            Lang1 = "Kibiina",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LoanProviderType4",
+                            English = "Self-help group or savings",
+                            Lang1 = "Ekibiina kyokukyaalo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LoanProviderType3",
+                            English = "Co-operative or group",
+                            Lang1 = "Ekibina kyobwegasi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LoanProviderType2",
+                            English = "Bank",
+                            Lang1 = "Banka",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LoanProviderType1",
+                            English = "Micro-credit provider",
+                            Lang1 = "Awola sente /Omuwozi wa sente",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AnimalPurchasedFromType4",
+                            English = "Pig breeding company",
+                            Lang1 = "Ekitongole ekiwakisa embizi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AnimalPurchasedFromType3",
+                            English = "Pig farmer",
+                            Lang1 = "Omulunzi wembizi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LoanProviderType6",
+                            English = "Relatives or friends",
+                            Lang1 = "Abo luganda lwange / Mikwano gwange",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AnimalPurchasedFromType2",
+                            English = "Trader",
+                            Lang1 = "Omusubuuzi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AnimalType3",
+                            English = "Young male / boar for breeding",
+                            Lang1 = "Enume  ento nga yakulinyira enkazi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AnimalType2",
+                            English = "Gilt/Sow for breeding",
+                            Lang1 = "Ebizzi endusi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AnimalType1",
+                            English = "Piglet(s) for fattening",
+                            Lang1 = "Embizi endaawe/ezirindwa ngazakusala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "WhoProvidedServiceType3",
+                            English = "Boar keeper",
+                            Lang1 = "Omulunzi wa nume",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "WhoProvidedServiceType2",
+                            English = "Government artificial insemination service provider",
+                            Lang1 = "Omusawo wagavument ajikuba amazzi ge nume/omusawo wagavument awakisa embiizi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "WhoProvidedServiceType1",
+                            English = "Private artificial insemination service provider",
+                            Lang1 = "Omusawo atali wagavument ajikuba amazzi ge nume/ Omusawo atali wagavument awakisa embiizi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "ServiceType2",
+                            English = "Natural mating",
+                            Lang1 = "Embiizi enume okuwakisa enkazi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AnimalPurchasedFromType1",
+                            English = "Market",
+                            Lang1 = "Obutale ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "RegistrationSuccessfulTitleTranslation",
+                            English = "Your Account Has Been Created",
+                            Lang1 = "Accounta yo eggudwawo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "EquipmentType1",
+                            English = "Feeding equipment",
+                            Lang1 = "Ebikozesebwa muku ziwa emere",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "EquipmentType3",
+                            English = "Cleaning equipment",
+                            Lang1 = "Ebikosesebwa mu kuyonja",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "GenderType3",
+                            English = "Other",
+                            Lang1 = "Ebilala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "GenderType2",
+                            English = "Female",
+                            Lang1 = "Omukazi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "GenderType1",
+                            English = "Male",
+                            Lang1 = "Omusajja",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "VolumeUnitType1",
+                            English = "Kg",
+                            Lang1 = "Kilo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "ClientType1",
+                            English = "Pig farmer",
+                            Lang1 = "Omolunzi wembizi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PaymentType1",
+                            English = "Piglet",
+                            Lang1 = "Obubizi obuto",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "EquipmentType2",
+                            English = "Watering equipment",
+                            Lang1 = "Ebifukirila amazzi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "BreedingServiceType1",
+                            English = "Boar services",
+                            Lang1 = "Obuwereza obwekusa ku nume ewakisa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SoldToType2",
+                            English = "Slaughter-house",
+                            Lang1 = "Lufula",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SoldToType1",
+                            English = "Trader",
+                            Lang1 = "Omusubuzi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PigType4",
+                            English = "Young male/boar for breeding",
+                            Lang1 = "Enume yembizi ento/Enume eyo kuwakisa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PigType3",
+                            English = "Gilt/Sow for breeding",
+                            Lang1 = "Ebizi endusi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PigType2",
+                            English = "Slaughter animal",
+                            Lang1 = "Ebisolo ebyokusala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PigType1",
+                            English = "Piglet (for fattening)",
+                            Lang1 = "Embizi endawo/Ezilundibwa ngazakusala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "EquipmentType4",
+                            English = "Animal tags",
+                            Lang1 = "Obulamba ebisolo  kumatu",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SoldToType3",
+                            English = "Pig farmer",
+                            Lang1 = "Mulunzi wambizi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "GoogleSignUpTranslation",
+                            English = "Sign up with Google",
+                            Lang1 = "Wewandisizze kumutimbagano",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "WebAuthDescTranslation",
+                            English = "The Pig Economic Tool authenticates with Google to securely authenticate your account and keep your data safe.",
                             Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "WebAuthTitleTranslation",
+                            English = "Sign Up",
+                            Lang1 = "Wewandise kumukutu guno",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "CostTrans",
+                            English = "Cost",
+                            Lang1 = "Sente zewasasula",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherAmountPurchaseTrans",
+                            English = "Other Amount Purchased",
+                            Lang1 = "Obunji bwe wagula obulala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "UnitTrans",
+                            English = "Unit",
+                            Lang1 = "Ekipimo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AmountPurchasedTrans",
+                            English = "Amount Purchased",
+                            Lang1 = "Obunji bwe wagula",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherFeedTypeTrans",
+                            English = "Other Feed Type",
+                            Lang1 = "Ebika bye mere'bilala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "FeedTypeTrans",
+                            English = "Feed Type",
+                            Lang1 = "Ebika bye mere ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "DateObtainedTrans",
+                            English = "Date Obtained",
+                            Lang1 = "Enakuzomwezi  lwewabifuna",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AddFeedItemTrans",
+                            English = "Add Feed Cost",
+                            Lang1 = "Jjuzamu sente ze wabigula",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherPurchasedFromTranslation",
+                            English = "Other Purchased From",
+                            Lang1 = "Awalala jewagula",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PurchasedFromTranslation",
+                            English = "Purchased From",
+                            Lang1 = "jjewabigula/wabigulawa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherAmountPurchasedUnitTranslation",
+                            English = "Other Amount Purchased",
+                            Lang1 = "Obunji obulala bwe wagula",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AmountPurchasedUnitTranslation",
+                            English = "Amount Purchased",
+                            Lang1 = "Obunji bwewagula ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AmountPurchasedTranslation",
+                            English = "Amount Purchased",
+                            Lang1 = "Obunji bwewagula ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherFeedTypeTranslation",
+                            English = "Other Feed Type",
+                            Lang1 = "Ebika ebirala ebye'mere yebisolo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "FeedTypeTranslation",
+                            English = "Feed Type",
+                            Lang1 = "Ebika bye'mere yebisolo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "TransportCostTrans",
+                            English = "Transportation Cost",
+                            Lang1 = "Entambula",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PurchasedFrom",
+                            English = "Purchased From",
+                            Lang1 = "Jjewabigula",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "CommentTrans",
+                            English = "Comment",
+                            Lang1 = "Oyina kyogamba ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "FeedDurationTranslation",
+                            English = "Feed use duration",
+                            Lang1 = "Ebanga emere lyemala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LabourDurationTranslation",
+                            English = "Labour use duration",
+                            Lang1 = "Ebanga abakoze lyebakola",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherCostsTranslation",
+                            English = "Any Other Cost",
+                            Lang1 = "Ensasanya endala yona",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherLaboutTypeTranslation",
+                            English = "Other Labour Type",
+                            Lang1 = "Ebika byabakozi ebirala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LabourTypeTranslation",
+                            English = "Labour Type",
+                            Lang1 = "Ekyika kyabakozi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LabourTitleTranslation",
+                            English = "Labour",
+                            Lang1 = "Abaakozi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "CostTranslation",
+                            English = "Any other cost:",
+                            Lang1 = "Ensasanya endala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "FeedItemTitleTranslation",
+                            English = "Feed",
+                            Lang1 = "Emere ye'bisolo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherMedicineTypeTranslation",
+                            English = "Other Medicine Type",
+                            Lang1 = "Ebika byedagala ebilala ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "MedicineCostTranslation",
+                            English = "Medicine Cost",
+                            Lang1 = "Ensasaanya kudagala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherProviderTranslation",
+                            English = "Other provided service",
+                            Lang1 = "Obuwerezza obulala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "ProviderTranslation",
+                            English = "Who provided service",
+                            Lang1 = "Ani akuwa obuwereza obwo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "HealthCareCostTranslation",
+                            English = "Service Provider Cost",
+                            Lang1 = "Obuwereza obwo bwasente meka",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherHealthCareTypeTranslation",
+                            English = "Other Health Care Type",
+                            Lang1 = "Obujanjabi obulala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "HealthCareTypeTranslation",
+                            English = "Health Care Type",
+                            Lang1 = "Ebika ebyo bujanjabi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "HealthCareTitleTranslation",
+                            English = "Healthcare",
+                            Lang1 = "Obujanjabi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "MedicineTypeTranslation",
+                            English = "Medicine Type",
+                            Lang1 = "Ebika bye dagala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "FinishTranslation",
+                            English = "Finish",
+                            Lang1 = "Maliliza",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "StartTranslation",
+                            English = "Start",
+                            Lang1 = "Tandika",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "DeleteTranslation",
+                            English = "Delete",
+                            Lang1 = "Ssangula",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Water",
+                            English = "Water",
+                            Lang1 = "Amazzi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Housing",
+                            English = "Housing",
+                            Lang1 = "Enyumba",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Labour",
+                            English = "Labour",
+                            Lang1 = "Abakozi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Healthcare",
+                            English = "Healthcare",
+                            Lang1 = "Ebyobulamu",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Feed",
+                            English = "Feed",
+                            Lang1 = "Emere  ye' bisolo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Costs",
+                            English = "Costs",
+                            Lang1 = "Ensasaanya",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "UploadDataTranslation",
+                            English = "Upload",
+                            Lang1 = "Sindika kumutimbagano",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Reproduction",
+                            English = "Reproduction",
+                            Lang1 = "Ebyo gwako no kuzaala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "RegistrationTranslation",
+                            English = "Registration",
+                            Lang1 = "Okwewandisa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Home",
+                            English = "Home",
+                            Lang1 = "Awatandikilwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "ViewReports",
+                            English = "Reports",
+                            Lang1 = "Alipota/obubaka",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "EditData",
+                            English = "View / Edit / Delete data",
+                            Lang1 = "Byetegereze/Jamuensobi/ Bisangule wo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AddData",
+                            English = "Add Data",
+                            Lang1 = "Yongerako Obubaka obulala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "DateLastUploaded",
+                            English = "Data last uploaded",
+                            Lang1 = "obuka bbwewasembayo okutekakko",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Village",
+                            English = "Village",
+                            Lang1 = "Ekyaalo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Name",
+                            English = "Name",
+                            Lang1 = "Erinya",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "FilterTranslation",
+                            English = "Filter by:",
+                            Lang1 = "Byawule okusinziraku",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "HousingTitleTranslation",
+                            English = "Housing",
+                            Lang1 = "Enyumba",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Membership",
+                            English = "Co-Operative / Group membership",
+                            Lang1 = "Ekibiinna kyobwegasi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherCostEvent",
+                            English = "Other",
+                            Lang1 = "Ebilala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "EditTranslation",
+                            English = "Edit",
+                            Lang1 = "Jamu ensobi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "ResetTranslation",
+                            English = "Reset",
+                            Lang1 = "Ddamu bupya",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SaveTranslation",
+                            English = "Save",
+                            Lang1 = "Bitereke ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "CommentTranslation",
+                            English = "Comment",
+                            Lang1 = "Bakokyogamba",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherCostTranslation",
+                            English = "Any Other Cost",
+                            Lang1 = "Ensasaanya endala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "TransportationCostTranslation",
+                            English = "Transport Cost",
+                            Lang1 = "Ensasaanya kubye'ntambula",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "TotalCostTranslation",
+                            English = "Total Cost",
+                            Lang1 = "Gatta nsasaanya yona ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Other",
+                            English = "Other, specify",
+                            Lang1 = "Ebilala, biwandikawano.",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "DateTranslation",
+                            English = "Date",
+                            Lang1 = "Enakuzomwezi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherIncome",
+                            English = "Other Income",
+                            Lang1 = "Enyigiza yasente endala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "ManureSale",
+                            English = "Sale of manure",
+                            Lang1 = "Sente ezivvudde mukutunda Ebijimusa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "BreedingServiceSale",
+                            English = "Sale of breeding services",
+                            Lang1 = "Sente ezivvudde mukuwakisa Ebisolo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PigSale",
+                            English = "Sale of Pigs",
+                            Lang1 = "Sente ezivvudde mukutunda Embizzi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Income",
+                            English = "Income",
+                            Lang1 = "Enyingiza Ya sente",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LoanRepayment",
+                            English = "Loan Repayment",
+                            Lang1 = "Okusasula emabanja",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AnimalPurchase",
+                            English = "Animal Purchase",
+                            Lang1 = "Okugula Ebisolo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Equipment",
+                            English = "Equipment",
+                            Lang1 = "Byetukozessa okkola Emirimu",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LanguageType5",
+                            English = "Language",
+                            Lang1 = "Olulimi lwoyogera",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "HousingExpenseTranslation",
+                            English = "Housing Expense",
+                            Lang1 = "Ensasaanya kunyumba ye bisoolo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "YearsExpectedTranslation",
+                            English = "Expected Housing Lifespan (Years)",
+                            Lang1 = "Obuwangazi bwenyumba/Enyumba,Enawangala myaka emaka ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NameTranslation",
+                            English = "Name",
+                            Lang1 = "Elinya",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "UserNameTranslation",
+                            English = "Username",
+                            Lang1 = "Elinya lyo kozesa kumutimbagano",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "RegistrationTitleTranslation",
+                            English = "Registration",
+                            Lang1 = "Okwewandisa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "TotalIncomeTranslation",
+                            English = "Total Income",
+                            Lang1 = "Omugatte gwasente zoyingizza ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherIncomeTitleTranslation",
+                            English = "Other Income",
+                            Lang1 = "Sente endala zoyingizza",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "VolumeSoldTranslation",
+                            English = "Volume Sold",
+                            Lang1 = "Watunda bunji kyi/ Bunji ki byo' tunda",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "ManureSaleTitleTranslation",
+                            English = "Sale of Manure",
+                            Lang1 = "Entunda ye' ebijimusa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherClientTranslation",
+                            English = "Other Client",
+                            Lang1 = "Omuguzi abalala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "ClientTranslation",
+                            English = "Client",
+                            Lang1 = "Omuguzzi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PaymentValueTranslation",
+                            English = "Value",
+                            Lang1 = "Omuwendo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PaymentTypeTranslation",
+                            English = "Type",
+                            Lang1 = "Ekika",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AnyOtherPaymentTranslation",
+                            English = "Any Other Payment Received",
+                            Lang1 = "Sente endala zebakusasula",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AmountRecievedTranslation",
+                            English = "Amount received for all services",
+                            Lang1 = "Sente zonna awamu e zobuwereza byoona",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NumberServicesTranslation",
+                            English = "Number Services",
+                            Lang1 = "Emirimu jjali emeka/ Obuwereza byali bya mirudi emeeka",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "BreedingServiceSaleTitleTranslation",
+                            English = "Sale of Reproductive Services",
+                            Lang1 = "Entunda y'obuwereza obukwetagana ne' okuwakisa no' kuzala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "EmailTranslation",
+                            English = "Email",
+                            Lang1 = "Elinya lyo kozesa ku emailo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PhoneNumberTranslation",
+                            English = "Phone Number",
+                            Lang1 = "Esiimu yo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "DistrictTranslation",
+                            English = "District",
+                            Lang1 = "Disitulikiti yo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "CountyTranslation",
+                            English = "County",
+                            Lang1 = "Essaza",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LegalDisclaimerProceedTranslation",
+                            English = "Proceed",
+                            Lang1 = "Genda Mumaaso",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LegalDisclaimerAgreeTranslation",
+                            English = "By checking this box you agree to the terms listed above",
+                            Lang1 = "Okuteka akasitale wano, kitegeeza okiriziganya ne'obukwakulizzo obuli mu mboozi yaffe",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LegalDisclaimerTitleTranslation",
+                            English = "Legal Disclaimer",
+                            Lang1 = "Tetuvunanyizibwa kwebyo ebiva mukozessa obubi omukutu guno",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "WhereAreYouLocatedTranslation",
+                            English = "Where Are You Located?",
+                            Lang1 = "Obeelawa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LanguageTranslation",
+                            English = "Language",
+                            Lang1 = "Olulimi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "GenderTranslation",
+                            English = "Gender",
+                            Lang1 = "Ekikula kyo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "BrokerageTranslation",
+                            English = "Brokerage",
+                            Lang1 = "Kayungirizi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "CurrencyTranslation",
+                            English = "Currency",
+                            Lang1 = "Ekika kye'sente",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SectorTranslation",
+                            English = "Sector",
+                            Lang1 = "Ekitongole ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "CommuneTranslation",
+                            English = "Commune",
+                            Lang1 = "Ekika kya'bantu gyobeera",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "ProvinceTranslation",
+                            English = "Province",
+                            Lang1 = "Etundutundu jobela",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "CountryTranslation",
+                            English = "Country",
+                            Lang1 = "Ensi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "VillageTranslation",
+                            English = "Village",
+                            Lang1 = "Ekyaalo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "ParishTranslation",
+                            English = "Parish",
+                            Lang1 = "Omuluka",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SubCountyTranslation",
+                            English = "Sub County",
+                            Lang1 = "Egombolola",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "CellTranslation",
+                            English = "Cell",
+                            Lang1 = "Ekyaalo kyo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherSoldToTranslation",
+                            English = "Other Sold To",
+                            Lang1 = "Bewaguzza abalala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SoldToTranslation",
+                            English = "Sold To",
+                            Lang1 = "Bewaguzza",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherServiceTypeTranslation",
+                            English = "Other service type",
+                            Lang1 = "Ebika byobuwerezza ebilala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "ServiceTypeTranslation",
+                            English = "Service type",
+                            Lang1 = "Ebika byobuwerezza",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "ReproductiveTitleTranslation",
+                            English = "Reproduction",
+                            Lang1 = "Ebyekusa kugwako, ne'okuzzaala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherWhatForTranslation",
+                            English = "What for",
+                            Lang1 = "Byaaki",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherCostTitleTranslation",
+                            English = "Other",
+                            Lang1 = "Ebilala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "TimePeriodTranslation",
+                            English = "Time-period covered",
+                            Lang1 = "Obudde bwebitutte",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherMembershipTypeTranslation",
+                            English = "Other type",
+                            Lang1 = "Ebika ebilala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "MembershipTypeTranslation",
+                            English = "Membership type",
+                            Lang1 = "Ekika kyo bwamemba ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "WaterDurationTranslation",
+                            English = "Water use duration",
+                            Lang1 = "Obudde bwomala nga okozessa amazzi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherPurchasedWaterFromTranslation",
+                            English = "Purchased From",
+                            Lang1 = "Ngagula okuva",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PurchasedWaterFromTranslation",
+                            English = "Who Purchased From",
+                            Lang1 = "Ani, agagula/ Ngagula okuva",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherWaterPurchasedTranslation",
+                            English = "Other unit",
+                            Lang1 = "Ekipimo ekilala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "WaterPurchasedTranslation",
+                            English = "Water Purchased",
+                            Lang1 = "Amazzi agagulwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "WaterCostTitleTranslation",
+                            English = "Water",
+                            Lang1 = "Amazzi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SliderControlTranslation",
+                            English = "If new housing built (rather than maintenance) lifespan in years + expected salvage value at end ?",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "MembershipTitleTranslation",
+                            English = "Co-Operative / Group membership",
+                            Lang1 = "Ekibiinna kyobwegasi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherHousingExpenseTranslation",
+                            English = "Other Housing Expense",
+                            Lang1 = "Ensasaanya endala kunyumba ye bisolo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "WhoProvidedServiceTranslation",
+                            English = "Who Provided Service",
+                            Lang1 = "Ani akuwa obuwereza obwo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AnimalPurchaseTitleTranslation",
+                            English = "Animal Purchase",
+                            Lang1 = "Okugula Ebisolo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NumberSoldTranslation",
+                            English = "Number Sold",
+                            Lang1 = "Watunda meka",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherPigTypeTranslation",
+                            English = "Other Pig Type",
+                            Lang1 = "Ebika bye mbizi ebilala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PigTypeTranslation",
+                            English = "Pig type",
+                            Lang1 = "Ebika byembizi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PigSaleTitleTranslation",
+                            English = "Pig Sales",
+                            Lang1 = "Okutunda embizi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherEquipmentTypeTranslation",
+                            English = "Other Equipment Type",
+                            Lang1 = "Ebikozesebwa ebilala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "EquipmentTypeTranslation",
+                            English = "Equipment Type",
+                            Lang1 = "Ebika bye ebikozesebwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "EquipmentTitleTranslation",
+                            English = "Equipment",
+                            Lang1 = "Ebikozesebwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherWhoProvidedServiceTranslation",
+                            English = "Who Provided Service",
+                            Lang1 = "Ani akuwa obuwereza obwo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "TotalAmountRepaidTranslation",
+                            English = "Total Amount Paid",
+                            Lang1 = "Omugatte gwasente zo sasula",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LoanProviderTranslation",
+                            English = "Loan Provider",
+                            Lang1 = "Ani akuwola sente",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LoanRepaymentTitleTranslation",
+                            English = "Loan Repayment",
+                            Lang1 = "Ensasula yasente zewewola",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherAnimalPurchasedTranslation",
+                            English = "Purchased from",
+                            Lang1 = "JJewabigula",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AnimalPurchasedFromTranslation",
+                            English = "Purchased from",
+                            Lang1 = "JJewabigula",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NumberPurchasedTranslation",
+                            English = "Number purchased",
+                            Lang1 = "Wagula bunji ki",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherAnimalTypeTranslation",
+                            English = "Animal type",
+                            Lang1 = "Ebika bye'bisolo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AnimalTypeTranslation",
+                            English = "Animal type",
+                            Lang1 = "Ebika bye'bisolo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherLoanProviderTranslation",
+                            English = "Other Loan Provider",
+                            Lang1 = "Abawola sente abalala/ bewewola ko sente abalala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LanguageType6",
+                            English = "Language",
+                            Lang1 = "Olulimi ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "DropDownUnitType3",
+                            English = "gram",
+                            Lang1 = "Obuzito",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "WatherDurationTranslation",
+                            English = "Water Use Duration",
+                            Lang1 = "Obudde bwomala nga okozessa amazzi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SowsServicedCostTranslation",
+                            English = "Total Service Cost",
+                            Lang1 = "Omuggate gwosasula kubuwereza ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "TotalAnimalCosts",
+                            English = "Total cost for all animals",
+                            Lang1 = "Omugatte gwensasaanya kubisolo byona",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "HealthProviderType3",
+                            English = "Self",
+                            Lang1 = "Nze",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "HealthProviderType4",
+                            English = "Neighbour, friend, or relative",
+                            Lang1 = "Mulilwana, mukwano gwo, owoluganda ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "VolumeUnitType2",
+                            English = "Bag",
+                            Lang1 = "Ensawo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SaveHouseRecord",
+                            English = "Housing record has been saved",
+                            Lang1 = "Biterekeddwa ebiwandiko ebikwata kunyumba ze bisolo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "DeleteConfirmation",
+                            English = "Deletion Confirmation",
+                            Lang1 = "Bisanguddwa/Bijjiddwamu",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OK",
+                            English = "OK",
+                            Lang1 = "Kaale/Gendamumaso",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Cancel",
+                            English = "Cancel",
+                            Lang1 = "Togenda mumaso kukyikola/Tokyikola/SikkituFfu/Kijeeko/Kijeewo/Kijeemu",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "DeleteVerify",
+                            English = "Are you sure you want to Delete this item",
+                            Lang1 = "Okakakasa oyagala kubijjamu",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Updated",
+                            English = "Updated",
+                            Lang1 = "Tugaseko ebipya  ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Error",
+                            English = "Error",
+                            Lang1 = "Ensobi ekoledwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoDate",
+                            English = "Date obtained not provided",
+                            Lang1 = "Totademu naku,zamwezi lwewabifuna",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoTotalCost",
+                            English = "Total Cost Not Provided",
+                            Lang1 = "Totaddemu omuggate gwa sente zewasasanya",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoTransportationCost",
+                            English = "Transportation Cost Not Provided",
+                            Lang1 = "Totaddemu sente zewasasanya ku ntabula",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoHousingExpense",
+                            English = "Other Housing Expense Not Provided",
+                            Lang1 = "Totaddemu, Ensasanya endala ku nyumba ze bisolo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoAnimalType",
+                            English = "Other Animal Type Not Provided",
+                            Lang1 = "Totaddemu, ebika bye ebisolo ebirala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoPurchasedFrom",
+                            English = "Other Animal Purchased From Not Provided",
+                            Lang1 = "Totaddemu, ebisolo ebirala jjewagula/Totaddemu,  awala wewagula ebisolo ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AnimalUpdated",
+                            English = "Animal purchase record has been updated",
+                            Lang1 = "Tugaseko ebiwandiko ebipya ebikwatagana mukugula ebisolo ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AnimalSaved",
+                            English = "Animal purchase has been saved",
+                            Lang1 = "Biterekeddwa Ebyo kugula ebisolo ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoAmountRecevied",
+                            English = "Amount Received Not Provided",
+                            Lang1 = "Totaddemu sente zewafuna",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoPaymentValue",
+                            English = "Payment Value Not Provided",
+                            Lang1 = "Totaddemu sente zewasasula",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoServiceType",
+                            English = "Other Service Type Not Provided",
+                            Lang1 = "Totaddemu ebika byo obuwereza obulala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NotOtherClient",
+                            English = "Other Client Not Provided",
+                            Lang1 = "Totaddemu bakasitoma abalala ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "BreedingSaved",
+                            English = "Breeding service sale has been saved",
+                            Lang1 = " Obuwerezza obwekusa ku no'kuwakisa buterekeddwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SaleSaved",
+                            English = "Sale of reproductive services has been saved",
+                            Lang1 = "Obuwerezza obwekusa kugwako no kuzzala buterekeddwa/ Entunda yo' obuwerezza obwekusa kugwako no kuzzala  eterekeddwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "EquipmentUpdated",
+                            English = "Equipment record has been updated",
+                            Lang1 = "Tugaseko ebiwandiko ebipya ku bikozesebwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "EquipmentSaved",
+                            English = "Equipment record has been saved",
+                            Lang1 = "Biterekeddwa ebikwata kubikozesebwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherEqNotProvided",
+                            English = "Other Equipment Type Not Provided",
+                            Lang1 = "Totaddemu ebika bye'bikozesebwa ebilala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "FeedUpdated",
+                            English = "Feed record has been updated",
+                            Lang1 = "Tugaseko ebiwandiko ebipya ku mere yebisolo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "FeedSaved",
+                            English = "Feed item has been saved",
+                            Lang1 = "Biterekedwa ebikwata ku mere yebisolo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "DurIsbefore",
+                            English = "Duration Finish is before Duration Start",
+                            Lang1 = "Soka, otekemu obudde bwewamalirako, oddeko bwewatandikirako",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoDurationStart",
+                            English = "Duration Start Not Provided",
+                            Lang1 = "Totaddemu obudde bwo' tandikiddeko",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoDurationEnd",
+                            English = "Duration Finish Not Provided",
+                            Lang1 = "Totaddemu obudde bwo' malilideko",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherPurchasedUnitNotProvided",
+                            English = "Other Amount Purchased Unit Not Provided",
+                            Lang1 = "Totaddemu bipimo kubunji bwewagula",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoOtherPurcFrom",
+                            English = "Other Purchased From Not Provided",
+                            Lang1 = "Totaddemu awalala jewabigula",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoFeedType",
+                            English = "Other Feed Type Not Provided",
+                            Lang1 = "Totaddemu ebika ebirala ebye'mere yebisolo ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "HealthUpdated",
+                            English = "Health care record has been updated",
+                            Lang1 = "Tugaseko ebiwandiko ebipya ku byobulamu",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "HealthSaved",
+                            English = "Health care record has been saved",
+                            Lang1 = "Biterekedwa ebikwata ku byobulamu",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoOtherHealthCareYpe",
+                            English = "Other Health Care Type Not Provided",
+                            Lang1 = "Totaddemu ebika byobujjanjabi ebilala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoOtherProvider",
+                            English = "Other Provider Not Provided",
+                            Lang1 = "Totaddemu abawereza abalala ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoOtherMediceType",
+                            English = "Other Medicine Type Not Provided",
+                            Lang1 = "Totaddemu bika byadagla bilala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoMedicineCost",
+                            English = "Medicine Cost Not Provided",
+                            Lang1 = "Totaddemu nsasanya kudagala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoHealthCareCost",
+                            English = "Health Care Cost Not Provided",
+                            Lang1 = "Totaddemu nsasanya kubyobulamu",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoDateProvided",
+                            English = "Date not provided",
+                            Lang1 = "Totaddemu naku zamwezzi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "RecordLabourUpdated",
+                            English = "Labour Cost Record Update",
+                            Lang1 = "Tugaseko ensasanya kubakozi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "RecordLabourCostSaved",
+                            English = "Labour Cost Record Saved",
+                            Lang1 = "Ensasanya kubakozi Eterekeddwa, ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AmountPaidNotProvided",
+                            English = "Amount Paid Not Provided",
+                            Lang1 = "Tottademu omuwendo gwewasasula",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoOtherLabourType",
+                            English = "Other Labour Type Not Provided",
+                            Lang1 = "Totaddemu bika byabakozi, ebilala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LoanUpdated",
+                            English = "Loan repayment record has been updated",
+                            Lang1 = "Tugaseko ebipya kunsasula yamabanja",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LoanSaved",
+                            English = "Loan repayment has been saved",
+                            Lang1 = "Biterekeddwa ebipya kunsasula yamabanja",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoTotalAmount",
+                            English = "Total Amount Repaid Not Provided",
+                            Lang1 = "Totaddemu muwendo gwe wakasasulako",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherUnitNotProvided",
+                            English = "Other Unit Not Provided",
+                            Lang1 = "Totaddemu epimo endala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "ManureUpdated",
+                            English = "Manure sale record has been updated",
+                            Lang1 = "Tugaseko ebipya kuntunda ye ebijimusa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "ManureSaved",
+                            English = "Manure sale has been saved",
+                            Lang1 = "Ebipya kuntunda ye ebijimusa Biterekeddwa ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoOtherSoldTo",
+                            English = "Other Sold To Not Provided",
+                            Lang1 = "Totaddemu abalala be waguza",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "WaterCostUpdated",
+                            English = "Water cost record has been updated",
+                            Lang1 = "Tugaseko ensasaanya kumazzi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "MemberShipSaved",
+                            English = "Membership has been saved",
+                            Lang1 = "Biterekeddwa ebikwata kubwamemba bwo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "TimePeriodNotProvided",
+                            English = "Time Period Not Provided",
+                            Lang1 = "Totaddemu budde",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoPeriodUnit",
+                            English = "Time Period Unit Not Provided",
+                            Lang1 = "Totaddemu ngeri jobazemu budde bwo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoOtherMemberShip",
+                            English = "Other Membership Type Not Provided",
+                            Lang1 = "Totaddemu bwamemba bwo obulala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherCostUpdated",
+                            English = "Other cost record has been updated",
+                            Lang1 = "Tugaseko ebye'nsasanya endala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherCostsSaved",
+                            English = "Other Cost has been saved",
+                            Lang1 = "Ensasanya endala eterekedwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherIncomeUpdated",
+                            English = "Other income record has been updated",
+                            Lang1 = "Tugaseko Ebye'nyingiza endala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherIncomeSaved",
+                            English = "Other income has been saved",
+                            Lang1 = "Ebye'nyingiza endala biterekeddwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PigSaleUpdated",
+                            English = "Pig sale record has been updated",
+                            Lang1 = "Tugaseko ebipya kumbizi  ezatundwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "PigSaleSaved",
+                            English = "Pig sale has been saved",
+                            Lang1 = "Ebye'mbizi sewatunda biterekeddwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoSalePrice",
+                            English = "Sale Price Not Provided",
+                            Lang1 = "Totaddemu beyi jewatundi lako",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoBrokerage",
+                            English = "Brokerage Not Provided",
+                            Lang1 = "Totaddemu  ebyakayungirizi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoOtherPigType",
+                            English = "Other Pig Type Not Provided",
+                            Lang1 = "Totaddemu ebika  ebilala ebye' mbizi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "ReproductionUpdated",
+                            English = "Reproduction record has been updated",
+                            Lang1 = "Tugaseko ebiwandiko ebipya ebyekusa kugwakko no' okuzaala",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "ReproductionSaved",
+                            English = "Reproduction record has been saved",
+                            Lang1 = "Ebiwandiko ebyekusa kugwakko no' okuzaala bitrekeddwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoSowsServiced",
+                            English = "Sows Serviced Not Provided",
+                            Lang1 = "Totaddemu, mbizi enkazi zewawakisa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoOtherServiceProvider",
+                            English = "Other Who Provided Service Not Provided",
+                            Lang1 = "Totademu, omulala eyakuwa obuwerezza buno ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "WaterSaved",
+                            English = "Water record has been saved",
+                            Lang1 = "Ebiwandiko bya' mazzi bitrekeddwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoOtherPerson",
+                            English = "Other Person Purchased From Not Provided",
+                            Lang1 = "Totademu, abalala bewagulako ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "About",
+                            English = "About",
+                            Lang1 = "Ebikwatagana ne",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoCountry",
+                            English = "Country Not Provided",
+                            Lang1 = "Totaddemu  erinya lyensiyo jova",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LastData",
+                            English = "Last Data Update: ",
+                            Lang1 = "Lwewasemba yo'kutekakko ebipya",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Hello",
+                            English = "Hello ",
+                            Lang1 = "Abeenno",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Viilage",
+                            English = "Village: ",
+                            Lang1 = "Ekyaalo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "FailedToLoad",
+                            English = "Failed to Load Item",
+                            Lang1 = "Kyosindika Tekyigenze",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SendingData",
+                            English = "Sending Data",
+                            Lang1 = "Obubakka buli kusindikibwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoUsername",
+                            English = "Username Not provided",
+                            Lang1 = "Totaddemu elinya lyo kozesa kuno",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoName",
+                            English = "Name Not provided",
+                            Lang1 = "Totaddemu linya lyo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoPhoneNumber",
+                            English = "Phone Number Not Provided",
+                            Lang1 = "Totaddemu namba ya simu yo",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "NoCurrency",
+                            English = "Currency Not Provided",
+                            Lang1 = "Totaddemu kyika kyasente",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "DataUploaded",
+                            English = "Data Uploaded!",
+                            Lang1 = "Obubakka buwerezeddwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "DataHasBeenUploaded",
+                            English = "The Data has been uploaded",
+                            Lang1 = "Obubakka buwerezeddwa",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Vitnamese",
+                            English = "Vietnamese",
+                            Lang1 = "Oluventinamu",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Swahili",
+                            English = "Swahili",
+                            Lang1 = "Oluswayiri",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "English",
+                            English = "English",
+                            Lang1 = "Oluzungu",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Wait",
+                            English = "Please Wait",
+                            Lang1 = "Ojira olinda ko",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "GoogleAuth",
+                            English = "Google Auth Failed",
+                            Lang1 = "Waliwo obuzibu",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "TotalCost",
+                            English = "Total Cost",
+                            Lang1 = "Omugatte ogwensasaanya yona ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "TotalProfit",
+                            English = "Total Profit",
+                            Lang1 = "Omugatte ogwamagoba gona",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SomethingWrong",
+                            English = "Something went wrong, please try again later",
+                            Lang1 = "Ddamu bupya waliwo ekitagenze bulunji, geezako oluvanyuma ",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "YourChangesSaved",
+                            English = "Your changes have been saved",
+                            Lang1 = "Tujikiriza, enkyuka,kyuka jokozze",
                             Lang2 = ""
                         },
                         new
@@ -4051,42 +4509,154 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "LanguageType1",
-                            English = "Language1",
+                            English = "English",
                             Lang1 = "",
                             Lang2 = ""
                         },
                         new
                         {
                             RowKey = "LanguageType2",
-                            English = "Language2",
+                            English = "Lugunda",
                             Lang1 = "",
                             Lang2 = ""
                         },
                         new
                         {
                             RowKey = "LanguageType3",
-                            English = "Language3",
+                            English = "Vietnamese",
                             Lang1 = "",
                             Lang2 = ""
                         },
                         new
                         {
                             RowKey = "LanguageType4",
-                            English = "Language4",
+                            English = "Kinyarwanda ",
                             Lang1 = "",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "LanguageType5",
-                            English = "Language5",
+                            RowKey = "LegalDisclaimerBodyTranslation",
+                            English = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
                             Lang1 = "",
                             Lang2 = ""
                         },
                         new
                         {
-                            RowKey = "LanguageType6",
-                            English = "Language6",
+                            RowKey = "MembershipDurationTranslation",
+                            English = "Membership duration",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SubCountyType1",
+                            English = "SubCountyType 1",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SubCountyType2",
+                            English = "SubCountyType 2",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SubCountyType3",
+                            English = "SubCountyType 3",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SubCountyType4",
+                            English = "SubCountyType 4",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SubCountyType5",
+                            English = "SubCountyType 5",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SubCountyType6",
+                            English = "SubCountyType 6",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SubCountyType7",
+                            English = "SubCountyType 7",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SubCountyType8",
+                            English = "SubCountyType 8",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "TotalAnimalCostsTranslation",
+                            English = "Total cost for all animals",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "Created",
+                            English = "Created",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "TotalCostAllUnits",
+                            English = "Total Cost (all units)",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "MedicineType5",
+                            English = "Disinfectant",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "AmountPaidTranslation",
+                            English = "Amount paid for piggery labour over the duration",
+                            Lang1 = "Sente zosasula abakozi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SalePriceTranslation",
+                            English = "Sale price for all animals sold",
+                            Lang1 = "Wabaguzza sente meka",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "ManureAmountRecievedTranslation",
+                            English = "Sale price for all manure sold",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "MembershipUpdated",
+                            English = "Membership Updated",
                             Lang1 = "",
                             Lang2 = ""
                         });
@@ -4450,12 +5020,6 @@ namespace Shared.Migrations
                     b.Property<string>("OtherSoldTo")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("PaymentType")
-                        .HasColumnType("TEXT");
-
-                    b.Property<double?>("PaymentValue")
-                        .HasColumnType("REAL");
-
                     b.Property<string>("SoldTo")
                         .HasColumnType("TEXT");
 
@@ -4562,9 +5126,6 @@ namespace Shared.Migrations
             modelBuilder.Entity("Shared.PigSaleItem", b =>
                 {
                     b.HasBaseType("Shared.BaseItem");
-
-                    b.Property<double>("Brokerage")
-                        .HasColumnType("REAL");
 
                     b.Property<string>("Comment")
                         .HasColumnType("TEXT");
