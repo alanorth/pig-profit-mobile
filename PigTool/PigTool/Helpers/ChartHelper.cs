@@ -29,6 +29,18 @@ namespace PigTool.Helpers
         private ObservableCollection<FeedItem> feedItems;
         private ObservableCollection<HealthCareItem> healthCareItems;
         private ObservableCollection<PigSaleItem> pigSaleItems;
+        private ObservableCollection<WaterCostItem> waterCostItems;
+        private ObservableCollection<ReproductiveItem> reproductiveItems;
+        private ObservableCollection<OtherIncomeItem> otherIncomeItems;
+        private ObservableCollection<OtherCostItem> otherCostItems;
+        private ObservableCollection<MembershipItem> membershipItems;
+        private ObservableCollection<ManureSaleItem> manureSaleItems;
+        private ObservableCollection<LoanRepaymentItem> loanRepaymentItems;
+        private ObservableCollection<LabourCostItem> labourCostItems;
+        private ObservableCollection<EquipmentItem> equipmentItems;
+        private ObservableCollection<BreedingServiceSaleItem> breedServiceSaleItems;
+        private ObservableCollection<AnimalPurchaseItem> animalPurchaseItems;
+        private ObservableCollection<AnimalHouseItem> animalHouseItems;
 
         #region Variables
         public List<Row> FullList
@@ -40,10 +52,50 @@ namespace PigTool.Helpers
                 OnPropertyChanged(nameof(FullList));
             }
         }
-        
+
         #endregion
 
         #region Collections
+        public ObservableCollection<AnimalHouseItem> AnimalHouseItems
+        {
+
+            get { return animalHouseItems; }
+            set
+            {
+                animalHouseItems = value;
+                OnPropertyChanged(nameof(AnimalHouseItems));
+            }
+        }
+        public ObservableCollection<AnimalPurchaseItem> AnimalPurchaseItems
+        {
+
+            get { return animalPurchaseItems; }
+            set
+            {
+                animalPurchaseItems = value;
+                OnPropertyChanged(nameof(AnimalPurchaseItems));
+            }
+        }
+        public ObservableCollection<BreedingServiceSaleItem> BreedServiceSaleItems
+        {
+
+            get { return breedServiceSaleItems; }
+            set
+            {
+                breedServiceSaleItems = value;
+                OnPropertyChanged(nameof(BreedServiceSaleItems));
+            }
+        }
+        public ObservableCollection<EquipmentItem> EquipmentItems
+        {
+
+            get { return equipmentItems; }
+            set
+            {
+                equipmentItems = value;
+                OnPropertyChanged(nameof(EquipmentItems));
+            }
+        }
         public ObservableCollection<FeedItem> FeedItems
         {
 
@@ -54,7 +106,6 @@ namespace PigTool.Helpers
                 OnPropertyChanged(nameof(FeedItems));
             }
         }
-
         public ObservableCollection<HealthCareItem> HealthCareItems
         {
 
@@ -65,7 +116,66 @@ namespace PigTool.Helpers
                 OnPropertyChanged(nameof(HealthCareItems));
             }
         }
+        public ObservableCollection<LabourCostItem> LabourCostItems
+        {
 
+            get { return labourCostItems; }
+            set
+            {
+                labourCostItems = value;
+                OnPropertyChanged(nameof(LabourCostItems));
+            }
+        }
+        public ObservableCollection<LoanRepaymentItem> LoanRepaymentItems
+        {
+
+            get { return loanRepaymentItems; }
+            set
+            {
+                loanRepaymentItems = value;
+                OnPropertyChanged(nameof(LoanRepaymentItems));
+            }
+        }
+        public ObservableCollection<ManureSaleItem> ManureSaleItems
+        {
+
+            get { return manureSaleItems; }
+            set
+            {
+                manureSaleItems = value;
+                OnPropertyChanged(nameof(ManureSaleItems));
+            }
+        }
+        public ObservableCollection<MembershipItem> MembershipItems
+        {
+
+            get { return membershipItems; }
+            set
+            {
+                membershipItems = value;
+                OnPropertyChanged(nameof(MembershipItems));
+            }
+        }
+        public ObservableCollection<OtherCostItem> OtherCostItems
+        {
+
+            get { return otherCostItems; }
+            set
+            {
+                otherCostItems = value;
+                OnPropertyChanged(nameof(OtherCostItems));
+            }
+        }
+        public ObservableCollection<OtherIncomeItem> OtherIncomeItems
+        {
+
+            get { return otherIncomeItems; }
+            set
+            {
+                otherIncomeItems = value;
+                OnPropertyChanged(nameof(OtherIncomeItems));
+            }
+        }
         public ObservableCollection<PigSaleItem> PigSaleItems
         {
 
@@ -77,6 +187,31 @@ namespace PigTool.Helpers
             }
         }
         #endregion
+        public ObservableCollection<ReproductiveItem> ReproductiveItems
+        {
+
+            get { return reproductiveItems; }
+            set
+            {
+                reproductiveItems = value;
+                OnPropertyChanged(nameof(ReproductiveItems));
+            }
+        }
+        public ObservableCollection<WaterCostItem> WaterCostItems
+        {
+
+            get { return waterCostItems; }
+            set
+            {
+                waterCostItems = value;
+                OnPropertyChanged(nameof(WaterCostItems));
+            }
+        }
+
+
+        
+
+
 
         public class YearMonth : IEquatable<YearMonth>
         {
@@ -125,7 +260,7 @@ namespace PigTool.Helpers
         {
             // Initial grouping for Feed items
             FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItems());
-            fullList = feedItems.GroupBy(fi => new YearMonth
+            fullList = FeedItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
                 Month = fi.Date.Month

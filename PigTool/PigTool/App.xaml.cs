@@ -119,7 +119,7 @@ namespace PigTool
             }
             catch (Exception ex)
             {
-                return ex.InnerException?.Message;
+                throw new Exception(ex.Message);
             }
         }
     }
