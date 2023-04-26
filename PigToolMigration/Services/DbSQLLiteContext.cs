@@ -669,7 +669,6 @@ namespace SQLLiteDbContext
 
                    new ControlData() { DisplayOrder = 1, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.SOLDTOTYPE, TranslationRowKey = "SoldToType1" },
                    new ControlData() { DisplayOrder = 2, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.SOLDTOTYPE, TranslationRowKey = "SoldToType2" },
-                   new ControlData() { DisplayOrder = 3, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.SOLDTOTYPE, TranslationRowKey = "SoldToType3" },
                    new ControlData() { DisplayOrder = 9, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.SOLDTOTYPE, TranslationRowKey = Constants.OTHER },
 
                    new ControlData() { DisplayOrder = 1, PartitionKey = Constants.PartitionKeyControlData, CreatedBy = "InitialUpload", DropDownControlOption = Constants.BREEDINGSERVICETYPE, TranslationRowKey = "BreedingServiceType1" },

@@ -19,7 +19,7 @@ namespace PigTool.ViewModels.DataViewModels
 
         private string serviceType;
         private string otherServiceType;
-        private int? sowsServicedCost;
+        private double? sowsServicedCost;
         private string whoProvidedService;
         private string otherWhoProvidedService;
         private double? otherCosts;
@@ -96,7 +96,7 @@ namespace PigTool.ViewModels.DataViewModels
                 }
             }
         }
-        public int? SowsServicedCost
+        public double? SowsServicedCost
         {
             get => sowsServicedCost;
             set
@@ -369,7 +369,7 @@ namespace PigTool.ViewModels.DataViewModels
             {
 
                 _itemForEditing.Date = Date;
-                _itemForEditing.SowsServicedCost = (int)SowsServicedCost;
+                _itemForEditing.SowsServicedCost = (double)SowsServicedCost;
                 _itemForEditing.ServiceType = SelectedServiceType != null ? SelectedServiceType.TranslationRowKey : null;
                 _itemForEditing.OtherServiceType = OtherServiceType;
                 _itemForEditing.WhoProvidedService = SelectedWhoProvidedService != null ? SelectedWhoProvidedService.TranslationRowKey : null;

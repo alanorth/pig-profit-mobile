@@ -55,12 +55,14 @@
                     Grid.Row="2"
                     Style="{StaticResource PrimaryHomeButton}"
                     Text="{Binding ViewReports}" />
+                <!--
                 <Button
                     Grid.Row="3"
                     BackgroundColor="#EFCA58"
                     Command="{Binding PopulateDB}"
                     Style="{StaticResource PrimaryHomeButton}"
                     Text="(DEV) Add Example Data" />
+                -->
             </Grid>
             <Label
                 Margin="0,20"

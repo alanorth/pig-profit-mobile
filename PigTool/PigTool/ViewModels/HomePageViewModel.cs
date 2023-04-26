@@ -23,6 +23,7 @@ namespace PigTool.ViewModels
         public string EditData { get; set; }
         public string ViewReports { get; set; }
         public string Home { get; set; }
+        public string LastUploadTranslation { get; set; }
 
         //strings that can change
         string nameOfUser, villageOfUser, userLastUpdatedTime;
@@ -66,7 +67,7 @@ namespace PigTool.ViewModels
             {
                 if (userLastUpdatedTime != value)
                 {
-                    userLastUpdatedTime = "Last Data Update: " + value;
+                    userLastUpdatedTime = LastUploadTranslation + ": " + value;
                     OnPropertyChanged("UserLastUpdatedTime");
                 }
             }
@@ -120,6 +121,7 @@ namespace PigTool.ViewModels
             EditData = repo.GetTranslationAsync(nameof(EditData)).Result.getTranslation(User.UserLang);
             ViewReports = repo.GetTranslationAsync(nameof(ViewReports)).Result.getTranslation(User.UserLang);
             Home = repo.GetTranslationAsync(nameof(Home)).Result.getTranslation(User.UserLang);
+            LastUploadTranslation = repo.GetTranslationAsync(nameof(LastUploadTranslation)).Result.getTranslation(User.UserLang);
             //Button Commands
             AddDataNavigation = new Command(AddDataCommand);
             ManageDataNavigation = new Command(ManageDataCommand);

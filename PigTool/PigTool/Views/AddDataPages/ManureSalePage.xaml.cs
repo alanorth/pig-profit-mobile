@@ -106,7 +106,18 @@ namespace PigTool.Views
                 ),
                 GridPostion.ThreeRight);
 
+            var OtherUnitType = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherUnitType), true);
+            FormattedElementsHelper.AddGridValue(
+                OtherUnitType,
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherUnitTypeTranslation)),
+                GridPostion.TwoLeft);
+            FormattedElementsHelper.AddGridValue(
+                OtherUnitType,
+                FormattedElementsHelper.FormTextEntry(nameof(_viewModel.OtherUnitType), nameof(_viewModel.IsEditMode)),
+                GridPostion.TwoRight);
+
             UnitVerticalStack.Children.Add(VolumeSoldUnitTypeStack);
+            UnitVerticalStack.Children.Add(OtherUnitType);
             VolumeSoldUnitCell.View = UnitVerticalStack;
             FullTableSection.Add(VolumeSoldUnitCell);
 

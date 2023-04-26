@@ -78,7 +78,6 @@ namespace PigTool.Views
             // Duration
             var DurationCell = new ViewCell();
             var DurationVerticalStack = FormattedElementsHelper.TableRowStack(stackOrientation: StackOrientation.Vertical);
-
             var DurationLabel = FormattedElementsHelper.DataLabel(nameof(_viewModel.LabourDurationTranslation));
             DurationVerticalStack.Children.Add(DurationLabel);
 
@@ -93,7 +92,10 @@ namespace PigTool.Views
             var DurationFinishCell = new ViewCell();
             var DurationFinishStack = FormattedElementsHelper.TableRowStack();
             DurationFinishStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.FinishTranslation)));
-            DurationFinishStack.Children.Add(FormattedElementsHelper.FormDatePicker(nameof(_viewModel.DurationFinish), nameof(_viewModel.IsEditMode)));
+            DurationFinishStack.Children.Add(FormattedElementsHelper.FormDatePicker(
+                nameof(_viewModel.DurationFinish), 
+                nameof(_viewModel.IsEditMode), 
+                nameof(_viewModel.DurationStart)));
             DurationFinishCell.View = DurationFinishStack;
 
             DurationVerticalStack.Children.Add(DurationStartStack);

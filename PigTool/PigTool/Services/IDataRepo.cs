@@ -8,6 +8,7 @@ namespace PigTool.Services
 {
     public interface IDataRepo
     {
+        Task LogoutOfDatabase();
         Task<List<Item>> GetAllItemsAsync();
         Task AddSingleItemAsync(Item itemToAdd);
         Task<Translation> GetTranslationAsync(string Rowkey);

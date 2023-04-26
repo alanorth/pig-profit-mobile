@@ -18,5 +18,26 @@ namespace PigTool.Views
             InitializeComponent();
             this.BindingContext = _viewModel;
         }
+
+        void OnDateSelected(object sender, DateChangedEventArgs args)
+        {
+            if (startDatePicker.Date <= endDatePicker.Date)
+            {
+                Recalculate();
+            }
+        }
+
+        protected async override void OnAppearing()
+        {
+            _viewModel.GetDataForCharts();
+            _viewModel.LoadAdvancedBarChart(_viewModel.FullList);
+        }
+
+        void Recalculate()
+        {
+            _viewModel.StartDate = startDatePicker.Date;
+            _viewModel.EndDate = endDatePicker.Date;
+            _viewModel.filterDataAndReloadBarChart();
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace Shared
         //public double? PaymentValue { get; set; }
         public string? SoldTo { get; set; }
         public string? OtherSoldTo { get; set; }
+        public string? OtherUnitType { get; set; }
         public double TransportationCost { get; set; }
         public double? OtherCosts { get; set; }
         public string? Comment { get; set; }

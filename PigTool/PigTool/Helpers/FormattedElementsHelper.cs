@@ -105,7 +105,7 @@ namespace PigTool.Helpers
         }
 
 
-        public static DatePicker FormDatePicker(string DateBindingProperty, string IsEnableBinding)
+        public static DatePicker FormDatePicker(string DateBindingProperty, string IsEnableBinding, string MinimumDateBinding = null)
         {
             var DPicker = new DatePicker()
             {
@@ -115,6 +115,10 @@ namespace PigTool.Helpers
 
             DPicker.SetBinding(DatePicker.DateProperty, new Binding(DateBindingProperty));
             DPicker.SetBinding(DatePicker.IsEnabledProperty, new Binding(IsEnableBinding));
+            if(MinimumDateBinding != null)
+            {
+                DPicker.SetBinding(DatePicker.MinimumDateProperty, new Binding(MinimumDateBinding));
+            }
 
             return DPicker;
         }

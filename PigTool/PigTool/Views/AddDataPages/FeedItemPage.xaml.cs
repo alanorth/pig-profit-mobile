@@ -97,7 +97,10 @@ namespace PigTool.Views
             var DurationFinishCell = new ViewCell();
             var DurationFinishStack = FormattedElementsHelper.TableRowStack();
             DurationFinishStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.FinishTranslation)));
-            DurationFinishStack.Children.Add(FormattedElementsHelper.FormDatePicker(nameof(_viewModel.DurationFinish), nameof(_viewModel.IsEditMode)));
+            DurationFinishStack.Children.Add(FormattedElementsHelper.FormDatePicker(
+                nameof(_viewModel.DurationFinish), 
+                nameof(_viewModel.IsEditMode), 
+                nameof(_viewModel.DurationStart)));
             DurationFinishCell.View = DurationFinishStack;
 
             DurationVerticalStack.Children.Add(DurationStartStack);
@@ -175,7 +178,7 @@ namespace PigTool.Views
             var OtherAmountPurchasedUnitType = FormattedElementsHelper.TableRowGrid(nameof(_viewModel.DisplayOtherAmountPurchasedUnit), true);
             FormattedElementsHelper.AddGridValue(
                 OtherAmountPurchasedUnitType,
-                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.AmountPurchasedTranslation)),
+                FormattedElementsHelper.FormDataLabel(nameof(_viewModel.OtherAmountPurchasedUnitTranslation)),
                 GridPostion.TwoLeft);
             FormattedElementsHelper.AddGridValue(
                 OtherAmountPurchasedUnitType,

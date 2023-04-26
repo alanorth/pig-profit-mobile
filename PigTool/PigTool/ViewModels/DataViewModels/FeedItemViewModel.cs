@@ -490,7 +490,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.AmountPurchased = AmountPurchased;
                 _itemForEditing.OtherCosts = OtherCosts;
                 _itemForEditing.AmountPurchasedUnit = SelectedAmountPurchasedUnit != null ? SelectedAmountPurchasedUnit.TranslationRowKey : null;
-                _itemForEditing.OtherAmountPurchaseUnit = OtherAmountPurchasedUnitTranslation;
+                _itemForEditing.OtherAmountPurchaseUnit = OtherAmountPurchasedUnit;
                 _itemForEditing.PurchasedFrom = SelectedPurchasedFrom != null ? SelectedPurchasedFrom.TranslationRowKey : null;
                 _itemForEditing.OtherPurchasedFrom = OtherPurchasedFrom;
                 _itemForEditing.TotalCosts = (double)TotalCosts;
@@ -514,7 +514,7 @@ namespace PigTool.ViewModels.DataViewModels
                     AmountPurchased = AmountPurchased,
                     OtherCosts = OtherCosts,
                     AmountPurchasedUnit = SelectedAmountPurchasedUnit != null ? SelectedAmountPurchasedUnit.TranslationRowKey : null,
-                    OtherAmountPurchaseUnit = OtherAmountPurchasedUnitTranslation,
+                    OtherAmountPurchaseUnit = OtherAmountPurchasedUnit,
                     PurchasedFrom = SelectedPurchasedFrom != null ? SelectedPurchasedFrom.TranslationRowKey : null,
                     OtherPurchasedFrom = OtherPurchasedFrom,
                     TotalCosts = (double)TotalCosts,

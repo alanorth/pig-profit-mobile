@@ -22,6 +22,13 @@
                         StyleId="disclosure"
                         Tapped="ChangeLanguage_Tapped"
                         Text="Language" />
+                    <TextCell
+                        x:Name="Logout"
+                        Detail=""
+                        StyleId="disclosure"
+                        Tapped="LogUserOut"
+                        Text="Logout"
+                        />
                 </TableSection>
             </TableRoot>
         </TableView>

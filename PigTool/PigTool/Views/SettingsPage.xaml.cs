@@ -1,5 +1,6 @@
 ﻿using PigTool.ViewModels;
 using System;
+using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -39,6 +40,18 @@ namespace PigTool.Views
                 }
             }
 
+        }
+
+        private async void LogUserOut(object sender, System.EventArgs e)
+        {
+            //logout
+            var logout = await DisplayAlert("Confirm Logout", "By logging out, any data not submitted to the cloud will be lost and current data on the device will be removed","Accept","Cancel"); ;
+
+            if (logout)
+            {
+                await _viewModel.repo.LogoutOfDatabase();
+                Process.GetCurrentProcess().Kill();
+            }
         }
     }
 }

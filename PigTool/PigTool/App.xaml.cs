@@ -122,5 +122,23 @@ namespace PigTool
                 throw new Exception(ex.Message);
             }
         }
+
+        private string DeleteDatabase()
+        {
+            try
+            {
+                SQLitePCL.Batteries_V2.Init();
+                using (var context = new DbSQLLiteContext())
+                {
+                    context.Database.EnsureDeleted();
+                }
+
+                return "";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

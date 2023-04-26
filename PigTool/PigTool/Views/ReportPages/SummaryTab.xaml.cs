@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static PigTool.Helpers.ChartHelper;
 
 namespace PigTool.Views
 {
@@ -20,14 +21,18 @@ namespace PigTool.Views
         {
             InitializeComponent();
             BindingContext = _ViewModel = new SummaryTabViewModel();
+            //_ViewModel.StartDate = DateTime.Now.AddDays(-20);
+            //startDatePicker.Date = DateTime.Now.AddMonths(-6);
+            //endDatePicker.SetBinding(DatePicker.DateProperty, nameof(_ViewModel.EndDate));
+            //startDatePicker.SetBinding(DatePicker.DateProperty, nameof(_ViewModel.StartDate));
             PopulateThePage();
         }
 
         private async void PopulateThePage()
         {
             var baseYear = 2015;
-            StartYear.ItemsSource = Enumerable.Range(baseYear, DateTime.Now.Year - baseYear + 3).ToList();
-            EndYear.ItemsSource = Enumerable.Range(baseYear, DateTime.Now.Year - baseYear + 3).ToList();
+            //StartYear.ItemsSource = Enumerable.Range(baseYear, DateTime.Now.Year - baseYear + 3).ToList();
+            //EndYear.ItemsSource = Enumerable.Range(baseYear, DateTime.Now.Year - baseYear + 3).ToList();
 
             Grid Headergrid = new Grid
             {
@@ -51,14 +56,57 @@ namespace PigTool.Views
 
             ListView listvw = new ListView();
             listvw.Header = Headergrid;
-            listvw.ItemsSource = _ViewModel.FullList;
+            /*listvw.ItemsSource = _ViewModel.FullList.GroupBy(fl => new YearMonth
+            {
+                Year = fl.YearMonth.Year,
+                Month = fl.YearMonth.Month,
+            })
+                .Select(fl => new Row
+                {
+                    YearMonth = fl.Key,
+                    Cost = fl.Sum(i => i.Cost),
+                    Revenue = fl.Sum(i => i.Revenue),
+                    Difference = fl.Sum(i => i.Revenue) - fl.Sum(i => i.Cost)
+                }).OrderByDescending(fl => fl.YearMonth.Year).ThenByDescending(fl => fl.YearMonth.Month).ToList();*/
+            listvw.SetBinding(ListView.ItemsSourceProperty, nameof(_ViewModel.FullListByMonthYear));
             listvw.ItemTemplate = new DataTemplate(typeof(SummaryTableCell));
+            
+            
 
             SummaryTable.Children.Add(listvw);
 
-            TotalLabels.Children.Add(new Label { Text = String.Format("Income: {0:C2}", _ViewModel.TotalPeriodRevenue) });
-            TotalLabels.Children.Add(new Label { Text = String.Format("Costs: {0:C2}", _ViewModel.TotalPeriodCost) });
-            TotalLabels.Children.Add(new Label { Text = String.Format("Profit / Loss: {0:C2}", _ViewModel.TotalPeriodDifference) });
+            var TotalCostLabel = new Label();
+            TotalCostLabel.SetBinding(Label.TextProperty, nameof(_ViewModel.TotalPeriodCostLabel));
+            var TotalRevenueLabel  = new Label();
+            TotalRevenueLabel.SetBinding(Label.TextProperty, nameof(_ViewModel.TotalPeriodRevenueLabel));
+            var ProfitLossLabel = new Label();
+            ProfitLossLabel.SetBinding(Label.TextProperty, nameof(_ViewModel.TotalPeriodDifferenceLabel));
+
+            //TotalLabels.Children.Add(new Label { Text = String.Format("Income: {0:C2}", _ViewModel.TotalPeriodRevenue) });
+            TotalLabels.Children.Add(TotalRevenueLabel);
+            TotalLabels.Children.Add(TotalCostLabel);
+            TotalLabels.Children.Add(ProfitLossLabel);
+            //TotalLabels.Children.Add(new Label { Text = String.Format("Profit / Loss: {0:C2}", _ViewModel.TotalPeriodDifference) });
+        }
+
+        protected async override void OnAppearing()
+        {
+            _ViewModel.ConstructPage();
+        }
+
+
+        void OnDateSelected(object sender, DateChangedEventArgs args)
+        {
+            if(startDatePicker.Date <= endDatePicker.Date)
+            {
+                Recalculate();
+            }
+        }
+
+        void Recalculate()
+        {
+            _ViewModel.StartDate = startDatePicker.Date;
+            _ViewModel.EndDate = endDatePicker.Date;
         }
     }
 

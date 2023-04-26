@@ -12,7 +12,7 @@ namespace Shared
         public DateTime Date { get; set; }
         public string? ServiceType { get; set; }
         public string? OtherServiceType { get; set; }
-        public int SowsServicedCost { get; set; }
+        public double SowsServicedCost { get; set; }
         public string? WhoProvidedService { get; set; }
         public string? OtherWhoProvidedService { get; set; }
         public double? OtherCosts { get; set; }

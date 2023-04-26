@@ -726,5 +726,10 @@ namespace PigTool.Services
             _context.Update(userInfo);
             await _context.SaveChangesAsync();
         }
+
+        public async Task LogoutOfDatabase()
+        {
+            _context.Database.EnsureDeleted();
+        }
     }
 }

@@ -217,6 +217,8 @@ namespace PigTool.Helpers
         {
             public int Year { get; set; }
             public int Month { get; set; }
+            public DateTime Date { get; set; }
+            public string Grouping { get; set; }
 
             public override bool Equals(object other)
             {
@@ -263,25 +265,182 @@ namespace PigTool.Helpers
             fullList = FeedItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
-                Month = fi.Date.Month
+                Month = fi.Date.Month,
+                Date = fi.Date,
+                Grouping = nameof(FeedItem)
             }).Select(fi => new Row
             {
                 YearMonth = fi.Key,
-                Cost = fi.Sum(i => i.TotalCosts) + fi.Sum(i => i.TransportationCost),
+                Cost = fi.Sum(i => i.TotalCosts)+ fi.Sum(i => i.OtherCosts) + fi.Sum(i => i.TransportationCost),
                 Revenue = 0,
                 Difference = 0
             }).ToList();
+
+            //Initial grouping for Animalhouse Items
+            AnimalHouseItems = new ObservableCollection<AnimalHouseItem>(await repo.GetAnimalHouseItems());
+            fullList = fullList.Concat(AnimalHouseItems.GroupBy(fi => new YearMonth
+            {
+                Year = fi.Date.Year,
+                Month = fi.Date.Month,
+                Date = fi.Date,
+                Grouping = nameof(AnimalHouseItem)
+            }).Select(fi => new Row
+            {
+                YearMonth = fi.Key,
+                Cost = fi.Sum(i => i.TotalCosts) + fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
+                Revenue = 0,
+                Difference = 0
+            }).ToList()).ToList();
+
+            AnimalPurchaseItems = new ObservableCollection<AnimalPurchaseItem>(await repo.GetAnimalPurchaseItems());
+            fullList = fullList.Concat(AnimalPurchaseItems.GroupBy(fi => new YearMonth
+            {
+                Year = fi.Date.Year,
+                Month = fi.Date.Month,
+                Date = fi.Date,
+                Grouping = nameof(AnimalPurchaseItem)
+            }).Select(fi => new Row
+            {
+                YearMonth = fi.Key,
+                Cost = fi.Sum(i => i.TotalCosts) + fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
+                Revenue = 0,
+                Difference = 0
+            }).ToList()).ToList();
+
+            BreedServiceSaleItems = new ObservableCollection<BreedingServiceSaleItem>(await repo.GetBreedingServiceSaleItems());
+            fullList = fullList.Concat(BreedServiceSaleItems.GroupBy(fi => new YearMonth
+            {
+                Year = fi.Date.Year,
+                Month = fi.Date.Month,
+                Date = fi.Date,
+                Grouping = nameof(BreedingServiceSaleItem)
+            }).Select(fi => new Row
+            {
+                YearMonth = fi.Key,
+                Cost = fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
+                Revenue = fi.Sum(i => i.AmountRecieved),
+                Difference = 0
+            }).ToList()).ToList();
+
+            EquipmentItems = new ObservableCollection<EquipmentItem>(await repo.GetEquipmentItems());
+            fullList = fullList.Concat(EquipmentItems.GroupBy(fi => new YearMonth
+            {
+                Year = fi.Date.Year,
+                Month = fi.Date.Month,
+                Date = fi.Date,
+                Grouping = nameof(EquipmentItem)
+            }).Select(fi => new Row
+            {
+                YearMonth = fi.Key,
+                Cost = fi.Sum(i => i.TotalCosts) + fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
+                Revenue = 0,
+                Difference = 0
+            }).ToList()).ToList();
+
+            LabourCostItems = new ObservableCollection<LabourCostItem> ( await repo.GetLabourCostItems() );
+            fullList = fullList.Concat(LabourCostItems.GroupBy(fi => new YearMonth
+            {
+                Year = fi.Date.Year,
+                Month = fi.Date.Month,
+                Date = fi.Date,
+                Grouping = nameof(LabourCostItem)
+            }).Select(fi => new Row
+            {
+                YearMonth = fi.Key,
+                Cost = fi.Sum(i => i.AmountPaid) + fi.Sum(i => i.OtherCost),
+                Revenue = 0,
+                Difference = 0
+            }).ToList()).ToList();
+
+            LoanRepaymentItems = new ObservableCollection<LoanRepaymentItem>(await repo.GetLoanRepaymentItems());
+            fullList = fullList.Concat(LoanRepaymentItems.GroupBy(fi => new YearMonth
+            {
+                Year = fi.Date.Year,
+                Month = fi.Date.Month,
+                Date = fi.Date,
+                Grouping = nameof(LoanRepaymentItem)
+            }).Select(fi => new Row
+            {
+                YearMonth = fi.Key,
+                Cost = fi.Sum(i => i.TotalAmountRepaid) + fi.Sum(i => i.TransportCosts) + fi.Sum(i => i.OtherCosts),
+                Revenue = 0,
+                Difference = 0
+            }).ToList()).ToList();
+
+            ManureSaleItems = new ObservableCollection<ManureSaleItem>(await repo.GetManureSaleItems());
+            fullList = fullList.Concat(ManureSaleItems.GroupBy(fi => new YearMonth
+            {
+                Year = fi.Date.Year,
+                Month = fi.Date.Month,
+                Date = fi.Date,
+                Grouping = nameof(ManureSaleItem)
+            }).Select(fi => new Row
+            {
+                YearMonth = fi.Key,
+                Cost =  fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
+                Revenue = fi.Sum(i => i.AmountRecieved),
+                Difference = 0
+            }).ToList()).ToList();
+
+            MembershipItems = new ObservableCollection<MembershipItem>(await repo.GetMembershipItems());
+            fullList = fullList.Concat(MembershipItems.GroupBy(fi => new YearMonth
+            {
+                Year = fi.Date.Year,
+                Month = fi.Date.Month,
+                Date = fi.Date,
+                Grouping = nameof(MembershipItem)
+            }).Select(fi => new Row
+            {
+                YearMonth = fi.Key,
+                Cost = fi.Sum(i => i.TotalCosts) + fi.Sum(i => i.OtherCosts),
+                Revenue = 0,
+                Difference = 0
+            }).ToList()).ToList();
+
+            OtherCostItems = new ObservableCollection<OtherCostItem>(await repo.GetOtherCostItems());
+            fullList = fullList.Concat(OtherCostItems.GroupBy(fi => new YearMonth
+            {
+                Year = fi.Date.Year,
+                Month = fi.Date.Month,
+                Date = fi.Date,
+                Grouping = nameof(OtherCostItem)
+            }).Select(fi => new Row
+            {
+                YearMonth = fi.Key,
+                Cost = fi.Sum(i => i.TotalCosts) + fi.Sum(i => i.TransportationCosts) + fi.Sum(i => i.OtherCosts),
+                Revenue = 0,
+                Difference = 0
+            }).ToList()).ToList();
+
+            OtherIncomeItems = new ObservableCollection<OtherIncomeItem>(await repo.GetOtherIncomeItems());
+            fullList = fullList.Concat(OtherIncomeItems.GroupBy(fi => new YearMonth
+            {
+                Year = fi.Date.Year,
+                Month = fi.Date.Month,
+                Date = fi.Date,
+                Grouping = nameof(OtherIncomeItem)
+            }).Select(fi => new Row
+            {
+                YearMonth = fi.Key,
+                Cost = fi.Sum(i => i.TransportationCosts) + fi.Sum(i => i.OtherCosts),
+                Revenue = fi.Sum(i => i.TotalIncome),
+                Difference = 0
+            }).ToList()).ToList();
+
 
             // Appending Health care items to the full list grouped by YearMonth
             HealthCareItems = new ObservableCollection<HealthCareItem>(await repo.GetHealthCareItems());
             fullList = fullList.Concat(HealthCareItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
-                Month = fi.Date.Month
+                Month = fi.Date.Month,
+                Date = fi.Date,
+                Grouping = nameof(HealthCareItem)
             }).Select(fi => new Row
             {
                 YearMonth = fi.Key,
-                Cost = fi.Sum(i => i.MedicineCost) + fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
+                Cost = fi.Sum(i => i.HealthCareCost) + fi.Sum(i => i.MedicineCost) 
+                + fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
                 Revenue = 0,
                 Difference = 0
             }).ToList()).ToList();
@@ -290,7 +449,9 @@ namespace PigTool.Helpers
             fullList = fullList.Concat(PigSaleItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
-                Month = fi.Date.Month
+                Month = fi.Date.Month,
+                Date = fi.Date,
+                Grouping = nameof(PigSaleItem)
             }).Select(fi => new Row
             {
                 YearMonth = fi.Key,
@@ -299,11 +460,41 @@ namespace PigTool.Helpers
                 Difference = 0
             }).ToList()).ToList();
 
+            WaterCostItems = new ObservableCollection<WaterCostItem>(await repo.GetWaterCostItems());
+            fullList = fullList.Concat(WaterCostItems.GroupBy(fi => new YearMonth
+            {
+                Year = fi.Date.Year,
+                Month = fi.Date.Month,
+                Date = fi.Date,
+                Grouping = nameof(WaterCostItem)
+            }).Select(fi => new Row
+            {
+                YearMonth = fi.Key,
+                Cost = fi.Sum(i => i.TotalCosts) + fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
+                Revenue = 0,
+                Difference = 0
+            }).ToList()).ToList();
+
+            ReproductiveItems = new ObservableCollection<ReproductiveItem>(await repo.GetReproductiveItems());
+            fullList = fullList.Concat(ReproductiveItems.GroupBy(fi => new YearMonth
+            {
+                Year = fi.Date.Year,
+                Month = fi.Date.Month,
+                Date = fi.Date,
+                Grouping = nameof(ReproductiveItem)
+            }).Select(fi => new Row
+            {
+                YearMonth = fi.Key,
+                Cost = fi.Sum(i => i.SowsServicedCost) + fi.Sum(i => i.TransportCost) + fi.Sum(i => i.OtherCosts),
+                Revenue = 0,
+                Difference = 0
+            }).ToList()).ToList();
+
             // Group fulllist once more into YearMonths and sort by year then month to get most recent first
-            fullList = fullList.GroupBy(fl => new YearMonth
+            /*fullList = fullList.GroupBy(fl => new YearMonth
             {
                 Year = fl.YearMonth.Year,
-                Month = fl.YearMonth.Month
+                Month = fl.YearMonth.Month,
             })
                 .Select(fl => new Row
                 {
@@ -311,7 +502,7 @@ namespace PigTool.Helpers
                     Cost = fl.Sum(i => i.Cost),
                     Revenue = fl.Sum(i => i.Revenue),
                     Difference = fl.Sum(i => i.Revenue) - fl.Sum(i => i.Cost)
-                }).OrderByDescending(fl => fl.YearMonth.Year).ThenByDescending(fl => fl.YearMonth.Month).ToList();
+                }).OrderByDescending(fl => fl.YearMonth.Year).ThenByDescending(fl => fl.YearMonth.Month).ToList();*/
 
             //Calculate totals
             totalPeriodCost = fullList.Sum(fl => (double)fl.Cost);

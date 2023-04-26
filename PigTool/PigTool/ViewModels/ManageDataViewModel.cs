@@ -274,6 +274,7 @@ namespace PigTool.ViewModels
         {
             //FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItems());
             FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItemsAndAttachedTranslation(selectedYear, User.UserLang));//GetFeedItemsAndAttachedTranslation(selectedYear,User.UserLang) to fix dropdown translation
+            FeedItems.OrderByDescending(x => x.Date);
             HealthCareItems = new ObservableCollection<HealthCareItem>(await repo.GetHealthCareItems(selectedYear, User.UserLang));
             LabourCostItems = new ObservableCollection<LabourCostItem>(await repo.GetLabourCostItems(selectedYear, User.UserLang));
             AnimalHouseItems = new ObservableCollection<AnimalHouseItem>(await repo.GetAnimalHouseItems(selectedYear, User.UserLang));

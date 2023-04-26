@@ -96,7 +96,10 @@ namespace PigTool.Views
             var DurationFinishCell = new ViewCell();
             var DurationFinishStack = FormattedElementsHelper.TableRowStack();
             DurationFinishStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.FinishTranslation)));
-            DurationFinishStack.Children.Add(FormattedElementsHelper.FormDatePicker(nameof(_viewModel.DurationFinish), nameof(_viewModel.IsEditMode)));
+            DurationFinishStack.Children.Add(FormattedElementsHelper.FormDatePicker(
+                nameof(_viewModel.DurationFinish), 
+                nameof(_viewModel.IsEditMode),
+                nameof(_viewModel.DurationStart)));
             DurationFinishCell.View = DurationFinishStack;
 
             DurationVerticalStack.Children.Add(DurationStartStack);

@@ -20,7 +20,7 @@ namespace PigTool.ViewModels.DataViewModels
         private string volumeUnitType;
         private double? amountRecieved;
         private string soldTo;
-        private string otherSoldTo;
+        private string otherSoldTo, otherUnitType;
         private string paymentType;
         private double? paymentValue;
         private double? transportationCost;
@@ -40,12 +40,10 @@ namespace PigTool.ViewModels.DataViewModels
         #region translations
         public string ManureSaleTitleTranslation { get; set; }
         public string DateTranslation { get; set; }
-
         public string VolumeSoldTranslation { get; set; }
-
         public string SoldToTranslation { get; set; }
         public string OtherSoldToTranslation { get; set; }
-
+        public string OtherUnitTypeTranslation { get; set; }
         public string ManureAmountRecievedTranslation { get; set; }
         public string AnyOtherPaymentTranslation { get; set; }
         //public string PaymentTypeTranslation { get; set; }
@@ -53,12 +51,10 @@ namespace PigTool.ViewModels.DataViewModels
         public string TransportationCostTranslation { get; set; }
         public string OtherCostTranslation { get; set; }
         public string CommentTranslation { get; set; }
-
         public string SaveTranslation { get; set; }
         public string ResetTranslation { get; set; }
         public string EditTranslation { get; set; }
         public string DeleteTranslation { get; set; }
-
         public string PickerUnitTranslation { get; set; }
         public string PickerPaymentTypeTranslation { get; set; }
         public string PickerSoldToTranslation { get; set; }
@@ -126,6 +122,21 @@ namespace PigTool.ViewModels.DataViewModels
                 }
             }
         }
+
+        public string OtherUnitType
+        {
+            get => otherUnitType;
+            set
+            {
+                if (value != otherUnitType)
+                {
+                    otherUnitType = value;
+                    OnPropertyChanged(nameof(OtherUnitType));
+                }
+            }
+        }
+        
+
         public double? AmountRecieved
         {
             get => amountRecieved;
@@ -242,6 +253,7 @@ namespace PigTool.ViewModels.DataViewModels
             {
                 if (selectedVolumeUnitType != value)
                 {
+                    DisplayOtherUnitType = value?.TranslationRowKey == Constants.OTHER;
                     selectedVolumeUnitType = value;
                     OnPropertyChanged(nameof(SelectedVolumeUnitType));
                 }
@@ -282,6 +294,7 @@ namespace PigTool.ViewModels.DataViewModels
 
         #region Hidden Fields
         private bool displayOtherSoldTo;
+        private bool displayOtherUnitType;
 
         public bool DisplayOtherSoldTo
         {
@@ -292,6 +305,19 @@ namespace PigTool.ViewModels.DataViewModels
                 {
                     displayOtherSoldTo = value;
                     OnPropertyChanged(nameof(DisplayOtherSoldTo));
+                }
+            }
+        }
+
+        public bool DisplayOtherUnitType
+        {
+            get => displayOtherUnitType;
+            set
+            {
+                if (displayOtherUnitType != value)
+                {
+                    displayOtherUnitType = value;
+                    OnPropertyChanged(nameof(DisplayOtherUnitType));
                 }
             }
         }
@@ -350,6 +376,7 @@ namespace PigTool.ViewModels.DataViewModels
             VolumeSoldTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(VolumeSoldTranslation), User.UserLang);
             SoldToTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SoldToTranslation), User.UserLang);
             OtherSoldToTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherSoldToTranslation), User.UserLang);
+            OtherUnitTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherUnitTypeTranslation), User.UserLang);
 
             ManureAmountRecievedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ManureAmountRecievedTranslation), User.UserLang) + " *";
             AnyOtherPaymentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AnyOtherPaymentTranslation), User.UserLang);
@@ -382,6 +409,7 @@ namespace PigTool.ViewModels.DataViewModels
             VolumeUnitType = item.VolumeUnitType;
             SoldTo = item.SoldTo;
             OtherSoldTo = item.OtherSoldTo;
+            OtherUnitType = item.OtherUnitType;
             AmountRecieved = item.AmountRecieved;
             //PaymentType = item.PaymentType;
             //PaymentValue = item.PaymentValue;
@@ -418,6 +446,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.VolumeUnitType = SelectedVolumeUnitType != null ? SelectedVolumeUnitType.TranslationRowKey : null;
                 _itemForEditing.SoldTo = SelectedSoldTo != null ? SelectedSoldTo.TranslationRowKey : null;
                 _itemForEditing.OtherSoldTo = OtherSoldTo;
+                _itemForEditing.OtherUnitType = OtherUnitType;
                 _itemForEditing.AmountRecieved = (double)AmountRecieved;
                 //_itemForEditing.PaymentType = SelectedPaymentType != null ? SelectedPaymentType.TranslationRowKey : null;
                 //_itemForEditing.PaymentValue = (double)PaymentValue;
@@ -439,6 +468,7 @@ namespace PigTool.ViewModels.DataViewModels
                     VolumeUnitType = SelectedVolumeUnitType != null ? SelectedVolumeUnitType.TranslationRowKey : null,
                     SoldTo = SelectedSoldTo != null ? SelectedSoldTo.TranslationRowKey : null,
                     OtherSoldTo = OtherSoldTo,
+                    OtherUnitType = OtherUnitType,
                     AmountRecieved = (double)AmountRecieved,
                     //PaymentType = SelectedPaymentType != null ? SelectedPaymentType.TranslationRowKey : null,
                     //PaymentValue = PaymentValue,
