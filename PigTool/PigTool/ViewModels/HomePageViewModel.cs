@@ -23,7 +23,10 @@ namespace PigTool.ViewModels
         public string EditData { get; set; }
         public string ViewReports { get; set; }
         public string Home { get; set; }
-        public string LastUploadTranslation { get; set; }
+        public string LastUploadTranslation { 
+            get;
+            set; 
+        }
 
         //strings that can change
         string nameOfUser, villageOfUser, userLastUpdatedTime;
@@ -67,13 +70,13 @@ namespace PigTool.ViewModels
             {
                 if (userLastUpdatedTime != value)
                 {
-                    userLastUpdatedTime = LastUploadTranslation + ": " + value;
-                    OnPropertyChanged("UserLastUpdatedTime");
+                    userLastUpdatedTime = value;
+                    OnPropertyChanged(nameof(UserLastUpdatedTime));
                 }
             }
             get
             {
-                return userLastUpdatedTime;
+                return LastUploadTranslation + ": " + userLastUpdatedTime ;
             }
         }
 

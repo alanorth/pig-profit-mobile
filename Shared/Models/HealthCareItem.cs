@@ -26,6 +26,7 @@ namespace Shared
         [JsonIgnore]
         public virtual Translation? DisplayTypeTranslation { get; set; }
         public virtual string? DisplayTypeTranslationString { get; set; }
+        public virtual string DateNiceFormat { get { return Date.ToString("dd/MMM/yyyy"); }}
 
     }
 }

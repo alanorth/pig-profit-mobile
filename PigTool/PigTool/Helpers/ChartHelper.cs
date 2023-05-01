@@ -216,7 +216,7 @@ namespace PigTool.Helpers
         public class YearMonth : IEquatable<YearMonth>
         {
             public int Year { get; set; }
-            public int Month { get; set; }
+            public string Month { get; set; }
             public DateTime Date { get; set; }
             public string Grouping { get; set; }
 
@@ -265,7 +265,7 @@ namespace PigTool.Helpers
             fullList = FeedItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
-                Month = fi.Date.Month,
+                Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(FeedItem)
             }).Select(fi => new Row
@@ -281,7 +281,7 @@ namespace PigTool.Helpers
             fullList = fullList.Concat(AnimalHouseItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
-                Month = fi.Date.Month,
+                Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(AnimalHouseItem)
             }).Select(fi => new Row
@@ -292,11 +292,12 @@ namespace PigTool.Helpers
                 Difference = 0
             }).ToList()).ToList();
 
+
             AnimalPurchaseItems = new ObservableCollection<AnimalPurchaseItem>(await repo.GetAnimalPurchaseItems());
             fullList = fullList.Concat(AnimalPurchaseItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
-                Month = fi.Date.Month,
+                Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(AnimalPurchaseItem)
             }).Select(fi => new Row
@@ -311,7 +312,7 @@ namespace PigTool.Helpers
             fullList = fullList.Concat(BreedServiceSaleItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
-                Month = fi.Date.Month,
+                Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(BreedingServiceSaleItem)
             }).Select(fi => new Row
@@ -326,7 +327,7 @@ namespace PigTool.Helpers
             fullList = fullList.Concat(EquipmentItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
-                Month = fi.Date.Month,
+                Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(EquipmentItem)
             }).Select(fi => new Row
@@ -341,7 +342,7 @@ namespace PigTool.Helpers
             fullList = fullList.Concat(LabourCostItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
-                Month = fi.Date.Month,
+                Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(LabourCostItem)
             }).Select(fi => new Row
@@ -356,7 +357,7 @@ namespace PigTool.Helpers
             fullList = fullList.Concat(LoanRepaymentItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
-                Month = fi.Date.Month,
+                Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(LoanRepaymentItem)
             }).Select(fi => new Row
@@ -371,7 +372,7 @@ namespace PigTool.Helpers
             fullList = fullList.Concat(ManureSaleItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
-                Month = fi.Date.Month,
+                Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(ManureSaleItem)
             }).Select(fi => new Row
@@ -386,7 +387,7 @@ namespace PigTool.Helpers
             fullList = fullList.Concat(MembershipItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
-                Month = fi.Date.Month,
+                Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(MembershipItem)
             }).Select(fi => new Row
@@ -401,7 +402,7 @@ namespace PigTool.Helpers
             fullList = fullList.Concat(OtherCostItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
-                Month = fi.Date.Month,
+                Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(OtherCostItem)
             }).Select(fi => new Row
@@ -416,7 +417,7 @@ namespace PigTool.Helpers
             fullList = fullList.Concat(OtherIncomeItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
-                Month = fi.Date.Month,
+                Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(OtherIncomeItem)
             }).Select(fi => new Row
@@ -433,7 +434,7 @@ namespace PigTool.Helpers
             fullList = fullList.Concat(HealthCareItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
-                Month = fi.Date.Month,
+                Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(HealthCareItem)
             }).Select(fi => new Row
@@ -449,7 +450,7 @@ namespace PigTool.Helpers
             fullList = fullList.Concat(PigSaleItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
-                Month = fi.Date.Month,
+                Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(PigSaleItem)
             }).Select(fi => new Row
@@ -464,7 +465,7 @@ namespace PigTool.Helpers
             fullList = fullList.Concat(WaterCostItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
-                Month = fi.Date.Month,
+                Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(WaterCostItem)
             }).Select(fi => new Row
@@ -479,7 +480,7 @@ namespace PigTool.Helpers
             fullList = fullList.Concat(ReproductiveItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
-                Month = fi.Date.Month,
+                Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(ReproductiveItem)
             }).Select(fi => new Row
@@ -516,7 +517,10 @@ namespace PigTool.Helpers
         public async Task<PlotModel> GenerateTotalsGraphModel(
                 double totalPeriodRevenue,
                 double totalPeriodCost,
-                double totalPeriodDifference
+                double totalPeriodDifference,
+                string totalCost,
+                string totalIncome,
+                string totalProfitOrLoss
             )
         {
             OnPropertyChanged("SimpleGraphModel");
@@ -537,10 +541,16 @@ namespace PigTool.Helpers
                 Color = OxyColor.Parse("#a7c957")
             });
 
+            barSeries.Items.Add(new ColumnItem
+            {
+                Value = Convert.ToDouble(totalPeriodDifference),
+                Color = totalPeriodDifference > 0 ? OxyColor.Parse("#a7c957") : OxyColor.Parse("#bc4749")
+            });
+
             model.Series.Add(barSeries);
             #endregion
 
-            String[] strNames = new String[] { "Total Cost", "Total Profit" };
+            String[] strNames = new String[] { totalCost, totalIncome, totalProfitOrLoss };
             model.Axes.Add(new CategoryAxis
             {
                 Position = AxisPosition.Bottom,

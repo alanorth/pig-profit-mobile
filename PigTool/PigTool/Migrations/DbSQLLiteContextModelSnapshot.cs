@@ -1155,16 +1155,6 @@ namespace Shared.Migrations
                         },
                         new
                         {
-                            TranslationRowKey = "SoldToType3",
-                            DropDownControlOption = "SoldToType",
-                            CreatedBy = "InitialUpload",
-                            DisplayOrder = 3,
-                            IsDeleted = false,
-                            IsEnable = false,
-                            PartitionKey = "ControlData"
-                        },
-                        new
-                        {
                             TranslationRowKey = "Other",
                             DropDownControlOption = "SoldToType",
                             CreatedBy = "InitialUpload",
@@ -2612,6 +2602,13 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "SoldToType2",
+                            English = "Trader",
+                            Lang1 = "Omusubuzi",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SoldToType3",
                             English = "Slaughter-house",
                             Lang1 = "Lufula",
                             Lang2 = ""
@@ -2619,8 +2616,8 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "SoldToType1",
-                            English = "Trader",
-                            Lang1 = "Omusubuzi",
+                            English = "Other farmer",
+                            Lang1 = "Mulunzi wambizi",
                             Lang2 = ""
                         },
                         new
@@ -2656,13 +2653,6 @@ namespace Shared.Migrations
                             RowKey = "EquipmentType4",
                             English = "Animal tags",
                             Lang1 = "Obulamba ebisolo  kumatu",
-                            Lang2 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SoldToType3",
-                            English = "Pig farmer",
-                            Lang1 = "Mulunzi wambizi",
                             Lang2 = ""
                         },
                         new
@@ -2759,8 +2749,8 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "OtherAmountPurchasedUnitTranslation",
-                            English = "Other Amount Purchased",
-                            Lang1 = "Obunji obulala bwe wagula",
+                            English = "Other unit",
+                            Lang1 = "Ekipimo ekilala",
                             Lang2 = ""
                         },
                         new
@@ -2824,6 +2814,13 @@ namespace Shared.Migrations
                             RowKey = "LabourDurationTranslation",
                             English = "Labour use duration",
                             Lang1 = "Ebanga abakoze lyebakola",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LoanDurationTranslation",
+                            English = "Loan duration",
+                            Lang1 = "",
                             Lang2 = ""
                         },
                         new
@@ -3333,8 +3330,8 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "BreedingServiceSaleTitleTranslation",
-                            English = "Sale of Reproductive Services",
-                            Lang1 = "Entunda y'obuwereza obukwetagana ne' okuwakisa no' kuzala",
+                            English = "Sale of breeding services",
+                            Lang1 = "Sente ezivvudde mukuwakisa Ebisolo",
                             Lang2 = ""
                         },
                         new
@@ -3725,7 +3722,7 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "OtherAnimalTypeTranslation",
-                            English = "Animal type",
+                            English = "Other Animal type",
                             Lang1 = "Ebika bye'bisolo",
                             Lang2 = ""
                         },
@@ -4659,6 +4656,83 @@ namespace Shared.Migrations
                             English = "Membership Updated",
                             Lang1 = "",
                             Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "OtherUnitTypeTranslation",
+                            English = "Other Unit Type",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LastUploadTranslation",
+                            English = "Last upload of data",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "ReportingDuration",
+                            English = "Reporting Duration",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "ProfitTranslation",
+                            English = "Profit",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "LossTranslation",
+                            English = "Loss",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SummaryChartTile",
+                            English = "Total period profit / loss",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SummaryChartCostGroup",
+                            English = "Total Cost",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SummaryChartIncomeGroup",
+                            English = "Total Income",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SummaryTableHeading",
+                            English = "Profit/loss by month",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "MonthTranslation",
+                            English = "Month",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "YearTranslation",
+                            English = "Year",
+                            Lang1 = "",
+                            Lang2 = ""
                         });
                 });
 
@@ -4978,6 +5052,12 @@ namespace Shared.Migrations
                     b.Property<string>("DisplayTypeTranslationString")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime>("DurationFinish")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("DurationStart")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("LoanProvider")
                         .HasColumnType("TEXT");
 
@@ -5018,6 +5098,9 @@ namespace Shared.Migrations
                         .HasColumnType("REAL");
 
                     b.Property<string>("OtherSoldTo")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OtherUnitType")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("SoldTo")
@@ -5190,8 +5273,8 @@ namespace Shared.Migrations
                     b.Property<string>("ServiceType")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("SowsServicedCost")
-                        .HasColumnType("INTEGER");
+                    b.Property<double>("SowsServicedCost")
+                        .HasColumnType("REAL");
 
                     b.Property<double?>("TransportCost")
                         .HasColumnType("REAL");

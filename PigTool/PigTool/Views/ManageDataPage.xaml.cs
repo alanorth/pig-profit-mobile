@@ -54,12 +54,12 @@ namespace PigTool.Views
 
                 // Fist Attach Feed Items
                 var FeedItemsExpander = createExpanderElement(
-                      ExpanderTitle: "Feed",
+                      ExpanderTitle: _ViewModel.Feed,
                       ColoumnHeader1: "Feed Type",
                       ColoumnHeader2: "Date",
                       ColoumnHeader3: "Total Cost",
                       BindableColumns1: nameof(FeedItem.FeedTypeTranslationString),
-                      BindableColumns2: nameof(FeedItem.Date),
+                      BindableColumns2: nameof(FeedItem),
                       BindableColumns3: nameof(FeedItem.TotalCosts),
                       BindingList: nameof(_ViewModel.FeedItems),
                       NavigationCommand: _ViewModel.EditFeedItem
@@ -67,12 +67,12 @@ namespace PigTool.Views
 
 
                 var HealthItemsExpander = createExpanderElement(
-                      ExpanderTitle: "Health Care Items",
+                      ExpanderTitle: _ViewModel.Healthcare,
                       ColoumnHeader1: "Health Care Type",
                       ColoumnHeader2: "Date",
                       ColoumnHeader3: "Care Cost",
                       BindableColumns1: nameof(HealthCareItem.DisplayTypeTranslationString),
-                      BindableColumns2: nameof(HealthCareItem.Date),
+                      BindableColumns2: nameof(HealthCareItem.DateNiceFormat),
                       BindableColumns3: nameof(HealthCareItem.HealthCareCost),
                       BindingList: nameof(_ViewModel.HealthCareItems),
                       NavigationCommand: _ViewModel.EditHealthCareItem

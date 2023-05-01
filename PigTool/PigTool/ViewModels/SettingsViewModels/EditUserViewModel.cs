@@ -624,7 +624,7 @@ namespace PigTool.ViewModels.DataViewModels
                 //if (UserName == null) returnString.AppendLine("UserName Not provided");
                 if (Name == null) returnString.AppendLine("Name Not provided");
                 if (PhoneNumber == null) returnString.AppendLine("Phone Number Not Provided");
-                if (SelectedCurrency == null) returnString.AppendLine("Currency Not Provided");
+                //if (SelectedCurrency == null) returnString.AppendLine("Currency Not Provided");
 
                 return returnString.ToString();
             }

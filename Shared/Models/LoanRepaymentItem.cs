@@ -10,6 +10,8 @@ namespace Shared
     public class LoanRepaymentItem : BaseItem
     {
         public DateTime Date { get; set; }
+        public DateTime DurationStart { get; set; }
+        public DateTime DurationFinish { get; set; }
         public double TotalAmountRepaid { get; set; }
         public string? LoanProvider { get; set; }
         public string? OtherLoanProvider { get; set; }

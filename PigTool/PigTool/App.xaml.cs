@@ -7,6 +7,7 @@ using SQLLiteDbContext;
 using System.Threading.Tasks;
 using Shared;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 //fontawesome
 [assembly: ExportFont("fa-regular-400.ttf", Alias = "FA-R")]

@@ -36,7 +36,6 @@ namespace PigTool.Helpers
                 FontSize = 13,
                 BackgroundColor = Color.White,
                 LineBreakMode = LineBreakMode.WordWrap,
-                
             };
 
             label.SetBinding(Label.TextProperty, new Binding(labelBindingField));

@@ -27,6 +27,23 @@ namespace PigTool.ViewModels
         private PlotModel simpleGraphModel { get; set; }
 
 
+        //translations
+        public string ReportingDuration { get; set; }
+        public string ProfitTranslation { get; set; }
+        public string LossTranslation { get; set; }
+        public string SummaryChartTile { get; set; }
+        public string SummaryChartCostGroup { get; set; }
+        public string SummaryChartIncomeGroup { get; set; }
+        public string SummaryChartProfitLoss { get; set; }
+        public string SummaryTableHeading { get; set; }
+        public string MonthTranslation { get; set; }
+        public string YearTranslation { get; set; }
+        public string SummaryIncomeTranslation { get; set; }
+        public string SummaryCostTranslation { get; set; }
+        public string SummaryProfitLossTranslation { get; set; }
+        public string SummaryLabel { get; set; }
+        public string BreakdownLabel { get; set; }
+
         public List<Row> FullList
         {
             get { return fullList; }
@@ -87,7 +104,7 @@ namespace PigTool.ViewModels
         }
         public string TotalPeriodRevenueLabel
         {
-            get => String.Format("Income: {0:C2}", TotalPeriodRevenue);
+            get => string.Format("Income: {0:N}", TotalPeriodRevenue);
         }
 
         public double TotalPeriodCost
@@ -105,7 +122,7 @@ namespace PigTool.ViewModels
         }
         public string TotalPeriodCostLabel
         {
-            get => String.Format("Cost: {0:C2}", TotalPeriodCost);
+            get => string.Format("Cost: {0:N}", TotalPeriodCost);
         }
 
         public double TotalPeriodDifference
@@ -126,7 +143,7 @@ namespace PigTool.ViewModels
 
         public string TotalPeriodDifferenceLabel
         {
-            get => String.Format("Profit / Loss: {0:C2}", TotalPeriodDifference);
+            get => string.Format("Profit / Loss: {0:N}", TotalPeriodDifference);
         }
 
         public DateTime StartDate
@@ -134,11 +151,11 @@ namespace PigTool.ViewModels
             get => startDate;
             set
             {
-                if (value != startDate) 
-                { 
-                    startDate = value; 
-                    OnPropertyChanged(nameof(StartDate)); 
-                    Calculate = true; CalculateSelected(); 
+                if (value != startDate)
+                {
+                    startDate = value;
+                    OnPropertyChanged(nameof(StartDate));
+                    Calculate = true; CalculateSelected();
                 }
             }
         }
@@ -148,11 +165,11 @@ namespace PigTool.ViewModels
             get => endDate;
             set
             {
-                if (value != endDate) 
-                { 
-                    endDate = value; 
-                    OnPropertyChanged(nameof(EndDate)); Calculate = true; 
-                    CalculateSelected(); 
+                if (value != endDate)
+                {
+                    endDate = value;
+                    OnPropertyChanged(nameof(EndDate)); Calculate = true;
+                    CalculateSelected();
                 }
             }
         }
@@ -174,6 +191,22 @@ namespace PigTool.ViewModels
         {
             //StartDate = DateTime.Now.AddMonths(-12);
             //ConstructPage();
+            ReportingDuration = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ReportingDuration), User.UserLang);
+            ProfitTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ProfitTranslation), User.UserLang);
+            LossTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LossTranslation), User.UserLang);
+            SummaryChartTile = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SummaryChartTile), User.UserLang);
+            SummaryChartCostGroup = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SummaryChartCostGroup), User.UserLang);
+            SummaryChartIncomeGroup = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SummaryChartIncomeGroup), User.UserLang);
+            SummaryChartProfitLoss = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SummaryChartProfitLoss), User.UserLang);
+            SummaryTableHeading = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SummaryTableHeading), User.UserLang);
+            MonthTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(MonthTranslation), User.UserLang);
+            YearTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(YearTranslation), User.UserLang);
+            SummaryIncomeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SummaryIncomeTranslation), User.UserLang);
+            SummaryCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SummaryCostTranslation), User.UserLang);
+            SummaryProfitLossTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SummaryProfitLossTranslation), User.UserLang);
+            SummaryLabel = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SummaryLabel), User.UserLang);
+            BreakdownLabel = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(BreakdownLabel), User.UserLang);
+
         }
 
         public async void CalculateSelected()
@@ -190,7 +223,10 @@ namespace PigTool.ViewModels
             SimpleGraphModel = await chartHelper.GenerateTotalsGraphModel(
                 TotalPeriodRevenue,
                 TotalPeriodCost,
-                TotalPeriodDifference);
+                TotalPeriodDifference,
+                SummaryChartCostGroup,
+                SummaryChartIncomeGroup,
+                SummaryChartProfitLoss);
             OnPropertyChanged("GraphModel");
         }
 
@@ -208,7 +244,10 @@ namespace PigTool.ViewModels
             SimpleGraphModel = await chartHelper.GenerateTotalsGraphModel(
                 TotalPeriodRevenue,
                 TotalPeriodCost,
-                TotalPeriodDifference);
+                TotalPeriodDifference,
+                SummaryChartCostGroup,
+                SummaryChartIncomeGroup,
+                SummaryChartProfitLoss);
             OnPropertyChanged("GraphModel");
         }
 

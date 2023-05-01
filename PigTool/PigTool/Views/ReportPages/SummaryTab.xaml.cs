@@ -5,6 +5,7 @@ using Shared;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -25,12 +26,13 @@ namespace PigTool.Views
             //startDatePicker.Date = DateTime.Now.AddMonths(-6);
             //endDatePicker.SetBinding(DatePicker.DateProperty, nameof(_ViewModel.EndDate));
             //startDatePicker.SetBinding(DatePicker.DateProperty, nameof(_ViewModel.StartDate));
+            DurationLabel.SetBinding(Label.TextProperty,nameof(_ViewModel.ReportingDuration));
+            SummaryTableTitle.SetBinding(Label.TextProperty, nameof(_ViewModel.SummaryTableHeading));
             PopulateThePage();
         }
 
         private async void PopulateThePage()
         {
-            var baseYear = 2015;
             //StartYear.ItemsSource = Enumerable.Range(baseYear, DateTime.Now.Year - baseYear + 3).ToList();
             //EndYear.ItemsSource = Enumerable.Range(baseYear, DateTime.Now.Year - baseYear + 3).ToList();
 
@@ -47,12 +49,11 @@ namespace PigTool.Views
                     }
             };
 
-            Headergrid.Children.Add(FormattedElementsHelper.ReportTableHeaderLabelField("Month"), 0, 0);
-            Headergrid.Children.Add(FormattedElementsHelper.ReportTableHeaderLabelField("Year"), 1, 0);
-            Headergrid.Children.Add(FormattedElementsHelper.ReportTableHeaderLabelField("Income"), 2, 0);
-            Headergrid.Children.Add(FormattedElementsHelper.ReportTableHeaderLabelField("Costs"), 3, 0);
-            Headergrid.Children.Add(FormattedElementsHelper.ReportTableHeaderLabelField("Profit / Loss"), 4, 0);
-
+            Headergrid.Children.Add(FormattedElementsHelper.ReportTableHeaderLabelField(_ViewModel.MonthTranslation), 0, 0);
+            Headergrid.Children.Add(FormattedElementsHelper.ReportTableHeaderLabelField(_ViewModel.YearTranslation), 1, 0);
+            Headergrid.Children.Add(FormattedElementsHelper.ReportTableHeaderLabelField(_ViewModel.SummaryIncomeTranslation), 2, 0);
+            Headergrid.Children.Add(FormattedElementsHelper.ReportTableHeaderLabelField(_ViewModel.SummaryCostTranslation), 3, 0);
+            Headergrid.Children.Add(FormattedElementsHelper.ReportTableHeaderLabelField(_ViewModel.SummaryProfitLossTranslation), 4, 0);
 
             ListView listvw = new ListView();
             listvw.Header = Headergrid;
@@ -82,11 +83,9 @@ namespace PigTool.Views
             var ProfitLossLabel = new Label();
             ProfitLossLabel.SetBinding(Label.TextProperty, nameof(_ViewModel.TotalPeriodDifferenceLabel));
 
-            //TotalLabels.Children.Add(new Label { Text = String.Format("Income: {0:C2}", _ViewModel.TotalPeriodRevenue) });
             TotalLabels.Children.Add(TotalRevenueLabel);
             TotalLabels.Children.Add(TotalCostLabel);
             TotalLabels.Children.Add(ProfitLossLabel);
-            //TotalLabels.Children.Add(new Label { Text = String.Format("Profit / Loss: {0:C2}", _ViewModel.TotalPeriodDifference) });
         }
 
         protected async override void OnAppearing()
@@ -134,9 +133,10 @@ namespace PigTool.Views
 
             monthLabel.SetBinding(Label.TextProperty, "YearMonth.Month");
             yearLabel.SetBinding(Label.TextProperty, "YearMonth.Year");
-            revenueLabel.SetBinding(Label.TextProperty, new Binding("Revenue") { StringFormat = "{0:C2}" });
-            costLabel.SetBinding(Label.TextProperty, new Binding("Cost") { StringFormat = "{0:C2}" });
-            differenceLabel.SetBinding(Label.TextProperty, new Binding("Difference") { StringFormat = "{0:C2}" });
+            revenueLabel.SetBinding(Label.TextProperty, new Binding("Revenue") { StringFormat = "{0:N}" });
+            //costLabel.SetBinding(Label.TextProperty, new Binding("Cost") { StringFormat = "{0:"+ symbol + "#,##0.00}" });
+            costLabel.SetBinding(Label.TextProperty, new Binding("Cost") { StringFormat = "{0:N}" });
+            differenceLabel.SetBinding(Label.TextProperty, new Binding("Difference") { StringFormat = "{0:N}" });
 
             grid.Children.Add(monthLabel);
             grid.Children.Add(yearLabel, 1, 0);

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq.Expressions;
 using System.Text;
 using Azure;
 using Azure.Data.Tables;
@@ -41,7 +43,6 @@ namespace Shared
         public virtual string RowKey { get; set; }
         public DateTimeOffset? Timestamp { get; set; }
         public ETag ETag { get; set; }
-
         public Dictionary<string, string> ReturnDisreteUserVariablesInDiction()
         {
             Dictionary<string, string> variables = new Dictionary<string, string>();
@@ -107,13 +108,36 @@ namespace Shared
 
         }
 
+        public CultureInfo GetCultureInfo()
+        {
+            
+            //good idea, unfortuneatly not many African Countires are not supported in CulturalInfo class
+            switch (UserLang)
+            {
+                case UserLangSettings.Eng:
+                    return new CultureInfo("lg"); 
+                case UserLangSettings.Lang1:
+                    //Uganda
+                    return new CultureInfo("lg");
+                case UserLangSettings.Lang2:
+                    //Vietnamese
+                    return new CultureInfo("vi");
+                case UserLangSettings.Lang3:
+                    //rw-RW
+                    return new CultureInfo("rw");
+                default:
+                    return new CultureInfo("en-GB");
+            }
+        }
+
 
     }
     public enum UserLangSettings
     {
         Eng,
         Lang1,
-        Lang2
+        Lang2,
+        Lang3
     }
 
 }

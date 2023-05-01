@@ -15,7 +15,7 @@ namespace PigTool.ViewModels.DataViewModels
     {
         bool isEditMode, isCreationMode;
         private bool editExistingMode;
-        private DateTime date;
+        private DateTime date, durationStart, durationFinish;
         private double? totalAmountRepaid;
         private string loanProvider;
         private string otherLoanProvider;
@@ -43,6 +43,9 @@ namespace PigTool.ViewModels.DataViewModels
         public string ResetTranslation { get; set; }
         public string EditTranslation { get; set; }
         public string DeleteTranslation { get; set; }
+        public string StartTranslation { get; set; }
+        public string FinishTranslation { get; set; }
+        public string LoanDurationTranslation { get; set; }
 
         public string PickerProviderTranslation { get; set; }
         #endregion
@@ -60,6 +63,32 @@ namespace PigTool.ViewModels.DataViewModels
                 }
             }
         }
+
+        public DateTime DurationStart
+        {
+            get => durationStart;
+            set
+            {
+                if (durationStart != value)
+                {
+                    durationStart = value;
+                    OnPropertyChanged(nameof(DurationStart));
+                }
+            }
+        }
+        public DateTime DurationFinish
+        {
+            get => durationFinish;
+            set
+            {
+                if (durationFinish != value)
+                {
+                    durationFinish = value;
+                    OnPropertyChanged(nameof(DurationFinish));
+                }
+            }
+        }
+
         public double? TotalAmountRepaid
         {
             get => totalAmountRepaid;
@@ -216,6 +245,8 @@ namespace PigTool.ViewModels.DataViewModels
         public LoanRepaymentViewModel()
         {
             Date = DateTime.Now;
+            DurationStart = DateTime.Now;
+            DurationFinish = DateTime.Now;
 
             IsEditMode = true;
             CreationMode = true;
@@ -237,6 +268,9 @@ namespace PigTool.ViewModels.DataViewModels
             OtherCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTranslation), User.UserLang);
             TransportCostTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TransportCostTrans), User.UserLang);
             CommentTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CommentTranslation), User.UserLang);
+            StartTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(StartTranslation), User.UserLang) + " *";
+            FinishTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FinishTranslation), User.UserLang) + " *";
+            LoanDurationTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LoanDurationTranslation), User.UserLang);
 
             SaveTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SaveTranslation), User.UserLang);
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
@@ -261,6 +295,9 @@ namespace PigTool.ViewModels.DataViewModels
             OtherCosts = item.OtherCosts;
             TransportCosts = item.TransportCosts;
             Comment = item.Comment;
+            DurationStart = (DateTime)item.DurationStart;
+            DurationFinish = (DateTime)item.DurationFinish;
+
         }
 
         public void SetPickers()
@@ -292,6 +329,8 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.TransportCosts = TransportCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
+                _itemForEditing.DurationStart = DurationStart;
+                _itemForEditing.DurationFinish = DurationFinish;
 
                 await repo.UpdateLoanRepaymentItem(_itemForEditing);
                 await Application.Current.MainPage.DisplayAlert("Updated", "Loan repayment record has been updated", "OK");
@@ -310,7 +349,9 @@ namespace PigTool.ViewModels.DataViewModels
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,
-                    PartitionKey = Constants.PartitionKeyLoanRepaymentItem
+                    PartitionKey = Constants.PartitionKeyLoanRepaymentItem,
+                    DurationStart = DurationStart,
+                    DurationFinish = DurationFinish
                 };
 
                 try
@@ -379,8 +420,10 @@ namespace PigTool.ViewModels.DataViewModels
                 StringBuilder returnString = new StringBuilder();
                 if (Date == null) returnString.AppendLine("Date obtained not provided");
                 if (TotalAmountRepaid == null) returnString.AppendLine("Total Amount Repaid Not Provided");
+                if (DurationStart == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDurationStart, User.UserLang));
+                if (DurationFinish == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDurationEnd, User.UserLang));
+                if (DurationStart > DurationFinish) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.DurIsbefore, User.UserLang));
                 //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
-
 
                 if (SelectedLoanProvider != null && SelectedLoanProvider.TranslationRowKey == Constants.OTHER)
                 {

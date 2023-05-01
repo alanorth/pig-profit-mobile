@@ -13,7 +13,7 @@ namespace PigTool.Views
     {
 
         SendDataViewModel _ViewModel;
-        Grid grid;
+        Grid grid { get; set; }
 
         public SendDataPage()
         {
@@ -29,14 +29,32 @@ namespace PigTool.Views
 
         protected async override void OnAppearing()
         {
-
             await _ViewModel.PopulateCollections();
+            //TotalItemsLabel.Text = _ViewModel.Countof_TotalItems.ToString();
+            TotalItemsLabel.SetBinding(Label.TextProperty, nameof(_ViewModel.Countof_TotalItems));
+            _ViewModel.PageRendered = true;
+        }
 
-            TotalItemsLabel.Text = _ViewModel.Countof_TotalItems.ToString();
+        async void OnViewDetailsClicked(object sender, EventArgs e)
+        {
+            grid = GetItemsGrid();
+            //var result = await App.Current.MainPage.Navigation.ShowPopupAsync(new SendDataDetails(grid));
+            SendDataDetails detailsView = new SendDataDetails(grid);
+            await PopupNavigation.Instance.PushAsync(detailsView);
+        }
 
+        private void createTableRowandDataLabel(Grid grid, string LabelText, int countOfRecords, int colNum, int rowNum)
+        {
+            grid.Children.Add(new Label { Text = LabelText }, colNum, rowNum);
 
+            var amountOfRecordsLabel = new Label();
+            amountOfRecordsLabel.Text = countOfRecords.ToString();
+            grid.Children.Add(amountOfRecordsLabel, colNum + 1, rowNum);
+        }
 
-            grid = new Grid
+        Grid GetItemsGrid()
+        {
+            var ReturnGrid = new Grid
             {
                 Margin = new Thickness(0, 20, 0, 20),
                 ColumnDefinitions =
@@ -46,7 +64,7 @@ namespace PigTool.Views
                     }
             };
 
-            grid.RowDefinitions = new RowDefinitionCollection {
+            ReturnGrid.RowDefinitions = new RowDefinitionCollection {
                 new RowDefinition (),
                 new RowDefinition (),
                 new RowDefinition (),
@@ -64,61 +82,38 @@ namespace PigTool.Views
                 new RowDefinition ()
                 };
 
-            createTableRowandDataLabel(grid, nameof(_ViewModel.FeedItems),
+            createTableRowandDataLabel(ReturnGrid, _ViewModel.Feed,
                 _ViewModel.CountOf_FeedItems, 0, 0);
-            createTableRowandDataLabel(grid, nameof(_ViewModel.HealthCareItems),
+            createTableRowandDataLabel(ReturnGrid, _ViewModel.Healthcare,
                 _ViewModel.CountOf_HealthCareItems, 0, 1);
-            createTableRowandDataLabel(grid, nameof(_ViewModel.LabourCostItems),
+            createTableRowandDataLabel(ReturnGrid, _ViewModel.Labour,
                 _ViewModel.Countof_LabourCostItems, 0, 2);
-            createTableRowandDataLabel(grid, nameof(_ViewModel.AnimalHouseItems),
+            createTableRowandDataLabel(ReturnGrid, _ViewModel.Housing,
                 _ViewModel.Countof_AnimalHouseItems, 0, 3);
-            createTableRowandDataLabel(grid, nameof(_ViewModel.WaterCostItems),
+            createTableRowandDataLabel(ReturnGrid, _ViewModel.Water,
                 _ViewModel.Countof_Watercostitems, 0, 4);
-            createTableRowandDataLabel(grid, nameof(_ViewModel.ReproductiveItems),
+            createTableRowandDataLabel(ReturnGrid, _ViewModel.Reproduction,
                 _ViewModel.Countof_ReproductiveItems, 0, 5);
-            createTableRowandDataLabel(grid, nameof(_ViewModel.MembershipItems),
+            createTableRowandDataLabel(ReturnGrid, _ViewModel.Membership,
                 _ViewModel.Countof_MembershipItems, 0, 6);
-            createTableRowandDataLabel(grid, nameof(_ViewModel.OtherCostItems),
+            createTableRowandDataLabel(ReturnGrid, _ViewModel.Other,
                 _ViewModel.Countof_OtherCostItems, 0, 7);
-            createTableRowandDataLabel(grid, nameof(_ViewModel.AnimalPurchaseItems),
+            createTableRowandDataLabel(ReturnGrid, _ViewModel.AnimalPurchase,
                 _ViewModel.Countof_AnimalPurchaseItems, 0, 8);
-            createTableRowandDataLabel(grid, nameof(_ViewModel.LoanRepaymentItems),
+            createTableRowandDataLabel(ReturnGrid, _ViewModel.LoanRepayment,
                 _ViewModel.Countof_LoanRepaymentItems, 0, 9);
-            createTableRowandDataLabel(grid, nameof(_ViewModel.EquipmentItems),
+            createTableRowandDataLabel(ReturnGrid, _ViewModel.Equipment,
                 _ViewModel.Countof_EquipmentItems, 0, 10);
-            createTableRowandDataLabel(grid, nameof(_ViewModel.PigSaleItems),
+            createTableRowandDataLabel(ReturnGrid, _ViewModel.PigSale,
                 _ViewModel.Countof_PigSaleItems, 0, 11);
-            createTableRowandDataLabel(grid, nameof(_ViewModel.BreedingServiceSaleItems),
+            createTableRowandDataLabel(ReturnGrid, _ViewModel.BreedingServiceSale,
                 _ViewModel.Countof_BreedingServiceSaleItems, 0, 12);
-            createTableRowandDataLabel(grid, nameof(_ViewModel.ManureSaleItems),
+            createTableRowandDataLabel(ReturnGrid, _ViewModel.ManureSale,
                 _ViewModel.Countof_ManureSaleItems, 0, 13);
-            createTableRowandDataLabel(grid, nameof(_ViewModel.OtherIncomeItems),
+            createTableRowandDataLabel(ReturnGrid, _ViewModel.OtherIncome,
                 _ViewModel.Countof_OtherIncomeItems, 0, 14);
 
-            _ViewModel.PageRendered = true;
-
-
-
-        }
-
-        async void OnViewDetailsClicked(object sender, EventArgs e)
-        {
-            //var result = await App.Current.MainPage.Navigation.ShowPopupAsync(new SendDataDetails(grid));
-            SendDataDetails detailsView = new SendDataDetails(grid);
-            await PopupNavigation.Instance.PushAsync(detailsView);
-        }
-
-        private void createTableRowandDataLabel(Grid grid, string LabelText, int countOfRecords, int colNum, int rowNum)
-        {
-            grid.Children.Add(new Label { Text = LabelText }, colNum, rowNum);
-
-            var amountOfRecordsLabel = new Label();
-            //var amountOfRecordsLabel = new Label() { Text = "Testing"};
-            var t = FormattedElementsHelper.FormDataLabel(nameof(_ViewModel.CountOf_FeedItems));
-
-            //amountOfRecordsLabel.SetBinding(Label.TextProperty, new Binding(countOfRecords));
-            amountOfRecordsLabel.Text = countOfRecords.ToString();
-            grid.Children.Add(amountOfRecordsLabel, colNum + 1, rowNum);
+            return ReturnGrid;
         }
     }
 }

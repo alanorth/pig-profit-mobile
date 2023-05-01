@@ -17,6 +17,20 @@ namespace PigTool.Views
             _viewModel = new AdvancedTabViewModel();
             InitializeComponent();
             this.BindingContext = _viewModel;
+            DurationLabel.SetBinding(Label.TextProperty, nameof(_viewModel.ReportingDuration));
+            SummaryTitleLabel.SetBinding(Label.TextProperty, nameof(_viewModel.SummaryLabel));
+            BreakdownTitleLabel.SetBinding(Label.TextProperty, nameof(_viewModel.BreakdownLabel));
+
+            var TotalCostLabel = new Label();
+            TotalCostLabel.SetBinding(Label.TextProperty, nameof(_viewModel.TotalPeriodCostLabel));
+            var TotalRevenueLabel = new Label();
+            TotalRevenueLabel.SetBinding(Label.TextProperty, nameof(_viewModel.TotalPeriodRevenueLabel));
+            var ProfitLossLabel = new Label();
+            ProfitLossLabel.SetBinding(Label.TextProperty, nameof(_viewModel.TotalPeriodDifferenceLabel));
+
+            TotalLabels.Children.Add(TotalRevenueLabel);
+            TotalLabels.Children.Add(TotalCostLabel);
+            TotalLabels.Children.Add(ProfitLossLabel);
         }
 
         void OnDateSelected(object sender, DateChangedEventArgs args)

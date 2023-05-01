@@ -10,10 +10,13 @@
         <StackLayout>
 
             <!-- Date Dropdowns -->
+            <Label x:Name="DurationLabel"
+                       StyleClass="ReportHeader"/>
+            <BoxView StyleClass="Seperator"/>
             <StackLayout
                 Orientation="Horizontal"
                 Margin="0,10,0,0"
-                Grid.Column="0">    
+                Grid.Column="0">
                 <!--<Label Text="Start Date:" />-->
                 <DatePicker 
                     x:Name="startDatePicker"
@@ -33,20 +36,14 @@
                     Margin="30, 0, 0, 30"
                     DateSelected="OnDateSelected" 
                     HorizontalOptions="CenterAndExpand"/>
-                <!--<Button Text="Calculate"
-                        IsEnabled="{Binding Calculate}"
-                        Clicked="Button_Clicked"
-                        ></Button>-->
             </StackLayout>
 
 
             <!-- Summary Graph -->
             <Label 
-                Text="Total Period Income / Loss"
+                Text="{Binding SummaryChartTile}"
                 StyleClass="ReportHeader"/>
-
             <BoxView StyleClass="Seperator"/>
-
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -66,6 +63,7 @@
             <!-- Table -->
             <Label 
                 Text="Income / Loss by Month"
+                x:Name="SummaryTableTitle"
                 StyleClass="ReportHeader"/>
 
             <BoxView StyleClass="Seperator"/>

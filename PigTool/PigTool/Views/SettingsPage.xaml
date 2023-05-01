@@ -10,7 +10,7 @@
             HasUnevenRows="True"
             Intent="Settings">
             <TableRoot>
-                <TableSection Title="User Settings" TextColor="Gray">
+                <TableSection>
                     <TextCell
                         x:Name="UserProfile"
                         StyleId="disclosure"
@@ -27,8 +27,7 @@
                         Detail=""
                         StyleId="disclosure"
                         Tapped="LogUserOut"
-                        Text="Logout"
-                        />
+                        Text="Logout"/>
                 </TableSection>
             </TableRoot>
         </TableView>

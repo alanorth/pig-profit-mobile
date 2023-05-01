@@ -11,7 +11,7 @@ namespace PigTool.ViewModels
     public class AddDataViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
         #region Translations Titles
-        public string Costs { get; set; }
+        /*public string Costs { get; set; }
         public string Feed { get; set; }
         public string Healthcare { get; set; }
         public string Labour { get; set; }
@@ -24,11 +24,10 @@ namespace PigTool.ViewModels
         public string LoanRepayment { get; set; }
         public string Equipment { get; set; }
         public string Income { get; set; }
-
         public string PigSale { get; set; }
         public string BreedingServiceSale { get; set; }
         public string ManureSale { get; set; }
-        public string OtherIncome { get; set; }
+        public string OtherIncome { get; set; }*/
         #endregion
 
         public Command AddFeedItem { get; }
@@ -67,7 +66,7 @@ namespace PigTool.ViewModels
             AddBreedingServiceSaleItem = (new Command(AddBreedingServiceSaleItemCommand));
             AddManureSaleItem = (new Command(AddManureSaleItemCommand));
             AddOtherIncomeItem = (new Command(AddOtherIncomeItemCommand));
-
+            /*
             Costs = LogicHelper.getTranslation(repo, nameof(Costs), User.UserLang).Result;
             Feed = LogicHelper.getTranslation(repo, nameof(Feed), User.UserLang).Result;
             Healthcare = LogicHelper.getTranslation(repo, nameof(Healthcare), User.UserLang).Result;
@@ -84,7 +83,7 @@ namespace PigTool.ViewModels
             PigSale = LogicHelper.getTranslation(repo, nameof(PigSale), User.UserLang).Result;
             BreedingServiceSale = LogicHelper.getTranslation(repo, nameof(BreedingServiceSale), User.UserLang).Result;
             ManureSale = LogicHelper.getTranslation(repo, nameof(ManureSale), User.UserLang).Result;
-            OtherIncome = LogicHelper.getTranslation(repo, nameof(OtherIncome), User.UserLang).Result;
+            OtherIncome = LogicHelper.getTranslation(repo, nameof(OtherIncome), User.UserLang).Result;*/
 
         }
 

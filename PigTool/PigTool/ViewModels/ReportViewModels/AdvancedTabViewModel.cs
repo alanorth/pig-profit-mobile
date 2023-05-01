@@ -159,55 +159,6 @@ namespace PigTool.ViewModels.ReportViewModels
             
         }
 
-        public void LoadBasicChart()
-        {
-            SimpleGraphModel = null;
-            OnPropertyChanged("SimpleGraphModel");
-            var model = new PlotModel { };
-            /*model.DefaultColors = new List<OxyColor>
-            {
-                OxyColor.Parse("#3498db"),
-                OxyColor.Parse("#e56b65"),
-            };*/
-
-            #region Series 1
-            var barSeries = new ColumnSeries
-            {
-               // LabelPlacement = LabelPlacement.,
-                //LabelFormatString = "{0}",
-                //Title = "Water Cost"
-            };
-
-            barSeries.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(100),
-                Color = OxyColor.Parse("#bc4749")
-            });
-
-            barSeries.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(200),
-                Color = OxyColor.Parse("#a7c957")
-            });
-
-            model.Series.Add(barSeries);
-            #endregion
-
-            String[] strNames = new String[] { "Total Cost", "Total Profit" };
-            model.Axes.Add(new CategoryAxis
-            {
-                Position = AxisPosition.Bottom,
-                Key = "Simple Sample Data",
-                ItemsSource = strNames,
-                IsPanEnabled = false,
-                IsZoomEnabled = false,
-                Selectable = false,
-            });
-
-            SimpleGraphModel = model;
-            OnPropertyChanged("GraphModel");
-        }
-
         public void filterDataAndReloadBarChart()
         {
 
@@ -227,7 +178,10 @@ namespace PigTool.ViewModels.ReportViewModels
             SimpleGraphModel = chartHelper.GenerateTotalsGraphModel(
                 (double)FullList.Where(x => x.YearMonth.Date >= StartDate && x.YearMonth.Date <= EndDate).Sum(x => x.Revenue),
                 (double)FullList.Where(x => x.YearMonth.Date >= StartDate && x.YearMonth.Date <= EndDate).Sum(x => x.Cost) ,
-                (double)FullList.Where(x => x.YearMonth.Date >= StartDate && x.YearMonth.Date <= EndDate).Sum(x => x.Difference)).Result;
+                (double)FullList.Where(x => x.YearMonth.Date >= StartDate && x.YearMonth.Date <= EndDate).Sum(x => x.Difference),
+                SummaryChartCostGroup,
+                SummaryChartIncomeGroup,
+                SummaryChartProfitLoss).Result;
             OnPropertyChanged("GraphModel");
 
         }
@@ -518,7 +472,10 @@ namespace PigTool.ViewModels.ReportViewModels
             SimpleGraphModel = await chartHelper.GenerateTotalsGraphModel(
                 TotalPeriodRevenue,
                 TotalPeriodCost,
-                TotalPeriodDifference);
+                TotalPeriodDifference,
+                SummaryChartCostGroup,
+                SummaryChartIncomeGroup,
+                SummaryChartProfitLoss);
             OnPropertyChanged(nameof(SimpleGraphModel));
 
         }
