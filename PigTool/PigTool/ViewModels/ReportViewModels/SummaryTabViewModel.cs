@@ -43,6 +43,7 @@ namespace PigTool.ViewModels
         public string SummaryProfitLossTranslation { get; set; }
         public string SummaryLabel { get; set; }
         public string BreakdownLabel { get; set; }
+        public string IncomeBreakdownLabel { get; set; }
 
         public List<Row> FullList
         {
@@ -206,6 +207,7 @@ namespace PigTool.ViewModels
             SummaryProfitLossTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SummaryProfitLossTranslation), User.UserLang);
             SummaryLabel = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SummaryLabel), User.UserLang);
             BreakdownLabel = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(BreakdownLabel), User.UserLang);
+            IncomeBreakdownLabel = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(IncomeBreakdownLabel), User.UserLang);
 
         }
 
@@ -215,6 +217,8 @@ namespace PigTool.ViewModels
             Calculate = false;
             var cost = FullList.Where(x => x.YearMonth.Date >= StartDate && x.YearMonth.Date <= EndDate).Sum(x => (double)x.Cost);
             var reveue = FullList.Where(x => x.YearMonth.Date >= StartDate && x.YearMonth.Date <= EndDate).Sum(x => (double)x.Revenue);
+            //var cost = (double)FullList.Sum(x => x.Cost);
+            //var reveue = (double)FullList.Sum(x => x.Revenue);
             TotalPeriodRevenue = reveue;
             TotalPeriodCost = cost;
             TotalPeriodDifference = reveue - cost;

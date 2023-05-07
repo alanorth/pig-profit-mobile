@@ -1,5 +1,6 @@
 ﻿using PigTool.Helpers;
 using PigTool.Services;
+using PigTool.Views;
 using Shared;
 using System;
 using System.Collections.Generic;
@@ -101,12 +102,52 @@ namespace PigTool.ViewModels
 
         public async Task DisplaySavedMessage(string successMessage)
         {
-            await Application.Current.MainPage.DisplayAlert(Created, successMessage, OK);  
+            await Application.Current.MainPage.DisplayAlert(Created, successMessage, OK);
         }
 
         public async Task DisplayUpdateMessage(string updateMessage)
         {
             await Application.Current.MainPage.DisplayAlert(Created, updateMessage, OK);
+        }
+
+        public string GetTitleTranslation(string eventClass)
+        {
+            switch (eventClass)
+            {
+                case nameof(FeedItem):
+                    return Feed;
+                case nameof(AnimalHouseItem):
+                    return Housing;
+                case nameof(LabourCostItem):
+                    return Labour;
+                case nameof(LoanRepaymentItem):
+                    return LoanRepayment;
+                case nameof(ManureSaleItem):
+                    return ManureSale;
+                case nameof(MembershipItem):
+                    return Membership;
+                case nameof(OtherCostItem):
+                    return Other;
+                case nameof(HealthCareItem):
+                    return Healthcare;
+                case nameof(WaterCostItem):
+                    return Water;
+                case nameof(ReproductiveItem):
+                    return Reproduction;
+                case nameof(AnimalPurchaseItem):
+                    return AnimalPurchase;
+                case nameof(BreedingServiceSaleItem):
+                    return BreedingServiceSale;
+                case nameof(EquipmentItem):
+                    return Equipment;
+                case nameof(OtherIncomeItem):
+                    return OtherIncome;
+                case nameof(PigSaleItem):
+                    return PigSale;
+                default:
+                    return "Translation Not Found";
+            }
+
         }
 
 

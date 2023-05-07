@@ -77,7 +77,9 @@
                 <FontImageSource FontFamily="FA-S" Glyph="&#xf0ce;" />
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="Reports" ContentTemplate="{DataTemplate local:ReportsPage}">
+        <ShellContent Title="Reports" 
+                      Route="ReportsPage"
+                      ContentTemplate="{DataTemplate local:ReportsPage}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="FA-S" Glyph="&#xf1fe;" />
             </ShellContent.Icon>

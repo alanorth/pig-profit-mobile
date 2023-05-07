@@ -13,7 +13,7 @@ namespace PigTool.ViewModels.DataViewModels
 {
     public class AnimalHousingViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
-        bool isEditMode, isCreationMode;
+        bool isEditMode, isCreationMode, displayLifespan;
         private bool editExistingMode;
         private string housingExpense;
         private string otherHousingExpense;
@@ -205,6 +205,20 @@ namespace PigTool.ViewModels.DataViewModels
 
             }
         }
+        public bool DisplayLifespan
+        {
+
+            get { return displayLifespan; }
+            set
+            {
+                if (value != displayLifespan)
+                {
+                    displayLifespan = value;
+                    OnPropertyChanged(nameof(DisplayLifespan));
+                }
+
+            }
+        }
 
         private PickerToolHelper selectedHousingType;
 
@@ -229,6 +243,7 @@ namespace PigTool.ViewModels.DataViewModels
                 if (selectedHousingType != value)
                 {
                     DisplayOtherHouseType = value?.TranslationRowKey == Constants.OTHER;
+                    DisplayLifespan = (value?.TranslationRowKey != "HousingExpenseType3");
                     selectedHousingType = value;
                     OnPropertyChanged(nameof(SelectedHousingType));
                 }

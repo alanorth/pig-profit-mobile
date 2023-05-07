@@ -4695,7 +4695,7 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "SummaryChartTile",
-                            English = "Total period profit / loss",
+                            English = "Total Period Profit / Loss",
                             Lang1 = "",
                             Lang2 = ""
                         },
@@ -4710,6 +4710,13 @@ namespace Shared.Migrations
                         {
                             RowKey = "SummaryChartIncomeGroup",
                             English = "Total Income",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SummaryChartProfitLoss",
+                            English = "Total Profit/Loss",
                             Lang1 = "",
                             Lang2 = ""
                         },
@@ -4731,6 +4738,48 @@ namespace Shared.Migrations
                         {
                             RowKey = "YearTranslation",
                             English = "Year",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SummaryIncomeTranslation",
+                            English = "Income",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SummaryCostTranslation",
+                            English = "Cost",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SummaryProfitLossTranslation",
+                            English = "Profit/Loss",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "BreakdownLabel",
+                            English = "Cost Breakdown",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "IncomeBreakdownLabel",
+                            English = "Income Breakdown",
+                            Lang1 = "",
+                            Lang2 = ""
+                        },
+                        new
+                        {
+                            RowKey = "SummaryLabel",
+                            English = "Summary",
                             Lang1 = "",
                             Lang2 = ""
                         });

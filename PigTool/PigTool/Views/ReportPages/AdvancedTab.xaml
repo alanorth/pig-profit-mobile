@@ -69,7 +69,7 @@
                 </StackLayout>
             </Grid>
 
-            <!-- Full Graph -->
+            <!-- Full Graph Cost -->
             <StackLayout>
                 <Label
                     x:Name="BreakdownTitleLabel"
@@ -77,7 +77,22 @@
                 <BoxView StyleClass="Seperator"/>
                 <StackLayout Orientation="Vertical">
                     <StackLayout Orientation="Vertical">
-                        <oxy:PlotView Model="{Binding GraphModel}" HorizontalOptions="CenterAndExpand" 
+                        <oxy:PlotView Model="{Binding CostGraphModel}" HorizontalOptions="CenterAndExpand" 
+                              VerticalOptions="StartAndExpand" Margin="2"
+                              HeightRequest="300" />
+
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+            <!-- Full Graph Income -->
+            <StackLayout>
+                <Label
+                    x:Name="IncomeBreakdownTitleLabel"
+                    StyleClass="ReportHeader"/>
+                <BoxView StyleClass="Seperator"/>
+                <StackLayout Orientation="Vertical">
+                    <StackLayout Orientation="Vertical">
+                        <oxy:PlotView Model="{Binding IncomeGraphModel}" HorizontalOptions="CenterAndExpand" 
                               VerticalOptions="StartAndExpand" Margin="2"
                               HeightRequest="300" />
 

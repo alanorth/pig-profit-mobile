@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using PigTool.ViewModels.DataViewModels;
+using Xamarin.CommunityToolkit.UI.Views;
 
 namespace PigTool.Views
 {
@@ -141,8 +142,12 @@ namespace PigTool.Views
             // Housing Lifespan
             var HousingLifespanCell = new ViewCell();
             var HousingLifespanStack = FormattedElementsHelper.TableRowStack();
-            HousingLifespanStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.YearsExpectedTranslation)));
-            HousingLifespanStack.Children.Add(FormattedElementsHelper.FormSliderInput(nameof(_viewModel.YearsExpected), nameof(_viewModel.IsEditMode), null, true, upperValue: 10));
+            var houseLabel = FormattedElementsHelper.FormDataLabel(nameof(_viewModel.YearsExpectedTranslation));
+            houseLabel.SetBinding(Label.IsVisibleProperty, nameof(_viewModel.DisplayLifespan));
+            HousingLifespanStack.Children.Add(houseLabel);
+            var timeSider = FormattedElementsHelper.FormSliderInput(nameof(_viewModel.YearsExpected), nameof(_viewModel.IsEditMode), null, true, upperValue: 100);
+            timeSider.SetBinding(RangeSlider.IsVisibleProperty, nameof(_viewModel.DisplayLifespan));
+            HousingLifespanStack.Children.Add(timeSider);
             HousingLifespanCell.View = HousingLifespanStack;
             FullTableSection.Add(HousingLifespanCell);
 

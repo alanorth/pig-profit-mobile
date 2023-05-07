@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Collections.Generic;
 
 namespace PigTool.Views
 {
@@ -16,9 +17,10 @@ namespace PigTool.Views
     public partial class ManageDataPage : ContentPage
     {
         ManageDataViewModel _ViewModel;
+        public bool isRefreshing { get; set; }
 
         public ObservableCollection<string> Items { get; set; }
-       
+
 
         public ManageDataPage()
         {
@@ -29,7 +31,7 @@ namespace PigTool.Views
 
         protected async override void OnAppearing()
         {
-            
+
             await _ViewModel.PopulateLists();
 
             if (!_ViewModel.PageRendered)
@@ -50,16 +52,16 @@ namespace PigTool.Views
                 yearPicker.SetBinding(Picker.SelectedItemProperty, new Binding(nameof(_ViewModel.SelectedYear)));
                 YearPickerTypeStack.Children.Add(yearPicker);
                 YearPickerVerticalStack.Children.Add(YearPickerTypeStack);
-                
+
 
                 // Fist Attach Feed Items
                 var FeedItemsExpander = createExpanderElement(
                       ExpanderTitle: _ViewModel.Feed,
-                      ColoumnHeader1: "Feed Type",
-                      ColoumnHeader2: "Date",
-                      ColoumnHeader3: "Total Cost",
+                      ColoumnHeader1: _ViewModel.FeedTypeTranslation,
+                      ColoumnHeader2: _ViewModel.DateTranslation,
+                      ColoumnHeader3: _ViewModel.TotalCostAllUnits,
                       BindableColumns1: nameof(FeedItem.FeedTypeTranslationString),
-                      BindableColumns2: nameof(FeedItem),
+                      BindableColumns2: nameof(FeedItem.DateNiceFormat),
                       BindableColumns3: nameof(FeedItem.TotalCosts),
                       BindingList: nameof(_ViewModel.FeedItems),
                       NavigationCommand: _ViewModel.EditFeedItem
@@ -68,9 +70,9 @@ namespace PigTool.Views
 
                 var HealthItemsExpander = createExpanderElement(
                       ExpanderTitle: _ViewModel.Healthcare,
-                      ColoumnHeader1: "Health Care Type",
-                      ColoumnHeader2: "Date",
-                      ColoumnHeader3: "Care Cost",
+                      ColoumnHeader1: _ViewModel.HealthCareTypeTranslation,
+                      ColoumnHeader2: _ViewModel.DateTranslation,
+                      ColoumnHeader3: _ViewModel.HealthCareCostTranslation,
                       BindableColumns1: nameof(HealthCareItem.DisplayTypeTranslationString),
                       BindableColumns2: nameof(HealthCareItem.DateNiceFormat),
                       BindableColumns3: nameof(HealthCareItem.HealthCareCost),
@@ -79,23 +81,23 @@ namespace PigTool.Views
                       );
 
                 var LabourCostItems = createExpanderElement(
-                      ExpanderTitle: "Labour Cost Items",
-                      ColoumnHeader1: "Labour Cost Type",
-                      ColoumnHeader2: "Date",
-                      ColoumnHeader3: "Labour Cost",
+                      ExpanderTitle: _ViewModel.Labour,
+                      ColoumnHeader1: _ViewModel.LabourTypeTranslation,
+                      ColoumnHeader2: _ViewModel.DateTranslation,
+                      ColoumnHeader3: _ViewModel.AmountPaidTranslation,
                       BindableColumns1: nameof(LabourCostItem.DisplayTypeTranslationString),
-                      BindableColumns2: nameof(LabourCostItem.Date),
+                      BindableColumns2: nameof(LabourCostItem.DateNiceFormat),
                       BindableColumns3: nameof(LabourCostItem.AmountPaid),
                       BindingList: nameof(_ViewModel.LabourCostItems),
                       NavigationCommand: _ViewModel.EditLabourCostItem
                       );
 
                 var AnimalHousingItems = createExpanderElement(
-                      ExpanderTitle: "Housing",
-                      ColoumnHeader1: "Date",
-                      ColoumnHeader2: "Housing Expense",
-                      ColoumnHeader3: "Cost",
-                      BindableColumns1: nameof(AnimalHouseItem.Date),
+                      ExpanderTitle: _ViewModel.Housing,
+                      ColoumnHeader1: _ViewModel.DateTranslation,
+                      ColoumnHeader2: _ViewModel.HousingExpenseTranslation,
+                      ColoumnHeader3: _ViewModel.TotalCostTranslation,
+                      BindableColumns1: nameof(AnimalHouseItem.DateNiceFormat),
                       BindableColumns2: nameof(AnimalHouseItem.AnimalExpenseTranslationString),
                       BindableColumns3: nameof(AnimalHouseItem.TotalCosts),
                       BindingList: nameof(_ViewModel.AnimalHouseItems),
@@ -103,11 +105,11 @@ namespace PigTool.Views
                       );
 
                 var WaterCostItems = createExpanderElement(
-                      ExpanderTitle: "Water Cost",
-                      ColoumnHeader1: "Date",
-                      ColoumnHeader2: "Water",
-                      ColoumnHeader3: "Cost",
-                      BindableColumns1: nameof(WaterCostItem.Date),
+                      ExpanderTitle: _ViewModel.Water,
+                      ColoumnHeader1: _ViewModel.DateTranslation,
+                      ColoumnHeader2: _ViewModel.WaterPurchasedTranslation,
+                      ColoumnHeader3: _ViewModel.TotalCostTranslation,
+                      BindableColumns1: nameof(WaterCostItem.DateNiceFormat),
                       BindableColumns2: nameof(WaterCostItem.WaterPurchased),// + " " + nameof(WaterCostItem.WaterPurchasedUnit),
                       BindableColumns3: nameof(WaterCostItem.TotalCosts),
                       BindingList: nameof(_ViewModel.WaterCostItems),
@@ -115,11 +117,11 @@ namespace PigTool.Views
                       );
 
                 var ReproductiveItems = createExpanderElement(
-                      ExpanderTitle: "Reproduction",
-                      ColoumnHeader1: "Date",
-                      ColoumnHeader2: "Type",
-                      ColoumnHeader3: "Sows Serviced",
-                      BindableColumns1: nameof(ReproductiveItem.Date),
+                      ExpanderTitle: _ViewModel.Reproduction,
+                      ColoumnHeader1: _ViewModel.DateTranslation,
+                      ColoumnHeader2: _ViewModel.ServiceTypeTranslation,
+                      ColoumnHeader3: _ViewModel.SowsServicedCostTranslation,
+                      BindableColumns1: nameof(ReproductiveItem.DateNiceFormat),
                       BindableColumns2: nameof(ReproductiveItem.DisplayTypeTranslationString),
                       BindableColumns3: nameof(ReproductiveItem.SowsServicedCost),
                       BindingList: nameof(_ViewModel.ReproductiveItems),
@@ -127,11 +129,11 @@ namespace PigTool.Views
                       );
 
                 var MembershipItems = createExpanderElement(
-                      ExpanderTitle: "Memberships",
-                      ColoumnHeader1: "Date",
-                      ColoumnHeader2: "Type",
-                      ColoumnHeader3: "Cost",
-                      BindableColumns1: nameof(MembershipItem.Date),
+                      ExpanderTitle: _ViewModel.Membership,
+                      ColoumnHeader1: _ViewModel.DateTranslation,
+                      ColoumnHeader2: _ViewModel.MembershipTypeTranslation,
+                      ColoumnHeader3: _ViewModel.TotalCostTranslation,
+                      BindableColumns1: nameof(MembershipItem.DateNiceFormat),
                       BindableColumns2: nameof(MembershipItem.DisplayTypeTranslationString),
                       BindableColumns3: nameof(MembershipItem.TotalCosts),
                       BindingList: nameof(_ViewModel.MembershipItems),
@@ -139,11 +141,11 @@ namespace PigTool.Views
                       );
 
                 var OtherCostItems = createExpanderElement(
-                      ExpanderTitle: "Other Costs",
-                      ColoumnHeader1: "Date",
-                      ColoumnHeader2: "What for",
-                      ColoumnHeader3: "Cost",
-                      BindableColumns1: nameof(OtherCostItem.Date),
+                      ExpanderTitle: _ViewModel.Other,
+                      ColoumnHeader1: _ViewModel.DateTranslation,
+                      ColoumnHeader2: _ViewModel.OtherWhatForTranslation,
+                      ColoumnHeader3: _ViewModel.TotalCostTranslation,
+                      BindableColumns1: nameof(OtherCostItem.DateNiceFormat),
                       BindableColumns2: nameof(OtherCostItem.OtherWhatFor),
                       BindableColumns3: nameof(OtherCostItem.TotalCosts),
                       BindingList: nameof(_ViewModel.OtherCostItems),
@@ -151,11 +153,11 @@ namespace PigTool.Views
                       );
 
                 var AnimalPurchaseItems = createExpanderElement(
-                      ExpanderTitle: "Animal Purchase",
-                      ColoumnHeader1: "Date",
-                      ColoumnHeader2: "Animal Type",
-                      ColoumnHeader3: "Cost",
-                      BindableColumns1: nameof(AnimalPurchaseItem.Date),
+                      ExpanderTitle: _ViewModel.AnimalPurchase,
+                      ColoumnHeader1: _ViewModel.DateTranslation,
+                      ColoumnHeader2: _ViewModel.AnimalTypeTranslation,
+                      ColoumnHeader3: _ViewModel.TotalAnimalCostsTranslation,
+                      BindableColumns1: nameof(AnimalPurchaseItem.DateNiceFormat),
                       BindableColumns2: nameof(AnimalPurchaseItem.DisplayTypeTranslationString),
                       BindableColumns3: nameof(AnimalPurchaseItem.TotalCosts),
                       BindingList: nameof(_ViewModel.AnimalPurchaseItems),
@@ -163,11 +165,11 @@ namespace PigTool.Views
                       );
 
                 var LoanRepaymentItems = createExpanderElement(
-                      ExpanderTitle: "Loan Repayment",
-                      ColoumnHeader1: "Date",
-                      ColoumnHeader2: "Repaid",
-                      ColoumnHeader3: "Provider",
-                      BindableColumns1: nameof(LoanRepaymentItem.Date),
+                      ExpanderTitle: _ViewModel.LoanRepayment,
+                      ColoumnHeader1: _ViewModel.DateTranslation,
+                      ColoumnHeader2: _ViewModel.TotalAmountRepaidTranslation,
+                      ColoumnHeader3: _ViewModel.LoanProviderTranslation,
+                      BindableColumns1: nameof(LoanRepaymentItem.DateNiceFormat),
                       BindableColumns2: nameof(LoanRepaymentItem.TotalAmountRepaid),
                       BindableColumns3: nameof(LoanRepaymentItem.DisplayTypeTranslationString),
                       BindingList: nameof(_ViewModel.LoanRepaymentItems),
@@ -175,11 +177,11 @@ namespace PigTool.Views
                       );
 
                 var EquipmentItems = createExpanderElement(
-                      ExpanderTitle: "Equipment",
-                      ColoumnHeader1: "Date",
-                      ColoumnHeader2: "Equipment Type",
-                      ColoumnHeader3: "Total Cost",
-                      BindableColumns1: nameof(EquipmentItem.Date),
+                      ExpanderTitle: _ViewModel.Equipment,
+                      ColoumnHeader1: _ViewModel.DateTranslation,
+                      ColoumnHeader2: _ViewModel.EquipmentTypeTranslation,
+                      ColoumnHeader3: _ViewModel.TotalCostTranslation,
+                      BindableColumns1: nameof(EquipmentItem.DateNiceFormat),
                       BindableColumns2: nameof(EquipmentItem.DisplayTypeTranslationString),
                       BindableColumns3: nameof(EquipmentItem.TotalCosts),
                       BindingList: nameof(_ViewModel.EquipmentItems),
@@ -187,11 +189,11 @@ namespace PigTool.Views
                       );
 
                 var PigSaleItems = createExpanderElement(
-                      ExpanderTitle: "Pig Sales",
-                      ColoumnHeader1: "Date",
-                      ColoumnHeader2: "Pig Type",
-                      ColoumnHeader3: "Sale Price",
-                      BindableColumns1: nameof(PigSaleItem.Date),
+                      ExpanderTitle: _ViewModel.PigSale,
+                      ColoumnHeader1: _ViewModel.DateTranslation,
+                      ColoumnHeader2: _ViewModel.PigTypeTranslation,
+                      ColoumnHeader3: _ViewModel.SalePriceTranslation,
+                      BindableColumns1: nameof(PigSaleItem.DateNiceFormat),
                       BindableColumns2: nameof(PigSaleItem.DisplayTypeTranslationString),
                       BindableColumns3: nameof(PigSaleItem.SalePrice),
                       BindingList: nameof(_ViewModel.PigSaleItems),
@@ -199,11 +201,11 @@ namespace PigTool.Views
                       );
 
                 var BreedingServiceSaleItems = createExpanderElement(
-                      ExpanderTitle: "Breeding Service Sales",
-                      ColoumnHeader1: "Date",
-                      ColoumnHeader2: "Service Type",
-                      ColoumnHeader3: "Amount Recieved",
-                      BindableColumns1: nameof(BreedingServiceSaleItem.Date),
+                      ExpanderTitle: _ViewModel.BreedingServiceSale,
+                      ColoumnHeader1: _ViewModel.DateTranslation,
+                      ColoumnHeader2: _ViewModel.ServiceTypeTranslation,
+                      ColoumnHeader3: _ViewModel.AmountRecievedTranslation,
+                      BindableColumns1: nameof(BreedingServiceSaleItem.DateNiceFormat),
                       BindableColumns2: nameof(BreedingServiceSaleItem.DisplayTypeTranslationString),
                       BindableColumns3: nameof(BreedingServiceSaleItem.AmountRecieved),
                       BindingList: nameof(_ViewModel.BreedingServiceSaleItems),
@@ -211,11 +213,11 @@ namespace PigTool.Views
                       );
 
                 var ManureSaleItems = createExpanderElement(
-                      ExpanderTitle: "Manure Sales",
-                      ColoumnHeader1: "Date",
-                      ColoumnHeader2: "Sold To",
-                      ColoumnHeader3: "Amount Recieved",
-                      BindableColumns1: nameof(ManureSaleItem.Date),
+                      ExpanderTitle: _ViewModel.ManureSale,
+                      ColoumnHeader1: _ViewModel.DateTranslation,
+                      ColoumnHeader2: _ViewModel.SoldToTranslation,
+                      ColoumnHeader3: _ViewModel.ManureAmountRecievedTranslation,
+                      BindableColumns1: nameof(ManureSaleItem.DateNiceFormat),
                       BindableColumns2: nameof(ManureSaleItem.DisplayTypeTranslationString),
                       BindableColumns3: nameof(ManureSaleItem.AmountRecieved),
                       BindingList: nameof(_ViewModel.ManureSaleItems),
@@ -223,16 +225,18 @@ namespace PigTool.Views
                       );
 
                 var OtherIncomeItems = createExpanderElement(
-                      ExpanderTitle: "Other Income",
-                      ColoumnHeader1: "Date",
-                      ColoumnHeader2: "What for",
-                      ColoumnHeader3: "Income",
-                      BindableColumns1: nameof(OtherIncomeItem.Date),
+                      ExpanderTitle: _ViewModel.OtherIncome,
+                      ColoumnHeader1: _ViewModel.DateTranslation,
+                      ColoumnHeader2: _ViewModel.OtherWhatForTranslation,
+                      ColoumnHeader3: _ViewModel.TotalIncomeTranslation,
+                      BindableColumns1: nameof(OtherIncomeItem.DateNiceFormat),
                       BindableColumns2: nameof(OtherIncomeItem.OtherWhatFor),
                       BindableColumns3: nameof(OtherIncomeItem.TotalIncome),
                       BindingList: nameof(_ViewModel.OtherIncomeItems),
                       NavigationCommand: _ViewModel.EditOtherIncomeItem
                       );
+
+
 
                 ManageStack.Children.Add(YearPickerVerticalStack);
                 ManageStack.Children.Add(FeedItemsExpander);
@@ -286,7 +290,7 @@ namespace PigTool.Views
                 Text = ExpanderTitle,
                 FontAttributes = FontAttributes.Bold,
                 FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label))
-                
+
             };
 
             frame.Content = headerLabel;
@@ -305,33 +309,42 @@ namespace PigTool.Views
 
                 ListView listvw = new ListView();
                 listvw.HeightRequest = 300;
-                
+
                 Grid Headergrid = new Grid
                 {
                     BackgroundColor = Color.FromHex("#682622"),
                     ColumnDefinitions =
                     {
-                        new ColumnDefinition { Width = GridLength.Star },
-                        new ColumnDefinition { Width = GridLength.Star },
-                        new ColumnDefinition { Width = GridLength.Star },
-                        new ColumnDefinition { Width = GridLength.Star }
-                    }
+                        new ColumnDefinition { Width = 150 },
+                        new ColumnDefinition { Width = 150 },
+                        new ColumnDefinition { Width = 150 },
+                        new ColumnDefinition { Width = 150 }
+                    },
+                    VerticalOptions = LayoutOptions.StartAndExpand,
+                    Padding = 10
                 };
 
+
+
                 Headergrid.Children.Add(FormattedElementsHelper.ManageDataLabel(ColoumnHeader1), 0, 0);
-                Headergrid.Children.Add(FormattedElementsHelper.ManageDataLabel(ColoumnHeader2), 1, 0); 
-                Headergrid.Children.Add(FormattedElementsHelper.ManageDataLabel(ColoumnHeader3), 2, 0); 
+                Headergrid.Children.Add(FormattedElementsHelper.ManageDataLabel(ColoumnHeader2), 1, 0);
+                Headergrid.Children.Add(FormattedElementsHelper.ManageDataLabel(ColoumnHeader3), 2, 0);
                 Headergrid.Children.Add(FormattedElementsHelper.ManageDataLabel(""), 3, 0);
-                
+
                 listvw.Header = Headergrid;
                 //listvw.ItemsSource = ObList;
-                listvw.SetBinding(ListView.ItemsSourceProperty , BindingList) ;
-                
+                listvw.SetBinding(ListView.ItemsSourceProperty, BindingList);
+
                 listvw.ItemTemplate = new DataTemplate(() =>
                 {
                     return new CustomManageDataCell(BindableColumns1, BindableColumns2, BindableColumns3, NavigationCommand);
                 });
-                
+                /*RefreshView reView = new RefreshView();
+
+                reView.SetBinding(RefreshView.IsRefreshingProperty, nameof(isRefreshing));
+
+                reView.Content = listvw;*/
+
                 stackHolder.Children.Add(listvw);
                 return stackHolder;
             });
@@ -339,6 +352,16 @@ namespace PigTool.Views
             StackLayout stackHolder = new StackLayout();
 
             return expander;
+        }
+
+
+        private void Expander_Tapped(object sender, EventArgs e)
+        {
+            Expander Expander = sender as Expander;
+            if (Expander.IsExpanded)
+            {
+                isRefreshing = true;
+            }
         }
 
     }
@@ -350,25 +373,27 @@ namespace PigTool.Views
 
             var horizontalLayout = new StackLayout() { BackgroundColor = Color.White };
             horizontalLayout.Orientation = StackOrientation.Horizontal;
-            horizontalLayout.HorizontalOptions = LayoutOptions.Fill;
+            horizontalLayout.HorizontalOptions = LayoutOptions.FillAndExpand;
 
             Grid TemplateContents = new Grid
             {
                 ColumnSpacing = 0,
                 ColumnDefinitions = {
-                    new ColumnDefinition { Width = GridLength.Star },
-                    new ColumnDefinition { Width = GridLength.Star },
-                    new ColumnDefinition { Width = GridLength.Star },
-                    new ColumnDefinition { Width = GridLength.Star }
+                    new ColumnDefinition { Width = 150 },
+                    new ColumnDefinition { Width = 150  },
+                    new ColumnDefinition { Width = 150  },
+                    new ColumnDefinition { Width = 150  }
                     }
             };
+
 
             Label column1Data = FormattedElementsHelper.ManageDataDetailsLabelField(var1);
             Label column2Data = FormattedElementsHelper.ManageDataDetailsLabelField(var2);
             Label column3Data = FormattedElementsHelper.ManageDataDetailsLabelField(var3);
-            Button button = new Button() { 
+            Button button = new Button()
+            {
                 TextColor = Color.FromHex("#682622"),
-                BackgroundColor = Color.White,
+                BackgroundColor = Color.FromHex("#fefdfa"),
                 TextTransform = TextTransform.None,
                 Text = "View",
                 HorizontalOptions = LayoutOptions.FillAndExpand,
@@ -381,7 +406,7 @@ namespace PigTool.Views
             TemplateContents.Children.Add(column2Data, 1, 0);
             TemplateContents.Children.Add(column3Data, 2, 0);
             TemplateContents.Children.Add(button, 3, 0);
-            
+
 
             horizontalLayout.Children.Add(TemplateContents);
 

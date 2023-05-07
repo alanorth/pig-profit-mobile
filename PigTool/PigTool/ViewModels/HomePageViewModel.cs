@@ -128,6 +128,7 @@ namespace PigTool.ViewModels
             //Button Commands
             AddDataNavigation = new Command(AddDataCommand);
             ManageDataNavigation = new Command(ManageDataCommand);
+            ReportsNavigation = new Command(ReportPageCommand);
             PopulateDB = new Command(PopulateDBCommand);
 
             DateTime = DateTime.Now;
@@ -144,6 +145,20 @@ namespace PigTool.ViewModels
             try
             {
                 await Shell.Current.GoToAsync("//ManageDataPage");
+                //await Shell.Current.GoToAsync(nameof(ManageDataPage));
+                //await Application.Current.MainPage.Navigation.PushModalAsync(new ManageDataPage());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private async void ReportPageCommand(object obj)
+        {
+            try
+            {
+                await Shell.Current.GoToAsync("//ReportsPage");
                 //await Shell.Current.GoToAsync(nameof(ManageDataPage));
                 //await Application.Current.MainPage.Navigation.PushModalAsync(new ManageDataPage());
             }

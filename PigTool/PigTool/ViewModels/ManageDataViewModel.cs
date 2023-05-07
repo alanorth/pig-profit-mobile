@@ -22,34 +22,75 @@ namespace PigTool.ViewModels
         public string FeedTypeTrans { get; set; }
         public string CostTrans { get; set; }
         public string LabourCostTrans { get; set; }
-
         public string FilterTranslation { get; set; }
+        //shared Translations
+        public string TotalCostTranslation { get; set; }
+        public string DateTranslation { get; set; }
+        public string OtherWhatForTranslation { get; set; }
+        //Feed
+        public string FeedTypeTranslation { get; set; }
+        public string TotalCostAllUnits { get; set; }
+        //HeathCare
+        public string HealthCareTypeTranslation { get; set; }
+        public string HealthCareCostTranslation { get; set; }
+        //Labour
+        public string LabourTypeTranslation { get; set; }
+        public string AmountPaidTranslation { get; set; }
+        //AnimalHousing
+        public string HousingExpenseTranslation { get; set; }
+        //Water
+        public string WaterPurchasedTranslation { get; set; }
+
+        //Reproduction
+        public string ServiceTypeTranslation { get; set; }
+        public string SowsServicedCostTranslation { get; set; }
+        //Membership
+        public string MembershipTypeTranslation { get; set; }
+        //OtherCost
+        //Animal Purchase
+        public string AnimalTypeTranslation { get; set; }
+        public string TotalAnimalCostsTranslation { get; set; }
+        //loan replayment
+        public string TotalAmountRepaidTranslation { get; set; }
+        public string LoanProviderTranslation { get; set; }
+        //equipment
+        public string EquipmentTypeTranslation { get; set; }
+        //pig sales
+        public string PigTypeTranslation { get; set; }
+        public string SalePriceTranslation { get; set; }
+        //"Breeding Service Sales",
+        public string AmountRecievedTranslation { get; set; }
+        //Maure
+        public string SoldToTranslation { get; set; }
+        public string ManureAmountRecievedTranslation { get; set; }
+        //Other Income
+        public string TotalIncomeTranslation { get; set; }
         #endregion
 
 
 
         public bool PageRendered { get; set; }
 
-        private ObservableCollection<FeedItem> feedItems;
-        private ObservableCollection<HealthCareItem> healthCareItems;
-        private ObservableCollection<LabourCostItem> labourCostItems;
-        private ObservableCollection<AnimalHouseItem> animalHouseItems;
-        private ObservableCollection<WaterCostItem> waterCostItems;
-        private ObservableCollection<MembershipItem> membershipItems;
-        private ObservableCollection<OtherCostItem> otherCostItems;
-        private ObservableCollection<ReproductiveItem> reproductiveItems;
-        private ObservableCollection<AnimalPurchaseItem> animalPurchaseItems;
-        private ObservableCollection<LoanRepaymentItem> loanRepaymentItems;
-        private ObservableCollection<EquipmentItem> equipmentItems;
+        private IOrderedEnumerable<FeedItem> feedItems;
+        private IOrderedEnumerable<HealthCareItem> healthCareItems;
+        private IOrderedEnumerable<LabourCostItem> labourCostItems;
+        private IOrderedEnumerable<AnimalHouseItem> animalHouseItems;
+        private IOrderedEnumerable<WaterCostItem> waterCostItems;
+        private IOrderedEnumerable<MembershipItem> membershipItems;
+        private IOrderedEnumerable<OtherCostItem> otherCostItems;
+        private IOrderedEnumerable<ReproductiveItem> reproductiveItems;
+        private IOrderedEnumerable<AnimalPurchaseItem> animalPurchaseItems;
+        private IOrderedEnumerable<LoanRepaymentItem> loanRepaymentItems;
+        private IOrderedEnumerable<EquipmentItem> equipmentItems;
 
-        private ObservableCollection<PigSaleItem> pigSaleItems;
-        private ObservableCollection<BreedingServiceSaleItem> breedingServiceSaleItems;
-        private ObservableCollection<ManureSaleItem> manureSaleItems;
-        private ObservableCollection<OtherIncomeItem> otherIncomeItems;
+        private IOrderedEnumerable<PigSaleItem> pigSaleItems;
+        private IOrderedEnumerable<BreedingServiceSaleItem> breedingServiceSaleItems;
+        private IOrderedEnumerable<ManureSaleItem> manureSaleItems;
+        private IOrderedEnumerable<OtherIncomeItem> otherIncomeItems;
 
         private int selectedYear = DateTime.Now.Year;
 
-        public ObservableCollection<FeedItem> FeedItems
+        public IOrderedEnumerable<FeedItem> FeedItems
         {
 
             get { return feedItems; }
@@ -60,7 +101,7 @@ namespace PigTool.ViewModels
             }
         }
 
-        public ObservableCollection<HealthCareItem> HealthCareItems
+        public IOrderedEnumerable<HealthCareItem> HealthCareItems
         {
 
             get { return healthCareItems; }
@@ -71,7 +112,7 @@ namespace PigTool.ViewModels
             }
         }
 
-        public ObservableCollection<LabourCostItem> LabourCostItems
+        public IOrderedEnumerable<LabourCostItem> LabourCostItems
         {
 
             get { return labourCostItems; }
@@ -81,7 +122,7 @@ namespace PigTool.ViewModels
                 OnPropertyChanged(nameof(LabourCostItems));
             }
         }
-        public ObservableCollection<AnimalHouseItem> AnimalHouseItems
+        public IOrderedEnumerable<AnimalHouseItem> AnimalHouseItems
         {
 
             get { return animalHouseItems; }
@@ -92,7 +133,7 @@ namespace PigTool.ViewModels
             }
         }
 
-        public ObservableCollection<WaterCostItem> WaterCostItems
+        public IOrderedEnumerable<WaterCostItem> WaterCostItems
         {
 
             get { return waterCostItems; }
@@ -103,7 +144,7 @@ namespace PigTool.ViewModels
             }
         }
 
-        public ObservableCollection<MembershipItem> MembershipItems
+        public IOrderedEnumerable<MembershipItem> MembershipItems
         {
 
             get { return membershipItems; }
@@ -114,7 +155,7 @@ namespace PigTool.ViewModels
             }
         }
 
-        public ObservableCollection<OtherCostItem> OtherCostItems
+        public IOrderedEnumerable<OtherCostItem> OtherCostItems
         {
 
             get { return otherCostItems; }
@@ -125,7 +166,7 @@ namespace PigTool.ViewModels
             }
         }
 
-        public ObservableCollection<ReproductiveItem> ReproductiveItems
+        public IOrderedEnumerable<ReproductiveItem> ReproductiveItems
         {
 
             get { return reproductiveItems; }
@@ -136,7 +177,7 @@ namespace PigTool.ViewModels
             }
         }
 
-        public ObservableCollection<AnimalPurchaseItem> AnimalPurchaseItems
+        public IOrderedEnumerable<AnimalPurchaseItem> AnimalPurchaseItems
         {
 
             get { return animalPurchaseItems; }
@@ -147,7 +188,7 @@ namespace PigTool.ViewModels
             }
         }
 
-        public ObservableCollection<LoanRepaymentItem> LoanRepaymentItems
+        public IOrderedEnumerable<LoanRepaymentItem> LoanRepaymentItems
         {
 
             get { return loanRepaymentItems; }
@@ -158,7 +199,7 @@ namespace PigTool.ViewModels
             }
         }
 
-        public ObservableCollection<EquipmentItem> EquipmentItems
+        public IOrderedEnumerable<EquipmentItem> EquipmentItems
         {
 
             get { return equipmentItems; }
@@ -169,7 +210,7 @@ namespace PigTool.ViewModels
             }
         }
 
-        public ObservableCollection<PigSaleItem> PigSaleItems
+        public IOrderedEnumerable<PigSaleItem> PigSaleItems
         {
 
             get { return pigSaleItems; }
@@ -180,7 +221,7 @@ namespace PigTool.ViewModels
             }
         }
 
-        public ObservableCollection<BreedingServiceSaleItem> BreedingServiceSaleItems
+        public IOrderedEnumerable<BreedingServiceSaleItem> BreedingServiceSaleItems
         {
 
             get { return breedingServiceSaleItems; }
@@ -191,7 +232,7 @@ namespace PigTool.ViewModels
             }
         }
 
-        public ObservableCollection<ManureSaleItem> ManureSaleItems
+        public IOrderedEnumerable<ManureSaleItem> ManureSaleItems
         {
 
             get { return manureSaleItems; }
@@ -202,7 +243,7 @@ namespace PigTool.ViewModels
             }
         }
 
-        public ObservableCollection<OtherIncomeItem> OtherIncomeItems
+        public IOrderedEnumerable<OtherIncomeItem> OtherIncomeItems
         {
 
             get { return otherIncomeItems; }
@@ -265,31 +306,75 @@ namespace PigTool.ViewModels
             DateObtainedTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateObtainedTrans), User.UserLang);
             CostTrans = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(CostTrans), User.UserLang);
             LabourCostTrans = LogicHelper.GetTranslationFromStore(TranslationStore, "Labour", User.UserLang);
-
             FilterTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FilterTranslation), User.UserLang);
+
+            //shared Translations
+            TotalCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostTranslation), User.UserLang);
+            DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang);
+            OtherWhatForTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherWhatForTranslation), User.UserLang);
+            //Feed
+            FeedTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FeedTypeTranslation), User.UserLang);
+            TotalCostAllUnits = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostAllUnits), User.UserLang);
+            //HeathCare
+            HealthCareTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(HealthCareTypeTranslation), User.UserLang);
+            HealthCareCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(HealthCareCostTranslation), User.UserLang);
+            //Labour
+            LabourTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LabourTypeTranslation), User.UserLang);
+            AmountPaidTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AmountPaidTranslation), User.UserLang);
+            //AnimalHousing
+            HousingExpenseTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(HousingExpenseTranslation), User.UserLang);
+            //Water
+            WaterPurchasedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(WaterPurchasedTranslation), User.UserLang);
+
+            //Reproduction
+            ServiceTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ServiceTypeTranslation), User.UserLang);
+            SowsServicedCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SowsServicedCostTranslation), User.UserLang);
+            //Membership
+            MembershipTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(MembershipTypeTranslation), User.UserLang);
+            //OtherCost
+            OtherWhatForTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherWhatForTranslation), User.UserLang);
+            //Animal Purchase
+            AnimalTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AnimalTypeTranslation), User.UserLang);
+            TotalAnimalCostsTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalAnimalCostsTranslation), User.UserLang);
+            //loan replayment
+            TotalAmountRepaidTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalAmountRepaidTranslation), User.UserLang);
+            LoanProviderTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LoanProviderTranslation), User.UserLang);
+            //equipment
+            EquipmentTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EquipmentTypeTranslation), User.UserLang);
+            //pig sales
+            PigTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PigTypeTranslation), User.UserLang);
+            SalePriceTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SalePriceTranslation), User.UserLang);
+            //"Breeding Service Sales",
+            AmountRecievedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AmountRecievedTranslation), User.UserLang);
+            //Maure
+            SoldToTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SoldToTranslation), User.UserLang);
+            ManureAmountRecievedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ManureAmountRecievedTranslation), User.UserLang);
+            //Other Income
+            TotalIncomeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalIncomeTranslation), User.UserLang);
+
+
         }
 
 
         public async Task PopulateLists()
         {
-            //FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItems());
-            FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItemsAndAttachedTranslation(selectedYear, User.UserLang));//GetFeedItemsAndAttachedTranslation(selectedYear,User.UserLang) to fix dropdown translation
-            FeedItems.OrderByDescending(x => x.Date);
-            HealthCareItems = new ObservableCollection<HealthCareItem>(await repo.GetHealthCareItems(selectedYear, User.UserLang));
-            LabourCostItems = new ObservableCollection<LabourCostItem>(await repo.GetLabourCostItems(selectedYear, User.UserLang));
-            AnimalHouseItems = new ObservableCollection<AnimalHouseItem>(await repo.GetAnimalHouseItems(selectedYear, User.UserLang));
-            WaterCostItems = new ObservableCollection<WaterCostItem>(await repo.GetWaterCostItems(selectedYear));
-            MembershipItems = new ObservableCollection<MembershipItem>(await repo.GetMembershipItems(selectedYear, User.UserLang));
-            OtherCostItems = new ObservableCollection<OtherCostItem>(await repo.GetOtherCostItems(selectedYear));
-            ReproductiveItems = new ObservableCollection<ReproductiveItem>(await repo.GetReproductiveItems(selectedYear, User.UserLang));
-            AnimalPurchaseItems = new ObservableCollection<AnimalPurchaseItem>(await repo.GetAnimalPurchaseItems(selectedYear, User.UserLang));
-            LoanRepaymentItems = new ObservableCollection<LoanRepaymentItem>(await repo.GetLoanRepaymentItems(selectedYear, User.UserLang));
-            EquipmentItems = new ObservableCollection<EquipmentItem>(await repo.GetEquipmentItems(selectedYear, User.UserLang));
-
-            PigSaleItems = new ObservableCollection<PigSaleItem>(await repo.GetPigSaleItems(selectedYear, User.UserLang));
-            BreedingServiceSaleItems = new ObservableCollection<BreedingServiceSaleItem>(await repo.GetBreedingServiceSaleItems(selectedYear, User.UserLang));
-            ManureSaleItems = new ObservableCollection<ManureSaleItem>(await repo.GetManureSaleItems(selectedYear, User.UserLang));
-            OtherIncomeItems = new ObservableCollection<OtherIncomeItem>(await repo.GetOtherIncomeItems(selectedYear));
+            //Cost Items
+            FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItemsAndAttachedTranslation(selectedYear, User.UserLang)).OrderByDescending(x => x.Date);//GetFeedItemsAndAttachedTranslation(selectedYear,User.UserLang) to fix dropdown translation
+            HealthCareItems = new ObservableCollection<HealthCareItem>(await repo.GetHealthCareItems(selectedYear, User.UserLang)).OrderByDescending(x => x.Date); 
+            LabourCostItems = new ObservableCollection<LabourCostItem>(await repo.GetLabourCostItems(selectedYear, User.UserLang)).OrderByDescending(x => x.Date);
+            AnimalHouseItems = new ObservableCollection<AnimalHouseItem>(await repo.GetAnimalHouseItems(selectedYear, User.UserLang)).OrderByDescending(x => x.Date);
+            WaterCostItems = new ObservableCollection<WaterCostItem>(await repo.GetWaterCostItems(selectedYear)).OrderByDescending(x => x.Date);
+            MembershipItems = new ObservableCollection<MembershipItem>(await repo.GetMembershipItems(selectedYear, User.UserLang)).OrderByDescending(x => x.Date);
+            OtherCostItems = new ObservableCollection<OtherCostItem>(await repo.GetOtherCostItems(selectedYear)).OrderByDescending(x => x.Date);
+            ReproductiveItems = new ObservableCollection<ReproductiveItem>(await repo.GetReproductiveItems(selectedYear, User.UserLang)).OrderByDescending(x => x.Date);
+            AnimalPurchaseItems = new ObservableCollection<AnimalPurchaseItem>(await repo.GetAnimalPurchaseItems(selectedYear, User.UserLang)).OrderByDescending(x => x.Date);
+            LoanRepaymentItems = new ObservableCollection<LoanRepaymentItem>(await repo.GetLoanRepaymentItems(selectedYear, User.UserLang)).OrderByDescending(x => x.Date);
+            EquipmentItems = new ObservableCollection<EquipmentItem>(await repo.GetEquipmentItems(selectedYear, User.UserLang)).OrderByDescending(x => x.Date);
+            //Revenue Items
+            PigSaleItems = new ObservableCollection<PigSaleItem>(await repo.GetPigSaleItems(selectedYear, User.UserLang)).OrderByDescending(x => x.Date);
+            BreedingServiceSaleItems = new ObservableCollection<BreedingServiceSaleItem>(await repo.GetBreedingServiceSaleItems(selectedYear, User.UserLang)).OrderByDescending(x => x.Date);
+            ManureSaleItems = new ObservableCollection<ManureSaleItem>(await repo.GetManureSaleItems(selectedYear, User.UserLang)).OrderByDescending(x => x.Date);
+            OtherIncomeItems = new ObservableCollection<OtherIncomeItem>(await repo.GetOtherIncomeItems(selectedYear)).OrderByDescending(x => x.Date);
         }
         private async Task EditFeedItemDataCommand(FeedItem feed)
         {

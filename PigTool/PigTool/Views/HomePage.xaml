@@ -53,6 +53,7 @@
                     Text="{Binding EditData}" />
                 <Button
                     Grid.Row="2"
+                    Command="{Binding ReportsNavigation}"
                     Style="{StaticResource PrimaryHomeButton}"
                     Text="{Binding ViewReports}" />
                 <!--

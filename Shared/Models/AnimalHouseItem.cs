@@ -24,5 +24,6 @@ namespace Shared
         [ForeignKey("RowKey")]
         public virtual Translation? AnimalExpenseTranslation { get; set; }
         public virtual string? AnimalExpenseTranslationString { get; set; }
+        public virtual string DateNiceFormat { get { return Date.ToString("dd/MMM/yyyy"); } }
     } 
 }

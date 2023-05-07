@@ -49,6 +49,7 @@ namespace SQLLiteDbContext
 
         }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BaseItem>().HasKey(x => x.RowKey);

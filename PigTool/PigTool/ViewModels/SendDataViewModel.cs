@@ -501,8 +501,15 @@ namespace PigTool.ViewModels
                 }
                 else
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", res.Message, "OK");
-                    
+                    try
+                    {
+                        var stringBuilder = new StringBuilder();
+                        stringBuilder.Append(res.Message.Replace("'",""));
+                        await Application.Current.MainPage.DisplayAlert("Error", stringBuilder.ToString(), "OK");
+                    }catch(Exception ex)
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Error", "Upload Failed", "OK");
+                    }
                 }
 
                 await PopupNavigation.Instance.PopAsync();

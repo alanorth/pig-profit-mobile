@@ -523,7 +523,6 @@ namespace PigTool.Helpers
                 string totalProfitOrLoss
             )
         {
-            OnPropertyChanged("SimpleGraphModel");
             var model = new PlotModel { };
 
             #region Series 1

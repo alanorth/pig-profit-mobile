@@ -11,6 +11,7 @@ using PigTool.Helpers;
 using static PigTool.Helpers.ChartHelper;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using System.Collections;
+using Shared;
 
 namespace PigTool.ViewModels.ReportViewModels
 {
@@ -109,7 +110,11 @@ namespace PigTool.ViewModels.ReportViewModels
             get => startDate;
             set
             {
-                if (value != startDate) { startDate = value; OnPropertyChanged(nameof(StartDate));}
+                if (value != startDate) { 
+                    startDate = value; 
+                    OnPropertyChanged(nameof(StartDate));
+                    //CalculateSelected();
+                }
             }
         }
 
@@ -118,21 +123,38 @@ namespace PigTool.ViewModels.ReportViewModels
             get => endDate;
             set
             {
-                if (value != endDate) { endDate = value; OnPropertyChanged(nameof(EndDate)); }
+                if (value != endDate) { endDate = value; 
+                    OnPropertyChanged(nameof(EndDate));
+                    //CalculateSelected();
+                }
             }
         }
-        
-        private PlotModel graphModel { get; set; }
 
-        public PlotModel GraphModel
+        private PlotModel costGraphModel { get; set; }
+
+        public PlotModel CostGraphModel
         {
             get
             {
-                return graphModel;
+                return costGraphModel;
             }
             set
             {
-                graphModel = value;
+                costGraphModel = value;
+            }
+        }
+
+        private PlotModel incomeGraphModel { get; set; }
+
+        public PlotModel IncomeGraphModel
+        {
+            get
+            {
+                return incomeGraphModel;
+            }
+            set
+            {
+                incomeGraphModel = value;
             }
         }
 
@@ -153,237 +175,66 @@ namespace PigTool.ViewModels.ReportViewModels
 
         public AdvancedTabViewModel()
         {
-            GraphModel = new PlotModel();
+            CostGraphModel = new PlotModel();
+            IncomeGraphModel = new PlotModel();
             //GetDataForCharts();
             //LoadBasicChart();
-            
+
         }
 
         public void filterDataAndReloadBarChart()
         {
 
-            GraphModel = null;
+            CostGraphModel = null;
+            IncomeGraphModel = null;
 
             var providedData = FullList.Where(x => x.YearMonth.Date >= StartDate && x.YearMonth.Date <= EndDate).ToList();
 
             List<string> MonthNameList = GetMonthNamesUsed(providedData);
-            PlotModel model = CreateAdvanceChart(providedData, MonthNameList);
+            PlotModel model = CreateAdvanceChart(providedData, MonthNameList, true);
+            PlotModel Incomemodel = CreateAdvanceChart(providedData, MonthNameList, false);
 
-            GraphModel = model;
-            OnPropertyChanged("GraphModel");
+            CostGraphModel = model;
+            IncomeGraphModel = Incomemodel;
+
+            OnPropertyChanged(nameof(CostGraphModel));
+            OnPropertyChanged(nameof(IncomeGraphModel));
 
 
             ChartHelper chartHelper = new ChartHelper();
+            //GetDataForCharts();
+            TotalPeriodCost = (double)FullList.Where(x => x.YearMonth.Date >= StartDate && x.YearMonth.Date <= EndDate).Sum(x => x.Cost);
+            TotalPeriodRevenue = (double)FullList.Where(x => x.YearMonth.Date >= StartDate && x.YearMonth.Date <= EndDate).Sum(x => x.Revenue);
+            TotalPeriodDifference = TotalPeriodRevenue - TotalPeriodCost;
 
             SimpleGraphModel = chartHelper.GenerateTotalsGraphModel(
-                (double)FullList.Where(x => x.YearMonth.Date >= StartDate && x.YearMonth.Date <= EndDate).Sum(x => x.Revenue),
-                (double)FullList.Where(x => x.YearMonth.Date >= StartDate && x.YearMonth.Date <= EndDate).Sum(x => x.Cost) ,
-                (double)FullList.Where(x => x.YearMonth.Date >= StartDate && x.YearMonth.Date <= EndDate).Sum(x => x.Difference),
+                TotalPeriodCost,
+                TotalPeriodRevenue,
+                TotalPeriodDifference,
                 SummaryChartCostGroup,
                 SummaryChartIncomeGroup,
                 SummaryChartProfitLoss).Result;
-            OnPropertyChanged("GraphModel");
+            OnPropertyChanged(nameof(SimpleGraphModel));
 
         }
 
         public void LoadAdvancedBarChart(List<Row> providedData)
         {
-            GraphModel = null;
+            CostGraphModel = null;
 
-            CalculateSelected();
+            //CalculateSelected();
 
             List<string> MonthNameList = GetMonthNamesUsed(providedData);
-            PlotModel model = CreateAdvanceChart(providedData, MonthNameList);
+            PlotModel model = CreateAdvanceChart(providedData, MonthNameList, true);
+            PlotModel incomeModel = CreateAdvanceChart(providedData, MonthNameList, false);
 
-            GraphModel = model;
-            OnPropertyChanged(nameof(GraphModel));
-
-            /*
-            #region Series 1
-            var barSeries = new ColumnSeries
-            {
-                LabelPlacement = LabelPlacement.Inside,
-                LabelFormatString = "{0}",
-                IsStacked = true,
-                Title = "Water Cost"
-            };
-
-            barSeries.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(33),
-            });
-
-            barSeries.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(196),
-            });
-
-            barSeries.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(152),
-            });
-
-            barSeries.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(62),
-            });
-
-            barSeries.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(68),
-            });
-
-            barSeries.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(101),
-            });
-
-            model.Series.Add(barSeries);
-            #endregion
-
-            #region Series 2
-            var barSeries2 = new ColumnSeries
-            {
-                LabelPlacement = LabelPlacement.Inside,
-                LabelFormatString = "{0}",
-                IsStacked = true,
-                Title = "Housing",
-            };
-
-            barSeries2.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(120),
-            });
-
-            barSeries2.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(130),
-            });
-
-            barSeries2.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(70),
-            });
-
-            barSeries2.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(50),
-            });
-
-            barSeries2.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(170),
-            });
-
-            barSeries2.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(100),
-            });
-
-            model.Series.Add(barSeries2);
-            #endregion
-
-            #region Series 3
-            var barSeries3 = new ColumnSeries
-            {
-                LabelPlacement = LabelPlacement.Inside,
-                LabelFormatString = "{0}",
-                IsStacked = true,
-                Title = "Labour",
-            };
-
-            barSeries3.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(100),
-            });
-
-            barSeries3.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(130),
-            });
-
-            barSeries3.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(100),
-            });
-
-            barSeries3.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(230),
-            });
-
-            barSeries3.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(50),
-            });
-
-            barSeries3.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(100),
-            });
-
-            model.Series.Add(barSeries3);
-            #endregion
-
-            #region Series 4
-            var barSeries4 = new ColumnSeries
-            {
-                LabelPlacement = LabelPlacement.Inside,
-                LabelFormatString = "{0}",
-                IsStacked = true,
-                Title = "Health Care",
-            };
-
-            barSeries4.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(20),
-            });
-
-            barSeries4.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(30),
-            });
-
-            barSeries4.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(40),
-            });
-
-            barSeries4.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(45),
-            });
-
-            barSeries4.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(40),
-            });
-
-            barSeries4.Items.Add(new ColumnItem
-            {
-                Value = Convert.ToDouble(25),
-
-            });
-
-            model.Series.Add(barSeries4);
-            #endregion
-            
-            String[] strNames = new String[] { "Apr", "May", "Jun", "Jul", "Aug", "Sep" };
-            model.Axes.Add(new CategoryAxis
-            {
-                Position = AxisPosition.Bottom,
-                Key = "Sample Data",
-                ItemsSource = MonthNameList,
-                IsPanEnabled = false,
-                IsZoomEnabled = false,
-                Selectable = false,
-            });
-
-            GraphModel = model;
-            OnPropertyChanged("GraphModel");*/
+            CostGraphModel = model;
+            IncomeGraphModel = incomeModel;
+            OnPropertyChanged(nameof(CostGraphModel));
+            OnPropertyChanged(nameof(IncomeGraphModel));
         }
 
-        private static PlotModel CreateAdvanceChart(List<Row> providedData, List<string> MonthNameList)
+        private PlotModel CreateAdvanceChart(List<Row> providedData, List<string> MonthNameList, bool costChart)
         {
             var groupedData = providedData.GroupBy(d => d.YearMonth.Grouping);
 
@@ -392,37 +243,73 @@ namespace PigTool.ViewModels.ReportViewModels
             model.LegendPlacement = LegendPlacement.Outside;
             model.LegendPosition = LegendPosition.RightMiddle;
 
-            /*model.DefaultColors = new List<OxyColor>
-            {
-                OxyColor.Parse("#3498db"),
-                OxyColor.Parse("#e56b65"),
-                OxyColor.Parse("#efca58"),
-                OxyColor.Parse("#5fc091")
-            };*/
             foreach (var group in groupedData)
             {
                 var groupList = group.ToList();
                 var groupedMonths = groupList.GroupBy(d => d.YearMonth.Date.ToString("MMM/yyyy"));
 
-                var bSeries = new ColumnSeries
+                var CostSeries = new ColumnSeries
                 {
                     LabelPlacement = LabelPlacement.Inside,
                     LabelFormatString = "{0}",
                     IsStacked = true,
-                    Title = group.Key,
+                    Title = GetTitleTranslation(group.Key),
+                    StackGroup = "Cost",
+
+                };
+                /*var IncomeSeries = new ColumnSeries
+                {
+                    LabelPlacement = LabelPlacement.Inside,
+                    LabelFormatString = "{0}",
+                    IsStacked = true,
+                    Title = GetTitleTranslation(group.Key),
+                    StackGroup = "Income",
+                    FillColor = CostSeries.FillColor,
+                    RenderInLegend = false
                 };
 
                 foreach (var xy in groupedMonths)
                 {
-                    bSeries.Items.Add(new ColumnItem
+                    CostSeries.Items.Add(new ColumnItem
                     {
                         Value = (double)xy.Sum(p => p.Cost),
                         CategoryIndex = MonthNameList.IndexOf(xy.Key)
                     });
+                    IncomeSeries.Items.Add(new ColumnItem
+                    {
+                        Value = (double)xy.Sum(p => p.Revenue),
+                        CategoryIndex = MonthNameList.IndexOf(xy.Key)
+                    });
                 }
+                model.Series.Add(CostSeries);
+                model.Series.Add(IncomeSeries);*/
 
-                model.Series.Add(bSeries);
-                
+
+                //cost chart
+                if (costChart)
+                {
+                    foreach (var xy in groupedMonths)
+                    {
+                        CostSeries.Items.Add(new ColumnItem
+                        {
+                            Value = (double)xy.Sum(p => p.Cost),
+                            CategoryIndex = MonthNameList.IndexOf(xy.Key)
+                        });
+                    }
+                    model.Series.Add(CostSeries);
+                }
+                else //Income Chart
+                {
+                    foreach (var xy in groupedMonths)
+                    {
+                        CostSeries.Items.Add(new ColumnItem
+                        {
+                            Value = (double)xy.Sum(p => p.Revenue),
+                            CategoryIndex = MonthNameList.IndexOf(xy.Key)
+                        });
+                    }
+                    model.Series.Add(CostSeries);
+                }
             }
 
             model.Axes.Add(new CategoryAxis
@@ -431,8 +318,8 @@ namespace PigTool.ViewModels.ReportViewModels
                 Key = "Sample Data",
                 ItemsSource = MonthNameList,
                 IsPanEnabled = false,
-                IsZoomEnabled = false,
-                Selectable = false,
+                IsZoomEnabled = true,
+                Selectable = true,
             });
             return model;
         }
@@ -445,7 +332,7 @@ namespace PigTool.ViewModels.ReportViewModels
 
             foreach (var month in groupedData23)
             {
-                dictTest.Add(month.Key,month.First().YearMonth.Date);
+                dictTest.Add(month.Key, month.First().YearMonth.Date);
             }
 
             dictTest.Keys.ToList();

@@ -14,9 +14,14 @@ namespace PigTool.Views
     public partial class ReportsPage : TabbedPage
     {
         public ReportsPage()
-        {            
+        {
+            try { 
             InitializeComponent();
-            //BindingContext = new LegalDisclaimerViewModel(Navigation);
+                //BindingContext = new LegalDisclaimerViewModel(Navigation);
+            }
+            catch(Exception ex) 
+            { 
+            }
         }
     }
 }

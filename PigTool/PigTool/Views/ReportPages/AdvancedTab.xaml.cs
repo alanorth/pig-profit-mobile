@@ -20,6 +20,7 @@ namespace PigTool.Views
             DurationLabel.SetBinding(Label.TextProperty, nameof(_viewModel.ReportingDuration));
             SummaryTitleLabel.SetBinding(Label.TextProperty, nameof(_viewModel.SummaryLabel));
             BreakdownTitleLabel.SetBinding(Label.TextProperty, nameof(_viewModel.BreakdownLabel));
+            IncomeBreakdownTitleLabel.SetBinding(Label.TextProperty, nameof(_viewModel.IncomeBreakdownLabel));
 
             var TotalCostLabel = new Label();
             TotalCostLabel.SetBinding(Label.TextProperty, nameof(_viewModel.TotalPeriodCostLabel));

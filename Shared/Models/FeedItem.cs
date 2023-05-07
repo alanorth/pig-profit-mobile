@@ -30,5 +30,6 @@ namespace Shared
         [JsonIgnore]
         public virtual Translation? FeedTypeTranslation { get; set; }
         public virtual string? FeedTypeTranslationString { get; set; }
+        public virtual string DateNiceFormat { get { return Date.ToString("dd/MMM/yyyy"); } }
     }
 }
