@@ -1,6 +1,7 @@
 ﻿using OxyPlot;
 using OxyPlot.Series;
 using OxyPlot.Xamarin.Forms;
+using PigTool.Models;
 using PigTool.ViewModels.ReportViewModels;
 using System;
 using System.ComponentModel;
@@ -12,8 +13,10 @@ namespace PigTool.Views
     public partial class AdvancedTab : ContentPage
     {
         AdvancedTabViewModel _viewModel;
-        public AdvancedTab()
+        private DateRange _dateRange;
+        public AdvancedTab(DateRange daterange)
         {
+            _dateRange = daterange;
             _viewModel = new AdvancedTabViewModel();
             InitializeComponent();
             this.BindingContext = _viewModel;
@@ -32,6 +35,8 @@ namespace PigTool.Views
             TotalLabels.Children.Add(TotalRevenueLabel);
             TotalLabels.Children.Add(TotalCostLabel);
             TotalLabels.Children.Add(ProfitLossLabel);
+            _viewModel.GetDataForCharts();
+            _viewModel.LoadAdvancedBarChart(_viewModel.FullList);
         }
 
         void OnDateSelected(object sender, DateChangedEventArgs args)
@@ -44,14 +49,14 @@ namespace PigTool.Views
 
         protected async override void OnAppearing()
         {
-            _viewModel.GetDataForCharts();
-            _viewModel.LoadAdvancedBarChart(_viewModel.FullList);
+            startDatePicker.Date = _viewModel.StartDate = _dateRange.StartDate;
+            endDatePicker.Date = _viewModel.EndDate = _dateRange.EndDate;
         }
 
         void Recalculate()
         {
-            _viewModel.StartDate = startDatePicker.Date;
-            _viewModel.EndDate = endDatePicker.Date;
+            _dateRange.StartDate = _viewModel.StartDate = startDatePicker.Date;
+            _dateRange.EndDate = _viewModel.EndDate = endDatePicker.Date;
             _viewModel.filterDataAndReloadBarChart();
         }
     }

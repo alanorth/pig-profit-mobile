@@ -1,4 +1,5 @@
 ﻿using PigTool.Helpers;
+using PigTool.Models;
 using PigTool.Services;
 using PigTool.ViewModels;
 using Shared;
@@ -16,10 +17,11 @@ namespace PigTool.Views
     public partial class SummaryTab : ContentPage
     {
         SummaryTabViewModel _ViewModel;
+        private DateRange _dateRange;
 
-
-        public SummaryTab()
+        public SummaryTab(DateRange dateRange)
         {
+            _dateRange = dateRange;
             InitializeComponent();
             BindingContext = _ViewModel = new SummaryTabViewModel();
             //_ViewModel.StartDate = DateTime.Now.AddDays(-20);
@@ -29,6 +31,7 @@ namespace PigTool.Views
             DurationLabel.SetBinding(Label.TextProperty,nameof(_ViewModel.ReportingDuration));
             SummaryTableTitle.SetBinding(Label.TextProperty, nameof(_ViewModel.SummaryTableHeading));
             PopulateThePage();
+            _ViewModel.ConstructPage();
         }
 
         private async void PopulateThePage()
@@ -90,7 +93,9 @@ namespace PigTool.Views
 
         protected async override void OnAppearing()
         {
-            _ViewModel.ConstructPage();
+
+            startDatePicker.Date = _ViewModel.StartDate = _dateRange.StartDate;
+            endDatePicker.Date = _ViewModel.EndDate = _dateRange.EndDate;
         }
 
 
@@ -104,8 +109,8 @@ namespace PigTool.Views
 
         void Recalculate()
         {
-            _ViewModel.StartDate = startDatePicker.Date;
-            _ViewModel.EndDate = endDatePicker.Date;
+            _dateRange.StartDate = _ViewModel.StartDate = startDatePicker.Date;
+            _dateRange.EndDate = _ViewModel.EndDate = endDatePicker.Date;
         }
     }
 

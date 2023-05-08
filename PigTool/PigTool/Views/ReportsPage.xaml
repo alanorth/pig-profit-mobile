@@ -5,7 +5,7 @@
             x:Class="PigTool.Views.ReportsPage"
             Shell.NavBarIsVisible="False"
             Title="Reports">
-    <local:SummaryTab/>
-    <local:AdvancedTab/>
-    <local:BenchmarkingTab/>
+    <!-- <local:SummaryTab/>-->
+    <!-- <local:AdvancedTab/>-->
+    <!-- <local:BenchmarkingTab/>-->
 </TabbedPage>
