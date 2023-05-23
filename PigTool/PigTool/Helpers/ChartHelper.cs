@@ -12,7 +12,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using static Xamarin.Forms.Internals.Profile;
 
 namespace PigTool.Helpers
 {
@@ -220,9 +219,6 @@ namespace PigTool.Helpers
             public string Month { get; set; }
             public DateTime Date { get; set; }
             public string Grouping { get; set; }
-            public DateTime? StartDate { get; set; }
-            public DateTime? EndDate { get; set; }
-            public int dailyCost { get; set; }
 
             public override bool Equals(object other)
             {
