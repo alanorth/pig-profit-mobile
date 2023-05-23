@@ -184,7 +184,6 @@ namespace PigTool.ViewModels.ReportViewModels
 
         public void filterDataAndReloadBarChart()
         {
-
             CostGraphModel = null;
             IncomeGraphModel = null;
 

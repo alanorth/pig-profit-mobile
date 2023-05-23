@@ -12,6 +12,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using static Xamarin.Forms.Internals.Profile;
 
 namespace PigTool.Helpers
 {
@@ -209,7 +210,7 @@ namespace PigTool.Helpers
         }
 
 
-        
+
 
 
 
@@ -219,6 +220,9 @@ namespace PigTool.Helpers
             public string Month { get; set; }
             public DateTime Date { get; set; }
             public string Grouping { get; set; }
+            public DateTime? StartDate { get; set; }
+            public DateTime? EndDate { get; set; }
+            public int dailyCost { get; set; }
 
             public override bool Equals(object other)
             {
@@ -262,19 +266,7 @@ namespace PigTool.Helpers
         {
             // Initial grouping for Feed items
             FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItems());
-            fullList = FeedItems.GroupBy(fi => new YearMonth
-            {
-                Year = fi.Date.Year,
-                Month = fi.Date.ToString("MMM"),
-                Date = fi.Date,
-                Grouping = nameof(FeedItem)
-            }).Select(fi => new Row
-            {
-                YearMonth = fi.Key,
-                Cost = fi.Sum(i => i.TotalCosts)+ fi.Sum(i => i.OtherCosts) + fi.Sum(i => i.TransportationCost),
-                Revenue = 0,
-                Difference = 0
-            }).ToList();
+            fullList = getDurationFeedItems(FeedItems);
 
             //Initial grouping for Animalhouse Items
             AnimalHouseItems = new ObservableCollection<AnimalHouseItem>(await repo.GetAnimalHouseItems());
@@ -338,35 +330,11 @@ namespace PigTool.Helpers
                 Difference = 0
             }).ToList()).ToList();
 
-            LabourCostItems = new ObservableCollection<LabourCostItem> ( await repo.GetLabourCostItems() );
-            fullList = fullList.Concat(LabourCostItems.GroupBy(fi => new YearMonth
-            {
-                Year = fi.Date.Year,
-                Month = fi.Date.ToString("MMM"),
-                Date = fi.Date,
-                Grouping = nameof(LabourCostItem)
-            }).Select(fi => new Row
-            {
-                YearMonth = fi.Key,
-                Cost = fi.Sum(i => i.AmountPaid) + fi.Sum(i => i.OtherCost),
-                Revenue = 0,
-                Difference = 0
-            }).ToList()).ToList();
+            LabourCostItems = new ObservableCollection<LabourCostItem>(await repo.GetLabourCostItems()); ;
+            fullList = fullList.Concat(getDurationLabourCost(LabourCostItems)).ToList();
 
             LoanRepaymentItems = new ObservableCollection<LoanRepaymentItem>(await repo.GetLoanRepaymentItems());
-            fullList = fullList.Concat(LoanRepaymentItems.GroupBy(fi => new YearMonth
-            {
-                Year = fi.Date.Year,
-                Month = fi.Date.ToString("MMM"),
-                Date = fi.Date,
-                Grouping = nameof(LoanRepaymentItem)
-            }).Select(fi => new Row
-            {
-                YearMonth = fi.Key,
-                Cost = fi.Sum(i => i.TotalAmountRepaid) + fi.Sum(i => i.TransportCosts) + fi.Sum(i => i.OtherCosts),
-                Revenue = 0,
-                Difference = 0
-            }).ToList()).ToList();
+            fullList = fullList.Concat(getDurationLoanItems(LoanRepaymentItems)).ToList();
 
             ManureSaleItems = new ObservableCollection<ManureSaleItem>(await repo.GetManureSaleItems());
             fullList = fullList.Concat(ManureSaleItems.GroupBy(fi => new YearMonth
@@ -378,25 +346,13 @@ namespace PigTool.Helpers
             }).Select(fi => new Row
             {
                 YearMonth = fi.Key,
-                Cost =  fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
+                Cost = fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
                 Revenue = fi.Sum(i => i.AmountRecieved),
                 Difference = 0
             }).ToList()).ToList();
 
             MembershipItems = new ObservableCollection<MembershipItem>(await repo.GetMembershipItems());
-            fullList = fullList.Concat(MembershipItems.GroupBy(fi => new YearMonth
-            {
-                Year = fi.Date.Year,
-                Month = fi.Date.ToString("MMM"),
-                Date = fi.Date,
-                Grouping = nameof(MembershipItem)
-            }).Select(fi => new Row
-            {
-                YearMonth = fi.Key,
-                Cost = fi.Sum(i => i.TotalCosts) + fi.Sum(i => i.OtherCosts),
-                Revenue = 0,
-                Difference = 0
-            }).ToList()).ToList();
+            fullList = fullList.Concat(getDurationMembershipItems(MembershipItems)).ToList();
 
             OtherCostItems = new ObservableCollection<OtherCostItem>(await repo.GetOtherCostItems());
             fullList = fullList.Concat(OtherCostItems.GroupBy(fi => new YearMonth
@@ -440,7 +396,7 @@ namespace PigTool.Helpers
             }).Select(fi => new Row
             {
                 YearMonth = fi.Key,
-                Cost = fi.Sum(i => i.HealthCareCost) + fi.Sum(i => i.MedicineCost) 
+                Cost = fi.Sum(i => i.HealthCareCost) + fi.Sum(i => i.MedicineCost)
                 + fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
                 Revenue = 0,
                 Difference = 0
@@ -462,19 +418,7 @@ namespace PigTool.Helpers
             }).ToList()).ToList();
 
             WaterCostItems = new ObservableCollection<WaterCostItem>(await repo.GetWaterCostItems());
-            fullList = fullList.Concat(WaterCostItems.GroupBy(fi => new YearMonth
-            {
-                Year = fi.Date.Year,
-                Month = fi.Date.ToString("MMM"),
-                Date = fi.Date,
-                Grouping = nameof(WaterCostItem)
-            }).Select(fi => new Row
-            {
-                YearMonth = fi.Key,
-                Cost = fi.Sum(i => i.TotalCosts) + fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
-                Revenue = 0,
-                Difference = 0
-            }).ToList()).ToList();
+            fullList = fullList.Concat(getDurationWaterItems(WaterCostItems)).ToList();
 
             ReproductiveItems = new ObservableCollection<ReproductiveItem>(await repo.GetReproductiveItems());
             fullList = fullList.Concat(ReproductiveItems.GroupBy(fi => new YearMonth
@@ -513,6 +457,119 @@ namespace PigTool.Helpers
             return (FullList, totalPeriodRevenue, totalPeriodCost, totalPeriodDifference);
         }
 
+        public List<Row> getDurationFeedItems(ObservableCollection<FeedItem> FeedItems)
+        {
+            var result = new List<Row>();
+
+            foreach (var feed in FeedItems)
+            {
+                var oCost = feed.OtherCosts == null ? 0 : feed.OtherCosts;
+                var totalCost = feed.TotalCosts + oCost + feed.TransportationCost;
+                var startDate = ((DateTime)feed.DurationStart);
+                var DurationLength = (TimeSpan)(feed.DurationFinish - feed.DurationStart);
+                CallculateDurtaionRows(result, totalCost, startDate, DurationLength, nameof(FeedItem));
+            }
+
+            return result;
+        }
+
+        public List<Row> getDurationLabourCost(ObservableCollection<LabourCostItem> LabourCosts)
+        {
+            var result = new List<Row>();
+
+            foreach (var labour in LabourCosts)
+            {
+                var oCost = labour.OtherCost == null ? 0 : labour.OtherCost;
+                var totalCost = labour.AmountPaid + oCost;
+                var startDate = ((DateTime)labour.DurationStart);
+                var DurationLength = (TimeSpan)(labour.DurationFinish - labour.DurationStart);
+                CallculateDurtaionRows(result, totalCost, startDate, DurationLength, nameof(LabourCostItem));
+            }
+
+            return result;
+        }
+        public List<Row> getDurationLoanItems(ObservableCollection<LoanRepaymentItem> LoanItems)
+        {
+            var result = new List<Row>();
+
+            foreach (var loan in LoanItems)
+            {
+                var oCost = loan.OtherCosts == null ? 0 : loan.OtherCosts;
+                var totalCost = loan.TotalAmountRepaid + oCost + loan.TransportCosts;
+                var startDate = ((DateTime)loan.DurationStart);
+                var DurationLength = (TimeSpan)(loan.DurationFinish - loan.DurationStart);
+                CallculateDurtaionRows(result, totalCost, startDate, DurationLength, nameof(LoanRepaymentItem));
+            }
+
+            return result;
+        }
+
+        public List<Row> getDurationMembershipItems(ObservableCollection<MembershipItem> MembershipItems)
+        {
+            var result = new List<Row>();
+
+            foreach (var member in MembershipItems)
+            {
+                var oCost = member.OtherCosts == null ? 0 : member.OtherCosts;
+                var totalCost = member.TotalCosts + oCost;
+                var startDate = ((DateTime)member.DurationStart);
+                var DurationLength = (TimeSpan)(member.DurationFinish - member.DurationStart);
+                CallculateDurtaionRows(result, totalCost, startDate, DurationLength, nameof(MembershipItem));
+            }
+
+            return result;
+        }
+        public List<Row> getDurationWaterItems(ObservableCollection<WaterCostItem> WaterItems)
+        {
+            var result = new List<Row>();
+
+            foreach (var water in WaterItems)
+            {
+                var oCost = water.OtherCosts == null ? 0 : water.OtherCosts;
+                var totalCost = water.TotalCosts + oCost + water.TransportationCost;
+                var startDate = ((DateTime)water.DurationStart);
+                var DurationLength = (TimeSpan)(water.DurationFinish - water.DurationStart);
+                CallculateDurtaionRows(result, totalCost, startDate, DurationLength, nameof(WaterCostItem));
+            }
+
+            return result;
+        }
+
+        private static void CallculateDurtaionRows(List<Row> result, double? totalCost, DateTime startDate, TimeSpan DurationLength, string GroupName)
+        {
+            var daylength = DurationLength.TotalDays;
+            if (1 > daylength)
+            {
+                daylength = 1;
+            }
+            else
+            {
+                daylength = Math.Round(daylength);
+            }
+
+            var dailyCost = totalCost / daylength;
+
+            for (var i = 0; i < daylength; i++)
+            {
+                var dateY = startDate.AddDays(i);
+
+                var yMonth = new YearMonth
+                {
+                    Year = dateY.Year,
+                    Month = dateY.ToString("MMM"),
+                    Date = dateY,
+                    Grouping = GroupName
+                };
+
+                result.Add(new Row
+                {
+                    YearMonth = yMonth,
+                    Cost = dailyCost,
+                    Revenue = 0,
+                    Difference = 0
+                });
+            }
+        }
 
         public async Task<PlotModel> GenerateTotalsGraphModel(
                 double totalPeriodRevenue,
