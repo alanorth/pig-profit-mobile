@@ -23,9 +23,10 @@ namespace PigTool.ViewModels
         public string EditData { get; set; }
         public string ViewReports { get; set; }
         public string Home { get; set; }
-        public string LastUploadTranslation { 
+        public string LastUploadTranslation
+        {
             get;
-            set; 
+            set;
         }
 
         //strings that can change
@@ -76,7 +77,7 @@ namespace PigTool.ViewModels
             }
             get
             {
-                return LastUploadTranslation + ": " + userLastUpdatedTime ;
+                return LastUploadTranslation + ": " + userLastUpdatedTime;
             }
         }
 
@@ -114,9 +115,8 @@ namespace PigTool.ViewModels
 
         public HomePageViewModel()
         {
-            NameOfUser = "Hello " + User.Name;
-            VillageOfUser = "Village: " + User.Village;
-            UserLastUpdatedTime = User.LastUploadDate.ToString();
+            NameOfUser = repo.GetTranslationAsync("Hello").Result.getTranslation(User.UserLang) + " " + User.Name;
+            VillageOfUser = repo.GetTranslationAsync("Village").Result.getTranslation(User.UserLang) + ": " + User.Village;
 
             NumberOfTranslations = 60;
             //String translation
@@ -138,6 +138,13 @@ namespace PigTool.ViewModels
                 DateTime = DateTime.Now;
                 return true;
             });
+        }
+
+        public void UpdateUploadTime()
+        {
+            // Get the local timezone of the mobile device
+            TimeZoneInfo localTimeZone = TimeZoneInfo.Local;
+            UserLastUpdatedTime = TimeZoneInfo.ConvertTimeFromUtc(User.LastUploadDate, localTimeZone).ToString();
         }
 
         private async void ManageDataCommand(object obj)
@@ -223,7 +230,7 @@ namespace PigTool.ViewModels
                         LastModified = DateTime.UtcNow,
                         CreatedBy = User.UserName,
                         PartitionKey = Constants.PartitionKeyFeed,
-                        DurationStart  = dateTime.AddDays((random.Next(range))*-1),
+                        DurationStart = dateTime.AddDays((random.Next(range)) * -1),
                         DurationFinish = dateTime.AddDays((random.Next(30)))
                     };
                     await repo.AddSingleFeedItem(newFeedItem);

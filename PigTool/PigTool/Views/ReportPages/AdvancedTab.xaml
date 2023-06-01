@@ -61,7 +61,7 @@
                 <oxy:PlotView Model="{Binding SimpleGraphModel}" HorizontalOptions="CenterAndExpand" 
                               VerticalOptions="StartAndExpand" 
                               Margin="2"
-                              HeightRequest="150" 
+                              HeightRequest="300" 
                               Grid.Column="0"/>
                 <StackLayout
                         Grid.Column="1"
@@ -76,11 +76,13 @@
                     StyleClass="ReportHeader"/>
                 <BoxView StyleClass="Seperator"/>
                 <StackLayout Orientation="Vertical">
-                    <StackLayout Orientation="Vertical">
+                    <StackLayout Orientation="Vertical">                        
                         <oxy:PlotView Model="{Binding CostGraphModel}" HorizontalOptions="CenterAndExpand" 
                               VerticalOptions="StartAndExpand" Margin="2"
+                               HeightRequest="600"/>
+                        <oxy:PlotView Model="{Binding LegendGraph}" HorizontalOptions="CenterAndExpand" 
+                              VerticalOptions="StartAndExpand" Margin="2"
                               HeightRequest="300" />
-
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
@@ -94,8 +96,10 @@
                     <StackLayout Orientation="Vertical">
                         <oxy:PlotView Model="{Binding IncomeGraphModel}" HorizontalOptions="CenterAndExpand" 
                               VerticalOptions="StartAndExpand" Margin="2"
+                              HeightRequest="600" />
+                        <oxy:PlotView Model="{Binding IncomeLegendGraph}" HorizontalOptions="CenterAndExpand" 
+                              VerticalOptions="StartAndExpand" Margin="2"
                               HeightRequest="300" />
-
                     </StackLayout>
                 </StackLayout>
             </StackLayout>

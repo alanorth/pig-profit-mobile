@@ -1,7 +1,4 @@
-﻿using OxyPlot;
-using OxyPlot.Series;
-using OxyPlot.Xamarin.Forms;
-using PigTool.Models;
+﻿using PigTool.Models;
 using PigTool.ViewModels.ReportViewModels;
 using System;
 using System.ComponentModel;
@@ -37,6 +34,7 @@ namespace PigTool.Views
             TotalLabels.Children.Add(ProfitLossLabel);
             _viewModel.GetDataForCharts();
             _viewModel.LoadAdvancedBarChart(_viewModel.FullList);
+            this.Title = _viewModel.AdvanceTabLable;
         }
 
         void OnDateSelected(object sender, DateChangedEventArgs args)

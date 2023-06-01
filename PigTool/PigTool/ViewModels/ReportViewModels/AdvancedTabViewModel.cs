@@ -12,106 +12,22 @@ using static PigTool.Helpers.ChartHelper;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using System.Collections;
 using Shared;
+using OxyPlot.Xamarin.Forms;
 
 namespace PigTool.ViewModels.ReportViewModels
 {
     public class AdvancedTabViewModel : SummaryTabViewModel, INotifyPropertyChanged
     {
         private DateTime startDate, endDate;
-        /*public List<Row> fullList, fullListByMonthYear;
-        public double totalPeriodRevenue;
-        public double totalPeriodCost;
-        public double totalPeriodDifference;
-        
-        public List<Row> FullList
-        {
-            get { return fullList; }
-            set
-            {
-                fullList = value;
-                OnPropertyChanged(nameof(FullList));
-            }
-        }
-
-        public List<Row> FullListByMonthYear
-        {
-            get { return fullListByMonthYear; }
-            set
-            {
-                fullListByMonthYear = value.GroupBy(fl => new YearMonth
-                {
-                    Year = fl.YearMonth.Year,
-                    Month = fl.YearMonth.Month,
-                })
-                .Select(fl => new Row
-                {
-                    YearMonth = fl.Key,
-                    Cost = fl.Sum(i => i.Cost),
-                    Revenue = fl.Sum(i => i.Revenue),
-                    Difference = fl.Sum(i => i.Revenue) - fl.Sum(i => i.Cost)
-                }).OrderByDescending(fl => fl.YearMonth.Year).ThenByDescending(fl => fl.YearMonth.Month).ToList();
-
-                OnPropertyChanged(nameof(FullListByMonthYear));
-            }//set
-        }
-
-
-        public double TotalPeriodRevenue
-        {
-            get => totalPeriodRevenue;
-            set
-            {
-                if (value != totalPeriodRevenue)
-                {
-                    totalPeriodRevenue = value;
-                    OnPropertyChanged(nameof(TotalPeriodRevenue));
-                    OnPropertyChanged(nameof(TotalPeriodRevenueLabel));
-                }
-            }
-        }
-        public string TotalPeriodRevenueLabel
-        {
-            get => String.Format("Income: {0:C2}", TotalPeriodRevenue);
-        }
-
-        public double TotalPeriodCost
-        {
-            get => totalPeriodCost;
-            set
-            {
-                if (value != totalPeriodCost)
-                {
-                    totalPeriodCost = value;
-                    OnPropertyChanged(nameof(TotalPeriodCostLabel));
-                    OnPropertyChanged(nameof(TotalPeriodCost));
-                }
-            }
-        }
-        public string TotalPeriodCostLabel
-        {
-            get => String.Format("Cost: {0:C2}", TotalPeriodCost);
-        }
-
-        public double TotalPeriodDifference
-        {
-            get => totalPeriodDifference;
-            set
-            {
-                if (value != totalPeriodDifference)
-                {
-                    totalPeriodDifference = value;
-                    OnPropertyChanged(nameof(TotalPeriodDifference));
-                }
-            }
-        }
-        */
+       
         public DateTime StartDate
         {
             get => startDate;
             set
             {
-                if (value != startDate) { 
-                    startDate = value; 
+                if (value != startDate)
+                {
+                    startDate = value;
                     OnPropertyChanged(nameof(StartDate));
                     //CalculateSelected();
                 }
@@ -123,14 +39,16 @@ namespace PigTool.ViewModels.ReportViewModels
             get => endDate;
             set
             {
-                if (value != endDate) { endDate = value; 
+                if (value != endDate)
+                {
+                    endDate = value;
                     OnPropertyChanged(nameof(EndDate));
                     //CalculateSelected();
                 }
             }
         }
 
-        private PlotModel costGraphModel { get; set; }
+        private PlotModel legendGraph, incomeLegendGraph, costGraphModel;
 
         public PlotModel CostGraphModel
         {
@@ -144,6 +62,29 @@ namespace PigTool.ViewModels.ReportViewModels
             }
         }
 
+        public PlotModel LegendGraph
+        {
+            get
+            {
+                return legendGraph;
+            }
+            set
+            {
+                legendGraph = value;
+            }
+        }
+
+        public PlotModel IncomeLegendGraph
+        {
+            get
+            {
+                return incomeLegendGraph;
+            }
+            set
+            {
+                incomeLegendGraph = value;
+            }
+        }
         private PlotModel incomeGraphModel { get; set; }
 
         public PlotModel IncomeGraphModel
@@ -177,8 +118,6 @@ namespace PigTool.ViewModels.ReportViewModels
         {
             CostGraphModel = new PlotModel();
             IncomeGraphModel = new PlotModel();
-            //GetDataForCharts();
-            //LoadBasicChart();
 
         }
 
@@ -192,12 +131,18 @@ namespace PigTool.ViewModels.ReportViewModels
             List<string> MonthNameList = GetMonthNamesUsed(providedData);
             PlotModel model = CreateAdvanceChart(providedData, MonthNameList, true);
             PlotModel Incomemodel = CreateAdvanceChart(providedData, MonthNameList, false);
+            PlotModel LegendHolder = CreateLegendHolder(providedData, MonthNameList, true);
+            PlotModel IncomeLegHolder = CreateLegendHolder(providedData, MonthNameList, false);
 
             CostGraphModel = model;
             IncomeGraphModel = Incomemodel;
+            LegendGraph = LegendHolder;
+            IncomeLegendGraph = IncomeLegHolder;
 
             OnPropertyChanged(nameof(CostGraphModel));
             OnPropertyChanged(nameof(IncomeGraphModel));
+            OnPropertyChanged(nameof(LegendGraph));
+            OnPropertyChanged(nameof(IncomeLegendGraph));
 
 
             ChartHelper chartHelper = new ChartHelper();
@@ -207,8 +152,8 @@ namespace PigTool.ViewModels.ReportViewModels
             TotalPeriodDifference = TotalPeriodRevenue - TotalPeriodCost;
 
             SimpleGraphModel = chartHelper.GenerateTotalsGraphModel(
-                TotalPeriodCost,
                 TotalPeriodRevenue,
+                TotalPeriodCost,
                 TotalPeriodDifference,
                 SummaryChartCostGroup,
                 SummaryChartIncomeGroup,
@@ -226,11 +171,18 @@ namespace PigTool.ViewModels.ReportViewModels
             List<string> MonthNameList = GetMonthNamesUsed(providedData);
             PlotModel model = CreateAdvanceChart(providedData, MonthNameList, true);
             PlotModel incomeModel = CreateAdvanceChart(providedData, MonthNameList, false);
+            PlotModel LegendHolder = CreateLegendHolder(providedData, MonthNameList, false);
+            PlotModel IncomeLegHolder = CreateLegendHolder(providedData, MonthNameList, false);
 
             CostGraphModel = model;
             IncomeGraphModel = incomeModel;
+            LegendGraph = LegendHolder;
+            IncomeLegendGraph = IncomeLegHolder;
+
             OnPropertyChanged(nameof(CostGraphModel));
             OnPropertyChanged(nameof(IncomeGraphModel));
+            OnPropertyChanged(nameof(LegendGraph));
+            OnPropertyChanged(nameof(IncomeLegendGraph));
         }
 
         private PlotModel CreateAdvanceChart(List<Row> providedData, List<string> MonthNameList, bool costChart)
@@ -238,9 +190,7 @@ namespace PigTool.ViewModels.ReportViewModels
             var groupedData = providedData.GroupBy(d => d.YearMonth.Grouping);
 
             var model = new PlotModel { };
-            model.LegendOrientation = LegendOrientation.Vertical;
-            model.LegendPlacement = LegendPlacement.Outside;
-            model.LegendPosition = LegendPosition.RightMiddle;
+            model.IsLegendVisible = false;
 
             foreach (var group in groupedData)
             {
@@ -249,40 +199,10 @@ namespace PigTool.ViewModels.ReportViewModels
 
                 var CostSeries = new ColumnSeries
                 {
-                    LabelPlacement = LabelPlacement.Inside,
-                    LabelFormatString = "{0}",
                     IsStacked = true,
                     Title = GetTitleTranslation(group.Key),
                     StackGroup = "Cost",
-
                 };
-                /*var IncomeSeries = new ColumnSeries
-                {
-                    LabelPlacement = LabelPlacement.Inside,
-                    LabelFormatString = "{0}",
-                    IsStacked = true,
-                    Title = GetTitleTranslation(group.Key),
-                    StackGroup = "Income",
-                    FillColor = CostSeries.FillColor,
-                    RenderInLegend = false
-                };
-
-                foreach (var xy in groupedMonths)
-                {
-                    CostSeries.Items.Add(new ColumnItem
-                    {
-                        Value = (double)xy.Sum(p => p.Cost),
-                        CategoryIndex = MonthNameList.IndexOf(xy.Key)
-                    });
-                    IncomeSeries.Items.Add(new ColumnItem
-                    {
-                        Value = (double)xy.Sum(p => p.Revenue),
-                        CategoryIndex = MonthNameList.IndexOf(xy.Key)
-                    });
-                }
-                model.Series.Add(CostSeries);
-                model.Series.Add(IncomeSeries);*/
-
 
                 //cost chart
                 if (costChart)
@@ -299,29 +219,111 @@ namespace PigTool.ViewModels.ReportViewModels
                 }
                 else //Income Chart
                 {
-                    foreach (var xy in groupedMonths)
-                    {
-                        CostSeries.Items.Add(new ColumnItem
+                    //do not include if revenu sums to 0
+                    if((double)groupList.Sum(p => p.Revenue) != 0) { 
+                        foreach (var xy in groupedMonths)
                         {
-                            Value = (double)xy.Sum(p => p.Revenue),
-                            CategoryIndex = MonthNameList.IndexOf(xy.Key)
-                        });
+                            CostSeries.Items.Add(new ColumnItem
+                            {
+                                Value = (double)xy.Sum(p => p.Revenue),
+                                CategoryIndex = MonthNameList.IndexOf(xy.Key)
+                            });
+                        }
+                        model.Series.Add(CostSeries);
                     }
-                    model.Series.Add(CostSeries);
                 }
             }
 
-            model.Axes.Add(new CategoryAxis
+            var yAxis = new LinearAxis
+            {
+                StringFormat = "0", // Specify the format string without scientific notation
+                Position = AxisPosition.Left, // Position the Y-axis on the left side
+            };
+
+            model.Axes.Add(yAxis);
+
+            var xAxis = new CategoryAxis
             {
                 Position = AxisPosition.Bottom,
                 Key = "Sample Data",
                 ItemsSource = MonthNameList,
                 IsPanEnabled = false,
-                IsZoomEnabled = true,
-                Selectable = true,
-            });
+                IsZoomEnabled = false,
+                Angle = 75,
+            };
+
+            //xAxis.LabelFormatter = x => RotateText(x, -90);
+
+            model.Axes.Add(xAxis);
             return model;
         }
+
+        private PlotModel CreateLegendHolder(List<Row> providedData, List<string> MonthNameList, bool costChart)
+        {
+            var plotModel = new PlotModel();
+
+            var groupedData = providedData.GroupBy(d => d.YearMonth.Grouping);
+
+
+            foreach (var group in groupedData)
+            {
+                var groupList = group.ToList();
+                var groupedMonths = groupList.GroupBy(d => d.YearMonth.Date.ToString("MMM/yyyy"));
+
+                var costSum = (double)(groupList.Sum(x => x.Cost));
+                var costSumRound = Math.Round(costSum).ToString();
+
+                if (!costChart) {
+                    costSum = (double)(groupList.Sum(x => x.Revenue));
+                    costSumRound = Math.Round(costSum).ToString();
+                }
+
+                var CostSeries = new ColumnSeries
+                {
+                    LabelPlacement = LabelPlacement.Middle,
+                    LabelFormatString = "{0:0.00}",
+                    IsStacked = true,
+                    Title = GetTitleTranslation(group.Key) + " " + costSumRound +" "+ User.CurrencySymbol(),
+                    StackGroup = "Cost",
+                    IsVisible = costSum == 0 ? false : true,
+                };
+
+                plotModel.Series.Add(CostSeries);
+            }
+
+            plotModel.LegendPosition = LegendPosition.TopCenter;
+            plotModel.LegendPlacement = LegendPlacement.Inside;
+            plotModel.LegendOrientation = LegendOrientation.Vertical;
+
+            // Set the Title and IsLegendVisible properties
+            plotModel.IsLegendVisible = true;
+
+            plotModel.PlotAreaBackground = OxyColors.Transparent;
+
+            var xAxis = new CategoryAxis
+            {
+                AxislineColor = OxyColors.White,
+            };
+
+            var yAxis = new LinearAxis
+            {
+                AxislineColor = OxyColors.White,
+                TextColor = OxyColors.White,
+                ExtraGridlineColor = OxyColors.White,
+                MajorGridlineColor = OxyColors.White,
+                MinorGridlineColor = OxyColors.White,
+                MinorTicklineColor = OxyColors.White,
+                TicklineColor = OxyColors.White,
+                TitleColor = OxyColors.White,
+            };
+
+            plotModel.Axes.Add(xAxis);
+            plotModel.Axes.Add(yAxis);
+            plotModel.PlotAreaBorderColor = OxyColors.White;
+
+            return plotModel;
+        }
+
 
         private static List<string> GetMonthNamesUsed(List<Row> providedData)
         {
@@ -366,7 +368,10 @@ namespace PigTool.ViewModels.ReportViewModels
 
         }
 
-
+        private string RotateText(double text, double angle)
+        {
+            return $"<span style='writing-mode: vertical-rl; transform: rotate({angle}deg);'>{text}</span>";
+        }
 
     }
 }

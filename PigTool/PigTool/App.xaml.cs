@@ -33,9 +33,9 @@ namespace PigTool
                 {
                     var IsAppInitialized = Task.Run(() => App.IsAppInitialized()).GetAwaiter().GetResult();
 
-                    if (IsAppInitialized)
+                    if (IsAppInitialized !=  null)
                     {
-                        DisplayMainPage();
+                        DisplayMainPage(IsAppInitialized.UserLang);
                     }
                     else
                     {
@@ -50,7 +50,7 @@ namespace PigTool
         }
 
 
-        public static async Task<bool> IsAppInitialized()
+        public static async Task<MobileUser> IsAppInitialized()
         {
 #if DEBUG
             //return true;
@@ -64,18 +64,18 @@ namespace PigTool
 
 
 
-                if (user == null)
+                if (user != null)
                 {
-                    return false;
+                    return user;
                 }
                 else
                 {
-                    return true;
+                    return null;
                 }
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
 
@@ -91,9 +91,9 @@ namespace PigTool
         {
         }
 
-        public void DisplayMainPage()
+        public void DisplayMainPage(UserLangSettings userLang)
         {
-            MainPage = new AppShell();
+            MainPage = new AppShell(userLang);
         }
 
         public void DisplayedFailedloadupPage(string Message)

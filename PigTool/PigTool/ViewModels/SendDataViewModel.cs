@@ -27,6 +27,8 @@ namespace PigTool.ViewModels
             set
             {
                 lastTimeDataUploaded = value;
+                TimeZoneInfo localTimeZone = TimeZoneInfo.Local;
+                LastUploadTime = TimeZoneInfo.ConvertTimeFromUtc(lastTimeDataUploaded, localTimeZone).ToString();
                 OnPropertyChanged(nameof(LastTimeDataUploaded));
             }
         }
@@ -50,6 +52,8 @@ namespace PigTool.ViewModels
         private ObservableCollection<OtherIncomeItem> otherIncomeItems;
 
         private DateTime lastTimeDataUploaded;
+        private string lastUploadTime;
+        private string sendDataUploadTimeLabel;
 
         public ObservableCollection<FeedItem> FeedItems
         {
@@ -214,6 +218,18 @@ namespace PigTool.ViewModels
                 OnPropertyChanged(nameof(UploadDataTranslation));
             }
         }
+
+        public string SendDataUploadTimeLabel {
+            get { return sendDataUploadTimeLabel; }
+            set
+            {
+                sendDataUploadTimeLabel = value;
+                OnPropertyChanged(nameof(SendDataUploadTimeLabel));
+            }
+        }
+
+        public string SendingData { get; private set; }
+
         public int CountOf_FeedItems
         {
             get { return countOf_FeedItems; }
@@ -363,6 +379,16 @@ namespace PigTool.ViewModels
             }
         }
 
+        public string LastUploadTime
+        {
+            get { return lastUploadTime; }
+            set
+            {
+                lastUploadTime = value;
+                OnPropertyChanged(nameof(LastUploadTime));
+            }
+        }
+
 
 
         private int countOf_FeedItems { get; set; }
@@ -397,6 +423,8 @@ namespace PigTool.ViewModels
         public async Task PopulateCollections()
         {
             UploadDataTranslation = repo.GetTranslationAsync(nameof(UploadDataTranslation)).Result.getTranslation(User.UserLang);
+            SendDataUploadTimeLabel = repo.GetTranslationAsync(nameof(SendDataUploadTimeLabel)).Result.getTranslation(User.UserLang);
+            SendingData = repo.GetTranslationAsync(nameof(SendingData)).Result.getTranslation(User.UserLang);
 
             //FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItemsAndAttachedTranslation(User.UserLang));
             FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItems());
@@ -435,7 +463,7 @@ namespace PigTool.ViewModels
 
         public async void PostDataToAPI()
         {
-            LoadingOverlay overlay = new LoadingOverlay("Sending Data");
+            LoadingOverlay overlay = new LoadingOverlay(SendingData);
             await PopupNavigation.Instance.PushAsync(overlay);
             try
             {
@@ -491,7 +519,7 @@ namespace PigTool.ViewModels
 
                 if (res.Success)
                 {
-                    User.LastUploadDate = DateTime.Now;
+                    User.LastUploadDate = DateTime.UtcNow;
                     LastTimeDataUploaded = User.LastUploadDate;
                     await repo.UpdateUserInfo(User);
                     await PopulateCollections();

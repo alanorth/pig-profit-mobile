@@ -99,6 +99,12 @@ namespace Shared
         public const string CURRENCYTYPE = "CurrencyType";
 
         public const string LANGUAGETYPE = "LanguageType";
+
+        //CountrySelect
+        public const string VIETNAMTYPE = "CountryTypeVietnam";
+        public const string RWANDATYPE = "CountryTypeRwanda";
+        public const string UGANDATYPE = "CountryTypeUganda";
+
         #endregion
 
         #region StorageTables

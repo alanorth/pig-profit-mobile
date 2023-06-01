@@ -53,6 +53,7 @@
     <TabBar Route="main">
         <ShellContent
             Title="Home"
+            x:Name="HomeTile"
             ContentTemplate="{DataTemplate local:HomePage}"
             Route="HomePage">
             <ShellContent.Icon>
@@ -60,7 +61,7 @@
             </ShellContent.Icon>
         </ShellContent>
         <ShellContent
-            x:Name="AddData"
+            x:Name="AddDataTile"
             Title="Add Data"
             ContentTemplate="{DataTemplate local:AddDataPage}"
             Route="AddDatePage">
@@ -69,7 +70,7 @@
             </ShellContent.Icon>
         </ShellContent>
         <ShellContent
-            x:Name="ManageData"
+            x:Name="ManageDataTile"
             Title="Manage"
             ContentTemplate="{DataTemplate local:ManageDataPage}"
             Route="ManageDataPage">
@@ -77,19 +78,21 @@
                 <FontImageSource FontFamily="FA-S" Glyph="&#xf0ce;" />
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="Reports" 
+        <ShellContent 
+            x:Name="ReportsTile"
+            Title="Reports" 
                       Route="ReportsPage"
                       ContentTemplate="{DataTemplate local:ReportsPage}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="FA-S" Glyph="&#xf1fe;" />
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="Upload" ContentTemplate="{DataTemplate local:SendDataPage}">
+        <ShellContent x:Name="UploadTile"  Title="Upload" ContentTemplate="{DataTemplate local:SendDataPage}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="FA-S" Glyph="&#xf14d;" />
             </ShellContent.Icon>
         </ShellContent>
-        <ShellContent Title="Settings" ContentTemplate="{DataTemplate local:SettingsPage}">
+        <ShellContent x:Name="SettingsTile" Title="Settings" ContentTemplate="{DataTemplate local:SettingsPage}">
             <ShellContent.Icon>
                 <FontImageSource FontFamily="FA-S" Glyph="&#xf013;" />
             </ShellContent.Icon>

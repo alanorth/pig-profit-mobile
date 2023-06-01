@@ -125,7 +125,7 @@ namespace PigTool.Views
 
 
             // Province
-            if (countryTranslationRowKey == "CountryTypeVietnam" || countryTranslationRowKey == "CountryTypeRwanda")
+            if (countryTranslationRowKey == Constants.VIETNAMTYPE || countryTranslationRowKey == Constants.RWANDATYPE)
             {
                 var ProvinceCell = new ViewCell();
                 var ProvinceStack = FormattedElementsHelper.TableRowStack();
@@ -227,7 +227,7 @@ namespace PigTool.Views
 
 
             // Commune
-            if (countryTranslationRowKey == "CountryTypeVietnam")
+            if (countryTranslationRowKey == Constants.VIETNAMTYPE)
             {
                 var CommuneCell = new ViewCell();
                 var CommuneStack = FormattedElementsHelper.TableRowStack();
@@ -238,7 +238,7 @@ namespace PigTool.Views
             }
 
 
-            if (countryTranslationRowKey == "CountryTypeRwanda")
+            if (countryTranslationRowKey == Constants.RWANDATYPE)
             {
                 // Sector
                 var SectorCell = new ViewCell();

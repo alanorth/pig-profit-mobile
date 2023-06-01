@@ -21,6 +21,7 @@ namespace PigTool.Views
 
         public SummaryTab(DateRange dateRange)
         {
+            
             _dateRange = dateRange;
             InitializeComponent();
             BindingContext = _ViewModel = new SummaryTabViewModel();
@@ -32,6 +33,7 @@ namespace PigTool.Views
             SummaryTableTitle.SetBinding(Label.TextProperty, nameof(_ViewModel.SummaryTableHeading));
             PopulateThePage();
             _ViewModel.ConstructPage();
+            this.Title = _ViewModel.SummaryLabel;
         }
 
         private async void PopulateThePage()
@@ -112,6 +114,8 @@ namespace PigTool.Views
             _dateRange.StartDate = _ViewModel.StartDate = startDatePicker.Date;
             _dateRange.EndDate = _ViewModel.EndDate = endDatePicker.Date;
         }
+
+
     }
 
     public class SummaryTableCell : ViewCell

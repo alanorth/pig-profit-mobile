@@ -15,6 +15,7 @@ namespace PigTool.Views.Popups
 
         protected override bool OnBackButtonPressed()
         {
+            base.OnBackButtonPressed();
             return true; // Disable back button
         }
     }

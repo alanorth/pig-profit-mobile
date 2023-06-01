@@ -224,7 +224,7 @@ namespace PigTool.Services
         {
             var authRepsponse = new MobileAuthModelData();
             authRepsponse.SuccesfulResponse = false;
-
+           
             try
             {
                 WebAuthenticatorResult r = null;

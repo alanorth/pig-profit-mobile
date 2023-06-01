@@ -130,7 +130,19 @@ namespace Shared
             }
         }
 
-
+        public string CurrencySymbol()
+        {
+            switch (Country) {
+                case Constants.UGANDATYPE:
+                    return "USH"; //Uganda
+                case Constants.VIETNAMTYPE:
+                    return "VND "; //Vietnamese
+                case Constants.RWANDATYPE:
+                    return "RWF"; // Rawanda
+                default:
+                    return ""; 
+            }
+        }
     }
     public enum UserLangSettings
     {

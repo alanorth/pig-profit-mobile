@@ -16,55 +16,56 @@ namespace PigTool.ViewModels
     {
 
         #region  Translations
-        public string Costs { get; set; }
-        public string FeedTrans { get; set; }
-        public string DateObtainedTrans { get; set; }
-        public string FeedTypeTrans { get; set; }
-        public string CostTrans { get; set; }
-        public string LabourCostTrans { get; set; }
-        public string FilterTranslation { get; set; }
+        public string Costs { get; private set; }
+        public string FeedTrans { get; private set; }
+        public string DateObtainedTrans { get; private set; }
+        public string FeedTypeTrans { get; private set; }
+        public string CostTrans { get; private set; }
+        public string LabourCostTrans { get; private set; }
+        public string FilterTranslation { get; private set; }
         //shared Translations
-        public string TotalCostTranslation { get; set; }
-        public string DateTranslation { get; set; }
-        public string OtherWhatForTranslation { get; set; }
+        public string TotalCostTranslation { get; private set; }
+        public string DateTranslation { get; private set; }
+        public string OtherWhatForTranslation { get; private set; }
         //Feed
-        public string FeedTypeTranslation { get; set; }
-        public string TotalCostAllUnits { get; set; }
+        public string FeedTypeTranslation { get; private set; }
+        public string TotalCostAllUnits { get; private set; }
         //HeathCare
-        public string HealthCareTypeTranslation { get; set; }
-        public string HealthCareCostTranslation { get; set; }
+        public string HealthCareTypeTranslation { get; private set; }
+        public string HealthCareCostTranslation { get; private set; }
         //Labour
-        public string LabourTypeTranslation { get; set; }
-        public string AmountPaidTranslation { get; set; }
+        public string LabourTypeTranslation { get; private set; }
+        public string AmountPaidTranslation { get; private set; }
         //AnimalHousing
-        public string HousingExpenseTranslation { get; set; }
+        public string HousingExpenseTranslation { get; private set; }
         //Water
-        public string WaterPurchasedTranslation { get; set; }
+        public string WaterPurchasedTranslation { get; private set; }
 
         //Reproduction
-        public string ServiceTypeTranslation { get; set; }
-        public string SowsServicedCostTranslation { get; set; }
+        public string ServiceTypeTranslation { get; private set; }
+        public string SowsServicedCostTranslation { get; private set; }
         //Membership
-        public string MembershipTypeTranslation { get; set; }
+        public string MembershipTypeTranslation { get; private set; }
         //OtherCost
         //Animal Purchase
-        public string AnimalTypeTranslation { get; set; }
-        public string TotalAnimalCostsTranslation { get; set; }
+        public string AnimalTypeTranslation { get; private set; }
+        public string TotalAnimalCostsTranslation { get; private set; }
         //loan replayment
-        public string TotalAmountRepaidTranslation { get; set; }
-        public string LoanProviderTranslation { get; set; }
+        public string TotalAmountRepaidTranslation { get; private set; }
+        public string LoanProviderTranslation { get; private set; }
         //equipment
-        public string EquipmentTypeTranslation { get; set; }
+        public string EquipmentTypeTranslation { get; private set; }
         //pig sales
-        public string PigTypeTranslation { get; set; }
-        public string SalePriceTranslation { get; set; }
+        public string PigTypeTranslation { get; private set; }
+        public string SalePriceTranslation { get; private set; }
         //"Breeding Service Sales",
-        public string AmountRecievedTranslation { get; set; }
+        public string AmountRecievedTranslation { get; private set; }
         //Maure
-        public string SoldToTranslation { get; set; }
-        public string ManureAmountRecievedTranslation { get; set; }
+        public string SoldToTranslation { get; private set; }
+        public string ManureAmountRecievedTranslation { get; private set; }
         //Other Income
-        public string TotalIncomeTranslation { get; set; }
+        public string TotalIncomeTranslation { get; private set;  }
+        public string ViewTranslation { get; private set; }
         #endregion
 
 
@@ -351,6 +352,9 @@ namespace PigTool.ViewModels
             ManureAmountRecievedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ManureAmountRecievedTranslation), User.UserLang);
             //Other Income
             TotalIncomeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalIncomeTranslation), User.UserLang);
+
+            //ViewButtonTransaltion
+            ViewTranslation =  LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ViewTranslation), User.UserLang);
 
 
         }

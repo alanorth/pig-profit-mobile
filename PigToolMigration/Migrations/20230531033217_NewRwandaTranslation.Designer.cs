@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SQLLiteDbContext;
 
 namespace Shared.Migrations
 {
     [DbContext(typeof(DbSQLLiteContext))]
-    partial class DbSQLLiteContextModelSnapshot : ModelSnapshot
+    [Migration("20230531033217_NewRwandaTranslation")]
+    partial class NewRwandaTranslation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -4109,7 +4111,7 @@ namespace Shared.Migrations
                         {
                             RowKey = "Cancel",
                             English = "Cancel",
-                            Lang1 = "Togenda mumaso kukyikola/Kijeemu",
+                            Lang1 = "Togenda mumaso kukyikola/Tokyikola/SikkituFfu/Kijeeko/Kijeewo/Kijeemu",
                             Lang2 = "Hủy bỏ",
                             Lang3 = "Hagarika"
                         },
@@ -5211,168 +5213,8 @@ namespace Shared.Migrations
                         },
                         new
                         {
-                            RowKey = "AdvanceTabLable",
-                            English = "Advance",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
-                            RowKey = "BenchmarkingTabLable",
-                            English = "Benchmark",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
                             RowKey = "SendDataUploadTimeLabel",
                             English = " new items since last upload at:",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
-                            RowKey = "HomeTile",
-                            English = "Home",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
-                            RowKey = "AddDataTile",
-                            English = "Add Data",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ManageDataTile",
-                            English = "Manage",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ReportsTile",
-                            English = "Reports",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SettingsTile",
-                            English = "Settings",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
-                            RowKey = "UploadTile",
-                            English = "Upload",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ViewTranslation",
-                            English = "View",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SettingsPageTranslation",
-                            English = " Settings",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ChangeProfileTranslation",
-                            English = " Change Profile Info",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
-                            RowKey = "LogoutTranslation",
-                            English = "Logout",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ConfirmLogoutTranslation",
-                            English = "Confirm Logout",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
-                            RowKey = "LogoutWarningTransaltion",
-                            English = "By logging out any data not submitted to the cloud will be lost and current data on the device will be removed",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
-                            RowKey = "ChangeLanguageTrasnlation",
-                            English = "Change Language",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
-                            RowKey = "SureTranslation",
-                            English = "Are you sure?",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
-                            RowKey = "AppRestartTranslation",
-                            English = "Changing the language requires the app to restart.Proceed?",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
-                            RowKey = "YesTranslation",
-                            English = "Yes",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
-                            RowKey = "NoTranslation",
-                            English = "No",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
-                        },
-                        new
-                        {
-                            RowKey = "AcceptTranslation",
-                            English = "Accept",
                             Lang1 = "",
                             Lang2 = "",
                             Lang3 = ""

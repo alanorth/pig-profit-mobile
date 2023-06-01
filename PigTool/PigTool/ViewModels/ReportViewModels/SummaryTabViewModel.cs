@@ -44,6 +44,8 @@ namespace PigTool.ViewModels
         public string SummaryLabel { get; set; }
         public string BreakdownLabel { get; set; }
         public string IncomeBreakdownLabel { get; set; }
+        public string AdvanceTabLable { get; private set; }
+        public string BenchmarkingTabLable { get; private set; }
 
         public List<Row> FullList
         {
@@ -105,7 +107,7 @@ namespace PigTool.ViewModels
         }
         public string TotalPeriodRevenueLabel
         {
-            get => string.Format("Income: {0:N}", TotalPeriodRevenue);
+            get => string.Format("{1}: {0:N} {2}",TotalPeriodRevenue, SummaryIncomeTranslation, User.CurrencySymbol());
         }
 
         public double TotalPeriodCost
@@ -123,7 +125,7 @@ namespace PigTool.ViewModels
         }
         public string TotalPeriodCostLabel
         {
-            get => string.Format("Cost: {0:N}", TotalPeriodCost);
+            get => string.Format("{1}: {0:N} {2}", TotalPeriodCost, SummaryCostTranslation, User.CurrencySymbol());
         }
 
         public double TotalPeriodDifference
@@ -144,7 +146,7 @@ namespace PigTool.ViewModels
 
         public string TotalPeriodDifferenceLabel
         {
-            get => string.Format("Profit / Loss: {0:N}", TotalPeriodDifference);
+            get => string.Format("{1}: {0:N} {2}", TotalPeriodDifference, SummaryProfitLossTranslation, User.CurrencySymbol());
         }
 
         public DateTime StartDate
@@ -208,7 +210,8 @@ namespace PigTool.ViewModels
             SummaryLabel = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SummaryLabel), User.UserLang);
             BreakdownLabel = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(BreakdownLabel), User.UserLang);
             IncomeBreakdownLabel = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(IncomeBreakdownLabel), User.UserLang);
-
+            AdvanceTabLable = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AdvanceTabLable), User.UserLang);
+            BenchmarkingTabLable = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(BenchmarkingTabLable), User.UserLang);
         }
 
         public async void CalculateSelected()

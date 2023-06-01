@@ -106,6 +106,7 @@ namespace Samples.ViewModel
                         mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.SubCounty), out var subCounty);
                         mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.Village), out var village);
                         mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.Name), out var userName);
+                        mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.Parish), out var parish);
 
                         mobileUser.Gender = WebUtility.UrlDecode(gender);
                         mobileUser.Email = WebUtility.UrlDecode(email);
@@ -116,6 +117,7 @@ namespace Samples.ViewModel
                         mobileUser.SubCounty = WebUtility.UrlDecode(subCounty);
                         mobileUser.Village = WebUtility.UrlDecode(village);
                         mobileUser.Name = WebUtility.UrlDecode(userName);
+                        mobileUser.Parish = WebUtility.UrlDecode(parish);
 
                     }
                     await PopupNavigation.Instance.PopAsync();
@@ -140,7 +142,7 @@ namespace Samples.ViewModel
             {
                 await PopupNavigation.Instance.PopAsync();
                 Console.WriteLine($"Failed: {ex.Message}");
-
+                
                 AuthToken = string.Empty;
                 await Application.Current.MainPage.DisplayAlert("Error", $"Failed: {ex.Message}", "OK");
             }

@@ -1,5 +1,6 @@
 ﻿using PigTool.Helpers;
 using PigTool.ViewModels.DataViewModels;
+using Shared;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -88,7 +89,7 @@ namespace PigTool.Views
 
 
             // Province
-            if (_viewModel.User.Country == "CountryTypeVietnam" || _viewModel.User.Country == "CountryTypeRwanda")
+            if (_viewModel.User.Country == Constants.VIETNAMTYPE|| _viewModel.User.Country == Constants.RWANDATYPE)
             {
                 var ProvinceCell = new ViewCell();
                 var ProvinceStack = FormattedElementsHelper.TableRowStack();
@@ -190,7 +191,7 @@ namespace PigTool.Views
 
 
             // Commune
-            if (_viewModel.User.Country == "CountryTypeVietnam")
+            if (_viewModel.User.Country == Constants.VIETNAMTYPE)
             {
                 var CommuneCell = new ViewCell();
                 var CommuneStack = FormattedElementsHelper.TableRowStack();
@@ -201,7 +202,7 @@ namespace PigTool.Views
             }
 
 
-            if (_viewModel.User.Country == "CountryTypeRwanda")
+            if (_viewModel.User.Country == Constants.RWANDATYPE)
             {
                 // Sector
                 var SectorCell = new ViewCell();

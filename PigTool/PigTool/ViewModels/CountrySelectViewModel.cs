@@ -240,7 +240,7 @@ namespace PigTool.ViewModels.DataViewModels
                 var LanguageControlData = await repo.GetControlData(Constants.CURRENCYTYPE);
 
 
-                CountryListOfOptions = LogicHelper.CreatePickerToolOption(CountryControlData, UserLangSettings.Eng);
+                CountryListOfOptions = LogicHelper.CreatePickerToolOption(CountryControlData, lang);
             }
             catch (Exception ex)
             {

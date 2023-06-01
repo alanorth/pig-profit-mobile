@@ -41,11 +41,11 @@ namespace PigTool.Views
                 var YearPickerTypeStack = FormattedElementsHelper.TableRowStack();
                 YearPickerTypeStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_ViewModel.FilterTranslation)));
 
-                int baseYear = 2015;
+                int baseYear = 2022;
                 var yearPicker = new Picker()
                 {
                     HorizontalOptions = LayoutOptions.FillAndExpand,
-                    ItemsSource = Enumerable.Range(baseYear, DateTime.Now.Year - baseYear + 3).ToList()
+                    ItemsSource = Enumerable.Range(baseYear, DateTime.Now.Year - baseYear + 1).ToList()
                     //ItemsSource = new List<int>() { 2017, 2018, 2019, 2020, 2021, 2022, 2023 }
                 };
 
@@ -284,6 +284,8 @@ namespace PigTool.Views
             )
         {
 
+
+
             var frame = new Frame();
             var headerLabel = new Label
             {
@@ -305,10 +307,19 @@ namespace PigTool.Views
 
             expander.ContentTemplate = new DataTemplate(() =>
             {
+                var scrollView = new ScrollView
+                {
+                    HorizontalOptions = LayoutOptions.Fill,
+                    Orientation = ScrollOrientation.Horizontal,
+                    WidthRequest = 600
+                };
                 StackLayout stackHolder = new StackLayout();
-
+                stackHolder.Orientation = StackOrientation.Horizontal;
+                stackHolder.HorizontalOptions = LayoutOptions.FillAndExpand;
+                stackHolder.WidthRequest = 600;
                 ListView listvw = new ListView();
                 listvw.HeightRequest = 300;
+                listvw.HorizontalOptions = LayoutOptions.FillAndExpand;
 
                 Grid Headergrid = new Grid
                 {
@@ -337,7 +348,7 @@ namespace PigTool.Views
 
                 listvw.ItemTemplate = new DataTemplate(() =>
                 {
-                    return new CustomManageDataCell(BindableColumns1, BindableColumns2, BindableColumns3, NavigationCommand);
+                    return new CustomManageDataCell(BindableColumns1, BindableColumns2, BindableColumns3, NavigationCommand, _ViewModel.ViewTranslation);
                 });
                 /*RefreshView reView = new RefreshView();
 
@@ -346,10 +357,10 @@ namespace PigTool.Views
                 reView.Content = listvw;*/
 
                 stackHolder.Children.Add(listvw);
-                return stackHolder;
+                scrollView.Content = stackHolder;
+                return scrollView;
             });
 
-            StackLayout stackHolder = new StackLayout();
 
             return expander;
         }
@@ -368,7 +379,7 @@ namespace PigTool.Views
 
     public class CustomManageDataCell : ViewCell
     {
-        public CustomManageDataCell(string var1, string var2, string var3, Command command)
+        public CustomManageDataCell(string var1, string var2, string var3, Command command, string ViewTranslation)
         {
 
             var horizontalLayout = new StackLayout() { BackgroundColor = Color.White };
@@ -395,7 +406,7 @@ namespace PigTool.Views
                 TextColor = Color.FromHex("#682622"),
                 BackgroundColor = Color.FromHex("#fefdfa"),
                 TextTransform = TextTransform.None,
-                Text = "View",
+                Text = ViewTranslation,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 VerticalOptions = LayoutOptions.FillAndExpand,
             };

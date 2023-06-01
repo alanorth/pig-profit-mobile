@@ -208,11 +208,6 @@ namespace PigTool.Helpers
             }
         }
 
-
-
-
-
-
         public class YearMonth : IEquatable<YearMonth>
         {
             public int Year { get; set; }
@@ -499,7 +494,6 @@ namespace PigTool.Helpers
 
             return result;
         }
-
         public List<Row> getDurationMembershipItems(ObservableCollection<MembershipItem> MembershipItems)
         {
             var result = new List<Row>();
@@ -530,7 +524,6 @@ namespace PigTool.Helpers
 
             return result;
         }
-
         private static void CallculateDurtaionRows(List<Row> result, double? totalCost, DateTime startDate, TimeSpan DurationLength, string GroupName)
         {
             var daylength = DurationLength.TotalDays;
@@ -566,7 +559,6 @@ namespace PigTool.Helpers
                 });
             }
         }
-
         public async Task<PlotModel> GenerateTotalsGraphModel(
                 double totalPeriodRevenue,
                 double totalPeriodCost,
@@ -599,6 +591,14 @@ namespace PigTool.Helpers
                 Color = totalPeriodDifference > 0 ? OxyColor.Parse("#a7c957") : OxyColor.Parse("#bc4749")
             });
 
+            var yAxis = new LinearAxis
+            {
+                StringFormat = "0", // Specify the format string without scientific notation
+                Position = AxisPosition.Left // Position the Y-axis on the left side
+            };
+
+            model.Axes.Add(yAxis);
+
             model.Series.Add(barSeries);
             #endregion
 
@@ -611,6 +611,7 @@ namespace PigTool.Helpers
                 IsPanEnabled = false,
                 IsZoomEnabled = false,
                 Selectable = false,
+                Angle = 75,
             });
 
             return model;

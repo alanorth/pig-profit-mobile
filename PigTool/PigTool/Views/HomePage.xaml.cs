@@ -43,6 +43,7 @@ namespace PigTool.Views
         protected async override void OnAppearing()
         {
             await homePageViewModel.GetTranslationCountAsync();
+            homePageViewModel.UpdateUploadTime();
 
             base.OnAppearing();
         }

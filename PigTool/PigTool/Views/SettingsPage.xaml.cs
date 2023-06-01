@@ -1,4 +1,5 @@
 ﻿using PigTool.ViewModels;
+using Shared;
 using System;
 using System.Diagnostics;
 using Xamarin.Forms;
@@ -15,6 +16,10 @@ namespace PigTool.Views
             InitializeComponent();
             this.BindingContext = _viewModel = new SettingsViewModel();
             UserLanguage.Detail = _viewModel.GetUserLanguage();
+            this.Title = _viewModel.SettingsPageTranslation;
+            UserProfile.Text = _viewModel.ChangeProfileTranslation;
+            UserLanguage.Text = _viewModel.LanguageTranslation;
+            Logout.Text = _viewModel.LogoutTranslation;
         }
 
         private async void EditUser_Tapped(object sender, System.EventArgs e)
@@ -25,11 +30,11 @@ namespace PigTool.Views
         private async void ChangeLanguage_Tapped(object sender, System.EventArgs e)
         {
             //await Application.Current.MainPage.DisplayAlert("Language", "To be added", "OK");
-            string action = await DisplayActionSheet("Change Language", null, null, "English", "Swahili", "Vietnamese", "Kinyarwanda");
+            string action = await DisplayActionSheet(_viewModel.ChangeLanguageTrasnlation, null, null, "English", "Luganda", "Tiếng Việt", "Kinyarwanda");
             if (action != null)
             {
                 Console.WriteLine(action);
-                bool answer = await DisplayAlert("Are you sure?", "Are you sure you want to change your language to " + action + "? Doing so will close the application.", "Yes", "No");
+                bool answer = await DisplayAlert(_viewModel.SureTranslation, _viewModel.AppRestartTranslation, _viewModel.YesTranslation, _viewModel.NoTranslation);
                 if (answer)
                 {
                     //change language
@@ -45,7 +50,7 @@ namespace PigTool.Views
         private async void LogUserOut(object sender, System.EventArgs e)
         {
             //logout
-            var logout = await DisplayAlert("Confirm Logout", "By logging out, any data not submitted to the cloud will be lost and current data on the device will be removed","Accept","Cancel"); ;
+            var logout = await DisplayAlert(_viewModel.ConfirmLogoutTranslation, _viewModel.LogoutWarningTransaltion, _viewModel.AcceptTranslation, _viewModel.Cancel); ;
 
             if (logout)
             {

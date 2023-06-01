@@ -13,6 +13,7 @@ namespace Shared
         public string English { get; set; }
         public string Lang1 { get; set; }
         public string Lang2 { get; set; }
+        public string Lang3 { get; set; }
         public List<ControlData> ControlDatas { get; set; }
         [JsonIgnore]
         public virtual ICollection<FeedItem> FeedItems { get; set; }
@@ -54,6 +55,8 @@ namespace Shared
                     return Lang1;
                 case UserLangSettings.Lang2:
                     return Lang2;
+                case UserLangSettings.Lang3:
+                    return Lang3;
                 default:
                     return English;
             }

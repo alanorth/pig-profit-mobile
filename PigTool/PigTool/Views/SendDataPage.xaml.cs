@@ -20,8 +20,7 @@ namespace PigTool.Views
             InitializeComponent();
             BindingContext = _ViewModel = new SendDataViewModel();
             UserLabel.Text = _ViewModel.User.UserName;
-            LastUpdateDateLabel.Text = _ViewModel.User.LastUploadDate.ToString();
-
+            //LastUpdateDateLabel.Text = _ViewModel.User.LastUploadDate.ToString();
             SendDataButton.Command = _ViewModel.SendDataToApi;
 
         }
@@ -32,6 +31,7 @@ namespace PigTool.Views
             await _ViewModel.PopulateCollections();
             //TotalItemsLabel.Text = _ViewModel.Countof_TotalItems.ToString();
             TotalItemsLabel.SetBinding(Label.TextProperty, nameof(_ViewModel.Countof_TotalItems));
+            LastUpdateDateLabel.SetBinding(Label.TextProperty, nameof(_ViewModel.LastUploadTime));
             _ViewModel.PageRendered = true;
         }
 

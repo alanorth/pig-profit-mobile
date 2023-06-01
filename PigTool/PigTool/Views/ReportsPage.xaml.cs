@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using OxyPlot.Reporting;
+using PigTool.Services;
 
 namespace PigTool.Views
 {
@@ -26,14 +28,27 @@ namespace PigTool.Views
             ContentPage BenchTab = new BenchmarkingTab();
 
             // Set the title and icon for each content page
-            SumTab.Title = "Summary";
-            AdvanceTab.Title = "Advanced";
-            BenchTab.Title = "Benchmark";
+            ///SumTab.Title = "Summary";
+            //AdvanceTab.Title = "Advanced";
+            BenchTab.Title = "Benchmark WIP";
 
             // Add the content pages to the tabbed page
             Children.Add(SumTab);
             Children.Add(AdvanceTab);
             Children.Add(BenchTab);
         }
+        /*private async Task PopulateTabTitles()
+        {
+
+            var repo = DependencyService.Get<IDataRepo>();
+
+            var home = await repo.GetTranslationAsync(nameof(SumTab));
+            var addData = await repo.GetTranslationAsync(nameof(AdvanceTab));
+            var manageData = await repo.GetTranslationAsync(nameof(BenchTab));
+            var reports = await repo.GetTranslationAsync(nameof(ReportsTile));
+            var settings = await repo.GetTranslationAsync(nameof(SettingsTile));
+            var upload = await repo.GetTranslationAsync(nameof(UploadTile));
+
+        }*/
     }
 }
