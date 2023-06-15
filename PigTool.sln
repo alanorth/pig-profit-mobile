@@ -7,11 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PigTool.Android", "PigTool\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PigTool", "PigTool\PigTool\PigTool.csproj", "{62B60E8B-00C4-4D1C-9B3C-C8A0E49CD686}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PigTool.API", "PigTool.API\PigTool.API.csproj", "{F2673E51-1723-46F3-827E-4A8D1B09CA4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PigTool.API_OLDNotUsed", "PigTool.API\PigTool.API_OLDNotUsed.csproj", "{F2673E51-1723-46F3-827E-4A8D1B09CA4B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{E518DCB6-8F09-48FD-97D4-B9E7BF433037}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestAuthenticateAPI", "TestAuthenticateAPI\TestAuthenticateAPI.csproj", "{B1245E50-0AC1-4E28-B9EE-0402BA0A50A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pigtool.API", "TestAuthenticateAPI\Pigtool.API.csproj", "{B1245E50-0AC1-4E28-B9EE-0402BA0A50A3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PigToolMigration", "PigToolMigration\PigToolMigration.csproj", "{63DFE9A3-621C-4C8C-A7E3-492B6E759AD5}"
 EndProject

@@ -108,6 +108,12 @@ namespace Samples.ViewModel
                         mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.Name), out var userName);
                         mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.Parish), out var parish);
 
+
+                        mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.Commune), out var commune);
+                        mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.Province), out var province);
+                        mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.Sector), out var sector);
+                        mobileAuth.ResultProperties.TryGetValue(nameof(MobileUser.Cell), out var cell);
+
                         mobileUser.Gender = WebUtility.UrlDecode(gender);
                         mobileUser.Email = WebUtility.UrlDecode(email);
                         mobileUser.PhoneNumber = WebUtility.UrlDecode(phoneNumber);
@@ -118,6 +124,10 @@ namespace Samples.ViewModel
                         mobileUser.Village = WebUtility.UrlDecode(village);
                         mobileUser.Name = WebUtility.UrlDecode(userName);
                         mobileUser.Parish = WebUtility.UrlDecode(parish);
+                        mobileUser.Commune = WebUtility.UrlDecode(commune);
+                        mobileUser.Province = WebUtility.UrlDecode(province);
+                        mobileUser.Sector = WebUtility.UrlDecode(sector);
+                        mobileUser.Cell = WebUtility.UrlDecode(cell);
 
                     }
                     await PopupNavigation.Instance.PopAsync();

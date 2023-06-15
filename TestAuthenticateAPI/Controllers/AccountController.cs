@@ -582,7 +582,7 @@ public class AccountController : PigToolBaseController
         }
     }
 
-
+    /*
     [Authorize]
     [HttpGet]
     public IActionResult TestAuth()
@@ -603,7 +603,7 @@ public class AccountController : PigToolBaseController
     {
         return Ok("Success");
     }
-
+    */
 
     [Authorize]
     [HttpGet]

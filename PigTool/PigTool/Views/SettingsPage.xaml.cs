@@ -34,7 +34,7 @@ namespace PigTool.Views
             if (action != null)
             {
                 Console.WriteLine(action);
-                bool answer = await DisplayAlert(_viewModel.SureTranslation, _viewModel.AppRestartTranslation, _viewModel.YesTranslation, _viewModel.NoTranslation);
+                bool answer = await DisplayAlert("_viewModel.SureTranslation", "_viewModel.AppRestartTranslation", "_viewModel.YesTranslation", "_viewModel.NoTranslation");
                 if (answer)
                 {
                     //change language

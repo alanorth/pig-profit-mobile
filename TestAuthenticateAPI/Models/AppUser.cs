@@ -22,6 +22,10 @@ namespace TestAuthenticateAPI.Models
         public string? Parish { get; set; }
         public string? Village { get; set; }
         public string? Currency { get; set; }
+        public string? Province { get; set; }
+        public string? Commune { get; set; }
+        public string? Sector { get; set; }
+        public string? Cell { get; set; }
 
         public DateTime LastUploadDate { get; set; }
         public UserLangSettings UserLang { get; set; }
@@ -42,6 +46,11 @@ namespace TestAuthenticateAPI.Models
             SubCounty = mobileUserDetails.SubCounty;
             Parish = mobileUserDetails.Parish;
             Village = mobileUserDetails.Village;
+            Province = mobileUserDetails.Province;
+            Commune = mobileUserDetails.Commune;
+            Sector = mobileUserDetails.Sector;
+            Cell = mobileUserDetails.Cell;
+
             //Currency = mobileUserDetails.Currency;
             LastUploadDate = mobileUserDetails.LastUploadDate;
             AuthorisedToken = mobileUserDetails.AuthorisedToken;
@@ -93,6 +102,22 @@ namespace TestAuthenticateAPI.Models
             if (Village != null)
             {
                 variables.Add(nameof(Village), Village);
+            }
+            if(Province != null)
+            {
+                variables.Add(nameof(Province), Province);
+            }
+            if (Commune != null)
+            {
+                variables.Add(nameof(Commune), Commune);
+            }
+            if (Sector != null)
+            {
+                variables.Add(nameof(Sector), Sector);
+            }
+            if (Cell != null)
+            {
+                variables.Add(nameof(Cell), Cell);
             }
 
             return variables;

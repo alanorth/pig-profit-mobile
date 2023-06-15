@@ -5,38 +5,40 @@
              NavigationPage.HasNavigationBar="False"
              Title="Legal / Disclaimer">
     <ContentPage.Content>
-        
-        <StackLayout>
-            <Label x:Name="LegalDisclaimerLabel"
-                   StyleClass="Title"></Label>
-            <Label 
-                x:Name="LegalBodyLabel"
-                VerticalOptions="StartAndExpand"
-                HorizontalOptions="CenterAndExpand"
-                TextColor="{StaticResource PrimaryText}" 
-                LineBreakMode="WordWrap"/>
 
-            <StackLayout Orientation="Horizontal" 
-                         Margin="0, 20, 0, 10">
-                <CheckBox x:Name="checkBox" VerticalOptions="Center" />
-                <Label x:Name = "LegalAgreeLabel"></Label>
-            </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <Label x:Name="LegalDisclaimerLabel"
+                       StyleClass="Title"></Label>
+                <Label 
+                    x:Name="LegalBodyLabel"
+                    VerticalOptions="StartAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    TextColor="{StaticResource PrimaryText}" 
+                    LineBreakMode="WordWrap"/>
+
+                <StackLayout Orientation="Horizontal" 
+                             Margin="0, 20, 0, 10">
+                    <CheckBox x:Name="checkBox" VerticalOptions="Center" />
+                    <Label x:Name = "LegalAgreeLabel"></Label>
+                </StackLayout>
             
-            <Button x:Name="ProceedButton"
-                    IsEnabled="True"  
-                    Clicked="Continue"
-                    StyleClass="ContinueButton">
-                <Button.Triggers>
-                    <DataTrigger TargetType="Button"
-                                 Binding="{Binding Source={x:Reference checkBox}, Path=IsChecked}"
-                                 Value="false">
-                        <Setter Property="IsEnabled"
-                                Value="False"/>
-                        <Setter Property="BackgroundColor"
-                                Value="#d9d9d9"/>
-                    </DataTrigger>
-                </Button.Triggers>
-            </Button>
-        </StackLayout>
+                <Button x:Name="ProceedButton"
+                        IsEnabled="True"  
+                        Clicked="Continue"
+                        StyleClass="ContinueButton">
+                    <Button.Triggers>
+                        <DataTrigger TargetType="Button"
+                                     Binding="{Binding Source={x:Reference checkBox}, Path=IsChecked}"
+                                     Value="false">
+                            <Setter Property="IsEnabled"
+                                    Value="False"/>
+                            <Setter Property="BackgroundColor"
+                                    Value="#d9d9d9"/>
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
