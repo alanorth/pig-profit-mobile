@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SQLLiteDbContext;
 
 namespace Shared.Migrations
 {
     [DbContext(typeof(DbSQLLiteContext))]
-    partial class DbSQLLiteContextModelSnapshot : ModelSnapshot
+    [Migration("20230713015839_NewTranslation13-07")]
+    partial class NewTranslation1307
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -111,14 +111,14 @@ EquipmentType2,Watering equipment,Ebifukirila amazzi,Thiết bị cung cấp nư
 BreedingServiceType1,Boar services,Obuwereza obwekusa ku nume ewakisa,Dịch vụ lợn đực giống,kubangurira ku mfizi,
 SoldToType2,Trader,Omusubuzi,Thương lái,umucuruzi,
 SoldToType3,Slaughter-house,Lufula,Lò mổ,ibagiro,
-SoldToType1,Other farmer,Mulunzi wambizi,,,
+SoldToType1,Other farmer,Mulunzi wambizi,Nông dân khác,Undi mworozi,
 PigType4,Young male/boar for breeding,Enume yembizi ento/Enume eyo kuwakisa,Lợn đực hậu bị để làm giống,isekurume/impfizi yo korora,
 PigType3,Gilt/Sow for breeding,Ebizi endusi,Lợn nái hậu bị để làm giống,inyagazi/ imbyeyi yo korora,
 PigType2,Slaughter animal,Ebisolo ebyokusala,Giết mổ vật nuôi,itungo ryo kubaga,
 PigType1,Piglet (for fattening),Embizi endawo/Ezilundibwa ngazakusala,Lợn con (để vỗ béo),ikibwana cyo kubyibushwa,
 EquipmentType4,Animal tags,Obulamba ebisolo  kumatu,Thẻ tai vật nuôi,amaherena,
 GoogleSignUpTranslation,Sign up with Google,Wewandisizze kumutimbagano,Đăng ký với Google,iyandikishe ukoresheje google,
-WebAuthDescTranslation,The Pig Profit App authenticates with Google to securely authenticate your account and keep your data safe.,,,,
+WebAuthDescTranslation,The Pig Profit App authenticates with Google to securely authenticate your account and keep your data safe.,"Pig Profit App  yakakasibwa aba Google, okuba nti ekuma ebikukwatako nga tewali mulala yenn'asobola kubifuna                            ",Ứng dụng Pig Profit xác thực với Google để xác thực tài khoản của bạn một cách an toàn và giữ an toàn cho dữ liệu của bạn.,Iki gikoresho gikoreshwa mu kubara inyungu mu bworozi bw'ingurube cyemeza hamwe na Google kugirango yemeze neza konte yawe kandi ikomeze kurinda amakuru yawe neza.,
 WebAuthTitleTranslation,Sign Up,Wewandise kumukutu guno,Đăng ký,Iyandikishe,
 CostTrans,Cost,Sente zewasasula,Chi phí,Ikiguzi,
 OtherAmountPurchaseTrans,Other Amount Purchased,Obunji bwe wagula obulala,Số tiền đã mua khác,Andi mafaranga yakoreshejwe ugura,
@@ -140,7 +140,7 @@ PurchasedFrom,Purchased From,Jjewabigula,Nơi mua,Aho byaguriwe,
 CommentTrans,Comment,Oyina kyogamba ,Bình luận,igitekerezo,
 FeedDurationTranslation,Feed use duration,Ebanga emere lyemala,Khoảng thời gian sử dụng thức ăn chăn nuôi,Igihe umara ukoresha ibyo biryo,
 LabourDurationTranslation,Labour use duration,Ebanga abakoze lyebakola,Khoảng thời gian sử dụng lao động,Imibyizi ukenera ukoresha ibyo biryo,
-LoanDurationTranslation,Loan duration,,,,
+LoanDurationTranslation,Loan duration,Ebanja lyakumala bangakyi,Thời hạn cho vay,Igihe inguzanyo izamara,
 OtherCostsTranslation,Any Other Cost,Ensasanya endala yona,Chi phí khác,Ikindi kiguzi cyishuwe,
 OtherLaboutTypeTranslation,Other Labour Type,Ebika byabakozi ebirala,Loại lao động,Ubundi bwoko bw'umurimo,
 LabourTypeTranslation,Labour Type,Ekyika kyabakozi,Loại lao động khác,Ubwoko bw'umurimo,
@@ -250,7 +250,7 @@ PurchasedWaterFromTranslation,Who Purchased From,"Ani, agagula/ Ngagula okuva",A
 OtherWaterPurchasedTranslation,Other unit,Ekipimo ekilala,Đơn vị khác,igipimo,
 WaterPurchasedTranslation,Water Purchased,Amazzi agagulwa,Nước đã mua,Amazi  yaguzwe,
 WaterCostTitleTranslation,Water,Amazzi,Nước,Amazi,
-SliderControlTranslation,If new housing built (rather than maintenance) lifespan in years + expected salvage value at end ?,,"Nếu chuồng trại mới được xây dựng (không phải bảo trì), thời gian sử dụng tính bằng năm + giá trị thu hồi dự kiến khi hoàn thành là?","Niba ari ibiraro bishya byubatswe (kuruta kubibungabunga), tanga igihe cyo kubaho mumyaka +  agaciro gateganyijwe nyuma yo gukoreshwa / habariwemo ugukuganayuka kw'agaicro k'inyubako ka buri mwaka?",
+SliderControlTranslation,If new housing built (rather than maintenance) lifespan in years + expected salvage value at end ?,"Enyumba, enawangala myaka emaka ","Nếu chuồng trại mới được xây dựng (không phải bảo trì), thời gian sử dụng tính bằng năm + giá trị thu hồi dự kiến khi hoàn thành là?","Niba ari ibiraro bishya byubatswe (kuruta kubibungabunga), tanga igihe cyo kubaho mumyaka +  agaciro gateganyijwe nyuma yo gukoreshwa / habariwemo ugukuganayuka kw'agaicro k'inyubako ka buri mwaka?",
 MembershipTitleTranslation,Co-Operative / Group membership,Ekibiinna kyobwegasi,Thành viên hợp tác xã/tổ/nhóm,koperative cyangwa itsinda ubarizwamo,
 OtherHousingExpenseTranslation,Other Housing Expense,Ensasaanya endala kunyumba ye bisolo,Chi phí chuồng trại khác,Andi mafaranga yatanzwe ku kiraro,
 WhoProvidedServiceTranslation,Who Provided Service,Ani akuwa obuwereza obwo,Đơn vị cung cấp dịch vụ,Ninde watanze iyo serivisi,
@@ -269,7 +269,7 @@ LoanRepaymentTitleTranslation,Loan Repayment,Ensasula yasente zewewola,Trả n�
 OtherAnimalPurchasedTranslation,Purchased from,JJewabigula,Nơi mua,Aho byaguriwe,
 AnimalPurchasedFromTranslation,Purchased from,JJewabigula,Nơi mua,Aho byaguriwe,
 NumberPurchasedTranslation,Number purchased,Wagula bunji ki,Số lượng đã mua,Umubare w'ibyaguzwe,
-OtherAnimalTypeTranslation,Other Animal type,Ebika bye'bisolo,,,
+OtherAnimalTypeTranslation,Other Animal type,Ebika bye'bisolo,Các loại vật nuôi khác,Ubundi bwoko bw'itungo,
 AnimalTypeTranslation,Animal type,Ebika bye'bisolo,Loại vật nuôi,Ubwoko bw'itungo,
 OtherLoanProviderTranslation,Other Loan Provider,Abawola sente abalala/ bewewola ko sente abalala,Đơn vị cho vay khác,Undi watanze inguzanyo,
 LanguageType6,Language,Olulimi ,Ngôn ngữ,Ururimi,
@@ -385,28 +385,432 @@ LanguageType1,English,,Tiếng Việt,Kinyarwanda,
 LanguageType2,Lugunda,,,,
 LanguageType3,Vietnamese,,Tiếng Việt,Ikinyaviyetinamu,
 LanguageType4,Kinyarwanda ,,,,
-LegalDisclaimerBodyTranslation,"Terms and Conditions Last updated: April 04, 2023 
+LegalDisclaimerBodyTranslation,"Privacy Policy  
 
-Please read these terms and conditions carefully before using the Pig Profit  (App). 
+This Privacy Policy describes our policies and procedures on the collection, use and disclosure of your information when you use the App and tells you about your privacy rights and how the law protects you. We use your Personal data to provide and improve the App. By using the App, you agree to the collection and use of information in accordance with this Privacy Policy. 
 
-By accessing or using the App you agree to be bound by these Terms and Conditions and our Privacy Policy. If you disagree with any part of these Terms and Conditions then you may not access the App. Please read our Privacy Policy carefully before using the App. 
+Collecting and Using Your Personal Data 
 
-You are responsible for safeguarding the password that you use to access the App and for any activities or actions under your password. You may choose to only upload the data to the App in your device or  additionally upload it to our database for further analysis and reporting. By uploading your data to our database, you grant us the right and license to use, modify, analyze  and make further use of the data for reporting purposes. 
+Types of Data Collected 
 
-You understand that the accuracy of any reports generated by the App depends on the reliability of the content that you upload or provide.  
+Personal Data  
 
-You represent and warrant that: (i) the data is yours or you have the right to use it and grant us the rights and license as provided in these Terms, and (ii) the posting of your data on the App does not violate the privacy rights, publicity rights, copyrights, contract rights or any other rights of any person. We are not responsible for the content of the App's users. You expressly understand and agree that you are solely responsible for the data and for all activity that occurs under your account, whether done so by you or any third person using your account. 
+While using the App, you may be asked to provide us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to: 
 
-You may not transmit any content that is unlawful, offensive, upsetting, intended to disgust, threatening, libelous, defamatory, obscene or otherwise objectionable.  
+Email address 
 
-In no event shall we be liable for any special, incidental, indirect, or consequential damages whatsoever. The App is provided to you ""AS IS"" and ""AS AVAILABLE"" without warranty of any kind. We expressly disclaim all warranties, whether express, implied, statutory or otherwise, with respect to the App.  
+First name and last name 
 
-We do not make any representation or warranty of any kind, express or implied: (i) as to the operation or availability of the App; (ii) that the App will be uninterrupted or error-free; (iii) as to the accuracy, reliability, or currency of any information or content provided through the Tool; or (iv) that the Tool, its servers, the content, or e-mails are free of viruses or other harmful components. 
+Gender 
 
-The laws of the Republic of Kenya shall govern these Terms and Conditions. Your use of the App may also be subject to other local, state, national, or international laws. If you have any concern or dispute about the App you agree to first try to resolve the dispute informally by contacting us. 
+Phone number 
 
-We reserve the right to modify or replace these Terms at any time. By continuing to access or use the App after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, in whole or in part, please stop using the App. ",,,,
-MembershipDurationTranslation,Membership duration,,,,
+Address 
+
+Usage Data 
+
+Usage Data 
+
+Usage Data may be collected automatically when using the App. Usage Data may include information such as your Device's Internet Protocol address (e.g. IP address), browser type, browser version, the type of mobile device you use, your mobile operating system, the pages of App that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data. 
+
+Information Collected while Using the Application 
+
+The App is designed to determine the profit or loss of smallholder pig enterprises, with the user inputting their data relating to this.  This data includes but is not limited to: data on costs including on feed, labour, water, co-operative / group membership, animal purchase, equipment, healthcare, housing, reproduction, loan repaying and other; and data on income including sale of pigs, sale of manure, sale of breeding services, other income.   
+
+Location data 
+
+We may collect, information regarding your location, with your prior permission. We use this information to provide features of the App, to improve and customize the App. The information may be uploaded to our servers and/or a Service Provider's server or it may be simply stored on your device. You can enable or disable access to this information at any time, through your Device settings. 
+
+Use of Your Personal Data 
+
+We may use Personal Data for the following purposes: 
+
+To provide and maintain the App, including to monitor the usage of the App. 
+
+To manage Your Account: to manage your registration as a user of the App.  
+
+To contact You: To contact you by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application's push notifications regarding updates or informative communications related to the functionalities, including security updates, when necessary or reasonable for their implementation. 
+
+For other purposes: We may use your information for other purposes, such as data analysis, identifying usage trends and to evaluate and improve the App and your experience. 
+
+We may share your personal information in the following situations: 
+
+With Affiliates: We may share your information with our affiliates, in which case we will require those affiliates to honor this Privacy Policy.  
+
+With Your consent: We may disclose your personal information for any other purpose with your consent. 
+
+Retention of Your Personal Data 
+
+We will retain your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies. We will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of the App, or we are legally obligated to retain this data for longer time periods. 
+
+Transfer of Your Personal Data 
+
+Your information, including Personal Data, is processed at our operating offices and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of your county, country or other governmental jurisdiction where the data protection laws may differ than those from your jurisdiction. Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer. 
+
+We will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of Your data and other personal information. 
+
+Delete Your Personal Data 
+
+You have the right to delete or request that we assist in deleting the Personal Data that we have collected about you. The App may give you the ability to delete certain information about you from within the App. You may update, amend, or delete your information at any time by signing into your Account and visiting the account settings section that allows you to manage your personal information. You may also contact us to request access to, correct, or delete any personal information that you have provided to us. Please note, however, that we may need to retain certain information when we have a legal obligation or lawful basis to do so. 
+
+Disclosure of Your Personal Data 
+
+Law enforcement 
+
+Under certain circumstances, we may be required to disclose your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency). 
+
+We  may disclose your Personal Data in the good faith belief that such action is necessary to: 
+
+Protect and defend our rights  
+
+Prevent or investigate possible wrongdoing in connection with the App 
+
+Protect the personal safety of Users of the App  
+
+Protect against legal liability 
+
+Security of Your Personal Data 
+
+The security of your Personal Data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security. 
+
+ 
+
+Use of Information Collected when Using the Application 
+
+Information collected on using the App on costs and income related to the pig enterprise, which is entered by the user, is used to determine the profit or loss of the user’s pig enterprise.  This is reported back to the user in the App.  This data will remain on the users device until it is uploaded (through the upload function of the App), in which case it will be uploaded to a database maintained by the International Livestock Research Institute (ILRI).  The ILRI database will be accessible for use by ILRI scientists and collaborators who may use the data for analysis including, but not limited to, understanding the costs, incomes and profit associated with pig enterprises.  Reports or publications may be made from this analysis, but individual users will not be identified in any way, only summary information will be included in the reports or publications.  In some cases this information may be shared back to specific users via the App.  Users who do not wish for their data to be uploaded to the ILRI database and accessible by ILRI scientists and collaborators should not upload their data.  
+
+Children's Privacy 
+
+ We do not knowingly collect personally identifiable information from anyone under the age of 18. If we become aware that we have collected Personal Data from anyone under the age of 18 without verification of parental consent, we shall take steps to remove that information from Our servers. 
+
+Changes to this Privacy Policy 
+
+We may update Our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page. 
+
+Contact Us 
+
+If you have any questions about this Privacy Policy, You can contact us: 
+
+By email: kmarshall@cgiar.org ","Privacy Policy  
+
+This Privacy Policy describes our policies and procedures on the collection, use and disclosure of your information when you use the App and tells you about your privacy rights and how the law protects you. We use your Personal data to provide and improve the App. By using the App, you agree to the collection and use of information in accordance with this Privacy Policy. 
+
+Collecting and Using Your Personal Data 
+
+Types of Data Collected 
+
+Personal Data  
+
+While using the App, you may be asked to provide us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to: 
+
+Email address 
+
+First name and last name 
+
+Gender 
+
+Phone number 
+
+Address 
+
+Usage Data 
+
+Usage Data 
+
+Usage Data may be collected automatically when using the App. Usage Data may include information such as your Device's Internet Protocol address (e.g. IP address), browser type, browser version, the type of mobile device you use, your mobile operating system, the pages of App that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data. 
+
+Information Collected while Using the Application 
+
+The App is designed to determine the profit or loss of smallholder pig enterprises, with the user inputting their data relating to this.  This data includes but is not limited to: data on costs including on feed, labour, water, co-operative / group membership, animal purchase, equipment, healthcare, housing, reproduction, loan repaying and other; and data on income including sale of pigs, sale of manure, sale of breeding services, other income.   
+
+Location data 
+
+We may collect, information regarding your location, with your prior permission. We use this information to provide features of the App, to improve and customize the App. The information may be uploaded to our servers and/or a Service Provider's server or it may be simply stored on your device. You can enable or disable access to this information at any time, through your Device settings. 
+
+Use of Your Personal Data 
+
+We may use Personal Data for the following purposes: 
+
+To provide and maintain the App, including to monitor the usage of the App. 
+
+To manage Your Account: to manage your registration as a user of the App.  
+
+To contact You: To contact you by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application's push notifications regarding updates or informative communications related to the functionalities, including security updates, when necessary or reasonable for their implementation. 
+
+For other purposes: We may use your information for other purposes, such as data analysis, identifying usage trends and to evaluate and improve the App and your experience. 
+
+We may share your personal information in the following situations: 
+
+With Affiliates: We may share your information with our affiliates, in which case we will require those affiliates to honor this Privacy Policy.  
+
+With Your consent: We may disclose your personal information for any other purpose with your consent. 
+
+Retention of Your Personal Data 
+
+We will retain your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies. We will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of the App, or we are legally obligated to retain this data for longer time periods. 
+
+Transfer of Your Personal Data 
+
+Your information, including Personal Data, is processed at our operating offices and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of your county, country or other governmental jurisdiction where the data protection laws may differ than those from your jurisdiction. Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer. 
+
+We will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of Your data and other personal information. 
+
+Delete Your Personal Data 
+
+You have the right to delete or request that we assist in deleting the Personal Data that we have collected about you. The App may give you the ability to delete certain information about you from within the App. You may update, amend, or delete your information at any time by signing into your Account and visiting the account settings section that allows you to manage your personal information. You may also contact us to request access to, correct, or delete any personal information that you have provided to us. Please note, however, that we may need to retain certain information when we have a legal obligation or lawful basis to do so. 
+
+Disclosure of Your Personal Data 
+
+Law enforcement 
+
+Under certain circumstances, we may be required to disclose your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency). 
+
+We  may disclose your Personal Data in the good faith belief that such action is necessary to: 
+
+Protect and defend our rights  
+
+Prevent or investigate possible wrongdoing in connection with the App 
+
+Protect the personal safety of Users of the App  
+
+Protect against legal liability 
+
+Security of Your Personal Data 
+
+The security of your Personal Data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security. 
+
+ 
+
+Use of Information Collected when Using the Application 
+
+Information collected on using the App on costs and income related to the pig enterprise, which is entered by the user, is used to determine the profit or loss of the user’s pig enterprise.  This is reported back to the user in the App.  This data will remain on the users device until it is uploaded (through the upload function of the App), in which case it will be uploaded to a database maintained by the International Livestock Research Institute (ILRI).  The ILRI database will be accessible for use by ILRI scientists and collaborators who may use the data for analysis including, but not limited to, understanding the costs, incomes and profit associated with pig enterprises.  Reports or publications may be made from this analysis, but individual users will not be identified in any way, only summary information will be included in the reports or publications.  In some cases this information may be shared back to specific users via the App.  Users who do not wish for their data to be uploaded to the ILRI database and accessible by ILRI scientists and collaborators should not upload their data.  
+
+Children's Privacy 
+
+ We do not knowingly collect personally identifiable information from anyone under the age of 18. If we become aware that we have collected Personal Data from anyone under the age of 18 without verification of parental consent, we shall take steps to remove that information from Our servers. 
+
+Changes to this Privacy Policy 
+
+We may update Our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page. 
+
+Contact Us 
+
+If you have any questions about this Privacy Policy, You can contact us: 
+
+By email: kmarshall@cgiar.org ","Privacy Policy  
+
+This Privacy Policy describes our policies and procedures on the collection, use and disclosure of your information when you use the App and tells you about your privacy rights and how the law protects you. We use your Personal data to provide and improve the App. By using the App, you agree to the collection and use of information in accordance with this Privacy Policy. 
+
+Collecting and Using Your Personal Data 
+
+Types of Data Collected 
+
+Personal Data  
+
+While using the App, you may be asked to provide us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to: 
+
+Email address 
+
+First name and last name 
+
+Gender 
+
+Phone number 
+
+Address 
+
+Usage Data 
+
+Usage Data 
+
+Usage Data may be collected automatically when using the App. Usage Data may include information such as your Device's Internet Protocol address (e.g. IP address), browser type, browser version, the type of mobile device you use, your mobile operating system, the pages of App that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data. 
+
+Information Collected while Using the Application 
+
+The App is designed to determine the profit or loss of smallholder pig enterprises, with the user inputting their data relating to this.  This data includes but is not limited to: data on costs including on feed, labour, water, co-operative / group membership, animal purchase, equipment, healthcare, housing, reproduction, loan repaying and other; and data on income including sale of pigs, sale of manure, sale of breeding services, other income.   
+
+Location data 
+
+We may collect, information regarding your location, with your prior permission. We use this information to provide features of the App, to improve and customize the App. The information may be uploaded to our servers and/or a Service Provider's server or it may be simply stored on your device. You can enable or disable access to this information at any time, through your Device settings. 
+
+Use of Your Personal Data 
+
+We may use Personal Data for the following purposes: 
+
+To provide and maintain the App, including to monitor the usage of the App. 
+
+To manage Your Account: to manage your registration as a user of the App.  
+
+To contact You: To contact you by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application's push notifications regarding updates or informative communications related to the functionalities, including security updates, when necessary or reasonable for their implementation. 
+
+For other purposes: We may use your information for other purposes, such as data analysis, identifying usage trends and to evaluate and improve the App and your experience. 
+
+We may share your personal information in the following situations: 
+
+With Affiliates: We may share your information with our affiliates, in which case we will require those affiliates to honor this Privacy Policy.  
+
+With Your consent: We may disclose your personal information for any other purpose with your consent. 
+
+Retention of Your Personal Data 
+
+We will retain your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies. We will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of the App, or we are legally obligated to retain this data for longer time periods. 
+
+Transfer of Your Personal Data 
+
+Your information, including Personal Data, is processed at our operating offices and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of your county, country or other governmental jurisdiction where the data protection laws may differ than those from your jurisdiction. Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer. 
+
+We will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of Your data and other personal information. 
+
+Delete Your Personal Data 
+
+You have the right to delete or request that we assist in deleting the Personal Data that we have collected about you. The App may give you the ability to delete certain information about you from within the App. You may update, amend, or delete your information at any time by signing into your Account and visiting the account settings section that allows you to manage your personal information. You may also contact us to request access to, correct, or delete any personal information that you have provided to us. Please note, however, that we may need to retain certain information when we have a legal obligation or lawful basis to do so. 
+
+Disclosure of Your Personal Data 
+
+Law enforcement 
+
+Under certain circumstances, we may be required to disclose your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency). 
+
+We  may disclose your Personal Data in the good faith belief that such action is necessary to: 
+
+Protect and defend our rights  
+
+Prevent or investigate possible wrongdoing in connection with the App 
+
+Protect the personal safety of Users of the App  
+
+Protect against legal liability 
+
+Security of Your Personal Data 
+
+The security of your Personal Data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security. 
+
+ 
+
+Use of Information Collected when Using the Application 
+
+Information collected on using the App on costs and income related to the pig enterprise, which is entered by the user, is used to determine the profit or loss of the user’s pig enterprise.  This is reported back to the user in the App.  This data will remain on the users device until it is uploaded (through the upload function of the App), in which case it will be uploaded to a database maintained by the International Livestock Research Institute (ILRI).  The ILRI database will be accessible for use by ILRI scientists and collaborators who may use the data for analysis including, but not limited to, understanding the costs, incomes and profit associated with pig enterprises.  Reports or publications may be made from this analysis, but individual users will not be identified in any way, only summary information will be included in the reports or publications.  In some cases this information may be shared back to specific users via the App.  Users who do not wish for their data to be uploaded to the ILRI database and accessible by ILRI scientists and collaborators should not upload their data.  
+
+Children's Privacy 
+
+ We do not knowingly collect personally identifiable information from anyone under the age of 18. If we become aware that we have collected Personal Data from anyone under the age of 18 without verification of parental consent, we shall take steps to remove that information from Our servers. 
+
+Changes to this Privacy Policy 
+
+We may update Our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page. 
+
+Contact Us 
+
+If you have any questions about this Privacy Policy, You can contact us: 
+
+By email: kmarshall@cgiar.org ","Privacy Policy  
+
+This Privacy Policy describes our policies and procedures on the collection, use and disclosure of your information when you use the App and tells you about your privacy rights and how the law protects you. We use your Personal data to provide and improve the App. By using the App, you agree to the collection and use of information in accordance with this Privacy Policy. 
+
+Collecting and Using Your Personal Data 
+
+Types of Data Collected 
+
+Personal Data  
+
+While using the App, you may be asked to provide us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to: 
+
+Email address 
+
+First name and last name 
+
+Gender 
+
+Phone number 
+
+Address 
+
+Usage Data 
+
+Usage Data 
+
+Usage Data may be collected automatically when using the App. Usage Data may include information such as your Device's Internet Protocol address (e.g. IP address), browser type, browser version, the type of mobile device you use, your mobile operating system, the pages of App that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data. 
+
+Information Collected while Using the Application 
+
+The App is designed to determine the profit or loss of smallholder pig enterprises, with the user inputting their data relating to this.  This data includes but is not limited to: data on costs including on feed, labour, water, co-operative / group membership, animal purchase, equipment, healthcare, housing, reproduction, loan repaying and other; and data on income including sale of pigs, sale of manure, sale of breeding services, other income.   
+
+Location data 
+
+We may collect, information regarding your location, with your prior permission. We use this information to provide features of the App, to improve and customize the App. The information may be uploaded to our servers and/or a Service Provider's server or it may be simply stored on your device. You can enable or disable access to this information at any time, through your Device settings. 
+
+Use of Your Personal Data 
+
+We may use Personal Data for the following purposes: 
+
+To provide and maintain the App, including to monitor the usage of the App. 
+
+To manage Your Account: to manage your registration as a user of the App.  
+
+To contact You: To contact you by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application's push notifications regarding updates or informative communications related to the functionalities, including security updates, when necessary or reasonable for their implementation. 
+
+For other purposes: We may use your information for other purposes, such as data analysis, identifying usage trends and to evaluate and improve the App and your experience. 
+
+We may share your personal information in the following situations: 
+
+With Affiliates: We may share your information with our affiliates, in which case we will require those affiliates to honor this Privacy Policy.  
+
+With Your consent: We may disclose your personal information for any other purpose with your consent. 
+
+Retention of Your Personal Data 
+
+We will retain your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies. We will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of the App, or we are legally obligated to retain this data for longer time periods. 
+
+Transfer of Your Personal Data 
+
+Your information, including Personal Data, is processed at our operating offices and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of your county, country or other governmental jurisdiction where the data protection laws may differ than those from your jurisdiction. Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer. 
+
+We will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of Your data and other personal information. 
+
+Delete Your Personal Data 
+
+You have the right to delete or request that we assist in deleting the Personal Data that we have collected about you. The App may give you the ability to delete certain information about you from within the App. You may update, amend, or delete your information at any time by signing into your Account and visiting the account settings section that allows you to manage your personal information. You may also contact us to request access to, correct, or delete any personal information that you have provided to us. Please note, however, that we may need to retain certain information when we have a legal obligation or lawful basis to do so. 
+
+Disclosure of Your Personal Data 
+
+Law enforcement 
+
+Under certain circumstances, we may be required to disclose your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency). 
+
+We  may disclose your Personal Data in the good faith belief that such action is necessary to: 
+
+Protect and defend our rights  
+
+Prevent or investigate possible wrongdoing in connection with the App 
+
+Protect the personal safety of Users of the App  
+
+Protect against legal liability 
+
+Security of Your Personal Data 
+
+The security of your Personal Data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security. 
+
+ 
+
+Use of Information Collected when Using the Application 
+
+Information collected on using the App on costs and income related to the pig enterprise, which is entered by the user, is used to determine the profit or loss of the user’s pig enterprise.  This is reported back to the user in the App.  This data will remain on the users device until it is uploaded (through the upload function of the App), in which case it will be uploaded to a database maintained by the International Livestock Research Institute (ILRI).  The ILRI database will be accessible for use by ILRI scientists and collaborators who may use the data for analysis including, but not limited to, understanding the costs, incomes and profit associated with pig enterprises.  Reports or publications may be made from this analysis, but individual users will not be identified in any way, only summary information will be included in the reports or publications.  In some cases this information may be shared back to specific users via the App.  Users who do not wish for their data to be uploaded to the ILRI database and accessible by ILRI scientists and collaborators should not upload their data.  
+
+Children's Privacy 
+
+ We do not knowingly collect personally identifiable information from anyone under the age of 18. If we become aware that we have collected Personal Data from anyone under the age of 18 without verification of parental consent, we shall take steps to remove that information from Our servers. 
+
+Changes to this Privacy Policy 
+
+We may update Our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page. 
+
+Contact Us 
+
+If you have any questions about this Privacy Policy, You can contact us: 
+
+By email: kmarshall@cgiar.org ",
+MembershipDurationTranslation,Membership duration,Ebbanga ly’obwammemba,Thời hạn thành viên,Igihe umaze uri umunyamuryango,
 SubCountyType1,SubCountyType 1,,,,
 SubCountyType2,SubCountyType 2,,,,
 SubCountyType3,SubCountyType 3,,,,
@@ -415,50 +819,51 @@ SubCountyType5,SubCountyType 5,,,,
 SubCountyType6,SubCountyType 6,,,,
 SubCountyType7,SubCountyType 7,,,,
 SubCountyType8,SubCountyType 8,,,,
-TotalAnimalCostsTranslation,Total cost for all animals,,Tổng chi phí cho tất cả vật nuôi,Igiteranyo cy'ikiguzi cyose cy'amatungo,
-Created,Created,,,,
-TotalCostAllUnits,Total Cost (all units),,Tổng chi phí (tất cả các đơn vị),,
-MedicineType5,Disinfectant,,,,
-AmountPaidTranslation,Amount paid for piggery labour over the duration,Sente zosasula abakozi,Số tiền trả cho lao động chăn nuôi lợn trong suốt thời gian,,
+TotalAnimalCostsTranslation,Total cost for all animals,Omugatte gwensasanya kubisolo byona,Tổng chi phí cho tất cả vật nuôi,Igiteranyo cy'ikiguzi cyose cy'amatungo,
+Created,Created,Kitekeddwawo,Được tạo ra,Bishyizweho,
+TotalCostAllUnits,Total Cost (all units),Omugatte ogwensasanya yona ,Tổng chi phí (tất cả các đơn vị),Igiteranyo cy'ikiguzi cyose (mu bipimo byose),
+MedicineType5,Disinfectant,Edagala elita obuwuka obutalabika,Chất khử trùng,umuti wica udukoko,
+AmountPaidTranslation,Amount paid for piggery labour over the duration,Sente zosasula abakozi,Số tiền trả cho lao động chăn nuôi lợn trong suốt thời gian,Amafaranga yiyongera yishyuwe nyuma yo gukoresha akazi,
 SalePriceTranslation,Sale price for all animals sold,Wabaguzza sente meka,Giá bán cho tất cả các con vật đã bán ,Igiciro watangiyeho amatungo yose yagurishijwe,
-ManureAmountRecievedTranslation,Sale price for all manure sold,,,,
-MembershipUpdated,Membership Updated,,,,
-OtherUnitTypeTranslation,Other Unit Type,,,,
-LastUploadTranslation,Last upload of data,,,,
-ReportingDuration,Reporting Duration,,,,
-ProfitTranslation,Profit,,,,
-LossTranslation,Loss,,,,
-SummaryChartTile,Total Period Profit / Loss,,,,
-SummaryChartCostGroup,Total Cost,,Tổng chi phí,Igiteranyo cy'ikiguzi cyose hamwe,
-SummaryChartIncomeGroup,Total Income,,Tổng thu nhập,Amafaranga yose yinjiye,
-SummaryChartProfitLoss,Total Profit/Loss,,,,
-SummaryTableHeading,Profit/loss by month,,,,
-MonthTranslation,Month,,,,
-YearTranslation,Year,,,,
-SummaryIncomeTranslation,Income,,Thu nhập,Amafaranga yinjira,
-SummaryCostTranslation,Cost,,Chi phí,Ikiguzi,
-SummaryProfitLossTranslation,Profit/Loss,,,,
-BreakdownLabel,Cost Breakdown,,,,
-IncomeBreakdownLabel,Income Breakdown,,,,
-SummaryLabel,Summary,,,,
-AdvanceTabLable,Advance,,,,
-BenchmarkingTabLable,Benchmark,,,,
-SendDataUploadTimeLabel, new items since last upload at:,,,,
-HomeTile,Home,,,,
-AddDataTile,Add Data,,,,
-ManageDataTile,Manage,,,,
-ReportsTile,Reports,,,,
-SettingsTile,Settings,,,,
-UploadTile,Upload,,,,
-ViewTranslation,View,,,,
-SettingsPageTranslation, Settings,,,,
-ChangeProfileTranslation, Change Profile Info,,,,
-LogoutTranslation,Logout,,,,
-ConfirmLogoutTranslation,Confirm Logout,,,,
-LogoutWarningTransaltion,By logging out any data not submitted to the cloud will be lost and current data on the device will be removed,,,,
-ChangeLanguageTrasnlation,Change Language,,,,
-SureTranslation,Are you sure?,,,,
-AppRestartTranslation,Changing the language requires the app to restart. Proceed?,,,,
-YesTranslation,Yes,,,,
-NoTranslation,No,,,,
-AcceptTranslation,Accept,,,,
+ManureAmountRecievedTranslation,Sale price for all manure sold,Ssente ezivudde mu bijimusa byoona ebitundidwa,Giá bán cho tất cả các loại phân bón ,Igiciro cy'ifumbire yose yagurishijwe,
+MembershipUpdated,Membership Updated,Obwa memba bwo bu gatidwako,Tư cách thành viên được cập nhật,Amakuru arebana n'ubunyamuryango yavuguruwe,
+OtherUnitTypeTranslation,Other Unit Type,Ekika kyikipimo ekilala,Loại đơn vị khác,Ubundi bwoko bw'igipimo,
+LastUploadTranslation,Last upload of data,Obubaka obwasembayo' kuwerezebwa,Lần tải lên dữ liệu cuối cùng,Aho uherukira gushyiraho amakuru,
+ReportingDuration,Reporting Duration,Ebanga ly'okukola'lipoota,Khoảng thời gian báo cáo,igihe cyo gutanga raporo,
+ProfitTranslation,Profit,Amagoba,Lãi,Inyungu,
+LossTranslation,Loss,Okufirizibw'amagoba,Lỗ,igihombo,
+SummaryChartTile,Total Period Profit / Loss,"Ekiseera, kyomazze nga ofun'amagoba, oba nga ofiirizibwa",Tổng lãi / lỗ trong kỳ,Igihe Inyugu yose/Igihombo cyose hamwe byabariweho,
+SummaryChartCostGroup,Total Cost,Omugatte gw’ensimbi zosassanya,Tổng chi phí,Igiteranyo cy'ikiguzi cyose hamwe,
+SummaryChartIncomeGroup,Total Income,Omugatte gwa ssente zoyingizza,Tổng thu nhập,Amafaranga yose yinjiye,
+SummaryChartProfitLoss,Total Profit/Loss,Omugatte gw'a magoba oba okufirizibwa,Tổng Lãi/Lỗ,Inyugu yose/Igihombo cyose hamwe,
+SummaryTableHeading,Profit/loss by month,Amagoba oba okufurizibwa mu' mwezi,Lãi/lỗ theo tháng,Inyungu/igihombo ku kwezi,
+MonthTranslation,Month,Omwezi,Năm,Ukwezi,
+YearTranslation,Year,Omwaka,Tháng,Umwaka,
+SummaryIncomeTranslation,Income,Ssente zoyingiza,Thu nhập,Amafaranga yinjira,
+SummaryCostTranslation,Cost,Ensasanya ,Chi phí,Ikiguzi,
+SummaryProfitLossTranslation,Profit/Loss,Amagoba oba okufirizibwa,Lãi/Lỗ,Inyungu/igihombo,
+BreakdownLabel,Cost Breakdown,Okumenya menyamu ensasanya,Phân tích chi phí,Uko ikiguzi cyabazwe,
+IncomeBreakdownLabel,Income Breakdown,"Okumenya menyamu, Enyingiza",Cơ cấu thu nhập,Uko ibyinjiye byabazwe,
+SummaryLabel,Summary,Okuwumbako/mubumpimpi,Tóm tắt,incamake,
+AdvanceTabLable,Advance,Tweyongere mumaso,Tạm ứng,amafaranga atangwa mbere,
+BenchmarkingTabLable,Benchmark,Gerageranya,Điểm chuẩn,igipimo ngenderwaho,
+SendDataUploadTimeLabel, new items since last upload at:,ebintu ebipya okuva lwe  wasembayo okuteekeko,Các cập nhật mới kể từ lần tải lên gần đây nhất tại:,ibintu bishya kuva aho uheruka kohereza kuri:,
+HomeTile,Home,Awatandikilwa,Trang chủ,Mu rugo,
+AddDataTile,Add Data,Yongereko obubaka ,Nhập dữ liệu,Ongeraho amakuru,
+ManageDataTile,Manage,labirira obubaka,Quản lý,gucunga,
+ReportsTile,Reports,Alipoota,Các báo cáo,raporo,
+SettingsTile,Settings,Ensengeka,Cài đặt,Igenamiterere,
+UploadTile,Upload,Sindika kumutimbagano,Tải lên,kongeraho,
+ViewTranslation,View,Byetegereze,Xem,Reba,
+SettingsPageTranslation, Settings,Ensengeka,Cài đặt,Igenamiterere,
+ChangeProfileTranslation, Change Profile Info,Kyusamu ku bikukwatako,Thay đổi thông tin hồ sơ,Hindura amakuru y'umwirondoro,
+LogoutTranslation,Logout,Vva kumutimbagano,Đăng xuất,Sohokamo,
+ConfirmLogoutTranslation,Confirm Logout,Kakaasa nti ofulumye omutimbangano,Xác nhận đăng xuất,Emeza gusohokamo,
+LogoutWarningTransaltion,By logging out any data not submitted to the cloud will be lost and current data on the device will be removed,Nga ofuluma obubaka byonna obu tateereddwa mu kiire bujja kubula era obubaka obuli ku kyuma bujja kuggyibwawo,"Bằng cách đăng xuất, mọi dữ liệu không được gửi lên đám mây sẽ bị mất và dữ liệu hiện tại trên thiết bị sẽ bị xóa",Mukwemeza gusohoka amakuru yose atohererejwe ku mashini ikusanya amakuru azabura kandi n'aya makuru ari kuri iyi telefoni nayo aravanwaho,
+ChangeLanguageTrasnlation,Change Language,Kyusa oluliimi,Thay đổi ngôn ngữ,Hindura ururimi,
+SureTranslation,Are you sure?,Okikakasa,Bạn có chắc không?,Urabyemeza neza?,
+AppRestartTranslation,Changing the language requires the app to restart. Proceed?,"Okukyusa oluliimi, ejjakudayo etandiike buuto. Genda mumaaso",Thay đổi ngôn ngữ yêu cầu khởi động lại ứng dụng. Bạn có muốn tiếp tục?,Guhindura ururimi bisaba iyi aprikasiyo kongera gutangira. Komeza?,
+YesTranslation,Yes,Yee,Có,Yego,
+NoTranslation,No,Nedda ,Không,Oya,
+AcceptTranslation,Accept,Kirizza ,Chấp nhận,Emera,
+,,,,,
