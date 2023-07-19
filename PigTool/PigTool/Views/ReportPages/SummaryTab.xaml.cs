@@ -18,6 +18,7 @@ namespace PigTool.Views
     {
         SummaryTabViewModel _ViewModel;
         private DateRange _dateRange;
+        bool firstRender = true;
 
         public SummaryTab(DateRange dateRange)
         {
@@ -98,6 +99,14 @@ namespace PigTool.Views
 
             startDatePicker.Date = _ViewModel.StartDate = _dateRange.StartDate;
             endDatePicker.Date = _ViewModel.EndDate = _dateRange.EndDate;
+            if (!firstRender)
+            {
+                _ViewModel.ConstructPage();
+            }
+            else
+            {
+                firstRender = false;
+            }
         }
 
 
@@ -115,7 +124,10 @@ namespace PigTool.Views
             _dateRange.EndDate = _ViewModel.EndDate = endDatePicker.Date;
         }
 
-
+        private void Refresh_Button_Clicked(object sender, EventArgs e)
+        {
+            _ViewModel.ConstructPage();
+        }
     }
 
     public class SummaryTableCell : ViewCell

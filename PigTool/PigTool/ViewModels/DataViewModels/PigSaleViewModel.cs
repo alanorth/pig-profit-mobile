@@ -390,7 +390,7 @@ namespace PigTool.ViewModels.DataViewModels
 
             if (!string.IsNullOrWhiteSpace(valid))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", valid, "OK");
+                await Application.Current.MainPage.DisplayAlert(Error, valid, OK);
                 return;
             }
 
@@ -398,7 +398,7 @@ namespace PigTool.ViewModels.DataViewModels
             {
 
                 _itemForEditing.Date = Date;
-                _itemForEditing.NumberSold = (int)NumberSold;
+                _itemForEditing.NumberSold = NumberSold != null ? (int)NumberSold : 0;
                 _itemForEditing.PigType = SelectedPigType != null ? SelectedPigType.TranslationRowKey : null;
                 _itemForEditing.OtherPigType = OtherPigType;
                 _itemForEditing.SoldTo = SelectedSoldTo != null ? SelectedSoldTo.TranslationRowKey : null;
@@ -411,7 +411,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
                 await repo.UpdatePigSaleItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert("Updated", "Pig sale record has been updated", "OK");
+                await Application.Current.MainPage.DisplayAlert(Updated, LogicHelper.GetTranslationFromStore(TranslationStore, "PigSaleUpdated", User.UserLang), OK);
                 await Shell.Current.Navigation.PopAsync();
             }
             else
@@ -419,7 +419,7 @@ namespace PigTool.ViewModels.DataViewModels
                 var newPigSale = new PigSaleItem
                 {
                     Date = Date,
-                    NumberSold = (int)NumberSold,
+                    NumberSold = NumberSold != null ? (int)NumberSold : 0,
                     PigType = SelectedPigType != null ? SelectedPigType.TranslationRowKey : null,
                     OtherPigType = OtherPigType,
                     SoldTo = SelectedSoldTo != null ? SelectedSoldTo.TranslationRowKey : null,
@@ -433,14 +433,15 @@ namespace PigTool.ViewModels.DataViewModels
                     CreatedBy = User.UserName,
                     PartitionKey = Constants.PartitionKeyPigSaleItem,
                 };
-                try { 
-                await repo.AddSinglePigSaleItem(newPigSale);
-                await Application.Current.MainPage.DisplayAlert("Created", "Pig sale has been saved", "OK");
+                try
+                {
+                    await repo.AddSinglePigSaleItem(newPigSale);
+                    await Application.Current.MainPage.DisplayAlert(Created, "Pig sale has been saved", OK);
                     await Shell.Current.Navigation.PopAsync();
                 }
                 catch (Exception ex)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                    await Application.Current.MainPage.DisplayAlert(Error, ex.InnerException.Message, OK);
                 }
             }
         }
@@ -503,21 +504,21 @@ namespace PigTool.ViewModels.DataViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                if (Date == null) returnString.AppendLine("Date obtained not provided");
-                if (SalePrice == null) returnString.AppendLine("Sale Price Not Provided");
+                if (Date == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDateProvided, User.UserLang));
+                if (SalePrice == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoSalePrice, User.UserLang));
                 //if (Brokerage == null) returnString.AppendLine("Brokerage Not Provided");
-                if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
+                if (TransportationCost == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoTransportationCost, User.UserLang));
                 //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
 
                 if (SelectedPigType != null && SelectedPigType.TranslationRowKey == Constants.OTHER)
                 {
-                    if (string.IsNullOrWhiteSpace(OtherPigType)) returnString.AppendLine("Other Pig Type Not Provided");
+                    if (string.IsNullOrWhiteSpace(OtherPigType)) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, "NoOtherPigType", User.UserLang));
                 }
 
                 if (SelectedSoldTo != null && SelectedSoldTo.TranslationRowKey == Constants.OTHER)
                 {
-                    if (string.IsNullOrWhiteSpace(OtherSoldTo)) returnString.AppendLine("Other Sold To Not Provided");
+                    if (string.IsNullOrWhiteSpace(OtherSoldTo)) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, "NoOtherSoldTo", User.UserLang));
                 }
 
                 return returnString.ToString();

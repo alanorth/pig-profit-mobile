@@ -434,7 +434,7 @@ namespace PigTool.ViewModels.DataViewModels
 
             if (!string.IsNullOrWhiteSpace(valid))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", valid, "OK");
+                await Application.Current.MainPage.DisplayAlert(Error, valid, OK);
                 return;
             }
 
@@ -456,7 +456,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
                 await repo.UpdateManureSaleItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert("Updated", "Manure sale record has been updated", "OK");
+                await Application.Current.MainPage.DisplayAlert(Updated, LogicHelper.GetTranslationFromStore(TranslationStore, "ManureUpdated", User.UserLang), OK);
                 await Shell.Current.Navigation.PopAsync();
             }
             else
@@ -483,12 +483,12 @@ namespace PigTool.ViewModels.DataViewModels
                 try
                 {
                     await repo.AddSingleManureSaleItem(newManureSale);
-                    await Application.Current.MainPage.DisplayAlert("Created", "Manure sale has been saved", "OK");
+                    await Application.Current.MainPage.DisplayAlert(Created, LogicHelper.GetTranslationFromStore(TranslationStore, "ManureSaved", User.UserLang), OK);
                     await Shell.Current.Navigation.PopAsync();
                 }
                 catch (Exception ex)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                    await Application.Current.MainPage.DisplayAlert(Error, ex.InnerException.Message, OK);
                 }
             }
         }
@@ -554,16 +554,16 @@ namespace PigTool.ViewModels.DataViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                if (Date == null) returnString.AppendLine("Date obtained not provided");
-                if (AmountRecieved == null) returnString.AppendLine("Amount Recieved Not Provided");
-                if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
-                if (PaymentType != null  && PaymentValue == null) returnString.AppendLine("Payment Value Not Provided");
+                if (Date == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDate, User.UserLang));
+                if (AmountRecieved == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoAmountRecevied, User.UserLang));
+                if (TransportationCost == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, "NoTransportationCost", User.UserLang));
+                if (PaymentType != null  && PaymentValue == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore,Constants.NoPaymentValue , User.UserLang));
                 //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
 
                 if (SelectedSoldTo != null && SelectedSoldTo.TranslationRowKey == Constants.OTHER)
                 {
-                    if (string.IsNullOrWhiteSpace(OtherSoldTo)) returnString.AppendLine("Other Sold To Not Provided");
+                    if (string.IsNullOrWhiteSpace(OtherSoldTo)) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoOtherSoldTo , User.UserLang));
                 }
 
                 return returnString.ToString();

@@ -361,7 +361,7 @@ namespace PigTool.ViewModels.DataViewModels
 
             if (!string.IsNullOrWhiteSpace(valid))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", valid, "OK");
+                await Application.Current.MainPage.DisplayAlert(Error, valid, OK);
                 return;
             }
 
@@ -380,7 +380,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
                 await repo.UpdateReproductiveItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert("Updated", "Reproduction record has been updated", "OK");
+                await Application.Current.MainPage.DisplayAlert(Updated, LogicHelper.GetTranslationFromStore(TranslationStore, "ReproductionUpdated", User.UserLang), OK);
                 await Shell.Current.Navigation.PopAsync();
             }
             else
@@ -403,12 +403,12 @@ namespace PigTool.ViewModels.DataViewModels
                 try
                 {
                     await repo.AddSingleReproductiveItem(newReproductiveItem);
-                    await Application.Current.MainPage.DisplayAlert("Created", "Reproduction record has been saved", "OK");
+                    await Application.Current.MainPage.DisplayAlert(Created, LogicHelper.GetTranslationFromStore(TranslationStore, "ReproductionSaved", User.UserLang), OK);
                     await Shell.Current.Navigation.PopAsync();
                 }
                 catch (Exception ex)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                    await Application.Current.MainPage.DisplayAlert(Error, ex.InnerException.Message, OK);
                 }
             }
         }
@@ -468,19 +468,19 @@ namespace PigTool.ViewModels.DataViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                if (Date == null) returnString.AppendLine("Date obtained not provided");
-                if (SowsServicedCost == null) returnString.AppendLine("Sows Serviced Not Provided");
+                if (Date == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDate, User.UserLang));
+                if (SowsServicedCost == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoSowsServiced, User.UserLang));
                 //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
 
                 if (SelectedServiceType != null && SelectedServiceType.TranslationRowKey == Constants.OTHER)
                 {
-                    if (string.IsNullOrWhiteSpace(OtherServiceType)) returnString.AppendLine("Other Service Type Not Provided");
+                    if (string.IsNullOrWhiteSpace(OtherServiceType)) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoServiceType, User.UserLang));
                 }
 
                 if (SelectedWhoProvidedService != null && SelectedWhoProvidedService.TranslationRowKey == Constants.OTHER)
                 {
-                    if (string.IsNullOrWhiteSpace(OtherWhoProvidedService)) returnString.AppendLine("Other Who Provided Service Not Provided");
+                    if (string.IsNullOrWhiteSpace(OtherWhoProvidedService)) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoOtherServiceProvider, User.UserLang));
                 }
 
                 return returnString.ToString();

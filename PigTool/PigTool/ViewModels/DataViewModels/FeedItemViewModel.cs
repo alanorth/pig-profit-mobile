@@ -501,7 +501,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.DurationFinish = DurationFinish;
 
                 await repo.UpdateFeedItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert(Updated, "Feed record has been updated", OK);
+                await Application.Current.MainPage.DisplayAlert(Updated, LogicHelper.GetTranslationFromStore(TranslationStore, Constants.FeedUpdated, User.UserLang), OK);
                 await Shell.Current.Navigation.PopAsync();
             }
             else

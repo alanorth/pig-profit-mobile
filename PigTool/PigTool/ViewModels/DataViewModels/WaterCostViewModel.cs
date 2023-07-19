@@ -403,7 +403,7 @@ namespace PigTool.ViewModels.DataViewModels
 
             if (!string.IsNullOrWhiteSpace(valid))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", valid, "OK");
+                await Application.Current.MainPage.DisplayAlert(Error, valid, OK);
                 return;
             }
 
@@ -425,7 +425,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.DurationFinish = DurationFinish;
 
                 await repo.UpdateWaterCostItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert("Updated", "Water cost record has been updated", "OK");
+                await Application.Current.MainPage.DisplayAlert(Updated, LogicHelper.GetTranslationFromStore(TranslationStore, "WaterCostUpdated", User.UserLang), OK);
                 await Shell.Current.Navigation.PopAsync();
             }
             else
@@ -451,12 +451,12 @@ namespace PigTool.ViewModels.DataViewModels
                 try
                 {
                     await repo.AddSingleWaterCostItem(newWaterCost);
-                    await Application.Current.MainPage.DisplayAlert("Created", "Water record has been saved", "OK");
+                    await Application.Current.MainPage.DisplayAlert(Created, LogicHelper.GetTranslationFromStore(TranslationStore, "WaterSaved", User.UserLang), OK);
                     await Shell.Current.Navigation.PopAsync();
                 }
                 catch (Exception ex)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                    await Application.Current.MainPage.DisplayAlert(Error, ex.InnerException.Message, OK);
                 }
             }
         }
@@ -521,22 +521,22 @@ namespace PigTool.ViewModels.DataViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                if (Date == null) returnString.AppendLine("Date obtained not provided");
-                if (DurationStart == null) returnString.AppendLine("Duration Start Not Provided");
-                if (DurationFinish == null) returnString.AppendLine("Duration Finish Not Provided");
-                if (TotalCosts == null) returnString.AppendLine("Total Cost Not Provided");
-                if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
-                if (DurationFinish < DurationStart) returnString.AppendLine("Duration Finish is before Duration Start");
+                if (Date == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDate, User.UserLang));
+                if (DurationStart == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDurationStart, User.UserLang));
+                if (DurationFinish == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDurationEnd, User.UserLang));
+                if (TotalCosts == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoTotalCost, User.UserLang));
+                if (TransportationCost == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, "NoTransportationCost", User.UserLang));
+                if (DurationFinish < DurationStart) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.DurIsbefore, User.UserLang));
                 //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
                 if (SelectedWaterPurchasedUnit != null && SelectedWaterPurchasedUnit.TranslationRowKey == Constants.OTHER)
                 {
-                    if (string.IsNullOrWhiteSpace(OtherWaterPurchasedUnit)) returnString.AppendLine("Other Unit Not Provided");
+                    if (string.IsNullOrWhiteSpace(OtherWaterPurchasedUnit)) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.OtherUnitNotProvided, User.UserLang));
                 }
 
                 if (SelectedPurchasedWaterFrom != null && SelectedPurchasedWaterFrom.TranslationRowKey == Constants.OTHER)
                 {
-                    if (string.IsNullOrWhiteSpace(OtherPurchasedWaterFrom)) returnString.AppendLine("Other Person Purchased From Not Provided");
+                    if (string.IsNullOrWhiteSpace(OtherPurchasedWaterFrom)) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoOtherPerson, User.UserLang));
                 }
 
                 return returnString.ToString();

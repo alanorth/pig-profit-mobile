@@ -11,6 +11,7 @@ namespace PigTool.Views
     {
         AdvancedTabViewModel _viewModel;
         private DateRange _dateRange;
+        bool firstRender = true;
         public AdvancedTab(DateRange daterange)
         {
             _dateRange = daterange;
@@ -49,6 +50,14 @@ namespace PigTool.Views
         {
             startDatePicker.Date = _viewModel.StartDate = _dateRange.StartDate;
             endDatePicker.Date = _viewModel.EndDate = _dateRange.EndDate;
+            if (!firstRender)
+            {
+                _viewModel.ConstructPage();
+            }
+            else
+            {
+                firstRender = false;
+            }
         }
 
         void Recalculate()

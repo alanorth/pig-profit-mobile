@@ -32,7 +32,7 @@ namespace PigTool.Views
                 Text = "Logout",
                 Order = ToolbarItemOrder.Secondary,
                 Priority = 1,
-                Command = new Command(async () => await Application.Current.MainPage.DisplayAlert("Logout", "To be added", "OK"))
+                Command = new Command(async () => await Application.Current.MainPage.DisplayAlert("Logout", "To be added", OK))
             };
 
             // "this" refers to a Page object

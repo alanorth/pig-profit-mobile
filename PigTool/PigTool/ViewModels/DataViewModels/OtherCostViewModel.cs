@@ -234,7 +234,7 @@ namespace PigTool.ViewModels.DataViewModels
 
             if (!string.IsNullOrWhiteSpace(valid))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", valid, "OK");
+                await Application.Current.MainPage.DisplayAlert(Error, valid, OK);
                 return;
             }
 
@@ -250,7 +250,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
                 await repo.UpdateOtherCostItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert("Updated", "Other cost record has been updated", "OK");
+                await Application.Current.MainPage.DisplayAlert(Updated, LogicHelper.GetTranslationFromStore(TranslationStore, "OtherCostUpdated", User.UserLang), OK);
                 await Shell.Current.Navigation.PopAsync();
             }
             else
@@ -271,12 +271,12 @@ namespace PigTool.ViewModels.DataViewModels
                 try
                 {
                     await repo.AddSingleOtherCostItem(newOtherCost);
-                    await Application.Current.MainPage.DisplayAlert("Created", "Other Cost has been saved", "OK");
+                    await Application.Current.MainPage.DisplayAlert(Created, LogicHelper.GetTranslationFromStore(TranslationStore, "OtherCostsSaved", User.UserLang), OK);
                     await Shell.Current.Navigation.PopAsync();
                 }
                 catch (Exception ex)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                    await Application.Current.MainPage.DisplayAlert(Error, ex.InnerException.Message, OK);
                 }
             }
         }
@@ -323,9 +323,9 @@ namespace PigTool.ViewModels.DataViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                if (Date == null) returnString.AppendLine("Date obtained not provided");
-                if (TotalCosts == null) returnString.AppendLine("Total cost not provided");
-                if (TransportationCosts == null) returnString.AppendLine("Transportation Costs is required");
+                if (Date == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDate, User.UserLang));
+                if (TotalCosts == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoTotalCost, User.UserLang));
+                if (TransportationCosts == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoTransportationCost, User.UserLang));
                 //if (OtherCosts == null) returnString.AppendLine("Other cost not provided");
 
                 return returnString.ToString();

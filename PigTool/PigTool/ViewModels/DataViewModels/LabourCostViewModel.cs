@@ -305,7 +305,7 @@ namespace PigTool.ViewModels.DataViewModels
 
             if (!string.IsNullOrWhiteSpace(valid))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", valid, "OK");
+                await Application.Current.MainPage.DisplayAlert(Error, valid, OK);
                 return;
             }
 
@@ -322,7 +322,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.DurationFinish = DurationFinish;
 
                 await repo.UpdateLabourCostItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert("Created", "Labour Cost Record Update", "OK");
+                await Application.Current.MainPage.DisplayAlert(Updated,  LogicHelper.GetTranslationFromStore(TranslationStore, "RecordLabourUpdated", User.UserLang), OK);
                 await Shell.Current.Navigation.PopAsync();
 
             }
@@ -346,17 +346,17 @@ namespace PigTool.ViewModels.DataViewModels
                     };
 
                     await repo.AddSingleLabourCostItem(newLabourCost);
-                    await Application.Current.MainPage.DisplayAlert("Created", "Labour Cost Record Saved", "OK");
+                    await Application.Current.MainPage.DisplayAlert(Created, LogicHelper.GetTranslationFromStore(TranslationStore, "RecordLabourCostSaved", User.UserLang), OK);
                     await Shell.Current.Navigation.PopAsync();
                 }
                 catch (Exception ex)
                 {
                     if(ex.InnerException!= null) { 
-                        await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                        await Application.Current.MainPage.DisplayAlert(Error, ex.InnerException.Message, OK);
                     }
                     else
                     {
-                        await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                        await Application.Current.MainPage.DisplayAlert(Error, ex.InnerException.Message, OK);
                     }
 
                 }
@@ -367,16 +367,16 @@ namespace PigTool.ViewModels.DataViewModels
         private string ValidateSave()
         {
             StringBuilder returnString = new StringBuilder();
-            if (Date == null) returnString.AppendLine("Date obtained not provided");
-            if (AmountPaid == null) returnString.AppendLine("Amount Paid Not Provided");
+            if (Date == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDate, User.UserLang));
+            if (AmountPaid == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.AmountPaidNotProvided, User.UserLang));
             //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
-            if (DurationStart == null) returnString.AppendLine("Duration Start Not Provided");
-            if (DurationFinish == null) returnString.AppendLine("Duration Finish Not Provided");
-            if (DurationFinish < DurationStart) returnString.AppendLine("Duration Finish is before Duration Start");
+            if (DurationStart == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDurationStart, User.UserLang));
+            if (DurationFinish == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDurationEnd, User.UserLang));
+            if (DurationFinish < DurationStart) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.DurIsbefore, User.UserLang));
 
             if (selectedLabourType != null && selectedLabourType.TranslationRowKey == Constants.OTHER)
             {
-                if (string.IsNullOrWhiteSpace(OtherLaboutType)) returnString.AppendLine("Other Labour Type Not Provided");
+                if (string.IsNullOrWhiteSpace(OtherLaboutType)) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoOtherLabourType, User.UserLang));
             }
 
             return returnString.ToString();

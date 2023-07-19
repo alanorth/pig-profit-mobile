@@ -314,7 +314,7 @@ namespace PigTool.ViewModels.DataViewModels
 
             if (!string.IsNullOrWhiteSpace(valid))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", valid, "OK");
+                await Application.Current.MainPage.DisplayAlert(Error, valid, OK);
                 return;
             }
 
@@ -333,7 +333,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.DurationFinish = DurationFinish;
 
                 await repo.UpdateLoanRepaymentItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert("Updated", "Loan repayment record has been updated", "OK");
+                await Application.Current.MainPage.DisplayAlert(Updated,LogicHelper.GetTranslationFromStore(TranslationStore, "LoanUpdated", User.UserLang), OK);
                 await Shell.Current.Navigation.PopAsync();
             }
             else
@@ -357,12 +357,12 @@ namespace PigTool.ViewModels.DataViewModels
                 try
                 {
                     await repo.AddSingleLoanRepaymentItem(newLoanRepayment);
-                    await Application.Current.MainPage.DisplayAlert("Created", "Loan repayment has been saved", "OK");
+                    await Application.Current.MainPage.DisplayAlert(Created, LogicHelper.GetTranslationFromStore(TranslationStore, "LoanSaved", User.UserLang), OK);
                     await Shell.Current.Navigation.PopAsync();
                 }
                 catch (Exception ex)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                    await Application.Current.MainPage.DisplayAlert(Error, ex.InnerException.Message, OK);
                 }
             }
         }
@@ -418,8 +418,8 @@ namespace PigTool.ViewModels.DataViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                if (Date == null) returnString.AppendLine("Date obtained not provided");
-                if (TotalAmountRepaid == null) returnString.AppendLine("Total Amount Repaid Not Provided");
+                if (Date == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDate, User.UserLang));
+                if (TotalAmountRepaid == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoTotalAmount, User.UserLang));
                 if (DurationStart == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDurationStart, User.UserLang));
                 if (DurationFinish == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDurationEnd, User.UserLang));
                 if (DurationStart > DurationFinish) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.DurIsbefore, User.UserLang));
@@ -427,7 +427,7 @@ namespace PigTool.ViewModels.DataViewModels
 
                 if (SelectedLoanProvider != null && SelectedLoanProvider.TranslationRowKey == Constants.OTHER)
                 {
-                    if (string.IsNullOrWhiteSpace(OtherLoanProvider)) returnString.AppendLine("Other Unit Not Provided");
+                    if (string.IsNullOrWhiteSpace(OtherLoanProvider)) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.OtherUnitNotProvided, User.UserLang));
                 }
 
                 return returnString.ToString();

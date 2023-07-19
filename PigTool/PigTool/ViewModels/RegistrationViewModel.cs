@@ -664,7 +664,7 @@ namespace PigTool.ViewModels.DataViewModels
                     else
                     {
                         await repo.UpdateUserInfo(_itemForEditing);
-                        //await Application.Current.MainPage.DisplayAlert("Upnamed", "Reproduction record has been updated", "OK");
+                        //await Application.Current.MainPage.DisplayAlert("Upnamed", "Reproduction record has been updated", OK);
 
                         //await Shell.Current.Navigation.PopAsync();
                         Application.Current.MainPage = new AppShell();
@@ -794,9 +794,9 @@ namespace PigTool.ViewModels.DataViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                if (UserName == null) returnString.AppendLine("UserName Not provided");
-                if (Name == null) returnString.AppendLine("Name Not provided");
-                if (PhoneNumber == null) returnString.AppendLine("Phone Number Not Provided");
+                if (UserName == null) returnString.AppendLine("Username not provided");
+                if (Name == null) returnString.AppendLine("Name not provided");
+                if (PhoneNumber == null) returnString.AppendLine("Phone number not provided");
                 //if (SelectedCurrency == null) returnString.AppendLine("Currency Not Provided");
 
                 return returnString.ToString();

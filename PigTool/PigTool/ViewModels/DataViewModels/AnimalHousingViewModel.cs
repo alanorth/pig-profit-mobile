@@ -327,7 +327,7 @@ namespace PigTool.ViewModels.DataViewModels
 
             if (!string.IsNullOrWhiteSpace(valid))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", valid, "OK");
+                await Application.Current.MainPage.DisplayAlert(Error, valid, OK);
                 return;
             }
 
@@ -345,7 +345,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
                 await repo.UpdateAnimalHouseItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert("Updated", "Animal housing record has been updated", "OK");
+                await Application.Current.MainPage.DisplayAlert(Updated, LogicHelper.GetTranslationFromStore(TranslationStore, "SaveHouseRecord", User.UserLang), OK);
                 await Shell.Current.Navigation.PopAsync();
             }
             else
@@ -375,11 +375,11 @@ namespace PigTool.ViewModels.DataViewModels
                 {
                     if (ex.InnerException != null)
                     {
-                        await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                        await Application.Current.MainPage.DisplayAlert(Error, ex.InnerException.Message, OK);
                     }
                     else
                     {
-                        await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+                        await Application.Current.MainPage.DisplayAlert(Error, ex.Message, OK);
                     }
                 }
             }
@@ -438,16 +438,16 @@ namespace PigTool.ViewModels.DataViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                if (Date == null) returnString.AppendLine("Date obtained not provided");
-                if (TotalCosts == null) returnString.AppendLine("Total Cost Not Provided");
-                if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
+                if (Date == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDate, User.UserLang));
+                if (TotalCosts == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoTotalCost, User.UserLang));
+                if (TransportationCost == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoTransportationCost, User.UserLang));
                 //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
                 if (SelectedHousingType != null)
                 {
                     if (SelectedHousingType.TranslationRowKey == Constants.OTHER)
                     {
-                        if (string.IsNullOrWhiteSpace(OtherHousingExpense)) returnString.AppendLine("Other Housing Expense Not Provided");
+                        if (string.IsNullOrWhiteSpace(OtherHousingExpense)) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoHousingExpense, User.UserLang));
                     }
                     else
                     {

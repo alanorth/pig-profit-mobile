@@ -12,6 +12,7 @@
             <!-- Date Dropdowns -->
             <Label x:Name="DurationLabel"
                        StyleClass="ReportHeader"/>
+            <!--<Button Text="Refresh" Clicked="Refresh_Button_Clicked"></Button>-->
             <BoxView StyleClass="Seperator"/>
             <StackLayout
                 Orientation="Horizontal"

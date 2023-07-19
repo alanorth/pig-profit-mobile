@@ -513,7 +513,7 @@ namespace PigTool.ViewModels.DataViewModels
 
             if (!string.IsNullOrWhiteSpace(valid))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", valid, "OK");
+                await Application.Current.MainPage.DisplayAlert(Error, valid, OK);
                 return;
             }
 
@@ -542,14 +542,14 @@ namespace PigTool.ViewModels.DataViewModels
                 //_itemForEditing.Country = SelectedCountry != null ? SelectedCountry.TranslationRowKey : null;
 
                 await repo.UpdateUserInfo(_itemForEditing);
-                //await Application.Current.MainPage.DisplayAlert("Upnamed", "Reproduction record has been updated", "OK");
+                //await Application.Current.MainPage.DisplayAlert("Upnamed", "Reproduction record has been updated", OK);
                 //await Shell.Current.Navigation.PopAsync();
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "Something went wrong, please try again later", "OK");
+                await Application.Current.MainPage.DisplayAlert(Error, "Something went wrong, please try again later", OK);
             }
-            await Application.Current.MainPage.DisplayAlert("Saved", "Your changes have been saved", "OK");
+            await Application.Current.MainPage.DisplayAlert("Saved", "Your changes have been saved", OK);
             await Application.Current.MainPage.Navigation.PopAsync();
 
         }

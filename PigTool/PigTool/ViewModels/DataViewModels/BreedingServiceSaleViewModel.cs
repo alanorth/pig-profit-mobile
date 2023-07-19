@@ -438,7 +438,7 @@ namespace PigTool.ViewModels.DataViewModels
 
             if (!string.IsNullOrWhiteSpace(valid))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", valid, "OK");
+                await Application.Current.MainPage.DisplayAlert(Error, valid, OK);
                 return;
             }
 
@@ -460,7 +460,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
                 await repo.UpdateBreedingServiceSaleItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert("Updated", "Sale of reproductive services has been saved", "OK");
+                await Application.Current.MainPage.DisplayAlert(Updated, LogicHelper.GetTranslationFromStore(TranslationStore, "SaleSaved", User.UserLang), OK);
                 await Shell.Current.Navigation.PopAsync();
             }
             else
@@ -486,12 +486,12 @@ namespace PigTool.ViewModels.DataViewModels
                 try
                 {
                     await repo.AddSingleBreedingServiceSaleItem(newBreedingServiceSale);
-                    await Application.Current.MainPage.DisplayAlert("Created", "Sale of reproductive services has been saved", "OK");
+                    await Application.Current.MainPage.DisplayAlert(Created, LogicHelper.GetTranslationFromStore(TranslationStore, "SaleSaved" , User.UserLang), OK);
                     await Shell.Current.Navigation.PopAsync();
                 }
                 catch (Exception ex)
                 {
-                    await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                    await Application.Current.MainPage.DisplayAlert(Error, ex.InnerException.Message, OK);
                 }
             }
         }
@@ -558,21 +558,21 @@ namespace PigTool.ViewModels.DataViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                if (Date == null) returnString.AppendLine("Date obtained not provided");
-                if (AmountRecieved == null) returnString.AppendLine("Amount Recieved Not Provided");
-                if (PaymentType != null && PaymentValue == null) returnString.AppendLine("Payment Value Not Provided");
-                if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
+                if (Date == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDate, User.UserLang));
+                if (AmountRecieved == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoAmountRecevied, User.UserLang));
+                if (PaymentType != null && PaymentValue == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoPaymentValue, User.UserLang));
+                if (TransportationCost == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoTransportationCost, User.UserLang));
                 //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
 
                 if (SelectedServiceType != null && SelectedServiceType.TranslationRowKey == Constants.OTHER)
                 {
-                    if (string.IsNullOrWhiteSpace(OtherServiceType)) returnString.AppendLine("Other Service Type Not Provided");
+                    if (string.IsNullOrWhiteSpace(OtherServiceType)) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoServiceType, User.UserLang));
                 }
 
                 if (SelectedClient != null && SelectedClient.TranslationRowKey == Constants.OTHER)
                 {
-                    if (string.IsNullOrWhiteSpace(OtherClient)) returnString.AppendLine("Other Client Not Provided");
+                    if (string.IsNullOrWhiteSpace(OtherClient)) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NotOtherClient, User.UserLang));
                 }
 
                 return returnString.ToString();

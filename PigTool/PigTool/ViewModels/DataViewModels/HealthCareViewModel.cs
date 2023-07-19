@@ -525,7 +525,7 @@ namespace PigTool.ViewModels.DataViewModels
 
             if (!string.IsNullOrWhiteSpace(valid))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", valid, "OK");
+                await Application.Current.MainPage.DisplayAlert(Error, valid, OK);
                 return;
             }
 
@@ -551,7 +551,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
                 await repo.UpdateHealthCareItem(_itemForEditing);
-                await Application.Current.MainPage.DisplayAlert("Updated", "Health care record has been updated", "OK");
+                await Application.Current.MainPage.DisplayAlert(Updated, LogicHelper.GetTranslationFromStore(TranslationStore, "HealthUpdated", User.UserLang), OK);
                 await Shell.Current.Navigation.PopAsync();
             }
             else
@@ -582,18 +582,18 @@ namespace PigTool.ViewModels.DataViewModels
                         PartitionKey = Constants.PartitionKeyHealthCareItem,
                     };
                     await repo.AddSingleHealthCareItem(newHealthCare);
-                    await Application.Current.MainPage.DisplayAlert("Created", "Health care record has been saved", "OK");
+                    await Application.Current.MainPage.DisplayAlert(Created, LogicHelper.GetTranslationFromStore(TranslationStore, "HealthSaved", User.UserLang), OK);
                     await Shell.Current.Navigation.PopAsync();
                 }
                 catch (Exception ex)
                 {
                     if (ex.InnerException != null)
                     {
-                        await Application.Current.MainPage.DisplayAlert("Error", ex.InnerException.Message, "OK");
+                        await Application.Current.MainPage.DisplayAlert(Error, ex.InnerException.Message, OK);
                     }
                     else
                     {
-                        await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+                        await Application.Current.MainPage.DisplayAlert(Error, ex.Message, OK);
                     }
                 }
             }
@@ -665,31 +665,31 @@ namespace PigTool.ViewModels.DataViewModels
             try
             {
                 StringBuilder returnString = new StringBuilder();
-                if (Date == null) returnString.AppendLine("Date not provided");
-                if (HealthCareCost == null) returnString.AppendLine("Health Care Cost Not Provided");
-                if (MedicineCost == null) returnString.AppendLine("Medicine Cost Not Provided");
-                if (TransportationCost == null) returnString.AppendLine("Transportation Cost Not Provided");
+                if (Date == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoDate, User.UserLang));
+                if (HealthCareCost == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoHealthCareCost, User.UserLang));
+                if (MedicineCost == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoMedicineCost, User.UserLang));
+                if (TransportationCost == null) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, "NoTransportationCost", User.UserLang));
                 //if (OtherCosts == null) returnString.AppendLine("Other Cost Not Provided");
 
 
                 if (SelectedHealthCareType != null && SelectedHealthCareType.TranslationRowKey == Constants.OTHER)
                 {
-                    if (string.IsNullOrWhiteSpace(OtherHealthCareType)) returnString.AppendLine("Other Health Care Type Not Provided");
+                    if (string.IsNullOrWhiteSpace(OtherHealthCareType)) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore,Constants.NoOtherHealthCareYpe, User.UserLang)); 
                 }
 
                 if (SelectedProvider != null && SelectedProvider.TranslationRowKey == Constants.OTHER)
                 {
-                    if (string.IsNullOrWhiteSpace(OtherProvider)) returnString.AppendLine("Other Provider Not Provided");
+                    if (string.IsNullOrWhiteSpace(OtherProvider)) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore,Constants.NoOtherProvider, User.UserLang)); 
                 }
 
                 if (SelectedMedicineType != null && SelectedMedicineType.TranslationRowKey == Constants.OTHER)
-                {
-                    if (string.IsNullOrWhiteSpace(OtherMedicineType)) returnString.AppendLine("Other Medicine Type Not Provided");
+                { 
+                    if (string.IsNullOrWhiteSpace(OtherMedicineType)) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoOtherMediceType, User.UserLang)); 
                 }
 
                 if (SelectedPurchasedFrom != null && SelectedPurchasedFrom.TranslationRowKey == Constants.OTHER)
                 {
-                    if (string.IsNullOrWhiteSpace(OtherPurchasedFrom)) returnString.AppendLine("Other Purchased From Not Provided");
+                    if (string.IsNullOrWhiteSpace(OtherPurchasedFrom)) returnString.AppendLine(LogicHelper.GetTranslationFromStore(TranslationStore, Constants.NoOtherPurcFrom, User.UserLang)); 
                 }
 
                 return returnString.ToString();

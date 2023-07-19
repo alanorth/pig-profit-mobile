@@ -523,7 +523,7 @@ namespace PigTool.ViewModels
                     LastTimeDataUploaded = User.LastUploadDate;
                     await repo.UpdateUserInfo(User);
                     await PopulateCollections();
-                    await Application.Current.MainPage.DisplayAlert("Data Uploaded!", "The Data has been uploaded", "OK");
+                    await Application.Current.MainPage.DisplayAlert("Data Uploaded!", "The Data has been uploaded", OK);
                     Countof_TotalItems = 0;
 
                 }
@@ -533,10 +533,10 @@ namespace PigTool.ViewModels
                     {
                         var stringBuilder = new StringBuilder();
                         stringBuilder.Append(res.Message.Replace("'",""));
-                        await Application.Current.MainPage.DisplayAlert("Error", stringBuilder.ToString(), "OK");
+                        await Application.Current.MainPage.DisplayAlert(Error, stringBuilder.ToString(), OK);
                     }catch(Exception ex)
                     {
-                        await Application.Current.MainPage.DisplayAlert("Error", "Upload Failed", "OK");
+                        await Application.Current.MainPage.DisplayAlert(Error, "Upload Failed", OK);
                     }
                 }
 
@@ -549,7 +549,7 @@ namespace PigTool.ViewModels
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message.ToString());
-                await Application.Current.MainPage.DisplayAlert("Error", ex.Message.ToString(), "OK");
+                await Application.Current.MainPage.DisplayAlert(Error, ex.Message.ToString(), OK);
                 await PopupNavigation.Instance.PopAsync();
             }
 
