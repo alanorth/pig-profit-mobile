@@ -12,6 +12,8 @@ namespace PigTool.Views
         AdvancedTabViewModel _viewModel;
         private DateRange _dateRange;
         bool firstRender = true;
+        private bool FirstDislay = true;
+
         public AdvancedTab(DateRange daterange)
         {
             _dateRange = daterange;
@@ -33,8 +35,14 @@ namespace PigTool.Views
             TotalLabels.Children.Add(TotalRevenueLabel);
             TotalLabels.Children.Add(TotalCostLabel);
             TotalLabels.Children.Add(ProfitLossLabel);
-            _viewModel.GetDataForCharts();
-            _viewModel.LoadAdvancedBarChart(_viewModel.FullList);
+
+            if (FirstDislay)
+            {
+                _viewModel.GetDataForCharts();
+                _viewModel.LoadAdvancedBarChart(_viewModel.FullList);
+                FirstDislay = false;
+            }
+            
             this.Title = _viewModel.AdvanceTabLable;
         }
 
@@ -52,7 +60,8 @@ namespace PigTool.Views
             endDatePicker.Date = _viewModel.EndDate = _dateRange.EndDate;
             if (!firstRender)
             {
-                _viewModel.ConstructPage();
+                _viewModel.GetDataForCharts();
+                _viewModel.LoadAdvancedBarChart(_viewModel.FullList);
             }
             else
             {

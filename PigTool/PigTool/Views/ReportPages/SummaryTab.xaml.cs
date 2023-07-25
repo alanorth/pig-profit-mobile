@@ -18,7 +18,8 @@ namespace PigTool.Views
     {
         SummaryTabViewModel _ViewModel;
         private DateRange _dateRange;
-        bool firstRender = true;
+        bool reRender = true;
+        bool FirstDislay  = true;
 
         public SummaryTab(DateRange dateRange)
         {
@@ -33,7 +34,12 @@ namespace PigTool.Views
             DurationLabel.SetBinding(Label.TextProperty,nameof(_ViewModel.ReportingDuration));
             SummaryTableTitle.SetBinding(Label.TextProperty, nameof(_ViewModel.SummaryTableHeading));
             PopulateThePage();
-            _ViewModel.ConstructPage();
+            if (FirstDislay)
+            {
+                _ViewModel.ConstructPage();
+                FirstDislay = false;
+            }
+
             this.Title = _ViewModel.SummaryLabel;
         }
 
@@ -99,13 +105,13 @@ namespace PigTool.Views
 
             startDatePicker.Date = _ViewModel.StartDate = _dateRange.StartDate;
             endDatePicker.Date = _ViewModel.EndDate = _dateRange.EndDate;
-            if (!firstRender)
+            if (!reRender)
             {
                 _ViewModel.ConstructPage();
             }
             else
             {
-                firstRender = false;
+                reRender = false;
             }
         }
 
