@@ -374,8 +374,8 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.OtherServiceType = OtherServiceType;
                 _itemForEditing.WhoProvidedService = SelectedWhoProvidedService != null ? SelectedWhoProvidedService.TranslationRowKey : null;
                 _itemForEditing.OtherWhoProvidedService = OtherWhoProvidedService;
-                _itemForEditing.OtherCosts = OtherCosts;
-                _itemForEditing.TransportCost = TransportCosts;
+                _itemForEditing.OtherCosts = OtherCosts == null ? 0 : (double)OtherCosts;
+                _itemForEditing.TransportCost = TransportCosts == null ? 0 : (double)TransportCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
@@ -393,8 +393,8 @@ namespace PigTool.ViewModels.DataViewModels
                     OtherServiceType = OtherServiceType,
                     WhoProvidedService = SelectedWhoProvidedService != null ? SelectedWhoProvidedService.TranslationRowKey : null,
                     OtherWhoProvidedService = OtherWhoProvidedService,
-                    OtherCosts = OtherCosts,
-                    TransportCost = TransportCosts,
+                    OtherCosts = OtherCosts == null ? 0 : (double)OtherCosts,
+                    TransportCost = TransportCosts == null ? 0 : (double)TransportCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,

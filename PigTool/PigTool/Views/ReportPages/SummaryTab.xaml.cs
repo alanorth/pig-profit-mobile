@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using static PigTool.Helpers.ChartHelper;
@@ -36,7 +37,8 @@ namespace PigTool.Views
             PopulateThePage();
             if (FirstDislay)
             {
-                _ViewModel.ConstructPage();
+                var task = Task.Run(async () => await _ViewModel.ConstructPage());
+                task.Wait();
                 FirstDislay = false;
             }
 
@@ -94,9 +96,9 @@ namespace PigTool.Views
             TotalRevenueLabel.SetBinding(Label.TextProperty, nameof(_ViewModel.TotalPeriodRevenueLabel));
             var ProfitLossLabel = new Label();
             ProfitLossLabel.SetBinding(Label.TextProperty, nameof(_ViewModel.TotalPeriodDifferenceLabel));
-
-            TotalLabels.Children.Add(TotalRevenueLabel);
+                        
             TotalLabels.Children.Add(TotalCostLabel);
+            TotalLabels.Children.Add(TotalRevenueLabel);
             TotalLabels.Children.Add(ProfitLossLabel);
         }
 
@@ -107,7 +109,7 @@ namespace PigTool.Views
             endDatePicker.Date = _ViewModel.EndDate = _dateRange.EndDate;
             if (!reRender)
             {
-                _ViewModel.ConstructPage();
+                await _ViewModel.ConstructPage();
             }
             else
             {
@@ -130,9 +132,9 @@ namespace PigTool.Views
             _dateRange.EndDate = _ViewModel.EndDate = endDatePicker.Date;
         }
 
-        private void Refresh_Button_Clicked(object sender, EventArgs e)
+        private async void Refresh_Button_Clicked(object sender, EventArgs e)
         {
-            _ViewModel.ConstructPage();
+            await _ViewModel.ConstructPage();
         }
     }
 

@@ -487,8 +487,8 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.Date = Date;
                 _itemForEditing.FeedType = SelectedFeedType != null ? SelectedFeedType.TranslationRowKey : null;
                 _itemForEditing.OtherFeedType = OtherFeedType;
-                _itemForEditing.AmountPurchased = AmountPurchased;
-                _itemForEditing.OtherCosts = OtherCosts;
+                _itemForEditing.AmountPurchased = AmountPurchased == null ? 0 : (double)AmountPurchased;
+                _itemForEditing.OtherCosts = OtherCosts == null ? 0 : (double)OtherCosts;
                 _itemForEditing.AmountPurchasedUnit = SelectedAmountPurchasedUnit != null ? SelectedAmountPurchasedUnit.TranslationRowKey : null;
                 _itemForEditing.OtherAmountPurchaseUnit = OtherAmountPurchasedUnit;
                 _itemForEditing.PurchasedFrom = SelectedPurchasedFrom != null ? SelectedPurchasedFrom.TranslationRowKey : null;
@@ -511,8 +511,8 @@ namespace PigTool.ViewModels.DataViewModels
                     Date = Date,
                     FeedType = SelectedFeedType != null ? SelectedFeedType.TranslationRowKey : null,
                     OtherFeedType = OtherFeedType,
-                    AmountPurchased = AmountPurchased,
-                    OtherCosts = OtherCosts,
+                    AmountPurchased = AmountPurchased == null ? 0 : (double)AmountPurchased,
+                    OtherCosts = OtherCosts == null ? 0 : (double)OtherCosts,
                     AmountPurchasedUnit = SelectedAmountPurchasedUnit != null ? SelectedAmountPurchasedUnit.TranslationRowKey : null,
                     OtherAmountPurchaseUnit = OtherAmountPurchasedUnit,
                     PurchasedFrom = SelectedPurchasedFrom != null ? SelectedPurchasedFrom.TranslationRowKey : null,

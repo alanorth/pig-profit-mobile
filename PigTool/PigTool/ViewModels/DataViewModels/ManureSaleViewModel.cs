@@ -451,7 +451,7 @@ namespace PigTool.ViewModels.DataViewModels
                 //_itemForEditing.PaymentType = SelectedPaymentType != null ? SelectedPaymentType.TranslationRowKey : null;
                 //_itemForEditing.PaymentValue = (double)PaymentValue;
                 _itemForEditing.TransportationCost = (double)TransportationCost;
-                _itemForEditing.OtherCosts = OtherCosts;
+                _itemForEditing.OtherCosts = OtherCosts == null ? 0 : (double)OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
@@ -473,7 +473,7 @@ namespace PigTool.ViewModels.DataViewModels
                     //PaymentType = SelectedPaymentType != null ? SelectedPaymentType.TranslationRowKey : null,
                     //PaymentValue = PaymentValue,
                     TransportationCost = (double)TransportationCost,
-                    OtherCosts = OtherCosts,
+                    OtherCosts = OtherCosts == null ? 0 : (double)OtherCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,

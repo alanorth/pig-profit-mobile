@@ -231,10 +231,9 @@ namespace PigTool.Helpers
 
             public bool Equals(YearMonth other)
             {
-                var result =
-                other.Month == Month &&
-                other.Year == Year
-                ;
+                var result = (other.Month == Month
+                    && other.Year == Year
+                    && other.Date == Date);
                 return result;
             }
         }
@@ -533,7 +532,7 @@ namespace PigTool.Helpers
             }
             else
             {
-                daylength = Math.Round(daylength);
+                daylength = Math.Round(daylength) + 1;
             }
 
             var dailyCost = totalCost / daylength;

@@ -325,8 +325,8 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.TotalAmountRepaid = (double)TotalAmountRepaid;
                 _itemForEditing.LoanProvider = SelectedLoanProvider != null ? SelectedLoanProvider.TranslationRowKey : null;
                 _itemForEditing.OtherLoanProvider = OtherLoanProvider;
-                _itemForEditing.OtherCosts = OtherCosts;
-                _itemForEditing.TransportCosts = TransportCosts;
+                _itemForEditing.OtherCosts = OtherCosts == null ? 0 : (double)TransportCosts;
+                _itemForEditing.TransportCosts = TransportCosts == null ? 0 : (double)TransportCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
                 _itemForEditing.DurationStart = DurationStart;
@@ -344,8 +344,8 @@ namespace PigTool.ViewModels.DataViewModels
                     TotalAmountRepaid = (double)TotalAmountRepaid,
                     LoanProvider = SelectedLoanProvider != null ? SelectedLoanProvider.TranslationRowKey : null,
                     OtherLoanProvider = OtherLoanProvider,
-                    OtherCosts = OtherCosts,
-                    TransportCosts = TransportCosts,
+                    OtherCosts = OtherCosts== null ? 0 : (double)TransportCosts,
+                    TransportCosts = TransportCosts == null ? 0 : (double)TransportCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,

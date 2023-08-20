@@ -546,7 +546,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.OtherPurchasedFrom = OtherPurchasedFrom;
                 //_itemForEditing.CreatedBy = User.AuthorisedUserName;
                 _itemForEditing.TransportationCost = (double)TransportationCost;
-                _itemForEditing.OtherCosts = OtherCosts;
+                _itemForEditing.OtherCosts = OtherCosts == null ? 0 : (double)OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
 
@@ -575,7 +575,7 @@ namespace PigTool.ViewModels.DataViewModels
                         PurchasedFrom = SelectedPurchasedFrom != null ? SelectedPurchasedFrom.TranslationRowKey : null,
                         OtherPurchasedFrom = OtherPurchasedFrom,
                         TransportationCost = (double)TransportationCost,
-                        OtherCosts = OtherCosts,
+                        OtherCosts = OtherCosts == null ? 0 : (double)OtherCosts,
                         Comment = Comment,
                         LastModified = DateTime.UtcNow,
                         CreatedBy = User.UserName,

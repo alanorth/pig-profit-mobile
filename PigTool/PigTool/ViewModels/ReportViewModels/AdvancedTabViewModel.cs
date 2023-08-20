@@ -13,6 +13,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using System.Collections;
 using Shared;
 using OxyPlot.Xamarin.Forms;
+using System.Threading.Tasks;
 
 namespace PigTool.ViewModels.ReportViewModels
 {
@@ -171,7 +172,7 @@ namespace PigTool.ViewModels.ReportViewModels
             List<string> MonthNameList = GetMonthNamesUsed(providedData);
             PlotModel model = CreateAdvanceChart(providedData, MonthNameList, true);
             PlotModel incomeModel = CreateAdvanceChart(providedData, MonthNameList, false);
-            PlotModel LegendHolder = CreateLegendHolder(providedData, MonthNameList, false);
+            PlotModel LegendHolder = CreateLegendHolder(providedData, MonthNameList, true);
             PlotModel IncomeLegHolder = CreateLegendHolder(providedData, MonthNameList, false);
 
             CostGraphModel = model;
@@ -347,7 +348,7 @@ namespace PigTool.ViewModels.ReportViewModels
             return MonthNameList;
         }
 
-        public async void GetDataForCharts()
+        public async Task GetDataForCharts()
         {
             ChartHelper chartHelper = new ChartHelper();
             var result = await chartHelper.GetData();

@@ -370,7 +370,7 @@ namespace PigTool.ViewModels.DataViewModels
                 //_itemForEditing.TimePeriod = (int)TimePeriod;
                 //_itemForEditing.TimePeriodUnit = SelectedTimePeriodUnit.TranslationRowKey;
                 _itemForEditing.TotalCosts = (double)TotalCosts;
-                _itemForEditing.OtherCosts = OtherCosts;
+                _itemForEditing.OtherCosts = OtherCosts == null ? 0 : (double)OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
                 _itemForEditing.DurationStart = DurationStart;
@@ -392,7 +392,7 @@ namespace PigTool.ViewModels.DataViewModels
                     //TimePeriod = (int)TimePeriod,
                     ///TimePeriodUnit = SelectedTimePeriodUnit.TranslationRowKey,
                     TotalCosts = (double)TotalCosts,
-                    OtherCosts = OtherCosts,
+                    OtherCosts = OtherCosts == null ? 0 : (double)OtherCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,

@@ -411,14 +411,14 @@ namespace PigTool.ViewModels.DataViewModels
             {
 
                 _itemForEditing.Date = Date;
-                _itemForEditing.WaterPurchased = WaterPurchased;
+                _itemForEditing.WaterPurchased = WaterPurchased == null ? 0 : (double)WaterPurchased;
                 _itemForEditing.WaterPurchasedUnit = SelectedWaterPurchasedUnit != null ? SelectedWaterPurchasedUnit.TranslationRowKey : null;
                 _itemForEditing.OtherWaterPurchasedUnit = OtherWaterPurchasedUnit;
                 _itemForEditing.PurchasedWaterFrom = SelectedPurchasedWaterFrom != null ? SelectedPurchasedWaterFrom.TranslationRowKey : null;
                 _itemForEditing.OtherPurchasedWaterFrom = OtherPurchasedWaterFrom;
                 _itemForEditing.TotalCosts = (double)TotalCosts;
                 _itemForEditing.TransportationCost = (double)TransportationCost;
-                _itemForEditing.OtherCosts = OtherCosts;
+                _itemForEditing.OtherCosts = OtherCosts == null ? 0 : (double)OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
                 _itemForEditing.DurationStart = DurationStart;
@@ -433,14 +433,14 @@ namespace PigTool.ViewModels.DataViewModels
                 var newWaterCost = new WaterCostItem
                 {
                     Date = Date,
-                    WaterPurchased = WaterPurchased,
+                    WaterPurchased = WaterPurchased == null ? 0 : (double)WaterPurchased,
                     WaterPurchasedUnit = SelectedWaterPurchasedUnit != null ? SelectedWaterPurchasedUnit.TranslationRowKey : null,
                     OtherWaterPurchasedUnit = OtherWaterPurchasedUnit,
                     PurchasedWaterFrom = SelectedPurchasedWaterFrom != null ? SelectedPurchasedWaterFrom.TranslationRowKey : null,
                     OtherPurchasedWaterFrom = OtherPurchasedWaterFrom,
                     TotalCosts = (double)TotalCosts,
                     TransportationCost = (double)TransportationCost,
-                    OtherCosts = OtherCosts,
+                    OtherCosts = OtherCosts == null ? 0 : (double)OtherCosts,
                     Comment = Comment,
                     LastModified = DateTime.UtcNow,
                     CreatedBy = User.UserName,

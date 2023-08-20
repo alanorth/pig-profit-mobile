@@ -2,6 +2,8 @@
 using PigTool.ViewModels.ReportViewModels;
 using System;
 using System.ComponentModel;
+using System.Threading;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -31,14 +33,21 @@ namespace PigTool.Views
             TotalRevenueLabel.SetBinding(Label.TextProperty, nameof(_viewModel.TotalPeriodRevenueLabel));
             var ProfitLossLabel = new Label();
             ProfitLossLabel.SetBinding(Label.TextProperty, nameof(_viewModel.TotalPeriodDifferenceLabel));
-
-            TotalLabels.Children.Add(TotalRevenueLabel);
+                        
             TotalLabels.Children.Add(TotalCostLabel);
+            TotalLabels.Children.Add(TotalRevenueLabel);
             TotalLabels.Children.Add(ProfitLossLabel);
 
             if (FirstDislay)
             {
-                _viewModel.GetDataForCharts();
+                var task = Task.Run(async () => await _viewModel.GetDataForCharts());
+                var result = task.IsCompleted;
+
+                while (!result) {
+                    Thread.Sleep(100);
+                    result = task.IsCompleted;
+                }
+                //task.RunSynchronously();
                 _viewModel.LoadAdvancedBarChart(_viewModel.FullList);
                 FirstDislay = false;
             }

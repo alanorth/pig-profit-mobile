@@ -315,7 +315,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.LabourType = SelectedLabourType != null ? SelectedLabourType.TranslationRowKey : null;
                 _itemForEditing.OtherLabourType = OtherLaboutType;
                 _itemForEditing.AmountPaid = (double)AmountPaid;
-                _itemForEditing.OtherCost = OtherCosts;
+                _itemForEditing.OtherCost = OtherCosts == null ? 0 : (double)OtherCosts;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
                 _itemForEditing.DurationStart = DurationStart;
@@ -336,7 +336,7 @@ namespace PigTool.ViewModels.DataViewModels
                         LabourType = SelectedLabourType != null ? SelectedLabourType.TranslationRowKey : null,
                         OtherLabourType = OtherLaboutType,
                         AmountPaid = (double)AmountPaid,
-                        OtherCost = OtherCosts,
+                        OtherCost = OtherCosts == null ? 0 : (double)OtherCosts,
                         Comment = Comment,
                         LastModified = DateTime.UtcNow,
                         CreatedBy = User.UserName,

@@ -237,7 +237,7 @@ namespace PigTool.ViewModels
             OnPropertyChanged("GraphModel");
         }
 
-        public async void ConstructPage()
+        public async Task ConstructPage()
         {
             // Get chart data and load variables
             ChartHelper chartHelper = new ChartHelper();

@@ -339,7 +339,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.OtherHousingExpense = OtherHousingExpense;
                 _itemForEditing.TotalCosts = (double)TotalCosts;
                 _itemForEditing.TransportationCost = (double)TransportationCost;
-                _itemForEditing.OtherCosts = OtherCosts;
+                _itemForEditing.OtherCosts = OtherCosts == null ? 0 : (double)OtherCosts;
                 _itemForEditing.YearsExpected = YearsExpected;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
@@ -359,7 +359,7 @@ namespace PigTool.ViewModels.DataViewModels
                         OtherHousingExpense = OtherHousingExpense,
                         TotalCosts = (double)TotalCosts,
                         TransportationCost = (double)TransportationCost,
-                        OtherCosts = OtherCosts,
+                        OtherCosts = OtherCosts == null ? 0 : (double)OtherCosts,
                         YearsExpected = YearsExpected,
                         Comment = Comment,
                         LastModified = DateTime.UtcNow,
