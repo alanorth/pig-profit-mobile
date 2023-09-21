@@ -188,7 +188,7 @@ namespace PigTool.ViewModels.DataViewModels
             IsEditMode = true;
             IsCreationMode = !EditExistingMode;
 
-            OtherIncomeTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherIncomeTitleTranslation), User.UserLang);
+            OtherIncomeTitleTranslation = OtherIncome;
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
 
             OtherWhatForTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherWhatForTranslation), User.UserLang);
@@ -206,7 +206,7 @@ namespace PigTool.ViewModels.DataViewModels
 
         public void populatewithData(OtherIncomeItem item)
         {
-            isEditMode = false;
+            isEditMode = true;
             CreationMode = false;
             EditExistingMode = !CreationMode;
 

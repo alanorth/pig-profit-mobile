@@ -340,7 +340,7 @@ namespace PigTool.ViewModels.DataViewModels
             IsEditMode = true;
             IsCreationMode = !EditExistingMode;
 
-            WaterCostTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(WaterCostTitleTranslation), User.UserLang);
+            WaterCostTitleTranslation = Water;
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
 
             WaterPurchasedTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(WaterPurchasedTranslation), User.UserLang);
@@ -368,7 +368,7 @@ namespace PigTool.ViewModels.DataViewModels
 
         public void populatewithData(WaterCostItem item)
         {
-            isEditMode = false;
+            isEditMode = true;
             CreationMode = false;
             EditExistingMode = !CreationMode;
 

@@ -2997,17 +2997,17 @@ namespace Shared.Migrations
                         {
                             RowKey = "LabourTitleTranslation",
                             English = "Labour",
-                            Lang1 = "Abaakozi",
+                            Lang1 = "Abakozi",
                             Lang2 = "Lao động",
                             Lang3 = "Umurimo"
                         },
                         new
                         {
                             RowKey = "CostTranslation",
-                            English = "Any other cost:",
-                            Lang1 = "Ensasanya endala",
-                            Lang2 = "Chi phí khác",
-                            Lang3 = "Ikindi kiguzi cyishuwe"
+                            English = "Any Other Cost",
+                            Lang1 = "Esaasaanya endala",
+                            Lang2 = "Các chi phí khác",
+                            Lang3 = "Ibindi byishuwe"
                         },
                         new
                         {
@@ -3077,7 +3077,7 @@ namespace Shared.Migrations
                         {
                             RowKey = "HealthCareTitleTranslation",
                             English = "Healthcare",
-                            Lang1 = "Obujanjabi",
+                            Lang1 = "Ebyobulamu",
                             Lang2 = "Chăm sóc sức khỏe vật nuôi",
                             Lang3 = "kwita ku buzima bw'amatungo"
                         },
@@ -3309,9 +3309,9 @@ namespace Shared.Migrations
                         {
                             RowKey = "OtherCostTranslation",
                             English = "Any Other Cost",
-                            Lang1 = "Ensasaanya endala",
-                            Lang2 = "Chi phí khác",
-                            Lang3 = "Ikindi kiguzi cyishuwe"
+                            Lang1 = "Esaasaanya endala",
+                            Lang2 = "Các chi phí khác",
+                            Lang3 = "Ibindi byishuwe"
                         },
                         new
                         {
@@ -3349,9 +3349,9 @@ namespace Shared.Migrations
                         {
                             RowKey = "OtherIncome",
                             English = "Other Income",
-                            Lang1 = "Enyigiza yasente endala",
+                            Lang1 = "Enyingiza endala",
                             Lang2 = "Thu nhập khác",
-                            Lang3 = "Andi mafaranga yinjira"
+                            Lang3 = "Andi mafaranga yinjiye"
                         },
                         new
                         {
@@ -3469,9 +3469,9 @@ namespace Shared.Migrations
                         {
                             RowKey = "OtherIncomeTitleTranslation",
                             English = "Other Income",
-                            Lang1 = "Sente endala zoyingizza",
+                            Lang1 = "Enyingiza endala",
                             Lang2 = "Thu nhập khác",
-                            Lang3 = "Andi mafaranga yinjira"
+                            Lang3 = "Andi mafaranga yinjiye"
                         },
                         new
                         {
@@ -5132,18 +5132,18 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "SummaryChartProfitLoss",
-                            English = "Total Profit/Loss",
+                            English = "Total Profit / Loss",
                             Lang1 = "Omugatte gw'a magoba oba okufirizibwa",
-                            Lang2 = "Tổng Lãi/Lỗ",
-                            Lang3 = "Inyugu yose/Igihombo cyose hamwe"
+                            Lang2 = "Tổng Lãi / Lỗ",
+                            Lang3 = "Inyugu yose / Igihombo cyose hamwe"
                         },
                         new
                         {
                             RowKey = "SummaryTableHeading",
-                            English = "Profit/loss by month",
+                            English = "Profit / Loss by month",
                             Lang1 = "Amagoba oba okufurizibwa mu' mwezi",
-                            Lang2 = "Lãi/lỗ theo tháng",
-                            Lang3 = "Inyungu/igihombo ku kwezi"
+                            Lang2 = "Lãi / Lỗ theo tháng",
+                            Lang3 = "Inyungu / Igihombo ku kwezi"
                         },
                         new
                         {
@@ -5373,17 +5373,17 @@ namespace Shared.Migrations
                         {
                             RowKey = "AcceptTranslation",
                             English = "Accept",
-                            Lang1 = "Kirizza ",
+                            Lang1 = "Kirizza",
                             Lang2 = "Chấp nhận",
                             Lang3 = "Emera"
                         },
                         new
                         {
-                            RowKey = "",
-                            English = "",
-                            Lang1 = "",
-                            Lang2 = "",
-                            Lang3 = ""
+                            RowKey = "VersionTranslation",
+                            English = "Version",
+                            Lang1 = "Ekika",
+                            Lang2 = "Toleo",
+                            Lang3 = "Phiên bản"
                         });
                 });
 

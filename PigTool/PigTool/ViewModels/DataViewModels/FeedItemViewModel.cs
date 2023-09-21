@@ -406,7 +406,7 @@ namespace PigTool.ViewModels.DataViewModels
             IsEditMode = true;
             IsCreationMode = !EditExistingMode;
 
-            FeedItemTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FeedItemTitleTranslation), User.UserLang);
+            FeedItemTitleTranslation = Feed;
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
 
             FeedTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FeedTypeTranslation), User.UserLang);
@@ -439,7 +439,7 @@ namespace PigTool.ViewModels.DataViewModels
 
         public void populatewithData(FeedItem item)
         {
-            isEditMode = false;
+            isEditMode = true;
             CreationMode = false;
             EditExistingMode = !CreationMode;
 

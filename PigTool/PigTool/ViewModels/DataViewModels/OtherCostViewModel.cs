@@ -188,7 +188,7 @@ namespace PigTool.ViewModels.DataViewModels
             IsEditMode = true;
             IsCreationMode = !EditExistingMode;
 
-            OtherCostTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherCostTitleTranslation), User.UserLang);
+            OtherCostTitleTranslation = Other;
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
 
             OtherWhatForTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherWhatForTranslation), User.UserLang);
@@ -206,7 +206,7 @@ namespace PigTool.ViewModels.DataViewModels
 
         public void populatewithData(OtherCostItem item)
         {
-            isEditMode = false;
+            isEditMode = true;
             CreationMode = false;
             EditExistingMode = !CreationMode;
 

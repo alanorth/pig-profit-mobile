@@ -1,4 +1,5 @@
-﻿using PigTool.ViewModels;
+﻿using PigTool.Interfaces;
+using PigTool.ViewModels;
 using Shared;
 using System;
 using System.Diagnostics;
@@ -20,6 +21,12 @@ namespace PigTool.Views
             UserProfile.Text = _viewModel.ChangeProfileTranslation;
             UserLanguage.Text = _viewModel.LanguageTranslation;
             Logout.Text = _viewModel.LogoutTranslation;
+            PrivacyPolicy.Text = _viewModel.LegalDisclaimerTitleTranslation;
+            string version = DependencyService.Get<IAppVersionService>().GetVersionNumber();
+            int VersionCode = DependencyService.Get<IAppVersionService>().GetVersionCode();
+            AppVersion.Text = _viewModel.VersionTranslation + ": " + version + "." + VersionCode.ToString();
+
+
         }
 
         private async void EditUser_Tapped(object sender, System.EventArgs e)
@@ -33,7 +40,7 @@ namespace PigTool.Views
             string action = await DisplayActionSheet(_viewModel.ChangeLanguageTrasnlation, null, null, "English", "Luganda", "Tiếng Việt", "Kinyarwanda");
             if (action != null)
             {
-                bool answer = await DisplayAlert( _viewModel.SureTranslation, _viewModel.AppRestartTranslation, _viewModel.YesTranslation, _viewModel.NoTranslation);
+                bool answer = await DisplayAlert(_viewModel.SureTranslation, _viewModel.AppRestartTranslation, _viewModel.YesTranslation, _viewModel.NoTranslation);
                 if (answer)
                 {
                     //change language
@@ -56,6 +63,11 @@ namespace PigTool.Views
                 await _viewModel.repo.LogoutOfDatabase();
                 Process.GetCurrentProcess().Kill();
             }
+        }
+
+        private async void PrivacyPolicyTapped(object sender, System.EventArgs e)
+        {
+            await Navigation.PushAsync(new LegalDisclaimer(UserLangSettings.Eng, "", displayFromSettings: true));
         }
     }
 }

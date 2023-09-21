@@ -289,14 +289,14 @@ namespace PigTool.ViewModels.DataViewModels
             ResetTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ResetTranslation), User.UserLang);
             EditTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EditTranslation), User.UserLang);
             DeleteTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DeleteTranslation), User.UserLang);
-            HousingTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(HousingTitleTranslation), User.UserLang);
+            HousingTitleTranslation = Housing;
             PickerHousingExpenseTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(PickerHousingExpenseTranslation), User.UserLang);
 
         }
 
         public void populatewithData(AnimalHouseItem item)
         {
-            isEditMode = false;
+            isEditMode = true;
             CreationMode = false;
             EditExistingMode = !CreationMode;
 

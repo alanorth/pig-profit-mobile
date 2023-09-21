@@ -305,7 +305,7 @@ namespace PigTool.ViewModels.DataViewModels
             IsEditMode = true;
             IsCreationMode = !EditExistingMode;
 
-            ReproductiveTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ReproductiveTitleTranslation), User.UserLang);
+            ReproductiveTitleTranslation = Reproduction;
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
 
             ServiceTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ServiceTypeTranslation), User.UserLang);
@@ -329,7 +329,7 @@ namespace PigTool.ViewModels.DataViewModels
 
         public void populatewithData(ReproductiveItem item)
         {
-            isEditMode = false;
+            isEditMode = true;
             CreationMode = false;
             EditExistingMode = !CreationMode;
 

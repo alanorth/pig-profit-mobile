@@ -18,7 +18,7 @@ namespace PigTool.Views
         private UserLangSettings lang;
         private string translationRowKey;
 
-        public LegalDisclaimer(UserLangSettings lang, string translationRowKey)
+        public LegalDisclaimer(UserLangSettings lang, string translationRowKey,  bool  displayFromSettings = false)
         {
             this.lang = lang;
             this.translationRowKey = translationRowKey;
@@ -28,6 +28,13 @@ namespace PigTool.Views
             LegalBodyLabel.Text = _viewModel.LegalDisclaimerBodyTranslation;
             LegalAgreeLabel.Text = _viewModel.LegalDisclaimerAgreeTranslation;
             ProceedButton.Text = _viewModel.LegalDisclaimerProceedTranslation;
+
+            if(displayFromSettings)
+            {
+                LegalAgreeLabel.IsVisible = false;
+                checkBox.IsVisible = false;
+                ProceedButton.IsVisible = false;
+            }
         }
 
         async void Continue(object sender, EventArgs e)

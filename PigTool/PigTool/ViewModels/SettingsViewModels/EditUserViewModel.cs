@@ -16,6 +16,7 @@ namespace PigTool.ViewModels.DataViewModels
         private bool editExistingMode;
         //private string? userName;
         private string? name;
+        private string? gEmail;
         private string? gender;
         private string? phoneNumber;
         private string? district;
@@ -86,6 +87,19 @@ namespace PigTool.ViewModels.DataViewModels
                 {
                     name = value;
                     OnPropertyChanged(nameof(Name));
+                }
+            }
+        }
+
+        public string? GEmail
+        {
+            get => gEmail;
+            set
+            {
+                if (gEmail != value)
+                {
+                    gEmail = value;
+                    OnPropertyChanged(nameof(GEmail));
                 }
             }
         }
@@ -493,6 +507,7 @@ namespace PigTool.ViewModels.DataViewModels
             Commune = _itemForEditing.Commune;
             Sector = _itemForEditing.Sector;
             Cell = _itemForEditing.Cell;
+            GEmail = _itemForEditing.AuthorisedEmail;
 
 
         }

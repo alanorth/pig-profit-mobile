@@ -258,7 +258,7 @@ namespace PigTool.ViewModels.DataViewModels
             IsEditMode = true;
             IsCreationMode = !EditExistingMode;
 
-            LoanRepaymentTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LoanRepaymentTitleTranslation), User.UserLang);
+            LoanRepaymentTitleTranslation = LoanRepayment;
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
 
             TotalAmountRepaidTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalAmountRepaidTranslation), User.UserLang) + " *";
@@ -282,7 +282,7 @@ namespace PigTool.ViewModels.DataViewModels
 
         public void populatewithData(LoanRepaymentItem item)
         {
-            isEditMode = false;
+            isEditMode = true;
             CreationMode = false;
             EditExistingMode = !CreationMode;
 

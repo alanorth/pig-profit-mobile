@@ -16,7 +16,7 @@ namespace Shared
         {
             IsDeleted = false;
             IsModified = false;
-            IsDeleted = true;
+            IsEnable = true;
             CreatedTimeStamp = DateTime.UtcNow;
             LastModified = DateTime.UtcNow;
             RowKey = Guid.NewGuid().ToString();

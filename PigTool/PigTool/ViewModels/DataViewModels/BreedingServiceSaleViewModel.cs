@@ -372,7 +372,7 @@ namespace PigTool.ViewModels.DataViewModels
             IsEditMode = true;
             IsCreationMode = !EditExistingMode;
 
-            BreedingServiceSaleTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(BreedingServiceSaleTitleTranslation), User.UserLang);
+            BreedingServiceSaleTitleTranslation = BreedingServiceSale;
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
 
             NumberServicesTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(NumberServicesTranslation), User.UserLang);
@@ -402,7 +402,7 @@ namespace PigTool.ViewModels.DataViewModels
 
         public void populatewithData(BreedingServiceSaleItem item)
         {
-            isEditMode = false;
+            isEditMode = true;
             CreationMode = false;
             EditExistingMode = !CreationMode;
 

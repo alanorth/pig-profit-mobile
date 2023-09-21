@@ -42,14 +42,20 @@ namespace PigTool.Views
         {
             var FullTableSection = new TableSection();
 
-            /* UserName
+            //UserName
             var UserNameCell = new ViewCell();
             var UserNameStack = FormattedElementsHelper.TableRowStack();
-            UserNameStack.Children.Add(FormattedElementsHelper.FormDataLabel(nameof(_viewModel.UserNameTranslation)));
-            UserNameStack.Children.Add(FormattedElementsHelper.FormTextEntry(nameof(_viewModel.UserName), nameof(_viewModel.IsEditMode), null));
+            
+            var EmailLabel = new Label()
+            {
+                VerticalOptions = LayoutOptions.CenterAndExpand
+            };
+
+            EmailLabel.SetBinding(Label.TextProperty, new Binding(nameof(_viewModel.GEmail)));
+            UserNameStack.Children.Add(EmailLabel);
             UserNameCell.View = UserNameStack;
             FullTableSection.Add(UserNameCell);
-            */
+            
 
             // Name
             var NameCell = new ViewCell();

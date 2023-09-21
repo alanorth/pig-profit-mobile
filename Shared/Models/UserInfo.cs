@@ -134,7 +134,7 @@ namespace Shared
         {
             switch (Country) {
                 case Constants.UGANDATYPE:
-                    return "USH"; //Uganda
+                    return "USh"; //Uganda
                 case Constants.VIETNAMTYPE:
                     return "VND "; //Vietnamese
                 case Constants.RWANDATYPE:

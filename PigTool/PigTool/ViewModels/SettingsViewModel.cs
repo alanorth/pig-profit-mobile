@@ -19,6 +19,8 @@ namespace PigTool.ViewModels
         public string YesTranslation { get; private set; }
         public string NoTranslation { get; private set; }
         public string AcceptTranslation { get; private set; }
+        public string VersionTranslation { get; private set; }
+        public string LegalDisclaimerTitleTranslation { get; private set; }
 
         public SettingsViewModel()
         {
@@ -26,6 +28,8 @@ namespace PigTool.ViewModels
             ChangeProfileTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ChangeProfileTranslation), User.UserLang);
             LanguageTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LanguageTranslation), User.UserLang);
             LogoutTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LogoutTranslation), User.UserLang);
+            VersionTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(VersionTranslation), User.UserLang);
+            LegalDisclaimerTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LegalDisclaimerTitleTranslation), User.UserLang);
             ConfirmLogoutTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ConfirmLogoutTranslation), User.UserLang);
             LogoutWarningTransaltion = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LogoutWarningTransaltion), User.UserLang);
             ChangeLanguageTrasnlation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ChangeLanguageTrasnlation), User.UserLang);
@@ -34,8 +38,6 @@ namespace PigTool.ViewModels
             YesTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(YesTranslation), User.UserLang);
             NoTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(NoTranslation), User.UserLang);
             AcceptTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AcceptTranslation), User.UserLang);
-            AcceptTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AcceptTranslation), User.UserLang);
-
         }
 
         public string GetUserLanguage()

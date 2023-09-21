@@ -454,7 +454,7 @@ namespace PigTool.ViewModels.DataViewModels
             IsEditMode = true;
             IsCreationMode = !EditExistingMode;
 
-            HealthCareTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(HealthCareTitleTranslation), User.UserLang);
+            HealthCareTitleTranslation = Healthcare;
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
 
             HealthCareTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(HealthCareTypeTranslation), User.UserLang);
@@ -486,7 +486,7 @@ namespace PigTool.ViewModels.DataViewModels
 
         public void populatewithData(HealthCareItem item)
         {
-            isEditMode = false;
+            isEditMode = true;
             CreationMode = false;
             EditExistingMode = !CreationMode;
 

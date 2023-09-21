@@ -234,7 +234,7 @@ namespace PigTool.ViewModels.DataViewModels
             IsEditMode = true;
             IsCreationMode = !EditExistingMode;
 
-            EquipmentTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EquipmentTitleTranslation), User.UserLang);
+            EquipmentTitleTranslation = Equipment;
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
 
             EquipmentTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(EquipmentTypeTranslation), User.UserLang);
@@ -256,7 +256,7 @@ namespace PigTool.ViewModels.DataViewModels
 
         public void populatewithData(EquipmentItem item)
         {
-            isEditMode = false;
+            isEditMode = true;
             CreationMode = false;
             EditExistingMode = !CreationMode;
 

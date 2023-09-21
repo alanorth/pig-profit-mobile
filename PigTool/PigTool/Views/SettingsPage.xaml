@@ -28,6 +28,17 @@
                         StyleId="disclosure"
                         Tapped="LogUserOut"
                         Text="Logout"/>
+                    <TextCell
+                        x:Name="AppVersion"
+                        Detail=""
+                        StyleId="disclosure"
+                        Text="Logout"/>
+                    <TextCell
+                        x:Name="PrivacyPolicy"
+                        Detail=""
+                        StyleId="disclosure"
+                        Tapped="PrivacyPolicyTapped"
+                        Text="Logout"/>
                 </TableSection>
             </TableRoot>
         </TableView>

@@ -204,7 +204,7 @@ namespace PigTool.ViewModels.DataViewModels
             EditButtonClicked = new Command(EditItemAsync);
             EditExistingMode = !CreationMode;
 
-            LabourTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LabourTitleTranslation), User.UserLang);
+            LabourTitleTranslation = Labour;
             DateTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(DateTranslation), User.UserLang) + " *";
             LabourTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LabourTypeTranslation), User.UserLang);
             OtherLaboutTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherLaboutTypeTranslation), User.UserLang);
@@ -226,7 +226,7 @@ namespace PigTool.ViewModels.DataViewModels
 
         public void populatewithData(LabourCostItem item)
         {
-            isEditMode = false;
+            isEditMode = true;
             CreationMode = false;
             EditExistingMode = !CreationMode;
 

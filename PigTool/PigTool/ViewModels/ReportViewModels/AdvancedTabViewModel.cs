@@ -14,6 +14,7 @@ using System.Collections;
 using Shared;
 using OxyPlot.Xamarin.Forms;
 using System.Threading.Tasks;
+using Xamarin.Forms.PlatformConfiguration.TizenSpecific;
 
 namespace PigTool.ViewModels.ReportViewModels
 {
@@ -272,23 +273,22 @@ namespace PigTool.ViewModels.ReportViewModels
                 var groupedMonths = groupList.GroupBy(d => d.YearMonth.Date.ToString("MMM/yyyy"));
 
                 var costSum = (double)(groupList.Sum(x => x.Cost));
-                var costSumRound = Math.Round(costSum).ToString();
+                var costSumRound = string.Format("{0:N0}", Math.Round(costSum).ToString());
 
                 if (!costChart) {
                     costSum = (double)(groupList.Sum(x => x.Revenue));
-                    costSumRound = Math.Round(costSum).ToString();
+                    costSumRound = string.Format("{0:N0}", Math.Round(costSum).ToString());
                 }
-
+                //string.Format("{0:N0}",  Math.Round(costSum).ToString())
                 var CostSeries = new ColumnSeries
                 {
                     LabelPlacement = LabelPlacement.Middle,
-                    LabelFormatString = "{0:0.00}",
+                    LabelFormatString = "{0:0.00}",                   
                     IsStacked = true,
                     Title = GetTitleTranslation(group.Key) + " " + costSumRound +" "+ User.CurrencySymbol(),
                     StackGroup = "Cost",
-                    IsVisible = costSum == 0 ? false : true,
+                    IsVisible = costSum == 0 ? false : true,                   
                 };
-
                 plotModel.Series.Add(CostSeries);
             }
 
@@ -298,7 +298,7 @@ namespace PigTool.ViewModels.ReportViewModels
 
             // Set the Title and IsLegendVisible properties
             plotModel.IsLegendVisible = true;
-
+            plotModel.LegendFontSize = 11;
             plotModel.PlotAreaBackground = OxyColors.Transparent;
 
             var xAxis = new CategoryAxis

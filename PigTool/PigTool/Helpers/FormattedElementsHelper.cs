@@ -362,7 +362,7 @@ namespace PigTool.Helpers
             //saveButton.HorizontalOptions = LayoutOptions.FillAndExpand;
 
             stack.Children.Add(resertButton);
-            stack.Children.Add(editButton);
+            //stack.Children.Add(editButton);
             stack.Children.Add(deleteButton);
             stack.Children.Add(saveButton);
             ScrollView scrollView = new ScrollView();

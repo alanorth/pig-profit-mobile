@@ -162,10 +162,10 @@ namespace PigTool.Views
 
             monthLabel.SetBinding(Label.TextProperty, "YearMonth.Month");
             yearLabel.SetBinding(Label.TextProperty, "YearMonth.Year");
-            revenueLabel.SetBinding(Label.TextProperty, new Binding("Revenue") { StringFormat = "{0:N}" });
+            revenueLabel.SetBinding(Label.TextProperty, new Binding("Revenue") { StringFormat = "{0:N0}" });
             //costLabel.SetBinding(Label.TextProperty, new Binding("Cost") { StringFormat = "{0:"+ symbol + "#,##0.00}" });
-            costLabel.SetBinding(Label.TextProperty, new Binding("Cost") { StringFormat = "{0:N}" });
-            differenceLabel.SetBinding(Label.TextProperty, new Binding("Difference") { StringFormat = "{0:N}" });
+            costLabel.SetBinding(Label.TextProperty, new Binding("Cost") { StringFormat = "{0:N0}" });
+            differenceLabel.SetBinding(Label.TextProperty, new Binding("Difference") { StringFormat = "{0:N0}" });
 
             grid.Children.Add(monthLabel);
             grid.Children.Add(yearLabel, 1, 0);

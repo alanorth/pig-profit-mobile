@@ -107,7 +107,7 @@ namespace PigTool.ViewModels
         }
         public string TotalPeriodRevenueLabel
         {
-            get => string.Format("{1}: {0:N} {2}",TotalPeriodRevenue, SummaryIncomeTranslation, User.CurrencySymbol());
+            get => string.Format("{1}: {0:N0} {2}",TotalPeriodRevenue, SummaryIncomeTranslation, User.CurrencySymbol());
         }
 
         public double TotalPeriodCost
@@ -125,7 +125,7 @@ namespace PigTool.ViewModels
         }
         public string TotalPeriodCostLabel
         {
-            get => string.Format("{1}: {0:N} {2}", TotalPeriodCost, SummaryCostTranslation, User.CurrencySymbol());
+            get => string.Format("{1}: {0:N0} {2}", TotalPeriodCost, SummaryCostTranslation, User.CurrencySymbol());
         }
 
         public double TotalPeriodDifference
@@ -146,7 +146,7 @@ namespace PigTool.ViewModels
 
         public string TotalPeriodDifferenceLabel
         {
-            get => string.Format("{1}: {0:N} {2}", TotalPeriodDifference, SummaryProfitLossTranslation, User.CurrencySymbol());
+            get => string.Format("{1}: {0:N0} {2}", TotalPeriodDifference, SummaryProfitLossTranslation, User.CurrencySymbol());
         }
 
         public DateTime StartDate
