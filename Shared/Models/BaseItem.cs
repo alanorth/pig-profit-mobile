@@ -34,8 +34,7 @@ namespace Shared
 
         public string CreatedBy { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime LastModified { get; set; }
+        public DateTime LastModified { get; set; } = DateTime.UtcNow;
 
         public virtual string PartitionKey { get; set ; }
         [Key]

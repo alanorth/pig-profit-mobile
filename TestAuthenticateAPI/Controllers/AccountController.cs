@@ -46,7 +46,7 @@ public class AccountController : PigToolBaseController
         _normalizer = normalizer;
     }
 
-    [HttpGet("{scheme}")]
+   /* [HttpGet("{scheme}")]
     public async Task SimpleAuth()
     {
         var email = "MyMan@Gmail.Test";
@@ -76,13 +76,13 @@ public class AccountController : PigToolBaseController
 
         //Redirect to final url
         Request.HttpContext.Response.Redirect(url);
-    }
+    }*/
 
     /// <summary>
     /// Not in use
     /// </summary>
     /// <returns></returns>
-    [HttpGet]
+   /* [HttpGet]
     public async Task<ActionResult> SimpleAuthJSON()
     {
         var email = "MyMan@Gmail.Test";
@@ -163,7 +163,7 @@ public class AccountController : PigToolBaseController
 
 
 
-    }
+    }*/
 
     [HttpPost]
     public async Task<IActionResult> RefreshToken(TokenModel tokenModel)

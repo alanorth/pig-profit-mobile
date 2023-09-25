@@ -416,7 +416,7 @@ namespace PigTool.ViewModels
         {
 
             PageRendered = false;
-            LastTimeDataUploaded = User.LastUploadDate.ToUniversalTime();
+            LastTimeDataUploaded = User.LastUploadDate;
             SendDataToApi = new Command(PostDataToAPI);
         }
 
@@ -427,21 +427,21 @@ namespace PigTool.ViewModels
             SendingData = repo.GetTranslationAsync(nameof(SendingData)).Result.getTranslation(User.UserLang);
 
             //FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItemsAndAttachedTranslation(User.UserLang));
-            FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItems());
-            HealthCareItems = new ObservableCollection<HealthCareItem>(await repo.GetHealthCareItems());
-            LabourCostItems = new ObservableCollection<LabourCostItem>(await repo.GetLabourCostItems());
-            AnimalHouseItems = new ObservableCollection<AnimalHouseItem>(await repo.GetAnimalHouseItems());
-            WaterCostItems = new ObservableCollection<WaterCostItem>(await repo.GetWaterCostItems());
-            MembershipItems = new ObservableCollection<MembershipItem>(await repo.GetMembershipItems());
-            OtherCostItems = new ObservableCollection<OtherCostItem>(await repo.GetOtherCostItems());
-            ReproductiveItems = new ObservableCollection<ReproductiveItem>(await repo.GetReproductiveItems());
-            AnimalPurchaseItems = new ObservableCollection<AnimalPurchaseItem>(await repo.GetAnimalPurchaseItems());
-            LoanRepaymentItems = new ObservableCollection<LoanRepaymentItem>(await repo.GetLoanRepaymentItems());
-            EquipmentItems = new ObservableCollection<EquipmentItem>(await repo.GetEquipmentItems());
-            PigSaleItems = new ObservableCollection<PigSaleItem>(await repo.GetPigSaleItems());
-            BreedingServiceSaleItems = new ObservableCollection<BreedingServiceSaleItem>(await repo.GetBreedingServiceSaleItems());
-            ManureSaleItems = new ObservableCollection<ManureSaleItem>(await repo.GetManureSaleItems());
-            OtherIncomeItems = new ObservableCollection<OtherIncomeItem>(await repo.GetOtherIncomeItems());
+            FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItems(User.LastUploadDate));
+            HealthCareItems = new ObservableCollection<HealthCareItem>(await repo.GetHealthCareItems(User.LastUploadDate));
+            LabourCostItems = new ObservableCollection<LabourCostItem>(await repo.GetLabourCostItems(User.LastUploadDate));
+            AnimalHouseItems = new ObservableCollection<AnimalHouseItem>(await repo.GetAnimalHouseItems(User.LastUploadDate));
+            WaterCostItems = new ObservableCollection<WaterCostItem>(await repo.GetWaterCostItems(User.LastUploadDate));
+            MembershipItems = new ObservableCollection<MembershipItem>(await repo.GetMembershipItems(User.LastUploadDate));
+            OtherCostItems = new ObservableCollection<OtherCostItem>(await repo.GetOtherCostItems(User.LastUploadDate));
+            ReproductiveItems = new ObservableCollection<ReproductiveItem>(await repo.GetReproductiveItems(User.LastUploadDate));
+            AnimalPurchaseItems = new ObservableCollection<AnimalPurchaseItem>(await repo.GetAnimalPurchaseItems(User.LastUploadDate));
+            LoanRepaymentItems = new ObservableCollection<LoanRepaymentItem>(await repo.GetLoanRepaymentItems(User.LastUploadDate));
+            EquipmentItems = new ObservableCollection<EquipmentItem>(await repo.GetEquipmentItems(User.LastUploadDate));
+            PigSaleItems = new ObservableCollection<PigSaleItem>(await repo.GetPigSaleItems(User.LastUploadDate));
+            BreedingServiceSaleItems = new ObservableCollection<BreedingServiceSaleItem>(await repo.GetBreedingServiceSaleItems(User.LastUploadDate));
+            ManureSaleItems = new ObservableCollection<ManureSaleItem>(await repo.GetManureSaleItems(User.LastUploadDate));
+            OtherIncomeItems = new ObservableCollection<OtherIncomeItem>(await repo.GetOtherIncomeItems(User.LastUploadDate));
             Countof_TotalItems = 0;
             Countof_TotalItems += CountOf_FeedItems = FeedItems.Count();
             Countof_TotalItems += CountOf_HealthCareItems = HealthCareItems.Count();

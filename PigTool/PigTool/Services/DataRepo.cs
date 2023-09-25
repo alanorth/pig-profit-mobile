@@ -93,6 +93,11 @@ namespace PigTool.Services
             return await _context.FeedItems.ToListAsync();
         }
 
+        public async Task<List<FeedItem>> GetFeedItems(DateTime modifieddate)
+        {
+            return await _context.FeedItems.Where(x => x.LastModified > modifieddate).ToListAsync();
+        }
+
         public async Task<List<FeedItem>> GetFeedItems(DateTime start, DateTime end)
         {
             return await _context.FeedItems.Where(x => x.Date > start && x.Date < end).ToListAsync();
@@ -730,6 +735,82 @@ namespace PigTool.Services
         public async Task LogoutOfDatabase()
         {
             _context.Database.EnsureDeleted();
+        }
+
+        public async Task<List<HealthCareItem>> GetHealthCareItems(DateTime modifieddate)
+        {
+            return await _context.HealthCareItems.Where(x => x.LastModified > modifieddate).ToListAsync();
+            
+        }
+
+        public async Task<List<LabourCostItem>> GetLabourCostItems(DateTime modifieddate)
+        {
+            return await _context.LabourCostItems.Where(x => x.LastModified > modifieddate).ToListAsync();
+        }
+
+        public async Task<List<AnimalHouseItem>> GetAnimalHouseItems(DateTime modifieddate)
+        {
+            return await _context.AnimalHouseItems.Where(x => x.LastModified > modifieddate).ToListAsync();
+        }
+
+        public async Task<List<WaterCostItem>> GetWaterCostItems(DateTime modifieddate)
+        {
+            return await _context.WaterCostItems.Where(x => x.LastModified > modifieddate).ToListAsync();
+        }
+
+        public async Task<List<MembershipItem>> GetMembershipItems(DateTime modifieddate)
+        {
+            return await _context.MembershipItems.Where(x => x.LastModified > modifieddate).ToListAsync();
+            
+        }
+
+        public async Task<List<OtherCostItem>> GetOtherCostItems(DateTime modifieddate)
+        {
+            return await _context.OtherCostItems.Where(x => x.LastModified > modifieddate).ToListAsync();
+        }
+
+        public async Task<List<ReproductiveItem>> GetReproductiveItems(DateTime modifieddate)
+        {
+            return await _context.ReproductiveItems.Where(x => x.LastModified > modifieddate).ToListAsync();
+            
+        }
+
+        public async Task<List<AnimalPurchaseItem>> GetAnimalPurchaseItems(DateTime modifieddate)
+        {
+            return await _context.AnimalPurchaseItems.Where(x => x.LastModified > modifieddate).ToListAsync();
+        }
+
+        public async Task<List<LoanRepaymentItem>> GetLoanRepaymentItems(DateTime modifieddate)
+        {
+            return await _context.LoanRepaymentItems.Where(x => x.LastModified > modifieddate).ToListAsync();
+            
+        }
+
+        public async Task<List<EquipmentItem>> GetEquipmentItems(DateTime modifieddate)
+        {
+            return await _context.EquipmentItems.Where(x => x.LastModified > modifieddate).ToListAsync();
+            
+        }
+
+        public async Task<List<PigSaleItem>> GetPigSaleItems(DateTime modifieddate)
+        {
+            return await _context.PigSaleItems.Where(x => x.LastModified > modifieddate).ToListAsync();
+        }
+
+        public async Task<List<BreedingServiceSaleItem>> GetBreedingServiceSaleItems(DateTime modifieddate)
+        {
+            return await _context.BreedingServiceSaleItems.Where(x => x.LastModified > modifieddate).ToListAsync();
+            
+        }
+
+        public async Task<List<ManureSaleItem>> GetManureSaleItems(DateTime modifieddate)
+        {
+            return await _context.ManureSaleItems.Where(x => x.LastModified > modifieddate).ToListAsync();            
+        }
+
+        public async Task<List<OtherIncomeItem>> GetOtherIncomeItems(DateTime modifieddate)
+        {
+            return await _context.OtherIncomeItems.Where(x => x.LastModified > modifieddate).ToListAsync();            
         }
     }
 }
