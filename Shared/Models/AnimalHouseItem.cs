@@ -18,6 +18,8 @@ namespace Shared
         public double? OtherCosts { get; set; }
         public int? YearsExpected { get; set; }
         public string? Comment { get; set; }
+        public DateTime? DurationStart { get => Date; }
+        public DateTime? DurationFinish => YearsExpected == null ? Date : Date.AddYears((int)YearsExpected);
 
         private DateTime DateHolder;
         [JsonIgnore]
@@ -25,5 +27,6 @@ namespace Shared
         public virtual Translation? AnimalExpenseTranslation { get; set; }
         public virtual string? AnimalExpenseTranslationString { get; set; }
         public virtual string DateNiceFormat { get { return Date.ToString("dd/MMM/yyyy"); } }
+        public virtual double? DisplayTotalCosts { get => OtherCosts + TotalCosts + TransportationCost; }
     } 
 }

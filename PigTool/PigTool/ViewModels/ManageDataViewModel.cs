@@ -27,9 +27,9 @@ namespace PigTool.ViewModels
         public string TotalCostTranslation { get; private set; }
         public string DateTranslation { get; private set; }
         public string OtherWhatForTranslation { get; private set; }
-        //Feed
-        public string FeedTypeTranslation { get; private set; }
         public string TotalCostAllUnits { get; private set; }
+        //Feed
+        public string FeedTypeTranslation { get; private set; }        
         //HeathCare
         public string HealthCareTypeTranslation { get; private set; }
         public string HealthCareCostTranslation { get; private set; }
@@ -315,7 +315,7 @@ namespace PigTool.ViewModels
             OtherWhatForTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(OtherWhatForTranslation), User.UserLang);
             //Feed
             FeedTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(FeedTypeTranslation), User.UserLang);
-            TotalCostAllUnits = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(TotalCostAllUnits), User.UserLang);
+            TotalCostAllUnits = LogicHelper.GetTranslationFromStore(TranslationStore, "TotalCostTranslation", User.UserLang);
             //HeathCare
             HealthCareTypeTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(HealthCareTypeTranslation), User.UserLang);
             HealthCareCostTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(HealthCareCostTranslation), User.UserLang);

@@ -76,14 +76,16 @@
                     StyleClass="ReportHeader"/>
                 <BoxView StyleClass="Seperator"/>
                 <StackLayout Orientation="Vertical">
-                    <StackLayout Orientation="Vertical">                        
-                        <oxy:PlotView Model="{Binding CostGraphModel}" HorizontalOptions="CenterAndExpand" 
+                    <ScrollView HorizontalScrollBarVisibility="Always" Orientation="Horizontal" BackgroundColor="PaleTurquoise" WidthRequest="8000">
+                        <StackLayout Orientation="Vertical">
+                            <oxy:PlotView Model="{Binding CostGraphModel}" HorizontalOptions="CenterAndExpand" 
                               VerticalOptions="StartAndExpand" Margin="2"
                                HeightRequest="600"/>
-                        <oxy:PlotView Model="{Binding LegendGraph}" HorizontalOptions="CenterAndExpand" 
+                            <oxy:PlotView Model="{Binding LegendGraph}" HorizontalOptions="CenterAndExpand" 
                               VerticalOptions="StartAndExpand" Margin="2"
                               HeightRequest="300" />
-                    </StackLayout>
+                        </StackLayout>
+                    </ScrollView>
                 </StackLayout>
             </StackLayout>
             <!-- Full Graph Income -->

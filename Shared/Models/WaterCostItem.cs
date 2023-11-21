@@ -21,5 +21,6 @@ namespace Shared
         public DateTime DurationStart { get; set; }
         public DateTime DurationFinish { get; set; }
         public virtual string DateNiceFormat { get { return Date.ToString("dd/MMM/yyyy"); } }
+        public virtual double? DisplayTotalCosts { get => OtherCosts + TotalCosts + TransportationCost; }
     }
 }

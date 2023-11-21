@@ -333,6 +333,10 @@ namespace PigTool.ViewModels.DataViewModels
 
             if (_itemForEditing != null)
             {
+                if (!DisplayLifespan)
+                {
+                    YearsExpected = null;
+                }
 
                 _itemForEditing.Date = Date;
                 _itemForEditing.HousingExpense = SelectedHousingType != null ? SelectedHousingType.TranslationRowKey : null;
@@ -343,6 +347,7 @@ namespace PigTool.ViewModels.DataViewModels
                 _itemForEditing.YearsExpected = YearsExpected;
                 _itemForEditing.Comment = Comment;
                 _itemForEditing.LastModified = DateTime.UtcNow;
+                
 
                 await repo.UpdateAnimalHouseItem(_itemForEditing);
                 await Application.Current.MainPage.DisplayAlert(Updated, LogicHelper.GetTranslationFromStore(TranslationStore, "SaveHouseRecord", User.UserLang), OK);
@@ -352,6 +357,11 @@ namespace PigTool.ViewModels.DataViewModels
             {
                 try
                 {
+                    if (!DisplayLifespan)
+                    {
+                        YearsExpected = null;
+                    }
+
                     var newHousingCost = new AnimalHouseItem
                     {
                         Date = Date,

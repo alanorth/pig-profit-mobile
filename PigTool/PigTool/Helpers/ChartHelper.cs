@@ -260,7 +260,8 @@ namespace PigTool.Helpers
 
             //Initial grouping for Animalhouse Items
             AnimalHouseItems = new ObservableCollection<AnimalHouseItem>(await repo.GetAnimalHouseItems());
-            fullList = fullList.Concat(AnimalHouseItems.GroupBy(fi => new YearMonth
+            fullList = fullList.Concat(getDurationHousingItmes(AnimalHouseItems)).ToList();
+            /*fullList = fullList.Concat(AnimalHouseItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
                 Month = fi.Date.ToString("MMM"),
@@ -272,7 +273,7 @@ namespace PigTool.Helpers
                 Cost = fi.Sum(i => i.TotalCosts) + fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
                 Revenue = 0,
                 Difference = 0
-            }).ToList()).ToList();
+            }).ToList()).ToList();*/
 
 
             AnimalPurchaseItems = new ObservableCollection<AnimalPurchaseItem>(await repo.GetAnimalPurchaseItems());
@@ -301,7 +302,7 @@ namespace PigTool.Helpers
             {
                 YearMonth = fi.Key,
                 Cost = fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
-                Revenue = fi.Sum(i => i.AmountRecieved),
+                Revenue = fi.Sum(i => i.AmountRecieved) + fi.Sum(i => i.PaymentValue),
                 Difference = 0
             }).ToList()).ToList();
 
@@ -463,6 +464,23 @@ namespace PigTool.Helpers
             return result;
         }
 
+
+        public List<Row> getDurationHousingItmes(ObservableCollection<AnimalHouseItem> HouseItemss)
+        {
+            var result = new List<Row>();
+
+            foreach (var house in HouseItemss)
+            {
+                //var oCost = house.DisplayTotalCosts;
+                var totalCost = house.DisplayTotalCosts;
+                var startDate = ((DateTime)house.DurationStart);
+                var DurationLength = (TimeSpan)(house.DurationFinish - house.DurationStart);
+                CallculateDurtaionRows(result, totalCost, startDate, DurationLength, nameof(AnimalHouseItem));
+            }
+
+            return result;
+        }
+
         public List<Row> getDurationLabourCost(ObservableCollection<LabourCostItem> LabourCosts)
         {
             var result = new List<Row>();
@@ -564,7 +582,8 @@ namespace PigTool.Helpers
                 double totalPeriodDifference,
                 string totalCost,
                 string totalIncome,
-                string totalProfitOrLoss
+                string totalProfitOrLoss,
+                string UserCurrency
             )
         {
             var model = new PlotModel { };
@@ -593,7 +612,8 @@ namespace PigTool.Helpers
             var yAxis = new LinearAxis
             {
                 StringFormat = "0", // Specify the format string without scientific notation
-                Position = AxisPosition.Left // Position the Y-axis on the left side
+                Position = AxisPosition.Left, // Position the Y-axis on the left side
+                Title = UserCurrency
             };
 
             model.Axes.Add(yAxis);

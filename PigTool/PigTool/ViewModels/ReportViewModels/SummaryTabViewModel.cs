@@ -233,7 +233,8 @@ namespace PigTool.ViewModels
                 TotalPeriodDifference,
                 SummaryChartCostGroup,
                 SummaryChartIncomeGroup,
-                SummaryChartProfitLoss);
+                SummaryChartProfitLoss, 
+                User.CurrencySymbol());
             OnPropertyChanged("GraphModel");
         }
 
@@ -254,7 +255,8 @@ namespace PigTool.ViewModels
                 TotalPeriodDifference,
                 SummaryChartCostGroup,
                 SummaryChartIncomeGroup,
-                SummaryChartProfitLoss);
+                SummaryChartProfitLoss, 
+                User.CurrencySymbol());
             OnPropertyChanged("GraphModel");
         }
 

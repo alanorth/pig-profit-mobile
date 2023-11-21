@@ -31,5 +31,7 @@ namespace Shared
         public virtual Translation? FeedTypeTranslation { get; set; }
         public virtual string? FeedTypeTranslationString { get; set; }
         public virtual string DateNiceFormat { get { return Date.ToString("dd/MMM/yyyy"); } }
+
+        public virtual double? DisplayTotalCosts { get => OtherCosts + TotalCosts + TransportationCost; }
     }
 }

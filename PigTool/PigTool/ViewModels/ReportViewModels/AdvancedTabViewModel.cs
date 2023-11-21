@@ -159,7 +159,8 @@ namespace PigTool.ViewModels.ReportViewModels
                 TotalPeriodDifference,
                 SummaryChartCostGroup,
                 SummaryChartIncomeGroup,
-                SummaryChartProfitLoss).Result;
+                SummaryChartProfitLoss,
+                User.CurrencySymbol()).Result;
             OnPropertyChanged(nameof(SimpleGraphModel));
 
         }
@@ -240,6 +241,7 @@ namespace PigTool.ViewModels.ReportViewModels
             {
                 StringFormat = "0", // Specify the format string without scientific notation
                 Position = AxisPosition.Left, // Position the Y-axis on the left side
+                Title = User.CurrencySymbol(),
             };
 
             model.Axes.Add(yAxis);
@@ -364,7 +366,8 @@ namespace PigTool.ViewModels.ReportViewModels
                 TotalPeriodDifference,
                 SummaryChartCostGroup,
                 SummaryChartIncomeGroup,
-                SummaryChartProfitLoss);
+                SummaryChartProfitLoss,
+                User.CurrencySymbol());
             OnPropertyChanged(nameof(SimpleGraphModel));
 
         }
