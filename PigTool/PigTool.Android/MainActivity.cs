@@ -21,7 +21,7 @@ namespace PigTool.Droid
                 var intent = new Intent(this, typeof(MainActivity));
                 StartActivity(intent);
                 Finish();
-            }), 3000); // 3000 milliseconds delay
+            }), 2500); // 3000 milliseconds delay
         }
     }
 
