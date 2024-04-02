@@ -51,6 +51,8 @@ namespace PigTool.ViewModels.ReportViewModels
         }
 
         private PlotModel legendGraph, incomeLegendGraph, costGraphModel;
+        public List<ColumnSeries> listOfColoumnCostSeries;
+        public List<ColumnSeries> listOfColoumnRevenueSeries;
 
         public PlotModel CostGraphModel
         {
@@ -120,6 +122,8 @@ namespace PigTool.ViewModels.ReportViewModels
         {
             CostGraphModel = new PlotModel();
             IncomeGraphModel = new PlotModel();
+            listOfColoumnRevenueSeries = new List<ColumnSeries>();
+            listOfColoumnCostSeries = new List<ColumnSeries>();
 
         }
 
@@ -165,7 +169,7 @@ namespace PigTool.ViewModels.ReportViewModels
 
         }
 
-        public void LoadAdvancedBarChart(List<Row> providedData)
+        public void LoadAdvancedBarChart(List<RowOfGroupedData> providedData)
         {
             CostGraphModel = null;
 
@@ -188,13 +192,12 @@ namespace PigTool.ViewModels.ReportViewModels
             OnPropertyChanged(nameof(IncomeLegendGraph));
         }
 
-        private PlotModel CreateAdvanceChart(List<Row> providedData, List<string> MonthNameList, bool costChart)
+        private PlotModel CreateAdvanceChart(List<RowOfGroupedData> providedData, List<string> MonthNameList, bool costChart)
         {
             var groupedData = providedData.GroupBy(d => d.YearMonth.Grouping);
 
             var model = new PlotModel { };
             model.IsLegendVisible = false;
-
             foreach (var group in groupedData)
             {
                 var groupList = group.ToList();
@@ -210,6 +213,7 @@ namespace PigTool.ViewModels.ReportViewModels
                 //cost chart
                 if (costChart)
                 {
+                    
                     foreach (var xy in groupedMonths)
                     {
                         CostSeries.Items.Add(new ColumnItem
@@ -219,6 +223,7 @@ namespace PigTool.ViewModels.ReportViewModels
                         });
                     }
                     model.Series.Add(CostSeries);
+                    listOfColoumnCostSeries.Add(CostSeries);
                 }
                 else //Income Chart
                 {
@@ -233,6 +238,7 @@ namespace PigTool.ViewModels.ReportViewModels
                             });
                         }
                         model.Series.Add(CostSeries);
+                        listOfColoumnRevenueSeries.Add(CostSeries);
                     }
                 }
             }
@@ -262,7 +268,7 @@ namespace PigTool.ViewModels.ReportViewModels
             return model;
         }
 
-        private PlotModel CreateLegendHolder(List<Row> providedData, List<string> MonthNameList, bool costChart)
+        private PlotModel CreateLegendHolder(List<RowOfGroupedData> providedData, List<string> MonthNameList, bool costChart)
         {
             var plotModel = new PlotModel();
 
@@ -328,7 +334,7 @@ namespace PigTool.ViewModels.ReportViewModels
         }
 
 
-        private static List<string> GetMonthNamesUsed(List<Row> providedData)
+        private static List<string> GetMonthNamesUsed(List<RowOfGroupedData> providedData)
         {
             var groupedData23 = providedData.GroupBy(d => d.YearMonth.Date.ToString("MMM/yyyy"));
             var MonthNameList = new List<string>();

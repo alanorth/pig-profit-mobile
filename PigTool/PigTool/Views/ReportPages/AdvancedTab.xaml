@@ -94,7 +94,7 @@
                     x:Name="IncomeBreakdownTitleLabel"
                     StyleClass="ReportHeader"/>
                 <BoxView StyleClass="Seperator"/>
-                <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Vertical" x:Name="MyNameNedIncomeStack">
                     <StackLayout Orientation="Vertical">
                         <oxy:PlotView Model="{Binding IncomeGraphModel}" HorizontalOptions="CenterAndExpand" 
                               VerticalOptions="StartAndExpand" Margin="2"
