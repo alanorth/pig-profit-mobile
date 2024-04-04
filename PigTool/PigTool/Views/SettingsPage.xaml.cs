@@ -60,7 +60,7 @@ namespace PigTool.Views
 
             if (logout)
             {
-                var logout2 = await DisplayAlert(_viewModel.ConfirmLogoutTranslation, _viewModel.LogoutWarningTransaltion, _viewModel.AcceptTranslation, _viewModel.Cancel);
+                var logout2 = await DisplayAlert(_viewModel.ConfirmLogoutTranslation, _viewModel.LogoutWarningTransaltion2, _viewModel.AcceptTranslation, _viewModel.Cancel);
                 if (logout2)
                 {
                     await _viewModel.repo.LogoutOfDatabase();

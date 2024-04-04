@@ -638,6 +638,8 @@ namespace PigTool.ViewModels.DataViewModels
                                     responseMessage.EnsureSuccessStatusCode();
 
                                     var jsonResponse = await responseMessage.Content.ReadAsStringAsync();
+                                    //store the database connection string in secure storage
+                                    //await SecureStorage.SetAsync("BlobStorageConnectionString", jsonResponse);
 
                                     //var response = JsonConvert.DeserializeObject<MobileUser>(jsonResponse);
 

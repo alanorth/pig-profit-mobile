@@ -76,16 +76,18 @@
                     StyleClass="ReportHeader"/>
                 <BoxView StyleClass="Seperator"/>
                 <StackLayout Orientation="Vertical">
-                    <ScrollView HorizontalScrollBarVisibility="Always" Orientation="Horizontal" BackgroundColor="PaleTurquoise" WidthRequest="8000">
-                        <StackLayout Orientation="Vertical">
-                            <oxy:PlotView Model="{Binding CostGraphModel}" HorizontalOptions="CenterAndExpand" 
-                              VerticalOptions="StartAndExpand" Margin="2"
-                               HeightRequest="600"/>
-                            <oxy:PlotView Model="{Binding LegendGraph}" HorizontalOptions="CenterAndExpand" 
-                              VerticalOptions="StartAndExpand" Margin="2"
-                              HeightRequest="300" />
-                        </StackLayout>
-                    </ScrollView>
+                    <Frame Padding="0" BorderColor="Black">
+                        <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Always"  WidthRequest="{Binding GraphWidth}">
+                            <StackLayout Orientation="Vertical">
+                                <oxy:PlotView Model="{Binding CostGraphModel}" HorizontalOptions="CenterAndExpand" 
+                                      VerticalOptions="StartAndExpand" Margin="2"
+                                       HeightRequest="600" WidthRequest="{Binding GraphWidth}"/>
+                                <oxy:PlotView Model="{Binding LegendGraph}" HorizontalOptions="CenterAndExpand" 
+                                        VerticalOptions="StartAndExpand" Margin="2"
+                                        HeightRequest="300" WidthRequest="{Binding GraphWidth}"/>
+                            </StackLayout>
+                        </ScrollView>
+                    </Frame>
                 </StackLayout>
             </StackLayout>
             <!-- Full Graph Income -->
@@ -95,14 +97,20 @@
                     StyleClass="ReportHeader"/>
                 <BoxView StyleClass="Seperator"/>
                 <StackLayout Orientation="Vertical" x:Name="MyNameNedIncomeStack">
-                    <StackLayout Orientation="Vertical">
-                        <oxy:PlotView Model="{Binding IncomeGraphModel}" HorizontalOptions="CenterAndExpand" 
-                              VerticalOptions="StartAndExpand" Margin="2"
-                              HeightRequest="600" />
-                        <oxy:PlotView Model="{Binding IncomeLegendGraph}" HorizontalOptions="CenterAndExpand" 
-                              VerticalOptions="StartAndExpand" Margin="2"
-                              HeightRequest="300" />
-                    </StackLayout>
+                    <ScrollView Orientation="Vertical">
+                        <Frame Padding="0" BorderColor="Black">
+                            <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Always"  WidthRequest="{Binding GraphWidth}">
+                                <StackLayout Orientation="Vertical">
+                                    <oxy:PlotView Model="{Binding IncomeGraphModel}" HorizontalOptions="CenterAndExpand" 
+                                                  VerticalOptions="StartAndExpand" Margin="2"
+                                                  HeightRequest="600" WidthRequest="{Binding GraphWidth}"/>
+                                    <oxy:PlotView Model="{Binding IncomeLegendGraph}" HorizontalOptions="CenterAndExpand" 
+                                                  VerticalOptions="StartAndExpand" Margin="2"
+                                                  HeightRequest="300" WidthRequest="{Binding GraphWidth}"/>
+                                </StackLayout>
+                            </ScrollView>
+                        </Frame>
+                    </ScrollView>
                 </StackLayout>
             </StackLayout>
         </StackLayout>

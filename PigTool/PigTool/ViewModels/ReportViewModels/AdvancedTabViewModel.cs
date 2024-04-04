@@ -21,7 +21,8 @@ namespace PigTool.ViewModels.ReportViewModels
     public class AdvancedTabViewModel : SummaryTabViewModel, INotifyPropertyChanged
     {
         private DateTime startDate, endDate;
-       
+        private double _graphWidth;
+
         public DateTime StartDate
         {
             get => startDate;
@@ -32,6 +33,19 @@ namespace PigTool.ViewModels.ReportViewModels
                     startDate = value;
                     OnPropertyChanged(nameof(StartDate));
                     //CalculateSelected();
+                }
+            }
+        }
+
+        public double GraphWidth
+        {
+            get { return _graphWidth; }
+            set
+            {
+                if (_graphWidth != value)
+                {
+                    _graphWidth = value;
+                    OnPropertyChanged(nameof(GraphWidth));
                 }
             }
         }
@@ -135,6 +149,7 @@ namespace PigTool.ViewModels.ReportViewModels
             var providedData = FullList.Where(x => x.YearMonth.Date >= StartDate && x.YearMonth.Date <= EndDate).ToList();
 
             List<string> MonthNameList = GetMonthNamesUsed(providedData);
+            GraphWidth = MonthNameList.Count > 6 ? MonthNameList.Count * 50 : 400;
             PlotModel model = CreateAdvanceChart(providedData, MonthNameList, true);
             PlotModel Incomemodel = CreateAdvanceChart(providedData, MonthNameList, false);
             PlotModel LegendHolder = CreateLegendHolder(providedData, MonthNameList, true);
@@ -144,6 +159,7 @@ namespace PigTool.ViewModels.ReportViewModels
             IncomeGraphModel = Incomemodel;
             LegendGraph = LegendHolder;
             IncomeLegendGraph = IncomeLegHolder;
+            
 
             OnPropertyChanged(nameof(CostGraphModel));
             OnPropertyChanged(nameof(IncomeGraphModel));
@@ -174,8 +190,9 @@ namespace PigTool.ViewModels.ReportViewModels
             CostGraphModel = null;
 
             //CalculateSelected();
-
+            
             List<string> MonthNameList = GetMonthNamesUsed(providedData);
+            GraphWidth = MonthNameList.Count > 6 ? MonthNameList.Count * 50 : 400;
             PlotModel model = CreateAdvanceChart(providedData, MonthNameList, true);
             PlotModel incomeModel = CreateAdvanceChart(providedData, MonthNameList, false);
             PlotModel LegendHolder = CreateLegendHolder(providedData, MonthNameList, true);
@@ -185,6 +202,7 @@ namespace PigTool.ViewModels.ReportViewModels
             IncomeGraphModel = incomeModel;
             LegendGraph = LegendHolder;
             IncomeLegendGraph = IncomeLegHolder;
+            
 
             OnPropertyChanged(nameof(CostGraphModel));
             OnPropertyChanged(nameof(IncomeGraphModel));
@@ -338,16 +356,16 @@ namespace PigTool.ViewModels.ReportViewModels
         {
             var groupedData23 = providedData.GroupBy(d => d.YearMonth.Date.ToString("MMM/yyyy"));
             var MonthNameList = new List<string>();
-            var dictTest = new Dictionary<string, DateTime>();
+            var dictMonthNames = new Dictionary<string, DateTime>();
 
             foreach (var month in groupedData23)
             {
-                dictTest.Add(month.Key, month.First().YearMonth.Date);
+                dictMonthNames.Add(month.Key, month.First().YearMonth.Date);
             }
 
-            dictTest.Keys.ToList();
+            dictMonthNames.Keys.ToList();
 
-            var myList = dictTest.ToList();
+            var myList = dictMonthNames.ToList();
 
             myList.Sort((pair1, pair2) => pair1.Value.CompareTo(pair2.Value));
 

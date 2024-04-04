@@ -5,7 +5,27 @@
              xmlns:vm="clr-namespace:PigTool.ViewModels"
              Title="Benchmarking">
 
-    <Label Text="BenchmarkingTab"/>
-
+    <ScrollView>
+        <StackLayout>
+            <Label x:Name="BenchMarkingTitle" 
+                    Margin="0,5,0,5"
+                    FontAttributes="Bold"
+                    FontSize="22"
+                    HorizontalOptions="CenterAndExpand"
+                    StyleClass="AddDataLabel"
+                    TextColor="{StaticResource Primary}"
+                    VerticalOptions="StartAndExpand" />
+            <ListView x:Name="BlobListView" ItemSelected="OnBlobSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            <ActivityIndicator x:Name="LoadingIndicator" IsRunning="True" IsVisible="{Binding DisplayLoading}" Color="{StaticResource Primary}" />
+            
+        </StackLayout>
+    </ScrollView>
 
 </ContentPage>

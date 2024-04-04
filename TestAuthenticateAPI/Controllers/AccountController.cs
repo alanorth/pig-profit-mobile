@@ -433,7 +433,6 @@ public class AccountController : PigToolBaseController
                 .Select(kvp => $"{WebUtility.UrlEncode(kvp.Key)}={WebUtility.UrlEncode(kvp.Value)}"));
 
             // Redirect to final url (back to the app)
-            Request.HttpContext.Response.Headers.Add("pk-key", GetStorageConnectionString());
             Request.HttpContext.Response.Redirect(url);
 
         }
@@ -497,7 +496,6 @@ public class AccountController : PigToolBaseController
                         qs.Where(kvp => !string.IsNullOrEmpty(kvp.Value) && kvp.Value != "-1")
                         .Select(kvp => $"{WebUtility.UrlEncode(kvp.Key)}={WebUtility.UrlEncode(kvp.Value)}"));
 
-                    Request.HttpContext.Response.Headers.Add("pk-key", GetStorageConnectionString());
                     // Redirect to final url (back to the app)
                     Request.HttpContext.Response.Redirect(url);
                 }
@@ -612,15 +610,15 @@ public class AccountController : PigToolBaseController
         await _signInManager.SignOutAsync();
     }
 
+    [Authorize]
     [HttpGet]
-    [Route("GetString")]
-    public async Task<ActionResult> GetConnectionString()
+    public async Task<ActionResult> GetString()
     {
         try { 
         var res = new ContentResult()
         {
-            //Content = GetStorageConnectionString(),
-            Content = "MyTestContect",
+            Content = GetStorageConnectionString(),
+            //Content = "MyTestContect",
             ContentType = "text/plain",
             StatusCode = 200
         };

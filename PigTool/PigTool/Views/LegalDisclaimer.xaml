@@ -17,12 +17,59 @@
                     TextColor="{StaticResource PrimaryText}" 
                     LineBreakMode="WordWrap"/>
 
+                <Label x:Name="PP1"></Label>
+                <Label x:Name="PP2"></Label>
+                <Label x:Name="PP3"></Label>
+                <Label x:Name="PP4"></Label>
+                <Label x:Name="PP5"></Label>
+                <Label x:Name="PP6"></Label>
+                <Label x:Name="PP7"></Label>
+                <Label x:Name="PP8"></Label>
+                <Label x:Name="PP9"></Label>
+                <Label x:Name="PP10"></Label>
+                <Label x:Name="PP11"></Label>
+                <Label x:Name="PP12"></Label>
+                <Label x:Name="PP13"></Label>
+                <Label x:Name="PP14"></Label>
+                <Label x:Name="PP15"></Label>
+                <Label x:Name="PP16"></Label>
+                <Label x:Name="PP17"></Label>
+                <Label x:Name="PP18"></Label>
+                <Label x:Name="PP19"></Label>
+                <Label x:Name="PP20"></Label>
+                <Label x:Name="PP21"></Label>
+                <Label x:Name="PP22"></Label>
+                <Label x:Name="PP23"></Label>
+                <Label x:Name="PP24"></Label>
+                <Label x:Name="PP25"></Label>
+                <Label x:Name="PP26"></Label>
+                <Label x:Name="PP27"></Label>
+                <Label x:Name="PP28"></Label>
+                <Label x:Name="PP29"></Label>
+                <Label x:Name="PP30"></Label>
+                <Label x:Name="PP31"></Label>
+                <Label x:Name="PP32"></Label>
+                <Label x:Name="PP33"></Label>
+                <Label x:Name="PP34"></Label>
+                <Label x:Name="PP35"></Label>
+                <Label x:Name="PP36"></Label>
+
+
+                <Label 
+                    x:Name="TermsAndConditions"
+                    VerticalOptions="StartAndExpand"
+                    HorizontalOptions="CenterAndExpand"
+                    TextColor="{StaticResource PrimaryText}" 
+                    LineBreakMode="WordWrap"/>
+
+                <!-- Repeat the above lines 30 more times -->
+
                 <StackLayout Orientation="Horizontal" 
                              Margin="0, 20, 0, 10">
                     <CheckBox x:Name="checkBox" VerticalOptions="Center" />
                     <Label x:Name = "LegalAgreeLabel"></Label>
                 </StackLayout>
-            
+
                 <Button x:Name="ProceedButton"
                         IsEnabled="True"  
                         Clicked="Continue"

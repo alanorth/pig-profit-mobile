@@ -20,6 +20,7 @@ namespace Shared
         public const string ROUTE_ACCOUNT_BASE = BASEURL + "Account/";
         public const string ROUTE_AUTH_REGISTERUSER = ROUTE_ACCOUNT_BASE + "/RegisterUser";
         public const string ROUTE_AUTH_TEST = ROUTE_ACCOUNT_BASE + "/Test";
+        public const string ROUTE_CONNECTIONSRING = ROUTE_ACCOUNT_BASE + "GetString";
 
 
         public const string ROUTE_API_DATA = ROUTE_API_BASE + "/data";

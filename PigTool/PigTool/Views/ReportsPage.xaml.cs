@@ -27,13 +27,10 @@ namespace PigTool.Views
             ContentPage AdvanceTab = new AdvancedTab(_dateRange);
             ContentPage BenchTab = new BenchmarkingTab();
 
-            // Set the title and icon for each content page
-            BenchTab.Title = "Benchmark WIP";
-
             // Add the content pages to the tabbed page
             Children.Add(SumTab);
             Children.Add(AdvanceTab);
-            //Children.Add(BenchTab);
+            Children.Add(BenchTab);
         }
         /*private async Task PopulateTabTitles()
         {
