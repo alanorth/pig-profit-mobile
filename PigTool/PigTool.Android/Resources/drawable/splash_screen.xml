@@ -1,12 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-  <item>
-    <color android:color="@color/splash_background"/>
-  </item>
-  <item>
-    <bitmap
-        android:src="@drawable/splash_logo_ilri"
-        android:tileMode="disabled"
-        android:gravity="center"/>
-  </item>
+  <item android:drawable="@color/splash_screen_background"/>
+  <item
+        android:gravity="center">
+        
+        <bitmap
+            android:src="@drawable/cgiar_logo"
+            android:gravity="fill" />
+    </item>
 </layer-list>

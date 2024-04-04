@@ -46,7 +46,7 @@ namespace Shared.Migrations
                         .HasDefaultValue(true);
 
                     b.Property<DateTime>("LastModified")
-                        .ValueGeneratedOnAddOrUpdate()
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
                         .HasDefaultValueSql("datetime()");
 
@@ -3268,7 +3268,7 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "OtherCostEvent",
-                            English = "Other",
+                            English = "Other Cost",
                             Lang1 = "Ebilala",
                             Lang2 = "Khác",
                             Lang3 = "ibindi"
@@ -3356,7 +3356,7 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "ManureSale",
-                            English = "Sale of manure",
+                            English = "Sale of Manure",
                             Lang1 = "Sente ezivvudde mukutunda Ebijimusa",
                             Lang2 = "Bán phân chuồng",
                             Lang3 = "kugurisha ifumbire"
@@ -3364,7 +3364,7 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "BreedingServiceSale",
-                            English = "Sale of breeding services",
+                            English = "Sale of Breeding Services",
                             Lang1 = "Sente ezivvudde mukuwakisa Ebisolo",
                             Lang2 = "Bán các dịch vụ gây giống",
                             Lang3 = "ikiguzi cyo kubanguriza"
@@ -5324,10 +5324,18 @@ namespace Shared.Migrations
                         new
                         {
                             RowKey = "LogoutWarningTransaltion",
-                            English = "By logging out any data not submitted to the cloud will be lost and current data on the device will be removed",
-                            Lang1 = "Nga ofuluma obubaka byonna obu tateereddwa mu kiire bujja kubula era obubaka obuli ku kyuma bujja kuggyibwawo",
-                            Lang2 = "Bằng cách đăng xuất, mọi dữ liệu không được gửi lên đám mây sẽ bị mất và dữ liệu hiện tại trên thiết bị sẽ bị xóa",
-                            Lang3 = "Mukwemeza gusohoka amakuru yose atohererejwe ku mashini ikusanya amakuru azabura kandi n'aya makuru ari kuri iyi telefoni nayo aravanwaho"
+                            English = "Logout and delete all data",
+                            Lang1 = "Wo fuluma osazaamu data yonna",
+                            Lang2 = "Đăng xuất và xóa tất cả dữ liệu",
+                            Lang3 = "Injira kandi usibe amakuru yose"
+                        },
+                        new
+                        {
+                            RowKey = "LogoutWarningTransaltion2",
+                            English = "All your data will be deleted and not recoverable.  Do you wish to continue?",
+                            Lang1 = " Data yo yonna ejja kusazibwamu era tegenda kuddamu kuzuulibwa. Oyagala okugenda mu maaso?",
+                            Lang2 = "Tất cả dữ liệu của bạn sẽ bị xóa và không thể phục hồi được. Bạn có muốn tiếp tục không?",
+                            Lang3 = "Amakuru yawe yose azasibwa kandi ntashobora kugarurwa. Urashaka gukomeza?"
                         },
                         new
                         {
@@ -5384,6 +5392,286 @@ namespace Shared.Migrations
                             Lang1 = "Ekika",
                             Lang2 = "Toleo",
                             Lang3 = "Phiên bản"
+                        },
+                        new
+                        {
+                            RowKey = "GroupMembershipShortTranslation",
+                            English = "Group Membership",
+                            Lang1 = "Obwammemba bw’ekibiina",
+                            Lang2 = "Thành viên tổ/nhóm",
+                            Lang3 = "Itsinda ubarizwamo"
+                        },
+                        new
+                        {
+                            RowKey = "TermsAndCondtions",
+                            English = "Terms and Conditions Last updated: April 04, 2023\n\nPlease read these terms and conditions carefully before using the Pig Profit (App).\n\nBy accessing or using the App you agree to be bound by these Terms and Conditions and our Privacy Policy. If you disagree with any part of these Terms and Conditions then you may not access the App. Please read our Privacy Policy carefully before using the App.\n\nYou are responsible for safeguarding the password that you use to access the App and for any activities or actions under your password. You may choose to only upload the data to the App in your device or additionally upload it to our database for further analysis and reporting. By uploading your data to our database, you grant us the right and license to use, modify, analyze and make further use of the data for reporting purposes.\n\nYou understand that the accuracy of any reports generated by the App depends on the reliability of the content that you upload or provide.\n\nYou represent and warrant that: (i) the data is yours or you have the right to use it and grant us the rights and license as provided in these Terms, and (ii) the posting of your data on the App does not violate the privacy rights, publicity rights, copyrights, contract rights or any other rights of any person. We are not responsible for the content of the App's users. You expressly understand and agree that you are solely responsible for the data and for all activity that occurs under your account, whether done so by you or any third person using your account.\n\nYou may not transmit any content that is unlawful, offensive, upsetting, intended to disgust, threatening, libelous, defamatory, obscene or otherwise objectionable.\n\nIn no event shall we be liable for any special, incidental, indirect, or consequential damages whatsoever. The App is provided to you \"AS IS\" and \"AS AVAILABLE\" without warranty of any kind. We expressly disclaim all warranties, whether express, implied, statutory or otherwise, with respect to the App.\n\nWe do not make any representation or warranty of any kind, express or implied: (i) as to the operation or availability of the App; (ii) that the App will be uninterrupted or error-free; (iii) as to the accuracy, reliability, or currency of any information or content provided through the Tool; or (iv) that the Tool, its servers, the content, or e-mails are free of viruses or other harmful components.\n\nThe laws of the Republic of Kenya shall govern these Terms and Conditions. Your use of the App may also be subject to other local, state, national, or international laws. If you have any concern or dispute about the App you agree to first try to resolve the dispute informally by contacting us.\n\nWe reserve the right to modify or replace these Terms at any time. By continuing to access or use the App after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, in whole or in part, please stop using the App.",
+                            Lang1 = "Terms and Conditions Last updated: April 04, 2023\n\nPlease read these terms and conditions carefully before using the Pig Profit (App).\n\nBy accessing or using the App you agree to be bound by these Terms and Conditions and our Privacy Policy. If you disagree with any part of these Terms and Conditions then you may not access the App. Please read our Privacy Policy carefully before using the App.\n\nYou are responsible for safeguarding the password that you use to access the App and for any activities or actions under your password. You may choose to only upload the data to the App in your device or additionally upload it to our database for further analysis and reporting. By uploading your data to our database, you grant us the right and license to use, modify, analyze and make further use of the data for reporting purposes.\n\nYou understand that the accuracy of any reports generated by the App depends on the reliability of the content that you upload or provide.\n\nYou represent and warrant that: (i) the data is yours or you have the right to use it and grant us the rights and license as provided in these Terms, and (ii) the posting of your data on the App does not violate the privacy rights, publicity rights, copyrights, contract rights or any other rights of any person. We are not responsible for the content of the App's users. You expressly understand and agree that you are solely responsible for the data and for all activity that occurs under your account, whether done so by you or any third person using your account.\n\nYou may not transmit any content that is unlawful, offensive, upsetting, intended to disgust, threatening, libelous, defamatory, obscene or otherwise objectionable.\n\nIn no event shall we be liable for any special, incidental, indirect, or consequential damages whatsoever. The App is provided to you \"AS IS\" and \"AS AVAILABLE\" without warranty of any kind. We expressly disclaim all warranties, whether express, implied, statutory or otherwise, with respect to the App.\n\nWe do not make any representation or warranty of any kind, express or implied: (i) as to the operation or availability of the App; (ii) that the App will be uninterrupted or error-free; (iii) as to the accuracy, reliability, or currency of any information or content provided through the Tool; or (iv) that the Tool, its servers, the content, or e-mails are free of viruses or other harmful components.\n\nThe laws of the Republic of Kenya shall govern these Terms and Conditions. Your use of the App may also be subject to other local, state, national, or international laws. If you have any concern or dispute about the App you agree to first try to resolve the dispute informally by contacting us.\n\nWe reserve the right to modify or replace these Terms at any time. By continuing to access or use the App after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, in whole or in part, please stop using the App.",
+                            Lang2 = "Terms and Conditions Last updated: April 04, 2023\n\nPlease read these terms and conditions carefully before using the Pig Profit (App).\n\nBy accessing or using the App you agree to be bound by these Terms and Conditions and our Privacy Policy. If you disagree with any part of these Terms and Conditions then you may not access the App. Please read our Privacy Policy carefully before using the App.\n\nYou are responsible for safeguarding the password that you use to access the App and for any activities or actions under your password. You may choose to only upload the data to the App in your device or additionally upload it to our database for further analysis and reporting. By uploading your data to our database, you grant us the right and license to use, modify, analyze and make further use of the data for reporting purposes.\n\nYou understand that the accuracy of any reports generated by the App depends on the reliability of the content that you upload or provide.\n\nYou represent and warrant that: (i) the data is yours or you have the right to use it and grant us the rights and license as provided in these Terms, and (ii) the posting of your data on the App does not violate the privacy rights, publicity rights, copyrights, contract rights or any other rights of any person. We are not responsible for the content of the App's users. You expressly understand and agree that you are solely responsible for the data and for all activity that occurs under your account, whether done so by you or any third person using your account.\n\nYou may not transmit any content that is unlawful, offensive, upsetting, intended to disgust, threatening, libelous, defamatory, obscene or otherwise objectionable.\n\nIn no event shall we be liable for any special, incidental, indirect, or consequential damages whatsoever. The App is provided to you \"AS IS\" and \"AS AVAILABLE\" without warranty of any kind. We expressly disclaim all warranties, whether express, implied, statutory or otherwise, with respect to the App.\n\nWe do not make any representation or warranty of any kind, express or implied: (i) as to the operation or availability of the App; (ii) that the App will be uninterrupted or error-free; (iii) as to the accuracy, reliability, or currency of any information or content provided through the Tool; or (iv) that the Tool, its servers, the content, or e-mails are free of viruses or other harmful components.\n\nThe laws of the Republic of Kenya shall govern these Terms and Conditions. Your use of the App may also be subject to other local, state, national, or international laws. If you have any concern or dispute about the App you agree to first try to resolve the dispute informally by contacting us.\n\nWe reserve the right to modify or replace these Terms at any time. By continuing to access or use the App after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, in whole or in part, please stop using the App.",
+                            Lang3 = "Terms and Conditions Last updated: April 04, 2023\n\nPlease read these terms and conditions carefully before using the Pig Profit (App).\n\nBy accessing or using the App you agree to be bound by these Terms and Conditions and our Privacy Policy. If you disagree with any part of these Terms and Conditions then you may not access the App. Please read our Privacy Policy carefully before using the App.\n\nYou are responsible for safeguarding the password that you use to access the App and for any activities or actions under your password. You may choose to only upload the data to the App in your device or additionally upload it to our database for further analysis and reporting. By uploading your data to our database, you grant us the right and license to use, modify, analyze and make further use of the data for reporting purposes.\n\nYou understand that the accuracy of any reports generated by the App depends on the reliability of the content that you upload or provide.\n\nYou represent and warrant that: (i) the data is yours or you have the right to use it and grant us the rights and license as provided in these Terms, and (ii) the posting of your data on the App does not violate the privacy rights, publicity rights, copyrights, contract rights or any other rights of any person. We are not responsible for the content of the App's users. You expressly understand and agree that you are solely responsible for the data and for all activity that occurs under your account, whether done so by you or any third person using your account.\n\nYou may not transmit any content that is unlawful, offensive, upsetting, intended to disgust, threatening, libelous, defamatory, obscene or otherwise objectionable.\n\nIn no event shall we be liable for any special, incidental, indirect, or consequential damages whatsoever. The App is provided to you \"AS IS\" and \"AS AVAILABLE\" without warranty of any kind. We expressly disclaim all warranties, whether express, implied, statutory or otherwise, with respect to the App.\n\nWe do not make any representation or warranty of any kind, express or implied: (i) as to the operation or availability of the App; (ii) that the App will be uninterrupted or error-free; (iii) as to the accuracy, reliability, or currency of any information or content provided through the Tool; or (iv) that the Tool, its servers, the content, or e-mails are free of viruses or other harmful components.\n\nThe laws of the Republic of Kenya shall govern these Terms and Conditions. Your use of the App may also be subject to other local, state, national, or international laws. If you have any concern or dispute about the App you agree to first try to resolve the dispute informally by contacting us.\n\nWe reserve the right to modify or replace these Terms at any time. By continuing to access or use the App after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, in whole or in part, please stop using the App."
+                        },
+                        new
+                        {
+                            RowKey = "PP1",
+                            English = "Privacy Policy  \n\nThis Privacy Policy describes our policies and procedures on the collection, use and disclosure of your information when you use the App and tells you about your privacy rights and how the law protects you. We use your Personal data to provide and improve the App. By using the App, you agree to the collection and use of information in accordance with this Privacy Policy. ",
+                            Lang1 = "Privacy Policy  \n\nThis Privacy Policy describes our policies and procedures on the collection, use and disclosure of your information when you use the App and tells you about your privacy rights and how the law protects you. We use your Personal data to provide and improve the App. By using the App, you agree to the collection and use of information in accordance with this Privacy Policy. ",
+                            Lang2 = "Privacy Policy  \n\nThis Privacy Policy describes our policies and procedures on the collection, use and disclosure of your information when you use the App and tells you about your privacy rights and how the law protects you. We use your Personal data to provide and improve the App. By using the App, you agree to the collection and use of information in accordance with this Privacy Policy. ",
+                            Lang3 = "Privacy Policy  \n\nThis Privacy Policy describes our policies and procedures on the collection, use and disclosure of your information when you use the App and tells you about your privacy rights and how the law protects you. We use your Personal data to provide and improve the App. By using the App, you agree to the collection and use of information in accordance with this Privacy Policy. "
+                        },
+                        new
+                        {
+                            RowKey = "PP2",
+                            English = "Collecting and Using Your Personal Data ",
+                            Lang1 = "Collecting and Using Your Personal Data ",
+                            Lang2 = "Collecting and Using Your Personal Data ",
+                            Lang3 = "Collecting and Using Your Personal Data "
+                        },
+                        new
+                        {
+                            RowKey = "PP3",
+                            English = "Types of Data Collected ",
+                            Lang1 = "Types of Data Collected ",
+                            Lang2 = "Types of Data Collected ",
+                            Lang3 = "Types of Data Collected "
+                        },
+                        new
+                        {
+                            RowKey = "PP4",
+                            English = "Personal Data  ",
+                            Lang1 = "Personal Data  ",
+                            Lang2 = "Personal Data  ",
+                            Lang3 = "Personal Data  "
+                        },
+                        new
+                        {
+                            RowKey = "PP5",
+                            English = "While using the App, you may be asked to provide us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to: \n\nEmail address \n\nFirst name and last name \n\nGender \n\nPhone number \n\nAddress \n\nUsage Data ",
+                            Lang1 = "While using the App, you may be asked to provide us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to: \n\nEmail address \n\nFirst name and last name \n\nGender \n\nPhone number \n\nAddress \n\nUsage Data ",
+                            Lang2 = "While using the App, you may be asked to provide us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to: \n\nEmail address \n\nFirst name and last name \n\nGender \n\nPhone number \n\nAddress \n\nUsage Data ",
+                            Lang3 = "While using the App, you may be asked to provide us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to: \n\nEmail address \n\nFirst name and last name \n\nGender \n\nPhone number \n\nAddress \n\nUsage Data "
+                        },
+                        new
+                        {
+                            RowKey = "PP6",
+                            English = "Usage Data",
+                            Lang1 = "Usage Data",
+                            Lang2 = "Usage Data",
+                            Lang3 = "Usage Data"
+                        },
+                        new
+                        {
+                            RowKey = "PP7",
+                            English = "Usage Data may be collected automatically when using the App. Usage Data may include information such as your Device's Internet Protocol address (e.g. IP address), browser type, browser version, the type of mobile device you use, your mobile operating system, the pages of App that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data. ",
+                            Lang1 = "Usage Data may be collected automatically when using the App. Usage Data may include information such as your Device's Internet Protocol address (e.g. IP address), browser type, browser version, the type of mobile device you use, your mobile operating system, the pages of App that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data. ",
+                            Lang2 = "Usage Data may be collected automatically when using the App. Usage Data may include information such as your Device's Internet Protocol address (e.g. IP address), browser type, browser version, the type of mobile device you use, your mobile operating system, the pages of App that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data. ",
+                            Lang3 = "Usage Data may be collected automatically when using the App. Usage Data may include information such as your Device's Internet Protocol address (e.g. IP address), browser type, browser version, the type of mobile device you use, your mobile operating system, the pages of App that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data. "
+                        },
+                        new
+                        {
+                            RowKey = "PP8",
+                            English = "Information Collected while Using the Application ",
+                            Lang1 = "Information Collected while Using the Application ",
+                            Lang2 = "Information Collected while Using the Application ",
+                            Lang3 = "Information Collected while Using the Application "
+                        },
+                        new
+                        {
+                            RowKey = "PP9",
+                            English = "The App is designed to determine the profit or loss of smallholder pig enterprises, with the user inputting their data relating to this.  This data includes but is not limited to: data on costs including on feed, labour, water, co-operative / group membership, animal purchase, equipment, healthcare, housing, reproduction, loan repaying and other; and data on income including sale of pigs, sale of manure, sale of breeding services, other income.   ",
+                            Lang1 = "The App is designed to determine the profit or loss of smallholder pig enterprises, with the user inputting their data relating to this.  This data includes but is not limited to: data on costs including on feed, labour, water, co-operative / group membership, animal purchase, equipment, healthcare, housing, reproduction, loan repaying and other; and data on income including sale of pigs, sale of manure, sale of breeding services, other income.   ",
+                            Lang2 = "The App is designed to determine the profit or loss of smallholder pig enterprises, with the user inputting their data relating to this.  This data includes but is not limited to: data on costs including on feed, labour, water, co-operative / group membership, animal purchase, equipment, healthcare, housing, reproduction, loan repaying and other; and data on income including sale of pigs, sale of manure, sale of breeding services, other income.   ",
+                            Lang3 = "The App is designed to determine the profit or loss of smallholder pig enterprises, with the user inputting their data relating to this.  This data includes but is not limited to: data on costs including on feed, labour, water, co-operative / group membership, animal purchase, equipment, healthcare, housing, reproduction, loan repaying and other; and data on income including sale of pigs, sale of manure, sale of breeding services, other income.   "
+                        },
+                        new
+                        {
+                            RowKey = "PP10",
+                            English = "Location data ",
+                            Lang1 = "Location data ",
+                            Lang2 = "Location data ",
+                            Lang3 = "Location data "
+                        },
+                        new
+                        {
+                            RowKey = "PP11",
+                            English = "We may collect, information regarding your location, with your prior permission. We use this information to provide features of the App, to improve and customize the App. The information may be uploaded to our servers and/or a Service Provider's server or it may be simply stored on your device. You can enable or disable access to this information at any time, through your Device settings. ",
+                            Lang1 = "We may collect, information regarding your location, with your prior permission. We use this information to provide features of the App, to improve and customize the App. The information may be uploaded to our servers and/or a Service Provider's server or it may be simply stored on your device. You can enable or disable access to this information at any time, through your Device settings. ",
+                            Lang2 = "We may collect, information regarding your location, with your prior permission. We use this information to provide features of the App, to improve and customize the App. The information may be uploaded to our servers and/or a Service Provider's server or it may be simply stored on your device. You can enable or disable access to this information at any time, through your Device settings. ",
+                            Lang3 = "We may collect, information regarding your location, with your prior permission. We use this information to provide features of the App, to improve and customize the App. The information may be uploaded to our servers and/or a Service Provider's server or it may be simply stored on your device. You can enable or disable access to this information at any time, through your Device settings. "
+                        },
+                        new
+                        {
+                            RowKey = "PP12",
+                            English = "Use of Your Personal Data ",
+                            Lang1 = "Use of Your Personal Data ",
+                            Lang2 = "Use of Your Personal Data ",
+                            Lang3 = "Use of Your Personal Data "
+                        },
+                        new
+                        {
+                            RowKey = "PP13",
+                            English = "We may use Personal Data for the following purposes: \n\nTo provide and maintain the App, including to monitor the usage of the App. \n\nTo manage Your Account: to manage your registration as a user of the App.  \n\nTo contact You: To contact you by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application's push notifications regarding updates or informative communications related to the functionalities, including security updates, when necessary or reasonable for their implementation. \n\nFor other purposes: We may use your information for other purposes, such as data analysis, identifying usage trends and to evaluate and improve the App and your experience. \n\nWe may share your personal information in the following situations: \n\nWith Affiliates: We may share your information with our affiliates, in which case we will require those affiliates to honor this Privacy Policy.  \n\nWith Your consent: We may disclose your personal information for any other purpose with your consent. ",
+                            Lang1 = "We may use Personal Data for the following purposes: \n\nTo provide and maintain the App, including to monitor the usage of the App. \n\nTo manage Your Account: to manage your registration as a user of the App.  \n\nTo contact You: To contact you by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application's push notifications regarding updates or informative communications related to the functionalities, including security updates, when necessary or reasonable for their implementation. \n\nFor other purposes: We may use your information for other purposes, such as data analysis, identifying usage trends and to evaluate and improve the App and your experience. \n\nWe may share your personal information in the following situations: \n\nWith Affiliates: We may share your information with our affiliates, in which case we will require those affiliates to honor this Privacy Policy.  \n\nWith Your consent: We may disclose your personal information for any other purpose with your consent. ",
+                            Lang2 = "We may use Personal Data for the following purposes: \n\nTo provide and maintain the App, including to monitor the usage of the App. \n\nTo manage Your Account: to manage your registration as a user of the App.  \n\nTo contact You: To contact you by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application's push notifications regarding updates or informative communications related to the functionalities, including security updates, when necessary or reasonable for their implementation. \n\nFor other purposes: We may use your information for other purposes, such as data analysis, identifying usage trends and to evaluate and improve the App and your experience. \n\nWe may share your personal information in the following situations: \n\nWith Affiliates: We may share your information with our affiliates, in which case we will require those affiliates to honor this Privacy Policy.  \n\nWith Your consent: We may disclose your personal information for any other purpose with your consent. ",
+                            Lang3 = "We may use Personal Data for the following purposes: \n\nTo provide and maintain the App, including to monitor the usage of the App. \n\nTo manage Your Account: to manage your registration as a user of the App.  \n\nTo contact You: To contact you by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application's push notifications regarding updates or informative communications related to the functionalities, including security updates, when necessary or reasonable for their implementation. \n\nFor other purposes: We may use your information for other purposes, such as data analysis, identifying usage trends and to evaluate and improve the App and your experience. \n\nWe may share your personal information in the following situations: \n\nWith Affiliates: We may share your information with our affiliates, in which case we will require those affiliates to honor this Privacy Policy.  \n\nWith Your consent: We may disclose your personal information for any other purpose with your consent. "
+                        },
+                        new
+                        {
+                            RowKey = "PP14",
+                            English = "Retention of Your Personal Data ",
+                            Lang1 = "Retention of Your Personal Data ",
+                            Lang2 = "Retention of Your Personal Data ",
+                            Lang3 = "Retention of Your Personal Data "
+                        },
+                        new
+                        {
+                            RowKey = "PP15",
+                            English = "We will retain your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies. We will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of the App, or we are legally obligated to retain this data for longer time periods. ",
+                            Lang1 = "We will retain your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies. We will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of the App, or we are legally obligated to retain this data for longer time periods. ",
+                            Lang2 = "We will retain your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies. We will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of the App, or we are legally obligated to retain this data for longer time periods. ",
+                            Lang3 = "We will retain your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies. We will also retain Usage Data for internal analysis purposes. Usage Data is generally retained for a shorter period of time, except when this data is used to strengthen the security or to improve the functionality of the App, or we are legally obligated to retain this data for longer time periods. "
+                        },
+                        new
+                        {
+                            RowKey = "PP16",
+                            English = "Transfer of Your Personal Data ",
+                            Lang1 = "Transfer of Your Personal Data ",
+                            Lang2 = "Transfer of Your Personal Data ",
+                            Lang3 = "Transfer of Your Personal Data "
+                        },
+                        new
+                        {
+                            RowKey = "PP17",
+                            English = "Your information, including Personal Data, is processed at our operating offices and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of your county, country or other governmental jurisdiction where the data protection laws may differ than those from your jurisdiction. Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer. ",
+                            Lang1 = "Your information, including Personal Data, is processed at our operating offices and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of your county, country or other governmental jurisdiction where the data protection laws may differ than those from your jurisdiction. Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer. ",
+                            Lang2 = "Your information, including Personal Data, is processed at our operating offices and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of your county, country or other governmental jurisdiction where the data protection laws may differ than those from your jurisdiction. Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer. ",
+                            Lang3 = "Your information, including Personal Data, is processed at our operating offices and in any other places where the parties involved in the processing are located. It means that this information may be transferred to — and maintained on — computers located outside of your county, country or other governmental jurisdiction where the data protection laws may differ than those from your jurisdiction. Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer. "
+                        },
+                        new
+                        {
+                            RowKey = "PP18",
+                            English = "We will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of Your data and other personal information. ",
+                            Lang1 = "We will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of Your data and other personal information. ",
+                            Lang2 = "We will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of Your data and other personal information. ",
+                            Lang3 = "We will take all steps reasonably necessary to ensure that your data is treated securely and in accordance with this Privacy Policy and no transfer of your Personal Data will take place to an organization or a country unless there are adequate controls in place including the security of Your data and other personal information. "
+                        },
+                        new
+                        {
+                            RowKey = "PP19",
+                            English = "Delete Your Personal Data ",
+                            Lang1 = "Delete Your Personal Data ",
+                            Lang2 = "Delete Your Personal Data ",
+                            Lang3 = "Delete Your Personal Data "
+                        },
+                        new
+                        {
+                            RowKey = "PP20",
+                            English = "You have the right to delete or request that we assist in deleting the Personal Data that we have collected about you. The App may give you the ability to delete certain information about you from within the App. You may update, amend, or delete your information at any time by signing into your Account and visiting the account settings section that allows you to manage your personal information. You may also contact us to request access to, correct, or delete any personal information that you have provided to us. Please note, however, that we may need to retain certain information when we have a legal obligation or lawful basis to do so. ",
+                            Lang1 = "You have the right to delete or request that we assist in deleting the Personal Data that we have collected about you. The App may give you the ability to delete certain information about you from within the App. You may update, amend, or delete your information at any time by signing into your Account and visiting the account settings section that allows you to manage your personal information. You may also contact us to request access to, correct, or delete any personal information that you have provided to us. Please note, however, that we may need to retain certain information when we have a legal obligation or lawful basis to do so. ",
+                            Lang2 = "You have the right to delete or request that we assist in deleting the Personal Data that we have collected about you. The App may give you the ability to delete certain information about you from within the App. You may update, amend, or delete your information at any time by signing into your Account and visiting the account settings section that allows you to manage your personal information. You may also contact us to request access to, correct, or delete any personal information that you have provided to us. Please note, however, that we may need to retain certain information when we have a legal obligation or lawful basis to do so. ",
+                            Lang3 = "You have the right to delete or request that we assist in deleting the Personal Data that we have collected about you. The App may give you the ability to delete certain information about you from within the App. You may update, amend, or delete your information at any time by signing into your Account and visiting the account settings section that allows you to manage your personal information. You may also contact us to request access to, correct, or delete any personal information that you have provided to us. Please note, however, that we may need to retain certain information when we have a legal obligation or lawful basis to do so. "
+                        },
+                        new
+                        {
+                            RowKey = "PP21",
+                            English = "Disclosure of Your Personal Data ",
+                            Lang1 = "Disclosure of Your Personal Data ",
+                            Lang2 = "Disclosure of Your Personal Data ",
+                            Lang3 = "Disclosure of Your Personal Data "
+                        },
+                        new
+                        {
+                            RowKey = "PP22",
+                            English = "Law enforcement ",
+                            Lang1 = "Law enforcement ",
+                            Lang2 = "Law enforcement ",
+                            Lang3 = "Law enforcement "
+                        },
+                        new
+                        {
+                            RowKey = "PP23",
+                            English = "Under certain circumstances, we may be required to disclose your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency). \n\nWe  may disclose your Personal Data in the good faith belief that such action is necessary to: \n\nProtect and defend our rights  \n\nPrevent or investigate possible wrongdoing in connection with the App \n\nProtect the personal safety of Users of the App  \n\nProtect against legal liability ",
+                            Lang1 = "Under certain circumstances, we may be required to disclose your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency). \n\nWe  may disclose your Personal Data in the good faith belief that such action is necessary to: \n\nProtect and defend our rights  \n\nPrevent or investigate possible wrongdoing in connection with the App \n\nProtect the personal safety of Users of the App  \n\nProtect against legal liability ",
+                            Lang2 = "Under certain circumstances, we may be required to disclose your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency). \n\nWe  may disclose your Personal Data in the good faith belief that such action is necessary to: \n\nProtect and defend our rights  \n\nPrevent or investigate possible wrongdoing in connection with the App \n\nProtect the personal safety of Users of the App  \n\nProtect against legal liability ",
+                            Lang3 = "Under certain circumstances, we may be required to disclose your Personal Data if required to do so by law or in response to valid requests by public authorities (e.g. a court or a government agency). \n\nWe  may disclose your Personal Data in the good faith belief that such action is necessary to: \n\nProtect and defend our rights  \n\nPrevent or investigate possible wrongdoing in connection with the App \n\nProtect the personal safety of Users of the App  \n\nProtect against legal liability "
+                        },
+                        new
+                        {
+                            RowKey = "PP24",
+                            English = "Security of Your Personal Data",
+                            Lang1 = "Security of Your Personal Data",
+                            Lang2 = "Security of Your Personal Data",
+                            Lang3 = "Security of Your Personal Data"
+                        },
+                        new
+                        {
+                            RowKey = "PP25",
+                            English = "The security of your Personal Data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security. ",
+                            Lang1 = "The security of your Personal Data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security. ",
+                            Lang2 = "The security of your Personal Data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security. ",
+                            Lang3 = "The security of your Personal Data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security. "
+                        },
+                        new
+                        {
+                            RowKey = "PP26",
+                            English = "Use of Information Collected when Using the Application",
+                            Lang1 = "Use of Information Collected when Using the Application",
+                            Lang2 = "Use of Information Collected when Using the Application",
+                            Lang3 = "Use of Information Collected when Using the Application"
+                        },
+                        new
+                        {
+                            RowKey = "PP27",
+                            English = "Information collected on using the App on costs and income related to the pig enterprise, which is entered by the user, is used to determine the profit or loss of the user’s pig enterprise.  This is reported back to the user in the App.  This data will remain on the users device until it is uploaded (through the upload function of the App), in which case it will be uploaded to a database maintained by the International Livestock Research Institute (ILRI).  The ILRI database will be accessible for use by ILRI scientists and collaborators who may use the data for analysis including, but not limited to, understanding the costs, incomes and profit associated with pig enterprises.  Reports or publications may be made from this analysis, but individual users will not be identified in any way, only summary information will be included in the reports or publications.  In some cases this information may be shared back to specific users via the App.  Users who do not wish for their data to be uploaded to the ILRI database and accessible by ILRI scientists and collaborators should not upload their data.  ",
+                            Lang1 = "Information collected on using the App on costs and income related to the pig enterprise, which is entered by the user, is used to determine the profit or loss of the user’s pig enterprise.  This is reported back to the user in the App.  This data will remain on the users device until it is uploaded (through the upload function of the App), in which case it will be uploaded to a database maintained by the International Livestock Research Institute (ILRI).  The ILRI database will be accessible for use by ILRI scientists and collaborators who may use the data for analysis including, but not limited to, understanding the costs, incomes and profit associated with pig enterprises.  Reports or publications may be made from this analysis, but individual users will not be identified in any way, only summary information will be included in the reports or publications.  In some cases this information may be shared back to specific users via the App.  Users who do not wish for their data to be uploaded to the ILRI database and accessible by ILRI scientists and collaborators should not upload their data.  ",
+                            Lang2 = "Information collected on using the App on costs and income related to the pig enterprise, which is entered by the user, is used to determine the profit or loss of the user’s pig enterprise.  This is reported back to the user in the App.  This data will remain on the users device until it is uploaded (through the upload function of the App), in which case it will be uploaded to a database maintained by the International Livestock Research Institute (ILRI).  The ILRI database will be accessible for use by ILRI scientists and collaborators who may use the data for analysis including, but not limited to, understanding the costs, incomes and profit associated with pig enterprises.  Reports or publications may be made from this analysis, but individual users will not be identified in any way, only summary information will be included in the reports or publications.  In some cases this information may be shared back to specific users via the App.  Users who do not wish for their data to be uploaded to the ILRI database and accessible by ILRI scientists and collaborators should not upload their data.  ",
+                            Lang3 = "Information collected on using the App on costs and income related to the pig enterprise, which is entered by the user, is used to determine the profit or loss of the user’s pig enterprise.  This is reported back to the user in the App.  This data will remain on the users device until it is uploaded (through the upload function of the App), in which case it will be uploaded to a database maintained by the International Livestock Research Institute (ILRI).  The ILRI database will be accessible for use by ILRI scientists and collaborators who may use the data for analysis including, but not limited to, understanding the costs, incomes and profit associated with pig enterprises.  Reports or publications may be made from this analysis, but individual users will not be identified in any way, only summary information will be included in the reports or publications.  In some cases this information may be shared back to specific users via the App.  Users who do not wish for their data to be uploaded to the ILRI database and accessible by ILRI scientists and collaborators should not upload their data.  "
+                        },
+                        new
+                        {
+                            RowKey = "PP28",
+                            English = "Children's Privacy ",
+                            Lang1 = "Children's Privacy ",
+                            Lang2 = "Children's Privacy ",
+                            Lang3 = "Children's Privacy "
+                        },
+                        new
+                        {
+                            RowKey = "PP29",
+                            English = " We do not knowingly collect personally identifiable information from anyone under the age of 18. If we become aware that we have collected Personal Data from anyone under the age of 18 without verification of parental consent, we shall take steps to remove that information from Our servers. ",
+                            Lang1 = " We do not knowingly collect personally identifiable information from anyone under the age of 18. If we become aware that we have collected Personal Data from anyone under the age of 18 without verification of parental consent, we shall take steps to remove that information from Our servers. ",
+                            Lang2 = " We do not knowingly collect personally identifiable information from anyone under the age of 18. If we become aware that we have collected Personal Data from anyone under the age of 18 without verification of parental consent, we shall take steps to remove that information from Our servers. ",
+                            Lang3 = " We do not knowingly collect personally identifiable information from anyone under the age of 18. If we become aware that we have collected Personal Data from anyone under the age of 18 without verification of parental consent, we shall take steps to remove that information from Our servers. "
+                        },
+                        new
+                        {
+                            RowKey = "PP30",
+                            English = "Changes to this Privacy Policy ",
+                            Lang1 = "Changes to this Privacy Policy ",
+                            Lang2 = "Changes to this Privacy Policy ",
+                            Lang3 = "Changes to this Privacy Policy "
+                        },
+                        new
+                        {
+                            RowKey = "PP31",
+                            English = "We may update Our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page. ",
+                            Lang1 = "We may update Our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page. ",
+                            Lang2 = "We may update Our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page. ",
+                            Lang3 = "We may update Our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page. "
+                        },
+                        new
+                        {
+                            RowKey = "PP32",
+                            English = "Contact Us ",
+                            Lang1 = "Contact Us ",
+                            Lang2 = "Contact Us ",
+                            Lang3 = "Contact Us "
+                        },
+                        new
+                        {
+                            RowKey = "PP33",
+                            English = "If you have any questions about this Privacy Policy, You can contact us: \n\nBy email: kmarshall@cgiar.org ",
+                            Lang1 = "If you have any questions about this Privacy Policy, You can contact us: \n\nBy email: kmarshall@cgiar.org ",
+                            Lang2 = "If you have any questions about this Privacy Policy, You can contact us: \n\nBy email: kmarshall@cgiar.org ",
+                            Lang3 = "If you have any questions about this Privacy Policy, You can contact us: \n\nBy email: kmarshall@cgiar.org "
                         });
                 });
 

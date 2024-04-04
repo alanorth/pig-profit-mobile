@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PigTool.Interfaces
+﻿namespace PigTool.Interfaces
 {
     public interface IAppVersionService
     {

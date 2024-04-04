@@ -15,5 +15,6 @@ namespace Shared
         public double? OtherCosts { get; set; }
         public string? Comment { get; set; }
         public virtual string DateNiceFormat { get { return Date.ToString("dd/MMM/yyyy"); } }
+        public virtual double? DisplayTotalCosts { get => OtherCosts + TotalCosts + TransportationCosts; }
     }
 }

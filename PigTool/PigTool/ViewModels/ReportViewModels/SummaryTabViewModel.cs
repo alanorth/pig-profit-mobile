@@ -18,7 +18,7 @@ namespace PigTool.ViewModels
 {
     public class SummaryTabViewModel : LoggedInViewModel, INotifyPropertyChanged
     {
-        public List<Row> fullList, fullListByMonthYear;
+        public List<RowOfGroupedData> fullList, fullListByMonthYear;
         public double totalPeriodRevenue;
         public double totalPeriodCost;
         public double totalPeriodDifference;
@@ -47,7 +47,7 @@ namespace PigTool.ViewModels
         public string AdvanceTabLable { get; private set; }
         public string BenchmarkingTabLable { get; private set; }
 
-        public List<Row> FullList
+        public List<RowOfGroupedData> FullList
         {
             get { return fullList; }
             set
@@ -57,7 +57,7 @@ namespace PigTool.ViewModels
             }
         }
 
-        public List<Row> FullListByMonthYear
+        public List<RowOfGroupedData> FullListByMonthYear
         {
             get { return fullListByMonthYear; }
             set
@@ -67,7 +67,7 @@ namespace PigTool.ViewModels
                     Year = fl.YearMonth.Year,
                     Month = fl.YearMonth.Month,
                 })
-                .Select(fl => new Row
+                .Select(fl => new RowOfGroupedData
                 {
                     YearMonth = fl.Key,
                     Cost = fl.Sum(i => i.Cost),
@@ -233,7 +233,8 @@ namespace PigTool.ViewModels
                 TotalPeriodDifference,
                 SummaryChartCostGroup,
                 SummaryChartIncomeGroup,
-                SummaryChartProfitLoss);
+                SummaryChartProfitLoss, 
+                User.CurrencySymbol());
             OnPropertyChanged("GraphModel");
         }
 
@@ -254,7 +255,8 @@ namespace PigTool.ViewModels
                 TotalPeriodDifference,
                 SummaryChartCostGroup,
                 SummaryChartIncomeGroup,
-                SummaryChartProfitLoss);
+                SummaryChartProfitLoss, 
+                User.CurrencySymbol());
             OnPropertyChanged("GraphModel");
         }
 

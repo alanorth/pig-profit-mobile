@@ -4,5 +4,8 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="splash_background">#FFFFFF</color>
+    <color name="splash_background">#991</color>
+    <color name="splash_background_test">#998</color>
+    <color name="icon_background">#eee</color>
+    <color name="splash_screen_background">#eee</color>
 </resources>

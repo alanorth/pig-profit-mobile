@@ -311,9 +311,6 @@ public class AccountController : PigToolBaseController
             var MobileUser = new MobileUser();
             var requeststring = Convert.ToString(unparsedRequest);
 
-           
-
-
             //Log request
             await LoggingOperations.LogRequestToBlob("REGISTERUSER", "POST", requeststring, callGUID, Connection);
 
@@ -611,6 +608,33 @@ public class AccountController : PigToolBaseController
     {
         await Request.HttpContext.SignOutAsync();
         await _signInManager.SignOutAsync();
+    }
+
+    [Authorize]
+    [HttpGet]
+    public async Task<ActionResult> GetString()
+    {
+        try { 
+        var res = new ContentResult()
+        {
+            Content = GetStorageConnectionString(),
+            //Content = "MyTestContect",
+            ContentType = "text/plain",
+            StatusCode = 200
+        };
+
+        return res;
+        }catch(Exception ex)
+        {
+            var res = new ContentResult()
+            {
+                Content = ex.Message,
+                ContentType = "text/plain",
+                StatusCode = 500
+            };
+
+            return res;
+        }
     }
 
 

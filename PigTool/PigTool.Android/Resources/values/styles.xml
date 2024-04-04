@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-	<style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
-		<item name="spinBars">true</item>
-		<item name="color">#FFFFFF</item>
-	</style>
-	<style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
-		<item name="colorAccent">#404E65</item>
-	</style>
-	
+  <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
+    <item name="spinBars">true</item>
+    <item name="color">#FFFFFF</item>
+  </style>
+  <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+    <item name="colorAccent">#404E65</item>
+  </style>
+
   <style name="MainTheme" parent="MainTheme.Base">
     <!-- As of Xamarin.Forms 4.6 the theme has moved into the Forms binary -->
     <!-- If you want to override anything you can do that here. -->
     <!-- Underneath are a couple of entries to get you started. -->
+    <item name="android:windowNoTitle">true</item>
 
     <!-- Set theme colors from https://aka.ms/material-colors -->
     <!-- colorPrimary is used for the default action bar background -->
@@ -22,19 +23,24 @@
     <!-- colorAccent is used as the default value for colorControlActivated
          which is used to tint widgets -->
     <item name="colorAccent">#682622</item>
-	  <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-	  <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
-	  <item name="android:actionBarStyle">@style/MyTheme.ActionBarStyle</item>
-	  
+    <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+    <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+    <item name="android:actionBarStyle">@style/MyTheme.ActionBarStyle</item>
+
   </style>
-	<style name="MyTheme.ActionBarStyle" parent="@android:style/Widget.DeviceDefault.Light.ActionBar">
-		<item name="android:background">#682622</item>
-	</style>
+  <style name="MyTheme.ActionBarStyle" parent="@android:style/Widget.DeviceDefault.Light.ActionBar">
+    <item name="android:background">#682622</item>
+  </style>
   <style name="MyTheme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">
-    <item name="android:windowBackground">@drawable/splash_screen</item>
+    <item name="android:windowSplashScreenBackground">#EEE</item>
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowFullscreen">true</item>
     <item name="android:windowContentOverlay">@null</item>
     <item name="android:windowActionBar">true</item>
+  </style>
+  <style name="LaunchTheme" parent="Theme.AppCompat">
+    <item name="android:windowBackground">@drawable/splash_screen</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowSplashScreenAnimatedIcon">@drawable/splashscreenanimatedicon</item>
   </style>
 </resources>

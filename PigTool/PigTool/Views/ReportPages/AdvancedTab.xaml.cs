@@ -49,6 +49,14 @@ namespace PigTool.Views
                 }
                 //task.RunSynchronously();
                 _viewModel.LoadAdvancedBarChart(_viewModel.FullList);
+                foreach (var chart in _viewModel.listOfColoumnCostSeries)
+                {
+                    var costLabel = new Label();
+                    costLabel.Text = chart.ColorField;
+                    costLabel.BackgroundColor = new Color(chart.ActualFillColor.R, chart.ActualFillColor.G, chart.ActualFillColor.B);
+                    MyNameNedIncomeStack.Children.Add(costLabel);
+
+                }
                 FirstDislay = false;
             }
             

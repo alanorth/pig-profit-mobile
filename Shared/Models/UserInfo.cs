@@ -146,10 +146,10 @@ namespace Shared
     }
     public enum UserLangSettings
     {
-        Eng,
-        Lang1,
-        Lang2,
-        Lang3
+        Eng,//English
+        Lang1, //Luganda Uganda
+        Lang2,//Vietnamese Vietnam
+        Lang3//Kinyarwanda Rwandan
     }
 
 }

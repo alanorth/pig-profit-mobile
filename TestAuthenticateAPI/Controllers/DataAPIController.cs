@@ -18,9 +18,7 @@ namespace TestAuthenticateAPI.Controllers
     //[Authorize(AuthenticationSchemes = AuthSchemes)]
     public class DataAPIController : PigToolBaseController
     {
-        public DataAPIController(
-
-        IConfiguration config) : base(config)
+        public DataAPIController(IConfiguration config) : base(config)
         {
 
         }

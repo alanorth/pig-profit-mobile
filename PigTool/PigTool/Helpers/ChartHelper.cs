@@ -21,7 +21,7 @@ namespace PigTool.Helpers
         public List<Translation> TranslationStore;
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public List<Row> fullList;
+        public List<RowOfGroupedData> fullList;
         public double totalPeriodRevenue;
         public double totalPeriodCost;
         public double totalPeriodDifference;
@@ -43,7 +43,7 @@ namespace PigTool.Helpers
         private ObservableCollection<AnimalHouseItem> animalHouseItems;
 
         #region Variables
-        public List<Row> FullList
+        public List<RowOfGroupedData> FullList
         {
             get { return fullList; }
             set
@@ -238,7 +238,7 @@ namespace PigTool.Helpers
             }
         }
 
-        public class Row
+        public class RowOfGroupedData
         {
             public YearMonth YearMonth { get; set; }
             public double? Cost { get; set; }
@@ -252,7 +252,7 @@ namespace PigTool.Helpers
             TranslationStore = repo.GetAllTranslations().Result;
         }
 
-        public async Task<(List<Row>, double, double, double)> GetData()
+        public async Task<(List<RowOfGroupedData>, double, double, double)> GetData()
         {
             // Initial grouping for Feed items
             FeedItems = new ObservableCollection<FeedItem>(await repo.GetFeedItems());
@@ -260,7 +260,8 @@ namespace PigTool.Helpers
 
             //Initial grouping for Animalhouse Items
             AnimalHouseItems = new ObservableCollection<AnimalHouseItem>(await repo.GetAnimalHouseItems());
-            fullList = fullList.Concat(AnimalHouseItems.GroupBy(fi => new YearMonth
+            fullList = fullList.Concat(getDurationHousingItmes(AnimalHouseItems)).ToList();
+            /*fullList = fullList.Concat(AnimalHouseItems.GroupBy(fi => new YearMonth
             {
                 Year = fi.Date.Year,
                 Month = fi.Date.ToString("MMM"),
@@ -272,7 +273,7 @@ namespace PigTool.Helpers
                 Cost = fi.Sum(i => i.TotalCosts) + fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
                 Revenue = 0,
                 Difference = 0
-            }).ToList()).ToList();
+            }).ToList()).ToList();*/
 
 
             AnimalPurchaseItems = new ObservableCollection<AnimalPurchaseItem>(await repo.GetAnimalPurchaseItems());
@@ -282,7 +283,7 @@ namespace PigTool.Helpers
                 Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(AnimalPurchaseItem)
-            }).Select(fi => new Row
+            }).Select(fi => new RowOfGroupedData
             {
                 YearMonth = fi.Key,
                 Cost = fi.Sum(i => i.TotalCosts) + fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
@@ -297,11 +298,11 @@ namespace PigTool.Helpers
                 Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(BreedingServiceSaleItem)
-            }).Select(fi => new Row
+            }).Select(fi => new RowOfGroupedData
             {
                 YearMonth = fi.Key,
                 Cost = fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
-                Revenue = fi.Sum(i => i.AmountRecieved),
+                Revenue = fi.Sum(i => i.AmountRecieved) + fi.Sum(i => i.PaymentValue),
                 Difference = 0
             }).ToList()).ToList();
 
@@ -312,7 +313,7 @@ namespace PigTool.Helpers
                 Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(EquipmentItem)
-            }).Select(fi => new Row
+            }).Select(fi => new RowOfGroupedData
             {
                 YearMonth = fi.Key,
                 Cost = fi.Sum(i => i.TotalCosts) + fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
@@ -333,7 +334,7 @@ namespace PigTool.Helpers
                 Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(ManureSaleItem)
-            }).Select(fi => new Row
+            }).Select(fi => new RowOfGroupedData
             {
                 YearMonth = fi.Key,
                 Cost = fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
@@ -351,7 +352,7 @@ namespace PigTool.Helpers
                 Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(OtherCostItem)
-            }).Select(fi => new Row
+            }).Select(fi => new RowOfGroupedData
             {
                 YearMonth = fi.Key,
                 Cost = fi.Sum(i => i.TotalCosts) + fi.Sum(i => i.TransportationCosts) + fi.Sum(i => i.OtherCosts),
@@ -366,7 +367,7 @@ namespace PigTool.Helpers
                 Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(OtherIncomeItem)
-            }).Select(fi => new Row
+            }).Select(fi => new RowOfGroupedData
             {
                 YearMonth = fi.Key,
                 Cost = fi.Sum(i => i.TransportationCosts) + fi.Sum(i => i.OtherCosts),
@@ -383,7 +384,7 @@ namespace PigTool.Helpers
                 Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(HealthCareItem)
-            }).Select(fi => new Row
+            }).Select(fi => new RowOfGroupedData
             {
                 YearMonth = fi.Key,
                 Cost = fi.Sum(i => i.HealthCareCost) + fi.Sum(i => i.MedicineCost)
@@ -399,7 +400,7 @@ namespace PigTool.Helpers
                 Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(PigSaleItem)
-            }).Select(fi => new Row
+            }).Select(fi => new RowOfGroupedData
             {
                 YearMonth = fi.Key,
                 Cost = fi.Sum(i => i.TransportationCost) + fi.Sum(i => i.OtherCosts),
@@ -417,7 +418,7 @@ namespace PigTool.Helpers
                 Month = fi.Date.ToString("MMM"),
                 Date = fi.Date,
                 Grouping = nameof(ReproductiveItem)
-            }).Select(fi => new Row
+            }).Select(fi => new RowOfGroupedData
             {
                 YearMonth = fi.Key,
                 Cost = fi.Sum(i => i.SowsServicedCost) + fi.Sum(i => i.TransportCost) + fi.Sum(i => i.OtherCosts),
@@ -447,9 +448,9 @@ namespace PigTool.Helpers
             return (FullList, totalPeriodRevenue, totalPeriodCost, totalPeriodDifference);
         }
 
-        public List<Row> getDurationFeedItems(ObservableCollection<FeedItem> FeedItems)
+        public List<RowOfGroupedData> getDurationFeedItems(ObservableCollection<FeedItem> FeedItems)
         {
-            var result = new List<Row>();
+            var result = new List<RowOfGroupedData>();
 
             foreach (var feed in FeedItems)
             {
@@ -463,9 +464,26 @@ namespace PigTool.Helpers
             return result;
         }
 
-        public List<Row> getDurationLabourCost(ObservableCollection<LabourCostItem> LabourCosts)
+
+        public List<RowOfGroupedData> getDurationHousingItmes(ObservableCollection<AnimalHouseItem> HouseItemss)
         {
-            var result = new List<Row>();
+            var result = new List<RowOfGroupedData>();
+
+            foreach (var house in HouseItemss)
+            {
+                //var oCost = house.DisplayTotalCosts;
+                var totalCost = house.DisplayTotalCosts;
+                var startDate = ((DateTime)house.DurationStart);
+                var DurationLength = (TimeSpan)(house.DurationFinish - house.DurationStart);
+                CallculateDurtaionRows(result, totalCost, startDate, DurationLength, nameof(AnimalHouseItem));
+            }
+
+            return result;
+        }
+
+        public List<RowOfGroupedData> getDurationLabourCost(ObservableCollection<LabourCostItem> LabourCosts)
+        {
+            var result = new List<RowOfGroupedData>();
 
             foreach (var labour in LabourCosts)
             {
@@ -478,9 +496,9 @@ namespace PigTool.Helpers
 
             return result;
         }
-        public List<Row> getDurationLoanItems(ObservableCollection<LoanRepaymentItem> LoanItems)
+        public List<RowOfGroupedData> getDurationLoanItems(ObservableCollection<LoanRepaymentItem> LoanItems)
         {
-            var result = new List<Row>();
+            var result = new List<RowOfGroupedData>();
 
             foreach (var loan in LoanItems)
             {
@@ -493,9 +511,9 @@ namespace PigTool.Helpers
 
             return result;
         }
-        public List<Row> getDurationMembershipItems(ObservableCollection<MembershipItem> MembershipItems)
+        public List<RowOfGroupedData> getDurationMembershipItems(ObservableCollection<MembershipItem> MembershipItems)
         {
-            var result = new List<Row>();
+            var result = new List<RowOfGroupedData>();
 
             foreach (var member in MembershipItems)
             {
@@ -508,9 +526,9 @@ namespace PigTool.Helpers
 
             return result;
         }
-        public List<Row> getDurationWaterItems(ObservableCollection<WaterCostItem> WaterItems)
+        public List<RowOfGroupedData> getDurationWaterItems(ObservableCollection<WaterCostItem> WaterItems)
         {
-            var result = new List<Row>();
+            var result = new List<RowOfGroupedData>();
 
             foreach (var water in WaterItems)
             {
@@ -523,7 +541,7 @@ namespace PigTool.Helpers
 
             return result;
         }
-        private static void CallculateDurtaionRows(List<Row> result, double? totalCost, DateTime startDate, TimeSpan DurationLength, string GroupName)
+        private static void CallculateDurtaionRows(List<RowOfGroupedData> result, double? totalCost, DateTime startDate, TimeSpan DurationLength, string GroupName)
         {
             var daylength = DurationLength.TotalDays;
             if (1 > daylength)
@@ -549,7 +567,7 @@ namespace PigTool.Helpers
                     Grouping = GroupName
                 };
 
-                result.Add(new Row
+                result.Add(new RowOfGroupedData
                 {
                     YearMonth = yMonth,
                     Cost = dailyCost,
@@ -564,7 +582,8 @@ namespace PigTool.Helpers
                 double totalPeriodDifference,
                 string totalCost,
                 string totalIncome,
-                string totalProfitOrLoss
+                string totalProfitOrLoss,
+                string UserCurrency
             )
         {
             var model = new PlotModel { };
@@ -593,7 +612,8 @@ namespace PigTool.Helpers
             var yAxis = new LinearAxis
             {
                 StringFormat = "0", // Specify the format string without scientific notation
-                Position = AxisPosition.Left // Position the Y-axis on the left side
+                Position = AxisPosition.Left, // Position the Y-axis on the left side
+                Title = UserCurrency
             };
 
             model.Axes.Add(yAxis);

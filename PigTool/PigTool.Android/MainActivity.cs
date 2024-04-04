@@ -4,10 +4,29 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using Java.Lang;
 
 namespace PigTool.Droid
 {
-    [Activity(Label = "PigProfit$", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
+    [Activity(Theme = "@style/MyTheme.Splash", Label = "PigProfit$", Icon = "@mipmap/icon", MainLauncher = true, NoHistory = true)]
+    public class SplashActivity : Activity
+    {
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.splash_screen);
+
+            new Handler().PostDelayed(new Runnable(() =>
+            {
+                var intent = new Intent(this, typeof(MainActivity));
+                StartActivity(intent);
+                Finish();
+            }), 2500); // 3000 milliseconds delay
+        }
+    }
+
+
+    [Activity(MainLauncher = false, Label = "PigProfit$", Icon = "@mipmap/icon", RoundIcon = "@mipmap/icon_round", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -51,7 +70,8 @@ namespace PigTool.Droid
      [IntentFilter(new[] { Intent.ActionView }, Categories = new[] { Intent.CategoryDefault, Intent.CategoryBrowsable }, DataScheme = "pigprofittool")]
      public class WebAuthenticationCallbackActivity : Xamarin.Essentials.WebAuthenticatorCallbackActivity
      {
-     }*/
+     }*/   
+
 
     [Activity(NoHistory = true, LaunchMode = LaunchMode.SingleTop, Exported = true)]
     [IntentFilter(new[] { Android.Content.Intent.ActionView },Categories = new[] { Android.Content.Intent.CategoryDefault, Android.Content.Intent.CategoryBrowsable },

@@ -56,12 +56,16 @@ namespace PigTool.Views
         private async void LogUserOut(object sender, System.EventArgs e)
         {
             //logout
-            var logout = await DisplayAlert(_viewModel.ConfirmLogoutTranslation, _viewModel.LogoutWarningTransaltion, _viewModel.AcceptTranslation, _viewModel.Cancel); ;
+            var logout = await DisplayAlert(_viewModel.ConfirmLogoutTranslation, _viewModel.LogoutWarningTransaltion, _viewModel.AcceptTranslation, _viewModel.Cancel);
 
             if (logout)
             {
-                await _viewModel.repo.LogoutOfDatabase();
-                Process.GetCurrentProcess().Kill();
+                var logout2 = await DisplayAlert(_viewModel.ConfirmLogoutTranslation, _viewModel.LogoutWarningTransaltion2, _viewModel.AcceptTranslation, _viewModel.Cancel);
+                if (logout2)
+                {
+                    await _viewModel.repo.LogoutOfDatabase();
+                    Process.GetCurrentProcess().Kill();
+                }                
             }
         }
 

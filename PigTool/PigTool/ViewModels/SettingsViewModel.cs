@@ -13,6 +13,7 @@ namespace PigTool.ViewModels
         public string LogoutTranslation { get; private set; }
         public string ConfirmLogoutTranslation { get; private set; }
         public string LogoutWarningTransaltion { get; private set; }
+        public string LogoutWarningTransaltion2 { get; private set; }
         public string ChangeLanguageTrasnlation { get; private set; }
         public string SureTranslation { get; private set; }
         public string AppRestartTranslation { get; private set; }
@@ -32,6 +33,7 @@ namespace PigTool.ViewModels
             LegalDisclaimerTitleTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LegalDisclaimerTitleTranslation), User.UserLang);
             ConfirmLogoutTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ConfirmLogoutTranslation), User.UserLang);
             LogoutWarningTransaltion = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LogoutWarningTransaltion), User.UserLang);
+            LogoutWarningTransaltion2 = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(LogoutWarningTransaltion2), User.UserLang);
             ChangeLanguageTrasnlation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(ChangeLanguageTrasnlation), User.UserLang);
             SureTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(SureTranslation), User.UserLang);
             AppRestartTranslation = LogicHelper.GetTranslationFromStore(TranslationStore, nameof(AppRestartTranslation), User.UserLang);
