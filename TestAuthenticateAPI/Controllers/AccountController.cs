@@ -311,9 +311,6 @@ public class AccountController : PigToolBaseController
             var MobileUser = new MobileUser();
             var requeststring = Convert.ToString(unparsedRequest);
 
-           
-
-
             //Log request
             await LoggingOperations.LogRequestToBlob("REGISTERUSER", "POST", requeststring, callGUID, Connection);
 
@@ -436,6 +433,7 @@ public class AccountController : PigToolBaseController
                 .Select(kvp => $"{WebUtility.UrlEncode(kvp.Key)}={WebUtility.UrlEncode(kvp.Value)}"));
 
             // Redirect to final url (back to the app)
+            Request.HttpContext.Response.Headers.Add("pk-key", GetStorageConnectionString());
             Request.HttpContext.Response.Redirect(url);
 
         }
@@ -499,6 +497,7 @@ public class AccountController : PigToolBaseController
                         qs.Where(kvp => !string.IsNullOrEmpty(kvp.Value) && kvp.Value != "-1")
                         .Select(kvp => $"{WebUtility.UrlEncode(kvp.Key)}={WebUtility.UrlEncode(kvp.Value)}"));
 
+                    Request.HttpContext.Response.Headers.Add("pk-key", GetStorageConnectionString());
                     // Redirect to final url (back to the app)
                     Request.HttpContext.Response.Redirect(url);
                 }
@@ -611,6 +610,33 @@ public class AccountController : PigToolBaseController
     {
         await Request.HttpContext.SignOutAsync();
         await _signInManager.SignOutAsync();
+    }
+
+    [HttpGet]
+    [Route("GetString")]
+    public async Task<ActionResult> GetConnectionString()
+    {
+        try { 
+        var res = new ContentResult()
+        {
+            //Content = GetStorageConnectionString(),
+            Content = "MyTestContect",
+            ContentType = "text/plain",
+            StatusCode = 200
+        };
+
+        return res;
+        }catch(Exception ex)
+        {
+            var res = new ContentResult()
+            {
+                Content = ex.Message,
+                ContentType = "text/plain",
+                StatusCode = 500
+            };
+
+            return res;
+        }
     }
 
 
