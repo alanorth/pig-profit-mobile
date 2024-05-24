@@ -23,7 +23,7 @@ namespace PigTool.ViewModels.ReportViewModels
         private DateTime startDate, endDate;
         private double _graphWidth;
 
-        public DateTime StartDate
+        /*public DateTime StartDate
         {
             get => startDate;
             set
@@ -35,7 +35,7 @@ namespace PigTool.ViewModels.ReportViewModels
                     //CalculateSelected();
                 }
             }
-        }
+        }*/
 
         public double GraphWidth
         {
@@ -50,7 +50,7 @@ namespace PigTool.ViewModels.ReportViewModels
             }
         }
 
-        public DateTime EndDate
+        /*public DateTime EndDate
         {
             get => endDate;
             set
@@ -62,7 +62,7 @@ namespace PigTool.ViewModels.ReportViewModels
                     //CalculateSelected();
                 }
             }
-        }
+        }*/
 
         private PlotModel legendGraph, incomeLegendGraph, costGraphModel;
         public List<ColumnSeries> listOfColoumnCostSeries;
@@ -241,7 +241,7 @@ namespace PigTool.ViewModels.ReportViewModels
                         });
                     }
                     model.Series.Add(CostSeries);
-                    listOfColoumnCostSeries.Add(CostSeries);
+                    //listOfColoumnCostSeries.Add(CostSeries);
                 }
                 else //Income Chart
                 {
@@ -311,20 +311,30 @@ namespace PigTool.ViewModels.ReportViewModels
                     LabelPlacement = LabelPlacement.Middle,
                     LabelFormatString = "{0:0.00}",                   
                     IsStacked = true,
-                    Title = GetTitleTranslation(group.Key) + " " + costSumRound +" "+ User.CurrencySymbol(),
+                    Title = GetTitleTranslation(group.Key) + " " + costSumRound +" "+ User.CurrencySymbol()+ "                                        ",
                     StackGroup = "Cost",
-                    IsVisible = costSum == 0 ? false : true,                   
+                    IsVisible = costSum == 0 ? false : true,
                 };
                 plotModel.Series.Add(CostSeries);
+                if (costChart)
+                {
+                    listOfColoumnCostSeries.Add(CostSeries);
+                }
+                else
+                {
+                    listOfColoumnRevenueSeries.Add(CostSeries);
+                }
             }
 
-            plotModel.LegendPosition = LegendPosition.TopCenter;
-            plotModel.LegendPlacement = LegendPlacement.Inside;
+            plotModel.LegendPosition = LegendPosition.TopLeft;
+            plotModel.LegendPlacement = LegendPlacement.Outside;
             plotModel.LegendOrientation = LegendOrientation.Vertical;
 
             // Set the Title and IsLegendVisible properties
             plotModel.IsLegendVisible = true;
             plotModel.LegendFontSize = 11;
+            plotModel.LegendMaxHeight = GraphWidth;
+            plotModel.LegendMaxWidth = GraphWidth;
             plotModel.PlotAreaBackground = OxyColors.Transparent;
 
             var xAxis = new CategoryAxis

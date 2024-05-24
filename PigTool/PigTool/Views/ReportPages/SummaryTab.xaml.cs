@@ -110,6 +110,7 @@ namespace PigTool.Views
             if (!reRender)
             {
                 await _ViewModel.ConstructPage();
+                _ViewModel.CalculateSelected();
             }
             else
             {

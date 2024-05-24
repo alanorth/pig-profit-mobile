@@ -33,7 +33,7 @@ namespace PigTool.Views
             TotalRevenueLabel.SetBinding(Label.TextProperty, nameof(_viewModel.TotalPeriodRevenueLabel));
             var ProfitLossLabel = new Label();
             ProfitLossLabel.SetBinding(Label.TextProperty, nameof(_viewModel.TotalPeriodDifferenceLabel));
-                        
+
             TotalLabels.Children.Add(TotalCostLabel);
             TotalLabels.Children.Add(TotalRevenueLabel);
             TotalLabels.Children.Add(ProfitLossLabel);
@@ -43,23 +43,36 @@ namespace PigTool.Views
                 var task = Task.Run(async () => await _viewModel.GetDataForCharts());
                 var result = task.IsCompleted;
 
-                while (!result) {
+                while (!result)
+                {
                     Thread.Sleep(100);
                     result = task.IsCompleted;
                 }
                 //task.RunSynchronously();
                 _viewModel.LoadAdvancedBarChart(_viewModel.FullList);
-                foreach (var chart in _viewModel.listOfColoumnCostSeries)
+                /*foreach (var chart in _viewModel.listOfColoumnRevenueSeries)
                 {
                     var costLabel = new Label();
-                    costLabel.Text = chart.ColorField;
-                    costLabel.BackgroundColor = new Color(chart.ActualFillColor.R, chart.ActualFillColor.G, chart.ActualFillColor.B);
-                    MyNameNedIncomeStack.Children.Add(costLabel);
+                    costLabel.Text = chart.Title + " " + chart.ColorField;
+                    //I need a hex code from FillColor
+                    var tttt = chart.FillColor;
+                    //var tttt1 = tttt.ToString();
+                    var yyyy = chart.ColorField;
+                    //var yyyy2 = chart.ColorField?.ToString();
+                    var uuuu = chart.ColorField;
+                    //var uuuuu = chart?.ColorField?.ToString();
+                    var uuuu2 = chart.ActualFillColor;
+                    //var uuuu22 = chart?.ActualFillColor.ToString();
+                    var uuuu3 = chart.StrokeColor;
+                    //var uuuu33 = chart?.StrokeColor.ToString();
 
-                }
+                    //costLabel.BackgroundColor = chart.ColorField;
+                    //costLabel.BackgroundColor = new Color(chart.ActualFillColor.R, chart.ActualFillColor.G, chart.ActualFillColor.B);
+                    MyNameNedIncomeStack.Children.Add(costLabel);
+                }*/
                 FirstDislay = false;
             }
-            
+
             this.Title = _viewModel.AdvanceTabLable;
         }
 
@@ -77,8 +90,10 @@ namespace PigTool.Views
             endDatePicker.Date = _viewModel.EndDate = _dateRange.EndDate;
             if (!firstRender)
             {
-                _viewModel.GetDataForCharts();
-                _viewModel.LoadAdvancedBarChart(_viewModel.FullList);
+                await _viewModel.GetDataForCharts();
+                _viewModel.CalculateSelected();
+                _viewModel.LoadAdvancedBarChart(_viewModel.FullListByMonthYear);
+                _viewModel.filterDataAndReloadBarChart();
             }
             else
             {

@@ -98,7 +98,7 @@
                 <BoxView StyleClass="Seperator"/>
                 <StackLayout Orientation="Vertical" x:Name="MyNameNedIncomeStack">
                     <ScrollView Orientation="Vertical">
-                        <Frame Padding="0" BorderColor="Black">
+                        <Frame Padding="0" BorderColor="Black" >
                             <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Always"  WidthRequest="{Binding GraphWidth}">
                                 <StackLayout Orientation="Vertical">
                                     <oxy:PlotView Model="{Binding IncomeGraphModel}" HorizontalOptions="CenterAndExpand" 
