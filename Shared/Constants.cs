@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace Shared
@@ -31,6 +32,11 @@ namespace Shared
         public const string BASEURL = "https://pigprofittool.azurewebsites.net/";
         //public const string BASEURL = "http://10.0.2.2:5272";
 
+        #endregion
+
+        #region Color Constants
+
+        public static Color EntryTextColor = Color.Black;
         #endregion
 
         #region User Controls

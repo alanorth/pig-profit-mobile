@@ -292,8 +292,8 @@ namespace PigTool.Views
             {
                 Text = ExpanderTitle,
                 FontAttributes = FontAttributes.Bold,
-                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label))
-
+                FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+                TextColor = Color.FromHex("#682622")
             };
 
             frame.Content = headerLabel;

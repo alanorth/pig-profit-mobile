@@ -59,7 +59,18 @@ namespace PigTool.ViewModels
 
         public List<RowOfGroupedData> FullListByMonthYear
         {
-            get { return fullListByMonthYear; }
+            get
+            {
+                if (fullListByMonthYear != null)
+                {
+                    return fullListByMonthYear.OrderByDescending(fl => fl.YearMonth.Year).ThenByDescending(fl => fl.YearMonth.Month).ToList();
+                }
+                else
+                {
+                    return fullListByMonthYear;
+                }
+
+            }
             set
             {
                 fullListByMonthYear = value.GroupBy(fl => new YearMonth
@@ -107,7 +118,7 @@ namespace PigTool.ViewModels
         }
         public string TotalPeriodRevenueLabel
         {
-            get => string.Format("{1}: {0:N0} {2}",TotalPeriodRevenue, SummaryIncomeTranslation, User.CurrencySymbol());
+            get => string.Format("{1}: {0:N0} {2}", TotalPeriodRevenue, SummaryIncomeTranslation, User.CurrencySymbol());
         }
 
         public double TotalPeriodCost
@@ -233,7 +244,7 @@ namespace PigTool.ViewModels
                 TotalPeriodDifference,
                 SummaryChartCostGroup,
                 SummaryChartIncomeGroup,
-                SummaryChartProfitLoss, 
+                SummaryChartProfitLoss,
                 User.CurrencySymbol());
             OnPropertyChanged("GraphModel");
         }
@@ -255,7 +266,7 @@ namespace PigTool.ViewModels
                 TotalPeriodDifference,
                 SummaryChartCostGroup,
                 SummaryChartIncomeGroup,
-                SummaryChartProfitLoss, 
+                SummaryChartProfitLoss,
                 User.CurrencySymbol());
             OnPropertyChanged("GraphModel");
         }

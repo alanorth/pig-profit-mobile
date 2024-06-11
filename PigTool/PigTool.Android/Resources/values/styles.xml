@@ -25,13 +25,20 @@
     <item name="colorAccent">#682622</item>
     <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
-    <item name="android:actionBarStyle">@style/MyTheme.ActionBarStyle</item>
+    <item name="android:actionBarStyle">@style/MyTheme.ActionBarStyle</item>"
 
   </style>
   <style name="MyTheme.ActionBarStyle" parent="@android:style/Widget.DeviceDefault.Light.ActionBar">
-    <item name="android:background">#682622</item>
+    <item name="android:background">#8fed47</item>
   </style>
   <style name="MyTheme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:windowSplashScreenBackground">#EEE</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowFullscreen">true</item>
+    <item name="android:windowContentOverlay">@null</item>
+    <item name="android:windowActionBar">true</item>
+  </style>
+  <style name="EntryTheme" parent ="Theme.AppCompat.Light.NoActionBar">
     <item name="android:windowSplashScreenBackground">#EEE</item>
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowFullscreen">true</item>

@@ -471,6 +471,7 @@ namespace PigTool.Helpers
 
             foreach (var house in HouseItemss)
             {
+                var dailyCost = house.GettheDailyCosts();
                 //var oCost = house.DisplayTotalCosts;
                 var totalCost = house.DisplayTotalCosts;
                 var startDate = ((DateTime)house.DurationStart);

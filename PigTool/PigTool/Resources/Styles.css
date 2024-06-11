@@ -1,0 +1,19 @@
+﻿^ContentPage {
+    background-color: ;
+}
+
+^Entry {
+    background-color: whitesmoke;
+    border-block: 2;
+    border-block-color: #000000;
+    border-radius: 10;
+}
+
+
+^Picker {
+    background-color: transparent;
+}
+
+^DatePicker {
+    background-color: transparent;
+}

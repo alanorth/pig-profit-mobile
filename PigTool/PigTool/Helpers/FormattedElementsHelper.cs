@@ -4,6 +4,7 @@ using System.Text;
 using Xamarin.Forms;
 using Xamarin.CommunityToolkit;
 using Xamarin.CommunityToolkit.Behaviors;
+using Shared;
 
 namespace PigTool.Helpers
 {
@@ -34,6 +35,7 @@ namespace PigTool.Helpers
                 HorizontalTextAlignment = TextAlignment.Center,
                 VerticalTextAlignment = TextAlignment.Center,
                 FontSize = 13,
+                TextColor = Constants.EntryTextColor,
                 BackgroundColor = Color.White,
                 LineBreakMode = LineBreakMode.WordWrap,
             };
@@ -95,7 +97,8 @@ namespace PigTool.Helpers
             var Label = new Label()
             {
                 VerticalOptions = LayoutOptions.CenterAndExpand,
-                WidthRequest = 130
+                WidthRequest = 130,
+                TextColor = Constants.EntryTextColor,
             };
 
             Label.SetBinding(Label.TextProperty, new Binding(textBindingField));
@@ -109,7 +112,8 @@ namespace PigTool.Helpers
             var DPicker = new DatePicker()
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                Format = "dd/MMM/yyyy"
+                Format = "dd/MMM/yyyy",
+                TextColor = Constants.EntryTextColor,
             };
 
             DPicker.SetBinding(DatePicker.DateProperty, new Binding(DateBindingProperty));
@@ -141,7 +145,9 @@ namespace PigTool.Helpers
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Keyboard = Keyboard.Numeric,
                 Placeholder = "",
-                BackgroundColor = Color.White,
+                //BackgroundColor = Color.White,
+                TextColor = Constants.EntryTextColor,
+                //Style = (Style)Application.Current.Resources["EntryStyle"],
             };
 
             Entry.SetBinding(Entry.TextProperty, new Binding(TextBindingProperty));
@@ -168,7 +174,8 @@ namespace PigTool.Helpers
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 //HeightRequest = heightRequest,
-                Placeholder = ""
+                Placeholder = "",
+                TextColor = Constants.EntryTextColor,
             };
 
             Entry.SetBinding(Entry.TextProperty, new Binding(TextBindingProperty));
@@ -194,7 +201,7 @@ namespace PigTool.Helpers
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 //HeightRequest = heightRequest,
-                Placeholder = ""
+                Placeholder = "",
             };
 
             Edds.SetBinding(Editor.TextProperty, new Binding(TextBindingProperty));
@@ -214,7 +221,12 @@ namespace PigTool.Helpers
             Picker picker = new Picker()
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                Title = hintText
+                Title = hintText,
+                TextColor = Constants.EntryTextColor,
+                TitleColor = Color.LightGray,
+                //Need a visible line
+                //BackgroundColor = Color.Gray,
+
             };
 
             picker.SetBinding(Picker.SelectedItemProperty, new Binding(SelectedItemBinding));

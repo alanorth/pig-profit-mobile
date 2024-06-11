@@ -19,7 +19,7 @@ namespace Shared
         public int? YearsExpected { get; set; }
         public string? Comment { get; set; }
         public DateTime? DurationStart { get => Date; }
-        public DateTime? DurationFinish => YearsExpected == null ? Date : Date.AddYears((int)YearsExpected);
+        public DateTime? DurationFinish => YearsExpected == null ? Date : Date.AddYears((int)YearsExpected).AddDays(-1) ;
 
         private DateTime DateHolder;
         [JsonIgnore]
@@ -28,5 +28,20 @@ namespace Shared
         public virtual string? AnimalExpenseTranslationString { get; set; }
         public virtual string DateNiceFormat { get { return Date.ToString("dd/MMM/yyyy"); } }
         public virtual double? DisplayTotalCosts { get => OtherCosts + TotalCosts + TransportationCost; }
+
+        public double? GettheDailyCosts()
+        {
+            if (YearsExpected == null)
+            {
+                return 0.0;
+            }
+            else
+            {
+                var cosst = TotalCosts + TransportationCost + OtherCosts;
+                var duration = DurationFinish - DurationStart;
+                var days = duration?.TotalDays;
+                return cosst / days;
+            }
+        }
     } 
 }
