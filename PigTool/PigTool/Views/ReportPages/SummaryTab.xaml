@@ -5,6 +5,9 @@
              xmlns:vm="clr-namespace:PigTool.ViewModels" 
              xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms" x:DataType="vm:SummaryTabViewModel"
              Title="Summary">
+    <ContentPage.Resources>
+        <StyleSheet Source="/Resources/Styles.css" />
+    </ContentPage.Resources>
     <ScrollView>
 
         <StackLayout>
@@ -24,19 +27,22 @@
                     Format="dd/MMM/yyyy"
                     Margin="30, 0, 0, 30"
                     DateSelected="OnDateSelected"
-                    HorizontalOptions="CenterAndExpand"/>
+                    HorizontalOptions="CenterAndExpand"
+                    TextColor="Black"/>
                 <!--<Label Text="End Date:" />-->
                 <Label 
-                    Text="-"
+                    Text="‾"
                     VerticalOptions="CenterAndExpand"
-                    FontSize="24"/>
+                    FontSize="24"
+                    TextColor="Black"/>
                 <DatePicker 
                     x:Name="endDatePicker"
                     MinimumDate="{Binding Source={x:Reference startDatePicker},Path=Date}"
                     Format="dd/MMM/yyyy"
                     Margin="30, 0, 0, 30"
                     DateSelected="OnDateSelected" 
-                    HorizontalOptions="CenterAndExpand"/>
+                    HorizontalOptions="CenterAndExpand"
+                    TextColor="Black"/>
             </StackLayout>
 
 

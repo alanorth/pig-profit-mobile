@@ -4,6 +4,9 @@
              x:Class="PigTool.Views.PigSalePage"
              Visual="Material"
              Title="{Binding PigSaleTitleTranslation}">
+    <ContentPage.Resources>
+        <StyleSheet Source="/Resources/Styles.css" />
+    </ContentPage.Resources>
     <ContentPage.Content>
         <TableView Intent="Form" HasUnevenRows="True"  x:Name="PigSaleTableView">
         </TableView>

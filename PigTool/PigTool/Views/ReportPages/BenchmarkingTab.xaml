@@ -4,7 +4,9 @@
              x:Class="PigTool.Views.BenchmarkingTab"
              xmlns:vm="clr-namespace:PigTool.ViewModels"
              Title="Benchmarking">
-
+    <ContentPage.Resources>
+        <StyleSheet Source="/Resources/Styles.css" />
+    </ContentPage.Resources>
     <ScrollView>
         <StackLayout>
             <Label x:Name="BenchMarkingTitle" 

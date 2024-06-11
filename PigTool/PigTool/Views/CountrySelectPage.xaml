@@ -4,6 +4,9 @@
              x:Class="PigTool.Views.CountrySelectPage"
              NavigationPage.HasNavigationBar="False"
              Title="{Binding CountrySelectTitleTranslation}">
+    <ContentPage.Resources>
+        <StyleSheet Source="/Resources/Styles.css" />
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand">
             <Label x:Name="PageTitle"

@@ -29120,7 +29120,7 @@ namespace PigTool.Droid
 			public const int EmptyTheme = 2131689706;
 			
 			// aapt resource value: 0x7F0F00EB
-			public const int EntryTheme = 2131689707;
+			public const int LaunchTheme = 2131689707;
 			
 			// aapt resource value: 0x7F0F00EC
 			public const int MainTheme = 2131689708;

@@ -37,6 +37,7 @@ namespace Shared
         #region Color Constants
 
         public static Color EntryTextColor = Color.Black;
+        public static Color PickerGrayColor = Color.Gray;
         #endregion
 
         #region User Controls

@@ -1,5 +1,6 @@
 ﻿using PigTool.Models;
 using PigTool.ViewModels.ReportViewModels;
+using Shared;
 using System;
 using System.ComponentModel;
 using System.Threading;
@@ -27,11 +28,11 @@ namespace PigTool.Views
             BreakdownTitleLabel.SetBinding(Label.TextProperty, nameof(_viewModel.BreakdownLabel));
             IncomeBreakdownTitleLabel.SetBinding(Label.TextProperty, nameof(_viewModel.IncomeBreakdownLabel));
 
-            var TotalCostLabel = new Label();
+            var TotalCostLabel = new Label() { TextColor = Constants.EntryTextColor};
             TotalCostLabel.SetBinding(Label.TextProperty, nameof(_viewModel.TotalPeriodCostLabel));
-            var TotalRevenueLabel = new Label();
+            var TotalRevenueLabel = new Label() { TextColor = Constants.EntryTextColor };
             TotalRevenueLabel.SetBinding(Label.TextProperty, nameof(_viewModel.TotalPeriodRevenueLabel));
-            var ProfitLossLabel = new Label();
+            var ProfitLossLabel = new Label() { TextColor = Constants.EntryTextColor };
             ProfitLossLabel.SetBinding(Label.TextProperty, nameof(_viewModel.TotalPeriodDifferenceLabel));
 
             TotalLabels.Children.Add(TotalCostLabel);

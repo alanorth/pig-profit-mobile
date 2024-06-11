@@ -4,6 +4,9 @@
              x:Class="PigTool.Views.RegistrationPage"
              NavigationPage.HasNavigationBar="False"
              Title="{Binding RegistrationTitleTranslation}">
+    <ContentPage.Resources>
+        <StyleSheet Source="/Resources/Styles.css" />
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <Label x:Name="RegistrationTitleLabel"

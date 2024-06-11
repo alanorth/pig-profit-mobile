@@ -4,7 +4,11 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="{Binding UploadDataTranslation}">
+    <ContentPage.Resources>
+        <StyleSheet Source="/Resources/Styles.css" />
+    </ContentPage.Resources>
     <ContentPage.Content>
+        
         <StackLayout VerticalOptions="CenterAndExpand">
 
             <Label
@@ -18,16 +22,19 @@
                     x:Name="TotalItemsLabel"
                     FontSize="36"
                     HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand" />
+                    VerticalOptions="CenterAndExpand" 
+                    TextColor="Black"/>
                 <Label
                     HorizontalOptions="CenterAndExpand"
                     Text="new items since last upload at:"
-                    VerticalOptions="CenterAndExpand" />
+                    VerticalOptions="CenterAndExpand"
+                    TextColor="Black"/>
                 <Label
                     x:Name="LastUpdateDateLabel"
                     FontSize="20"
                     HorizontalOptions="CenterAndExpand"
-                    VerticalOptions="CenterAndExpand" />
+                    VerticalOptions="CenterAndExpand"
+                    TextColor="Black"/>
 
                 <Button
                     x:Name="ViewDataButton"
@@ -59,7 +66,8 @@
                 HorizontalTextAlignment="Center"
                 Text="Ensure that your data stays safe by uploading it to the cloud"
                 VerticalOptions="CenterAndExpand"
-                VerticalTextAlignment="Center" />
+                VerticalTextAlignment="Center"
+                TextColor="Black"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

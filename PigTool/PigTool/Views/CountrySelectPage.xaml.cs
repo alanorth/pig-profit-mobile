@@ -63,6 +63,8 @@ namespace PigTool.Views
             Picker picker = new Picker()
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
+                TextColor = Constants.EntryTextColor,
+                TitleColor = Constants.EntryTextColor,
             };
 
             picker.SetBinding(Picker.SelectedItemProperty, new Binding(nameof(_viewModel.SelectedCountry)));

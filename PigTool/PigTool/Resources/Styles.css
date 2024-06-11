@@ -1,9 +1,9 @@
 ﻿^ContentPage {
-    background-color: ;
+    background-color: whitesmoke;
 }
 
 ^Entry {
-    background-color: whitesmoke;
+    background-color: white;
     border-block: 2;
     border-block-color: #000000;
     border-radius: 10;

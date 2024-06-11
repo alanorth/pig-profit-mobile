@@ -4,6 +4,9 @@
              x:Class="PigTool.Views.LegalDisclaimer"
              NavigationPage.HasNavigationBar="False"
              Title="Legal / Disclaimer">
+    <ContentPage.Resources>
+        <StyleSheet Source="/Resources/Styles.css" />
+    </ContentPage.Resources>
     <ContentPage.Content>
 
         <ScrollView>
@@ -67,7 +70,7 @@
                 <StackLayout Orientation="Horizontal" 
                              Margin="0, 20, 0, 10">
                     <CheckBox x:Name="checkBox" VerticalOptions="Center" />
-                    <Label x:Name = "LegalAgreeLabel"></Label>
+                    <Label x:Name = "LegalAgreeLabel" TextColor="{StaticResource PrimaryText}" ></Label>
                 </StackLayout>
 
                 <Button x:Name="ProceedButton"

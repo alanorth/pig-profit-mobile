@@ -90,11 +90,11 @@ namespace PigTool.Views
 
             SummaryTable.Children.Add(listvw);
 
-            var TotalCostLabel = new Label();
+            var TotalCostLabel = new Label() { TextColor = Constants.EntryTextColor };
             TotalCostLabel.SetBinding(Label.TextProperty, nameof(_ViewModel.TotalPeriodCostLabel));
-            var TotalRevenueLabel  = new Label();
+            var TotalRevenueLabel  = new Label() { TextColor = Constants.EntryTextColor };
             TotalRevenueLabel.SetBinding(Label.TextProperty, nameof(_ViewModel.TotalPeriodRevenueLabel));
-            var ProfitLossLabel = new Label();
+            var ProfitLossLabel = new Label() { TextColor = Constants.EntryTextColor };
             ProfitLossLabel.SetBinding(Label.TextProperty, nameof(_ViewModel.TotalPeriodDifferenceLabel));
                         
             TotalLabels.Children.Add(TotalCostLabel);
@@ -155,11 +155,11 @@ namespace PigTool.Views
                     }
             };
 
-            var monthLabel = new Label();
-            var yearLabel = new Label();
-            var revenueLabel = new Label();
-            var costLabel = new Label();
-            var differenceLabel = new Label();
+            var monthLabel = new Label() { TextColor = Constants.EntryTextColor};
+            var yearLabel = new Label() { TextColor = Constants.EntryTextColor };
+            var revenueLabel = new Label() { TextColor = Constants.EntryTextColor };
+            var costLabel = new Label() { TextColor = Constants.EntryTextColor };
+            var differenceLabel = new Label() { TextColor = Constants.EntryTextColor };
 
             monthLabel.SetBinding(Label.TextProperty, "YearMonth.Month");
             yearLabel.SetBinding(Label.TextProperty, "YearMonth.Year");

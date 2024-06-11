@@ -223,7 +223,7 @@ namespace PigTool.Helpers
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 Title = hintText,
                 TextColor = Constants.EntryTextColor,
-                TitleColor = Color.LightGray,
+                TitleColor = Constants.PickerGrayColor
                 //Need a visible line
                 //BackgroundColor = Color.Gray,
 
@@ -388,6 +388,8 @@ namespace PigTool.Helpers
         public static Xamarin.CommunityToolkit.UI.Views.RangeSlider FormSliderInput(string TextBindingProperty, string IsEnableBinding, string ViewHideBinding = null, bool IsVisibile = true, int upperValue = 10)
         {
 
+            
+
             Xamarin.CommunityToolkit.UI.Views.RangeSlider slider = new Xamarin.CommunityToolkit.UI.Views.RangeSlider()
             {
                 MinimumValue = 1,
@@ -398,7 +400,15 @@ namespace PigTool.Helpers
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 HeightRequest = 70,
                 LowerThumbSize = 0,
-                LowerValueLabelStyle = (Style)Application.Current.Resources["SliderLowerValueLabelStyle"]
+                LowerValueLabelStyle = (Style)Application.Current.Resources["SliderLowerValueLabelStyle"],
+                TrackColor = Constants.EntryTextColor,
+                UpperValueLabelStyle = new Style(typeof(Label))
+                {
+                    Setters =
+                        {
+                            new Setter { Property = Label.TextColorProperty, Value = Color.Black }
+                        }
+                }
             };
 
             slider.SetBinding(Xamarin.CommunityToolkit.UI.Views.RangeSlider.UpperValueProperty, new Binding(TextBindingProperty));
