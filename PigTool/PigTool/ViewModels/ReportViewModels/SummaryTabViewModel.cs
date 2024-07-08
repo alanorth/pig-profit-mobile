@@ -63,7 +63,7 @@ namespace PigTool.ViewModels
             {
                 if (fullListByMonthYear != null)
                 {
-                    return fullListByMonthYear.OrderByDescending(fl => fl.YearMonth.Year).ThenByDescending(fl => fl.YearMonth.Month).ToList();
+                    return fullListByMonthYear.OrderBy(fl => fl.YearMonth.Year).ThenBy(fl => fl.YearMonth.monthNumber).ToList();
                 }
                 else
                 {
@@ -77,6 +77,7 @@ namespace PigTool.ViewModels
                 {
                     Year = fl.YearMonth.Year,
                     Month = fl.YearMonth.Month,
+                    monthNumber = fl.YearMonth.monthNumber,
                 })
                 .Select(fl => new RowOfGroupedData
                 {
@@ -84,7 +85,7 @@ namespace PigTool.ViewModels
                     Cost = fl.Sum(i => i.Cost),
                     Revenue = fl.Sum(i => i.Revenue),
                     Difference = fl.Sum(i => i.Revenue) - fl.Sum(i => i.Cost)
-                }).OrderByDescending(fl => fl.YearMonth.Year).ThenByDescending(fl => fl.YearMonth.Month).ToList();
+                }).OrderBy(fl => fl.YearMonth.Year).ThenBy(fl => fl.YearMonth.monthNumber).ToList();
 
                 OnPropertyChanged(nameof(FullListByMonthYear));
             }//set

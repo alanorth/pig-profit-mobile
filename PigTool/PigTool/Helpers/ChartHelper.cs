@@ -213,6 +213,7 @@ namespace PigTool.Helpers
             public int Year { get; set; }
             public string Month { get; set; }
             public DateTime Date { get; set; }
+            public int monthNumber { get; set; }
             public string Grouping { get; set; }
 
             public override bool Equals(object other)
@@ -281,6 +282,7 @@ namespace PigTool.Helpers
             {
                 Year = fi.Date.Year,
                 Month = fi.Date.ToString("MMM"),
+                monthNumber = fi.Date.Month,
                 Date = fi.Date,
                 Grouping = nameof(AnimalPurchaseItem)
             }).Select(fi => new RowOfGroupedData
@@ -296,6 +298,7 @@ namespace PigTool.Helpers
             {
                 Year = fi.Date.Year,
                 Month = fi.Date.ToString("MMM"),
+                monthNumber = fi.Date.Month,
                 Date = fi.Date,
                 Grouping = nameof(BreedingServiceSaleItem)
             }).Select(fi => new RowOfGroupedData
@@ -311,6 +314,7 @@ namespace PigTool.Helpers
             {
                 Year = fi.Date.Year,
                 Month = fi.Date.ToString("MMM"),
+                monthNumber = fi.Date.Month,
                 Date = fi.Date,
                 Grouping = nameof(EquipmentItem)
             }).Select(fi => new RowOfGroupedData
@@ -332,6 +336,7 @@ namespace PigTool.Helpers
             {
                 Year = fi.Date.Year,
                 Month = fi.Date.ToString("MMM"),
+                monthNumber = fi.Date.Month,
                 Date = fi.Date,
                 Grouping = nameof(ManureSaleItem)
             }).Select(fi => new RowOfGroupedData
@@ -350,6 +355,7 @@ namespace PigTool.Helpers
             {
                 Year = fi.Date.Year,
                 Month = fi.Date.ToString("MMM"),
+                monthNumber = fi.Date.Month,
                 Date = fi.Date,
                 Grouping = nameof(OtherCostItem)
             }).Select(fi => new RowOfGroupedData
@@ -365,6 +371,7 @@ namespace PigTool.Helpers
             {
                 Year = fi.Date.Year,
                 Month = fi.Date.ToString("MMM"),
+                monthNumber = fi.Date.Month,
                 Date = fi.Date,
                 Grouping = nameof(OtherIncomeItem)
             }).Select(fi => new RowOfGroupedData
@@ -382,6 +389,7 @@ namespace PigTool.Helpers
             {
                 Year = fi.Date.Year,
                 Month = fi.Date.ToString("MMM"),
+                monthNumber = fi.Date.Month,
                 Date = fi.Date,
                 Grouping = nameof(HealthCareItem)
             }).Select(fi => new RowOfGroupedData
@@ -398,6 +406,7 @@ namespace PigTool.Helpers
             {
                 Year = fi.Date.Year,
                 Month = fi.Date.ToString("MMM"),
+                monthNumber = fi.Date.Month,
                 Date = fi.Date,
                 Grouping = nameof(PigSaleItem)
             }).Select(fi => new RowOfGroupedData
@@ -416,6 +425,7 @@ namespace PigTool.Helpers
             {
                 Year = fi.Date.Year,
                 Month = fi.Date.ToString("MMM"),
+                monthNumber = fi.Date.Month,
                 Date = fi.Date,
                 Grouping = nameof(ReproductiveItem)
             }).Select(fi => new RowOfGroupedData
@@ -564,6 +574,7 @@ namespace PigTool.Helpers
                 {
                     Year = dateY.Year,
                     Month = dateY.ToString("MMM"),
+                    monthNumber = dateY.Date.Month,
                     Date = dateY,
                     Grouping = GroupName
                 };
